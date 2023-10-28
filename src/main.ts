@@ -2,6 +2,10 @@ import { Timer, Unit } from "w3ts";
 import { Players } from "w3ts/globals";
 import { W3TS_HOOK, addScriptHook } from "w3ts/hooks";
 import { Units } from "@objectdata/units";
+import { init_map_triggers } from "./init";
+import { initFrames } from "./frames";
+import { zombieSpawn } from "./zombies";
+import { startRound } from "./roundManager";
 
 const BUILD_DATE = compiletime(() => new Date().toUTCString());
 const TS_VERSION = compiletime(() => require("typescript").version);
@@ -27,11 +31,19 @@ function tsMain() {
     print(" ");
     print("Welcome to TypeScript!");
 
-    const unit = new Unit(Players[0], FourCC(Units.Footman), 0, 0, 270);
+    // const unit = new Unit(Players[0], FourCC(Units.Footman), 0, 0, 270);
+    // // Unit.create(Players[0], FourCC(Units.Footman), 0,0,0)
+    // new Timer().start(1.0, true, () => {
+    //   unit.color = Players[math.random(0, bj_MAX_PLAYERS)].color;
+    // });
 
-    new Timer().start(1.0, true, () => {
-      unit.color = Players[math.random(0, bj_MAX_PLAYERS)].color;
-    });
+    init_map_triggers();
+    initFrames();
+    print("Helloooo")
+    
+    //Spawn zombies
+    Timer.create().start(5, false, () => {startRound(); zombieSpawn()});
+
   } catch (e) {
     print(e);
   }
