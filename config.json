@@ -1,5 +1,5 @@
 {
-  "mapFolder": "map.w3x",
+  "mapFolder": "invasion-defense.w3x",
   "minifyScript": false,
   "gameExecutable": "E:\\Games\\Warcraft III\\_retail_\\x86_64\\Warcraft III.exe",
   "outputFolder": "./dist/bin",
@@ -9,3 +9,4 @@
     "windowed"
   ]
 }
+
