@@ -156,12 +156,6 @@ STRING 32
 Player 20
 }
 
-STRING 34
-// Units: h002 (Farm Town), Name (Name)
-{
-Farm Town
-}
-
 STRING 35
 // Abilities: A001 (Base - Info Ability), Name (Name)
 {
@@ -232,5 +226,59 @@ STRING 46
 // Abilities: A002 (Income), EditorSuffix (Editor Suffix)
 {
 (Info Only)
+}
+
+STRING 47
+// Abilities: A003 (Trample), Name (Name)
+{
+Trample
+}
+
+STRING 48
+// Abilities: A003 (Trample), EditorSuffix (Editor Suffix)
+{
+(Calvalry)
+}
+
+STRING 50
+// Abilities: A004 (Impaling Lance), Name (Name)
+{
+Impaling Lance
+}
+
+STRING 51
+// Abilities: A004 (Impaling Lance), Ubertip (Tooltip - Normal - Extended)
+{
+Adds bonus damage to an attack against enemies.
+}
+
+STRING 52
+// Abilities: A004 (Impaling Lance), Tip (Tooltip - Normal)
+{
+Impaling Lance
+}
+
+STRING 53
+// Abilities: A003 (Trample), Tip (Tooltip - Normal)
+{
+Trample
+}
+
+STRING 54
+// Abilities: A003 (Trample), Ubertip (Tooltip - Normal - Extended)
+{
+The large stature of the knight and his steed tower over his foes, trampling them and dealing damage.
+}
+
+STRING 55
+// Units: hkni (Knight), Ubertip (Tooltip - Extended)
+{
+Powerful mounted warrior. Can trample his enemies and use his fierce lance to attack enemies.
+}
+
+STRING 56
+// Units: h002 (Farm ), Name (Name)
+{
+Farm 
 }
 

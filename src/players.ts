@@ -51,11 +51,12 @@ export function init_startingResources(){
     Players[20].setState(PLAYER_STATE_GIVES_BOUNTY, 1);
 }
 
-export function giveRoundEndResources(){
+export function giveRoundEndResources(round: number){
+    
     //Gives gold and wood
     forEachPlayer((player) => {
-        adjustPlayerState(player, PLAYER_STATE_RESOURCE_GOLD, 200);
-        adjustPlayerState(player, PLAYER_STATE_RESOURCE_LUMBER, 200);
+        adjustPlayerState(player, PLAYER_STATE_RESOURCE_GOLD, 200 + 100*round);
+        adjustPlayerState(player, PLAYER_STATE_RESOURCE_LUMBER, 200 + 50*round);
     });
 
     //Creates supply horses for the player

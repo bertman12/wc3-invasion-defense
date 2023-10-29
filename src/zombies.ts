@@ -1,6 +1,5 @@
 import { Group, Rectangle, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
-// import { Units } from "war3-objectdata-th";
 
 export const zombieMapPlayer = Players[20];
 
@@ -13,17 +12,28 @@ export const zombieMapPlayer = Players[20];
 export function spawnZombies(currentRound: number) {
     const zRec = Rectangle.fromHandle(gg_rct_ZombieSpawn1);
     let group = Group.create();
+    const x = zRec?.centerX ?? 0
+    const y = zRec?.centerY ?? 0
+
     
-    const mw = Unit.create(zombieMapPlayer, FourCC("umtw"), zRec?.centerX ?? 0, zRec?.centerY ?? 0, 0);
-    
-    if(mw) group?.addUnit(mw);
-    
+    for (let x = 0; x < 1 + (currentRound - 1); x++) {
+        const mw = Unit.create(zombieMapPlayer, FourCC("umtw"), x, y);
+        if(mw) group?.addUnit(mw);
+    }
+
+    //For each farm under zombie control, it should add more units to the zombie spawn. 
+
+    //Creating some archers for the spawn.
+    for (let x = 0; x < 3 + currentRound; x++) {
+        const zArch = Unit.create(zombieMapPlayer, FourCC("nskm"), x, y);    
+        if(zArch) group?.addUnit(zArch);
+    }
+
     for(let x = 0; x < 6 + 2 * currentRound; x++){
-        let u = Unit.create(Players[20], FourCC("nzom"), zRec?.centerX ?? 0, zRec?.centerY ?? 0, 0);
+        let u = Unit.create(Players[20], FourCC("nzom"), x, y);
         if(u !== undefined) group?.addUnit(u);
         group?.orderCoords(OrderId.Attack, 0,0);
     }
-
 }
 
 

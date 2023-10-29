@@ -44,7 +44,7 @@ export class RoundManager {
     
     static endCurrentRound(zombieTimer?: Timer){
         print(`Round ${RoundManager.currentRound} has ended...`);
-        giveRoundEndResources();
+        giveRoundEndResources(this.currentRound);
         zombieTimer?.destroy();
         
         Sound.fromHandle(gg_snd_QuestCompleted)?.start();
@@ -52,17 +52,16 @@ export class RoundManager {
         SetTimeOfDay(12);
 
         //Refill stocks for units - doesn't do anything >=(
-        AddUnitToAllStock(FourCC("h000"), 20, 20);
+        // AddUnitToAllStock(FourCC("h000"), 20, 20);
 
-        forEachPlayer((p) => {
-            forEachUnitOfPlayerWithAbility(p, "A002", (u) => {
-                print("Found a unit with the ability: ", u.name);
-            })
-            forEachUnitOfPlayerWithAbility(p, "A000", (u) => {
-                print("Found a unit with the ability: ", u.name);
-            })
-        })
-
+        // forEachPlayer((p) => {
+        //     forEachUnitOfPlayerWithAbility(p, "A002", (u) => {
+        //         print("Found a unit with the ability: ", u.name);
+        //     })
+        //     forEachUnitOfPlayerWithAbility(p, "A000", (u) => {
+        //         print("Found a unit with the ability: ", u.name);
+        //     });
+        // })
 
         Timer.create().start(5, false, () => {
             Sound.fromHandle(gg_snd_Hint)?.start();
