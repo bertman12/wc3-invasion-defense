@@ -23,13 +23,214 @@ STRING 5
 Player 1
 }
 
-STRING 6
-{
-Force 1
-}
-
 STRING 7
 {
 Zombie Invasion Defense
+}
+
+STRING 8
+{
+Zombies
+}
+
+STRING 9
+{
+Human Defenders
+}
+
+STRING 10
+{
+Undead Enemies
+}
+
+STRING 11
+{
+Allied Human Forces
+}
+
+STRING 12
+// Units: h001 (Supply Horse), Name (Name)
+{
+Supply Horse
+}
+
+STRING 13
+// Units: h000 (Militia), Tip (Tooltip - Basic)
+{
+Train Militia
+}
+
+STRING 14
+// Units: h000 (Militia), Ubertip (Tooltip - Extended)
+{
+Restock Time: <h000,stockRegen>
+}
+
+STRING 15
+{
+Player 2
+}
+
+STRING 16
+{
+Player 3
+}
+
+STRING 17
+{
+Player 4
+}
+
+STRING 18
+{
+Player 5
+}
+
+STRING 19
+{
+Player 6
+}
+
+STRING 20
+{
+Player 7
+}
+
+STRING 21
+{
+Player 8
+}
+
+STRING 22
+{
+Player 9
+}
+
+STRING 23
+{
+Player 11
+}
+
+STRING 24
+{
+Player 12
+}
+
+STRING 25
+{
+Player 13
+}
+
+STRING 26
+{
+Player 14
+}
+
+STRING 27
+{
+Player 15
+}
+
+STRING 28
+{
+Player 16
+}
+
+STRING 29
+{
+Player 17
+}
+
+STRING 30
+{
+Player 18
+}
+
+STRING 31
+{
+Player 19
+}
+
+STRING 32
+{
+Player 20
+}
+
+STRING 34
+// Units: h002 (Farm Town), Name (Name)
+{
+Farm Town
+}
+
+STRING 35
+// Abilities: A001 (Base - Info Ability), Name (Name)
+{
+Base - Info Ability
+}
+
+STRING 36
+// Abilities: A001 (Base - Info Ability), Tip (Tooltip - Normal)
+{
+Base - Info Ability
+}
+
+STRING 37
+// Abilities: A001 (Base - Info Ability), Ubertip (Tooltip - Normal - Extended)
+{
+Base - Info Ability
+}
+
+STRING 38
+// Abilities: A000 (Supplies), Name (Name)
+{
+Supplies
+}
+
+STRING 39
+// Abilities: A000 (Supplies), Tip (Tooltip - Normal)
+{
+Supplies
+}
+
+STRING 40
+// Abilities: A000 (Supplies), Ubertip (Tooltip - Normal - Extended)
+{
+Increases the max allowed supply horses.
+}
+
+STRING 41
+// Abilities: A000 (Supplies), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 42
+// Abilities: A002 (Income), Name (Name)
+{
+Income
+}
+
+STRING 43
+// Abilities: A002 (Income), Tip (Tooltip - Normal)
+{
+Income
+}
+
+STRING 44
+// Abilities: A002 (Income), Ubertip (Tooltip - Normal - Extended)
+{
+Increases income after every round.
+}
+
+STRING 45
+// Abilities: A001 (Base - Info Ability), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 46
+// Abilities: A002 (Income), EditorSuffix (Editor Suffix)
+{
+(Info Only)
 }
 
