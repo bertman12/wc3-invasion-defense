@@ -1,66 +1,48 @@
 import { forEachUnitOfPlayer } from "src/players";
+import { Ability_Id } from "src/shared/enums";
+import { unitTypeAbilities } from "src/shared/misc";
 import { Group, MapPlayer, Unit } from "w3ts";
 
 /**
  * WIP 
  */
 export function forEachUnitOfPlayerWithAbility(player: MapPlayer, abilityId: string | number, cb: (unit: Unit) => void){
-    print("The abilityID before: ", abilityId);
-    
     if(typeof abilityId === "string"){
-        print("The fourCC returned value : ", FourCC(abilityId) );
         abilityId = FourCC(abilityId);
-        // abilityId = AbilityId(abilityId);
     }
 
-    print("GetObjectName: ",GetObjectName(abilityId));
-    
-    const a2s = AbilityId2String(abilityId);
-    print("FourCC => AbilityId2String : ", a2s);
-    
-    if(a2s){
-        const s2num = AbilityId(a2s);
-        print("FourCC => AbilityId2String => AbilityId : ", s2num);
-
-    } 
-    
-    // print("calling forEachUnitOfPlayerWithAbility");
-    // print("The AbilityId returned value: ", abilityId);
-    
-    // BlzGetAbilityId
-
     forEachUnitOfPlayer(player, (u) => {
-        u.setAbilityLevel
-        const val = u.getAbility(abilityId as number + 1);
-        GetSpellAbility();
-
-        u.getAbility(FourCC(abilityId as string));
-        //Does a unit have this ability?
-        /**
-         * If 
-         */
-
-
-        // print("what the val is: ",val)
-        // print("=================");
-        print(u.getAbilityByIndex(0))
-        // print(u.getAbilityByIndex(1))
-        // print(u.getAbilityByIndex(2))
-        // print(u.getAbilityByIndex(3))
-        // print(u.getAbilityByIndex(4))
-        // print(u.getAbilityByIndex(5))
-        // print(u.getAbilityByIndex(6))
-        // print(u.getAbilityByIndex(7))
-        // print(u.getAbilityByIndex(8))
-        // print(u.getAbilityByIndex(9))
-        // print("=================");
-        const ab = BlzGetUnitAbility(u.handle, abilityId as number);
-
-        print("BlzGetUnitAbility: ", ab);
-
-        if(ab !== undefined){
+        storeUnitTypeAbilityNumbers(u);
+        if(unitTypeAbilities.get(u.typeId)?.find(x => x as unknown as ability === u.getAbility(abilityId as number))){
+            print("Found a unit that has the ability!");
             cb(u);
         }
     
-    })
+    });
+}
+
+function storeUnitTypeAbilityNumbers(u: Unit){
+    if(unitTypeAbilities.has(u.typeId)) return;
+
+    //IF we currently haven't stored the unit type we do so now with an empty array
+    if(!unitTypeAbilities.has(u.typeId)){
+        unitTypeAbilities.set(u.typeId, []);
+    }
+
+    //Iterate all 12 ability slots a unit can have
+    for(let x = 0; x < 12; x++){
+        const currentAbility = u.getAbilityByIndex(x);
+        print(`Current ability at index ${x} => `, currentAbility);
+
+        if(currentAbility){
+            const updated =  unitTypeAbilities.get(u.typeId) as ability[];
+            updated.push(currentAbility);
+            
+            print("Adding current ability for ", u.name);
+
+            unitTypeAbilities.set(u.typeId, updated);
+        }
+
+
+    }
 }
