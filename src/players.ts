@@ -1,5 +1,6 @@
 import { Force, Group, MapPlayer, Unit } from "w3ts";
 import { Players } from "w3ts/globals";
+import { forEachUnitOfPlayerWithAbility } from "./utils/players";
 
 const playerStates = new Map<number, PlayerState>();
 
@@ -31,7 +32,7 @@ class PlayerState {
  * Should be first trigger to run
  */
 export function initializePlayerStateInstances(){
-    forEachPlayer(player => {
+    forEachAlliedPlayer(player => {
         playerStates.set(player.id, new PlayerState(player));
 
         //Lets players have advanced control over light blue.
@@ -56,13 +57,15 @@ export function init_startingResources(){
 export function giveRoundEndResources(round: number){
     
     //Gives gold and wood
-    forEachPlayer((player) => {
+    forEachAlliedPlayer((player) => {
         adjustPlayerState(player, PLAYER_STATE_RESOURCE_GOLD, 200 + 100*round);
         adjustPlayerState(player, PLAYER_STATE_RESOURCE_LUMBER, 200 + 50*round);
     });
+    
+
 
     //Creates supply horses for the player
-    forEachPlayer((player) => {
+    forEachAlliedPlayer((player) => {
         playerStates.get(player.id)?.createSupplyHorse();
 
         forEachUnitTypeOfPlayer(FourCC("h001"), player, (u) => {
@@ -78,11 +81,21 @@ export function adjustPlayerState(player: MapPlayer, whichState: playerstate, am
 /**
  * Calls a function for each player playing and is an ally of red. 
  */
-export function forEachPlayer(cb: (player: MapPlayer) => void){
-    Players.forEach(player => {
-        if(player.slotState === PLAYER_SLOT_STATE_PLAYING && player.isPlayerAlly(Players[0]) && player != Players[25]){
+export function forEachAlliedPlayer(cb: (player: MapPlayer) => void){
+    Players.forEach((player, index) => {
+        const isUser = player.controller === MAP_CONTROL_USER;
+        
+        //For testing purposes, include player[9] (the human ally) so their units can also be included when iterating the units OR i should make a separate function for all units. 
+        if((player.slotState === PLAYER_SLOT_STATE_PLAYING || player == Players[9]) && player.isPlayerAlly(Players[0]) && player != Players[25]){
             cb(player);
+            print("player name playing", player.name, " --index: ", index );
         }
+    })
+}
+
+export function forEachPlayer(cb:  (player: MapPlayer) => void){
+    Players.forEach(p => {
+        cb(p);
     })
 }
 

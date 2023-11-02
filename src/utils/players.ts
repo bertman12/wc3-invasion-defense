@@ -6,22 +6,27 @@ import { Group, MapPlayer, Unit } from "w3ts";
 /**
  * WIP 
  */
-export function forEachUnitOfPlayerWithAbility(player: MapPlayer, abilityId: string | number, cb: (unit: Unit) => void){
-    if(typeof abilityId === "string"){
-        abilityId = FourCC(abilityId);
-    }
+export function forEachUnitOfPlayerWithAbility(player: MapPlayer, abilityId:  number, cb: (unit: Unit) => void){
+    // if(typeof abilityId === "string"){
+    //     abilityId = FourCC(abilityId);
+    // }
 
     forEachUnitOfPlayer(player, (u) => {
-        storeUnitTypeAbilityNumbers(u);
-        if(unitTypeAbilities.get(u.typeId)?.find(x => x as unknown as ability === u.getAbility(abilityId as number))){
-            print("Found a unit that has the ability!");
+        storeUnitTypeAbilities(u);
+        const currAbilityArr = unitTypeAbilities.get(u.typeId);
+        const findResult = currAbilityArr?.find(x => `${x}` === `${u.getAbility(abilityId as number)}`);
+
+        if(findResult){
             cb(u);
         }
-    
     });
 }
 
-function storeUnitTypeAbilityNumbers(u: Unit){
+/**
+ * Used later on to check if a unit has a specific ability
+ * Function will save abilities from index [0,11] 
+ */
+function storeUnitTypeAbilities(u: Unit){
     if(unitTypeAbilities.has(u.typeId)) return;
 
     //IF we currently haven't stored the unit type we do so now with an empty array
@@ -31,14 +36,24 @@ function storeUnitTypeAbilityNumbers(u: Unit){
 
     //Iterate all 12 ability slots a unit can have
     for(let x = 0; x < 12; x++){
-        const currentAbility = u.getAbilityByIndex(x);
-        print(`Current ability at index ${x} => `, currentAbility);
+        let currentAbility = u.getAbilityByIndex(x);
+        // print("The ___ability : ", currentAbility?.__ability);
 
+        // print("***HERE***");
+        // print(`${currentAbility}`);
+    
+
+        //@ts-ignore
+        // print(currentAbility.ability);
+        //broke
+
+
+        // print(`Current ability at index ${x} => `, currentAbility);
         if(currentAbility){
             const updated =  unitTypeAbilities.get(u.typeId) as ability[];
             updated.push(currentAbility);
             
-            print("Adding current ability for ", u.name);
+            // print("Adding current ability for ", u.name);
 
             unitTypeAbilities.set(u.typeId, updated);
         }

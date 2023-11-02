@@ -19,8 +19,10 @@ function knightCharge(){
             print(GetSpellAbilityId());
             print(GetSpellAbility());
             //How to convert an abilityID to ability number?
-            
-            print(u.getAbility(Ability_Id.charge));
+            // print(typeof GetSpellAbility());
+            // print(u.);
+
+            // print("__ability: ",u.getAbility(Ability_Id.charge)?.__ability);
 
             for(let x = 0; x < 12; x++){
                 if(u.getAbilityByIndex(x) === u.getAbility(Ability_Id.charge)){
