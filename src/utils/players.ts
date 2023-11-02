@@ -12,6 +12,7 @@ export function forEachUnitOfPlayerWithAbility(player: MapPlayer, abilityId: str
         abilityId = FourCC(abilityId);
         // abilityId = AbilityId(abilityId);
     }
+
     print("GetObjectName: ",GetObjectName(abilityId));
     
     const a2s = AbilityId2String(abilityId);
@@ -32,10 +33,17 @@ export function forEachUnitOfPlayerWithAbility(player: MapPlayer, abilityId: str
         u.setAbilityLevel
         const val = u.getAbility(abilityId as number + 1);
         GetSpellAbility();
-        
+
+        u.getAbility(FourCC(abilityId as string));
+        //Does a unit have this ability?
+        /**
+         * If 
+         */
+
+
         // print("what the val is: ",val)
         // print("=================");
-        // print(u.getAbilityByIndex(0))
+        print(u.getAbilityByIndex(0))
         // print(u.getAbilityByIndex(1))
         // print(u.getAbilityByIndex(2))
         // print(u.getAbilityByIndex(3))

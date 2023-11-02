@@ -18,7 +18,7 @@ export function transferControl(){
         const attacker = Unit.fromHandle(GetAttacker());
         
         if(u && attacker && capturableTowns.has(u.typeId) && u.life <= u.maxLife*0.1){
-            print("Transfering control of town.")
+            print("Transferring control of town.")
             u.owner = attacker.owner;
         }
 

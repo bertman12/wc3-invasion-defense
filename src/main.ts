@@ -1,6 +1,7 @@
 import { RoundManager } from './shared/round-manager';
 import { W3TS_HOOK, addScriptHook } from "w3ts/hooks";
 import { init_startingResources, initializePlayerStateInstances } from "./players";
+import { init_map_triggers } from './init';
 
 const BUILD_DATE = compiletime(() => new Date().toUTCString());
 const TS_VERSION = compiletime(() => require("typescript").version);
@@ -26,7 +27,7 @@ function tsMain() {
     
     StopMusic(false);
     PlayMusic(gg_snd_NagaTheme);
-
+    init_map_triggers();
     RoundManager.trig_setup_StartRound();
 
     init_startingResources();

@@ -282,3 +282,69 @@ STRING 56
 Farm 
 }
 
+STRING 57
+// Units: hcth (General), Name (Name)
+{
+General
+}
+
+STRING 58
+// Units: hcth (General), Tip (Tooltip - Basic)
+{
+Train a General
+}
+
+STRING 59
+// Units: hcth (General), Ubertip (Tooltip - Extended)
+{
+Generals are strong , elite support units, bolstering the morale of your troops.
+}
+
+STRING 60
+// Abilities: S000 (Endurance Aura), EditorSuffix (Editor Suffix)
+{
+(General)
+}
+
+STRING 61
+// Abilities: S000 (Endurance Aura), Ubertip (Tooltip - Normal - Extended)
+{
+The general increases nearby friendly units' movement speed by <SCae,DataA1,%>% and attack rate by <SCae,DataB1,%>%.
+}
+
+STRING 62
+// Units: h002 (Farm ), EditorSuffix (Name - Editor Suffix)
+{
+(Town)
+}
+
+STRING 63
+// Units: h003 (Great Watch Tower), Name (Name)
+{
+Great Watch Tower
+}
+
+STRING 64
+// Abilities: A005 (Charge), Name (Name)
+{
+Charge
+}
+
+STRING 65
+// Abilities: A005 (Charge), Tip (Tooltip - Normal)
+{
+Charge
+}
+
+STRING 66
+// Abilities: A005 (Charge), Ubertip (Tooltip - Normal - Extended)
+{
+Causes the unit to move faster and run through units.
+}
+
+STRING 67
+// Abilities: A005 (Charge), Hotkey (Hotkey - Normal)
+{
+C
+}
+

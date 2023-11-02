@@ -80,6 +80,8 @@ u = BlzCreateUnitWithSkin(p, FourCC("hctw"), 5184.0, 9664.0, 270.000, FourCC("hc
 u = BlzCreateUnitWithSkin(p, FourCC("hctw"), 6080.0, 9664.0, 270.000, FourCC("hctw"))
 u = BlzCreateUnitWithSkin(p, FourCC("hctw"), 5184.0, 8640.0, 270.000, FourCC("hctw"))
 u = BlzCreateUnitWithSkin(p, FourCC("hctw"), 6080.0, 8640.0, 270.000, FourCC("hctw"))
+u = BlzCreateUnitWithSkin(p, FourCC("h003"), 3968.0, 8704.0, 270.000, FourCC("h003"))
+u = BlzCreateUnitWithSkin(p, FourCC("h002"), 7296.0, 10112.0, 270.000, FourCC("h002"))
 end
 
 function CreateUnitsForPlayer9()
@@ -104,6 +106,9 @@ u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), 5387.2, 9766.7, 90.000, FourCC("hfo
 u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), 5566.0, 9737.8, 90.000, FourCC("hfoo"))
 u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), 5707.4, 9764.0, 90.000, FourCC("hfoo"))
 u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), 5868.5, 9758.8, 90.000, FourCC("hfoo"))
+u = BlzCreateUnitWithSkin(p, FourCC("h001"), 7564.0, 10295.8, 339.337, FourCC("h001"))
+u = BlzCreateUnitWithSkin(p, FourCC("h000"), 7147.0, 9982.3, 254.831, FourCC("h000"))
+u = BlzCreateUnitWithSkin(p, FourCC("h000"), 7266.9, 9904.0, 229.269, FourCC("h000"))
 end
 
 function CreatePlayerBuildings()

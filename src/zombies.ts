@@ -15,10 +15,11 @@ export function spawnZombies(currentRound: number) {
     const x = zRec?.centerX ?? 0
     const y = zRec?.centerY ?? 0
 
-    
     for (let x = 0; x < 1 + (currentRound - 1); x++) {
         const mw = Unit.create(zombieMapPlayer, FourCC("umtw"), x, y);
         if(mw) group?.addUnit(mw);
+        // mw?.getField("")
+        
     }
 
     //For each farm under zombie control, it should add more units to the zombie spawn. 

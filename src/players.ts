@@ -38,12 +38,14 @@ export function initializePlayerStateInstances(){
         player.setAlliance(Players[9], ALLIANCE_SHARED_CONTROL, true);
         player.setAlliance(Players[9], ALLIANCE_SHARED_ADVANCED_CONTROL, true);
         player.setAlliance(Players[9], ALLIANCE_SHARED_SPELLS, true);
-    } )
+    });
+
 }
 
 export function init_startingResources(){
     Players.forEach(player =>{
         player.setState(PLAYER_STATE_RESOURCE_GOLD, 500);
+        player.setState(PLAYER_STATE_RESOURCE_LUMBER, 100);
         player.setState(PLAYER_STATE_RESOURCE_FOOD_CAP, 20);
     });
 
