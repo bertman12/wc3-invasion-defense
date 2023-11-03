@@ -1,6 +1,8 @@
-import { Force, Group, MapPlayer, Unit } from "w3ts";
+import { Force, Group, MapPlayer, Unit, color } from "w3ts";
 import { Players } from "w3ts/globals";
-import { forEachUnitOfPlayerWithAbility } from "./utils/players";
+import { forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayerWithAbility, forEachUnitTypeOfPlayer } from "./utils/players";
+import { ABILITIES, UpgradeCodes } from "./shared/enums";
+import { tColor } from "./utils/misc";
 
 const playerStates = new Map<number, PlayerState>();
 
@@ -54,16 +56,7 @@ export function init_startingResources(){
     Players[20].setState(PLAYER_STATE_GIVES_BOUNTY, 1);
 }
 
-export function giveRoundEndResources(round: number){
-    
-    //Gives gold and wood
-    forEachAlliedPlayer((player) => {
-        adjustPlayerState(player, PLAYER_STATE_RESOURCE_GOLD, 200 + 100*round);
-        adjustPlayerState(player, PLAYER_STATE_RESOURCE_LUMBER, 200 + 50*round);
-    });
-    
-
-
+export function player_giveRoundEndResources(round: number){
     //Creates supply horses for the player
     forEachAlliedPlayer((player) => {
         playerStates.get(player.id)?.createSupplyHorse();
@@ -72,76 +65,66 @@ export function giveRoundEndResources(round: number){
             u.mana = u.maxMana;
         });
     });
+
+    let totalIncomeBuildings = 0;
+    let totalSupplyBuildings = 0;
+
+    let meleeWeaponUpgradeCount = 0;
+    let armorUpgradeCount = 0;
+
+    forEachAlliedPlayer((p) => {
+        forEachUnitOfPlayerWithAbility(p, ABILITIES.income, (u) => {
+            totalIncomeBuildings++;
+        });
+        forEachUnitOfPlayerWithAbility(p, ABILITIES.supplies, (u) => {
+            totalSupplyBuildings++;
+        });
+        forEachUnitOfPlayerWithAbility(p, ABILITIES.weaponUpgrade, (u) => {
+            // totalSupplyBuildings++;
+            print("FOUND UNIT WITH WEAPON UPGRADE");
+            meleeWeaponUpgradeCount++;
+        });
+        forEachUnitOfPlayerWithAbility(p, ABILITIES.armorUpgrade, (u) => {
+            // totalSupplyBuildings++;
+            armorUpgradeCount++;
+            print("FOUND UNIT WITH ARMOR UPGRADE")
+        });
+    });
+
+    forEachAlliedPlayer(p => {
+        p.setTechResearched(UpgradeCodes.armor, armorUpgradeCount);
+        p.setTechResearched(UpgradeCodes.meleeWeapons, meleeWeaponUpgradeCount);
+        p.setTechResearched(UpgradeCodes.supplyUpgrade, totalSupplyBuildings);
+    });
+
+    //Depending on the number of supply buildings, we will increase the amount of supplies horses can provide.
+    print("Total income count: ", totalIncomeBuildings);
+    print("Total supplies count: ", totalSupplyBuildings);
+
+    const baseGold = 200;
+    const baseWood = 200;
+    const roundGold = 100*round;
+    const roundWood = 50*round;
+    const incomeBuildingGold = 50 * totalIncomeBuildings;
+    const incomeBuildingWood = 25 * totalIncomeBuildings;
+
+    print("===Income Report===");
+    print(`${tColor("Base", "goldenrod")} - ${tColor("Gold", "yellow")}: ${baseGold}`);
+    print(`${tColor("Completed Round", "goldenrod")} #${round} - ${tColor("Gold", "yellow")}: ${roundGold}`);
+    print(`${tColor("Income Buildings", "goldenrod")} (${totalIncomeBuildings}) - ${tColor("Gold", "yellow")}: ${incomeBuildingGold}`);
+    print("                                  ");
+    print(`${tColor("Base", "goldenrod")} - ${tColor("Wood", "green")} - ${baseWood}`)
+    print(`${tColor("Completed Round", "goldenrod")} #${round} - ${tColor("Wood", "green")}: ${roundWood}`)
+    print(`${tColor("Income Buildings", "goldenrod")} (${totalIncomeBuildings}) - ${tColor("Wood", "green")}: ${incomeBuildingWood}`);
+
+    //Gives gold and wood
+    forEachAlliedPlayer((player) => {
+        adjustPlayerState(player, PLAYER_STATE_RESOURCE_GOLD, baseGold + roundGold + incomeBuildingGold);
+        adjustPlayerState(player, PLAYER_STATE_RESOURCE_LUMBER, baseWood + roundWood + incomeBuildingWood);
+    });
+
 }
 
 export function adjustPlayerState(player: MapPlayer, whichState: playerstate, amount: number){
     player.setState(PLAYER_STATE_RESOURCE_GOLD, player.getState(whichState) + amount);
-}
-
-/**
- * Calls a function for each player playing and is an ally of red. 
- */
-export function forEachAlliedPlayer(cb: (player: MapPlayer) => void){
-    Players.forEach((player) => {
-        //For testing purposes, include player[9] (the human ally) so their units can also be included when iterating the units OR i should make a separate function for all units. 
-        if((player.slotState === PLAYER_SLOT_STATE_PLAYING || player == Players[9]) && player.isPlayerAlly(Players[0]) && player != Players[25]){
-            cb(player);
-            // print("player name playing", player.name, " --index: ", index );
-        }
-    })
-}
-
-/**
- * Uses the call back for each player while obeying the predicate, if one exists. 
- */
-export function forEachPlayer(cb:  (player: MapPlayer) => void, predicate?: (player: MapPlayer) => boolean){
-    Players.forEach(p => {
-        if(predicate && predicate(p)){
-            cb(p);
-        }
-        else if(!predicate){
-            cb(p);
-        }
-
-    })
-}
-
-/**
- * @param unitType Unit Type Id or the Unit Type String "hcas", etc
- */
-export function forEachUnitTypeOfPlayer(unitType: number | string, player: MapPlayer, cb:(unit: Unit) => void, predicate?: (unit: Unit) => boolean){
-    
-    if(typeof unitType === "string"){
-        unitType = FourCC(unitType);
-    }
-
-    Group.create()?.enumUnitsOfPlayer(player, () => {
-        const unit = Group.getFilterUnit();
-
-        if(unit?.typeId === unitType){
-            if(predicate && predicate(unit)){
-                cb(unit);
-            }
-            else if(!predicate){
-                cb(unit);
-            }
-        }
-
-        return true;
-    })
-}
-
-/**
- * @param unitType Unit Type Id or the Unit Type String "hcas", etc
- */
-export function forEachUnitOfPlayer(player: MapPlayer, cb:(unit: Unit) => void){
-
-    Group.create()?.enumUnitsOfPlayer(player, () => {
-        const unit = Group.getFilterUnit();
-
-        if(!unit) print("Enumerating over a unit that doesn't exist!");
-        if(unit) cb(unit);
-
-        return true;
-    })
 }

@@ -348,3 +348,93 @@ STRING 67
 C
 }
 
+STRING 68
+// Abilities: A006 (Armor Upgrade), Name (Name)
+{
+Armor Upgrade
+}
+
+STRING 70
+// Abilities: A006 (Armor Upgrade), Ubertip (Tooltip - Normal - Extended)
+{
+Base - Info Ability
+}
+
+STRING 71
+// Abilities: A006 (Armor Upgrade), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 72
+// Abilities: A006 (Armor Upgrade), Tip (Tooltip - Normal)
+{
+[|cff8080ffUpgrade|r] - Increases the armor of units.
+}
+
+STRING 73
+// Abilities: A007 (Weapon Upgrade), Name (Name)
+{
+Weapon Upgrade
+}
+
+STRING 74
+// Abilities: A007 (Weapon Upgrade), Tip (Tooltip - Normal)
+{
+[|cff8080ffUpgrade|r] - Increases the armor of units.
+}
+
+STRING 75
+// Abilities: A007 (Weapon Upgrade), Ubertip (Tooltip - Normal - Extended)
+{
+Base - Info Ability
+}
+
+STRING 76
+// Abilities: A007 (Weapon Upgrade), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 77
+// Upgrades: R000 (Chaos), Name (Name)
+{
+Supply Bonus
+}
+
+STRING 78
+// Upgrades: R000 (Chaos), EditorSuffix (Editor Suffix)
+{
+(Supply Units)
+}
+
+STRING 79
+// Upgrades: R000 (Chaos), effect1 (Effect 1)
+{
+rmnx
+}
+
+STRING 80
+// Upgrades: R000 (Chaos), class (Class)
+{
+caster
+}
+
+STRING 81
+// Units: n000 (Engineer), Name (Name)
+{
+Engineer
+}
+
+STRING 82
+// Units: n000 (Engineer), Tip (Tooltip - Basic)
+{
+Train Engineer
+}
+
+STRING 83
+// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
+{
+Can repair buildings.
+}
+

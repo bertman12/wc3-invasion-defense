@@ -1,50 +1,95 @@
-import { forEachUnitOfPlayer } from "src/players";
 import { ABILITIES } from "src/shared/enums";
 import { unitTypeAbilities } from "src/shared/misc";
 import { Group, MapPlayer, Unit } from "w3ts";
+import { Players } from "w3ts/globals";
 
-/**
- * WIP 
- */
 export function forEachUnitOfPlayerWithAbility(player: MapPlayer, abilityId:  number, cb: (unit: Unit) => void){
-    // if(typeof abilityId === "string"){
-    //     abilityId = FourCC(abilityId);
-    // }
-
     forEachUnitOfPlayer(player, (u) => {
-        // storeUnitTypeAbilities(u);
-        // const currAbilityArr = unitTypeAbilities.get(u.typeId);
-        // const findResult = currAbilityArr?.find(x => `${x}` === `${u.getAbility(abilityId as number)}`);
-
-        // if(findResult){
-        //         const updated =  unitTypeAbilities.get(u.typeId) as ability[];
-        //         updated.push(currentAbility);
-        //         unitTypeAbilities.set(u.typeId, updated);
-        // }
-
         for(let x = 0; x < 12; x++){
             let currentAbility = u.getAbilityByIndex(x);
             
             if(currentAbility && currentAbility === u.getAbility(abilityId)){
-                // const updated =  unitTypeAbilities.get(u.typeId) as ability[];
-                // updated.push(currentAbility);
-                // unitTypeAbilities.set(u.typeId, updated);
                 cb(u);
-                print(`Unit: ${u.name} owned by ${player.name} has ability ${GetObjectName(abilityId)} -- ${u.getAbility(abilityId)}`);
-                print(currentAbility, " === ", u.getAbility(abilityId))
+                // print(`Unit: ${u.name} owned by ${player.name} has ability ${GetObjectName(abilityId)} -- ${u.getAbility(abilityId)}`);
+                // print(currentAbility, " === ", u.getAbility(abilityId))
+            }
+        }
+    });
+}
+
+/**
+ * Calls a function for each player playing and is an ally of red. 
+ */
+export function forEachAlliedPlayer(cb: (player: MapPlayer) => void){
+    Players.forEach((player) => {
+        //For testing purposes, include player[9] (the human ally) so their units can also be included when iterating the units OR i should make a separate function for all units. 
+        if((player.slotState === PLAYER_SLOT_STATE_PLAYING || player == Players[9]) && player.isPlayerAlly(Players[0]) && player != Players[25]){
+            cb(player);
+            // print("player name playing", player.name, " --index: ", index );
+        }
+    })
+}
+
+/**
+ * Uses the call back for each player while obeying the predicate, if one exists. 
+ */
+export function forEachPlayer(cb:  (player: MapPlayer) => void, predicate?: (player: MapPlayer) => boolean){
+    Players.forEach(p => {
+        if(predicate && predicate(p)){
+            cb(p);
+        }
+        else if(!predicate){
+            cb(p);
+        }
+
+    })
+}
+
+/**
+ * @param unitType Unit Type Id or the Unit Type String "hcas", etc
+ */
+export function forEachUnitTypeOfPlayer(unitType: number | string, player: MapPlayer, cb:(unit: Unit) => void, predicate?: (unit: Unit) => boolean){
+    
+    if(typeof unitType === "string"){
+        unitType = FourCC(unitType);
+    }
+
+    Group.create()?.enumUnitsOfPlayer(player, () => {
+        const unit = Group.getFilterUnit();
+
+        if(unit?.typeId === unitType){
+            if(predicate && predicate(unit)){
+                cb(unit);
+            }
+            else if(!predicate){
+                cb(unit);
             }
         }
 
-        // if(findResult){
-        //     // cb(u);
-        //     print("Found result");
-        // }
-    });
+        return true;
+    })
+}
+
+/**
+ * @param unitType Unit Type Id or the Unit Type String "hcas", etc
+ */
+export function forEachUnitOfPlayer(player: MapPlayer, cb:(unit: Unit) => void){
+
+    Group.create()?.enumUnitsOfPlayer(player, () => {
+        const unit = Group.getFilterUnit();
+
+        if(!unit) print("Enumerating over a unit that doesn't exist!");
+        if(unit) cb(unit);
+
+        return true;
+    })
 }
 
 /**
  * Used later on to check if a unit has a specific ability
  * Function will save abilities from index [0,11] 
+ * 
+ * Cannot use since each unit's ability from getAbility is unique, even though multiple unique ability codes reference the same spell.
  */
 function storeUnitTypeAbilities(u: Unit){
     if(unitTypeAbilities.has(u.typeId)) return;
@@ -65,3 +110,12 @@ function storeUnitTypeAbilities(u: Unit){
         }
     }
 }
+
+/***
+ * perhaps I stored the unit type id and the name of the ability or the ability FourCC("")
+ * Then I won't need to parse the same units over again if I dont need to.
+ * 
+ * Cannot store the unique ability codes from Unit.getAbility();
+ * 
+ */
+

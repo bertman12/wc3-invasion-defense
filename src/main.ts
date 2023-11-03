@@ -13,8 +13,6 @@ compiletime(( { objectData, constants }) => {
 
 function tsMain() {
   try {
-    initializePlayerStateInstances();
-    SuspendTimeOfDay(true);
 
     print(`Build: ${BUILD_DATE}`);
     print(`Typescript: v${TS_VERSION}`);
@@ -23,15 +21,17 @@ function tsMain() {
     print("Welcome to TypeScript!");
     print("Rally your forces and prepare for an undead attack. The capital city must survive!");
 
+    initializePlayerStateInstances();
+
+    SuspendTimeOfDay(true);
     SetTimeOfDay(12);
-    
     StopMusic(false);
     PlayMusic(gg_snd_NagaTheme);
+
     init_map_triggers();
     RoundManager.trig_setup_StartRound();
 
     init_startingResources();
-
   } catch (e) {
     print(e);
   }

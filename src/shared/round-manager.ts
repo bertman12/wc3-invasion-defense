@@ -1,16 +1,19 @@
-import { forEachAlliedPlayer, forEachPlayer, giveRoundEndResources } from "src/players";
-import { forEachUnitOfPlayerWithAbility } from "src/utils/players";
+import { forEachPlayer, forEachUnitOfPlayerWithAbility } from "src/utils/players";
 import { spawnZombies } from "src/zombies";
 import { Trigger, Sound, Timer } from "w3ts";
 import { Players } from "w3ts/globals";
 import { ABILITIES } from "./enums";
+import { player_giveRoundEndResources } from "src/players";
+
+/**
+ * rounds should be able to be started early, but should automatically start after 2 minutes the round has ended. That way people arent intentionally waiting for mana to return.
+ */
 
 export class RoundManager {
     static currentRound: number = 0;
 
     static trig_setup_StartRound(){
         const t = Trigger.create()
-    
         t.registerPlayerChatEvent(Players[0], "-start", false);
         
         t.addAction(() => {
@@ -33,19 +36,19 @@ export class RoundManager {
         
         spawnZombies(RoundManager.currentRound);
         
-        const zombieTimer = Timer.create();
-        zombieTimer.start(15, true, () => spawnZombies(RoundManager.currentRound));
+        // const zombieTimer = Timer.create();
+        // zombieTimer.start(15, true, () => spawnZombies(RoundManager.currentRound));
+        spawnZombies(RoundManager.currentRound, RoundManager.endCurrentRound)
+        // const timer = Timer.create()
         
-        const timer = Timer.create()
-        
-        timer.start(59, false, () => {RoundManager.endCurrentRound(zombieTimer)});
+        // timer.start(59, false, () => {RoundManager.endCurrentRound(zombieTimer)});
         
         print(`Round ${RoundManager.currentRound} has begun...`);
     }
     
     static endCurrentRound(zombieTimer?: Timer){
         print(`Round ${RoundManager.currentRound} has ended...`);
-        giveRoundEndResources(this.currentRound);
+        player_giveRoundEndResources(this.currentRound);
         zombieTimer?.destroy();
         
         Sound.fromHandle(gg_snd_QuestCompleted)?.start();
@@ -55,25 +58,11 @@ export class RoundManager {
         //Refill stocks for units - doesn't do anything >=(
         // AddUnitToAllStock(FourCC("h000"), 20, 20);
 
-        let incomeCount = 0;
-        let supplyCount = 0;
+
     
         //There are 3 units with the ability however we only count 1. I hope to fucking god each unit doesnt have a unique ability id? If they did then comparing getAbility with 
         //Getting ability by ID might get a unique ability code lol, which means we can't store
-        forEachPlayer((p) => {
-            forEachUnitOfPlayerWithAbility(p, ABILITIES.income, (u) => {
-                // print("Found a unit with the income info ability: ", u.name);
-                incomeCount++;
-            });
 
-            forEachUnitOfPlayerWithAbility(p, ABILITIES.supplies, (u) => {
-                // print("Found a unit with the supplies info ability: ", u.name);
-                supplyCount++;
-            });
-        });
-    
-        print("Total income count: ", incomeCount);
-        print("Total supplies count: ", supplyCount);
 
         Timer.create().start(5, false, () => {
             Sound.fromHandle(gg_snd_Hint)?.start();

@@ -1,4 +1,4 @@
-import { Group, Rectangle, Unit } from "w3ts";
+import { Group, Rectangle, Timer, Trigger, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
 
 export const zombieMapPlayer = Players[20];
@@ -9,32 +9,59 @@ export const zombieMapPlayer = Players[20];
  * 
  * We should also consider the number of players remaining? Or number of players when game started.
  */
-export function spawnZombies(currentRound: number) {
-    const zRec = Rectangle.fromHandle(gg_rct_ZombieSpawn1);
-    let group = Group.create();
-    const x = zRec?.centerX ?? 0
-    const y = zRec?.centerY ?? 0
+export function spawnZombies(currentRound: number, onEnd?: (...args: any) => void) {
 
-    for (let x = 0; x < 1 + (currentRound - 1); x++) {
-        const mw = Unit.create(zombieMapPlayer, FourCC("umtw"), x, y);
-        if(mw) group?.addUnit(mw);
-        // mw?.getField("")
+    const t = Timer.create();
+    const ROUND_DURATION = 120;
+    
+    t.start(ROUND_DURATION, false, () => {
+        const zRec = Rectangle.fromHandle(gg_rct_ZombieSpawn1);
+        let attackGroup = Group.create();
+
+        const xPos = zRec?.centerX ?? 0;
+        const yPos = zRec?.centerY ?? 0;
+
+        //Setup waves
+        const waveTimer = Timer.create();
+
+        waveTimer.start(15, true, () => {
+            for (let i = 0; i < 1 + (currentRound - 1); i++) {
+                const mw = Unit.create(zombieMapPlayer, FourCC("umtw"), xPos, yPos);
+                if(mw) attackGroup?.addUnit(mw);
+            }
         
-    }
+            //For each farm under zombie control, it should add more units to the zombie spawn. 
+        
+            //Creating some archers for the spawn.
+            for (let i = 0; i < 3 + currentRound; i++) {
+                const zArch = Unit.create(zombieMapPlayer, FourCC("nskm"), xPos, yPos);    
+                if(zArch) attackGroup?.addUnit(zArch);
+            }
+        
+            for(let i = 0; i < 6 + 2 * currentRound; i++){
+                let u = Unit.create(Players[20], FourCC("nzom"), xPos, yPos);
+                if(u) attackGroup?.addUnit(u);
+            }
+            
+            attackGroup?.orderCoords(OrderId.Attack, 0,0);
 
-    //For each farm under zombie control, it should add more units to the zombie spawn. 
+        })
 
-    //Creating some archers for the spawn.
-    for (let x = 0; x < 3 + currentRound; x++) {
-        const zArch = Unit.create(zombieMapPlayer, FourCC("nskm"), x, y);    
-        if(zArch) group?.addUnit(zArch);
-    }
+    })
 
-    for(let x = 0; x < 6 + 2 * currentRound; x++){
-        let u = Unit.create(Players[20], FourCC("nzom"), x, y);
-        if(u !== undefined) group?.addUnit(u);
-        group?.orderCoords(OrderId.Attack, 0,0);
-    }
+
+    //Handle round over
+    const tEnd = Trigger.create();
+
+    tEnd.registerTimerExpireEvent(t.handle);
+
+
+    tEnd.addAction(() => {
+        if(onEnd){
+            onEnd();
+        }
+
+        tEnd.destroy();
+    });
+    
 }
-
-
