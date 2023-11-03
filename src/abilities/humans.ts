@@ -1,4 +1,4 @@
-import { Ability_Id } from "src/shared/enums";
+import { ABILITIES } from "src/shared/enums";
 import { Trigger, Unit } from "w3ts";
 
 export function init_humanSpells(){
@@ -14,8 +14,8 @@ function knightCharge(){
         if(!u) return false;
 
 
-        if(u.getAbility(Ability_Id.charge) === GetSpellAbility()){
-            print(Ability_Id.charge);
+        if(u.getAbility(ABILITIES.charge) === GetSpellAbility()){
+            print(ABILITIES.charge);
             print(GetSpellAbilityId());
             print(GetSpellAbility());
             //How to convert an abilityID to ability number?
@@ -25,7 +25,7 @@ function knightCharge(){
             // print("__ability: ",u.getAbility(Ability_Id.charge)?.__ability);
 
             for(let x = 0; x < 12; x++){
-                if(u.getAbilityByIndex(x) === u.getAbility(Ability_Id.charge)){
+                if(u.getAbilityByIndex(x) === u.getAbility(ABILITIES.charge)){
                     print("Found the mathcing ability at index : ", x);
                 }
             }
@@ -39,7 +39,7 @@ function knightCharge(){
 
     t.addAction(() => {
         const u = Unit.fromEvent();
-        const spell = u?.getAbility(Ability_Id.charge);
+        const spell = u?.getAbility(ABILITIES.charge);
         
         // if(spell) print({spell});
         

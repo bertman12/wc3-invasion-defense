@@ -1,5 +1,5 @@
 import { forEachUnitOfPlayer } from "src/players";
-import { Ability_Id } from "src/shared/enums";
+import { ABILITIES } from "src/shared/enums";
 import { unitTypeAbilities } from "src/shared/misc";
 import { Group, MapPlayer, Unit } from "w3ts";
 
@@ -12,13 +12,33 @@ export function forEachUnitOfPlayerWithAbility(player: MapPlayer, abilityId:  nu
     // }
 
     forEachUnitOfPlayer(player, (u) => {
-        storeUnitTypeAbilities(u);
-        const currAbilityArr = unitTypeAbilities.get(u.typeId);
-        const findResult = currAbilityArr?.find(x => `${x}` === `${u.getAbility(abilityId as number)}`);
+        // storeUnitTypeAbilities(u);
+        // const currAbilityArr = unitTypeAbilities.get(u.typeId);
+        // const findResult = currAbilityArr?.find(x => `${x}` === `${u.getAbility(abilityId as number)}`);
 
-        if(findResult){
-            cb(u);
+        // if(findResult){
+        //         const updated =  unitTypeAbilities.get(u.typeId) as ability[];
+        //         updated.push(currentAbility);
+        //         unitTypeAbilities.set(u.typeId, updated);
+        // }
+
+        for(let x = 0; x < 12; x++){
+            let currentAbility = u.getAbilityByIndex(x);
+            
+            if(currentAbility && currentAbility === u.getAbility(abilityId)){
+                // const updated =  unitTypeAbilities.get(u.typeId) as ability[];
+                // updated.push(currentAbility);
+                // unitTypeAbilities.set(u.typeId, updated);
+                cb(u);
+                print(`Unit: ${u.name} owned by ${player.name} has ability ${GetObjectName(abilityId)} -- ${u.getAbility(abilityId)}`);
+                print(currentAbility, " === ", u.getAbility(abilityId))
+            }
         }
+
+        // if(findResult){
+        //     // cb(u);
+        //     print("Found result");
+        // }
     });
 }
 
@@ -37,27 +57,11 @@ function storeUnitTypeAbilities(u: Unit){
     //Iterate all 12 ability slots a unit can have
     for(let x = 0; x < 12; x++){
         let currentAbility = u.getAbilityByIndex(x);
-        // print("The ___ability : ", currentAbility?.__ability);
 
-        // print("***HERE***");
-        // print(`${currentAbility}`);
-    
-
-        //@ts-ignore
-        // print(currentAbility.ability);
-        //broke
-
-
-        // print(`Current ability at index ${x} => `, currentAbility);
         if(currentAbility){
             const updated =  unitTypeAbilities.get(u.typeId) as ability[];
             updated.push(currentAbility);
-            
-            // print("Adding current ability for ", u.name);
-
             unitTypeAbilities.set(u.typeId, updated);
         }
-
-
     }
 }

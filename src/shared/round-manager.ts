@@ -3,6 +3,7 @@ import { forEachUnitOfPlayerWithAbility } from "src/utils/players";
 import { spawnZombies } from "src/zombies";
 import { Trigger, Sound, Timer } from "w3ts";
 import { Players } from "w3ts/globals";
+import { ABILITIES } from "./enums";
 
 export class RoundManager {
     static currentRound: number = 0;
@@ -60,35 +61,19 @@ export class RoundManager {
         //There are 3 units with the ability however we only count 1. I hope to fucking god each unit doesnt have a unique ability id? If they did then comparing getAbility with 
         //Getting ability by ID might get a unique ability code lol, which means we can't store
         forEachPlayer((p) => {
-            forEachUnitOfPlayerWithAbility(p, FourCC("A002"), (u) => {
-                print("Found a unit with the income info ability: ", u.name);
+            forEachUnitOfPlayerWithAbility(p, ABILITIES.income, (u) => {
+                // print("Found a unit with the income info ability: ", u.name);
                 incomeCount++;
-            })
-            forEachUnitOfPlayerWithAbility(p, FourCC("A000"), (u) => {
-                print("Found a unit with the supplies info ability: ", u.name);
+            });
+
+            forEachUnitOfPlayerWithAbility(p, ABILITIES.supplies, (u) => {
+                // print("Found a unit with the supplies info ability: ", u.name);
                 supplyCount++;
             });
-        })
+        });
     
         print("Total income count: ", incomeCount);
         print("Total supplies count: ", supplyCount);
-    
-
-        // forEachPlayer((p) => {
-        //     forEachUnitOfPlayerWithAbility(p, FourCC("A002"), (u) => {
-        //         print("Found a unit with the income info ability: ", u.name);
-
-        //     })
-        //     forEachUnitOfPlayerWithAbility(p, FourCC("A000"), (u) => {
-        //         print("Found a unit with the supplies info ability: ", u.name);
-        //     });
-        //     forEachUnitOfPlayerWithAbility(p, FourCC("A004"), (u) => {
-        //         print("Found a unit with the impale ability: ", u.name);
-        //     });
-        //     forEachUnitOfPlayerWithAbility(p, FourCC("A005"), (u) => {
-        //         print("Found a unit with the charge ability: ", u.name);
-        //     });
-        // })
 
         Timer.create().start(5, false, () => {
             Sound.fromHandle(gg_snd_Hint)?.start();

@@ -1,4 +1,6 @@
 
-export enum Ability_Id {
-    charge = FourCC("A005")
+export enum ABILITIES {
+    charge = FourCC("A005"),
+    supplies = FourCC("A000"),
+    income = FourCC("A002"),
 }
