@@ -43,11 +43,6 @@ STRING 10
 Undead Enemies
 }
 
-STRING 11
-{
-Allied Human Forces
-}
-
 STRING 12
 // Units: h001 (Supply Horse), Name (Name)
 {
@@ -452,5 +447,10 @@ STRING 103
 // Units: h000 (Militia), Hotkey (Hotkey)
 {
 I
+}
+
+STRING 104
+{
+[Allied] - Kingdom of Alexandria
 }
 

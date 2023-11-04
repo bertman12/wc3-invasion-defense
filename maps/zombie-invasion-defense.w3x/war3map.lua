@@ -7,6 +7,7 @@ gg_snd_Hint = nil
 gg_snd_IllidansTheme = ""
 gg_snd_UndeadVictory = ""
 gg_snd_Undead3 = ""
+gg_rct_zombieSpawn2 = nil
 function InitGlobals()
 end
 
@@ -40,10 +41,6 @@ local unitID
 local t
 local life
 
-u = BlzCreateUnitWithSkin(p, FourCC("hcas"), -512.0, 64.0, 270.000, FourCC("hcas"))
-u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), 192.0, 768.0, 270.000, FourCC("hgtw"))
-u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), -1216.0, 768.0, 270.000, FourCC("hgtw"))
-u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), 192.0, -768.0, 270.000, FourCC("hgtw"))
 u = BlzCreateUnitWithSkin(p, FourCC("h002"), -1600.0, 576.0, 270.000, FourCC("h002"))
 end
 
@@ -55,10 +52,6 @@ local t
 local life
 
 u = BlzCreateUnitWithSkin(p, FourCC("Hpal"), -482.2, -380.5, 238.389, FourCC("Hpal"))
-u = BlzCreateUnitWithSkin(p, FourCC("n002"), -250.7, -370.5, 253.554, FourCC("n002"))
-u = BlzCreateUnitWithSkin(p, FourCC("hmpr"), -574.8, -327.3, 351.255, FourCC("hmpr"))
-u = BlzCreateUnitWithSkin(p, FourCC("n000"), 119.0, -18.7, 231.181, FourCC("n000"))
-u = BlzCreateUnitWithSkin(p, FourCC("u000"), -875.1, -390.4, 306.910, FourCC("u000"))
 end
 
 function CreateBuildingsForPlayer9()
@@ -68,7 +61,11 @@ local unitID
 local t
 local life
 
+u = BlzCreateUnitWithSkin(p, FourCC("hcas"), -512.0, 64.0, 270.000, FourCC("hcas"))
 u = BlzCreateUnitWithSkin(p, FourCC("ngme"), -1664.0, -1088.0, 270.000, FourCC("ngme"))
+u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), 192.0, 768.0, 270.000, FourCC("hgtw"))
+u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), -1216.0, 768.0, 270.000, FourCC("hgtw"))
+u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), 192.0, -768.0, 270.000, FourCC("hgtw"))
 u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), -64.0, 3840.0, 270.000, FourCC("hgtw"))
 u = BlzCreateUnitWithSkin(p, FourCC("ngad"), -896.0, -896.0, 270.000, FourCC("ngad"))
 u = BlzCreateUnitWithSkin(p, FourCC("ndrr"), -1152.0, -1344.0, 270.000, FourCC("ndrr"))
@@ -92,6 +89,8 @@ u = BlzCreateUnitWithSkin(p, FourCC("hctw"), 6080.0, 8640.0, 270.000, FourCC("hc
 u = BlzCreateUnitWithSkin(p, FourCC("h003"), 3968.0, 8704.0, 270.000, FourCC("h003"))
 u = BlzCreateUnitWithSkin(p, FourCC("h002"), 7296.0, 10112.0, 270.000, FourCC("h002"))
 u = BlzCreateUnitWithSkin(p, FourCC("h004"), 6592.0, 9600.0, 270.000, FourCC("h004"))
+u = BlzCreateUnitWithSkin(p, FourCC("n001"), 256.0, 384.0, 270.000, FourCC("n001"))
+SetUnitColor(u, ConvertPlayerColor(0))
 end
 
 function CreateUnitsForPlayer9()
@@ -138,17 +137,6 @@ u = BlzCreateUnitWithSkin(p, FourCC("h005"), 1152.0, -1472.0, 270.000, FourCC("h
 u = BlzCreateUnitWithSkin(p, FourCC("h005"), 1280.0, -1472.0, 270.000, FourCC("h005"))
 end
 
-function CreateNeutralPassiveBuildings()
-local p = Player(PLAYER_NEUTRAL_PASSIVE)
-local u
-local unitID
-local t
-local life
-
-u = BlzCreateUnitWithSkin(p, FourCC("n001"), 256.0, 384.0, 270.000, FourCC("n001"))
-SetUnitColor(u, ConvertPlayerColor(0))
-end
-
 function CreatePlayerBuildings()
 CreateBuildingsForPlayer0()
 CreateBuildingsForPlayer9()
@@ -161,7 +149,6 @@ end
 
 function CreateAllUnits()
 CreateNeutralHostileBuildings()
-CreateNeutralPassiveBuildings()
 CreatePlayerBuildings()
 CreatePlayerUnits()
 end
@@ -170,6 +157,7 @@ function CreateRegions()
 local we
 
 gg_rct_ZombieSpawn1 = Rect(1312.0, 12992.0, 2560.0, 14272.0)
+gg_rct_zombieSpawn2 = Rect(-3936.0, 12256.0, -2976.0, 13856.0)
 end
 
 function InitCustomPlayerSlots()

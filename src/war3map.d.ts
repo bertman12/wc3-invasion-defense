@@ -7,3 +7,4 @@ declare var gg_snd_Hint: sound;
 declare var gg_snd_IllidansTheme: string;
 declare var gg_snd_UndeadVictory: string;
 declare var gg_snd_Undead3: string;
+declare var gg_rct_zombieSpawn2: rect;

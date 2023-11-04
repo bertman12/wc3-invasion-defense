@@ -23,7 +23,7 @@ function tsMain() {
     print("Welcome to TypeScript!");
     print(" ");
     print("Rally your forces and prepare for an undead attack. The capital city must survive!");
-
+    
     initializePlayerStateInstances();
     SetGameDifficulty(MAP_DIFFICULTY_INSANE);
     // InitAI();

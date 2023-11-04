@@ -12,3 +12,12 @@ export enum UpgradeCodes {
     meleeWeapons = FourCC("Rhme"),
     supplyUpgrade = FourCC("R000"),
 }
+
+export enum CUSTOM_UNITS {
+    farmTown = FourCC("h002"),
+    castle = FourCC("hcas"),
+    barracks = FourCC("hbar"),
+    blacksmith = FourCC("hbla"),
+    cannonTower = FourCC("hctw"),
+    guardTower = FourCC("hgtw"),
+}
