@@ -22,7 +22,7 @@ function tsMain() {
     print(" ");
     print("Welcome to TypeScript!");
     print(" ");
-    print("Rally your forces and prepare for an undead attack. The capital city must survive!");
+    print("The elite nobles of the Kingdom of Alexandria must rally their forces. The capital city must survive!");
     
     initializePlayerStateInstances();
     SetGameDifficulty(MAP_DIFFICULTY_INSANE);

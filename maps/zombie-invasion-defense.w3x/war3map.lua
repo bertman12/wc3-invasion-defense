@@ -62,7 +62,7 @@ local t
 local life
 
 u = BlzCreateUnitWithSkin(p, FourCC("hcas"), -512.0, 64.0, 270.000, FourCC("hcas"))
-u = BlzCreateUnitWithSkin(p, FourCC("ngme"), -1664.0, -1088.0, 270.000, FourCC("ngme"))
+u = BlzCreateUnitWithSkin(p, FourCC("ngme"), 448.0, -64.0, 270.000, FourCC("ngme"))
 u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), 192.0, 768.0, 270.000, FourCC("hgtw"))
 u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), -1216.0, 768.0, 270.000, FourCC("hgtw"))
 u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), 192.0, -768.0, 270.000, FourCC("hgtw"))

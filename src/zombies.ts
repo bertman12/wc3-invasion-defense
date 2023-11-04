@@ -2,6 +2,7 @@ import { Effect, Group, Point, Rectangle, Timer, Trigger, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
 import { forEachUnitTypeOfPlayer } from "./utils/players";
 import { allCapturableStructures, primaryCapturableStructures } from "./towns";
+import { tColor } from "./utils/misc";
 
 export const zombieMapPlayer = Players[20];
 
@@ -36,6 +37,7 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
     const spawns = chooseZombieSpawns(zombieAttackForces);
     const spawnUnitForces: Unit[][] = spawns.map(_ => []);
     const spawnForceCurrentTarget:Unit[] = [];
+    const forceTargetEffects: Effect[] = [];
     // const spawnUnitForces: Unit[][] = Array(spawns.length).fill([]);
 
     //Setup waves
@@ -122,8 +124,12 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
                 // Effect.fromHandle(effect)
                 const effect = Effect.create("Abilities\\Spells\\NightElf\\TrueshotAura\\TrueshotAura.mdl", currentTarget.x, currentTarget.y);
                 if(effect){
+                    if(forceTargetEffects[index]) forceTargetEffects[index].destroy();
+                    forceTargetEffects[index] = effect;
+
                     print("created effect");
                     effect.scale = 3;
+                    effect.setColor(255, 255, 255);
                 }
                 
                 //Only issue order if there was no previous target or the previous target is now invulnerable
@@ -171,6 +177,7 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
                 }
             } );
         });
+
 
         if(onEnd){
             onEnd();
@@ -242,7 +249,6 @@ function chooseZombieSpawns(amount: number): Rectangle[]{
         const converted = Rectangle.fromHandle(r);
         if(converted) outgoingSet.add(converted);
     })
-    print("outgoing:", outgoingSet.size, "tempset from original rects: ", tempSet.size);
 
     return [...outgoingSet];
 }

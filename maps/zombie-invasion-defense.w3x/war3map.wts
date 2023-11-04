@@ -443,14 +443,38 @@ STRING 102
 This unit is being slowed by a slow trap.
 }
 
-STRING 103
-// Units: h000 (Militia), Hotkey (Hotkey)
-{
-I
-}
-
 STRING 104
 {
 [Allied] - Kingdom of Alexandria
+}
+
+STRING 105
+// Units: h000 (Militia), Hotkey (Hotkey)
+{
+T
+}
+
+STRING 106
+// Units: n003 (Angry Farmer), Name (Name)
+{
+Angry Farmer
+}
+
+STRING 107
+// Units: n003 (Angry Farmer), Tip (Tooltip - Basic)
+{
+Enlist Angry Farmer
+}
+
+STRING 109
+// Units: n003 (Angry Farmer), Ubertip (Tooltip - Extended)
+{
+This farmer is |cffff0000VERY|r upset about the undead ruining his crops.
+}
+
+STRING 110
+// Units: n003 (Angry Farmer), Hotkey (Hotkey)
+{
+F
 }
 

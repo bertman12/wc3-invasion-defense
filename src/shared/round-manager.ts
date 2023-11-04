@@ -4,6 +4,7 @@ import { Trigger, Sound, Timer } from "w3ts";
 import { Players } from "w3ts/globals";
 import { ABILITIES } from "./enums";
 import { player_giveRoundEndResources } from "src/players";
+import { tColor } from "src/utils/misc";
 
 /**
  * rounds should be able to be started early, but should automatically start after 2 minutes the round has ended. That way people arent intentionally waiting for mana to return.
@@ -53,6 +54,7 @@ export class RoundManager {
 
         Timer.create().start(5, false, () => {
             Sound.fromHandle(gg_snd_Hint)?.start();
+            print(`[${tColor("WARNING", "red")}] - The remaining undead are marching upon your capital.`)
             print("Supply horses have arrived at the capital. Use them to heal your units.");
         });
     }

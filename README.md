@@ -112,3 +112,11 @@ if(currentIterationOfGroupUnit){
 add tar traps and add ogre mercenaries.
 
 add a command for players to see stats of units by typing -stats, or add that as an ability on units.
+
+
+
+===11-4-23 TODO
+create a boss that spawns after the round ends? but then he forces it to become night again. Boss name night lord or some cheesy shit like that
+
+Also add a Stone Mason Guild that can repair a destroyed building every night.
+Also create a Blacksmith's guild that can create weapons and armors for your heroes, and artifacts too.
