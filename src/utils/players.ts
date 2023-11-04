@@ -1,4 +1,3 @@
-import { ABILITIES } from "src/shared/enums";
 import { unitTypeAbilities } from "src/shared/misc";
 import { Group, MapPlayer, Unit } from "w3ts";
 import { Players } from "w3ts/globals";
@@ -10,8 +9,6 @@ export function forEachUnitOfPlayerWithAbility(player: MapPlayer, abilityId:  nu
             
             if(currentAbility && currentAbility === u.getAbility(abilityId)){
                 cb(u);
-                // print(`Unit: ${u.name} owned by ${player.name} has ability ${GetObjectName(abilityId)} -- ${u.getAbility(abilityId)}`);
-                // print(currentAbility, " === ", u.getAbility(abilityId))
             }
         }
     });
@@ -23,9 +20,8 @@ export function forEachUnitOfPlayerWithAbility(player: MapPlayer, abilityId:  nu
 export function forEachAlliedPlayer(cb: (player: MapPlayer) => void){
     Players.forEach((player) => {
         //For testing purposes, include player[9] (the human ally) so their units can also be included when iterating the units OR i should make a separate function for all units. 
-        if((player.slotState === PLAYER_SLOT_STATE_PLAYING || player == Players[9]) && player.isPlayerAlly(Players[0]) && player != Players[25]){
+        if(player.slotState === PLAYER_SLOT_STATE_PLAYING && player.isPlayerAlly(Players[0]) && player != Players[25]){
             cb(player);
-            // print("player name playing", player.name, " --index: ", index );
         }
     })
 }
@@ -33,22 +29,16 @@ export function forEachAlliedPlayer(cb: (player: MapPlayer) => void){
 /**
  * Uses the call back for each player while obeying the predicate, if one exists. 
  */
-export function forEachPlayer(cb:  (player: MapPlayer) => void, predicate?: (player: MapPlayer) => boolean){
+export function forEachPlayer(cb:  (player: MapPlayer) => void){
     Players.forEach(p => {
-        if(predicate && predicate(p)){
-            cb(p);
-        }
-        else if(!predicate){
-            cb(p);
-        }
-
+        cb(p);
     })
 }
 
 /**
  * @param unitType Unit Type Id or the Unit Type String "hcas", etc
  */
-export function forEachUnitTypeOfPlayer(unitType: number | string, player: MapPlayer, cb:(unit: Unit) => void, predicate?: (unit: Unit) => boolean){
+export function forEachUnitTypeOfPlayer(unitType: number | string, player: MapPlayer, cb:(unit: Unit) => void){
     
     if(typeof unitType === "string"){
         unitType = FourCC(unitType);
@@ -56,14 +46,9 @@ export function forEachUnitTypeOfPlayer(unitType: number | string, player: MapPl
 
     Group.create()?.enumUnitsOfPlayer(player, () => {
         const unit = Group.getFilterUnit();
-
-        if(unit?.typeId === unitType){
-            if(predicate && predicate(unit)){
-                cb(unit);
-            }
-            else if(!predicate){
-                cb(unit);
-            }
+        
+        if(unit && unit?.typeId === unitType){
+            cb(unit);
         }
 
         return true;

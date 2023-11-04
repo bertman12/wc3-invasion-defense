@@ -4,3 +4,6 @@ declare var gg_snd_QuestCompleted: sound;
 declare var gg_snd_QuestFailed: sound;
 declare var gg_snd_NagaTheme: string;
 declare var gg_snd_Hint: sound;
+declare var gg_snd_IllidansTheme: string;
+declare var gg_snd_UndeadVictory: string;
+declare var gg_snd_Undead3: string;

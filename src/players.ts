@@ -80,14 +80,10 @@ export function player_giveRoundEndResources(round: number){
             totalSupplyBuildings++;
         });
         forEachUnitOfPlayerWithAbility(p, ABILITIES.weaponUpgrade, (u) => {
-            // totalSupplyBuildings++;
-            print("FOUND UNIT WITH WEAPON UPGRADE");
             meleeWeaponUpgradeCount++;
         });
         forEachUnitOfPlayerWithAbility(p, ABILITIES.armorUpgrade, (u) => {
-            // totalSupplyBuildings++;
             armorUpgradeCount++;
-            print("FOUND UNIT WITH ARMOR UPGRADE")
         });
     });
 
@@ -98,8 +94,8 @@ export function player_giveRoundEndResources(round: number){
     });
 
     //Depending on the number of supply buildings, we will increase the amount of supplies horses can provide.
-    print("Total income count: ", totalIncomeBuildings);
-    print("Total supplies count: ", totalSupplyBuildings);
+    // print("Total income count: ", totalIncomeBuildings);
+    // print("Total supplies count: ", totalSupplyBuildings);
 
     const baseGold = 200;
     const baseWood = 200;
@@ -109,20 +105,22 @@ export function player_giveRoundEndResources(round: number){
     const incomeBuildingWood = 25 * totalIncomeBuildings;
 
     print("===Income Report===");
-    print(`${tColor("Base", "goldenrod")} - ${tColor("Gold", "yellow")}: ${baseGold}`);
+    print(`${tColor("Base Amount", "goldenrod")} - ${tColor("Gold", "yellow")}: ${baseGold}`);
     print(`${tColor("Completed Round", "goldenrod")} #${round} - ${tColor("Gold", "yellow")}: ${roundGold}`);
     print(`${tColor("Income Buildings", "goldenrod")} (${totalIncomeBuildings}) - ${tColor("Gold", "yellow")}: ${incomeBuildingGold}`);
+    print(`${tColor("Total", "goldenrod")}: ${tColor("Gold", "yellow")}: ${baseGold + roundGold + incomeBuildingGold}`);
     print("                                  ");
-    print(`${tColor("Base", "goldenrod")} - ${tColor("Wood", "green")} - ${baseWood}`)
-    print(`${tColor("Completed Round", "goldenrod")} #${round} - ${tColor("Wood", "green")}: ${roundWood}`)
+    print(`${tColor("Base Amount", "goldenrod")} - ${tColor("Wood", "green")} - ${baseWood}`);
+    print(`${tColor("Completed Round", "goldenrod")} #${round} - ${tColor("Wood", "green")}: ${roundWood}`);
     print(`${tColor("Income Buildings", "goldenrod")} (${totalIncomeBuildings}) - ${tColor("Wood", "green")}: ${incomeBuildingWood}`);
+    print(`${tColor("Total", "goldenrod")}: ${tColor("Wood", "green")}: ${baseWood + roundWood + incomeBuildingWood}`);
+    print("==================");
 
     //Gives gold and wood
     forEachAlliedPlayer((player) => {
         adjustPlayerState(player, PLAYER_STATE_RESOURCE_GOLD, baseGold + roundGold + incomeBuildingGold);
         adjustPlayerState(player, PLAYER_STATE_RESOURCE_LUMBER, baseWood + roundWood + incomeBuildingWood);
     });
-
 }
 
 export function adjustPlayerState(player: MapPlayer, whichState: playerstate, amount: number){

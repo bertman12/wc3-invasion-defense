@@ -1,4 +1,4 @@
-import { forEachPlayer, forEachUnitOfPlayerWithAbility } from "src/utils/players";
+import { forEachPlayer, forEachUnitOfPlayerWithAbility, forEachUnitTypeOfPlayer } from "src/utils/players";
 import { spawnZombies } from "src/zombies";
 import { Trigger, Sound, Timer } from "w3ts";
 import { Players } from "w3ts/globals";
@@ -13,10 +13,9 @@ export class RoundManager {
     static currentRound: number = 0;
 
     static trig_setup_StartRound(){
-        const t = Trigger.create()
-        t.registerPlayerChatEvent(Players[0], "-start", false);
-        
-        t.addAction(() => {
+        const tStart = Trigger.create()
+        tStart.registerPlayerChatEvent(Players[0], "-start", false);
+        tStart.addAction(() => {
             RoundManager.startNextRound();
         });
 
@@ -30,43 +29,31 @@ export class RoundManager {
     static startNextRound(){
         RoundManager.currentRound++;
         Sound.fromHandle(gg_snd_QuestNew)?.start();
+        ClearMapMusic();
+        StopMusic(false);
+        PlayMusic(gg_snd_Undead3);
         
-        //Set night time 
+        //Set to night time 
         SetTimeOfDay(0);
+        spawnZombies(RoundManager.currentRound, RoundManager.endCurrentRound);
         
-        spawnZombies(RoundManager.currentRound);
-        
-        // const zombieTimer = Timer.create();
-        // zombieTimer.start(15, true, () => spawnZombies(RoundManager.currentRound));
-        spawnZombies(RoundManager.currentRound, RoundManager.endCurrentRound)
-        // const timer = Timer.create()
-        
-        // timer.start(59, false, () => {RoundManager.endCurrentRound(zombieTimer)});
-        
-        print(`Round ${RoundManager.currentRound} has begun...`);
+        print(`Night ${RoundManager.currentRound} has begun...`);
     }
     
-    static endCurrentRound(zombieTimer?: Timer){
-        print(`Round ${RoundManager.currentRound} has ended...`);
-        player_giveRoundEndResources(this.currentRound);
-        zombieTimer?.destroy();
-        
-        Sound.fromHandle(gg_snd_QuestCompleted)?.start();
-        
+    static endCurrentRound(){
+        print(`Night ${RoundManager.currentRound} has ended...`);
         SetTimeOfDay(12);
+        player_giveRoundEndResources(RoundManager.currentRound);
+        
+        ClearMapMusic();
+        StopMusic(false);
+        PlayMusic(gg_snd_IllidansTheme);
 
-        //Refill stocks for units - doesn't do anything >=(
-        // AddUnitToAllStock(FourCC("h000"), 20, 20);
-
-
-    
-        //There are 3 units with the ability however we only count 1. I hope to fucking god each unit doesnt have a unique ability id? If they did then comparing getAbility with 
-        //Getting ability by ID might get a unique ability code lol, which means we can't store
-
+        Sound.fromHandle(gg_snd_QuestCompleted)?.start();
 
         Timer.create().start(5, false, () => {
             Sound.fromHandle(gg_snd_Hint)?.start();
-            print("Supply horses have arrived at the capital. They are able to heal your units.");
+            print("Supply horses have arrived at the capital. Use them to heal your units.");
         });
     }
 } 

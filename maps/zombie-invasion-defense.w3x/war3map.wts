@@ -106,56 +106,6 @@ STRING 22
 Player 9
 }
 
-STRING 23
-{
-Player 11
-}
-
-STRING 24
-{
-Player 12
-}
-
-STRING 25
-{
-Player 13
-}
-
-STRING 26
-{
-Player 14
-}
-
-STRING 27
-{
-Player 15
-}
-
-STRING 28
-{
-Player 16
-}
-
-STRING 29
-{
-Player 17
-}
-
-STRING 30
-{
-Player 18
-}
-
-STRING 31
-{
-Player 19
-}
-
-STRING 32
-{
-Player 20
-}
-
 STRING 35
 // Abilities: A001 (Base - Info Ability), Name (Name)
 {
@@ -436,5 +386,71 @@ STRING 83
 // Units: n000 (Engineer), Ubertip (Tooltip - Extended)
 {
 Can repair buildings.
+}
+
+STRING 85
+// Units: n002 (Ogre Champion), Name (Name)
+{
+Ogre Champion
+}
+
+STRING 86
+// Units: n002 (Ogre Champion), Tip (Tooltip - Basic)
+{
+Hire Ogre Champion
+}
+
+STRING 87
+// Units: n002 (Ogre Champion), Ubertip (Tooltip - Extended)
+{
+Massive unit with a cleaving attack and shockwave ability.
+}
+
+STRING 88
+// Units: Hpal (Paladin), Propernames (Proper Names)
+{
+Hannibal,Theodocius,Alexander The Great,Constantine,Basilius,Majorian,Ptolemy,Caesur,Octavius
+}
+
+STRING 89
+// Abilities: A008 (Slow Aura), EditorSuffix (Editor Suffix)
+{
+(Slow Trap)
+}
+
+STRING 90
+// Units: h005 (Slow Trap), Name (Name)
+{
+Slow Trap
+}
+
+STRING 91
+// Units: h005 (Slow Trap), Tip (Tooltip - Basic)
+{
+Build Slow Trap
+}
+
+STRING 92
+// Units: h005 (Slow Trap), Ubertip (Tooltip - Extended)
+{
+Slows down the movement speed of nearby enemies.
+}
+
+STRING 101
+// Buffs/Effects: B000 (), Bufftip (Tooltip)
+{
+Slow Trap
+}
+
+STRING 102
+// Buffs/Effects: B000 (), Buffubertip (Tooltip - Extended)
+{
+This unit is being slowed by a slow trap.
+}
+
+STRING 103
+// Units: h000 (Militia), Hotkey (Hotkey)
+{
+I
 }
 

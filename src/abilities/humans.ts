@@ -18,11 +18,6 @@ function knightCharge(){
             print(ABILITIES.charge);
             print(GetSpellAbilityId());
             print(GetSpellAbility());
-            //How to convert an abilityID to ability number?
-            // print(typeof GetSpellAbility());
-            // print(u.);
-
-            // print("__ability: ",u.getAbility(Ability_Id.charge)?.__ability);
 
             for(let x = 0; x < 12; x++){
                 if(u.getAbilityByIndex(x) === u.getAbility(ABILITIES.charge)){
@@ -41,10 +36,7 @@ function knightCharge(){
         const u = Unit.fromEvent();
         const spell = u?.getAbility(ABILITIES.charge);
         
-        // if(spell) print({spell});
-        
         print("Unit cast charge!");
-        // if(u) u?. = 0;
     });
 
 
