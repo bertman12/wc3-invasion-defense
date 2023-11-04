@@ -120,3 +120,7 @@ create a boss that spawns after the round ends? but then he forces it to become 
 
 Also add a Stone Mason Guild that can repair a destroyed building every night.
 Also create a Blacksmith's guild that can create weapons and armors for your heroes, and artifacts too.
+
+Create musketeers, with flaming arrow, should cost 1/5 of their mana to use but can be strong, takes 5 seconds to recharge for another powerful shot. Make it so it get's used every other shot.
+
+Add another neutral kingdom

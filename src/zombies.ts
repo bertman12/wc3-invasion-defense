@@ -39,7 +39,17 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
     const spawnForceCurrentTarget:Unit[] = [];
     const forceTargetEffects: Effect[] = [];
     // const spawnUnitForces: Unit[][] = Array(spawns.length).fill([]);
+    
+    const spawnIcons:minimapicon[] = [];
 
+    spawns.forEach(spawn => {
+        const icon = CreateMinimapIcon(spawn.centerX, spawn.centerY, 255, 255, 255, 'UI\\Minimap\\MiniMap-Boss.mdl', FOG_OF_WAR_FOGGED);
+        if(icon){
+            spawnIcons.push(icon);
+        }
+    });
+
+    // DestroyMinimapIcon
     //Setup waves
     const waveTimer = Timer.create();
     let waveCount = 0;
@@ -127,7 +137,7 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
                     if(forceTargetEffects[index]) forceTargetEffects[index].destroy();
                     forceTargetEffects[index] = effect;
 
-                    print("created effect");
+                    // print("created effect");
                     effect.scale = 3;
                     effect.setColor(255, 255, 255);
                 }
@@ -153,8 +163,7 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
             }
 
             print(`Spawn ${index} - Next attack coordinates: (${spawnForceCurrentTarget[index]?.x}, ${spawnForceCurrentTarget[index]?.y})`);
-
-        })
+        });
 
     });
 
@@ -164,6 +173,8 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
     trig_end.registerTimerExpireEvent(roundEndTimer.handle);
     
     trig_end.addAction(() => {
+        
+        spawnIcons.forEach(icon => DestroyMinimapIcon(icon));
 
         spawnUnitForces.forEach(unitForce =>{
             unitForce.forEach((u, index) => {
@@ -177,7 +188,6 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
                 }
             } );
         });
-
 
         if(onEnd){
             onEnd();

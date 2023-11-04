@@ -323,12 +323,6 @@ STRING 73
 Weapon Upgrade
 }
 
-STRING 74
-// Abilities: A007 (Weapon Upgrade), Tip (Tooltip - Normal)
-{
-[|cff8080ffUpgrade|r] - Increases the armor of units.
-}
-
 STRING 75
 // Abilities: A007 (Weapon Upgrade), Ubertip (Tooltip - Normal - Extended)
 {
@@ -476,5 +470,21 @@ STRING 110
 // Units: n003 (Angry Farmer), Hotkey (Hotkey)
 {
 F
+}
+
+STRING 111
+// Abilities: A007 (Weapon Upgrade), Tip (Tooltip - Normal)
+{
+[|cff8080ffUpgrade|r] - Increases the damage of units.
+}
+
+STRING 112
+{
+[Neutral] - Kingdom of Hyperian
+}
+
+STRING 113
+{
+[Neutral] - Vindigoth Orc Tribe
 }
 

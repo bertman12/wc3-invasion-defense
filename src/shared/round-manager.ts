@@ -5,6 +5,7 @@ import { Players } from "w3ts/globals";
 import { ABILITIES } from "./enums";
 import { player_giveRoundEndResources } from "src/players";
 import { tColor } from "src/utils/misc";
+import { playCustomSound } from "./sounds";
 
 /**
  * rounds should be able to be started early, but should automatically start after 2 minutes the round has ended. That way people arent intentionally waiting for mana to return.
@@ -33,6 +34,8 @@ export class RoundManager {
         ClearMapMusic();
         StopMusic(false);
         PlayMusic(gg_snd_Undead3);
+
+        playCustomSound("Sound/Dialogue/HumanCampaign/Human04/H04Arthas11.flac")
         
         //Set to night time 
         SetTimeOfDay(0);

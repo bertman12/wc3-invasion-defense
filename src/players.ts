@@ -124,5 +124,5 @@ export function player_giveRoundEndResources(round: number){
 }
 
 export function adjustPlayerState(player: MapPlayer, whichState: playerstate, amount: number){
-    player.setState(PLAYER_STATE_RESOURCE_GOLD, player.getState(whichState) + amount);
+    player.setState(whichState, player.getState(whichState) + amount);
 }

@@ -15,15 +15,10 @@ function knightCharge(){
 
 
         if(u.getAbility(ABILITIES.charge) === GetSpellAbility()){
-            print(ABILITIES.charge);
-            print(GetSpellAbilityId());
-            print(GetSpellAbility());
-
-            for(let x = 0; x < 12; x++){
-                if(u.getAbilityByIndex(x) === u.getAbility(ABILITIES.charge)){
-                    print("Found the mathcing ability at index : ", x);
-                }
-            }
+            // print(ABILITIES.charge);
+            // print(GetSpellAbilityId());
+            // print(GetSpellAbility());
+           
 
             return true;
         }
@@ -35,8 +30,6 @@ function knightCharge(){
     t.addAction(() => {
         const u = Unit.fromEvent();
         const spell = u?.getAbility(ABILITIES.charge);
-        
-        print("Unit cast charge!");
     });
 
 

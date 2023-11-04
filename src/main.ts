@@ -5,6 +5,8 @@ import { init_map_triggers } from './init';
 import { forEachPlayer, forEachUnitTypeOfPlayer } from './utils/players';
 import { Players } from 'w3ts/globals';
 import { setup_transferTownControl } from './towns';
+import { Sound } from 'w3ts';
+import { tColor } from './utils/misc';
 
 const BUILD_DATE = compiletime(() => new Date().toUTCString());
 const TS_VERSION = compiletime(() => require("typescript").version);
@@ -22,7 +24,8 @@ function tsMain() {
     print(" ");
     print("Welcome to TypeScript!");
     print(" ");
-    print("The elite nobles of the Kingdom of Alexandria must rally their forces. The capital city must survive!");
+    print(`[${tColor("Objective")}] - Defend the capital city.`);
+    print("The elite nobles of the Kingdom of Alexandria must rally their forces to fight the undead. The capital city must survive!");
     
     initializePlayerStateInstances();
     SetGameDifficulty(MAP_DIFFICULTY_INSANE);
@@ -37,6 +40,7 @@ function tsMain() {
 
     StopMusic(false);
     PlayMusic(gg_snd_IllidansTheme);
+
 
     init_map_triggers();
     RoundManager.trig_setup_StartRound();
