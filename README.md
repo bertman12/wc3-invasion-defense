@@ -124,3 +124,19 @@ Also create a Blacksmith's guild that can create weapons and armors for your her
 Create musketeers, with flaming arrow, should cost 1/5 of their mana to use but can be strong, takes 5 seconds to recharge for another powerful shot. Make it so it get's used every other shot.
 
 Add another neutral kingdom
+
+
+add -cam commands
+
+add ability to "scout" where the undead will spawn
+
+add the ability for engineers to make camps which will provide supplies to heal units
+
+make the camps retrieve supplies from units that travel from the capital city and to the camps. make it so units can fortify key forts and passages
+
+zombie forces may be increased by a percentage of the players playing.
+
+create item to repair destroyed buildings or make it an ability on a unit
+
+
+I wonder if I should disable purchasing all stocked units during the night, so players are stuck with their choices they made during the day.

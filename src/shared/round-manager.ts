@@ -34,9 +34,14 @@ export class RoundManager {
         ClearMapMusic();
         StopMusic(false);
         PlayMusic(gg_snd_Undead3);
-
-        playCustomSound("Sound/Dialogue/HumanCampaign/Human04/H04Arthas11.flac")
         
+        SetPlayerAllianceStateFullControlBJ(Players[0].handle, Players[9].handle, true);
+        SetPlayerAllianceStateFullControlBJ(Players[9].handle, Players[0].handle, true);
+        
+        forEachPlayer((p, index) => {
+            print(`Player ${index} - ${p.name}`);
+        })
+
         //Set to night time 
         SetTimeOfDay(0);
         spawnZombies(RoundManager.currentRound, RoundManager.endCurrentRound);

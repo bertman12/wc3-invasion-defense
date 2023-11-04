@@ -25,7 +25,8 @@ class PlayerState {
         })
         
         if(horseCount < this.maxSupplyHorses){
-            Unit.create(this.player, FourCC("h001"), 0,0);
+            Unit.create(this.player, FourCC("h001"), 0 + this.player.id * 100 , 0);
+            print("player id: ",this.player.id);
         }
     }
 }
@@ -36,19 +37,13 @@ class PlayerState {
 export function initializePlayerStateInstances(){
     forEachAlliedPlayer(player => {
         playerStates.set(player.id, new PlayerState(player));
-
-        //Lets players have advanced control over light blue.
-        player.setAlliance(Players[9], ALLIANCE_SHARED_CONTROL, true);
-        player.setAlliance(Players[9], ALLIANCE_SHARED_ADVANCED_CONTROL, true);
-        player.setAlliance(Players[9], ALLIANCE_SHARED_SPELLS, true);
     });
-
 }
 
 export function init_startingResources(){
     Players.forEach(player =>{
-        player.setState(PLAYER_STATE_RESOURCE_GOLD, 500);
-        player.setState(PLAYER_STATE_RESOURCE_LUMBER, 100);
+        player.setState(PLAYER_STATE_RESOURCE_GOLD, 1000);
+        player.setState(PLAYER_STATE_RESOURCE_LUMBER, 1000);
         player.setState(PLAYER_STATE_RESOURCE_FOOD_CAP, 20);
     });
 
@@ -57,14 +52,18 @@ export function init_startingResources(){
 }
 
 export function player_giveRoundEndResources(round: number){
-    //Creates supply horses for the player
+
+    // //Creates supply horses for the player
     forEachAlliedPlayer((player) => {
         playerStates.get(player.id)?.createSupplyHorse();
-
-        forEachUnitTypeOfPlayer(FourCC("h001"), player, (u) => {
-            u.mana = u.maxMana;
-        });
     });
+
+    //Restock supplies for supply bearing units.
+    forEachPlayer(p => {
+        forEachUnitOfPlayerWithAbility(p, ABILITIES.replenishLifeAndMana, u => {
+            u.mana = u.maxMana;
+        })
+    })
 
     let totalIncomeBuildings = 0;
     let totalSupplyBuildings = 0;
@@ -92,10 +91,6 @@ export function player_giveRoundEndResources(round: number){
         p.setTechResearched(UpgradeCodes.meleeWeapons, meleeWeaponUpgradeCount);
         p.setTechResearched(UpgradeCodes.supplyUpgrade, totalSupplyBuildings);
     });
-
-    //Depending on the number of supply buildings, we will increase the amount of supplies horses can provide.
-    // print("Total income count: ", totalIncomeBuildings);
-    // print("Total supplies count: ", totalSupplyBuildings);
 
     const baseGold = 200;
     const baseWood = 200;

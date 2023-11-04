@@ -29,9 +29,9 @@ export function forEachAlliedPlayer(cb: (player: MapPlayer) => void){
 /**
  * Uses the call back for each player while obeying the predicate, if one exists. 
  */
-export function forEachPlayer(cb:  (player: MapPlayer) => void){
-    Players.forEach(p => {
-        cb(p);
+export function forEachPlayer(cb:  (player: MapPlayer, index?:number) => void){
+    Players.forEach((p, index) => {
+        cb(p, index);
     })
 }
 

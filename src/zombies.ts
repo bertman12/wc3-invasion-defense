@@ -174,7 +174,9 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
     
     trig_end.addAction(() => {
         
+        //Tear down
         spawnIcons.forEach(icon => DestroyMinimapIcon(icon));
+        forceTargetEffects.forEach(eff => eff.destroy());
 
         spawnUnitForces.forEach(unitForce =>{
             unitForce.forEach((u, index) => {

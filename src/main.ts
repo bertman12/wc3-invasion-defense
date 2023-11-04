@@ -24,7 +24,7 @@ function tsMain() {
     print(" ");
     print("Welcome to TypeScript!");
     print(" ");
-    print(`[${tColor("Objective")}] - Defend the capital city.`);
+    print(`[${tColor("Objective", "goldenrod")}] - Defend the capital city`);
     print("The elite nobles of the Kingdom of Alexandria must rally their forces to fight the undead. The capital city must survive!");
     
     initializePlayerStateInstances();

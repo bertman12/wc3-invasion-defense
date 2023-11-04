@@ -395,12 +395,6 @@ STRING 87
 Massive unit with a cleaving attack and shockwave ability.
 }
 
-STRING 88
-// Units: Hpal (Paladin), Propernames (Proper Names)
-{
-Hannibal,Theodocius,Alexander The Great,Constantine,Basilius,Majorian,Ptolemy,Caesur,Octavius
-}
-
 STRING 89
 // Abilities: A008 (Slow Aura), EditorSuffix (Editor Suffix)
 {
@@ -486,5 +480,106 @@ STRING 112
 STRING 113
 {
 [Neutral] - Vindigoth Orc Tribe
+}
+
+STRING 114
+// Abilities: A009 (Base - Target Unit), Name (Name)
+{
+Base - Target Unit
+}
+
+STRING 115
+// Abilities: A009 (Base - Target Unit), Tip (Tooltip - Normal)
+{
+Target Unit
+}
+
+STRING 116
+// Abilities: A009 (Base - Target Unit), Ubertip (Tooltip - Normal - Extended)
+{
+The spell does nothing.
+}
+
+STRING 117
+// Abilities: A00A (Make Alliance), Name (Name)
+{
+Make Alliance
+}
+
+STRING 118
+// Abilities: A00A (Make Alliance), Tip (Tooltip - Normal)
+{
+Make Alliance
+}
+
+STRING 119
+// Abilities: A00A (Make Alliance), Ubertip (Tooltip - Normal - Extended)
+{
+Makes the owner of the target your ally.
+}
+
+STRING 120
+// Units: h006 (Diplomatic Offering), Name (Name)
+{
+Diplomatic Offering
+}
+
+STRING 122
+// Units: h006 (Diplomatic Offering), Ubertip (Tooltip - Extended)
+{
+Allows you to ally neutral factions.
+}
+
+STRING 123
+// Units: h006 (Diplomatic Offering), Tip (Tooltip - Basic)
+{
+Create Diplomatic Offering
+}
+
+STRING 127
+// Units: Hpal (Paladin), Propernames (Proper Names)
+{
+Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 128
+// Units: h007 (Camp), Name (Name)
+{
+Camp
+}
+
+STRING 129
+// Units: h007 (Camp), Tip (Tooltip - Basic)
+{
+Build Camp
+}
+
+STRING 130
+// Units: h007 (Camp), Ubertip (Tooltip - Extended)
+{
+Provides supplies for nearby units to benefit from.
+}
+
+STRING 131
+{
+Neutral Kingdoms
+}
+
+STRING 133
+// Units: h006 (Diplomatic Offering), Hotkey (Hotkey)
+{
+D
+}
+
+STRING 134
+// Abilities: A00A (Make Alliance), Hotkey (Hotkey - Normal)
+{
+C
+}
+
+STRING 135
+// Units: o000 (Orc Tent), Name (Name)
+{
+Orc Tent
 }
 
