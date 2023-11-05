@@ -115,10 +115,10 @@ export function player_giveRoundEndResources(round: number){
 
     grantUpgradeBonuses();
 
-    const baseGold = 200;
-    const baseWood = 200;
-    const roundGold = 100*round;
-    const roundWood = 50*round;
+    const baseGold = 250;
+    const baseWood = 150;
+    const roundGold = 100 * round;
+    const roundWood = 50 * round;
     const incomeBuildingGold = 50 * totalIncomeBuildings;
     const incomeBuildingWood = 25 * totalIncomeBuildings;
 

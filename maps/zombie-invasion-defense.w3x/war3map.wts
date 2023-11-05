@@ -556,12 +556,6 @@ STRING 136
 [Ally] - Kingdom of Alexandria
 }
 
-STRING 137
-// Abilities: A000 (Supplies), Ubertip (Tooltip - Normal - Extended)
-{
-Increases the supplies that supply type units can carry.
-}
-
 STRING 138
 // Units: Hpal (Paladin), Propernames (Proper Names)
 {
@@ -643,5 +637,29 @@ STRING 151
 // Units: n004 (War Bear), Name (Name)
 {
 War Bear
+}
+
+STRING 152
+// Abilities: A000 (Supplies), Ubertip (Tooltip - Normal - Extended)
+{
+Increases the supplies(mana) that supply type units can carry.
+}
+
+STRING 153
+// Units: h009 (Musketeer), Tip (Tooltip - Basic)
+{
+Enlist Musketeer
+}
+
+STRING 154
+// Units: h009 (Musketeer), Ubertip (Tooltip - Extended)
+{
+Highly skilled sharpshooter. Can use mana imbued powder for powerful shots. |n|n|cffffcc00Attacks land and air units.|r
+}
+
+STRING 155
+// Units: N005 (Pit Lord), Propernames (Proper Names)
+{
+Theodemir,Theodahad,Illdibad,Eararic,Totila,Teia,Valamir,Thiudimer
 }
 

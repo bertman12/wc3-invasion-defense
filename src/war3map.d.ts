@@ -13,3 +13,4 @@ declare var gg_snd_NightElfX1: string;
 declare var gg_snd_TheHornOfCenarius: sound;
 declare var gg_snd_SargerasRoar: sound;
 declare var gg_snd_SargerasLaugh: sound;
+declare var gg_snd_U08Archimonde19: sound;

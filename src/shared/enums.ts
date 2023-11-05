@@ -23,6 +23,7 @@ export enum CUSTOM_UNITS {
     blacksmith = FourCC("h004"),
     cannonTower = FourCC("hctw"),
     guardTower = FourCC("hgtw"),
+    boss_pitLord = FourCC("N005"),
 }
 
 //Can find looking up models for a spell at the Art - Target field

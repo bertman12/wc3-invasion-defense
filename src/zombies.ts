@@ -1,9 +1,9 @@
-import { Effect, Group, Point, Rectangle, Timer, Trigger, Unit } from "w3ts";
+import { Effect, Group, Point, Rectangle, Sound, Timer, Trigger, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
 import { forEachUnitTypeOfPlayer } from "./utils/players";
 import { allCapturableStructures, primaryCapturableStructures } from "./towns";
 import { tColor } from "./utils/misc";
-import { MinimapIconPath } from "./shared/enums";
+import { CUSTOM_UNITS, MinimapIconPath } from "./shared/enums";
 import { TimerManager } from "./shared/Timers";
 
 export const zombieMapPlayer = Players[20];
@@ -54,14 +54,16 @@ interface SpawnData {
      */
     //Pretty sure there is a way to use typescript so each function can have their own unique arguemnts and when were handling this function later it will get autocomplete for those arguments unique to the spawn data object.
     spawnRequirement?: (waveCount: number, waveInterval: number, roundDuration: number) => boolean;
+    onCreation?: (u: Unit) => void;
 }
 
 function createSpawnData(currentRound: number):SpawnData[]{
     const meatWagonCount = currentRound;
     const archerCount = 2 + 2*currentRound;
     const zombieCount = 10 + 4 * currentRound;
+    //could make spawn quantity cyclic with trig functions
 
-    const undeadSpawnData = [
+    const undeadSpawnData:SpawnData[] = [
         //Abomination
         {
             quantityPerWave: 1,
@@ -69,6 +71,8 @@ function createSpawnData(currentRound: number):SpawnData[]{
             spawnRequirement(waveCount: number, waveInterval: number, roundDuration: number) {
                 return waveCount * waveInterval >= roundDuration*(0.35);                
             },
+
+            //unitModification: (u: Unit) => void -- use this function to adjust the unit stats in some way, probably based on round or buildings captured etc.
         },
         //Meat Wagon
         {
@@ -82,6 +86,7 @@ function createSpawnData(currentRound: number):SpawnData[]{
         {
             quantityPerWave: 1,
             unitType: FourCC("u000"),
+            
         },
         //Skeletal Archers
         {
@@ -92,6 +97,15 @@ function createSpawnData(currentRound: number):SpawnData[]{
         {
             quantityPerWave: zombieCount,
             unitType: FourCC("nzom"),
+        },
+        //Pit Lord
+        {
+            quantityPerWave: currentRound,
+            unitType: CUSTOM_UNITS.boss_pitLord,
+            onCreation: (u) => {
+                u.setHeroLevel(currentRound * 3, false);
+                Sound.fromHandle(gg_snd_U08Archimonde19)?.start();
+            }
         },
     ];
 
@@ -179,12 +193,12 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
 
             spawnData.forEach(data => {
                 if(data.spawnRequirement && data.spawnRequirement(waveCount, WAVE_INTERVAL, TimerManager.nightTimeDuration)){
-                    const units = spawnUndeadUnitType(data.unitType, data.quantityPerWave, xPos, yPos);
+                    const units = spawnUndeadUnitType(data.unitType, data.quantityPerWave, xPos, yPos, data.onCreation);
                     spawnUnitForces[index].push(...units); 
                     newestSpawnedUnits.push(...units);
                 }
                 else if(!data.spawnRequirement){
-                    const units = spawnUndeadUnitType(data.unitType, data.quantityPerWave, xPos, yPos);
+                    const units = spawnUndeadUnitType(data.unitType, data.quantityPerWave, xPos, yPos, data.onCreation);
                     spawnUnitForces[index].push(...units); 
                     newestSpawnedUnits.push(...units);
                 }
@@ -239,11 +253,15 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
     });
 }
 
-function spawnUndeadUnitType(unitType: number, quantity: number, xPos: number, yPos: number): Unit[]{
+function spawnUndeadUnitType(unitType: number, quantity: number, xPos: number, yPos: number, onCreation?: (u:Unit) => void): Unit[]{
     const units = [];
 
     for(let i = 0; i < quantity; i++){
         const u = Unit.create(getNextUndeadPlayer(), unitType, xPos, yPos)
+        if(onCreation && u){
+            onCreation(u);
+        }
+
         if(u){
             units.push(u);
         }

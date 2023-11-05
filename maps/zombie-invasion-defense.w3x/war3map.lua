@@ -13,6 +13,7 @@ gg_snd_NightElfX1 = ""
 gg_snd_TheHornOfCenarius = nil
 gg_snd_SargerasRoar = nil
 gg_snd_SargerasLaugh = nil
+gg_snd_U08Archimonde19 = nil
 function InitGlobals()
 end
 
@@ -54,6 +55,10 @@ gg_snd_SargerasLaugh = CreateSound("Sound/Ambient/DoodadEffects/SargerasLaugh.fl
 SetSoundParamsFromLabel(gg_snd_SargerasLaugh, "SargerasLaugh")
 SetSoundDuration(gg_snd_SargerasLaugh, 3326)
 SetSoundVolume(gg_snd_SargerasLaugh, 127)
+gg_snd_U08Archimonde19 = CreateSound("Sound/Dialogue/UndeadCampaign/Undead08/U08Archimonde19.flac", false, false, false, 0, 0, "DefaultEAXON")
+SetSoundParamsFromLabel(gg_snd_U08Archimonde19, "U08Archimonde19")
+SetSoundDuration(gg_snd_U08Archimonde19, 7537)
+SetSoundVolume(gg_snd_U08Archimonde19, 120)
 end
 
 function CreateBuildingsForPlayer9()
@@ -73,14 +78,14 @@ u = BlzCreateUnitWithSkin(p, FourCC("h002"), 2176.0, 320.0, 270.000, FourCC("h00
 u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), -320.0, 3584.0, 270.000, FourCC("hgtw"))
 u = BlzCreateUnitWithSkin(p, FourCC("hbar"), 5056.0, 11264.0, 270.000, FourCC("hbar"))
 u = BlzCreateUnitWithSkin(p, FourCC("h002"), -3648.0, 5824.0, 270.000, FourCC("h002"))
-u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), 5056.0, 10432.0, 270.000, FourCC("hgtw"))
-u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), 5696.0, 10944.0, 270.000, FourCC("hgtw"))
+u = BlzCreateUnitWithSkin(p, FourCC("h007"), 5760.0, 11328.0, 270.000, FourCC("h007"))
+u = BlzCreateUnitWithSkin(p, FourCC("h007"), 4608.0, 10688.0, 270.000, FourCC("h007"))
+u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), 5120.0, 9600.0, 270.000, FourCC("hgtw"))
+u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), 6144.0, 9536.0, 270.000, FourCC("hgtw"))
 u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), -7296.0, 10816.0, 270.000, FourCC("hgtw"))
 u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), -7040.0, 10368.0, 270.000, FourCC("hgtw"))
 u = BlzCreateUnitWithSkin(p, FourCC("h002"), -5696.0, 12800.0, 270.000, FourCC("h002"))
 u = BlzCreateUnitWithSkin(p, FourCC("hcas"), 5632.0, 9152.0, 270.000, FourCC("hcas"))
-u = BlzCreateUnitWithSkin(p, FourCC("hctw"), 5184.0, 9664.0, 270.000, FourCC("hctw"))
-u = BlzCreateUnitWithSkin(p, FourCC("hctw"), 6080.0, 9664.0, 270.000, FourCC("hctw"))
 u = BlzCreateUnitWithSkin(p, FourCC("hctw"), 5184.0, 8640.0, 270.000, FourCC("hctw"))
 u = BlzCreateUnitWithSkin(p, FourCC("hctw"), 6080.0, 8640.0, 270.000, FourCC("hctw"))
 u = BlzCreateUnitWithSkin(p, FourCC("h003"), 3968.0, 8704.0, 270.000, FourCC("h003"))
@@ -113,12 +118,11 @@ u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), 5109.8, 11605.7, 175.094, FourCC("h
 u = BlzCreateUnitWithSkin(p, FourCC("hkni"), -7113.8, 10564.0, 169.788, FourCC("hkni"))
 u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), -7190.2, 10687.1, 134.686, FourCC("hfoo"))
 u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), -7044.0, 10491.5, 92.497, FourCC("hfoo"))
-u = BlzCreateUnitWithSkin(p, FourCC("hkni"), 5492.1, 9532.2, 90.000, FourCC("hkni"))
+u = BlzCreateUnitWithSkin(p, FourCC("h009"), 6769.8, 9528.3, 188.630, FourCC("h009"))
+u = BlzCreateUnitWithSkin(p, FourCC("hkni"), 5484.4, 9529.7, 90.000, FourCC("hkni"))
 u = BlzCreateUnitWithSkin(p, FourCC("hkni"), 5783.1, 9517.4, 90.000, FourCC("hkni"))
-u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), 5387.2, 9766.7, 90.000, FourCC("hfoo"))
-u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), 5566.0, 9737.8, 90.000, FourCC("hfoo"))
-u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), 5707.4, 9764.0, 90.000, FourCC("hfoo"))
-u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), 5868.5, 9758.8, 90.000, FourCC("hfoo"))
+u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), 5326.6, 9656.8, 60.559, FourCC("hfoo"))
+u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), 5905.5, 9646.2, 90.000, FourCC("hfoo"))
 u = BlzCreateUnitWithSkin(p, FourCC("h001"), 7564.0, 10295.8, 339.337, FourCC("h001"))
 u = BlzCreateUnitWithSkin(p, FourCC("h000"), 7147.0, 9982.3, 254.831, FourCC("h000"))
 u = BlzCreateUnitWithSkin(p, FourCC("h000"), 7266.9, 9904.0, 229.269, FourCC("h000"))
@@ -139,6 +143,7 @@ u = BlzCreateUnitWithSkin(p, FourCC("h008"), -1645.5, -1373.2, 270.000, FourCC("
 u = BlzCreateUnitWithSkin(p, FourCC("h008"), -2060.8, -812.0, 270.000, FourCC("h008"))
 u = BlzCreateUnitWithSkin(p, FourCC("h008"), 5078.3, 12107.7, 60.317, FourCC("h008"))
 u = BlzCreateUnitWithSkin(p, FourCC("h008"), 4370.1, 11755.3, 217.690, FourCC("h008"))
+u = BlzCreateUnitWithSkin(p, FourCC("h009"), 5142.9, 11044.8, 73.600, FourCC("h009"))
 end
 
 function CreateBuildingsForPlayer19()

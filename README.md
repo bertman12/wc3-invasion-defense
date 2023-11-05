@@ -138,8 +138,15 @@ zombie forces may be increased by a percentage of the players playing.
 
 create item to repair destroyed buildings or make it an ability on a unit
 
-
 I wonder if I should disable purchasing all stocked units during the night, so players are stuck with their choices they made during the day.
 
-
 Change the owner of the zombies that are spawned.
+
+=========11-5-23
+
+add food income ability on castle
+
+remove holy light and divine shield,
+
+increase tent building placement size
+
