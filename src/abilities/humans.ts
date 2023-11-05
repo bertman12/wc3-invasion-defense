@@ -48,7 +48,6 @@ function makeAlliance(){
         if(castedSpellId === ABILITIES.makeAlliance && caster && target){
             print(`[${tColor("Alliance", "goldenrod")}] - An alliance has been made with ${target.owner.name}`);
             const targetPlayer = target.owner.handle;
-
             const redPlayerForce = GetForceOfPlayer(Players[0].handle);
 
             if(redPlayerForce) ForForce(redPlayerForce, () => {
@@ -70,6 +69,7 @@ function makeAlliance(){
             SetPlayerName(target.owner.handle, target.owner.name.replace("Neutral", "Ally"));
 
             caster.kill();
+            
             return true;
         }
 

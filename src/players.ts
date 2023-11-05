@@ -25,8 +25,7 @@ class PlayerState {
         })
         
         if(horseCount < this.maxSupplyHorses){
-            Unit.create(this.player, FourCC("h001"), 0 + this.player.id * 100 , 0);
-            print("player id: ",this.player.id);
+            Unit.create(this.player, FourCC("h001"), -300 + this.player.id * 50 , 300);
         }
     }
 }
@@ -38,22 +37,56 @@ export function initializePlayerStateInstances(){
     forEachAlliedPlayer(player => {
         playerStates.set(player.id, new PlayerState(player));
     });
+
+    //Creates supply horses for the player
+    forEachAlliedPlayer((player) => {
+        playerStates.get(player.id)?.createSupplyHorse();
+    });
+
+    grantBonuses();
 }
 
 export function init_startingResources(){
     Players.forEach(player =>{
-        player.setState(PLAYER_STATE_RESOURCE_GOLD, 1000);
-        player.setState(PLAYER_STATE_RESOURCE_LUMBER, 1000);
-        player.setState(PLAYER_STATE_RESOURCE_FOOD_CAP, 20);
+        player.setState(PLAYER_STATE_RESOURCE_GOLD, 300);
+        player.setState(PLAYER_STATE_RESOURCE_LUMBER, 300);
+        player.setState(PLAYER_STATE_RESOURCE_FOOD_CAP, 25);
     });
 
     //Allow bounty from zombies.
     Players[20].setState(PLAYER_STATE_GIVES_BOUNTY, 1);
 }
 
+function grantBonuses(){
+    let totalSupplyBuildings = 0;
+    let meleeWeaponUpgradeCount = 0;
+    let armorUpgradeCount = 0;
+
+    forEachAlliedPlayer((p) => {
+        forEachUnitOfPlayerWithAbility(p, ABILITIES.supplies, (u) => {
+            totalSupplyBuildings++;
+        });
+        forEachUnitOfPlayerWithAbility(p, ABILITIES.weaponUpgrade, (u) => {
+            meleeWeaponUpgradeCount++;
+        });
+        forEachUnitOfPlayerWithAbility(p, ABILITIES.armorUpgrade, (u) => {
+            armorUpgradeCount++;
+        });
+    });
+
+    forEachAlliedPlayer(p => {
+        p.setTechResearched(UpgradeCodes.armor, 0);
+        p.setTechResearched(UpgradeCodes.meleeWeapons, 0);
+        p.setTechResearched(UpgradeCodes.supplyUpgrade, 0);
+        p.setTechResearched(UpgradeCodes.armor, armorUpgradeCount);
+        p.setTechResearched(UpgradeCodes.meleeWeapons, meleeWeaponUpgradeCount);
+        p.setTechResearched(UpgradeCodes.supplyUpgrade, totalSupplyBuildings);
+    });
+}
+
 export function player_giveRoundEndResources(round: number){
 
-    // //Creates supply horses for the player
+    //Creates supply horses for the player
     forEachAlliedPlayer((player) => {
         playerStates.get(player.id)?.createSupplyHorse();
     });
@@ -68,9 +101,6 @@ export function player_giveRoundEndResources(round: number){
     let totalIncomeBuildings = 0;
     let totalSupplyBuildings = 0;
 
-    let meleeWeaponUpgradeCount = 0;
-    let armorUpgradeCount = 0;
-
     forEachAlliedPlayer((p) => {
         forEachUnitOfPlayerWithAbility(p, ABILITIES.income, (u) => {
             totalIncomeBuildings++;
@@ -78,19 +108,10 @@ export function player_giveRoundEndResources(round: number){
         forEachUnitOfPlayerWithAbility(p, ABILITIES.supplies, (u) => {
             totalSupplyBuildings++;
         });
-        forEachUnitOfPlayerWithAbility(p, ABILITIES.weaponUpgrade, (u) => {
-            meleeWeaponUpgradeCount++;
-        });
-        forEachUnitOfPlayerWithAbility(p, ABILITIES.armorUpgrade, (u) => {
-            armorUpgradeCount++;
-        });
+
     });
 
-    forEachAlliedPlayer(p => {
-        p.setTechResearched(UpgradeCodes.armor, armorUpgradeCount);
-        p.setTechResearched(UpgradeCodes.meleeWeapons, meleeWeaponUpgradeCount);
-        p.setTechResearched(UpgradeCodes.supplyUpgrade, totalSupplyBuildings);
-    });
+    grantBonuses();
 
     const baseGold = 200;
     const baseWood = 200;

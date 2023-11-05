@@ -33,9 +33,8 @@ export class RoundManager {
         Sound.fromHandle(gg_snd_QuestNew)?.start();
         ClearMapMusic();
         StopMusic(false);
-        PlayMusic(gg_snd_Undead3);
+        PlayMusic(gg_snd_NightElfX1);
     
-
         //Set to night time 
         SetTimeOfDay(0);
         spawnZombies(RoundManager.currentRound, RoundManager.endCurrentRound);

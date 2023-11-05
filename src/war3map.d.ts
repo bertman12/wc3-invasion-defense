@@ -11,3 +11,4 @@ declare var gg_snd_Undead3: string;
 declare var gg_snd_H02Footman23: sound;
 declare var gg_snd_H04Arthas11: sound;
 declare var gg_snd_H04Arthas1101: sound;
+declare var gg_snd_NightElfX1: string;

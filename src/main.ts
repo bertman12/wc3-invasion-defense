@@ -2,10 +2,10 @@ import { RoundManager } from './shared/round-manager';
 import { W3TS_HOOK, addScriptHook } from "w3ts/hooks";
 import { init_startingResources, initializePlayerStateInstances } from "./players";
 import { init_map_triggers } from './init';
-import { forEachPlayer, forEachUnitTypeOfPlayer } from './utils/players';
+import { forEachAlliedPlayer, forEachPlayer, forEachUnitTypeOfPlayer } from './utils/players';
 import { Players } from 'w3ts/globals';
 import { setup_transferTownControl } from './towns';
-import { Sound } from 'w3ts';
+import { Sound, Timer, Unit } from 'w3ts';
 import { tColor } from './utils/misc';
 import { minimapIconPaths } from './shared/enums';
 
@@ -25,12 +25,14 @@ function tsMain() {
     print(" ");
     print("Welcome to TypeScript!");
     print(" ");
-    print(`[${tColor("Objective", "goldenrod")}] - Defend the capital city`);
-    print("The elite nobles of the Kingdom of Alexandria must rally their forces to fight the undead. The capital city must survive!");
+
+    Timer.create().start(5, false, () => {
+      print(`[${tColor("Objective", "goldenrod")}] - Defend the capital city`);
+      print("The elite nobles of the Kingdom of Alexandria must rally their forces to fight the undead. The capital city must survive!");
+    })
     
     initializePlayerStateInstances();
     SetGameDifficulty(MAP_DIFFICULTY_INSANE);
-    // InitAI();
     SetMeleeAI();
     
     setup_transferTownControl();
@@ -40,13 +42,16 @@ function tsMain() {
     ClearMapMusic();
 
     StopMusic(false);
-    PlayMusic(gg_snd_IllidansTheme);
+    PlayMusic(gg_snd_NightElfX1);
 
     //For looking at minimap icons
     // Array.from(minimapIconPaths).forEach((path, index) => {
     //   CreateMinimapIcon(-20000 + (index*4000), 0, 255, 255, 255, path, FOG_OF_WAR_FOGGED);
     // });
 
+    forEachAlliedPlayer((p, index) => {
+      Unit.create(p, FourCC("Hpal"), -300 + (50 * index), -300);
+    })
 
     init_map_triggers();
     RoundManager.trig_setup_StartRound();
