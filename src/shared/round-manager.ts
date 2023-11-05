@@ -34,13 +34,7 @@ export class RoundManager {
         ClearMapMusic();
         StopMusic(false);
         PlayMusic(gg_snd_Undead3);
-        
-        SetPlayerAllianceStateFullControlBJ(Players[0].handle, Players[9].handle, true);
-        SetPlayerAllianceStateFullControlBJ(Players[9].handle, Players[0].handle, true);
-        
-        forEachPlayer((p, index) => {
-            print(`Player ${index} - ${p.name}`);
-        })
+    
 
         //Set to night time 
         SetTimeOfDay(0);

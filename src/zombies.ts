@@ -3,6 +3,7 @@ import { OrderId, Players } from "w3ts/globals";
 import { forEachUnitTypeOfPlayer } from "./utils/players";
 import { allCapturableStructures, primaryCapturableStructures } from "./towns";
 import { tColor } from "./utils/misc";
+import { MinimapIconPath } from "./shared/enums";
 
 export const zombieMapPlayer = Players[20];
 
@@ -38,9 +39,9 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
     const spawnUnitForces: Unit[][] = spawns.map(_ => []);
     const spawnForceCurrentTarget:Unit[] = [];
     const forceTargetEffects: Effect[] = [];
-    // const spawnUnitForces: Unit[][] = Array(spawns.length).fill([]);
-    
     const spawnIcons:minimapicon[] = [];
+    const spawnAttackTargetIcon: minimapicon[] = [];
+
 
     spawns.forEach(spawn => {
         const icon = CreateMinimapIcon(spawn.centerX, spawn.centerY, 255, 255, 255, 'UI\\Minimap\\MiniMap-Boss.mdl', FOG_OF_WAR_FOGGED);
@@ -130,23 +131,25 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
                 spawnForceCurrentTarget[index] = nextTarget;
                 const currentTarget = spawnForceCurrentTarget[index];
 
-                // const effect = AddSpecialEffect("Abilities\\Spells\\NightElf\\TrueshotAura\\TrueshotAura.mdl", currentTarget.x, currentTarget.y);
-                // Effect.fromHandle(effect)
                 const effect = Effect.create("Abilities\\Spells\\NightElf\\TrueshotAura\\TrueshotAura.mdl", currentTarget.x, currentTarget.y);
                 if(effect){
                     if(forceTargetEffects[index]) forceTargetEffects[index].destroy();
                     forceTargetEffects[index] = effect;
 
-                    // print("created effect");
                     effect.scale = 3;
                     effect.setColor(255, 255, 255);
                 }
                 
+                const icon = CreateMinimapIcon(nextTarget.x, nextTarget.y, 255, 100, 50, MinimapIconPath.ping, FOG_OF_WAR_FOGGED);
+                
+                if(icon) {
+                    DestroyMinimapIcon(spawnAttackTargetIcon[index]);
+                    spawnAttackTargetIcon[index] = icon;
+                }
+                
                 //Only issue order if there was no previous target or the previous target is now invulnerable
-
                 for(let x = 0; x < spawnUnitForces[index].length; x++){
                     const unit = spawnUnitForces[index][x];
-                    // unit.issuePointOrder(OrderId.Attack, Point.create( 0, 0));
                     unit.issuePointOrder(OrderId.Attack, Point.create(currentTarget?.x ?? 0, currentTarget?.y ?? 0));
                 }
 
@@ -177,7 +180,8 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
         //Tear down
         spawnIcons.forEach(icon => DestroyMinimapIcon(icon));
         forceTargetEffects.forEach(eff => eff.destroy());
-
+        spawnAttackTargetIcon.forEach(icon => DestroyMinimapIcon(icon));
+        
         spawnUnitForces.forEach(unitForce =>{
             unitForce.forEach((u, index) => {
                 //Kill every 2nd and 3rd enemy, leaving behind only 1/3 of the enemies 

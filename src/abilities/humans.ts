@@ -1,4 +1,5 @@
 import { ABILITIES } from "src/shared/enums";
+import { tColor } from "src/utils/misc";
 import { forEachPlayer } from "src/utils/players";
 import { Force, Trigger, Unit } from "w3ts";
 import { Players } from "w3ts/globals";
@@ -41,25 +42,13 @@ function makeAlliance(){
 
     t.addCondition(() => {
         const castedSpellId = GetSpellAbilityId();
-        print(castedSpellId, ABILITIES.makeAlliance);
         const caster = Unit.fromEvent();
         const target = Unit.fromHandle(GetSpellTargetUnit())
 
         if(castedSpellId === ABILITIES.makeAlliance && caster && target){
-            print("Unit has made alliance!");
-            const casterPlayer = caster.owner.handle;
+            print(`[${tColor("Alliance", "goldenrod")}] - An alliance has been made with ${target.owner.name}`);
             const targetPlayer = target.owner.handle;
 
-            // //Player -> Target
-            // SetPlayerAllianceStateAllyBJ(casterPlayer, targetPlayer, true);
-            // SetPlayerAllianceBJ(casterPlayer, ALLIANCE_SHARED_VISION_FORCED, true, targetPlayer);
-            // SetPlayerAllianceBJ(casterPlayer, ALLIANCE_PASSIVE, true, targetPlayer);
-
-            // //Target -> Player
-            // SetPlayerAllianceStateAllyBJ(targetPlayer, casterPlayer, true);
-            // SetPlayerAllianceBJ(targetPlayer, ALLIANCE_SHARED_VISION_FORCED, true, casterPlayer);
-            // SetPlayerAllianceBJ(targetPlayer, ALLIANCE_PASSIVE, true, casterPlayer);
-            
             const redPlayerForce = GetForceOfPlayer(Players[0].handle);
 
             if(redPlayerForce) ForForce(redPlayerForce, () => {
@@ -76,7 +65,9 @@ function makeAlliance(){
                     SetPlayerAllianceBJ(targetPlayer, ALLIANCE_PASSIVE, true, player);
                     SetPlayerAllianceStateAllyBJ(targetPlayer, player, true);
                 }
-            })
+            });
+
+            SetPlayerName(target.owner.handle, target.owner.name.replace("Neutral", "Ally"));
 
             caster.kill();
             return true;

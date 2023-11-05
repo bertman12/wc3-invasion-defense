@@ -7,6 +7,7 @@ import { Players } from 'w3ts/globals';
 import { setup_transferTownControl } from './towns';
 import { Sound } from 'w3ts';
 import { tColor } from './utils/misc';
+import { minimapIconPaths } from './shared/enums';
 
 const BUILD_DATE = compiletime(() => new Date().toUTCString());
 const TS_VERSION = compiletime(() => require("typescript").version);
@@ -40,6 +41,11 @@ function tsMain() {
 
     StopMusic(false);
     PlayMusic(gg_snd_IllidansTheme);
+
+    //For looking at minimap icons
+    // Array.from(minimapIconPaths).forEach((path, index) => {
+    //   CreateMinimapIcon(-20000 + (index*4000), 0, 255, 255, 255, path, FOG_OF_WAR_FOGGED);
+    // });
 
 
     init_map_triggers();

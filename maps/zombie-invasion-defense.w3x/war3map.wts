@@ -131,12 +131,6 @@ STRING 39
 Supplies
 }
 
-STRING 40
-// Abilities: A000 (Supplies), Ubertip (Tooltip - Normal - Extended)
-{
-Increases the max allowed supply horses.
-}
-
 STRING 41
 // Abilities: A000 (Supplies), EditorSuffix (Editor Suffix)
 {
@@ -402,38 +396,27 @@ STRING 89
 }
 
 STRING 90
-// Units: h005 (Slow Trap), Name (Name)
+// Buffs/Effects: B000 (), Bufftip (Tooltip)
 {
 Slow Trap
 }
 
 STRING 91
-// Units: h005 (Slow Trap), Tip (Tooltip - Basic)
+// Units: h005 (Caltrops), Tip (Tooltip - Basic)
 {
 Build Slow Trap
 }
 
 STRING 92
-// Units: h005 (Slow Trap), Ubertip (Tooltip - Extended)
+// Units: h005 (Caltrops), Ubertip (Tooltip - Extended)
 {
 Slows down the movement speed of nearby enemies.
-}
-
-STRING 101
-// Buffs/Effects: B000 (), Bufftip (Tooltip)
-{
-Slow Trap
 }
 
 STRING 102
 // Buffs/Effects: B000 (), Buffubertip (Tooltip - Extended)
 {
 This unit is being slowed by a slow trap.
-}
-
-STRING 104
-{
-[Allied] - Kingdom of Alexandria
 }
 
 STRING 105
@@ -536,12 +519,6 @@ STRING 123
 Create Diplomatic Offering
 }
 
-STRING 127
-// Units: Hpal (Paladin), Propernames (Proper Names)
-{
-Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
-}
-
 STRING 128
 // Units: h007 (Camp), Name (Name)
 {
@@ -581,5 +558,28 @@ STRING 135
 // Units: o000 (Orc Tent), Name (Name)
 {
 Orc Tent
+}
+
+STRING 136
+{
+[Ally] - Kingdom of Alexandria
+}
+
+STRING 137
+// Abilities: A000 (Supplies), Ubertip (Tooltip - Normal - Extended)
+{
+Increases the supplies that supply type units can carry.
+}
+
+STRING 138
+// Units: Hpal (Paladin), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 139
+// Units: h005 (Caltrops), Name (Name)
+{
+Caltrops
 }
 
