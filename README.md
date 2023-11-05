@@ -140,3 +140,6 @@ create item to repair destroyed buildings or make it an ability on a unit
 
 
 I wonder if I should disable purchasing all stocked units during the night, so players are stuck with their choices they made during the day.
+
+
+Change the owner of the zombies that are spawned.

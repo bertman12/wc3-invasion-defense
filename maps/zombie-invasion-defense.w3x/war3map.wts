@@ -30,11 +30,6 @@ STRING 7
 Kingdom Zombie Defense
 }
 
-STRING 8
-{
-Zombies
-}
-
 STRING 9
 {
 Human Defenders
@@ -601,5 +596,10 @@ STRING 142
 Supply horses grant healing for units.
 Buildings will provide various upgrades depending on the building.
 Certain units are sold at different buildings.
+}
+
+STRING 143
+{
+Undead Forces
 }
 

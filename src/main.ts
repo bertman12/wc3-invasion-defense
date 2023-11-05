@@ -32,7 +32,7 @@ function tsMain() {
     
     initializePlayerStateInstances();
     SetGameDifficulty(MAP_DIFFICULTY_INSANE);
-    SetMeleeAI();
+    // SetMeleeAI();
     
     setup_transferTownControl();
 

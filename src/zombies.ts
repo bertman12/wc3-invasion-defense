@@ -12,6 +12,39 @@ export const zombieSpawnRectangles: rect[] = [
     gg_rct_zombieSpawn2
 ]
 
+const undeadPlayers = [
+    Players[10],
+    Players[12],
+    Players[13],
+    Players[14],
+    Players[15],
+    Players[16],
+    Players[17],
+    Players[20],
+    Players[21],
+    Players[22],
+    Players[23],
+];
+
+let currentUndeadPlayerIndex = 0;
+
+/**
+ * Cycles all players from the undead player array then restarts once it goes through all players 
+ */
+function getNextUndeadPlayer(){
+    let player = undeadPlayers[currentUndeadPlayerIndex];
+    
+    if(currentUndeadPlayerIndex >= undeadPlayers.length){
+        currentUndeadPlayerIndex = 0;
+        player = undeadPlayers[currentUndeadPlayerIndex];
+    }
+    else{
+        currentUndeadPlayerIndex++;
+    }
+
+    return player;
+}
+
 /**
  * The number of spawning zombies and which kinds will be determined by the current round number,
  * the number of towns under zombie control and which towns are under their control.
@@ -78,7 +111,7 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
     
             //At 75% of the wave time - breaks at round 10 lol
             if(waveCount * WAVE_INTERVAL >= ROUND_DURATION*(0.75 - currentRound *0.1)){
-                const u = Unit.create(zombieMapPlayer, FourCC("uabo"), xPos, yPos);
+                const u = Unit.create(getNextUndeadPlayer(), FourCC("uabo"), xPos, yPos);
                 if(u){
                     spawnUnitForces[index].push(u); 
                     newestSpawnedUnits.push(u);
@@ -88,7 +121,7 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
             //Creating meatWagons
             if(waveCount % 3 === 0){
                 for (let i = 0; i < meatWagonCount; i++) {
-                    const u = Unit.create(zombieMapPlayer, FourCC("umtw"), xPos, yPos);
+                    const u = Unit.create(getNextUndeadPlayer(), FourCC("umtw"), xPos, yPos);
                     if(u){
                         spawnUnitForces[index].push(u); 
                         newestSpawnedUnits.push(u);
@@ -97,7 +130,7 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
             }
     
             //Spawn skeletal mages.
-            const u = Unit.create(zombieMapPlayer, FourCC("u000"), xPos, yPos);
+            const u = Unit.create(getNextUndeadPlayer(), FourCC("u000"), xPos, yPos);
             if(u){
                     spawnUnitForces[index].push(u); 
                     newestSpawnedUnits.push(u);
@@ -105,7 +138,7 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
     
             //Creating some archers for the spawn.
             for (let i = 0; i < archerCount; i++) {
-                const u = Unit.create(zombieMapPlayer, FourCC("nskm"), xPos, yPos);    
+                const u = Unit.create(getNextUndeadPlayer(), FourCC("nskm"), xPos, yPos);    
                 if(u){
                     spawnUnitForces[index].push(u); 
                     newestSpawnedUnits.push(u);
