@@ -2,12 +2,10 @@ import { RoundManager } from './shared/round-manager';
 import { W3TS_HOOK, addScriptHook } from "w3ts/hooks";
 import { init_startingResources, initializePlayerStateInstances } from "./players";
 import { init_map_triggers } from './init';
-import { forEachAlliedPlayer, forEachPlayer, forEachUnitTypeOfPlayer } from './utils/players';
-import { Players } from 'w3ts/globals';
+import { forEachAlliedPlayer } from './utils/players';
 import { setup_transferTownControl } from './towns';
 import { Sound, Timer, Unit } from 'w3ts';
 import { tColor } from './utils/misc';
-import { minimapIconPaths } from './shared/enums';
 
 const BUILD_DATE = compiletime(() => new Date().toUTCString());
 const TS_VERSION = compiletime(() => require("typescript").version);
@@ -27,6 +25,7 @@ function tsMain() {
     print(" ");
 
     Timer.create().start(5, false, () => {
+      Sound.fromHandle(gg_snd_Hint)?.start();
       print(`[${tColor("Objective", "goldenrod")}] - Defend the capital city`);
       print("The elite nobles of the Kingdom of Alexandria must rally their forces to fight the undead. The capital city must survive!");
     })

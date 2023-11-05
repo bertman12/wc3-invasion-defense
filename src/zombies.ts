@@ -73,11 +73,11 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
     
             //Setup quantity of units to spawn per wave.
             const meatWagonCount = currentRound;
-            const archerCount = 2 + currentRound;
-            const zombieCount = 6 + 2 * currentRound;
+            const archerCount = 2 + 2*currentRound;
+            const zombieCount = 10 + 4 * currentRound;
     
-            //At 75% of the wave time
-            if(waveCount * WAVE_INTERVAL >= ROUND_DURATION*0.75){
+            //At 75% of the wave time - breaks at round 10 lol
+            if(waveCount * WAVE_INTERVAL >= ROUND_DURATION*(0.75 - currentRound *0.1)){
                 const u = Unit.create(zombieMapPlayer, FourCC("uabo"), xPos, yPos);
                 if(u){
                     spawnUnitForces[index].push(u); 
@@ -181,7 +181,7 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
         spawnIcons.forEach(icon => DestroyMinimapIcon(icon));
         forceTargetEffects.forEach(eff => eff.destroy());
         spawnAttackTargetIcon.forEach(icon => DestroyMinimapIcon(icon));
-        
+
         spawnUnitForces.forEach(unitForce =>{
             unitForce.forEach((u, index) => {
                 //Kill every 2nd and 3rd enemy, leaving behind only 1/3 of the enemies 

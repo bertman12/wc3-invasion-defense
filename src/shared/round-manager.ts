@@ -58,6 +58,10 @@ export class RoundManager {
             print(`[${tColor("WARNING", "red")}] - The remaining undead are marching upon your capital.`)
             print("Supply horses have arrived at the capital. Use them to heal your units.");
         });
+
+        Timer.create().start(60, false, () => {
+            RoundManager.startNextRound();
+        });
     }
 } 
 

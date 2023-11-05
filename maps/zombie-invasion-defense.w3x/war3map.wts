@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Zombie Invasion Defense
+Kingdom Zombie Defense
 }
 
 STRING 2
@@ -10,7 +10,9 @@ Any
 
 STRING 3
 {
-Nondescript
+Supply horses grant healing for units.
+Buildings will provide various upgrades depending on the building.
+Certain units are sold at different buildings.
 }
 
 STRING 4
@@ -25,7 +27,7 @@ Player 1
 
 STRING 7
 {
-Zombie Invasion Defense
+Kingdom Zombie Defense
 }
 
 STRING 8
@@ -587,5 +589,17 @@ STRING 140
 // Doodads: D000 (Stone Walls - Free Form Doodad), Name (Name)
 {
 Stone Walls - Free Form Doodad
+}
+
+STRING 141
+{
+Made by JediMindTrix/NihilismIsDeath
+}
+
+STRING 142
+{
+Supply horses grant healing for units.
+Buildings will provide various upgrades depending on the building.
+Certain units are sold at different buildings.
 }
 

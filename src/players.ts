@@ -49,7 +49,7 @@ export function initializePlayerStateInstances(){
 export function init_startingResources(){
     Players.forEach(player =>{
         player.setState(PLAYER_STATE_RESOURCE_GOLD, 300);
-        player.setState(PLAYER_STATE_RESOURCE_LUMBER, 300);
+        player.setState(PLAYER_STATE_RESOURCE_LUMBER, 350);
         player.setState(PLAYER_STATE_RESOURCE_FOOD_CAP, 25);
     });
 
