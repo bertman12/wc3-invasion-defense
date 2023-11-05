@@ -45,6 +45,62 @@ function getNextUndeadPlayer(){
     return player;
 }
 
+interface SpawnData {
+    unitType: number;
+    quantityPerWave: number;
+    /**
+     * For deciding when to spawn 
+     */
+    //Pretty sure there is a way to use typescript so each function can have their own unique arguemnts and when were handling this function later it will get autocomplete for those arguments unique to the spawn data object.
+    spawnRequirement?: (waveCount: number, waveInterval: number, roundDuration: number) => boolean;
+}
+
+
+
+function createSpawnData(currentRound: number):SpawnData[]{
+    const meatWagonCount = currentRound;
+    const archerCount = 2 + 2*currentRound;
+    const zombieCount = 10 + 4 * currentRound;
+
+    const undeadSpawnData = [
+        //Abomination
+        {
+            quantityPerWave: 1,
+            unitType: FourCC("uabo"),
+            spawnRequirement(waveCount: number, waveInterval: number, roundDuration: number) {
+                print("abom current round: ", currentRound);
+                return waveCount * waveInterval >= roundDuration*(0.75 - currentRound *0.1);                
+            },
+        },
+        //Meat Wagon
+        {
+            quantityPerWave: meatWagonCount,
+            unitType: FourCC("umtw"),
+            spawnRequirement(waveCount: number, waveInterval: number, roundDuration: number) {
+                return waveCount % 3 === 0;               
+            },
+        },
+        //Skeletal Mages
+        {
+            quantityPerWave: 1,
+            unitType: FourCC("u000"),
+        },
+        //Skeletal Archers
+        {
+            quantityPerWave: archerCount,
+            unitType: FourCC("u000"),
+        },
+        //Zombie
+        {
+            quantityPerWave: zombieCount,
+            unitType: FourCC("u000"),
+        },
+    ];
+
+    return undeadSpawnData;
+}
+
+
 /**
  * The number of spawning zombies and which kinds will be determined by the current round number,
  * the number of towns under zombie control and which towns are under their control.
@@ -72,18 +128,19 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
     const spawnUnitForces: Unit[][] = spawns.map(_ => []);
     const spawnForceCurrentTarget:Unit[] = [];
     const forceTargetEffects: Effect[] = [];
-    const spawnIcons:minimapicon[] = [];
+    const spawnLocationIcons:minimapicon[] = [];
     const spawnAttackTargetIcon: minimapicon[] = [];
+    const spawnData :SpawnData[] = createSpawnData(currentRound);
 
 
+    //Creating minimap icons for spawn locations
     spawns.forEach(spawn => {
         const icon = CreateMinimapIcon(spawn.centerX, spawn.centerY, 255, 255, 255, 'UI\\Minimap\\MiniMap-Boss.mdl', FOG_OF_WAR_FOGGED);
         if(icon){
-            spawnIcons.push(icon);
+            spawnLocationIcons.push(icon);
         }
     });
 
-    // DestroyMinimapIcon
     //Setup waves
     const waveTimer = Timer.create();
     let waveCount = 0;
@@ -93,8 +150,16 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
         waveTimer.destroy();
     });
 
+
+    /**
+     * Handles spawning waves of enemies
+     */
     waveTimer.start(WAVE_INTERVAL, true, () => {
         waveCount++;
+        //Setup quantity of units to spawn per wave.
+        const meatWagonCount = currentRound;
+        const archerCount = 2 + 2*currentRound;
+        const zombieCount = 10 + 4 * currentRound;
 
         spawns.forEach((spawn, index) => {
             const randX = math.random(spawn?.minX, spawn?.maxX) ?? 0;
@@ -103,57 +168,20 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
 
             const xPos = randX;
             const yPos = randY;
-    
-            //Setup quantity of units to spawn per wave.
-            const meatWagonCount = currentRound;
-            const archerCount = 2 + 2*currentRound;
-            const zombieCount = 10 + 4 * currentRound;
-    
-            //At 75% of the wave time - breaks at round 10 lol
-            if(waveCount * WAVE_INTERVAL >= ROUND_DURATION*(0.75 - currentRound *0.1)){
-                const u = Unit.create(getNextUndeadPlayer(), FourCC("uabo"), xPos, yPos);
-                if(u){
-                    spawnUnitForces[index].push(u); 
-                    newestSpawnedUnits.push(u);
-                } 
-            }
-    
-            //Creating meatWagons
-            if(waveCount % 3 === 0){
-                for (let i = 0; i < meatWagonCount; i++) {
-                    const u = Unit.create(getNextUndeadPlayer(), FourCC("umtw"), xPos, yPos);
-                    if(u){
-                        spawnUnitForces[index].push(u); 
-                        newestSpawnedUnits.push(u);
-                    } 
+
+            spawnData.forEach(data => {
+                if(data.spawnRequirement && data.spawnRequirement(waveCount, WAVE_INTERVAL, ROUND_DURATION)){
+                    const units = spawnUndeadUnitType(data.unitType, data.quantityPerWave, xPos, yPos);
+                    spawnUnitForces[index].push(...units); 
+                    newestSpawnedUnits.push(...units);
                 }
-            }
+                else if(!data.spawnRequirement){
+                    const units = spawnUndeadUnitType(data.unitType, data.quantityPerWave, xPos, yPos);
+                    spawnUnitForces[index].push(...units); 
+                    newestSpawnedUnits.push(...units);
+                }
+            })
     
-            //Spawn skeletal mages.
-            const u = Unit.create(getNextUndeadPlayer(), FourCC("u000"), xPos, yPos);
-            if(u){
-                    spawnUnitForces[index].push(u); 
-                    newestSpawnedUnits.push(u);
-                } 
-    
-            //Creating some archers for the spawn.
-            for (let i = 0; i < archerCount; i++) {
-                const u = Unit.create(getNextUndeadPlayer(), FourCC("nskm"), xPos, yPos);    
-                if(u){
-                    spawnUnitForces[index].push(u); 
-                    newestSpawnedUnits.push(u);
-                } 
-            }
-        
-            //Creating zombies
-            for(let i = 0; i < zombieCount; i++){
-                let u = Unit.create(Players[20], FourCC("nzom"), xPos, yPos);
-                if(u){
-                    spawnUnitForces[index].push(u); 
-                    newestSpawnedUnits.push(u);
-                } 
-            }
-            
             //Get attack target, should check if the previous target is dead, also we need to store this information in out spawn data
             //and actually this just chooses the next closest valid target from the original spawn point not from the previous , so that needs to be implemented.
             const nextTarget = chooseForceAttackTarget(Point.create(xPos, yPos));
@@ -211,7 +239,7 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
     trig_end.addAction(() => {
         
         //Tear down
-        spawnIcons.forEach(icon => DestroyMinimapIcon(icon));
+        spawnLocationIcons.forEach(icon => DestroyMinimapIcon(icon));
         forceTargetEffects.forEach(eff => eff.destroy());
         spawnAttackTargetIcon.forEach(icon => DestroyMinimapIcon(icon));
 
@@ -235,6 +263,22 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
         roundEndTimer.destroy();
     });
 
+}
+
+function spawnUndeadUnitType(unitType: number, quantity: number, xPos: number, yPos: number): Unit[]{
+    const units = [];
+
+    for(let i = 0; i < quantity; i++){
+        const u = Unit.create(getNextUndeadPlayer(), unitType, xPos, yPos)
+        if(u){
+            units.push(u);
+        }
+        else{
+            print("Unable to create unit")
+        }
+    }
+
+    return units;
 }
 
 /**
