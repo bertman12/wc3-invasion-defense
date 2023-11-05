@@ -36,7 +36,7 @@ export class TimerManager {
     static startNightTimer(cb: () => void, duration?: number, ){
         TimerManager.nightTimer.start(duration ?? TimerManager.nightTimeDuration, false, cb);
         TimerDialogDisplayBJ(true, TimerManager.nightTimerDialog);
-        TimerDialogSetTitle(TimerManager.nightTimerDialog, "Time until night fall...");
+        TimerDialogSetTitle(TimerManager.nightTimerDialog, "Time until dawn...");
     }
 
     /**
@@ -45,6 +45,6 @@ export class TimerManager {
     static startDayTimer(cb: () => void, duration?: number,){
         TimerManager.dayTimer.start(duration ?? TimerManager.dayTimeDuration, false, cb);
         TimerDialogDisplayBJ(true, TimerManager.dayTimerDialog);
-        TimerDialogSetTitle(TimerManager.dayTimerDialog, "Time until dawn...");
+        TimerDialogSetTitle(TimerManager.dayTimerDialog, "Time until night fall...");
     }
 }

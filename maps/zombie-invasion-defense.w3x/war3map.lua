@@ -11,6 +11,8 @@ gg_snd_Undead3 = ""
 gg_snd_H02Footman23 = nil
 gg_snd_NightElfX1 = ""
 gg_snd_TheHornOfCenarius = nil
+gg_snd_SargerasRoar = nil
+gg_snd_SargerasLaugh = nil
 function InitGlobals()
 end
 
@@ -44,6 +46,14 @@ gg_snd_TheHornOfCenarius = CreateSound("Sound/Ambient/DoodadEffects/TheHornOfCen
 SetSoundParamsFromLabel(gg_snd_TheHornOfCenarius, "HornOfCenariusSound")
 SetSoundDuration(gg_snd_TheHornOfCenarius, 12120)
 SetSoundVolume(gg_snd_TheHornOfCenarius, 127)
+gg_snd_SargerasRoar = CreateSound("Sound/Ambient/DoodadEffects/SargerasRoar.flac", false, true, true, 0, 0, "DefaultEAXON")
+SetSoundParamsFromLabel(gg_snd_SargerasRoar, "SargerasRoar")
+SetSoundDuration(gg_snd_SargerasRoar, 4481)
+SetSoundVolume(gg_snd_SargerasRoar, 127)
+gg_snd_SargerasLaugh = CreateSound("Sound/Ambient/DoodadEffects/SargerasLaugh.flac", false, true, true, 0, 0, "DefaultEAXON")
+SetSoundParamsFromLabel(gg_snd_SargerasLaugh, "SargerasLaugh")
+SetSoundDuration(gg_snd_SargerasLaugh, 3326)
+SetSoundVolume(gg_snd_SargerasLaugh, 127)
 end
 
 function CreateBuildingsForPlayer9()
@@ -63,8 +73,6 @@ u = BlzCreateUnitWithSkin(p, FourCC("h002"), 2176.0, 320.0, 270.000, FourCC("h00
 u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), -320.0, 3584.0, 270.000, FourCC("hgtw"))
 u = BlzCreateUnitWithSkin(p, FourCC("hbar"), 5056.0, 11264.0, 270.000, FourCC("hbar"))
 u = BlzCreateUnitWithSkin(p, FourCC("h002"), -3648.0, 5824.0, 270.000, FourCC("h002"))
-u = BlzCreateUnitWithSkin(p, FourCC("hctw"), 4288.0, 11264.0, 270.000, FourCC("hctw"))
-u = BlzCreateUnitWithSkin(p, FourCC("hctw"), 5312.0, 11968.0, 270.000, FourCC("hctw"))
 u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), 5056.0, 10432.0, 270.000, FourCC("hgtw"))
 u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), 5696.0, 10944.0, 270.000, FourCC("hgtw"))
 u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), -7296.0, 10816.0, 270.000, FourCC("hgtw"))
@@ -79,8 +87,8 @@ u = BlzCreateUnitWithSkin(p, FourCC("h003"), 3968.0, 8704.0, 270.000, FourCC("h0
 u = BlzCreateUnitWithSkin(p, FourCC("h002"), 7296.0, 10112.0, 270.000, FourCC("h002"))
 u = BlzCreateUnitWithSkin(p, FourCC("h004"), 6592.0, 9600.0, 270.000, FourCC("h004"))
 u = BlzCreateUnitWithSkin(p, FourCC("h004"), 320.0, -2048.0, 270.000, FourCC("h004"))
-u = BlzCreateUnitWithSkin(p, FourCC("hbar"), -64.0, -1280.0, 270.000, FourCC("hbar"))
-u = BlzCreateUnitWithSkin(p, FourCC("hbar"), -448.0, -1280.0, 270.000, FourCC("hbar"))
+u = BlzCreateUnitWithSkin(p, FourCC("hbar"), 384.0, -1152.0, 270.000, FourCC("hbar"))
+u = BlzCreateUnitWithSkin(p, FourCC("hbar"), -256.0, -1216.0, 270.000, FourCC("hbar"))
 u = BlzCreateUnitWithSkin(p, FourCC("h003"), 4672.0, 14336.0, 270.000, FourCC("h003"))
 u = BlzCreateUnitWithSkin(p, FourCC("h003"), -2880.0, 14464.0, 270.000, FourCC("h003"))
 u = BlzCreateUnitWithSkin(p, FourCC("h003"), -2560.0, 11584.0, 270.000, FourCC("h003"))
@@ -123,6 +131,14 @@ u = BlzCreateUnitWithSkin(p, FourCC("hkni"), 2744.2, -693.5, 353.232, FourCC("hk
 u = BlzCreateUnitWithSkin(p, FourCC("hkni"), 2767.7, -1270.0, 30.268, FourCC("hkni"))
 u = BlzCreateUnitWithSkin(p, FourCC("n003"), 1955.7, -25.4, 200.300, FourCC("n003"))
 u = BlzCreateUnitWithSkin(p, FourCC("n003"), 1891.7, 35.7, 213.365, FourCC("n003"))
+u = BlzCreateUnitWithSkin(p, FourCC("h008"), -1003.7, 1526.3, 270.000, FourCC("h008"))
+u = BlzCreateUnitWithSkin(p, FourCC("h008"), 88.3, 1793.4, 270.000, FourCC("h008"))
+u = BlzCreateUnitWithSkin(p, FourCC("h008"), 2543.5, -531.2, 270.000, FourCC("h008"))
+u = BlzCreateUnitWithSkin(p, FourCC("h008"), 2585.2, -1341.4, 270.000, FourCC("h008"))
+u = BlzCreateUnitWithSkin(p, FourCC("h008"), -1645.5, -1373.2, 270.000, FourCC("h008"))
+u = BlzCreateUnitWithSkin(p, FourCC("h008"), -2060.8, -812.0, 270.000, FourCC("h008"))
+u = BlzCreateUnitWithSkin(p, FourCC("h008"), 5078.3, 12107.7, 60.317, FourCC("h008"))
+u = BlzCreateUnitWithSkin(p, FourCC("h008"), 4370.1, 11755.3, 217.690, FourCC("h008"))
 end
 
 function CreateBuildingsForPlayer19()
@@ -162,7 +178,7 @@ local unitID
 local t
 local life
 
-u = BlzCreateUnitWithSkin(p, FourCC("ntav"), -1152.0, 192.0, 270.000, FourCC("ntav"))
+u = BlzCreateUnitWithSkin(p, FourCC("ntav"), -960.0, 64.0, 270.000, FourCC("ntav"))
 SetUnitColor(u, ConvertPlayerColor(0))
 end
 

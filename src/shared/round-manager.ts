@@ -62,15 +62,6 @@ export class RoundManager {
         });
 
         TimerManager.startDayTimer(() => {RoundManager.startNextRound()});
-        // const nextRoundTimer = Timer.create();
-
-        // nextRoundTimer.start(90, false, () => {
-        //     RoundManager.startNextRound();
-        // });
-
-        // const dialog = CreateTimerDialogBJ(nextRoundTimer.handle, "Time until night fall...");
-        // if(dialog) TimerDialogDisplayBJ(true, dialog );
-
     }
 } 
 

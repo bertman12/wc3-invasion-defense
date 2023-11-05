@@ -36,7 +36,8 @@ export function setup_transferTownControl(){
         const attacker = Unit.fromHandle(GetAttacker());
 
         if(u && attacker && allCapturableStructures.has(u.typeId) && u.life < u.maxLife*0.20){
-            u.owner = Players[20];
+            // u.owner = Players[20]; //Undead
+            u.owner = Players[25]; //Neutral
             u.name = `[${tColor("Destroyed", "red")}] - ` + u.name;
             u.invulnerable = true;
         }

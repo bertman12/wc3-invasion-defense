@@ -22,8 +22,6 @@ function tsMain() {
     print(`Typescript: v${TS_VERSION}`);
     print(`Transpiler: v${TSTL_VERSION}`);
     print(" ");
-    print("Welcome to TypeScript!");
-    print(" ");
 
     Timer.create().start(5, false, () => {
       Sound.fromHandle(gg_snd_Hint)?.start();
@@ -52,7 +50,8 @@ function tsMain() {
     // });
 
     forEachAlliedPlayer((p, index) => {
-      Unit.create(p, FourCC("Hpal"), -300 + (50 * index), -300);
+      const u = Unit.create(p, FourCC("Hpal"), -300 + (50 * index), -300);
+      u?.addItemById(FourCC("cnob"));
     })
 
     init_map_triggers();

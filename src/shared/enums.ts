@@ -17,6 +17,7 @@ export enum UpgradeCodes {
 
 export enum CUSTOM_UNITS {
     farmTown = FourCC("h002"),
+    rampartCannonTower = FourCC("h008"),
     castle = FourCC("hcas"),
     barracks = FourCC("hbar"),
     blacksmith = FourCC("h004"),

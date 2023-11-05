@@ -603,3 +603,45 @@ STRING 144
 Build Caltrops
 }
 
+STRING 145
+// Units: h008 (Rampart Cannon Tower), Name (Name)
+{
+Rampart Cannon Tower
+}
+
+STRING 146
+// Units: h008 (Rampart Cannon Tower), EditorSuffix (Name - Editor Suffix)
+{
+(Flying)
+}
+
+STRING 147
+// Units: h009 (Musketeer), Name (Name)
+{
+Musketeer
+}
+
+STRING 148
+// Abilities: A00B (Mana Imbued Powder), Name (Name)
+{
+Mana Imbued Powder
+}
+
+STRING 149
+// Abilities: A00B (Mana Imbued Powder), Tip (Tooltip - Normal)
+{
+Mana Imbued Powder
+}
+
+STRING 150
+// Abilities: A00B (Mana Imbued Powder), Ubertip (Tooltip - Normal - Extended)
+{
+Adds 100 bonus fire damage to an attack against enemies, but drains mana with each shot fired.
+}
+
+STRING 151
+// Units: n004 (War Bear), Name (Name)
+{
+War Bear
+}
+

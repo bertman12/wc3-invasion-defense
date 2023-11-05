@@ -56,8 +56,6 @@ interface SpawnData {
     spawnRequirement?: (waveCount: number, waveInterval: number, roundDuration: number) => boolean;
 }
 
-
-
 function createSpawnData(currentRound: number):SpawnData[]{
     const meatWagonCount = currentRound;
     const archerCount = 2 + 2*currentRound;
@@ -69,7 +67,7 @@ function createSpawnData(currentRound: number):SpawnData[]{
             quantityPerWave: 1,
             unitType: FourCC("uabo"),
             spawnRequirement(waveCount: number, waveInterval: number, roundDuration: number) {
-                return waveCount * waveInterval >= roundDuration*(0.75 - currentRound *0.1);                
+                return waveCount * waveInterval >= roundDuration*(0.35);                
             },
         },
         //Meat Wagon
@@ -125,9 +123,30 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
     const spawnAttackTargetIcon: minimapicon[] = [];
     const spawnData :SpawnData[] = createSpawnData(currentRound);
 
-    // const dialog = CreateTimerDialogBJ(finalWaveTimer.handle, "Time until dawn...");
-    // if(dialog) TimerDialogDisplayBJ(true, dialog );
-    TimerManager.startNightTimer(() => {});
+    TimerManager.startNightTimer(() => {
+        spawnLocationIcons.forEach(icon => DestroyMinimapIcon(icon));
+        forceTargetEffects.forEach(eff => eff.destroy());
+        spawnAttackTargetIcon.forEach(icon => DestroyMinimapIcon(icon));
+
+        spawnUnitForces.forEach(unitForce =>{
+            unitForce.forEach((u, index) => {
+                //Kill every 2nd and 3rd enemy, leaving behind only 1/3 of the enemies 
+                if(index % 2 == 0 || index % 3 === 0 || index % 5 == 0){
+                    u.kill()
+                }
+                else{
+                    //Order the rest to attack the capital city
+                    u.issueOrderAt(OrderId.Attack, 0,0);
+                }
+            } );
+        });
+
+        if(onEnd){
+            onEnd();
+        }
+
+        finalWaveTimer.destroy();
+    });
 
     //Creating minimap icons for spawn locations
     spawns.forEach(spawn => {
@@ -218,40 +237,6 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
         });
 
     });
-
-    //Handle round over
-    const trig_end = Trigger.create();
-
-    trig_end.registerTimerExpireEvent(TimerManager.nightTimer.handle);
-    // trig_end.registerTimerExpireEvent(finalWaveTimer.handle);
-    
-    trig_end.addAction(() => {
-        
-        //Tear down
-        spawnLocationIcons.forEach(icon => DestroyMinimapIcon(icon));
-        forceTargetEffects.forEach(eff => eff.destroy());
-        spawnAttackTargetIcon.forEach(icon => DestroyMinimapIcon(icon));
-
-        spawnUnitForces.forEach(unitForce =>{
-            unitForce.forEach((u, index) => {
-                //Kill every 2nd and 3rd enemy, leaving behind only 1/3 of the enemies 
-                if(index % 2 == 0 || index % 3 === 0 || index % 5 == 0){
-                    u.kill()
-                }
-                else{
-                    //Order the rest to attack the capital city
-                    u.issueOrderAt(OrderId.Attack, 0,0);
-                }
-            } );
-        });
-
-        if(onEnd){
-            onEnd();
-        }
-
-        finalWaveTimer.destroy();
-    });
-
 }
 
 function spawnUndeadUnitType(unitType: number, quantity: number, xPos: number, yPos: number): Unit[]{

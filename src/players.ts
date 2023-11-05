@@ -43,7 +43,7 @@ export function initializePlayerStateInstances(){
         playerStates.get(player.id)?.createSupplyHorse();
     });
 
-    grantBonuses();
+    grantUpgradeBonuses();
 }
 
 export function init_startingResources(){
@@ -57,7 +57,7 @@ export function init_startingResources(){
     Players[20].setState(PLAYER_STATE_GIVES_BOUNTY, 1);
 }
 
-function grantBonuses(){
+function grantUpgradeBonuses(){
     let totalSupplyBuildings = 0;
     let meleeWeaponUpgradeCount = 0;
     let armorUpgradeCount = 0;
@@ -96,7 +96,7 @@ export function player_giveRoundEndResources(round: number){
         forEachUnitOfPlayerWithAbility(p, ABILITIES.replenishLifeAndMana, u => {
             u.mana = u.maxMana;
         });
-        
+
         adjustPlayerState(p, PLAYER_STATE_RESOURCE_FOOD_CAP, 5);
     })
 
@@ -113,7 +113,7 @@ export function player_giveRoundEndResources(round: number){
 
     });
 
-    grantBonuses();
+    grantUpgradeBonuses();
 
     const baseGold = 200;
     const baseWood = 200;
