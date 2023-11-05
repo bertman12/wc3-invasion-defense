@@ -95,7 +95,9 @@ export function player_giveRoundEndResources(round: number){
     forEachPlayer(p => {
         forEachUnitOfPlayerWithAbility(p, ABILITIES.replenishLifeAndMana, u => {
             u.mana = u.maxMana;
-        })
+        });
+        
+        adjustPlayerState(p, PLAYER_STATE_RESOURCE_FOOD_CAP, 5);
     })
 
     let totalIncomeBuildings = 0;

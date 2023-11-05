@@ -36,7 +36,6 @@ export type MINIMAP_ICONS =
    | "UI\\Minimap\\MiniMap-Item.mdl"
    | "UI\\Minimap\\MiniMap-NeutralBuilding.mdl"
 
-
 export enum MinimapIconPath {
     controlPoint = "UI\\Minimap\\MiniMap-ControlPoint.mdl",
     questGiver = "UI\\Minimap\\MiniMap-ControlPoint.mdl",

@@ -6,6 +6,7 @@ import { forEachAlliedPlayer } from './utils/players';
 import { setup_transferTownControl } from './towns';
 import { Sound, Timer, Unit } from 'w3ts';
 import { tColor } from './utils/misc';
+import { TimerManager } from './shared/Timers';
 
 const BUILD_DATE = compiletime(() => new Date().toUTCString());
 const TS_VERSION = compiletime(() => require("typescript").version);
@@ -42,6 +43,8 @@ function tsMain() {
 
     StopMusic(false);
     PlayMusic(gg_snd_NightElfX1);
+
+    TimerManager.trig_setup();
 
     //For looking at minimap icons
     // Array.from(minimapIconPaths).forEach((path, index) => {

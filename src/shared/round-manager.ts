@@ -6,6 +6,7 @@ import { ABILITIES } from "./enums";
 import { player_giveRoundEndResources } from "src/players";
 import { tColor } from "src/utils/misc";
 import { playCustomSound } from "./sounds";
+import { TimerManager } from "./Timers";
 
 /**
  * rounds should be able to be started early, but should automatically start after 2 minutes the round has ended. That way people arent intentionally waiting for mana to return.
@@ -31,6 +32,7 @@ export class RoundManager {
     static startNextRound(){
         RoundManager.currentRound++;
         Sound.fromHandle(gg_snd_QuestNew)?.start();
+        Sound.fromHandle(gg_snd_TheHornOfCenarius)?.start();
         ClearMapMusic();
         StopMusic(false);
         PlayMusic(gg_snd_NightElfX1);
@@ -59,9 +61,16 @@ export class RoundManager {
             print("Supply horses have arrived at the capital. Use them to heal your units.");
         });
 
-        Timer.create().start(60, false, () => {
-            RoundManager.startNextRound();
-        });
+        TimerManager.startDayTimer(() => {RoundManager.startNextRound()});
+        // const nextRoundTimer = Timer.create();
+
+        // nextRoundTimer.start(90, false, () => {
+        //     RoundManager.startNextRound();
+        // });
+
+        // const dialog = CreateTimerDialogBJ(nextRoundTimer.handle, "Time until night fall...");
+        // if(dialog) TimerDialogDisplayBJ(true, dialog );
+
     }
 } 
 

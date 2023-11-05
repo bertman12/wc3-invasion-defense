@@ -4,6 +4,7 @@ import { forEachUnitTypeOfPlayer } from "./utils/players";
 import { allCapturableStructures, primaryCapturableStructures } from "./towns";
 import { tColor } from "./utils/misc";
 import { MinimapIconPath } from "./shared/enums";
+import { TimerManager } from "./shared/Timers";
 
 export const zombieMapPlayer = Players[20];
 
@@ -68,7 +69,6 @@ function createSpawnData(currentRound: number):SpawnData[]{
             quantityPerWave: 1,
             unitType: FourCC("uabo"),
             spawnRequirement(waveCount: number, waveInterval: number, roundDuration: number) {
-                print("abom current round: ", currentRound);
                 return waveCount * waveInterval >= roundDuration*(0.75 - currentRound *0.1);                
             },
         },
@@ -88,18 +88,17 @@ function createSpawnData(currentRound: number):SpawnData[]{
         //Skeletal Archers
         {
             quantityPerWave: archerCount,
-            unitType: FourCC("u000"),
+            unitType: FourCC("nskm"),
         },
         //Zombie
         {
             quantityPerWave: zombieCount,
-            unitType: FourCC("u000"),
+            unitType: FourCC("nzom"),
         },
     ];
 
     return undeadSpawnData;
 }
-
 
 /**
  * The number of spawning zombies and which kinds will be determined by the current round number,
@@ -111,19 +110,13 @@ function createSpawnData(currentRound: number):SpawnData[]{
  *  
  * The next step is to choose the points of attacks for zombies.
  * 
- * 
  * @todo Spawn more zombies if they control towns.
  */
 export function spawnZombies(currentRound: number, onEnd?: (...args: any) => void) {
 
-    const ROUND_DURATION = 180;
     const WAVE_INTERVAL = 15;
-    const roundEndTimer = Timer.create();
-    // const zRec = Rectangle.fromHandle(gg_rct_ZombieSpawn1);
-    
+    const finalWaveTimer = Timer.create();
     const zombieAttackForces = 2;
-    
-    // const spawns = [Rectangle.fromHandle(gg_rct_ZombieSpawn1)];
     const spawns = chooseZombieSpawns(zombieAttackForces);
     const spawnUnitForces: Unit[][] = spawns.map(_ => []);
     const spawnForceCurrentTarget:Unit[] = [];
@@ -132,6 +125,9 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
     const spawnAttackTargetIcon: minimapicon[] = [];
     const spawnData :SpawnData[] = createSpawnData(currentRound);
 
+    // const dialog = CreateTimerDialogBJ(finalWaveTimer.handle, "Time until dawn...");
+    // if(dialog) TimerDialogDisplayBJ(true, dialog );
+    TimerManager.startNightTimer(() => {});
 
     //Creating minimap icons for spawn locations
     spawns.forEach(spawn => {
@@ -144,33 +140,26 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
     //Setup waves
     const waveTimer = Timer.create();
     let waveCount = 0;
-    
+
     //End the spawning of zombies 1 wave interval before the round ends so zombies aren't spawning at the very end of the round.    
-    roundEndTimer.start(ROUND_DURATION - WAVE_INTERVAL, false, () => {
+    finalWaveTimer.start(TimerManager.nightTimeDuration - WAVE_INTERVAL, false, () => {
         waveTimer.destroy();
     });
-
 
     /**
      * Handles spawning waves of enemies
      */
     waveTimer.start(WAVE_INTERVAL, true, () => {
         waveCount++;
-        //Setup quantity of units to spawn per wave.
-        const meatWagonCount = currentRound;
-        const archerCount = 2 + 2*currentRound;
-        const zombieCount = 10 + 4 * currentRound;
 
         spawns.forEach((spawn, index) => {
-            const randX = math.random(spawn?.minX, spawn?.maxX) ?? 0;
-            const randY = math.random(spawn?.minY, spawn?.maxY) ?? 0;
             const newestSpawnedUnits:Unit[] = [];
 
-            const xPos = randX;
-            const yPos = randY;
+            const xPos = spawn.centerX;
+            const yPos = spawn.centerY;
 
             spawnData.forEach(data => {
-                if(data.spawnRequirement && data.spawnRequirement(waveCount, WAVE_INTERVAL, ROUND_DURATION)){
+                if(data.spawnRequirement && data.spawnRequirement(waveCount, WAVE_INTERVAL, TimerManager.nightTimeDuration)){
                     const units = spawnUndeadUnitType(data.unitType, data.quantityPerWave, xPos, yPos);
                     spawnUnitForces[index].push(...units); 
                     newestSpawnedUnits.push(...units);
@@ -180,7 +169,7 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
                     spawnUnitForces[index].push(...units); 
                     newestSpawnedUnits.push(...units);
                 }
-            })
+            });
     
             //Get attack target, should check if the previous target is dead, also we need to store this information in out spawn data
             //and actually this just chooses the next closest valid target from the original spawn point not from the previous , so that needs to be implemented.
@@ -221,8 +210,7 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
             //If the target is new, then the newest units have already been issued a move command
             if(!isTargetNew){
                 newestSpawnedUnits.forEach(unit => {
-                    const currentTarget = spawnForceCurrentTarget[index];
-                    unit.issuePointOrder(OrderId.Attack, Point.create(currentTarget?.x ?? 0, currentTarget?.y ?? 0));
+                    unit.issuePointOrder(OrderId.Attack, Point.create(spawnForceCurrentTarget[index]?.x ?? 0, spawnForceCurrentTarget[index]?.y ?? 0));
                 });
             }
 
@@ -234,7 +222,8 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
     //Handle round over
     const trig_end = Trigger.create();
 
-    trig_end.registerTimerExpireEvent(roundEndTimer.handle);
+    trig_end.registerTimerExpireEvent(TimerManager.nightTimer.handle);
+    // trig_end.registerTimerExpireEvent(finalWaveTimer.handle);
     
     trig_end.addAction(() => {
         
@@ -260,7 +249,7 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
             onEnd();
         }
 
-        roundEndTimer.destroy();
+        finalWaveTimer.destroy();
     });
 
 }

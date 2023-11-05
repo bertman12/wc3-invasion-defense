@@ -1,0 +1,605 @@
+﻿STRING 1
+{
+Kingdom Zombie Defense
+}
+
+STRING 2
+{
+Any
+}
+
+STRING 3
+{
+Supply horses grant healing for units.
+Buildings will provide various upgrades depending on the building.
+Certain units are sold at different buildings.
+}
+
+STRING 4
+{
+JediMindTrix/NihilismIsDeath
+}
+
+STRING 5
+{
+Player 1
+}
+
+STRING 7
+{
+Kingdom Zombie Defense
+}
+
+STRING 9
+{
+Human Defenders
+}
+
+STRING 10
+{
+Undead Enemies
+}
+
+STRING 12
+// Units: h001 (Supply Horse), Name (Name)
+{
+Supply Horse
+}
+
+STRING 13
+// Units: h000 (Militia), Tip (Tooltip - Basic)
+{
+Train Militia
+}
+
+STRING 14
+// Units: h000 (Militia), Ubertip (Tooltip - Extended)
+{
+Restock Time: <h000,stockRegen>
+}
+
+STRING 15
+{
+Player 2
+}
+
+STRING 16
+{
+Player 3
+}
+
+STRING 17
+{
+Player 4
+}
+
+STRING 18
+{
+Player 5
+}
+
+STRING 19
+{
+Player 6
+}
+
+STRING 20
+{
+Player 7
+}
+
+STRING 21
+{
+Player 8
+}
+
+STRING 22
+{
+Player 9
+}
+
+STRING 35
+// Abilities: A001 (Base - Info Ability), Name (Name)
+{
+Base - Info Ability
+}
+
+STRING 36
+// Abilities: A001 (Base - Info Ability), Tip (Tooltip - Normal)
+{
+Base - Info Ability
+}
+
+STRING 37
+// Abilities: A001 (Base - Info Ability), Ubertip (Tooltip - Normal - Extended)
+{
+Base - Info Ability
+}
+
+STRING 38
+// Abilities: A000 (Supplies), Name (Name)
+{
+Supplies
+}
+
+STRING 39
+// Abilities: A000 (Supplies), Tip (Tooltip - Normal)
+{
+Supplies
+}
+
+STRING 41
+// Abilities: A000 (Supplies), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 42
+// Abilities: A002 (Income), Name (Name)
+{
+Income
+}
+
+STRING 43
+// Abilities: A002 (Income), Tip (Tooltip - Normal)
+{
+Income
+}
+
+STRING 44
+// Abilities: A002 (Income), Ubertip (Tooltip - Normal - Extended)
+{
+Increases income after every round.
+}
+
+STRING 45
+// Abilities: A001 (Base - Info Ability), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 46
+// Abilities: A002 (Income), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 47
+// Abilities: A003 (Trample), Name (Name)
+{
+Trample
+}
+
+STRING 48
+// Abilities: A003 (Trample), EditorSuffix (Editor Suffix)
+{
+(Calvalry)
+}
+
+STRING 50
+// Abilities: A004 (Impaling Lance), Name (Name)
+{
+Impaling Lance
+}
+
+STRING 51
+// Abilities: A004 (Impaling Lance), Ubertip (Tooltip - Normal - Extended)
+{
+Adds bonus damage to an attack against enemies.
+}
+
+STRING 52
+// Abilities: A004 (Impaling Lance), Tip (Tooltip - Normal)
+{
+Impaling Lance
+}
+
+STRING 53
+// Abilities: A003 (Trample), Tip (Tooltip - Normal)
+{
+Trample
+}
+
+STRING 54
+// Abilities: A003 (Trample), Ubertip (Tooltip - Normal - Extended)
+{
+The large stature of the knight and his steed tower over his foes, trampling them and dealing damage.
+}
+
+STRING 55
+// Units: hkni (Knight), Ubertip (Tooltip - Extended)
+{
+Powerful mounted warrior. Can trample his enemies and use his fierce lance to attack enemies.
+}
+
+STRING 56
+// Units: h002 (Farm ), Name (Name)
+{
+Farm 
+}
+
+STRING 57
+// Units: hcth (General), Name (Name)
+{
+General
+}
+
+STRING 58
+// Units: hcth (General), Tip (Tooltip - Basic)
+{
+Train a General
+}
+
+STRING 59
+// Units: hcth (General), Ubertip (Tooltip - Extended)
+{
+Generals are strong , elite support units, bolstering the morale of your troops.
+}
+
+STRING 60
+// Abilities: S000 (Endurance Aura), EditorSuffix (Editor Suffix)
+{
+(General)
+}
+
+STRING 61
+// Abilities: S000 (Endurance Aura), Ubertip (Tooltip - Normal - Extended)
+{
+The general increases nearby friendly units' movement speed by <SCae,DataA1,%>% and attack rate by <SCae,DataB1,%>%.
+}
+
+STRING 62
+// Units: h002 (Farm ), EditorSuffix (Name - Editor Suffix)
+{
+(Town)
+}
+
+STRING 63
+// Units: h003 (Great Watch Tower), Name (Name)
+{
+Great Watch Tower
+}
+
+STRING 64
+// Abilities: A005 (Charge), Name (Name)
+{
+Charge
+}
+
+STRING 65
+// Abilities: A005 (Charge), Tip (Tooltip - Normal)
+{
+Charge
+}
+
+STRING 66
+// Abilities: A005 (Charge), Ubertip (Tooltip - Normal - Extended)
+{
+Causes the unit to move faster and run through units.
+}
+
+STRING 67
+// Abilities: A005 (Charge), Hotkey (Hotkey - Normal)
+{
+C
+}
+
+STRING 68
+// Abilities: A006 (Armor Upgrade), Name (Name)
+{
+Armor Upgrade
+}
+
+STRING 70
+// Abilities: A006 (Armor Upgrade), Ubertip (Tooltip - Normal - Extended)
+{
+Base - Info Ability
+}
+
+STRING 71
+// Abilities: A006 (Armor Upgrade), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 72
+// Abilities: A006 (Armor Upgrade), Tip (Tooltip - Normal)
+{
+[|cff8080ffUpgrade|r] - Increases the armor of units.
+}
+
+STRING 73
+// Abilities: A007 (Weapon Upgrade), Name (Name)
+{
+Weapon Upgrade
+}
+
+STRING 75
+// Abilities: A007 (Weapon Upgrade), Ubertip (Tooltip - Normal - Extended)
+{
+Base - Info Ability
+}
+
+STRING 76
+// Abilities: A007 (Weapon Upgrade), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 77
+// Upgrades: R000 (Chaos), Name (Name)
+{
+Supply Bonus
+}
+
+STRING 78
+// Upgrades: R000 (Chaos), EditorSuffix (Editor Suffix)
+{
+(Supply Units)
+}
+
+STRING 79
+// Upgrades: R000 (Chaos), effect1 (Effect 1)
+{
+rmnx
+}
+
+STRING 80
+// Upgrades: R000 (Chaos), class (Class)
+{
+caster
+}
+
+STRING 81
+// Units: n000 (Engineer), Name (Name)
+{
+Engineer
+}
+
+STRING 82
+// Units: n000 (Engineer), Tip (Tooltip - Basic)
+{
+Train Engineer
+}
+
+STRING 83
+// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
+{
+Can repair buildings.
+}
+
+STRING 85
+// Units: n002 (Ogre Champion), Name (Name)
+{
+Ogre Champion
+}
+
+STRING 86
+// Units: n002 (Ogre Champion), Tip (Tooltip - Basic)
+{
+Hire Ogre Champion
+}
+
+STRING 87
+// Units: n002 (Ogre Champion), Ubertip (Tooltip - Extended)
+{
+Massive unit with a cleaving attack and shockwave ability.
+}
+
+STRING 89
+// Abilities: A008 (Slow Aura), EditorSuffix (Editor Suffix)
+{
+(Slow Trap)
+}
+
+STRING 90
+// Buffs/Effects: B000 (), Bufftip (Tooltip)
+{
+Slow Trap
+}
+
+STRING 92
+// Units: h005 (Caltrops), Ubertip (Tooltip - Extended)
+{
+Slows down the movement speed of nearby enemies.
+}
+
+STRING 102
+// Buffs/Effects: B000 (), Buffubertip (Tooltip - Extended)
+{
+This unit is being slowed by a slow trap.
+}
+
+STRING 105
+// Units: h000 (Militia), Hotkey (Hotkey)
+{
+T
+}
+
+STRING 106
+// Units: n003 (Angry Farmer), Name (Name)
+{
+Angry Farmer
+}
+
+STRING 107
+// Units: n003 (Angry Farmer), Tip (Tooltip - Basic)
+{
+Enlist Angry Farmer
+}
+
+STRING 109
+// Units: n003 (Angry Farmer), Ubertip (Tooltip - Extended)
+{
+This farmer is |cffff0000VERY|r upset about the undead ruining his crops.
+}
+
+STRING 110
+// Units: n003 (Angry Farmer), Hotkey (Hotkey)
+{
+F
+}
+
+STRING 111
+// Abilities: A007 (Weapon Upgrade), Tip (Tooltip - Normal)
+{
+[|cff8080ffUpgrade|r] - Increases the damage of units.
+}
+
+STRING 112
+{
+[Neutral] - Kingdom of Hyperian
+}
+
+STRING 113
+{
+[Neutral] - Vindigoth Orc Tribe
+}
+
+STRING 114
+// Abilities: A009 (Base - Target Unit), Name (Name)
+{
+Base - Target Unit
+}
+
+STRING 115
+// Abilities: A009 (Base - Target Unit), Tip (Tooltip - Normal)
+{
+Target Unit
+}
+
+STRING 116
+// Abilities: A009 (Base - Target Unit), Ubertip (Tooltip - Normal - Extended)
+{
+The spell does nothing.
+}
+
+STRING 117
+// Abilities: A00A (Make Alliance), Name (Name)
+{
+Make Alliance
+}
+
+STRING 118
+// Abilities: A00A (Make Alliance), Tip (Tooltip - Normal)
+{
+Make Alliance
+}
+
+STRING 119
+// Abilities: A00A (Make Alliance), Ubertip (Tooltip - Normal - Extended)
+{
+Makes the owner of the target your ally.
+}
+
+STRING 120
+// Units: h006 (Diplomatic Offering), Name (Name)
+{
+Diplomatic Offering
+}
+
+STRING 122
+// Units: h006 (Diplomatic Offering), Ubertip (Tooltip - Extended)
+{
+Allows you to ally neutral factions.
+}
+
+STRING 123
+// Units: h006 (Diplomatic Offering), Tip (Tooltip - Basic)
+{
+Create Diplomatic Offering
+}
+
+STRING 128
+// Units: h007 (Camp), Name (Name)
+{
+Camp
+}
+
+STRING 129
+// Units: h007 (Camp), Tip (Tooltip - Basic)
+{
+Build Camp
+}
+
+STRING 130
+// Units: h007 (Camp), Ubertip (Tooltip - Extended)
+{
+Provides supplies for nearby units to benefit from.
+}
+
+STRING 131
+{
+Neutral Kingdoms
+}
+
+STRING 133
+// Units: h006 (Diplomatic Offering), Hotkey (Hotkey)
+{
+D
+}
+
+STRING 134
+// Abilities: A00A (Make Alliance), Hotkey (Hotkey - Normal)
+{
+C
+}
+
+STRING 135
+// Units: o000 (Orc Tent), Name (Name)
+{
+Orc Tent
+}
+
+STRING 136
+{
+[Ally] - Kingdom of Alexandria
+}
+
+STRING 137
+// Abilities: A000 (Supplies), Ubertip (Tooltip - Normal - Extended)
+{
+Increases the supplies that supply type units can carry.
+}
+
+STRING 138
+// Units: Hpal (Paladin), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 139
+// Units: h005 (Caltrops), Name (Name)
+{
+Caltrops
+}
+
+STRING 140
+// Doodads: D000 (Stone Walls - Free Form Doodad), Name (Name)
+{
+Stone Walls - Free Form Doodad
+}
+
+STRING 141
+{
+Made by JediMindTrix/NihilismIsDeath
+}
+
+STRING 142
+{
+Supply horses grant healing for units.
+Buildings will provide various upgrades depending on the building.
+Certain units are sold at different buildings.
+}
+
+STRING 143
+{
+Undead Forces
+}
+
+STRING 144
+// Units: h005 (Caltrops), Tip (Tooltip - Basic)
+{
+Build Caltrops
+}
+

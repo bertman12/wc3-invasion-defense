@@ -25,7 +25,6 @@ export const allCapturableStructures = new Set([
     ...secondaryCapturableStructures
 ]);
 
-
 //When a gets down to 10% health, transfer control to undead or humans
 export function setup_transferTownControl(){
     const t = Trigger.create();
@@ -37,7 +36,7 @@ export function setup_transferTownControl(){
         const attacker = Unit.fromHandle(GetAttacker());
 
         if(u && attacker && allCapturableStructures.has(u.typeId) && u.life < u.maxLife*0.20){
-            u.owner = Players[25];
+            u.owner = Players[20];
             u.name = `[${tColor("Destroyed", "red")}] - ` + u.name;
             u.invulnerable = true;
         }

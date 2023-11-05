@@ -25,13 +25,10 @@ function knightCharge(){
         return false;
     })
 
-
     t.addAction(() => {
         const u = Unit.fromEvent();
         const spell = u?.getAbility(ABILITIES.charge);
     });
-
-
 }
 
 
