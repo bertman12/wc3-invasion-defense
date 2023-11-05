@@ -43,7 +43,6 @@ function tsMain() {
     PlayMusic(gg_snd_NightElfX1);
 
     TimerManager.trig_setup();
-
     //For looking at minimap icons
     // Array.from(minimapIconPaths).forEach((path, index) => {
     //   CreateMinimapIcon(-20000 + (index*4000), 0, 255, 255, 255, path, FOG_OF_WAR_FOGGED);
@@ -52,7 +51,8 @@ function tsMain() {
     forEachAlliedPlayer((p, index) => {
       const u = Unit.create(p, FourCC("Hpal"), -300 + (50 * index), -300);
       u?.addItemById(FourCC("cnob"));
-    })
+      Sound.fromHandle(gg_snd_U08Archimonde19)?.start();
+    });
 
     init_map_triggers();
     RoundManager.trig_setup_StartRound();

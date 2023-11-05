@@ -150,3 +150,6 @@ remove holy light and divine shield,
 
 increase tent building placement size
 
+add a system to ship in armor, weapons and supplies(upgrades) 
+
+add system to increase the stock replenish rate of milita

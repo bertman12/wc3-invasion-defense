@@ -27,7 +27,7 @@ Player 1
 
 STRING 7
 {
-Kingdom Zombie Defense
+alpha testing
 }
 
 STRING 9
@@ -44,18 +44,6 @@ STRING 12
 // Units: h001 (Supply Horse), Name (Name)
 {
 Supply Horse
-}
-
-STRING 13
-// Units: h000 (Militia), Tip (Tooltip - Basic)
-{
-Train Militia
-}
-
-STRING 14
-// Units: h000 (Militia), Ubertip (Tooltip - Extended)
-{
-Restock Time: <h000,stockRegen>
 }
 
 STRING 15
@@ -486,22 +474,10 @@ STRING 118
 Make Alliance
 }
 
-STRING 119
-// Abilities: A00A (Make Alliance), Ubertip (Tooltip - Normal - Extended)
-{
-Makes the owner of the target your ally.
-}
-
 STRING 120
 // Units: h006 (Diplomatic Offering), Name (Name)
 {
 Diplomatic Offering
-}
-
-STRING 122
-// Units: h006 (Diplomatic Offering), Ubertip (Tooltip - Extended)
-{
-Allows you to ally neutral factions.
 }
 
 STRING 123
@@ -576,7 +552,7 @@ Stone Walls - Free Form Doodad
 
 STRING 141
 {
-Made by JediMindTrix/NihilismIsDeath
+Kingdom Zombie Defense 
 }
 
 STRING 142
@@ -584,6 +560,11 @@ STRING 142
 Supply horses grant healing for units.
 Buildings will provide various upgrades depending on the building.
 Certain units are sold at different buildings.
+Food is increased by 5 after every night.
+
+
+Made by JediMindTrix/NihilismIsDeath
+
 }
 
 STRING 143
@@ -661,5 +642,29 @@ STRING 155
 // Units: N005 (Pit Lord), Propernames (Proper Names)
 {
 Theodemir,Theodahad,Illdibad,Eararic,Totila,Teia,Valamir,Thiudimer
+}
+
+STRING 156
+// Units: h000 (Militia), Tip (Tooltip - Basic)
+{
+Enlist Local Militia
+}
+
+STRING 157
+// Units: h000 (Militia), Ubertip (Tooltip - Extended)
+{
+Disgruntled and poorly equipped serfs, able to be levied quickly.
+}
+
+STRING 158
+// Units: h006 (Diplomatic Offering), Ubertip (Tooltip - Extended)
+{
+Allows you to ally factions that have [Neutral] in their name.
+}
+
+STRING 159
+// Abilities: A00A (Make Alliance), Ubertip (Tooltip - Normal - Extended)
+{
+Allows you to ally factions that have [Neutral] in their name.
 }
 

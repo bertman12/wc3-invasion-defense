@@ -13,6 +13,7 @@ export const primaryCapturableStructures = new Set([
     CUSTOM_UNITS.barracks,
     CUSTOM_UNITS.blacksmith,
     CUSTOM_UNITS.castle,
+    CUSTOM_UNITS.townHall,
 ])
 
 export const secondaryCapturableStructures = new Set([

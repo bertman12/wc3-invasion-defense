@@ -88,6 +88,15 @@ function createSpawnData(currentRound: number):SpawnData[]{
             unitType: FourCC("u000"),
             
         },
+        //Necromancers -special
+        {
+            quantityPerWave: 2,
+            spawnRequirement(waveCount, waveInterval, roundDuration) {
+                return currentRound >=2;
+            },
+            unitType: FourCC("u001"),
+            
+        },
         //Skeletal Archers
         {
             quantityPerWave: archerCount,
@@ -98,13 +107,36 @@ function createSpawnData(currentRound: number):SpawnData[]{
             quantityPerWave: zombieCount,
             unitType: FourCC("nzom"),
         },
+        //Gargoyles... lol
+        {
+            quantityPerWave: 2,
+            spawnRequirement(waveCount, waveInterval, roundDuration) {
+                return currentRound >= 3;
+            },
+            unitType: FourCC("ugar"),
+        },
+        //Skeletal Orc Champion
+        {
+            quantityPerWave: 1 + currentRound,
+            spawnRequirement(waveCount, waveInterval, roundDuration) {
+                return  currentRound >= 2;
+            },
+            unitType: FourCC("nsoc"),
+        },
         //Pit Lord
         {
             quantityPerWave: currentRound,
             unitType: CUSTOM_UNITS.boss_pitLord,
+            spawnRequirement(waveCount, waveInterval, roundDuration) {
+                return waveCount === 5; //spawns the wave after 1 minute passes 
+            },
             onCreation: (u) => {
-                u.setHeroLevel(currentRound * 3, false);
-                Sound.fromHandle(gg_snd_U08Archimonde19)?.start();
+                if(!u) print("missing unit data in oncreation function");
+                if(u && u.isHero()){
+                    u.setHeroLevel(currentRound * 2, false);
+                    PlaySoundBJ(gg_snd_U08Archimonde19);
+                }
+                
             }
         },
     ];
@@ -193,12 +225,13 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
 
             spawnData.forEach(data => {
                 if(data.spawnRequirement && data.spawnRequirement(waveCount, WAVE_INTERVAL, TimerManager.nightTimeDuration)){
-                    const units = spawnUndeadUnitType(data.unitType, data.quantityPerWave, xPos, yPos, data.onCreation);
+                    // const units = spawnUndeadUnitType.call(data, data.unitType, data.quantityPerWave, xPos, yPos, data);
+                    const units = spawnUndeadUnitType(data.unitType, data.quantityPerWave, xPos, yPos, data);
                     spawnUnitForces[index].push(...units); 
                     newestSpawnedUnits.push(...units);
                 }
                 else if(!data.spawnRequirement){
-                    const units = spawnUndeadUnitType(data.unitType, data.quantityPerWave, xPos, yPos, data.onCreation);
+                    const units = spawnUndeadUnitType(data.unitType, data.quantityPerWave, xPos, yPos, data);
                     spawnUnitForces[index].push(...units); 
                     newestSpawnedUnits.push(...units);
                 }
@@ -253,13 +286,16 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
     });
 }
 
-function spawnUndeadUnitType(unitType: number, quantity: number, xPos: number, yPos: number, onCreation?: (u:Unit) => void): Unit[]{
+function spawnUndeadUnitType(unitType: number, quantity: number, xPos: number, yPos: number, data: SpawnData): Unit[]{
+// function spawnUndeadUnitType(unitType: number, quantity: number, xPos: number, yPos: number, onCreation?: (u:Unit) => void): Unit[]{
     const units = [];
 
     for(let i = 0; i < quantity; i++){
-        const u = Unit.create(getNextUndeadPlayer(), unitType, xPos, yPos)
-        if(onCreation && u){
-            onCreation(u);
+        const u = Unit.create(getNextUndeadPlayer(), unitType, xPos, yPos);
+
+        if(data.onCreation && u){
+            print(u.name, " has the oncreation data");
+            data.onCreation(u);
         }
 
         if(u){
