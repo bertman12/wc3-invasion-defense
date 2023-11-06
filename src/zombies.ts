@@ -59,8 +59,8 @@ interface SpawnData {
 
 function createSpawnData(currentRound: number):SpawnData[]{
     const meatWagonCount = currentRound;
-    const archerCount = 2 + 2*currentRound;
-    const zombieCount = 10 + 4 * currentRound;
+    const archerCount = 2 + currentRound;
+    const zombieCount = 4 + 4 * currentRound;
     //could make spawn quantity cyclic with trig functions
 
     const undeadSpawnData:SpawnData[] = [
@@ -106,6 +106,14 @@ function createSpawnData(currentRound: number):SpawnData[]{
         {
             quantityPerWave: zombieCount,
             unitType: FourCC("nzom"),
+        },
+        //Obsidian Statues
+        {
+            quantityPerWave: 1,
+            spawnRequirement(waveCount, waveInterval, roundDuration) {
+                return waveCount % 2 === 0;
+            },
+            unitType: FourCC("uobs"),
         },
         //Gargoyles... lol
         {
@@ -177,7 +185,7 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
         spawnUnitForces.forEach(unitForce =>{
             unitForce.forEach((u, index) => {
                 //Kill every 2nd and 3rd enemy, leaving behind only 1/3 of the enemies 
-                if(index % 2 == 0 || index % 3 === 0 || index % 5 == 0){
+                if(index/unitForce.length < 0.90){
                     u.kill()
                 }
                 else{
@@ -294,7 +302,6 @@ function spawnUndeadUnitType(unitType: number, quantity: number, xPos: number, y
         const u = Unit.create(getNextUndeadPlayer(), unitType, xPos, yPos);
 
         if(data.onCreation && u){
-            print(u.name, " has the oncreation data");
             data.onCreation(u);
         }
 

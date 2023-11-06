@@ -153,3 +153,11 @@ increase tent building placement size
 add a system to ship in armor, weapons and supplies(upgrades) 
 
 add system to increase the stock replenish rate of milita
+
+add leaderboard to show stats
+
+make cataphracts
+
+make items for people to buy
+
+add strong orcs to vinidgoths

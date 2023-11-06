@@ -1,12 +1,13 @@
 import { RoundManager } from './shared/round-manager';
 import { W3TS_HOOK, addScriptHook } from "w3ts/hooks";
-import { init_startingResources, initializePlayerStateInstances } from "./players";
+import { init_startingResources, initializePlayerStateInstances, initializePlayers } from "./players";
 import { init_map_triggers } from './init';
-import { forEachAlliedPlayer } from './utils/players';
+import { forEachAlliedPlayer, forEachPlayer } from './utils/players';
 import { setup_transferTownControl } from './towns';
-import { Sound, Timer, Unit } from 'w3ts';
-import { tColor } from './utils/misc';
+import { FogModifier, Sound, Timer, Unit } from 'w3ts';
 import { TimerManager } from './shared/Timers';
+import { Players } from 'w3ts/globals';
+import { tColor } from './utils/misc';
 
 const BUILD_DATE = compiletime(() => new Date().toUTCString());
 const TS_VERSION = compiletime(() => require("typescript").version);
@@ -24,15 +25,18 @@ function tsMain() {
     print(" ");
 
     Timer.create().start(5, false, () => {
+      Sound.fromHandle(gg_snd_U08Archimonde19)?.start();
       Sound.fromHandle(gg_snd_Hint)?.start();
       print(`[${tColor("Objective", "goldenrod")}] - Defend the capital city`);
       print("The elite nobles of the Kingdom of Alexandria must rally their forces to fight the undead. The capital city must survive!");
-    })
-    
+      print("");
+      print(`Type ${tColor("-start", "goldenrod")} to start the game.`);
+    });
+
+    initializePlayers();
     initializePlayerStateInstances();
     SetGameDifficulty(MAP_DIFFICULTY_INSANE);
-    // SetMeleeAI();
-    
+
     setup_transferTownControl();
 
     SuspendTimeOfDay(true);
@@ -43,16 +47,22 @@ function tsMain() {
     PlayMusic(gg_snd_NightElfX1);
 
     TimerManager.trig_setup();
+
     //For looking at minimap icons
     // Array.from(minimapIconPaths).forEach((path, index) => {
     //   CreateMinimapIcon(-20000 + (index*4000), 0, 255, 255, 255, path, FOG_OF_WAR_FOGGED);
     // });
 
-    forEachAlliedPlayer((p, index) => {
-      const u = Unit.create(p, FourCC("Hpal"), -300 + (50 * index), -300);
-      u?.addItemById(FourCC("cnob"));
-      Sound.fromHandle(gg_snd_U08Archimonde19)?.start();
-    });
+
+
+    // forEachPlayer(p => {
+    //   const clearFogState = FogModifier.create(Players[0], FOG_OF_WAR_VISIBLE, 0,0, 25000, true, true);
+    //   clearFogState?.start();
+    //   clearFogState?.destroy();
+    // })
+
+
+
 
     init_map_triggers();
     RoundManager.trig_setup_StartRound();

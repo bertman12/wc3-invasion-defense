@@ -1,4 +1,4 @@
-import { Force, Group, MapPlayer, Unit, color } from "w3ts";
+import { Camera, Force, Group, MapPlayer, Timer, Trigger, Unit, color } from "w3ts";
 import { Players } from "w3ts/globals";
 import { forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayerWithAbility, forEachUnitTypeOfPlayer } from "./utils/players";
 import { ABILITIES, UpgradeCodes } from "./shared/enums";
@@ -30,6 +30,72 @@ class PlayerState {
     }
 }
 
+function trig_heroDies(){
+    const t = Trigger.create();
+    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_DEATH);
+
+    t.addCondition(() => {
+        const u = Unit.fromHandle(GetDyingUnit());
+
+        if(u && u.isHero() && u.owner.race !== RACE_UNDEAD){
+            print("Your hero will revive in 15 seconds.");
+            const timer = Timer.create();
+
+            timer.start(15, false, () => {
+                    u.revive(0,0, true);
+            });
+
+            return true;
+        }
+
+        return false;
+    })
+}
+
+function trig_killSheep(){
+    const t = Trigger.create();
+
+    t.registerAnyUnitEvent( EVENT_PLAYER_UNIT_SELL)
+    t.addCondition(() => {
+        let u = Unit.fromHandle(GetBuyingUnit());
+        if(u && u.typeId === FourCC("nshe")){
+            return true;
+        }
+
+        return false;
+    });
+
+    t.addAction(() => {
+        let buyingUnit = Unit.fromHandle(GetBuyingUnit()) as Unit;
+        buyingUnit.kill();
+    
+        let createdUnit = Unit.fromHandle(GetSoldUnit()) as Unit;
+        createdUnit.x = -300;
+        createdUnit.y = -300;
+        createdUnit?.addItemById(FourCC("cnob"));
+
+        SetCameraPositionForPlayer(buyingUnit.owner.handle, createdUnit.x, createdUnit.y);
+    });
+// }
+}
+
+export function initializePlayers(){
+    trig_killSheep();
+    trig_heroDies();
+    forEachAlliedPlayer((p, index) => {
+        //Create Sheep
+        const u = Unit.create(p, FourCC("nshe"), 18600 + (25 * index), -28965);
+        if(u) SetCameraPositionForPlayer(p.handle, u.x, u.y);
+  
+        SetPlayerAllianceBJ(p.handle, ALLIANCE_PASSIVE, true, Players[18].handle);
+        SetPlayerAllianceBJ(p.handle, ALLIANCE_SHARED_VISION_FORCED, true, Players[18].handle);
+        SetPlayerAllianceBJ(p.handle, ALLIANCE_PASSIVE, true, Players[19].handle);
+        SetPlayerAllianceBJ(p.handle, ALLIANCE_SHARED_VISION_FORCED, true, Players[19].handle);
+        MeleeStartingHeroLimit();
+
+      });
+}
+
 /**
  * Should be first trigger to run
  */
@@ -48,13 +114,18 @@ export function initializePlayerStateInstances(){
 
 export function init_startingResources(){
     Players.forEach(player =>{
-        player.setState(PLAYER_STATE_RESOURCE_GOLD, 300);
-        player.setState(PLAYER_STATE_RESOURCE_LUMBER, 350);
+        player.setState(PLAYER_STATE_RESOURCE_GOLD, 350);
+        player.setState(PLAYER_STATE_RESOURCE_LUMBER, 300);
         player.setState(PLAYER_STATE_RESOURCE_FOOD_CAP, 25);
     });
 
     //Allow bounty from zombies.
-    Players[20].setState(PLAYER_STATE_GIVES_BOUNTY, 1);
+    Players.forEach(p => {
+        if(p.race === RACE_UNDEAD){
+            p.setState(PLAYER_STATE_GIVES_BOUNTY, 1);
+        }
+    });
+
 }
 
 function grantUpgradeBonuses(){

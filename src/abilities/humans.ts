@@ -5,32 +5,9 @@ import { Force, Trigger, Unit } from "w3ts";
 import { Players } from "w3ts/globals";
 
 export function init_humanSpells(){
-    knightCharge();
+    // knightCharge();
     makeAlliance();
 }
-
-function knightCharge(){
-    const t = Trigger.create();
-    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SPELL_CAST);
-
-    t.addCondition(() => {
-        const u  = Unit.fromEvent();
-        if(!u) return false;
-
-        if(u.getAbility(ABILITIES.charge) === GetSpellAbility()){
-
-            return true;
-        }
-        
-        return false;
-    })
-
-    t.addAction(() => {
-        const u = Unit.fromEvent();
-        const spell = u?.getAbility(ABILITIES.charge);
-    });
-}
-
 
 function makeAlliance(){
     const t = Trigger.create();

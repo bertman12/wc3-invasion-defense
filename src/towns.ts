@@ -19,6 +19,7 @@ export const primaryCapturableStructures = new Set([
 export const secondaryCapturableStructures = new Set([
     CUSTOM_UNITS.cannonTower,
     CUSTOM_UNITS.guardTower,
+    CUSTOM_UNITS.rampartCannonTower,
 ])
 
 export const allCapturableStructures = new Set([

@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Kingdom Zombie Defense
+Kingdom Zombie Defense Test
 }
 
 STRING 2
@@ -13,6 +13,8 @@ STRING 3
 Supply horses grant healing for units.
 Buildings will provide various upgrades depending on the building.
 Certain units are sold at different buildings.
+
+Hold out for 10 nights until reinforcements arrive.
 }
 
 STRING 4
@@ -27,7 +29,7 @@ Player 1
 
 STRING 7
 {
-alpha testing
+alpha testing #2
 }
 
 STRING 9
@@ -218,22 +220,10 @@ STRING 58
 Train a General
 }
 
-STRING 59
-// Units: hcth (General), Ubertip (Tooltip - Extended)
-{
-Generals are strong , elite support units, bolstering the morale of your troops.
-}
-
 STRING 60
 // Abilities: S000 (Endurance Aura), EditorSuffix (Editor Suffix)
 {
 (General)
-}
-
-STRING 61
-// Abilities: S000 (Endurance Aura), Ubertip (Tooltip - Normal - Extended)
-{
-The general increases nearby friendly units' movement speed by <SCae,DataA1,%>% and attack rate by <SCae,DataB1,%>%.
 }
 
 STRING 62
@@ -557,10 +547,13 @@ Kingdom Zombie Defense
 
 STRING 142
 {
+Hold out for 10 nights until reinforcements arrive.
+
 Supply horses grant healing for units.
 Buildings will provide various upgrades depending on the building.
 Certain units are sold at different buildings.
 Food is increased by 5 after every night.
+
 
 
 Made by JediMindTrix/NihilismIsDeath
@@ -666,5 +659,125 @@ STRING 159
 // Abilities: A00A (Make Alliance), Ubertip (Tooltip - Normal - Extended)
 {
 Allows you to ally factions that have [Neutral] in their name.
+}
+
+STRING 160
+// Units: h00A (Rampart Guard Tower), Name (Name)
+{
+Rampart Guard Tower
+}
+
+STRING 161
+// Units: h00A (Rampart Guard Tower), EditorSuffix (Name - Editor Suffix)
+{
+(Flying)
+}
+
+STRING 162
+// Units: n004 (War Bear), Tip (Tooltip - Basic)
+{
+Train War Bear
+}
+
+STRING 163
+// Units: n004 (War Bear), Ubertip (Tooltip - Extended)
+{
+A heavy melee unit, with cleaving armor, bash and resistant skin.
+}
+
+STRING 164
+// Units: hcth (General), Ubertip (Tooltip - Extended)
+{
+An elite support unit, bolstering the morale of your troops.
+}
+
+STRING 165
+// Abilities: S000 (Endurance Aura), Ubertip (Tooltip - Normal - Extended)
+{
+The general increases nearby friendly units' movement speed by 25% and attack rate by 25%. |n|nAt least one general should be present to support an army.
+}
+
+STRING 166
+// Abilities: A00C (Food Income), Name (Name)
+{
+Food Income
+}
+
+STRING 169
+// Abilities: A00C (Food Income), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 170
+// Abilities: A00C (Food Income), Tip (Tooltip - Normal)
+{
+Food Income - Info Ability
+}
+
+STRING 171
+// Abilities: A00C (Food Income), Ubertip (Tooltip - Normal - Extended)
+{
+Grants +5 food per round.
+}
+
+STRING 172
+// Units: Nalc (Alchemist), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 173
+// Units: Nbst (Beastmaster), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 174
+// Units: Npbm (Brewmaster), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 175
+// Units: Nbrn (Dark Ranger), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 176
+// Units: Nfir (Firelord), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 177
+// Units: Nplh (Pit Lord), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 178
+// Units: Nngs (Sea Witch), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 179
+// Units: Ntin (Tinker), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 180
+// Units: Hmkg (Mountain King), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 181
+// Units: Hblm (Blood Mage), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
 }
 

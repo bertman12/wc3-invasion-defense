@@ -31,14 +31,22 @@ export class RoundManager {
     
     static startNextRound(){
         RoundManager.currentRound++;
+        
+        if(RoundManager.currentRound >= 10){
+            print("Congratulations. The map is still in development with many more features to come.");
+            return;
+        }
+        
         Sound.fromHandle(gg_snd_QuestNew)?.start();
         Sound.fromHandle(gg_snd_TheHornOfCenarius)?.start();
         ClearMapMusic();
         StopMusic(false);
         PlayMusic(gg_snd_NightElfX1);
-    
+        
         //Set to night time 
         SetTimeOfDay(0);
+
+
         spawnZombies(RoundManager.currentRound, RoundManager.endCurrentRound);
         
         print(`Night ${RoundManager.currentRound} has begun...`);
