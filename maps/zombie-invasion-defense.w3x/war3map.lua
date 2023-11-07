@@ -14,6 +14,8 @@ gg_snd_TheHornOfCenarius = nil
 gg_snd_SargerasRoar = nil
 gg_snd_SargerasLaugh = nil
 gg_snd_U08Archimonde19 = nil
+gg_rct_zNorthSpawn1 = nil
+gg_rct_zWestSpawn1 = nil
 function InitGlobals()
 end
 
@@ -68,8 +70,8 @@ local unitID
 local t
 local life
 
-u = BlzCreateUnitWithSkin(p, FourCC("hcas"), -512.0, 64.0, 270.000, FourCC("hcas"))
-u = BlzCreateUnitWithSkin(p, FourCC("ngme"), 1408.0, -1088.0, 270.000, FourCC("ngme"))
+u = BlzCreateUnitWithSkin(p, FourCC("harm"), 1088.0, 64.0, 270.000, FourCC("harm"))
+u = BlzCreateUnitWithSkin(p, FourCC("ngme"), 1216.0, -1024.0, 270.000, FourCC("ngme"))
 u = BlzCreateUnitWithSkin(p, FourCC("n001"), 1024.0, 1216.0, 270.000, FourCC("n001"))
 SetUnitColor(u, ConvertPlayerColor(0))
 u = BlzCreateUnitWithSkin(p, FourCC("h002"), 1728.0, 896.0, 270.000, FourCC("h002"))
@@ -104,14 +106,46 @@ u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), -5568.0, -64.0, 270.000, FourCC("hg
 u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), 4928.0, 4736.0, 270.000, FourCC("hgtw"))
 u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), -4800.0, 0.0, 270.000, FourCC("hgtw"))
 u = BlzCreateUnitWithSkin(p, FourCC("h002"), -4160.0, -2624.0, 270.000, FourCC("h002"))
-u = BlzCreateUnitWithSkin(p, FourCC("hbar"), -8448.0, 8576.0, 270.000, FourCC("hbar"))
+u = BlzCreateUnitWithSkin(p, FourCC("hbar"), -8960.0, 8320.0, 270.000, FourCC("hbar"))
 u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), -8448.0, 7424.0, 270.000, FourCC("hgtw"))
 u = BlzCreateUnitWithSkin(p, FourCC("h003"), -1792.0, 6144.0, 270.000, FourCC("h003"))
 u = BlzCreateUnitWithSkin(p, FourCC("h003"), 5632.0, 3264.0, 270.000, FourCC("h003"))
-u = BlzCreateUnitWithSkin(p, FourCC("htow"), -8960.0, 8832.0, 270.000, FourCC("htow"))
+u = BlzCreateUnitWithSkin(p, FourCC("htow"), -9024.0, 8768.0, 270.000, FourCC("htow"))
 u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), -9152.0, 7424.0, 270.000, FourCC("hgtw"))
 u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), -4096.0, 6336.0, 270.000, FourCC("hgtw"))
 u = BlzCreateUnitWithSkin(p, FourCC("hgtw"), 640.0, 6016.0, 270.000, FourCC("hgtw"))
+u = BlzCreateUnitWithSkin(p, FourCC("hars"), -6080.0, 8640.0, 270.000, FourCC("hars"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -704.0, 13952.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -1792.0, 14080.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -1472.0, 14464.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -1216.0, 14656.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -768.0, 14848.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -512.0, 14848.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), 0.0, 14848.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), 256.0, 14848.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), 512.0, 14848.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), 832.0, 14784.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), 1024.0, 14400.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), 1152.0, 14080.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), 1280.0, 13632.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), 1344.0, 13312.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), 1216.0, 13056.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), 896.0, 12928.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), 320.0, 12864.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -384.0, 12672.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -896.0, 12480.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -1344.0, 12352.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -1728.0, 12288.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -1984.0, 12544.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -2240.0, 12736.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -2368.0, 12992.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -2432.0, 13376.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -2176.0, 13696.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -1664.0, 13760.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -1408.0, 13632.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -1152.0, 13504.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -1152.0, 13184.0, 270.000, FourCC("h00C"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -1472.0, 12992.0, 270.000, FourCC("h00C"))
 end
 
 function CreateUnitsForPlayer9()
@@ -178,6 +212,14 @@ u = BlzCreateUnitWithSkin(p, FourCC("hrif"), -8176.3, 9298.9, 83.254, FourCC("hr
 u = BlzCreateUnitWithSkin(p, FourCC("hkni"), -9015.9, 7501.9, 292.657, FourCC("hkni"))
 u = BlzCreateUnitWithSkin(p, FourCC("hkni"), -8627.0, 7500.4, 307.278, FourCC("hkni"))
 u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), -4925.3, 49.0, 48.594, FourCC("hfoo"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00B"), -512.0, 32.0, 292.617, FourCC("h00B"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00A"), 225.8, 591.8, 354.133, FourCC("h00A"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00A"), -1099.1, 884.1, 24.467, FourCC("h00A"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00A"), -5973.0, 7547.8, 168.228, FourCC("h00A"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00A"), -5101.8, 8019.4, 116.085, FourCC("h00A"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00A"), -159.8, -892.9, 261.010, FourCC("h00A"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00A"), 2570.9, -1867.0, 261.010, FourCC("h00A"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00A"), 2603.8, 317.4, 261.010, FourCC("h00A"))
 end
 
 function CreateBuildingsForPlayer19()
@@ -250,8 +292,10 @@ end
 function CreateRegions()
 local we
 
-gg_rct_ZombieSpawn1 = Rect(1312.0, 12992.0, 2560.0, 14272.0)
-gg_rct_zombieSpawn2 = Rect(-3936.0, 12256.0, -2976.0, 13856.0)
+gg_rct_ZombieSpawn1 = Rect(7136.0, 18880.0, 8384.0, 20160.0)
+gg_rct_zombieSpawn2 = Rect(-8672.0, 18752.0, -7680.0, 20704.0)
+gg_rct_zNorthSpawn1 = Rect(-704.0, 23168.0, 2208.0, 24640.0)
+gg_rct_zWestSpawn1 = Rect(-16832.0, 7808.0, -14688.0, 9664.0)
 end
 
 function InitCustomPlayerSlots()

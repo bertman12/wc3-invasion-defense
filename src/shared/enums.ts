@@ -7,6 +7,8 @@ export enum ABILITIES {
     weaponUpgrade = FourCC("A007"),
     makeAlliance = FourCC("A00A"),
     replenishLifeAndMana = FourCC("Ambt"),
+    hireFlyingMachinePatrol = FourCC("A00G"),
+    foodCapBonus = FourCC("A00I"),
 }
 
 export enum UpgradeCodes {
@@ -19,12 +21,19 @@ export enum CUSTOM_UNITS {
     farmTown = FourCC("h002"),
     townHall = FourCC("htow"),
     rampartCannonTower = FourCC("h008"),
+    rampartGuardTower = FourCC("h00A"),
     castle = FourCC("hcas"),
+    capital = FourCC("h00B"),
     barracks = FourCC("hbar"),
     blacksmith = FourCC("h004"),
     cannonTower = FourCC("hctw"),
     guardTower = FourCC("hgtw"),
     boss_pitLord = FourCC("N005"),
+    fleshBeetle = FourCC("u002"),
+    demonFireArtillery = FourCC("n007"),
+    workshop = FourCC("harm"),
+    flyingMachine = FourCC("hgyr"),
+    arcaneSanctum = FourCC("hars"),
 }
 
 //Can find looking up models for a spell at the Art - Target field

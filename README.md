@@ -161,3 +161,44 @@ make cataphracts
 make items for people to buy
 
 add strong orcs to vinidgoths
+
+======== 11-6-23
+
+make some buildings units so you can rotate and style them better
+
+make spell that teleports your units to an area on the map for 20 seconds.
+
+allow players to ship in upgrades, it will cost something every night, players can only ship in one thing at a time. make it be a mule that moves very fucking slow and has to travel far. or maybe add capturable trade posts.
+
+add a way gate portal where if you can defend it for the first 2 nights, it will remain open for you.
+Also display some text ont he screen that says primary objective: "Defend the capital city" Secondary Objective: "Defend the portal".
+
+Also add hard and night mare modes; dont add easy mode.
+
+maybe let people upgrade buildings and send a msg of which player upgraded what and then ping on the map
+
+add an ability that guarentees mercenaries for x amount of nights. no cost to your food as well. give them for each player.
+
+we can probably get rid of neutral factions with this change. 
+
+also use the centaurs to be raiders.
+
+allow dismount and mount for cavalry units.
+
+make crossing river fords slow the units by 50%; add an invisible caltrop
+
+during the day, I want human players to lead a campaign into undead lands to retake them; and if a town keeps dying over and over again it will be razed to the ground; maybe if you recaptured it and then lose it again, it will be turned into rubble/ruins
+
+just add it to a list of items to be turned into ruins next time they are destroyed
+
+add lumber camps for wood income
+
+Add a disband unit ability with no hotkey which will remove teh unit and refund half the remaining gold if their health is full; add red text and error sound if thats not the case
+
+captured forts and towns will be come spawn locations for zombies
+
+make mules and peasants transport the end of round goods to the capital city.
+
+increase daytime.
+
+add upgrade to increase pack horse speed of those carrying wood, gold, etc

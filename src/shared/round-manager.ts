@@ -3,18 +3,25 @@ import { spawnZombies } from "src/zombies";
 import { Trigger, Sound, Timer } from "w3ts";
 import { Players } from "w3ts/globals";
 import { ABILITIES } from "./enums";
-import { player_giveRoundEndResources } from "src/players";
+import { player_giveStartOfDayResources } from "src/players";
 import { tColor } from "src/utils/misc";
 import { playCustomSound } from "./sounds";
 import { TimerManager } from "./Timers";
 
 /**
- * rounds should be able to be started early, but should automatically start after 2 minutes the round has ended. That way people arent intentionally waiting for mana to return.
+ * To help avoid circular dependencies, this class will not import anything, but will instead export it's services.
+ * or just help keep imports minimal
  */
+
+/**
+ * possible we can add more data usable within these function types to serve multiple purposes
+ */
+type RoundEndFn = (round: number) => void;
+type RoundStartFn = (round: number) => void;
 
 export class RoundManager {
     static currentRound: number = 0;
-
+    static roundEndSubscribers:RoundEndFn[] = [];
     static trig_setup_StartRound(){
         const tStart = Trigger.create()
         tStart.registerPlayerChatEvent(Players[0], "-start", false);
@@ -32,9 +39,9 @@ export class RoundManager {
     static startNextRound(){
         RoundManager.currentRound++;
         
-        if(RoundManager.currentRound >= 10){
-            print("Congratulations. The map is still in development with many more features to come.");
-            return;
+        if(RoundManager.currentRound > 10){
+            print("Congratulations, you have won. The map is still in development with many more features to come.");
+            print("Nights will continue forever now.");
         }
         
         Sound.fromHandle(gg_snd_QuestNew)?.start();
@@ -46,7 +53,6 @@ export class RoundManager {
         //Set to night time 
         SetTimeOfDay(0);
 
-
         spawnZombies(RoundManager.currentRound, RoundManager.endCurrentRound);
         
         print(`Night ${RoundManager.currentRound} has begun...`);
@@ -55,8 +61,12 @@ export class RoundManager {
     static endCurrentRound(){
         print(`Night ${RoundManager.currentRound} has ended...`);
         SetTimeOfDay(12);
-        player_giveRoundEndResources(RoundManager.currentRound);
-        
+        // player_giveStartOfDayResources(RoundManager.currentRound);
+
+        RoundManager.roundEndSubscribers.forEach(cb => {
+            cb(RoundManager.currentRound);
+        });
+
         ClearMapMusic();
         StopMusic(false);
         PlayMusic(gg_snd_IllidansTheme);
@@ -70,6 +80,10 @@ export class RoundManager {
         });
 
         TimerManager.startDayTimer(() => {RoundManager.startNextRound()});
+    }
+
+    static onRoundEnd(cb: RoundEndFn){
+        RoundManager.roundEndSubscribers.push(cb)
     }
 } 
 

@@ -3,6 +3,7 @@ import { Players } from "w3ts/globals";
 import { forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayerWithAbility, forEachUnitTypeOfPlayer } from "./utils/players";
 import { ABILITIES, UpgradeCodes } from "./shared/enums";
 import { tColor } from "./utils/misc";
+import { RoundManager } from "./shared/round-manager";
 
 const playerStates = new Map<number, PlayerState>();
 
@@ -76,7 +77,6 @@ function trig_killSheep(){
 
         SetCameraPositionForPlayer(buyingUnit.owner.handle, createdUnit.x, createdUnit.y);
     });
-// }
 }
 
 export function initializePlayers(){
@@ -94,6 +94,12 @@ export function initializePlayers(){
         MeleeStartingHeroLimit();
 
       });
+
+      //Setup round end functions
+      RoundManager.onRoundEnd((round) => {
+        print("my on round end callback fn was used");
+        player_giveStartOfDayResources(round);
+      });
 }
 
 /**
@@ -109,16 +115,15 @@ export function initializePlayerStateInstances(){
         playerStates.get(player.id)?.createSupplyHorse();
     });
 
-    grantUpgradeBonuses();
+    grantStartOfDayBonuses();
 }
 
 export function init_startingResources(){
     Players.forEach(player =>{
         player.setState(PLAYER_STATE_RESOURCE_GOLD, 350);
         player.setState(PLAYER_STATE_RESOURCE_LUMBER, 300);
-        player.setState(PLAYER_STATE_RESOURCE_FOOD_CAP, 25);
     });
-
+    
     //Allow bounty from zombies.
     Players.forEach(p => {
         if(p.race === RACE_UNDEAD){
@@ -128,10 +133,13 @@ export function init_startingResources(){
 
 }
 
-function grantUpgradeBonuses(){
+function grantStartOfDayBonuses(){
     let totalSupplyBuildings = 0;
     let meleeWeaponUpgradeCount = 0;
     let armorUpgradeCount = 0;
+    let foodReserveStructures = 0;
+    const basePlayerFoodCap = 20;
+    const foodRoundBonus = 5 ;
 
     forEachAlliedPlayer((p) => {
         forEachUnitOfPlayerWithAbility(p, ABILITIES.supplies, (u) => {
@@ -143,7 +151,15 @@ function grantUpgradeBonuses(){
         forEachUnitOfPlayerWithAbility(p, ABILITIES.armorUpgrade, (u) => {
             armorUpgradeCount++;
         });
+        forEachUnitOfPlayerWithAbility(p, ABILITIES.foodCapBonus, (u) => {
+            foodReserveStructures++;
+        });
     });
+
+    const calculatedFoodCap = basePlayerFoodCap + foodRoundBonus + 2*foodReserveStructures;
+    
+    print("Calculated food cap:", calculatedFoodCap);
+    print("foodReserveStructures: ", foodReserveStructures);
 
     forEachAlliedPlayer(p => {
         p.setTechResearched(UpgradeCodes.armor, 0);
@@ -152,10 +168,13 @@ function grantUpgradeBonuses(){
         p.setTechResearched(UpgradeCodes.armor, armorUpgradeCount);
         p.setTechResearched(UpgradeCodes.meleeWeapons, meleeWeaponUpgradeCount);
         p.setTechResearched(UpgradeCodes.supplyUpgrade, totalSupplyBuildings);
+
+        //Set player food cap
+        adjustFoodCap(p, calculatedFoodCap)
     });
 }
 
-export function player_giveRoundEndResources(round: number){
+export function player_giveStartOfDayResources(round: number){
 
     //Creates supply horses for the player
     forEachAlliedPlayer((player) => {
@@ -167,8 +186,6 @@ export function player_giveRoundEndResources(round: number){
         forEachUnitOfPlayerWithAbility(p, ABILITIES.replenishLifeAndMana, u => {
             u.mana = u.maxMana;
         });
-
-        adjustPlayerState(p, PLAYER_STATE_RESOURCE_FOOD_CAP, 5);
     })
 
     let totalIncomeBuildings = 0;
@@ -184,7 +201,7 @@ export function player_giveRoundEndResources(round: number){
 
     });
 
-    grantUpgradeBonuses();
+    grantStartOfDayBonuses();
 
     const baseGold = 250;
     const baseWood = 150;
@@ -214,4 +231,18 @@ export function player_giveRoundEndResources(round: number){
 
 export function adjustPlayerState(player: MapPlayer, whichState: playerstate, amount: number){
     player.setState(whichState, player.getState(whichState) + amount);
+}
+
+export function adjustGold(player: MapPlayer, amount: number){
+    player.setState(PLAYER_STATE_RESOURCE_GOLD, player.getState(PLAYER_STATE_RESOURCE_GOLD) + amount);
+}
+
+export function adjustWood(player: MapPlayer, amount: number){
+    player.setState(PLAYER_STATE_RESOURCE_LUMBER, player.getState(PLAYER_STATE_RESOURCE_LUMBER) + amount);
+}
+
+export function adjustFoodCap(player: MapPlayer, amount: number){
+    print("Adjusting food cap:", amount);
+
+    player.setState(PLAYER_STATE_RESOURCE_FOOD_CAP, player.getState(PLAYER_STATE_RESOURCE_FOOD_CAP) + amount);
 }

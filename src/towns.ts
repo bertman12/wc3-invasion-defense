@@ -7,20 +7,22 @@ export class TownManager {
 
 }
 
-
 export const primaryCapturableStructures = new Set([
     CUSTOM_UNITS.farmTown,
     CUSTOM_UNITS.barracks,
     CUSTOM_UNITS.blacksmith,
     CUSTOM_UNITS.castle,
     CUSTOM_UNITS.townHall,
+    CUSTOM_UNITS.capital,
+    CUSTOM_UNITS.arcaneSanctum,
 ])
 
 export const secondaryCapturableStructures = new Set([
     CUSTOM_UNITS.cannonTower,
     CUSTOM_UNITS.guardTower,
     CUSTOM_UNITS.rampartCannonTower,
-])
+    CUSTOM_UNITS.rampartGuardTower,
+]);
 
 export const allCapturableStructures = new Set([
     ...primaryCapturableStructures,

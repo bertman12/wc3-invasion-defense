@@ -46,6 +46,10 @@ function getNextUndeadPlayer(){
     return player;
 }
 
+function playPitLordSound(){
+    PlaySoundBJ(gg_snd_U08Archimonde19);
+}
+
 interface SpawnData {
     unitType: number;
     quantityPerWave: number;
@@ -117,11 +121,27 @@ function createSpawnData(currentRound: number):SpawnData[]{
         },
         //Gargoyles... lol
         {
-            quantityPerWave: 2,
+            quantityPerWave: 1,
             spawnRequirement(waveCount, waveInterval, roundDuration) {
                 return currentRound >= 3;
             },
             unitType: FourCC("ugar"),
+        },
+        //Flesh beetle
+        {
+            quantityPerWave: 1,
+            spawnRequirement(waveCount, waveInterval, roundDuration) {
+                return currentRound >=4 && waveCount % 2 === 0;
+            },
+            unitType: CUSTOM_UNITS.fleshBeetle
+        },
+        //demonFireArtillery
+        {
+            quantityPerWave: 1,
+            spawnRequirement(waveCount, waveInterval, roundDuration) {
+                return currentRound >= 7
+            },
+            unitType: CUSTOM_UNITS.demonFireArtillery
         },
         //Skeletal Orc Champion
         {
@@ -138,11 +158,12 @@ function createSpawnData(currentRound: number):SpawnData[]{
             spawnRequirement(waveCount, waveInterval, roundDuration) {
                 return waveCount === 5; //spawns the wave after 1 minute passes 
             },
-            onCreation: (u) => {
+            onCreation: (u: Unit | undefined) => {
                 if(!u) print("missing unit data in oncreation function");
                 if(u && u.isHero()){
                     u.setHeroLevel(currentRound * 2, false);
-                    PlaySoundBJ(gg_snd_U08Archimonde19);
+                    playPitLordSound();
+                    // PlaySoundBJ(gg_snd_U08Archimonde19);
                 }
                 
             }

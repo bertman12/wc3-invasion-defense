@@ -4,9 +4,9 @@ import { init_startingResources, initializePlayerStateInstances, initializePlaye
 import { init_map_triggers } from './init';
 import { forEachAlliedPlayer, forEachPlayer } from './utils/players';
 import { setup_transferTownControl } from './towns';
-import { FogModifier, Sound, Timer, Unit } from 'w3ts';
+import { FogModifier, Quest, Sound, Timer, Unit } from 'w3ts';
 import { TimerManager } from './shared/Timers';
-import { Players } from 'w3ts/globals';
+import { OrderId, Players } from 'w3ts/globals';
 import { tColor } from './utils/misc';
 
 const BUILD_DATE = compiletime(() => new Date().toUTCString());
@@ -23,6 +23,27 @@ function tsMain() {
     print(`Typescript: v${TS_VERSION}`);
     print(`Transpiler: v${TSTL_VERSION}`);
     print(" ");
+
+    Timer.create().start(1, false, () => {
+      const mapInfo = Quest.create()
+
+      if(mapInfo){
+        mapInfo.setTitle("Map Info");
+        mapInfo.setDescription("Created by JediMindTrix/NihilismIsDeath");
+        mapInfo.setIcon("ReplaceableTextures\\CommandButtons\\BTNPeasant.blp");
+      }
+
+      const commands = Quest.create()
+
+      if(commands){
+        commands.setTitle("Commands");
+        commands.setDescription(`
+        ${tColor("-start", "goldenrod")} : starts the round.
+        ${tColor("-end", "goldenrod")} : ends the round.
+        `);
+        commands.setIcon("ReplaceableTextures\\CommandButtons\\BTNClayFigurine.blp");
+      }
+    });
 
     Timer.create().start(5, false, () => {
       Sound.fromHandle(gg_snd_U08Archimonde19)?.start();
@@ -48,19 +69,19 @@ function tsMain() {
 
     TimerManager.trig_setup();
 
+    const u = Unit.create(Players[9], FourCC("hfoo"), 0,0)
+    u?.issueOrderAt(OrderId.Move, -300, 2850);
+    u?.setTimeScale(0.25);
     //For looking at minimap icons
     // Array.from(minimapIconPaths).forEach((path, index) => {
     //   CreateMinimapIcon(-20000 + (index*4000), 0, 255, 255, 255, path, FOG_OF_WAR_FOGGED);
     // });
-
-
 
     // forEachPlayer(p => {
     //   const clearFogState = FogModifier.create(Players[0], FOG_OF_WAR_VISIBLE, 0,0, 25000, true, true);
     //   clearFogState?.start();
     //   clearFogState?.destroy();
     // })
-
 
 
 

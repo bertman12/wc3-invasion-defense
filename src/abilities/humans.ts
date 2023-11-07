@@ -1,12 +1,13 @@
-import { ABILITIES } from "src/shared/enums";
+import { ABILITIES, CUSTOM_UNITS } from "src/shared/enums";
 import { tColor } from "src/utils/misc";
 import { forEachPlayer } from "src/utils/players";
-import { Force, Trigger, Unit } from "w3ts";
-import { Players } from "w3ts/globals";
+import { Force, MapPlayer, Trigger, Unit } from "w3ts";
+import { OrderId, Players } from "w3ts/globals";
 
 export function init_humanSpells(){
     // knightCharge();
     makeAlliance();
+    trig_hireFlyingMachine();
 }
 
 function makeAlliance(){
@@ -49,4 +50,28 @@ function makeAlliance(){
 
         return false;
     })
+}
+
+function trig_hireFlyingMachine(){
+    const t = Trigger.create();
+
+    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SPELL_CAST);
+    t.addCondition(() => {
+        const castedSpellId = GetSpellAbilityId();
+        const caster = Unit.fromEvent();
+        const triggeringPlayer = MapPlayer.fromHandle(GetTriggerPlayer());
+
+        const units: Unit[] = [];
+        
+        if(castedSpellId === ABILITIES.hireFlyingMachinePatrol && caster && triggeringPlayer){
+            while(units.length < 6){
+                const u = Unit.create(triggeringPlayer, CUSTOM_UNITS.flyingMachine, caster.x, caster.y);
+                if(u){
+                    units.push(u);
+                }
+            }
+        }
+
+        return false;
+    });
 }

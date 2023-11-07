@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Kingdom Zombie Defense
+Kingdom Zombie Defense Test
 }
 
 STRING 2
@@ -13,6 +13,8 @@ STRING 3
 Supply horses grant healing for units.
 Buildings will provide various upgrades depending on the building.
 Certain units are sold at different buildings.
+
+Hold out for 10 nights until reinforcements arrive.
 }
 
 STRING 4
@@ -27,7 +29,7 @@ Player 1
 
 STRING 7
 {
-Kingdom Zombie Defense
+alpha testing #2
 }
 
 STRING 9
@@ -44,18 +46,6 @@ STRING 12
 // Units: h001 (Supply Horse), Name (Name)
 {
 Supply Horse
-}
-
-STRING 13
-// Units: h000 (Militia), Tip (Tooltip - Basic)
-{
-Train Militia
-}
-
-STRING 14
-// Units: h000 (Militia), Ubertip (Tooltip - Extended)
-{
-Restock Time: <h000,stockRegen>
 }
 
 STRING 15
@@ -206,12 +196,6 @@ STRING 54
 The large stature of the knight and his steed tower over his foes, trampling them and dealing damage.
 }
 
-STRING 55
-// Units: hkni (Knight), Ubertip (Tooltip - Extended)
-{
-Powerful mounted warrior. Can trample his enemies and use his fierce lance to attack enemies.
-}
-
 STRING 56
 // Units: h002 (Farm ), Name (Name)
 {
@@ -230,22 +214,10 @@ STRING 58
 Train a General
 }
 
-STRING 59
-// Units: hcth (General), Ubertip (Tooltip - Extended)
-{
-Generals are strong , elite support units, bolstering the morale of your troops.
-}
-
 STRING 60
 // Abilities: S000 (Endurance Aura), EditorSuffix (Editor Suffix)
 {
 (General)
-}
-
-STRING 61
-// Abilities: S000 (Endurance Aura), Ubertip (Tooltip - Normal - Extended)
-{
-The general increases nearby friendly units' movement speed by <SCae,DataA1,%>% and attack rate by <SCae,DataB1,%>%.
 }
 
 STRING 62
@@ -362,12 +334,6 @@ STRING 82
 Train Engineer
 }
 
-STRING 83
-// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
-{
-Can repair buildings.
-}
-
 STRING 85
 // Units: n002 (Ogre Champion), Name (Name)
 {
@@ -396,12 +362,6 @@ STRING 90
 // Buffs/Effects: B000 (), Bufftip (Tooltip)
 {
 Slow Trap
-}
-
-STRING 91
-// Units: h005 (Caltrops), Tip (Tooltip - Basic)
-{
-Build Slow Trap
 }
 
 STRING 92
@@ -492,22 +452,10 @@ STRING 118
 Make Alliance
 }
 
-STRING 119
-// Abilities: A00A (Make Alliance), Ubertip (Tooltip - Normal - Extended)
-{
-Makes the owner of the target your ally.
-}
-
 STRING 120
 // Units: h006 (Diplomatic Offering), Name (Name)
 {
 Diplomatic Offering
-}
-
-STRING 122
-// Units: h006 (Diplomatic Offering), Ubertip (Tooltip - Extended)
-{
-Allows you to ally neutral factions.
 }
 
 STRING 123
@@ -562,12 +510,6 @@ STRING 136
 [Ally] - Kingdom of Alexandria
 }
 
-STRING 137
-// Abilities: A000 (Supplies), Ubertip (Tooltip - Normal - Extended)
-{
-Increases the supplies that supply type units can carry.
-}
-
 STRING 138
 // Units: Hpal (Paladin), Propernames (Proper Names)
 {
@@ -588,18 +530,320 @@ Stone Walls - Free Form Doodad
 
 STRING 141
 {
-Made by JediMindTrix/NihilismIsDeath
+Kingdom Zombie Defense 
 }
 
 STRING 142
 {
+Hold out for 10 nights until reinforcements arrive.
+
 Supply horses grant healing for units.
 Buildings will provide various upgrades depending on the building.
 Certain units are sold at different buildings.
+Food is increased by 5 after every night.
+
+
+
+Made by JediMindTrix/NihilismIsDeath
+
 }
 
 STRING 143
 {
 Undead Forces
+}
+
+STRING 144
+// Units: h005 (Caltrops), Tip (Tooltip - Basic)
+{
+Build Caltrops
+}
+
+STRING 145
+// Units: h008 (Rampart Cannon Tower), Name (Name)
+{
+Rampart Cannon Tower
+}
+
+STRING 146
+// Units: h008 (Rampart Cannon Tower), EditorSuffix (Name - Editor Suffix)
+{
+(Flying)
+}
+
+STRING 147
+// Units: h009 (Musketeer), Name (Name)
+{
+Musketeer
+}
+
+STRING 148
+// Abilities: A00B (Mana Imbued Powder), Name (Name)
+{
+Mana Imbued Powder
+}
+
+STRING 149
+// Abilities: A00B (Mana Imbued Powder), Tip (Tooltip - Normal)
+{
+Mana Imbued Powder
+}
+
+STRING 150
+// Abilities: A00B (Mana Imbued Powder), Ubertip (Tooltip - Normal - Extended)
+{
+Adds 100 bonus fire damage to an attack against enemies, but drains mana with each shot fired.
+}
+
+STRING 151
+// Units: n004 (War Bear), Name (Name)
+{
+War Bear
+}
+
+STRING 152
+// Abilities: A000 (Supplies), Ubertip (Tooltip - Normal - Extended)
+{
+Increases the supplies(mana) that supply type units can carry.
+}
+
+STRING 153
+// Units: h009 (Musketeer), Tip (Tooltip - Basic)
+{
+Enlist Musketeer
+}
+
+STRING 154
+// Units: h009 (Musketeer), Ubertip (Tooltip - Extended)
+{
+Highly skilled sharpshooter. Can use mana imbued powder for powerful shots. |n|n|cffffcc00Attacks land and air units.|r
+}
+
+STRING 155
+// Units: N005 (Pit Lord), Propernames (Proper Names)
+{
+Theodemir,Theodahad,Illdibad,Eararic,Totila,Teia,Valamir,Thiudimer
+}
+
+STRING 156
+// Units: h000 (Militia), Tip (Tooltip - Basic)
+{
+Enlist Local Militia
+}
+
+STRING 157
+// Units: h000 (Militia), Ubertip (Tooltip - Extended)
+{
+Disgruntled and poorly equipped serfs, able to be levied quickly.
+}
+
+STRING 158
+// Units: h006 (Diplomatic Offering), Ubertip (Tooltip - Extended)
+{
+Allows you to ally factions that have [Neutral] in their name.
+}
+
+STRING 159
+// Abilities: A00A (Make Alliance), Ubertip (Tooltip - Normal - Extended)
+{
+Allows you to ally factions that have [Neutral] in their name.
+}
+
+STRING 160
+// Units: h00A (Rampart Guard Tower), Name (Name)
+{
+Rampart Guard Tower
+}
+
+STRING 161
+// Units: h00A (Rampart Guard Tower), EditorSuffix (Name - Editor Suffix)
+{
+(Flying)
+}
+
+STRING 162
+// Units: n004 (War Bear), Tip (Tooltip - Basic)
+{
+Train War Bear
+}
+
+STRING 163
+// Units: n004 (War Bear), Ubertip (Tooltip - Extended)
+{
+A heavy melee unit, with cleaving armor, bash and resistant skin.
+}
+
+STRING 164
+// Units: hcth (General), Ubertip (Tooltip - Extended)
+{
+An elite support unit, bolstering the morale of your troops.
+}
+
+STRING 165
+// Abilities: S000 (Endurance Aura), Ubertip (Tooltip - Normal - Extended)
+{
+The general increases nearby friendly units' movement speed by 25% and attack rate by 25%. |n|nAt least one general should be present to support an army.
+}
+
+STRING 166
+// Abilities: A00C (Food Income), Name (Name)
+{
+Food Income
+}
+
+STRING 169
+// Abilities: A00C (Food Income), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 170
+// Abilities: A00C (Food Income), Tip (Tooltip - Normal)
+{
+Food Income - Info Ability
+}
+
+STRING 171
+// Abilities: A00C (Food Income), Ubertip (Tooltip - Normal - Extended)
+{
+Grants +5 food per round.
+}
+
+STRING 172
+// Units: Nalc (Alchemist), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 173
+// Units: Nbst (Beastmaster), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 174
+// Units: Npbm (Brewmaster), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 175
+// Units: Nbrn (Dark Ranger), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 176
+// Units: Nfir (Firelord), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 177
+// Units: Nplh (Pit Lord), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 178
+// Units: Nngs (Sea Witch), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 179
+// Units: Ntin (Tinker), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 180
+// Units: Hmkg (Mountain King), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 181
+// Units: Hblm (Blood Mage), Propernames (Proper Names)
+{
+Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 182
+// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
+{
+Can repair buildings and builds a camp with supplies and Caltrops to slow down the enemy.
+}
+
+STRING 183
+// Units: hkni (Knight), Ubertip (Tooltip - Extended)
+{
+Powerful mounted warrior. Can trample his enemies and use his fierce lance to attack enemies. |n|nKnights excel when in large nubmers on open fields where many can charge at once and retreat.
+}
+
+STRING 184
+// Units: n007 (Demon Fire Artillery), Name (Name)
+{
+Demon Fire Artillery
+}
+
+STRING 185
+// Units: u002 (Flesh Beetle), Name (Name)
+{
+Flesh Beetle
+}
+
+STRING 186
+// Abilities: A00D (Cleaving Attack), EditorSuffix (Editor Suffix)
+{
+(Flesh Beetle)
+}
+
+STRING 187
+// Abilities: A00E (Burning Oil), EditorSuffix (Editor Suffix)
+{
+(Demon Flame Artillery)
+}
+
+STRING 188
+// Units: h00B (Capital City), Name (Name)
+{
+Capital City
+}
+
+STRING 189
+// Abilities: A00F (Base - Null Click Ability), Name (Name)
+{
+Base - Null Click Ability
+}
+
+STRING 192
+// Abilities: A00G (Rally Flying Machine Patrol), Ubertip (Tooltip - Normal - Extended)
+{
+Sends a patrol squad of flying machines.
+}
+
+STRING 193
+// Abilities: A00H (Mass Teleport), EditorSuffix (Editor Suffix)
+{
+(unit)
+}
+
+STRING 194
+// Abilities: A00H (Mass Teleport), Ubertip (Tooltip - Normal - Extended)
+{
+Teleports all of the player's nearby units to a friendly ground unit or structure.
+}
+
+STRING 195
+// Abilities: A00G (Rally Flying Machine Patrol), Name (Name)
+{
+Rally Flying Machine Patrol
+}
+
+STRING 196
+// Abilities: A00G (Rally Flying Machine Patrol), Tip (Tooltip - Normal)
+{
+Rally Flying Machine Patrol
 }
 

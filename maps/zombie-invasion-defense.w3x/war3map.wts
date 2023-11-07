@@ -136,12 +136,6 @@ STRING 43
 Income
 }
 
-STRING 44
-// Abilities: A002 (Income), Ubertip (Tooltip - Normal - Extended)
-{
-Increases income after every round.
-}
-
 STRING 45
 // Abilities: A001 (Base - Info Ability), EditorSuffix (Editor Suffix)
 {
@@ -194,12 +188,6 @@ STRING 54
 // Abilities: A003 (Trample), Ubertip (Tooltip - Normal - Extended)
 {
 The large stature of the knight and his steed tower over his foes, trampling them and dealing damage.
-}
-
-STRING 55
-// Units: hkni (Knight), Ubertip (Tooltip - Extended)
-{
-Powerful mounted warrior. Can trample his enemies and use his fierce lance to attack enemies.
 }
 
 STRING 56
@@ -338,12 +326,6 @@ STRING 82
 // Units: n000 (Engineer), Tip (Tooltip - Basic)
 {
 Train Engineer
-}
-
-STRING 83
-// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
-{
-Can repair buildings.
 }
 
 STRING 85
@@ -715,12 +697,6 @@ STRING 170
 Food Income - Info Ability
 }
 
-STRING 171
-// Abilities: A00C (Food Income), Ubertip (Tooltip - Normal - Extended)
-{
-Grants +5 food per round.
-}
-
 STRING 172
 // Units: Nalc (Alchemist), Propernames (Proper Names)
 {
@@ -779,5 +755,131 @@ STRING 181
 // Units: Hblm (Blood Mage), Propernames (Proper Names)
 {
 Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
+}
+
+STRING 182
+// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
+{
+Can repair buildings and builds a camp with supplies and Caltrops to slow down the enemy.
+}
+
+STRING 183
+// Units: hkni (Knight), Ubertip (Tooltip - Extended)
+{
+Powerful mounted warrior. Can trample his enemies and use his fierce lance to attack enemies. |n|nKnights excel when in large nubmers on open fields where many can charge at once and retreat.
+}
+
+STRING 184
+// Units: n007 (Demon Fire Artillery), Name (Name)
+{
+Demon Fire Artillery
+}
+
+STRING 185
+// Units: u002 (Flesh Beetle), Name (Name)
+{
+Flesh Beetle
+}
+
+STRING 186
+// Abilities: A00D (Cleaving Attack), EditorSuffix (Editor Suffix)
+{
+(Flesh Beetle)
+}
+
+STRING 187
+// Abilities: A00E (Burning Oil), EditorSuffix (Editor Suffix)
+{
+(Demon Flame Artillery)
+}
+
+STRING 188
+// Units: h00B (Capital City), Name (Name)
+{
+Capital City
+}
+
+STRING 189
+// Abilities: A00F (Base - Null Click Ability), Name (Name)
+{
+Base - Null Click Ability
+}
+
+STRING 192
+// Abilities: A00G (Rally Flying Machine Patrol), Ubertip (Tooltip - Normal - Extended)
+{
+Sends a patrol squad of flying machines.
+}
+
+STRING 193
+// Abilities: A00H (Mass Teleport), EditorSuffix (Editor Suffix)
+{
+(unit)
+}
+
+STRING 194
+// Abilities: A00H (Mass Teleport), Ubertip (Tooltip - Normal - Extended)
+{
+Teleports all of the player's nearby units to a friendly ground unit or structure.
+}
+
+STRING 195
+// Abilities: A00G (Rally Flying Machine Patrol), Name (Name)
+{
+Rally Flying Machine Patrol
+}
+
+STRING 196
+// Abilities: A00G (Rally Flying Machine Patrol), Tip (Tooltip - Normal)
+{
+Rally Flying Machine Patrol
+}
+
+STRING 197
+// Units: h00C (Grainery), Name (Name)
+{
+Grainery
+}
+
+STRING 198
+// Units: h00C (Grainery), EditorSuffix (Name - Editor Suffix)
+{
+(Town)
+}
+
+STRING 202
+// Abilities: A00I (Food Reserves), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 204
+// Abilities: A002 (Income), Ubertip (Tooltip - Normal - Extended)
+{
+Grants gold at the start of each day.
+}
+
+STRING 205
+// Abilities: A00C (Food Income), Ubertip (Tooltip - Normal - Extended)
+{
+Increases the food cap by 5 at the start of each day.
+}
+
+STRING 206
+// Abilities: A00I (Food Reserves), Name (Name)
+{
+Food Reserves
+}
+
+STRING 207
+// Abilities: A00I (Food Reserves), Ubertip (Tooltip - Normal - Extended)
+{
+Provides a flat bonus to the food cap at the start of each day.
+}
+
+STRING 208
+// Abilities: A00I (Food Reserves), Tip (Tooltip - Normal)
+{
+Food Reserves
 }
 
