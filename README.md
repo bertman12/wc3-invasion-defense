@@ -202,3 +202,22 @@ make mules and peasants transport the end of round goods to the capital city.
 increase daytime.
 
 add upgrade to increase pack horse speed of those carrying wood, gold, etc
+
+
+tell players about zombie behvario, which structures they will attack first
+
+
+====11-8-23
+move the spawns closer once the north base has been destroyed. The base has been destroyed, enemies will spawn closer now. 
+
+increase stocks available, decrease price a little bit.
+
+add scout tower to the engineer.
+
+make button to rally trained units to hero
+
+
+make caltops only usable during the day using upgrades
+
+make some rounds have concentrated undead forces and make them stronger instead of increasing numbers.
+

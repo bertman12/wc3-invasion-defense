@@ -15,7 +15,9 @@ export const primaryCapturableStructures = new Set([
     CUSTOM_UNITS.townHall,
     CUSTOM_UNITS.capital,
     CUSTOM_UNITS.arcaneSanctum,
-])
+    CUSTOM_UNITS.granary,
+    CUSTOM_UNITS.lumberMill,
+]);
 
 export const secondaryCapturableStructures = new Set([
     CUSTOM_UNITS.cannonTower,

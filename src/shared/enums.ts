@@ -3,6 +3,7 @@ export enum ABILITIES {
     charge = FourCC("A005"),
     supplies = FourCC("A000"),
     income = FourCC("A002"),
+    lumberIncome = FourCC("A00J"),
     armorUpgrade = FourCC("A006"),
     weaponUpgrade = FourCC("A007"),
     makeAlliance = FourCC("A00A"),
@@ -34,6 +35,8 @@ export enum CUSTOM_UNITS {
     workshop = FourCC("harm"),
     flyingMachine = FourCC("hgyr"),
     arcaneSanctum = FourCC("hars"),
+    lumberMill = FourCC("hlum"),
+    granary = FourCC("h00C"),
 }
 
 //Can find looking up models for a spell at the Art - Target field

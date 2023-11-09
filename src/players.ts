@@ -1,9 +1,10 @@
-import { Camera, Force, Group, MapPlayer, Timer, Trigger, Unit, color } from "w3ts";
+import { Camera, Force, Group, MapPlayer, Sound, Timer, Trigger, Unit, color } from "w3ts";
 import { Players } from "w3ts/globals";
 import { forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayerWithAbility, forEachUnitTypeOfPlayer } from "./utils/players";
 import { ABILITIES, UpgradeCodes } from "./shared/enums";
 import { tColor } from "./utils/misc";
 import { RoundManager } from "./shared/round-manager";
+import { economicConstants } from "./shared/constants";
 
 const playerStates = new Map<number, PlayerState>();
 
@@ -39,7 +40,8 @@ function trig_heroDies(){
         const u = Unit.fromHandle(GetDyingUnit());
 
         if(u && u.isHero() && u.owner.race !== RACE_UNDEAD){
-            print("Your hero will revive in 15 seconds.");
+            Sound.fromHandle(gg_snd_QuestFailed)?.start();
+            print(`${tColor("!", "goldenrod")} - Your hero will revive in 15 seconds.`);
             const timer = Timer.create();
 
             timer.start(15, false, () => {
@@ -53,7 +55,7 @@ function trig_heroDies(){
     })
 }
 
-function trig_killSheep(){
+function trig_heroPurchase(){
     const t = Trigger.create();
 
     t.registerAnyUnitEvent( EVENT_PLAYER_UNIT_SELL)
@@ -74,30 +76,32 @@ function trig_killSheep(){
         createdUnit.x = -300;
         createdUnit.y = -300;
         createdUnit?.addItemById(FourCC("cnob"));
+        createdUnit?.addItemById(FourCC("ankh"));
+        createdUnit?.addItemById(FourCC("stel"));
 
         SetCameraPositionForPlayer(buyingUnit.owner.handle, createdUnit.x, createdUnit.y);
     });
 }
 
 export function initializePlayers(){
-    trig_killSheep();
+    trig_heroPurchase();
     trig_heroDies();
     forEachAlliedPlayer((p, index) => {
         //Create Sheep
         const u = Unit.create(p, FourCC("nshe"), 18600 + (25 * index), -28965);
         if(u) SetCameraPositionForPlayer(p.handle, u.x, u.y);
   
-        SetPlayerAllianceBJ(p.handle, ALLIANCE_PASSIVE, true, Players[18].handle);
-        SetPlayerAllianceBJ(p.handle, ALLIANCE_SHARED_VISION_FORCED, true, Players[18].handle);
-        SetPlayerAllianceBJ(p.handle, ALLIANCE_PASSIVE, true, Players[19].handle);
-        SetPlayerAllianceBJ(p.handle, ALLIANCE_SHARED_VISION_FORCED, true, Players[19].handle);
-        MeleeStartingHeroLimit();
+        // SetPlayerAllianceBJ(p.handle, ALLIANCE_PASSIVE, true, Players[18].handle);
+        // SetPlayerAllianceBJ(p.handle, ALLIANCE_SHARED_VISION_FORCED, true, Players[18].handle);
+        // SetPlayerAllianceBJ(p.handle, ALLIANCE_PASSIVE, true, Players[19].handle);
+        // SetPlayerAllianceBJ(p.handle, ALLIANCE_SHARED_VISION_FORCED, true, Players[19].handle);
+        // MeleeStartingHeroLimit();
 
       });
 
       //Setup round end functions
-      RoundManager.onRoundEnd((round) => {
-        print("my on round end callback fn was used");
+      RoundManager.onDayStart((round) => {
+        // print("my on round end callback fn was used");
         player_giveStartOfDayResources(round);
       });
 }
@@ -139,7 +143,8 @@ function grantStartOfDayBonuses(){
     let armorUpgradeCount = 0;
     let foodReserveStructures = 0;
     const basePlayerFoodCap = 20;
-    const foodRoundBonus = 5 ;
+
+    const foodRoundBonus = 5 * RoundManager.currentRound;
 
     forEachAlliedPlayer((p) => {
         forEachUnitOfPlayerWithAbility(p, ABILITIES.supplies, (u) => {
@@ -154,17 +159,22 @@ function grantStartOfDayBonuses(){
         forEachUnitOfPlayerWithAbility(p, ABILITIES.foodCapBonus, (u) => {
             foodReserveStructures++;
         });
+
     });
 
     const calculatedFoodCap = basePlayerFoodCap + foodRoundBonus + 2*foodReserveStructures;
     
-    print("Calculated food cap:", calculatedFoodCap);
-    print("foodReserveStructures: ", foodReserveStructures);
+    // print("Calculated food cap:", calculatedFoodCap);
+    // print("foodReserveStructures: ", foodReserveStructures);
 
     forEachAlliedPlayer(p => {
+        //Reset to 0
         p.setTechResearched(UpgradeCodes.armor, 0);
         p.setTechResearched(UpgradeCodes.meleeWeapons, 0);
         p.setTechResearched(UpgradeCodes.supplyUpgrade, 0);
+        p.setState(PLAYER_STATE_RESOURCE_FOOD_CAP, 0);
+
+        //Adjust accordingly
         p.setTechResearched(UpgradeCodes.armor, armorUpgradeCount);
         p.setTechResearched(UpgradeCodes.meleeWeapons, meleeWeaponUpgradeCount);
         p.setTechResearched(UpgradeCodes.supplyUpgrade, totalSupplyBuildings);
@@ -190,6 +200,7 @@ export function player_giveStartOfDayResources(round: number){
 
     let totalIncomeBuildings = 0;
     let totalSupplyBuildings = 0;
+    let lumberAbilityCount = 0;
 
     forEachAlliedPlayer((p) => {
         forEachUnitOfPlayerWithAbility(p, ABILITIES.income, (u) => {
@@ -198,34 +209,40 @@ export function player_giveStartOfDayResources(round: number){
         forEachUnitOfPlayerWithAbility(p, ABILITIES.supplies, (u) => {
             totalSupplyBuildings++;
         });
-
+        forEachUnitOfPlayerWithAbility(p, ABILITIES.lumberIncome, (u) => {
+            lumberAbilityCount++;
+        });
     });
-
+    
     grantStartOfDayBonuses();
 
-    const baseGold = 250;
-    const baseWood = 150;
-    const roundGold = 100 * round;
-    const roundWood = 50 * round;
-    const incomeBuildingGold = 50 * totalIncomeBuildings;
-    const incomeBuildingWood = 25 * totalIncomeBuildings;
+    const baseGold = 100;
+    const baseWood = 100;
+    const roundGold = 10 * round;
+    const roundWood = 10 * round;
+
+    const incomeBuildingGold = 25 * totalIncomeBuildings;
+    const lumberIncome = economicConstants.lumberIncomeAbility * lumberAbilityCount;
+
+    const totalGold = baseGold + roundGold + incomeBuildingGold;
+    const totalLumber = baseWood + roundWood + lumberIncome;
 
     print("===Income Report===");
     print(`${tColor("Base Amount", "goldenrod")} - ${tColor("Gold", "yellow")}: ${baseGold}`);
-    print(`${tColor("Completed Round", "goldenrod")} #${round} - ${tColor("Gold", "yellow")}: ${roundGold}`);
+    print(`${tColor("Round Bonus", "goldenrod")} #${round} - ${tColor("Gold", "yellow")}: ${roundGold}`);
     print(`${tColor("Income Buildings", "goldenrod")} (${totalIncomeBuildings}) - ${tColor("Gold", "yellow")}: ${incomeBuildingGold}`);
-    print(`${tColor("Total", "goldenrod")}: ${tColor("Gold", "yellow")}: ${baseGold + roundGold + incomeBuildingGold}`);
+    print(`${tColor("Total", "goldenrod")}: ${tColor("Gold", "yellow")}: ${totalGold}`);
     print("                                  ");
-    print(`${tColor("Base Amount", "goldenrod")} - ${tColor("Wood", "green")} - ${baseWood}`);
-    print(`${tColor("Completed Round", "goldenrod")} #${round} - ${tColor("Wood", "green")}: ${roundWood}`);
-    print(`${tColor("Income Buildings", "goldenrod")} (${totalIncomeBuildings}) - ${tColor("Wood", "green")}: ${incomeBuildingWood}`);
-    print(`${tColor("Total", "goldenrod")}: ${tColor("Wood", "green")}: ${baseWood + roundWood + incomeBuildingWood}`);
+    print(`${tColor("Base Amount", "goldenrod")} - ${tColor("Lumber", "green")} - ${baseWood}`);
+    print(`${tColor("Round Bonus", "goldenrod")} #${round} - ${tColor("Lumber", "green")}: ${roundWood}`);
+    print(`${tColor("Income Buildings", "goldenrod")} (${totalIncomeBuildings}) - ${tColor("Lumber", "green")}: ${lumberIncome}`);
+    print(`${tColor("Total", "goldenrod")}: ${tColor("Lumber", "green")}: ${totalLumber}`);
     print("==================");
 
     //Gives gold and wood
     forEachAlliedPlayer((player) => {
-        adjustPlayerState(player, PLAYER_STATE_RESOURCE_GOLD, baseGold + roundGold + incomeBuildingGold);
-        adjustPlayerState(player, PLAYER_STATE_RESOURCE_LUMBER, baseWood + roundWood + incomeBuildingWood);
+        adjustGold(player, totalGold)
+        adjustLumber(player, totalLumber);
     });
 }
 
@@ -237,12 +254,12 @@ export function adjustGold(player: MapPlayer, amount: number){
     player.setState(PLAYER_STATE_RESOURCE_GOLD, player.getState(PLAYER_STATE_RESOURCE_GOLD) + amount);
 }
 
-export function adjustWood(player: MapPlayer, amount: number){
+export function adjustLumber(player: MapPlayer, amount: number){
     player.setState(PLAYER_STATE_RESOURCE_LUMBER, player.getState(PLAYER_STATE_RESOURCE_LUMBER) + amount);
 }
 
 export function adjustFoodCap(player: MapPlayer, amount: number){
-    print("Adjusting food cap:", amount);
+    // print("Adjusting food cap:", amount);
 
     player.setState(PLAYER_STATE_RESOURCE_FOOD_CAP, player.getState(PLAYER_STATE_RESOURCE_FOOD_CAP) + amount);
 }

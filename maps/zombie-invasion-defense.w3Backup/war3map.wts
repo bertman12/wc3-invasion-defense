@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Kingdom Zombie Defense Test
+Kingdom Zombie Defense alpha test 3
 }
 
 STRING 2
@@ -29,7 +29,7 @@ Player 1
 
 STRING 7
 {
-alpha testing #2
+alpha testing #3
 }
 
 STRING 9
@@ -134,12 +134,6 @@ STRING 43
 // Abilities: A002 (Income), Tip (Tooltip - Normal)
 {
 Income
-}
-
-STRING 44
-// Abilities: A002 (Income), Ubertip (Tooltip - Normal - Extended)
-{
-Increases income after every round.
 }
 
 STRING 45
@@ -703,12 +697,6 @@ STRING 170
 Food Income - Info Ability
 }
 
-STRING 171
-// Abilities: A00C (Food Income), Ubertip (Tooltip - Normal - Extended)
-{
-Grants +5 food per round.
-}
-
 STRING 172
 // Units: Nalc (Alchemist), Propernames (Proper Names)
 {
@@ -845,5 +833,107 @@ STRING 196
 // Abilities: A00G (Rally Flying Machine Patrol), Tip (Tooltip - Normal)
 {
 Rally Flying Machine Patrol
+}
+
+STRING 198
+// Units: h00C (Granary), EditorSuffix (Name - Editor Suffix)
+{
+(Town)
+}
+
+STRING 202
+// Abilities: A00I (Food Reserves), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 204
+// Abilities: A002 (Income), Ubertip (Tooltip - Normal - Extended)
+{
+Grants gold at the start of each day.
+}
+
+STRING 205
+// Abilities: A00C (Food Income), Ubertip (Tooltip - Normal - Extended)
+{
+Increases the food cap by 5 at the start of each day.
+}
+
+STRING 206
+// Abilities: A00I (Food Reserves), Name (Name)
+{
+Food Reserves
+}
+
+STRING 207
+// Abilities: A00I (Food Reserves), Ubertip (Tooltip - Normal - Extended)
+{
+Provides a flat bonus to the food cap at the start of each day.
+}
+
+STRING 208
+// Abilities: A00I (Food Reserves), Tip (Tooltip - Normal)
+{
+Food Reserves
+}
+
+STRING 209
+// Abilities: A00J (Lumber Income - Info Ability), Name (Name)
+{
+Lumber Income - Info Ability
+}
+
+STRING 210
+// Abilities: A00J (Lumber Income - Info Ability), Tip (Tooltip - Normal)
+{
+Lumber Income - Info Ability
+}
+
+STRING 211
+// Abilities: A00J (Lumber Income - Info Ability), Ubertip (Tooltip - Normal - Extended)
+{
+Grants lumber at the start of each day.
+}
+
+STRING 212
+// Abilities: A00J (Lumber Income - Info Ability), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 213
+// Units: h00C (Granary), Name (Name)
+{
+Granary
+}
+
+STRING 214
+// Units: h00D (River Ford ), Name (Name)
+{
+River Ford 
+}
+
+STRING 215
+// Units: h00D (River Ford ), Tip (Tooltip - Basic)
+{
+River Ford 
+}
+
+STRING 216
+// Units: h00D (River Ford ), Ubertip (Tooltip - Extended)
+{
+Slows down the movement speed of nearby enemies.
+}
+
+STRING 217
+// Units: h00D (River Ford ), EditorSuffix (Name - Editor Suffix)
+{
+(invis)
+}
+
+STRING 218
+// Abilities: A00K (Slow Aura), EditorSuffix (Editor Suffix)
+{
+(River Ford)
 }
 

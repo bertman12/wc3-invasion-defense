@@ -5,6 +5,7 @@ import { allCapturableStructures, primaryCapturableStructures } from "./towns";
 import { tColor } from "./utils/misc";
 import { CUSTOM_UNITS, MinimapIconPath } from "./shared/enums";
 import { TimerManager } from "./shared/Timers";
+import { RoundManager } from "./shared/round-manager";
 
 export const zombieMapPlayer = Players[20];
 
@@ -61,16 +62,15 @@ interface SpawnData {
     onCreation?: (u: Unit) => void;
 }
 
-function createSpawnData(currentRound: number):SpawnData[]{
-    const meatWagonCount = currentRound;
-    const archerCount = 2 + currentRound;
-    const zombieCount = 4 + 4 * currentRound;
+function createSpawnData(currentRound: number, spawnCount: number):SpawnData[]{
     //could make spawn quantity cyclic with trig functions
+    
+    const spawnModifier = 4/spawnCount - 1;
 
     const undeadSpawnData:SpawnData[] = [
         //Abomination
         {
-            quantityPerWave: 1,
+            quantityPerWave: 1 + Math.floor(spawnModifier),
             unitType: FourCC("uabo"),
             spawnRequirement(waveCount: number, waveInterval: number, roundDuration: number) {
                 return waveCount * waveInterval >= roundDuration*(0.35);                
@@ -80,7 +80,7 @@ function createSpawnData(currentRound: number):SpawnData[]{
         },
         //Meat Wagon
         {
-            quantityPerWave: meatWagonCount,
+            quantityPerWave: currentRound,
             unitType: FourCC("umtw"),
             spawnRequirement(waveCount: number, waveInterval: number, roundDuration: number) {
                 return waveCount % 3 === 0;               
@@ -88,7 +88,7 @@ function createSpawnData(currentRound: number):SpawnData[]{
         },
         //Skeletal Mages
         {
-            quantityPerWave: 1,
+            quantityPerWave: 1 + Math.floor(spawnModifier/2),
             unitType: FourCC("u000"),
             
         },
@@ -99,16 +99,15 @@ function createSpawnData(currentRound: number):SpawnData[]{
                 return currentRound >=2;
             },
             unitType: FourCC("u001"),
-            
         },
         //Skeletal Archers
         {
-            quantityPerWave: archerCount,
+            quantityPerWave: 2 + currentRound,
             unitType: FourCC("nskm"),
         },
         //Zombie
         {
-            quantityPerWave: zombieCount,
+            quantityPerWave: 4 + Math.floor(spawnModifier) + 4*currentRound,
             unitType: FourCC("nzom"),
         },
         //Obsidian Statues
@@ -147,7 +146,7 @@ function createSpawnData(currentRound: number):SpawnData[]{
         {
             quantityPerWave: 1 + currentRound,
             spawnRequirement(waveCount, waveInterval, roundDuration) {
-                return  currentRound >= 2;
+                return  currentRound >= 5;
             },
             unitType: FourCC("nsoc"),
         },
@@ -156,7 +155,7 @@ function createSpawnData(currentRound: number):SpawnData[]{
             quantityPerWave: currentRound,
             unitType: CUSTOM_UNITS.boss_pitLord,
             spawnRequirement(waveCount, waveInterval, roundDuration) {
-                return waveCount === 5; //spawns the wave after 1 minute passes 
+                return waveCount === 5 && currentRound > 1; //spawns the wave after 1 minute passes 
             },
             onCreation: (u: Unit | undefined) => {
                 if(!u) print("missing unit data in oncreation function");
@@ -173,61 +172,84 @@ function createSpawnData(currentRound: number):SpawnData[]{
     return undeadSpawnData;
 }
 
+interface zombieArgs {
+    finalWaveTimer: Timer;
+    spawnUnitForces: Unit[][];
+    forceTargetEffects: Effect[];
+    spawnLocationIcons:minimapicon[];
+    spawnAttackTargetIcon: minimapicon[];
+}
+
+export function setup_zombies(){
+
+    const passByRefArg:zombieArgs ={
+        finalWaveTimer: Timer.create(),
+        spawnUnitForces: [],
+        forceTargetEffects: [],
+        spawnLocationIcons: [],
+        spawnAttackTargetIcon: [],
+    }
+
+    RoundManager.onNightStart((round) => spawnZombies(round, passByRefArg));
+
+    RoundManager.onDayStart(() => {
+        cleanupZombies(passByRefArg);
+    });
+}
+
+/**
+ * what happened is we extracted the state from our spawn function to moved it up a level to be accessible outside teh function which means we can now use this state to make a separate cleanup function 
+ */
+function cleanupZombies(passByRefArg: zombieArgs){
+    passByRefArg.spawnLocationIcons.forEach(icon => DestroyMinimapIcon(icon));
+    passByRefArg.forceTargetEffects.forEach(eff => eff.destroy());
+    passByRefArg.spawnAttackTargetIcon.forEach(icon => DestroyMinimapIcon(icon));
+
+    passByRefArg.spawnUnitForces.forEach(unitForce =>{
+        unitForce.forEach((u, index) => {
+            //Kill 95% remaining undead units
+            if(index/unitForce.length < 0.95){
+                u.kill()
+            }
+            else{
+                //Order the rest to attack the capital city
+                u.issueOrderAt(OrderId.Attack, 0,0);
+            }
+        } );
+    });
+
+    //Resetting to initial values
+    passByRefArg.forceTargetEffects = [];
+    passByRefArg.spawnUnitForces = [];
+    passByRefArg.spawnLocationIcons = [];
+    passByRefArg.spawnAttackTargetIcon = [];
+}
+
 /**
  * The number of spawning zombies and which kinds will be determined by the current round number,
  * the number of towns under zombie control and which towns are under their control.
  * 
  * We should also consider the number of players remaining? Or number of players when game started.
- *
  * We are going to want the undead to spawn from multiple locations , with varying size of force 
- *  
  * The next step is to choose the points of attacks for zombies.
- * 
  * @todo Spawn more zombies if they control towns.
  */
-export function spawnZombies(currentRound: number, onEnd?: (...args: any) => void) {
-
+export function spawnZombies(currentRound: number, passByRefArg: zombieArgs) {
     const WAVE_INTERVAL = 15;
-    const finalWaveTimer = Timer.create();
     const zombieAttackForces = 2;
-    const spawns = chooseZombieSpawns(zombieAttackForces);
-    const spawnUnitForces: Unit[][] = spawns.map(_ => []);
+
+    const spawns = chooseZombieSpawns();
     const spawnForceCurrentTarget:Unit[] = [];
-    const forceTargetEffects: Effect[] = [];
-    const spawnLocationIcons:minimapicon[] = [];
-    const spawnAttackTargetIcon: minimapicon[] = [];
-    const spawnData :SpawnData[] = createSpawnData(currentRound);
+    const spawnData :SpawnData[] = createSpawnData(currentRound, spawns.length);
+    passByRefArg.spawnUnitForces = spawns.map(_ => []);
 
-    TimerManager.startNightTimer(() => {
-        spawnLocationIcons.forEach(icon => DestroyMinimapIcon(icon));
-        forceTargetEffects.forEach(eff => eff.destroy());
-        spawnAttackTargetIcon.forEach(icon => DestroyMinimapIcon(icon));
-
-        spawnUnitForces.forEach(unitForce =>{
-            unitForce.forEach((u, index) => {
-                //Kill every 2nd and 3rd enemy, leaving behind only 1/3 of the enemies 
-                if(index/unitForce.length < 0.90){
-                    u.kill()
-                }
-                else{
-                    //Order the rest to attack the capital city
-                    u.issueOrderAt(OrderId.Attack, 0,0);
-                }
-            } );
-        });
-
-        if(onEnd){
-            onEnd();
-        }
-
-        finalWaveTimer.destroy();
-    });
+    //We want to get the zombies that are stuck in spawn from the previous night and send them with the first wave of the current night
 
     //Creating minimap icons for spawn locations
     spawns.forEach(spawn => {
         const icon = CreateMinimapIcon(spawn.centerX, spawn.centerY, 255, 255, 255, 'UI\\Minimap\\MiniMap-Boss.mdl', FOG_OF_WAR_FOGGED);
         if(icon){
-            spawnLocationIcons.push(icon);
+            passByRefArg.spawnLocationIcons.push(icon);
         }
     });
 
@@ -236,7 +258,8 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
     let waveCount = 0;
 
     //End the spawning of zombies 1 wave interval before the round ends so zombies aren't spawning at the very end of the round.    
-    finalWaveTimer.start(TimerManager.nightTimeDuration - WAVE_INTERVAL, false, () => {
+    passByRefArg.finalWaveTimer.start(TimerManager.nightTimeDuration - WAVE_INTERVAL, false, () => {
+        // print("destroying wave timer");
         waveTimer.destroy();
     });
 
@@ -256,12 +279,12 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
                 if(data.spawnRequirement && data.spawnRequirement(waveCount, WAVE_INTERVAL, TimerManager.nightTimeDuration)){
                     // const units = spawnUndeadUnitType.call(data, data.unitType, data.quantityPerWave, xPos, yPos, data);
                     const units = spawnUndeadUnitType(data.unitType, data.quantityPerWave, xPos, yPos, data);
-                    spawnUnitForces[index].push(...units); 
+                    passByRefArg.spawnUnitForces[index].push(...units); 
                     newestSpawnedUnits.push(...units);
                 }
                 else if(!data.spawnRequirement){
                     const units = spawnUndeadUnitType(data.unitType, data.quantityPerWave, xPos, yPos, data);
-                    spawnUnitForces[index].push(...units); 
+                    passByRefArg.spawnUnitForces[index].push(...units); 
                     newestSpawnedUnits.push(...units);
                 }
             });
@@ -278,8 +301,8 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
 
                 const effect = Effect.create("Abilities\\Spells\\NightElf\\TrueshotAura\\TrueshotAura.mdl", currentTarget.x, currentTarget.y);
                 if(effect){
-                    if(forceTargetEffects[index]) forceTargetEffects[index].destroy();
-                    forceTargetEffects[index] = effect;
+                    if(passByRefArg.forceTargetEffects[index]) passByRefArg.forceTargetEffects[index].destroy();
+                    passByRefArg.forceTargetEffects[index] = effect;
 
                     effect.scale = 3;
                     effect.setColor(255, 255, 255);
@@ -288,16 +311,15 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
                 const icon = CreateMinimapIcon(nextTarget.x, nextTarget.y, 255, 100, 50, MinimapIconPath.ping, FOG_OF_WAR_FOGGED);
                 
                 if(icon) {
-                    DestroyMinimapIcon(spawnAttackTargetIcon[index]);
-                    spawnAttackTargetIcon[index] = icon;
+                    DestroyMinimapIcon(passByRefArg.spawnAttackTargetIcon[index]);
+                    passByRefArg.spawnAttackTargetIcon[index] = icon;
                 }
                 
                 //Only issue order if there was no previous target or the previous target is now invulnerable
-                for(let x = 0; x < spawnUnitForces[index].length; x++){
-                    const unit = spawnUnitForces[index][x];
+                for(let x = 0; x < passByRefArg.spawnUnitForces[index].length; x++){
+                    const unit = passByRefArg.spawnUnitForces[index][x];
                     unit.issuePointOrder(OrderId.Attack, Point.create(currentTarget?.x ?? 0, currentTarget?.y ?? 0));
                 }
-
             }
 
             //Always order the newest units created to go attack the current target
@@ -309,7 +331,7 @@ export function spawnZombies(currentRound: number, onEnd?: (...args: any) => voi
                 });
             }
 
-            print(`Spawn ${index} - Next attack coordinates: (${spawnForceCurrentTarget[index]?.x}, ${spawnForceCurrentTarget[index]?.y})`);
+            // print(`Spawn ${index} - Next attack coordinates: (${spawnForceCurrentTarget[index]?.x}, ${spawnForceCurrentTarget[index]?.y})`);
         });
 
     });
@@ -376,28 +398,65 @@ function chooseForceAttackTarget(currentPoint :Point): Unit | null{
     //If there exists valid attack points in the scanned region, of the valid points, select the closest. Then proceed
 }
 
-function chooseZombieSpawns(amount: number): Rectangle[]{
-    const zombieRects = [gg_rct_ZombieSpawn1,
-        gg_rct_zombieSpawn2]
-    // const tempSet = new Set<rect>(zombieSpawnRectangles);
-    const tempSet = new Set<rect>(zombieRects);
 
-    // print("zombieSpawnRectangles size", zombieSpawnRectangles.length);
-    //Search from our zombie spawns regions and select an amount
-    for(let x = 0; x < amount; x++) {
-        // const choice = zombieRects[math.random(0,zombieRects.length)];
-        tempSet.add(zombieRects[x]);
-        // if(!tempSet.has(choice)){
-        //     tempSet.add(zombieRects[math.random(0,zombieRects.length)]);
-        // }
+/**
+ * was designed to randomly choose zombie spawns
+ * @param amount 
+ * @returns 
+ */
+function chooseZombieSpawns(): Rectangle[]{
+    // const zombieRects = [
+    //     // gg_rct_ZombieSpawn1,
+    //     gg_rct_zombieSpawn2,
+    //     gg_rct_zNorthSpawn1
+    // ]
+
+    // // const tempSet = new Set<rect>(zombieSpawnRectangles);
+    // const tempSet = new Set<rect>(zombieRects);
+
+    // // print("zombieSpawnRectangles size", zombieSpawnRectangles.length);
+    // //Search from our zombie spawns regions and select an amount
+    // for(let x = 0; x < amount; x++) {
+    //     // const choice = zombieRects[math.random(0,zombieRects.length)];
+    //     tempSet.add(zombieRects[x]);
+    //     // if(!tempSet.has(choice)){
+    //     //     tempSet.add(zombieRects[math.random(0,zombieRects.length)]);
+    //     // }
+    // }
+
+    // const outgoingSet = new Set<Rectangle>();
+
+    // tempSet.forEach(r => {
+    //     const converted = Rectangle.fromHandle(r);
+    //     if(converted) outgoingSet.add(converted);
+    // })
+    const spawns = [];
+
+    //initial spawn
+    const zRec = Rectangle.fromHandle(gg_rct_zombieSpawn2);
+    if(zRec) spawns.push(zRec);
+
+    if(RoundManager.currentRound >=2){
+        const zRec = Rectangle.fromHandle(gg_rct_zNorthSpawn1);
+        if(zRec) spawns.push(zRec);
     }
 
-    const outgoingSet = new Set<Rectangle>();
+    if(RoundManager.currentRound >=3){
+        const zRec = Rectangle.fromHandle(gg_rct_ZombieSpawn1);
+        if(zRec) spawns.push(zRec);
+    }
 
-    tempSet.forEach(r => {
-        const converted = Rectangle.fromHandle(r);
-        if(converted) outgoingSet.add(converted);
-    })
+    // if(RoundManager.currentRound >=3){
+    //     const zRec = Rectangle.fromHandle(gg_rct_ZombieSpawn1);
+    //     if(zRec) spawns.push(zRec);
+    // }
 
-    return [...outgoingSet];
+    if(RoundManager.currentRound >=5){
+        const zRec = Rectangle.fromHandle(gg_rct_zWestSpawn1);
+        if(zRec) spawns.push(zRec);
+    }
+
+    return spawns;
+
+    // return [...outgoingSet];
 }

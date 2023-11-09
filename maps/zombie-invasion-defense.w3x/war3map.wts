@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Kingdom Zombie Defense Test
+Kingdom Zombie Defense alpha test 3
 }
 
 STRING 2
@@ -29,7 +29,7 @@ Player 1
 
 STRING 7
 {
-alpha testing #2
+alpha testing #3
 }
 
 STRING 9
@@ -245,7 +245,7 @@ Causes the unit to move faster and run through units.
 }
 
 STRING 67
-// Abilities: A005 (Charge), Hotkey (Hotkey - Normal)
+// Units: h007 (Supply Camp), Hotkey (Hotkey)
 {
 C
 }
@@ -359,7 +359,7 @@ Slow Trap
 }
 
 STRING 92
-// Units: h005 (Caltrops), Ubertip (Tooltip - Extended)
+// Units: h00D (River Ford ), Ubertip (Tooltip - Extended)
 {
 Slows down the movement speed of nearby enemies.
 }
@@ -411,11 +411,6 @@ STRING 112
 [Neutral] - Kingdom of Hyperian
 }
 
-STRING 113
-{
-[Neutral] - Vindigoth Orc Tribe
-}
-
 STRING 114
 // Abilities: A009 (Base - Target Unit), Name (Name)
 {
@@ -458,22 +453,10 @@ STRING 123
 Create Diplomatic Offering
 }
 
-STRING 128
-// Units: h007 (Camp), Name (Name)
-{
-Camp
-}
-
 STRING 129
-// Units: h007 (Camp), Tip (Tooltip - Basic)
+// Units: h007 (Supply Camp), Tip (Tooltip - Basic)
 {
 Build Camp
-}
-
-STRING 130
-// Units: h007 (Camp), Ubertip (Tooltip - Extended)
-{
-Provides supplies for nearby units to benefit from.
 }
 
 STRING 131
@@ -488,7 +471,7 @@ D
 }
 
 STRING 134
-// Abilities: A00A (Make Alliance), Hotkey (Hotkey - Normal)
+// Abilities: A005 (Charge), Hotkey (Hotkey - Normal)
 {
 C
 }
@@ -529,14 +512,15 @@ Kingdom Zombie Defense
 
 STRING 142
 {
-Hold out for 10 nights until reinforcements arrive.
+|cffE0A526Objective|r - Hold out for 10 nights until reinforcements arrive. Start off by defending the northern farmlands.
 
-Supply horses grant healing for units.
-Buildings will provide various upgrades depending on the building.
-Certain units are sold at different buildings.
-Food is increased by 5 after every night.
+|cffE0A526Supplies|r - Certain units carry supplies which can be used to heal units. They also get bonuses from supply structures.
 
+|cffE0A526Buying Units|r - Certain units are sold at different buildings.
 
+|cffE0A526Upgrades|r - Certain buildings will provide upgrades to your units at the start of each day.
+
+|cffE0A526Economy|r - Certain buildings will grant lumber, gold, supplies and food.
 
 Made by JediMindTrix/NihilismIsDeath
 
@@ -667,12 +651,6 @@ STRING 163
 A heavy melee unit, with cleaving armor, bash and resistant skin.
 }
 
-STRING 164
-// Units: hcth (General), Ubertip (Tooltip - Extended)
-{
-An elite support unit, bolstering the morale of your troops.
-}
-
 STRING 165
 // Abilities: S000 (Endurance Aura), Ubertip (Tooltip - Normal - Extended)
 {
@@ -757,12 +735,6 @@ STRING 181
 Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
 }
 
-STRING 182
-// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
-{
-Can repair buildings and builds a camp with supplies and Caltrops to slow down the enemy.
-}
-
 STRING 183
 // Units: hkni (Knight), Ubertip (Tooltip - Extended)
 {
@@ -835,14 +807,8 @@ STRING 196
 Rally Flying Machine Patrol
 }
 
-STRING 197
-// Units: h00C (Grainery), Name (Name)
-{
-Grainery
-}
-
 STRING 198
-// Units: h00C (Grainery), EditorSuffix (Name - Editor Suffix)
+// Units: h00C (Granary), EditorSuffix (Name - Editor Suffix)
 {
 (Town)
 }
@@ -881,5 +847,124 @@ STRING 208
 // Abilities: A00I (Food Reserves), Tip (Tooltip - Normal)
 {
 Food Reserves
+}
+
+STRING 209
+// Abilities: A00J (Lumber Income - Info Ability), Name (Name)
+{
+Lumber Income - Info Ability
+}
+
+STRING 210
+// Abilities: A00J (Lumber Income - Info Ability), Tip (Tooltip - Normal)
+{
+Lumber Income - Info Ability
+}
+
+STRING 211
+// Abilities: A00J (Lumber Income - Info Ability), Ubertip (Tooltip - Normal - Extended)
+{
+Grants lumber at the start of each day.
+}
+
+STRING 212
+// Abilities: A00J (Lumber Income - Info Ability), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 213
+// Units: h00C (Granary), Name (Name)
+{
+Granary
+}
+
+STRING 214
+// Units: h00D (River Ford ), Name (Name)
+{
+River Ford 
+}
+
+STRING 215
+// Units: h00D (River Ford ), Tip (Tooltip - Basic)
+{
+River Ford 
+}
+
+STRING 217
+// Units: h00D (River Ford ), EditorSuffix (Name - Editor Suffix)
+{
+(invis)
+}
+
+STRING 218
+// Abilities: A00K (Slow Aura), EditorSuffix (Editor Suffix)
+{
+(River Ford)
+}
+
+STRING 219
+// Buffs/Effects: B001 (), Bufftip (Tooltip)
+{
+River Ford
+}
+
+STRING 220
+// Buffs/Effects: B001 (), Buffubertip (Tooltip - Extended)
+{
+This unit is being slowed while crossing a river.
+}
+
+STRING 221
+// Units: h005 (Caltrops), Ubertip (Tooltip - Extended)
+{
+Slows down the movement speed of nearby enemies by 50%.
+}
+
+STRING 222
+{
+[Ally] - Vindigoth Orc Tribe
+}
+
+STRING 224
+// Units: h007 (Supply Camp), Ubertip (Tooltip - Extended)
+{
+A supply structure that heals fellow units. 
+}
+
+STRING 225
+// Units: h005 (Caltrops), Hotkey (Hotkey)
+{
+R
+}
+
+STRING 226
+// Abilities: A00A (Make Alliance), Hotkey (Hotkey - Normal)
+{
+C
+}
+
+STRING 229
+// Units: h007 (Supply Camp), Name (Name)
+{
+Supply Camp
+}
+
+STRING 230
+// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
+{
+Can repair buildings and builds a supply camp, scout tower(no upgrades) and Caltrops to slow down the enemy.
+}
+
+STRING 231
+// Units: hcth (General), Ubertip (Tooltip - Extended)
+{
+An elite support unit, bolstering the morale of your troops. The General can also enlist footman. |n|nProvides an aura increasing movement and attack speed by 25%.
+}
+
+STRING 232
+// Units: hsor (Sorceress), Ubertip (Tooltip - Extended)
+{
+Does moderate magic damage from attacks and can cast mass teleport.
 }
 

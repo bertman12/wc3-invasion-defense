@@ -21,7 +21,9 @@ type RoundStartFn = (round: number) => void;
 
 export class RoundManager {
     static currentRound: number = 0;
+    static roundStartSubscribers:RoundStartFn[] = [];
     static roundEndSubscribers:RoundEndFn[] = [];
+
     static trig_setup_StartRound(){
         const tStart = Trigger.create()
         tStart.registerPlayerChatEvent(Players[0], "-start", false);
@@ -53,15 +55,18 @@ export class RoundManager {
         //Set to night time 
         SetTimeOfDay(0);
 
-        spawnZombies(RoundManager.currentRound, RoundManager.endCurrentRound);
-        
         print(`Night ${RoundManager.currentRound} has begun...`);
+
+        RoundManager.roundStartSubscribers.forEach(cb => {
+            cb(RoundManager.currentRound);
+        });
+
+        TimerManager.startNightTimer(() => {RoundManager.endCurrentRound()});
     }
     
     static endCurrentRound(){
         print(`Night ${RoundManager.currentRound} has ended...`);
         SetTimeOfDay(12);
-        // player_giveStartOfDayResources(RoundManager.currentRound);
 
         RoundManager.roundEndSubscribers.forEach(cb => {
             cb(RoundManager.currentRound);
@@ -82,7 +87,11 @@ export class RoundManager {
         TimerManager.startDayTimer(() => {RoundManager.startNextRound()});
     }
 
-    static onRoundEnd(cb: RoundEndFn){
+    static onNightStart(cb: RoundStartFn){
+        RoundManager.roundStartSubscribers.push(cb)
+    }
+
+    static onDayStart(cb: RoundEndFn){
         RoundManager.roundEndSubscribers.push(cb)
     }
 } 
