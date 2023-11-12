@@ -221,3 +221,45 @@ make caltops only usable during the day using upgrades
 
 make some rounds have concentrated undead forces and make them stronger instead of increasing numbers.
 
+==== 11-9-23
+
+for spawning less undead, I think I will limit the amount of undead units by some amount, then when any undead units die, i will allow another undead unit to spawn.
+but then we need to have a weighted queue of which undead units to spawn, so those most valuable always spawns 
+
+add an info ability for supply carrying units
+
+make supply horses walk to the player hero automatically
+
+perhaps I ought to keep the limit to 1000 and look for other ways to increase difficulty.
+
+make a group of death knights attack for some time, then pull back then attack again.
+
+whenever a hero dies an elite unit spawns.
+
+add mines, and maybe other traps for engineers
+
+when  a hero dies send the hero as a unit , cycle the abilities and increase the level
+
+on death the unit explodes and reduces the armor of nearby unit
+
+=======
+
+pheonix fire death bolts lol when max mana is reached plus give them mana drain
+
+do a beetle swarm
+
+give supply camp ability to build towers and walls
+
+if you were to make this a base builder then you want to limit the lumber stored for the player.
+
+make the northern fort grant a huge amount of income to make it more valuable and players will defend it more.
+
+also maybe add stealth assassins that meld during the day but cannot do so at night time.
+
+add some invis units as well.
+
+add an ability that spawns a wall 
+
+maybe make caltrops do damage as well? could use pehonix fire ability again.
+
+add blink dagger

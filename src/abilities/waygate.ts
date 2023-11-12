@@ -3,7 +3,7 @@ import { forEachUnitOfPlayer } from "src/utils/players";
 import { Sound, Trigger, Unit } from "w3ts";
 import { Players } from "w3ts/globals";
 
-export function wayGateInit(){
+export function trig_wayGate(){
     const t = Trigger.create();
 
     t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_DEATH);

@@ -24,3 +24,7 @@ const properColorHexes = new Map<ProperColors, string>([
     ["yellow", "FFFF00"],
     ["red", "FF0000"],
 ]);
+
+export function notifyPlayer(msg: string){
+    print(`${tColor("!", "goldenrod")} - ${msg}`);
+}

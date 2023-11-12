@@ -1,12 +1,12 @@
-import { Camera, Force, Group, MapPlayer, Sound, Timer, Trigger, Unit, color } from "w3ts";
-import { Players } from "w3ts/globals";
+import { Camera, Force, Group, MapPlayer, Sound, Timer, Trigger, Unit, Widget, color } from "w3ts";
+import { OrderId, Players } from "w3ts/globals";
 import { forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayerWithAbility, forEachUnitTypeOfPlayer } from "./utils/players";
 import { ABILITIES, UpgradeCodes } from "./shared/enums";
 import { tColor } from "./utils/misc";
 import { RoundManager } from "./shared/round-manager";
 import { economicConstants } from "./shared/constants";
 
-const playerStates = new Map<number, PlayerState>();
+export const playerStates = new Map<number, PlayerState>();
 
 /**
  * Helps keep track of player data
@@ -14,6 +14,8 @@ const playerStates = new Map<number, PlayerState>();
 class PlayerState {
     player: MapPlayer;
     maxSupplyHorses:number = 3;
+    playerHero: Unit | undefined;
+    rallyToHero: boolean = false;
 
     constructor(player: MapPlayer){
         this.player = player;
@@ -27,7 +29,12 @@ class PlayerState {
         })
         
         if(horseCount < this.maxSupplyHorses){
-            Unit.create(this.player, FourCC("h001"), -300 + this.player.id * 50 , 300);
+            const u = Unit.create(this.player, FourCC("h001"), -300 + this.player.id * 50 , 300);
+            const widget = Widget.fromHandle(this.playerHero?.handle)
+            
+            if(u && widget){
+                u.issueTargetOrder(OrderId.Move, widget);
+            }
         }
     }
 }
@@ -55,10 +62,37 @@ function trig_heroDies(){
     })
 }
 
-function trig_heroPurchase(){
+function trig_playerBuysUnit(){
+    const t = Trigger.create();
+
+    t.registerAnyUnitEvent( EVENT_PLAYER_UNIT_SELL);
+
+    t.addCondition(() => {
+        let u = Unit.fromHandle(GetSoldUnit()) as Unit;
+
+        if(u && playerStates.get(u.owner.id)?.rallyToHero){
+            return true;
+        }
+
+        return false
+    })
+
+    t.addAction(() => {
+        let u = Unit.fromHandle(GetSoldUnit()) as Unit;
+        const widget = Widget.fromHandle(playerStates.get(u.owner.id)?.playerHero?.handle)
+            
+        if(u && widget){
+            u.issueTargetOrder(OrderId.Move, widget);
+        }
+
+    });
+}
+
+function trig_heroPurchased(){
     const t = Trigger.create();
 
     t.registerAnyUnitEvent( EVENT_PLAYER_UNIT_SELL)
+
     t.addCondition(() => {
         let u = Unit.fromHandle(GetBuyingUnit());
         if(u && u.typeId === FourCC("nshe")){
@@ -73,6 +107,9 @@ function trig_heroPurchase(){
         buyingUnit.kill();
     
         let createdUnit = Unit.fromHandle(GetSoldUnit()) as Unit;
+        const playerState = playerStates.get(createdUnit.owner.id)
+        if(playerState) playerState.playerHero = createdUnit;
+        
         createdUnit.x = -300;
         createdUnit.y = -300;
         createdUnit?.addItemById(FourCC("cnob"));
@@ -80,30 +117,47 @@ function trig_heroPurchase(){
         createdUnit?.addItemById(FourCC("stel"));
 
         SetCameraPositionForPlayer(buyingUnit.owner.handle, createdUnit.x, createdUnit.y);
+
+        playerState?.createSupplyHorse();
     });
 }
 
 export function initializePlayers(){
-    trig_heroPurchase();
+    initializePlayerStateInstances();
+    trig_playerBuysUnit()
+    trig_heroPurchased();
     trig_heroDies();
+    players_dayStart();
+
     forEachAlliedPlayer((p, index) => {
         //Create Sheep
         const u = Unit.create(p, FourCC("nshe"), 18600 + (25 * index), -28965);
         if(u) SetCameraPositionForPlayer(p.handle, u.x, u.y);
-  
-        // SetPlayerAllianceBJ(p.handle, ALLIANCE_PASSIVE, true, Players[18].handle);
-        // SetPlayerAllianceBJ(p.handle, ALLIANCE_SHARED_VISION_FORCED, true, Players[18].handle);
-        // SetPlayerAllianceBJ(p.handle, ALLIANCE_PASSIVE, true, Players[19].handle);
-        // SetPlayerAllianceBJ(p.handle, ALLIANCE_SHARED_VISION_FORCED, true, Players[19].handle);
-        // MeleeStartingHeroLimit();
+    });
 
-      });
+    //Setup round end functions
+    RoundManager.onDayStart((round) => {
+        player_giveHumansStartOfDayResources(round);
+        players_dayStart();
+    });
+    
+    RoundManager.onNightStart(() => {
+        players_nightStart();
+    })
+}
 
-      //Setup round end functions
-      RoundManager.onDayStart((round) => {
-        // print("my on round end callback fn was used");
-        player_giveStartOfDayResources(round);
-      });
+function players_dayStart(){
+    forEachPlayer(p => {
+        p.setTechResearched(UpgradeCodes.dayTime,1);
+        p.setTechResearched(UpgradeCodes.nightTime,0);
+    })
+}
+
+function players_nightStart(){
+    forEachPlayer(p => {
+        p.setTechResearched(UpgradeCodes.dayTime,0);
+        p.setTechResearched(UpgradeCodes.nightTime,1);
+    })
 }
 
 /**
@@ -115,9 +169,9 @@ export function initializePlayerStateInstances(){
     });
 
     //Creates supply horses for the player
-    forEachAlliedPlayer((player) => {
-        playerStates.get(player.id)?.createSupplyHorse();
-    });
+    // forEachAlliedPlayer((player) => {
+    //     playerStates.get(player.id)?.createSupplyHorse();
+    // });
 
     grantStartOfDayBonuses();
 }
@@ -134,7 +188,6 @@ export function init_startingResources(){
             p.setState(PLAYER_STATE_GIVES_BOUNTY, 1);
         }
     });
-
 }
 
 function grantStartOfDayBonuses(){
@@ -164,9 +217,6 @@ function grantStartOfDayBonuses(){
 
     const calculatedFoodCap = basePlayerFoodCap + foodRoundBonus + 2*foodReserveStructures;
     
-    // print("Calculated food cap:", calculatedFoodCap);
-    // print("foodReserveStructures: ", foodReserveStructures);
-
     forEachAlliedPlayer(p => {
         //Reset to 0
         p.setTechResearched(UpgradeCodes.armor, 0);
@@ -184,7 +234,7 @@ function grantStartOfDayBonuses(){
     });
 }
 
-export function player_giveStartOfDayResources(round: number){
+export function player_giveHumansStartOfDayResources(round: number){
 
     //Creates supply horses for the player
     forEachAlliedPlayer((player) => {
@@ -218,8 +268,8 @@ export function player_giveStartOfDayResources(round: number){
 
     const baseGold = 100;
     const baseWood = 100;
-    const roundGold = 10 * round;
-    const roundWood = 10 * round;
+    const roundGold = 25 * round;
+    const roundWood = 25 * round;
 
     const incomeBuildingGold = 25 * totalIncomeBuildings;
     const lumberIncome = economicConstants.lumberIncomeAbility * lumberAbilityCount;

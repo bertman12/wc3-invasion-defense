@@ -16,6 +16,8 @@ export enum UpgradeCodes {
     armor = FourCC("Rhar"),
     meleeWeapons = FourCC("Rhme"),
     supplyUpgrade = FourCC("R000"),
+    dayTime = FourCC("R002"),
+    nightTime = FourCC("R003"),
 }
 
 export enum CUSTOM_UNITS {
@@ -37,6 +39,7 @@ export enum CUSTOM_UNITS {
     arcaneSanctum = FourCC("hars"),
     lumberMill = FourCC("hlum"),
     granary = FourCC("h00C"),
+    citadelOfTheNorthernKnights = FourCC("h00E"),
 }
 
 //Can find looking up models for a spell at the Art - Target field

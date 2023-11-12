@@ -3,15 +3,17 @@ import { W3TS_HOOK, addScriptHook } from "w3ts/hooks";
 import { init_startingResources, initializePlayerStateInstances, initializePlayers } from "./players";
 import { init_map_triggers } from './init';
 import { forEachAlliedPlayer, forEachPlayer } from './utils/players';
-import { setup_transferTownControl } from './towns';
+import { trig_destroyHumanBuilding } from './towns';
 import { FogModifier, Quest, Sound, Timer, Unit } from 'w3ts';
 import { TimerManager } from './shared/Timers';
 import { OrderId, Players } from 'w3ts/globals';
 import { tColor } from './utils/misc';
-import { setup_zombies } from './zombies';
+import { setup_zombies } from './undead/undead';
 import { Units } from 'war3-objectdata-th';
-import { wayGateInit } from './abilities/waygate';
+import { trig_wayGate } from './abilities/waygate';
 import { setupUndeadUnitPreview } from './abilities/misc';
+import { init_quests } from './utils/quests';
+import { initFrames } from './frames';
 
 const BUILD_DATE = compiletime(() => new Date().toUTCString());
 const TS_VERSION = compiletime(() => require("typescript").version);
@@ -30,50 +32,11 @@ function tsMain() {
     print(`Typescript: v${TS_VERSION}`);
     print(`Transpiler: v${TSTL_VERSION}`);
     print(" ");
-    wayGateInit();
+    trig_wayGate();
     setupUndeadUnitPreview();
-    Timer.create().start(1, false, () => {
-      const mapInfo = Quest.create()
-
-      if(mapInfo){
-        mapInfo.setTitle("Map Info");
-        mapInfo.setDescription("Created by JediMindTrix/NihilismIsDeath");
-        mapInfo.setIcon("ReplaceableTextures\\CommandButtons\\BTNPeasant.blp");
-      }
-
-      const commands = Quest.create()
-
-      if(commands){
-        commands.setTitle("Commands");
-        commands.setDescription(`
-        ${tColor("-start", "goldenrod")} : starts the round.
-        ${tColor("-end", "goldenrod")} : ends the round.
-        `);
-        commands.setIcon("ReplaceableTextures\\CommandButtons\\BTNClayFigurine.blp");
-      }
-
-      const basicGuide = Quest.create();
-
-      if(basicGuide){
-        basicGuide.setTitle("Basic Game Info");
-        basicGuide.setDescription(`
-        |cffE0A526Objective|r - Hold out for 10 nights until reinforcements arrive. Start off by defending the northern farmlands.
-
-        |cffE0A526Supplies|r - Certain units carry supplies which can be used to heal units. They also get bonuses from supply structures.
-
-        |cffE0A526Buying Units|r - Certain units are sold at different buildings.
-
-        |cffE0A526Upgrades|r - Certain buildings will provide upgrades to your units at the start of each day.
-
-        |cffE0A526Economy|r - Certain buildings will grant lumber, gold, supplies and food.
-        `);
-
-        basicGuide.setIcon("ReplaceableTextures\\CommandButtons\\BTNClayFigurine.blp");
-      }
-
-
-    });
-
+    initFrames();
+    
+    //Game starting message
     Timer.create().start(5, false, () => {
       Sound.fromHandle(gg_snd_U08Archimonde19)?.start();
       Sound.fromHandle(gg_snd_Hint)?.start();
@@ -84,15 +47,14 @@ function tsMain() {
     });
 
     initializePlayers();
-    initializePlayerStateInstances();
     SetGameDifficulty(MAP_DIFFICULTY_INSANE);
+    init_quests();
+    trig_destroyHumanBuilding();
 
-    setup_transferTownControl();
-
+    //Environment setup
     SuspendTimeOfDay(true);
     SetTimeOfDay(12);
     ClearMapMusic();
-
     StopMusic(false);
     PlayMusic(gg_snd_NightElfX1);
 
@@ -121,7 +83,7 @@ function tsMain() {
     setup_zombies();
 
   } catch (e) {
-    print(e);
+    print("An error occurred: ", e);
   }
 }
 

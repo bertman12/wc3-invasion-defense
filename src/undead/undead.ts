@@ -1,20 +1,61 @@
 import { Effect, Group, Point, Rectangle, Sound, Timer, Trigger, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
-import { forEachUnitTypeOfPlayer } from "./utils/players";
-import { allCapturableStructures, primaryCapturableStructures } from "./towns";
-import { tColor } from "./utils/misc";
-import { CUSTOM_UNITS, MinimapIconPath } from "./shared/enums";
-import { TimerManager } from "./shared/Timers";
-import { RoundManager } from "./shared/round-manager";
+import { forEachUnitTypeOfPlayer } from "../utils/players";
+import {  primaryAttackTargets } from "../towns";
+import { CUSTOM_UNITS, MinimapIconPath } from "../shared/enums";
+import { TimerManager } from "../shared/Timers";
+import { RoundManager } from "../shared/round-manager";
+
+/**
+ * A smart undead spawning system will choose from a pool of available units
+ * max is 1k units
+ * 
+ * should choose from a pool of units
+ * depending on the round number we may choose certain units
+ * a simple alg would say create 5 units
+ * 
+ * i could attribute points to unit types
+ * i could also classify units into tiers and allocate points to be used for each tier
+ * that would ensure certain unit compositions are always present
+ * 
+ * how to choose how many points to give to the undead player?
+ * would having to many points mean that now many low tier units would be used?
+ * 
+ * 
+ * what unit categories will I have? caster, infantry, missile units, hero units, i guess it would be granted a random pool for each tier and category
+ * 
+ * 
+ * Perhaps each spawn is allocated a number of units and depending on the number of players the number of units will change, and time between spawns will be directly proportional to the units that were spawned, so things aer still balanced. and of course clamp the unit spawn amount
+ */
+
+
+/**
+ * we want the undead to scale with the number of players
+ * The force strength per spawn point
+ * also the night
+ * should we just randomly choose units? and then define rules for how many units are chosen from which tiers based on the above factors
+ * 
+ * I want there to be different archtypes for certain spawns, like demons only or skeletons only or something else.
+ * I want to classify undead also. perhaps 3 difficulty tiers
+ * 
+ * you could sample a random theta on a sin curve and if our random number
+ * this group will be chosen if sin(theta) of our random theta is greater than or equal to this chance number
+ */
+
+const archTypes = {
+    demon: {chance: 0, unitSet: []}
+}
 
 export const zombieMapPlayer = Players[20];
 
 export const zombieSpawnRectangles: rect[] = [
     gg_rct_ZombieSpawn1,
     gg_rct_zombieSpawn2
-]
+];
 
-const undeadPlayers = [
+const UNDEAD_MAX_UNIT_LIMIT = 1000;
+
+const UNDEAD_PLAYERS = [
     Players[10],
     Players[12],
     Players[13],
@@ -34,11 +75,11 @@ let currentUndeadPlayerIndex = 0;
  * Cycles all players from the undead player array then restarts once it goes through all players 
  */
 function getNextUndeadPlayer(){
-    let player = undeadPlayers[currentUndeadPlayerIndex];
+    let player = UNDEAD_PLAYERS[currentUndeadPlayerIndex];
     
-    if(currentUndeadPlayerIndex >= undeadPlayers.length){
+    if(currentUndeadPlayerIndex >= UNDEAD_PLAYERS.length){
         currentUndeadPlayerIndex = 0;
-        player = undeadPlayers[currentUndeadPlayerIndex];
+        player = UNDEAD_PLAYERS[currentUndeadPlayerIndex];
     }
     else{
         currentUndeadPlayerIndex++;
@@ -57,20 +98,24 @@ interface SpawnData {
     /**
      * For deciding when to spawn 
      */
-    //Pretty sure there is a way to use typescript so each function can have their own unique arguemnts and when were handling this function later it will get autocomplete for those arguments unique to the spawn data object.
     spawnRequirement?: (waveCount: number, waveInterval: number, roundDuration: number) => boolean;
     onCreation?: (u: Unit) => void;
 }
 
 function createSpawnData(currentRound: number, spawnCount: number):SpawnData[]{
     //could make spawn quantity cyclic with trig functions
-    
+    /**
+     * 20z a wave
+     * 4 waves/min
+     * 12 waves total
+     * 240 zombies /spawn
+     */
     const spawnModifier = 4/spawnCount - 1;
 
     const undeadSpawnData:SpawnData[] = [
         //Abomination
         {
-            quantityPerWave: 1 + Math.floor(spawnModifier),
+            quantityPerWave: 1,
             unitType: FourCC("uabo"),
             spawnRequirement(waveCount: number, waveInterval: number, roundDuration: number) {
                 return waveCount * waveInterval >= roundDuration*(0.35);                
@@ -80,7 +125,7 @@ function createSpawnData(currentRound: number, spawnCount: number):SpawnData[]{
         },
         //Meat Wagon
         {
-            quantityPerWave: currentRound,
+            quantityPerWave: 1,
             unitType: FourCC("umtw"),
             spawnRequirement(waveCount: number, waveInterval: number, roundDuration: number) {
                 return waveCount % 3 === 0;               
@@ -88,13 +133,13 @@ function createSpawnData(currentRound: number, spawnCount: number):SpawnData[]{
         },
         //Skeletal Mages
         {
-            quantityPerWave: 1 + Math.floor(spawnModifier/2),
+            quantityPerWave: 1,
             unitType: FourCC("u000"),
             
         },
         //Necromancers -special
         {
-            quantityPerWave: 2,
+            quantityPerWave: 1,
             spawnRequirement(waveCount, waveInterval, roundDuration) {
                 return currentRound >=2;
             },
@@ -102,13 +147,21 @@ function createSpawnData(currentRound: number, spawnCount: number):SpawnData[]{
         },
         //Skeletal Archers
         {
-            quantityPerWave: 2 + currentRound,
+            quantityPerWave: 2,
             unitType: FourCC("nskm"),
         },
         //Zombie
         {
-            quantityPerWave: 4 + Math.floor(spawnModifier) + 4*currentRound,
+            quantityPerWave: 8,
             unitType: FourCC("nzom"),
+        },
+        //Lich Unit
+        {
+            quantityPerWave: 1,
+            unitType: FourCC("u004"),
+            // spawnRequirement(waveCount, waveInterval, roundDuration) {
+            //     return currentRound >= 6;
+            // },
         },
         //Obsidian Statues
         {
@@ -117,6 +170,14 @@ function createSpawnData(currentRound: number, spawnCount: number):SpawnData[]{
                 return waveCount % 2 === 0;
             },
             unitType: FourCC("uobs"),
+        },
+        //Greater Obsidian Statues
+        {
+            quantityPerWave: 1,
+            // spawnRequirement(waveCount, waveInterval, roundDuration) {
+            //     return waveCount % 2 === 0 && currentRound >= 4;
+            // },
+            unitType: FourCC("u003"),
         },
         //Gargoyles... lol
         {
@@ -138,13 +199,13 @@ function createSpawnData(currentRound: number, spawnCount: number):SpawnData[]{
         {
             quantityPerWave: 1,
             spawnRequirement(waveCount, waveInterval, roundDuration) {
-                return currentRound >= 7
+                return currentRound >= 9
             },
             unitType: CUSTOM_UNITS.demonFireArtillery
         },
         //Skeletal Orc Champion
         {
-            quantityPerWave: 1 + currentRound,
+            quantityPerWave: 1,
             spawnRequirement(waveCount, waveInterval, roundDuration) {
                 return  currentRound >= 5;
             },
@@ -152,7 +213,7 @@ function createSpawnData(currentRound: number, spawnCount: number):SpawnData[]{
         },
         //Pit Lord
         {
-            quantityPerWave: currentRound,
+            quantityPerWave: 1,
             unitType: CUSTOM_UNITS.boss_pitLord,
             spawnRequirement(waveCount, waveInterval, roundDuration) {
                 return waveCount === 5 && currentRound > 1; //spawns the wave after 1 minute passes 
@@ -162,9 +223,7 @@ function createSpawnData(currentRound: number, spawnCount: number):SpawnData[]{
                 if(u && u.isHero()){
                     u.setHeroLevel(currentRound * 2, false);
                     playPitLordSound();
-                    // PlaySoundBJ(gg_snd_U08Archimonde19);
                 }
-                
             }
         },
     ];
@@ -201,6 +260,7 @@ export function setup_zombies(){
  * what happened is we extracted the state from our spawn function to moved it up a level to be accessible outside teh function which means we can now use this state to make a separate cleanup function 
  */
 function cleanupZombies(passByRefArg: zombieArgs){
+
     passByRefArg.spawnLocationIcons.forEach(icon => DestroyMinimapIcon(icon));
     passByRefArg.forceTargetEffects.forEach(eff => eff.destroy());
     passByRefArg.spawnAttackTargetIcon.forEach(icon => DestroyMinimapIcon(icon));
@@ -225,6 +285,8 @@ function cleanupZombies(passByRefArg: zombieArgs){
     passByRefArg.spawnAttackTargetIcon = [];
 }
 
+let totalZombieCount = 0;    
+
 /**
  * The number of spawning zombies and which kinds will be determined by the current round number,
  * the number of towns under zombie control and which towns are under their control.
@@ -236,8 +298,8 @@ function cleanupZombies(passByRefArg: zombieArgs){
  */
 export function spawnZombies(currentRound: number, passByRefArg: zombieArgs) {
     const WAVE_INTERVAL = 15;
-    const zombieAttackForces = 2;
-
+    totalZombieCount = 0; 
+    print('spawning zombies, total zombie count: ', totalZombieCount);   
     const spawns = chooseZombieSpawns();
     const spawnForceCurrentTarget:Unit[] = [];
     const spawnData :SpawnData[] = createSpawnData(currentRound, spawns.length);
@@ -247,7 +309,8 @@ export function spawnZombies(currentRound: number, passByRefArg: zombieArgs) {
 
     //Creating minimap icons for spawn locations
     spawns.forEach(spawn => {
-        const icon = CreateMinimapIcon(spawn.centerX, spawn.centerY, 255, 255, 255, 'UI\\Minimap\\MiniMap-Boss.mdl', FOG_OF_WAR_FOGGED);
+        const icon = CreateMinimapIcon(spawn.centerX, spawn.centerY, 255, 0, 0, 'UI\\Minimap\\MiniMap-Boss.mdl', FOG_OF_WAR_FOGGED);
+
         if(icon){
             passByRefArg.spawnLocationIcons.push(icon);
         }
@@ -259,7 +322,6 @@ export function spawnZombies(currentRound: number, passByRefArg: zombieArgs) {
 
     //End the spawning of zombies 1 wave interval before the round ends so zombies aren't spawning at the very end of the round.    
     passByRefArg.finalWaveTimer.start(TimerManager.nightTimeDuration - WAVE_INTERVAL, false, () => {
-        // print("destroying wave timer");
         waveTimer.destroy();
     });
 
@@ -268,16 +330,15 @@ export function spawnZombies(currentRound: number, passByRefArg: zombieArgs) {
      */
     waveTimer.start(WAVE_INTERVAL, true, () => {
         waveCount++;
-
         spawns.forEach((spawn, index) => {
             const newestSpawnedUnits:Unit[] = [];
 
             const xPos = spawn.centerX;
             const yPos = spawn.centerY;
 
+            //Creating the undead units
             spawnData.forEach(data => {
                 if(data.spawnRequirement && data.spawnRequirement(waveCount, WAVE_INTERVAL, TimerManager.nightTimeDuration)){
-                    // const units = spawnUndeadUnitType.call(data, data.unitType, data.quantityPerWave, xPos, yPos, data);
                     const units = spawnUndeadUnitType(data.unitType, data.quantityPerWave, xPos, yPos, data);
                     passByRefArg.spawnUnitForces[index].push(...units); 
                     newestSpawnedUnits.push(...units);
@@ -289,16 +350,18 @@ export function spawnZombies(currentRound: number, passByRefArg: zombieArgs) {
                 }
             });
     
-            //Get attack target, should check if the previous target is dead, also we need to store this information in out spawn data
-            //and actually this just chooses the next closest valid target from the original spawn point not from the previous , so that needs to be implemented.
-            const nextTarget = chooseForceAttackTarget(Point.create(xPos, yPos));
+            //We use the previous target position to find the next closest target, otherwise if none existed before, we use the spawn location to find the next closest attack point.
+            const previousTargetPoint = spawnForceCurrentTarget[index] ? Point.create(spawnForceCurrentTarget[index].x, spawnForceCurrentTarget[index].y) :Point.create(xPos, yPos);
+            const nextTarget = chooseForceAttackTarget(previousTargetPoint);
+            
             let isTargetNew = false;            
             //If there was no previous target then set the target for that spawn force OR if the old target is now invulnerable, we will make a new target and send the units to attack that region.
-            if(nextTarget && (!spawnForceCurrentTarget[index] || spawnForceCurrentTarget[index].invulnerable === true)){
+            if(nextTarget && (!spawnForceCurrentTarget[index] || spawnForceCurrentTarget[index].invulnerable === true || !spawnForceCurrentTarget[index].isAlive())){
                 isTargetNew = true;
                 spawnForceCurrentTarget[index] = nextTarget;
                 const currentTarget = spawnForceCurrentTarget[index];
 
+                //Creates an effect at the target attack point for player to see where the next attack location is
                 const effect = Effect.create("Abilities\\Spells\\NightElf\\TrueshotAura\\TrueshotAura.mdl", currentTarget.x, currentTarget.y);
                 if(effect){
                     if(passByRefArg.forceTargetEffects[index]) passByRefArg.forceTargetEffects[index].destroy();
@@ -315,7 +378,7 @@ export function spawnZombies(currentRound: number, passByRefArg: zombieArgs) {
                     passByRefArg.spawnAttackTargetIcon[index] = icon;
                 }
                 
-                //Only issue order if there was no previous target or the previous target is now invulnerable
+                //Since a new target was chosen all attackers from the previous wave will be ordered to attack the new point.
                 for(let x = 0; x < passByRefArg.spawnUnitForces[index].length; x++){
                     const unit = passByRefArg.spawnUnitForces[index][x];
                     unit.issuePointOrder(OrderId.Attack, Point.create(currentTarget?.x ?? 0, currentTarget?.y ?? 0));
@@ -323,25 +386,23 @@ export function spawnZombies(currentRound: number, passByRefArg: zombieArgs) {
             }
 
             //Always order the newest units created to go attack the current target
-            //Needs to happen after the block that decides if a new target will be set
-            //If the target is new, then the newest units have already been issued a move command
             if(!isTargetNew){
                 newestSpawnedUnits.forEach(unit => {
                     unit.issuePointOrder(OrderId.Attack, Point.create(spawnForceCurrentTarget[index]?.x ?? 0, spawnForceCurrentTarget[index]?.y ?? 0));
                 });
             }
 
-            // print(`Spawn ${index} - Next attack coordinates: (${spawnForceCurrentTarget[index]?.x}, ${spawnForceCurrentTarget[index]?.y})`);
         });
 
     });
 }
 
 function spawnUndeadUnitType(unitType: number, quantity: number, xPos: number, yPos: number, data: SpawnData): Unit[]{
-// function spawnUndeadUnitType(unitType: number, quantity: number, xPos: number, yPos: number, onCreation?: (u:Unit) => void): Unit[]{
     const units = [];
+    
+    if(totalZombieCount >= UNDEAD_MAX_UNIT_LIMIT) print("Reached max zombie limit!");
 
-    for(let i = 0; i < quantity; i++){
+    for(let i = 0; i < quantity && totalZombieCount <= UNDEAD_MAX_UNIT_LIMIT; i++){
         const u = Unit.create(getNextUndeadPlayer(), unitType, xPos, yPos);
 
         if(data.onCreation && u){
@@ -349,6 +410,7 @@ function spawnUndeadUnitType(unitType: number, quantity: number, xPos: number, y
         }
 
         if(u){
+            totalZombieCount++;
             units.push(u);
         }
         else{
@@ -356,6 +418,7 @@ function spawnUndeadUnitType(unitType: number, quantity: number, xPos: number, y
         }
     }
 
+    print("totalZombieCount: ", totalZombieCount)
     return units;
 }
 
@@ -378,7 +441,7 @@ function chooseForceAttackTarget(currentPoint :Point): Unit | null{
     const currLoc = Location(currentPoint.x, currentPoint.y);
 
     //If y is greater than r*sin(theta) or x is greater than r*cos(theta) then
-    primaryCapturableStructures.forEach(structureType => {
+    primaryAttackTargets.forEach(structureType => {
         //Checking attack points owned by Allied Human Forces
         forEachUnitTypeOfPlayer(structureType, Players[9], u => {
             //Dont check neutral units

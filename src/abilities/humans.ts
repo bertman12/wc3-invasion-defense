@@ -68,7 +68,7 @@ function trig_hireFlyingMachine(){
                 const u = Unit.create(triggeringPlayer, CUSTOM_UNITS.flyingMachine, caster.x, caster.y);
                 if(u){
                     units.push(u);
-                    print(u.name);
+                    // print(u.name);
                 }
             }
         }

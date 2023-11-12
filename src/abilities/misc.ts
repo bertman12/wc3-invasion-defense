@@ -8,8 +8,7 @@ export function setupUndeadUnitPreview() {
         g?.enumUnitsInRect(r, () => {
             const u = Group.getFilterUnit();
 
-            if(u){
-                // print("seting up undead unit preview!");
+            if(u && u.typeId !== FourCC("ntav")){
                 u.addAbility(FourCC("Aall"));
                 u.setField(UNIT_RF_HIT_POINTS_REGENERATION_RATE, 10);
             }
@@ -17,6 +16,5 @@ export function setupUndeadUnitPreview() {
             return true;
         })
 
-    }
-    
+    }    
 }

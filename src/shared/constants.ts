@@ -5,6 +5,7 @@ export const economicConstants = {
     // suppliesIncomeAbility: 50,
     foodIncomeAbility: 5,
     foodCapIncreaseAbility: 2,
+    
 } as const;
 
 

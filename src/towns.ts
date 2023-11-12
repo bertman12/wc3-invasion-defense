@@ -3,11 +3,7 @@ import { Players } from "w3ts/globals";
 import { tColor } from "./utils/misc";
 import { CUSTOM_UNITS } from "./shared/enums";
 
-export class TownManager {
-
-}
-
-export const primaryCapturableStructures = new Set([
+export const primaryAttackTargets = new Set([
     CUSTOM_UNITS.farmTown,
     CUSTOM_UNITS.barracks,
     CUSTOM_UNITS.blacksmith,
@@ -17,22 +13,23 @@ export const primaryCapturableStructures = new Set([
     CUSTOM_UNITS.arcaneSanctum,
     CUSTOM_UNITS.granary,
     CUSTOM_UNITS.lumberMill,
+    CUSTOM_UNITS.citadelOfTheNorthernKnights,
 ]);
 
-export const secondaryCapturableStructures = new Set([
+export const otherStructures = new Set([
     CUSTOM_UNITS.cannonTower,
     CUSTOM_UNITS.guardTower,
     CUSTOM_UNITS.rampartCannonTower,
     CUSTOM_UNITS.rampartGuardTower,
 ]);
 
-export const allCapturableStructures = new Set([
-    ...primaryCapturableStructures,
-    ...secondaryCapturableStructures
+export const allDestroyableStructures = new Set([
+    ...primaryAttackTargets,
+    ...otherStructures
 ]);
 
-//When a gets down to 10% health, transfer control to undead or humans
-export function setup_transferTownControl(){
+//When a gets down to 20% health, transfer control to undead or humans
+export function trig_destroyHumanBuilding(){
     const t = Trigger.create();
 
     t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_ATTACKED);
@@ -41,8 +38,7 @@ export function setup_transferTownControl(){
         const u = Unit.fromEvent();
         const attacker = Unit.fromHandle(GetAttacker());
 
-        if(u && attacker && allCapturableStructures.has(u.typeId) && u.life < u.maxLife*0.20){
-            // u.owner = Players[20]; //Undead
+        if(u && attacker && allDestroyableStructures.has(u.typeId) && u.life < u.maxLife*0.20){
             u.owner = Players[25]; //Neutral
             u.name = `[${tColor("Destroyed", "red")}] - ` + u.name;
             u.invulnerable = true;

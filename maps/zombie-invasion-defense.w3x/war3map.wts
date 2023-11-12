@@ -107,19 +107,19 @@ Base - Info Ability
 }
 
 STRING 38
-// Abilities: A000 (Supplies), Name (Name)
+// Abilities: A00L (Supplies), Name (Name)
 {
 Supplies
 }
 
 STRING 39
-// Abilities: A000 (Supplies), Tip (Tooltip - Normal)
+// Abilities: A00L (Supplies), Tip (Tooltip - Normal)
 {
 Supplies
 }
 
 STRING 41
-// Abilities: A000 (Supplies), EditorSuffix (Editor Suffix)
+// Abilities: A000 (Supply Bonus), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -293,7 +293,7 @@ STRING 76
 }
 
 STRING 77
-// Upgrades: R000 (Chaos), Name (Name)
+// Abilities: A000 (Supply Bonus), Name (Name)
 {
 Supply Bonus
 }
@@ -580,7 +580,7 @@ War Bear
 }
 
 STRING 152
-// Abilities: A000 (Supplies), Ubertip (Tooltip - Normal - Extended)
+// Abilities: A000 (Supply Bonus), Ubertip (Tooltip - Normal - Extended)
 {
 Increases the supplies(mana) that supply type units can carry.
 }
@@ -966,5 +966,185 @@ STRING 232
 // Units: hsor (Sorceress), Ubertip (Tooltip - Extended)
 {
 Does moderate magic damage from attacks and can cast mass teleport.
+}
+
+STRING 233
+// Upgrades: R001 (Submerge), Name (Name)
+{
+Base - Null Upgrade
+}
+
+STRING 234
+// Upgrades: R001 (Submerge), Tip (Tooltip)
+{
+null tooltip
+}
+
+STRING 235
+// Upgrades: R001 (Submerge), Ubertip (Tooltip - Extended)
+{
+null tooltip extended
+}
+
+STRING 236
+// Upgrades: R001 (Submerge), EditorSuffix (Editor Suffix)
+{
+(null upgrade)
+}
+
+STRING 237
+// Upgrades: R002 (Submerge), Name (Name)
+{
+Day Time
+}
+
+STRING 238
+// Upgrades: R002 (Submerge), Tip (Tooltip)
+{
+null tooltip
+}
+
+STRING 239
+// Upgrades: R002 (Submerge), Ubertip (Tooltip - Extended)
+{
+null tooltip extended
+}
+
+STRING 240
+// Upgrades: R003 (Submerge), Name (Name)
+{
+Night Time
+}
+
+STRING 241
+// Upgrades: R003 (Submerge), Tip (Tooltip)
+{
+null tooltip
+}
+
+STRING 242
+// Upgrades: R003 (Submerge), Ubertip (Tooltip - Extended)
+{
+null tooltip extended
+}
+
+STRING 243
+// Upgrades: R002 (Submerge), EditorSuffix (Editor Suffix)
+{
+(null upgrade)
+}
+
+STRING 244
+// Upgrades: R003 (Submerge), EditorSuffix (Editor Suffix)
+{
+(null upgrade)
+}
+
+STRING 245
+// Items: I000 (Magic Eggplant), Ubertip (Tooltip - Extended)
+{
+Grants +10000000000000000000000000000 to all stats.
+}
+
+STRING 248
+// Items: I000 (Magic Eggplant), Description (Description)
+{
+Grants +69 to all stats.
+}
+
+STRING 249
+// Items: I000 (Magic Eggplant), Name (Name)
+{
+Magic Eggplant
+}
+
+STRING 250
+// Abilities: A000 (Supply Bonus), Tip (Tooltip - Normal)
+{
+Supply Bonus
+}
+
+STRING 251
+// Upgrades: R000 (Chaos), Name (Name)
+{
+Supply Bonus
+}
+
+STRING 252
+// Abilities: A00L (Supplies), Ubertip (Tooltip - Normal - Extended)
+{
+This unit benefits from supply upgrades, increasing it's mana pool.
+}
+
+STRING 253
+// Abilities: A00L (Supplies), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 254
+// Units: u003 (Greater Obsidian Statue), Name (Name)
+{
+Greater Obsidian Statue
+}
+
+STRING 255
+// Units: u004 (Lich), Name (Name)
+{
+Lich
+}
+
+STRING 256
+// Abilities: A00N (Siphon Mana), EditorSuffix (Editor Suffix)
+{
+(Lich)
+}
+
+STRING 257
+// Abilities: A00O (Death Coil Spray), Name (Name)
+{
+Death Coil Spray
+}
+
+STRING 258
+// Abilities: A00O (Death Coil Spray), Tip (Tooltip - Normal)
+{
+Death Coil Spray
+}
+
+STRING 259
+// Abilities: A00O (Death Coil Spray), EditorSuffix (Editor Suffix)
+{
+(Lich - Pheonix Fire)
+}
+
+STRING 260
+// Abilities: A00M (Greater Essence of Blight), Name (Name)
+{
+Greater Essence of Blight
+}
+
+STRING 261
+// Abilities: A00M (Greater Essence of Blight), Ubertip (Tooltip - Normal - Extended)
+{
+Restores 250 hit points to nearby friendly units.
+}
+
+STRING 262
+// Abilities: A00D (Cleaving Attack), Ubertip (Tooltip - Normal - Extended)
+{
+The creature strikes with such force that 75% of their damage strikes through to enemies near the primary attacked unit.
+}
+
+STRING 263
+// Units: h00E (Citadel of the Northern Knights), Name (Name)
+{
+Citadel of the Northern Knights
+}
+
+STRING 264
+// Units: nwzr (Rogue Wizard), Ubertip (Tooltip - Extended)
+{
+Light ranged unit that can cast Dispel Magic and Frost Armor. |n|n|cffffcc00Attacks land and air units.|r
 }
 

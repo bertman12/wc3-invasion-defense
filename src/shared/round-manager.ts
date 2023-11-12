@@ -1,9 +1,9 @@
 import { forEachPlayer, forEachUnitOfPlayerWithAbility, forEachUnitTypeOfPlayer } from "src/utils/players";
-import { spawnZombies } from "src/zombies";
+import { spawnZombies } from "src/undead/undead";
 import { Trigger, Sound, Timer } from "w3ts";
 import { Players } from "w3ts/globals";
 import { ABILITIES } from "./enums";
-import { player_giveStartOfDayResources } from "src/players";
+import { player_giveHumansStartOfDayResources } from "src/players";
 import { tColor } from "src/utils/misc";
 import { playCustomSound } from "./sounds";
 import { TimerManager } from "./Timers";
@@ -30,7 +30,7 @@ export class RoundManager {
         tStart.addAction(() => {
             RoundManager.startNextRound();
         });
-
+        
         const tEnd = Trigger.create();
         tEnd.registerPlayerChatEvent(Players[0], "-end", false);
         tEnd.addAction(() => {
