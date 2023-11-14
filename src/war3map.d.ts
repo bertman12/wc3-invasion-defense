@@ -6,6 +6,7 @@ declare var gg_rct_waygateBase: rect;
 declare var gg_rct_waygateNorth: rect;
 declare var gg_rct_zNorthWestspawn2: rect;
 declare var gg_rct_undead_unit_showcase: rect;
+declare var gg_rct_zEastCapitalSpawn: rect;
 declare var gg_snd_QuestNew: sound;
 declare var gg_snd_QuestCompleted: sound;
 declare var gg_snd_QuestFailed: sound;

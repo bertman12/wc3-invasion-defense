@@ -115,6 +115,7 @@ function trig_heroPurchased(){
         createdUnit?.addItemById(FourCC("cnob"));
         createdUnit?.addItemById(FourCC("ankh"));
         createdUnit?.addItemById(FourCC("stel"));
+        createdUnit?.addItemById(FourCC("I001"));
 
         SetCameraPositionForPlayer(buyingUnit.owner.handle, createdUnit.x, createdUnit.y);
 
@@ -182,12 +183,12 @@ export function init_startingResources(){
         player.setState(PLAYER_STATE_RESOURCE_LUMBER, 300);
     });
     
-    //Allow bounty from zombies.
-    Players.forEach(p => {
-        if(p.race === RACE_UNDEAD){
-            p.setState(PLAYER_STATE_GIVES_BOUNTY, 1);
-        }
-    });
+    // //Allow bounty from zombies.
+    // Players.forEach(p => {
+    //     if(p.race === RACE_UNDEAD){
+    //         p.setState(PLAYER_STATE_GIVES_BOUNTY, 1);
+    //     }
+    // });
 }
 
 function grantStartOfDayBonuses(){
@@ -267,11 +268,11 @@ export function player_giveHumansStartOfDayResources(round: number){
     grantStartOfDayBonuses();
 
     const baseGold = 100;
-    const baseWood = 100;
+    const baseWood = 50;
     const roundGold = 25 * round;
-    const roundWood = 25 * round;
+    const roundWood = 10 * round;
 
-    const incomeBuildingGold = 25 * totalIncomeBuildings;
+    const incomeBuildingGold = economicConstants.goldIncomeAbility * totalIncomeBuildings;
     const lumberIncome = economicConstants.lumberIncomeAbility * lumberAbilityCount;
 
     const totalGold = baseGold + roundGold + incomeBuildingGold;
@@ -285,7 +286,7 @@ export function player_giveHumansStartOfDayResources(round: number){
     print("                                  ");
     print(`${tColor("Base Amount", "goldenrod")} - ${tColor("Lumber", "green")} - ${baseWood}`);
     print(`${tColor("Round Bonus", "goldenrod")} #${round} - ${tColor("Lumber", "green")}: ${roundWood}`);
-    print(`${tColor("Income Buildings", "goldenrod")} (${totalIncomeBuildings}) - ${tColor("Lumber", "green")}: ${lumberIncome}`);
+    print(`${tColor("Income Buildings", "goldenrod")} (${lumberAbilityCount}) - ${tColor("Lumber", "green")}: ${lumberIncome}`);
     print(`${tColor("Total", "goldenrod")}: ${tColor("Lumber", "green")}: ${totalLumber}`);
     print("==================");
 

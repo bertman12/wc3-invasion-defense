@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Kingdom Zombie Defense alpha test 3
+Kingdom Zombie Defense alpha test 4
 }
 
 STRING 2
@@ -10,11 +10,15 @@ Any
 
 STRING 3
 {
+Hero/Army Defense
+
+Hold out for 10 nights until reinforcements arrive.
+
 Supply horses grant healing for units.
 Buildings will provide various upgrades depending on the building.
 Certain units are sold at different buildings.
 
-Hold out for 10 nights until reinforcements arrive.
+
 }
 
 STRING 4
@@ -29,7 +33,7 @@ Player 1
 
 STRING 7
 {
-alpha testing #3
+alpha testing #4
 }
 
 STRING 9
@@ -950,12 +954,6 @@ STRING 229
 Supply Camp
 }
 
-STRING 230
-// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
-{
-Can repair buildings and builds a supply camp, scout tower(no upgrades) and Caltrops to slow down the enemy.
-}
-
 STRING 231
 // Units: hcth (General), Ubertip (Tooltip - Extended)
 {
@@ -1146,5 +1144,59 @@ STRING 264
 // Units: nwzr (Rogue Wizard), Ubertip (Tooltip - Extended)
 {
 Light ranged unit that can cast Dispel Magic and Frost Armor. |n|n|cffffcc00Attacks land and air units.|r
+}
+
+STRING 265
+// Units: hwtw (Scout Tower), Ubertip (Tooltip - Extended)
+{
+Basic observation tower. Has magic sentry and 1800 vision range day and night.
+}
+
+STRING 268
+// Units: h00F (Obstacle), Ubertip (Tooltip - Extended)
+{
+Basic wall. 30s build time. Can only be repaired in the day.
+}
+
+STRING 269
+// Units: h00F (Obstacle), Tip (Tooltip - Basic)
+{
+Build Barricade
+}
+
+STRING 270
+// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
+{
+Able to build and repair structures during the daytime only.|n|nCan repair buildings and builds a supply camp, scout tower(no upgrades) and Caltrops to slow down the enemy.
+}
+
+STRING 271
+// Units: h00F (Obstacle), Name (Name)
+{
+Obstacle
+}
+
+STRING 272
+// Items: I001 (Air Orb), Name (Name)
+{
+Air Orb
+}
+
+STRING 273
+// Items: I001 (Air Orb), Tip (Tooltip - Basic)
+{
+Air Orb
+}
+
+STRING 274
+// Items: I001 (Air Orb), Ubertip (Tooltip - Extended)
+{
+Lets you attack air units.
+}
+
+STRING 275
+// Items: I001 (Air Orb), Description (Description)
+{
+Lets you attack air units.
 }
 

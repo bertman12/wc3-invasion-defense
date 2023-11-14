@@ -263,3 +263,29 @@ add an ability that spawns a wall
 maybe make caltrops do damage as well? could use pehonix fire ability again.
 
 add blink dagger
+
+
+maybe let players also create their own enemies.
+
+==
+display the human and undead casualties at the end of the night
+
+add a soul orb that lets the hero summon a random undead unit? 
+
+add soul absorber, something that absorbs the souls of the undead allowing you to gain money, or damage, or maybe buy an upgrade with the souls.
+
+maybe allow undead to be your slaves?
+
+infuse your units with the power of undeath.
+
+give melee heroes 250 attack range against air
+
+perhaps add upgrades that take a 1-3 days to arrive. use upgrades to prevent the purchase of such upgrades like "- Requires Before Night 8"
+
+also maybe add more days with shorter intervals
+
+maybe a form of income could be picking up corpses lol
+
+and then skeletons can counter that by having no corpse so less gold for the player.
+
+add glaives of slaughter item that gives huntress missle art and bounce attack. ranged units only.

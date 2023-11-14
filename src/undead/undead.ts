@@ -5,6 +5,7 @@ import {  primaryAttackTargets } from "../towns";
 import { CUSTOM_UNITS, MinimapIconPath } from "../shared/enums";
 import { TimerManager } from "../shared/Timers";
 import { RoundManager } from "../shared/round-manager";
+import { notifyPlayer } from "src/utils/misc";
 
 /**
  * A smart undead spawning system will choose from a pool of available units
@@ -47,6 +48,8 @@ const archTypes = {
 }
 
 export const zombieMapPlayer = Players[20];
+
+
 
 export const zombieSpawnRectangles: rect[] = [
     gg_rct_ZombieSpawn1,
@@ -104,6 +107,7 @@ interface SpawnData {
 
 function createSpawnData(currentRound: number, spawnCount: number):SpawnData[]{
     //could make spawn quantity cyclic with trig functions
+    
     /**
      * 20z a wave
      * 4 waves/min
@@ -152,16 +156,16 @@ function createSpawnData(currentRound: number, spawnCount: number):SpawnData[]{
         },
         //Zombie
         {
-            quantityPerWave: 8,
+            quantityPerWave: 100,
             unitType: FourCC("nzom"),
         },
         //Lich Unit
         {
             quantityPerWave: 1,
             unitType: FourCC("u004"),
-            // spawnRequirement(waveCount, waveInterval, roundDuration) {
-            //     return currentRound >= 6;
-            // },
+            spawnRequirement(waveCount, waveInterval, roundDuration) {
+                return currentRound >= 6;
+            },
         },
         //Obsidian Statues
         {
@@ -174,9 +178,9 @@ function createSpawnData(currentRound: number, spawnCount: number):SpawnData[]{
         //Greater Obsidian Statues
         {
             quantityPerWave: 1,
-            // spawnRequirement(waveCount, waveInterval, roundDuration) {
-            //     return waveCount % 2 === 0 && currentRound >= 4;
-            // },
+            spawnRequirement(waveCount, waveInterval, roundDuration) {
+                return waveCount % 4 === 0 && currentRound >= 4;
+            },
             unitType: FourCC("u003"),
         },
         //Gargoyles... lol
@@ -199,7 +203,7 @@ function createSpawnData(currentRound: number, spawnCount: number):SpawnData[]{
         {
             quantityPerWave: 1,
             spawnRequirement(waveCount, waveInterval, roundDuration) {
-                return currentRound >= 9
+                return currentRound >= 9 && waveCount === 1
             },
             unitType: CUSTOM_UNITS.demonFireArtillery
         },
@@ -248,7 +252,7 @@ export function setup_zombies(){
         spawnLocationIcons: [],
         spawnAttackTargetIcon: [],
     }
-
+    
     RoundManager.onNightStart((round) => spawnZombies(round, passByRefArg));
 
     RoundManager.onDayStart(() => {
@@ -267,14 +271,16 @@ function cleanupZombies(passByRefArg: zombieArgs){
 
     passByRefArg.spawnUnitForces.forEach(unitForce =>{
         unitForce.forEach((u, index) => {
-            //Kill 95% remaining undead units
-            if(index/unitForce.length < 0.95){
-                u.kill()
-            }
-            else{
-                //Order the rest to attack the capital city
-                u.issueOrderAt(OrderId.Attack, 0,0);
-            }
+            u.kill()
+
+            // //Kill 95% remaining undead units
+            // if(index/unitForce.length < 0.95){
+            //     u.kill()
+            // }
+            // else{
+            //     //Order the rest to attack the capital city
+            //     u.issueOrderAt(OrderId.Attack, 0,0);
+            // }
         } );
     });
 
@@ -299,7 +305,7 @@ let totalZombieCount = 0;
 export function spawnZombies(currentRound: number, passByRefArg: zombieArgs) {
     const WAVE_INTERVAL = 15;
     totalZombieCount = 0; 
-    print('spawning zombies, total zombie count: ', totalZombieCount);   
+
     const spawns = chooseZombieSpawns();
     const spawnForceCurrentTarget:Unit[] = [];
     const spawnData :SpawnData[] = createSpawnData(currentRound, spawns.length);
@@ -340,7 +346,7 @@ export function spawnZombies(currentRound: number, passByRefArg: zombieArgs) {
             spawnData.forEach(data => {
                 if(data.spawnRequirement && data.spawnRequirement(waveCount, WAVE_INTERVAL, TimerManager.nightTimeDuration)){
                     const units = spawnUndeadUnitType(data.unitType, data.quantityPerWave, xPos, yPos, data);
-                    passByRefArg.spawnUnitForces[index].push(...units); 
+                    passByRefArg.spawnUnitForces[index].push(...units);
                     newestSpawnedUnits.push(...units);
                 }
                 else if(!data.spawnRequirement){
@@ -400,7 +406,7 @@ export function spawnZombies(currentRound: number, passByRefArg: zombieArgs) {
 function spawnUndeadUnitType(unitType: number, quantity: number, xPos: number, yPos: number, data: SpawnData): Unit[]{
     const units = [];
     
-    if(totalZombieCount >= UNDEAD_MAX_UNIT_LIMIT) print("Reached max zombie limit!");
+    // if(totalZombieCount >= UNDEAD_MAX_UNIT_LIMIT) print("Reached max zombie limit!");
 
     for(let i = 0; i < quantity && totalZombieCount <= UNDEAD_MAX_UNIT_LIMIT; i++){
         const u = Unit.create(getNextUndeadPlayer(), unitType, xPos, yPos);
@@ -413,12 +419,12 @@ function spawnUndeadUnitType(unitType: number, quantity: number, xPos: number, y
             totalZombieCount++;
             units.push(u);
         }
-        else{
-            print("Unable to create unit")
-        }
+        // else{
+        //     print("Unable to create unit")
+        // }
     }
 
-    print("totalZombieCount: ", totalZombieCount)
+    // print("totalZombieCount: ", totalZombieCount)
     return units;
 }
 
@@ -519,7 +525,13 @@ function chooseZombieSpawns(): Rectangle[]{
         if(zRec) spawns.push(zRec);
     }
 
+    if(RoundManager.currentRound >=7){
+        const zRec = Rectangle.fromHandle(gg_rct_zEastCapitalSpawn);
+        if(zRec) spawns.push(zRec);
+    }
+
     return spawns;
 
     // return [...outgoingSet];
 }
+

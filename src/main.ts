@@ -14,16 +14,14 @@ import { trig_wayGate } from './abilities/waygate';
 import { setupUndeadUnitPreview } from './abilities/misc';
 import { init_quests } from './utils/quests';
 import { initFrames } from './frames';
+import { setup_reportCasualtyCounts } from './shared/misc';
 
 const BUILD_DATE = compiletime(() => new Date().toUTCString());
 const TS_VERSION = compiletime(() => require("typescript").version);
 const TSTL_VERSION = compiletime(() => require("typescript-to-lua").version);
 
 compiletime(( { objectData, constants }) => {
-  
-  
   objectData.save();
-  
 });
 
 function tsMain() {
@@ -74,7 +72,7 @@ function tsMain() {
     //   clearFogState?.destroy();
     // })
 
-
+    setup_reportCasualtyCounts();
 
     init_map_triggers();
     RoundManager.trig_setup_StartRound();

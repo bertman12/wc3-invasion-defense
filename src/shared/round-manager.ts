@@ -1,6 +1,6 @@
 import { forEachPlayer, forEachUnitOfPlayerWithAbility, forEachUnitTypeOfPlayer } from "src/utils/players";
 import { spawnZombies } from "src/undead/undead";
-import { Trigger, Sound, Timer } from "w3ts";
+import { Trigger, Sound, Timer, FogModifier } from "w3ts";
 import { Players } from "w3ts/globals";
 import { ABILITIES } from "./enums";
 import { player_giveHumansStartOfDayResources } from "src/players";
@@ -40,12 +40,17 @@ export class RoundManager {
     
     static startNextRound(){
         RoundManager.currentRound++;
-        
-        if(RoundManager.currentRound > 10){
+
+        if(RoundManager.currentRound >= 10){
             print("Congratulations, you have won. The map is still in development with many more features to come.");
             print("Nights will continue forever now.");
+
+            forEachPlayer(p => {
+                const clearFogState = FogModifier.create(Players[0], FOG_OF_WAR_VISIBLE, 0,0, 25000, true, true);
+                clearFogState?.start();
+            });
         }
-        
+
         Sound.fromHandle(gg_snd_QuestNew)?.start();
         Sound.fromHandle(gg_snd_TheHornOfCenarius)?.start();
         ClearMapMusic();
@@ -65,6 +70,8 @@ export class RoundManager {
     }
     
     static endCurrentRound(){
+
+
         print(`Night ${RoundManager.currentRound} has ended...`);
         SetTimeOfDay(12);
 
@@ -80,7 +87,7 @@ export class RoundManager {
 
         Timer.create().start(5, false, () => {
             Sound.fromHandle(gg_snd_Hint)?.start();
-            print(`[${tColor("WARNING", "red")}] - The remaining undead are marching upon your capital.`)
+            // print(`[${tColor("WARNING", "red")}] - The remaining undead are marching upon your capital.`)
             print("Supply horses have arrived at the capital. Use them to heal your units.");
         });
 

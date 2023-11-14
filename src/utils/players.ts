@@ -1,7 +1,13 @@
-import { unitTypeAbilities } from "src/shared/misc";
+// import { unitTypeAbilities } from "src/shared/misc";
 import { Group, MapPlayer, Unit } from "w3ts";
 import { Players } from "w3ts/globals";
 
+/**
+ * Does a callback for every unit of the player that has the ability
+ * @param player 
+ * @param abilityId 
+ * @param cb 
+ */
 export function forEachUnitOfPlayerWithAbility(player: MapPlayer, abilityId:  number, cb: (unit: Unit) => void){
     forEachUnitOfPlayer(player, (u) => {
         for(let x = 0; x < 12; x++){
@@ -76,25 +82,25 @@ export function forEachUnitOfPlayer(player: MapPlayer, cb:(unit: Unit) => void){
  * 
  * Cannot use since each unit's ability from getAbility is unique, even though multiple unique ability codes reference the same spell.
  */
-function storeUnitTypeAbilities(u: Unit){
-    if(unitTypeAbilities.has(u.typeId)) return;
+// function storeUnitTypeAbilities(u: Unit){
+//     if(unitTypeAbilities.has(u.typeId)) return;
 
-    //IF we currently haven't stored the unit type we do so now with an empty array
-    if(!unitTypeAbilities.has(u.typeId)){
-        unitTypeAbilities.set(u.typeId, []);
-    }
+//     //IF we currently haven't stored the unit type we do so now with an empty array
+//     if(!unitTypeAbilities.has(u.typeId)){
+//         unitTypeAbilities.set(u.typeId, []);
+//     }
 
-    //Iterate all 12 ability slots a unit can have
-    for(let x = 0; x < 12; x++){
-        let currentAbility = u.getAbilityByIndex(x);
+//     //Iterate all 12 ability slots a unit can have
+//     for(let x = 0; x < 12; x++){
+//         let currentAbility = u.getAbilityByIndex(x);
 
-        if(currentAbility){
-            const updated =  unitTypeAbilities.get(u.typeId) as ability[];
-            updated.push(currentAbility);
-            unitTypeAbilities.set(u.typeId, updated);
-        }
-    }
-}
+//         if(currentAbility){
+//             const updated =  unitTypeAbilities.get(u.typeId) as ability[];
+//             updated.push(currentAbility);
+//             unitTypeAbilities.set(u.typeId, updated);
+//         }
+//     }
+// }
 
 /***
  * perhaps I stored the unit type id and the name of the ability or the ability FourCC("")

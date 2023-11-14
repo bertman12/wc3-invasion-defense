@@ -32,8 +32,9 @@ function playerUnitRallyCheckbox() {
 
             if(playerState) {
               playerState.rallyToHero = !playerState.rallyToHero;
-              if(playerState.rallyToHero) BlzDisplayChatMessage(p.handle,p.id,  "Purchased units will now move to your hero automatically.")
-              if(!playerState.rallyToHero) BlzDisplayChatMessage(p.handle,p.id,  "Purchased units will no longer move to your hero automatically. ")
+              // if(playerState.rallyToHero) BlzDisplayChatMessage(p.handle, p.id,  "Setting: Units will rally to hero now.")
+              // if(!playerState.rallyToHero) BlzDisplayChatMessage(p.handle, p.id,  "Purchased units will no longer move to your hero automatically. ")
+              
               playerStates.set(p.id, playerState);
             };
           }
@@ -43,6 +44,8 @@ function playerUnitRallyCheckbox() {
       
       const gameui = Frame.fromOrigin(ORIGIN_FRAME_GAME_UI, 0);
    
+
+
       if (gameui) {
         // Create a "GLUEBUTTON" named "Facebutton", the clickable Button, for game UI
         const buttonFrame = Frame.createType("FaceButton", gameui, 0, "GLUEBUTTON", "");
@@ -61,6 +64,41 @@ function playerUnitRallyCheckbox() {
           if(f) buttonIconFrame?.setPoint(FRAMEPOINT_RIGHT, f, FRAMEPOINT_LEFT, 0,0);
           // Give that buttonFrame a size
           buttonIconFrame?.setSize(0.025, 0.025);
+
+          // -- Create the Background a Backdrop
+          const tooltipFrameBackGround = BlzCreateFrame("QuestButtonBaseTemplate", gameui.handle, 0, 0)
+
+          if(tooltipFrameBackGround){
+            // -- create a new Button which inherits from "ScriptDialogButton"
+            // const button = BlzCreateFrameByType("GLUETEXTBUTTON", "MyScriptDialogButton", gameui.handle, "ScriptDialogButton", 0)
+            
+            // if(button){
+            //   // -- place the Button to the center of the Screen
+            //   BlzFrameSetAbsPoint(button, FRAMEPOINT_CENTER, 0.4, 0.3)
+            //   // -- set the Button's text
+            //   BlzFrameSetText(button, "My Button Text")
+
+            // }
+
+            BlzFrameSetSize(tooltipFrameBackGround, 0.15, 0.025)
+            // -- Create the Text as child of the Background
+            const tooltipFrameText = BlzCreateFrameByType("TEXT", "MyScriptDialogButtonTooltip", tooltipFrameBackGround, "", 0)
+
+            if(tooltipFrameText && frame) {
+
+              // -- Copy Size and Position with a small offset.
+              BlzFrameSetPoint(tooltipFrameText, FRAMEPOINT_BOTTOMLEFT, tooltipFrameBackGround, FRAMEPOINT_BOTTOMLEFT, 0.01, 0.01)
+              BlzFrameSetPoint(tooltipFrameText, FRAMEPOINT_TOPRIGHT, tooltipFrameBackGround, FRAMEPOINT_TOPRIGHT, -0.01, -0.01)
+              // -- The background becomes the button's tooltip, the Text as child of the background will share the visibility
+              BlzFrameSetTooltip(frame, tooltipFrameBackGround)
+              // -- Place the Tooltip above the Button 
+              BlzFrameSetPoint(tooltipFrameBackGround, FRAMEPOINT_BOTTOM, frame, FRAMEPOINT_TOP, 0, 0.01)
+              // -- Prevent the TEXT from taking mouse control
+              BlzFrameSetEnable(tooltipFrameText, true)
+              BlzFrameSetText(tooltipFrameText, "Rally troops to hero.")
+            }
+
+          }
 
           // const t = Trigger.create();
 
