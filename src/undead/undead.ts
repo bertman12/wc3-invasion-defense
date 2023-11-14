@@ -47,11 +47,9 @@ const archTypes = {
     demon: {chance: 0, unitSet: []}
 }
 
-export const zombieMapPlayer = Players[20];
+const zombieMapPlayer = Players[20];
 
-
-
-export const zombieSpawnRectangles: rect[] = [
+const zombieSpawnRectangles: rect[] = [
     gg_rct_ZombieSpawn1,
     gg_rct_zombieSpawn2
 ];
@@ -156,7 +154,7 @@ function createSpawnData(currentRound: number, spawnCount: number):SpawnData[]{
         },
         //Zombie
         {
-            quantityPerWave: 100,
+            quantityPerWave: 1,
             unitType: FourCC("nzom"),
         },
         //Lich Unit
