@@ -1,13 +1,14 @@
 import { ABILITIES, CUSTOM_UNITS } from "src/shared/enums";
 import { tColor } from "src/utils/misc";
 import { forEachPlayer } from "src/utils/players";
-import { Force, MapPlayer, Trigger, Unit } from "w3ts";
+import { Force, MapPlayer, Timer, Trigger, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
 
 export function init_humanSpells(){
     // knightCharge();
     makeAlliance();
     trig_hireFlyingMachine();
+    trig_heroicLeap();
 }
 
 function makeAlliance(){
@@ -71,6 +72,45 @@ function trig_hireFlyingMachine(){
                     // print(u.name);
                 }
             }
+        }
+
+        return false;
+    });
+}
+
+function trig_heroicLeap(){
+    const t = Trigger.create();
+
+    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SPELL_CAST);
+    t.addCondition(() => {
+        const castedSpellId = GetSpellAbilityId();
+        const caster = Unit.fromEvent();
+        
+        if(castedSpellId === ABILITIES.heroicLeap && caster){
+            print("Player cast heroic leap!!!!");
+            let timeElapsed = 0;
+            const originalAngle = caster?.facing;
+           
+            const t = Timer.create();
+            const distanceToTravel = 600; //100 units per tick?
+            const refreshInterval = 0.01;
+            const totalDuration = 2;
+
+            caster.disableAbility
+
+            t.start(refreshInterval, true, ()=>{
+                timeElapsed += refreshInterval;
+                const speed = distanceToTravel*refreshInterval;
+                
+                //speed of decay approaches our the max speed , thus slowly stopping us as more time elapses, just like friction 
+                caster.x += (speed) * Math.cos(Deg2Rad(originalAngle)) - (timeElapsed/totalDuration)*speed*Math.cos(Deg2Rad(originalAngle));
+                caster.y += (speed) * Math.sin(Deg2Rad(originalAngle)) - (timeElapsed/totalDuration)*speed*Math.sin(Deg2Rad(originalAngle));
+
+                if(timeElapsed >= totalDuration){
+                    print("timer duration expired!");
+                    t.destroy();
+                }
+            })
         }
 
         return false;

@@ -1200,3 +1200,21 @@ STRING 275
 Lets you attack air units.
 }
 
+STRING 276
+// Abilities: A00P (Heroic Leap), Name (Name)
+{
+Heroic Leap
+}
+
+STRING 277
+// Abilities: A00P (Heroic Leap), Tip (Tooltip - Normal)
+{
+Heroic Leap
+}
+
+STRING 278
+// Abilities: A00P (Heroic Leap), Ubertip (Tooltip - Normal - Extended)
+{
+The hero jumps forward through the air and crashes down onto the earth.
+}
+

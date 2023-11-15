@@ -10,6 +10,7 @@ export enum ABILITIES {
     replenishLifeAndMana = FourCC("Ambt"),
     hireFlyingMachinePatrol = FourCC("A00G"),
     foodCapBonus = FourCC("A00I"),
+    heroicLeap = FourCC("A00P"),
 }
 
 export enum UpgradeCodes {

@@ -289,3 +289,7 @@ maybe a form of income could be picking up corpses lol
 and then skeletons can counter that by having no corpse so less gold for the player.
 
 add glaives of slaughter item that gives huntress missle art and bounce attack. ranged units only.
+
+
+
+making an ability to make heroes jump
