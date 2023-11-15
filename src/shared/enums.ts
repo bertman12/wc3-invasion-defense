@@ -32,15 +32,29 @@ export enum CUSTOM_UNITS {
     blacksmith = FourCC("h004"),
     cannonTower = FourCC("hctw"),
     guardTower = FourCC("hgtw"),
-    boss_pitLord = FourCC("N005"),
-    fleshBeetle = FourCC("u002"),
-    demonFireArtillery = FourCC("n007"),
+
     workshop = FourCC("harm"),
     flyingMachine = FourCC("hgyr"),
     arcaneSanctum = FourCC("hars"),
     lumberMill = FourCC("hlum"),
     granary = FourCC("h00C"),
     citadelOfTheNorthernKnights = FourCC("h00E"),
+
+    //Undead
+    abomination = FourCC("uabo"),
+    meatWagon = FourCC("umtw"),
+    boss_pitLord = FourCC("N005"),
+    fleshBeetle = FourCC("u002"),
+    demonFireArtillery = FourCC("n007"),
+    skeletalFrostMage = FourCC("u000"),
+    necromancer = FourCC("u001"),
+    skeletalArcher = FourCC("nskm"),
+    zombie = FourCC("nzom"),
+    lich = FourCC("u004"),
+    obsidianStatue = FourCC("uobs"),
+    greaterObsidianStatue = FourCC("u003"),
+    gargoyle = FourCC("ugar"),
+    skeletalOrcChampion = FourCC("nsoc"),
 }
 
 //Can find looking up models for a spell at the Art - Target field

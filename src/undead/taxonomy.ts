@@ -1,8 +1,10 @@
+import { CUSTOM_UNITS, MinimapIconPath } from "src/shared/enums";
 import { RoundManager } from "src/shared/round-manager";
 import { primaryAttackTargets } from "src/towns";
 import { forEachAlliedPlayer, forEachUnitTypeOfPlayer } from "src/utils/players";
-import { Point, Rectangle, Timer, Trigger, Unit } from "w3ts";
+import { Effect, Point, Rectangle, Timer, Trigger, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
+import { Units } from "war3-objectdata-th";
 
 const UNDEAD_PLAYERS = [
     Players[10],
@@ -40,33 +42,37 @@ function getNextUndeadPlayer(){
 //30 seconds being the hard spawn, 15 second intervals being the normal spawn difficulty; maybe fr
 const waveIntervalOptions = [15, 30];
 
+const MAX_ZOMBIE_COUNT = 1000 as const;
+
 let currentZombieCount = 0;
+let currentSpawns : SpawnData[] = [];
 
 /**
  * Runs after map starts
  */
-function setup_undeadSpawn(){
+export function setup_undeadSpawn(){
     RoundManager.onNightStart(undeadNightStart);
+    RoundManager.onDayStart(undeadDayStart)
 }
 
 /**
  * Handles zombie spawns each night
  */
 function undeadNightStart(){
-    //create our spawn points
-    //night timer has already started at this point
-
-    //get our spawns
     const spawnConfigs = [gg_rct_ZombieSpawn1, gg_rct_zombieSpawn2, gg_rct_zNorthSpawn1].map(zone => {
         return new SpawnData(zone);
     });
 
+    currentSpawns = spawnConfigs;
 
-    // spawnConfigs.forEach(config => {
-    //     const waveTimer = Timer.create().start(config.waveIntervalTime, true, config.createWaveUnits);
-        
+    spawnConfigs.forEach(config => {
+        config.startSpawning();
+    });
+}
 
-    // });
+function undeadDayStart(){
+    print("Cleaning up spawns!");
+    currentSpawns.forEach(spawn => spawn.cleanupSpawn());
 }
 
 type UnitCategory = "infantry" | "missile" | "caster" | "siege" | "hero";
@@ -79,6 +85,10 @@ class SpawnData {
     //random number from the array;
     public waveIntervalTime = 15;
     private spawnAmountPerWave = 1;
+
+    /**
+     * @UndeadSpawnChances
+     */
     private readonly TIER_2_MAX_CHANCE = 0.80;
     private readonly TIER_3_MAX_CHANCE = 0.60;
     //These should be the base values for the most spawned unit
@@ -108,11 +118,22 @@ class SpawnData {
     public waveTimer: Timer | undefined;
     public currentAttackTarget: Unit | undefined;
     private trig_chooseNextTarget: Trigger | undefined;
+    private lastCreatedWaveUnits: Unit[] = [];
+    
+    //Special Effects and Icons
+    private spawnIcon: minimapicon | undefined;
+    private currentTargetSpecialEffect: Effect | undefined;
+    private currentTargetMinimapIcon : minimapicon | undefined;
 
     constructor(spawn: rect){
         this.spawnRec = Rectangle.fromHandle(spawn);
         this.totalSpawnCount = calcBaseAmountPerWave();
-        this.waveIntervalTime = Math.floor(Math.random()*waveIntervalOptions.length);
+        
+        const difficulty = Math.floor(Math.random()*waveIntervalOptions.length);
+        this.spawnDifficulty = difficulty;
+        print("Spawn Difficulty index: ", this.spawnDifficulty," - ", difficulty);
+        this.waveIntervalTime = waveIntervalOptions[difficulty];
+
         this.spawnAmountPerWave = this.waveIntervalTime === 15 ? this.totalSpawnCount : this.totalSpawnCount * 1.75;
         this.baseTier2Chance = 0.15 + 0.04 * RoundManager.currentRound;
         this.currentTier2Chance = this.baseTier2Chance;
@@ -126,16 +147,16 @@ class SpawnData {
             ["hero", Math.ceil(0.1*this.spawnAmountPerWave)],
         ]);
         this.greatestUnitCountFromAllUnitCategories = Math.ceil(0.3*this.spawnAmountPerWave);
+
+        this.spawnIcon = CreateMinimapIcon(this.spawnRec?.centerX ?? 0, this.spawnRec?.centerY ?? 0, 255, 255 - 150*this.spawnDifficulty, 255 - 255*this.spawnDifficulty, 'UI\\Minimap\\MiniMap-Boss.mdl', FOG_OF_WAR_FOGGED)
     }
 
     public startSpawning(){
         this.createWaveUnits();
-        this.orderAttack();
-        const t = Trigger.create();
+        this.orderNewAttack(this.units);
 
-        //When we start spawning units, we want to choose our first attack target relative to our spawn point
-        const currentAttackPoint = Point.create(this.spawnRec?.centerX ?? 0, this.spawnRec?.centerY ?? 0)
-        this.currentAttackTarget = this.chooseForceAttackTarget(currentAttackPoint);
+        const t = Trigger.create();
+        this.trig_chooseNextTarget = t;
 
         t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_DEATH);
         t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_CHANGE_OWNER);
@@ -144,44 +165,63 @@ class SpawnData {
             const u = Unit.fromEvent();
 
             if(u && u === this.currentAttackTarget){
-                const currentAttackPoint = Point.create(this.currentAttackTarget?.x ?? this.spawnRec?.centerX, this.currentAttackTarget?.y ?? this.spawnRec?.centerY)
-
-                this.currentAttackTarget = this.chooseForceAttackTarget(currentAttackPoint);
+                this.orderNewAttack(this.units);
             }
 
             return false;
-        })
+        });
 
         this.waveTimer = Timer.create();
         this.waveTimer.start(this.waveIntervalTime, true, () => {
             this.createWaveUnits();
-            this.orderAttack();
+            this.orderNewAttack(this.lastCreatedWaveUnits);
         });
     }
 
-    public cleanup(){
-        // this.units.forEach(u => {
-        //     if(u) u.kill();
-        // });
+    public cleanupSpawn(){
+        this.units.forEach(u => {
+            if(u) u.kill();
+        });
+
+        if(this.spawnIcon) DestroyMinimapIcon(this.spawnIcon)
+        if(this.currentTargetMinimapIcon) DestroyMinimapIcon(this.currentTargetMinimapIcon);
+        if(this.currentTargetSpecialEffect) this.currentTargetSpecialEffect.destroy();
     }
 
-    private orderAttack(){
-        // if(this.currentAttackTarget?.isAlive() && ){
-
-        // }
+    private orderNewAttack(attackingUnits: Unit[]){
+        const newTarget = this.chooseForceAttackTarget(Point.create(this.spawnRec?.centerX ?? 0, this.spawnRec?.centerY ?? 0));
         
-        const currentAttackPoint = Point.create(this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0)
+        if(newTarget && newTarget !== this.currentAttackTarget){
+            //Creates an effect at the target attack point for player to see where the next attack location is
+            const effect = Effect.create("Abilities\\Spells\\NightElf\\TrueshotAura\\TrueshotAura.mdl", newTarget.x, newTarget.y);
+            
+            if(effect){
+                effect.scale = 3;
+                effect.setColor(255, 255,255);
+            }
 
+            //destroy the old effect
+            if(this.currentTargetSpecialEffect) this.currentTargetSpecialEffect.destroy();
+            this.currentTargetSpecialEffect = effect;
+            
+            // const icon = CreateMinimapIcon(newTarget.x, newTarget.y, 255, 255 - 150*this.spawnDifficulty, 255 - 255*this.spawnDifficulty, MinimapIconPath.ping, FOG_OF_WAR_FOGGED);
+            const icon = CreateMinimapIcon(newTarget.x, newTarget.y, 255, 100, 50, MinimapIconPath.ping, FOG_OF_WAR_FOGGED);
+            if(this.currentTargetMinimapIcon) DestroyMinimapIcon(this.currentTargetMinimapIcon);
+            this.currentTargetMinimapIcon = icon;
+        }
 
+        this.currentAttackTarget = newTarget;
+        
+        print("attacking force size", attackingUnits.length);
 
-        const newTarget = this.chooseForceAttackTarget(currentAttackPoint);
-
-        this.units.forEach(u => {
-            u.issueOrderAt(OrderId.Attack, newTarget?.x ?? 0, newTarget?.y ?? 0);
-        })
+        attackingUnits.forEach(u => {
+            u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0);
+        });
     }
 
     public createWaveUnits(){
+        const unitsCreatedThisWave:Unit[] = [];
+
         //sample a random theta from 0 - PI/2
         //sin(theta) is uniformly distributed with a linear rate of change and valid for chance selection. each point on the curve is equally likely to be chosen as any other
         this.unitCompData.forEach((count, category) => {
@@ -191,30 +231,45 @@ class SpawnData {
                 //Range [0, 1)
                 const sampledValue = Math.sin(randomTheta);
             
-                //
                 if(sampledValue - (1 - count/this.greatestUnitCountFromAllUnitCategories) <= this.currentTier3Chance){
                     //spawn tier 3 unit
-                    this.spawnSingleUndeadUnit(category, 2);
+                    const u = this.spawnSingleUndeadUnit(category, 2);
+                    if(u){
+                        unitsCreatedThisWave.push(u);
+                    }
+
                     //reset chance to base
                     this.currentTier3Chance = this.baseTier3Chance;
                 }else if(sampledValue - (1 - count/this.greatestUnitCountFromAllUnitCategories) <= this.currentTier2Chance){
                     //Tier 3 was not selected, so we must increase the chance to be chosen
                     this.currentTier3Chance += this.tier3ChanceModifier;
                     //spawn tier 2 unit
-                    this.spawnSingleUndeadUnit(category, 1);
+                    const u = this.spawnSingleUndeadUnit(category, 1);
+
+                    if(u){
+                        unitsCreatedThisWave.push(u);
+                    }
                 }
                 else{
                     //Tier 2 was not selected, so we must increase the chance to be chosen
                     this.currentTier2Chance += this.tier2ChanceModifier;
                     
                     //spawn a tier 1 unit
-                    this.spawnSingleUndeadUnit(category, 0);
+                    const u = this.spawnSingleUndeadUnit(category, 0);
+
+                    if(u){
+                        unitsCreatedThisWave.push(u);
+                    }
                 }
             }
-        })
+
+            this.lastCreatedWaveUnits = unitsCreatedThisWave;
+        });
     }
 
     private spawnSingleUndeadUnit(category: UnitCategory, tier: number){
+        if(currentZombieCount >= MAX_ZOMBIE_COUNT) return undefined;
+        
         let unitTypeId = 0;
         const categoryData = unitCategoryData.get(category);
         
@@ -227,11 +282,14 @@ class SpawnData {
         if(!unitTypeId){
             return undefined;
         }
-    
+        
         const u = Unit.create(getNextUndeadPlayer(), unitTypeId, this.spawnRec?.centerX ?? 0, this.spawnRec?.centerY ?? 0);
-        currentZombieCount++;
-
-        this.units.push();
+        
+        if(u){
+            currentZombieCount++;
+            this.units.push(u);
+            return u;
+        }
     }
 
      /**
@@ -245,7 +303,11 @@ class SpawnData {
     */
     private chooseForceAttackTarget(currentPoint :Point): Unit | undefined{
        //So we want to iterate our towns.
-   
+        /**
+         * @WARNING
+         * @REFACTOR
+         * this should be choosing a new target from the last target not the spawning point
+         */
        let shortestDistance = 99999999;
    
        let closestCapturableStructure:Unit | undefined = undefined;
@@ -278,13 +340,16 @@ const unitCategoryData = new Map<UnitCategory, {[key: string]: number[]}>([
     ["infantry", 
         {
             tierI: [
+                CUSTOM_UNITS.zombie
                 //zombies
                 //skeleton warriors
             ],
             tierII: [
+                CUSTOM_UNITS.skeletalArcher
                 //skeletal orc champion
             ],
             tierIII: [
+                CUSTOM_UNITS.abomination
                 //abomination
             ],
         }
@@ -292,30 +357,35 @@ const unitCategoryData = new Map<UnitCategory, {[key: string]: number[]}>([
     ["missile", 
         {
             tierI: [
+                CUSTOM_UNITS.zombie
                 //basic skeleton marksman?
             ],
             tierII: [
+                CUSTOM_UNITS.skeletalArcher
                 //crypt fiends - maybe they can create eggs which hatch and spawn some spiderlings?
                 //some unit that shoots poison
                 //skeletal marksman
             ],
             tierIII: [
-        
+                CUSTOM_UNITS.abomination
             ],
         }
     ],
     ["caster", 
         {
             tierI: [
+                CUSTOM_UNITS.zombie
                 //skeletal frost mage
                 //obsidian statue
             ],
             tierII: [
+                CUSTOM_UNITS.skeletalArcher
                 //necromancer
                 //lich
                 //greater obsidian statue
             ],
             tierIII: [
+                CUSTOM_UNITS.abomination
                 //
             ],
         }
@@ -323,10 +393,14 @@ const unitCategoryData = new Map<UnitCategory, {[key: string]: number[]}>([
     ["siege", 
         {
             tierI: [
+                CUSTOM_UNITS.meatWagon
                 //meat wagon
             ],
-            tierII: [],
+            tierII: [
+                CUSTOM_UNITS.meatWagon
+            ],
             tierIII: [
+                CUSTOM_UNITS.meatWagon
                 //demon fire artillery
             ],
         }
@@ -335,9 +409,14 @@ const unitCategoryData = new Map<UnitCategory, {[key: string]: number[]}>([
         {
             tierI: [
                 // pitlord
+                CUSTOM_UNITS.zombie
             ],
-            tierII: [],
-            tierIII: [],
+            tierII: [
+                CUSTOM_UNITS.skeletalArcher
+            ],
+            tierIII: [
+                CUSTOM_UNITS.abomination
+            ],
         }
     ],
 ]);
@@ -353,14 +432,16 @@ function calcBaseAmountPerWave() {
     forEachAlliedPlayer(() => {
         numPlayers++;
     });
+    print("Number of players: ", numPlayers);
 
     const enemiesPerWave = 25 + 3*numPlayers;
-
     return enemiesPerWave;
 }
 
 //Optional set for doing specific things when a specific unit type spawns; like if a special hero spawns you do something cool? or something 
-const unitTypeSpawnFunctions = new Map<number, () => void>()
+const unitTypeSpawnFunctions = new Map<number, () => void>([
+    [CUSTOM_UNITS.abomination, () => {print("Special abom function!")}]
+])
 
 
 

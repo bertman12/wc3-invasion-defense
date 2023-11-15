@@ -15,6 +15,7 @@ import { setupUndeadUnitPreview } from './abilities/misc';
 import { init_quests } from './utils/quests';
 import { initFrames } from './frames';
 import { setup_reportCasualtyCounts } from './shared/misc';
+import { setup_undeadSpawn } from './undead/taxonomy';
 
 const BUILD_DATE = compiletime(() => new Date().toUTCString());
 const TS_VERSION = compiletime(() => require("typescript").version);
@@ -78,7 +79,8 @@ function tsMain() {
     RoundManager.trig_setup_StartRound();
 
     init_startingResources();
-    setup_zombies();
+    setup_undeadSpawn();
+    // setup_zombies();
 
   } catch (e) {
     print("An error occurred: ", e);

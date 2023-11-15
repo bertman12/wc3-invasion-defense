@@ -58,6 +58,7 @@ export class RoundManager {
         print(`Night ${RoundManager.currentRound} has begun...`);
 
         RoundManager.roundStartSubscribers.forEach(cb => {
+            // print("runing on night start!");
             cb(RoundManager.currentRound);
         });
 
