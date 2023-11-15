@@ -297,3 +297,7 @@ making an ability to make heroes jump
 ====
 
 add an udnead unit that has staacking damage or armor aura
+
+perhaps wood can be used primarily for defenses and gold can be for units and hero items
+
+players need to make use of the existing buildings

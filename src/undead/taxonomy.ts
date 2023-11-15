@@ -1,6 +1,7 @@
 import { CUSTOM_UNITS, MinimapIconPath } from "src/shared/enums";
 import { RoundManager } from "src/shared/round-manager";
 import { primaryAttackTargets } from "src/towns";
+import { notifyPlayer } from "src/utils/misc";
 import { forEachAlliedPlayer, forEachUnitTypeOfPlayer } from "src/utils/players";
 import { Effect, Point, Rectangle, Timer, Trigger, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
@@ -42,7 +43,7 @@ function getNextUndeadPlayer(){
 //30 seconds being the hard spawn, 15 second intervals being the normal spawn difficulty; maybe fr
 const waveIntervalOptions = [15, 30];
 
-const MAX_ZOMBIE_COUNT = 1000 as const;
+const MAX_ZOMBIE_COUNT = 800 as const;
 
 let currentZombieCount = 0;
 let currentSpawns : SpawnData[] = [];
@@ -73,6 +74,7 @@ function undeadNightStart(){
 function undeadDayStart(){
     print("Cleaning up spawns!");
     currentSpawns.forEach(spawn => spawn.cleanupSpawn());
+    currentSpawns = [];
 }
 
 type UnitCategory = "infantry" | "missile" | "caster" | "siege" | "hero";
@@ -95,12 +97,12 @@ class SpawnData {
     //55% base chance on final night to see Tier 2 units
     private baseTier2Chance = 0.15
     //Determines how much to increase the tier 2 chance every time tier 2 is not selected
-    private readonly tier2ChanceModifier = 0.10;
+    private readonly tier2ChanceModifier = 0.02;
     private currentTier2Chance = 0.15;
     //25% base chance to see Tier 3 units on final night
     private baseTier3Chance = 0.05;
     //Determines how much to increase the tier 3 chance every time tier 3 is not selected
-    private readonly tier3ChanceModifier = 0.05;
+    private readonly tier3ChanceModifier = 0.01;
     private currentTier3Chance = 0;
     /**
      * @unit_comp_distribution
@@ -131,21 +133,29 @@ class SpawnData {
         
         const difficulty = Math.floor(Math.random()*waveIntervalOptions.length);
         this.spawnDifficulty = difficulty;
-        print("Spawn Difficulty index: ", this.spawnDifficulty," - ", difficulty);
         this.waveIntervalTime = waveIntervalOptions[difficulty];
-
         this.spawnAmountPerWave = this.waveIntervalTime === 15 ? this.totalSpawnCount : this.totalSpawnCount * 1.75;
-        this.baseTier2Chance = 0.15 + 0.04 * RoundManager.currentRound;
+
+        this.baseTier2Chance = 0.05 + 0.04 * RoundManager.currentRound;
         this.currentTier2Chance = this.baseTier2Chance;
-        this.baseTier3Chance = 0.05 + 0.02 * RoundManager.currentRound;
+        this.baseTier3Chance = 0.01 + 0.02 * RoundManager.currentRound;
         this.currentTier3Chance = this.baseTier3Chance;
+
         this.unitCompData = new Map<UnitCategory, number>([
             ["infantry", Math.ceil(0.3*this.spawnAmountPerWave)],
             ["missile", Math.ceil(0.3*this.spawnAmountPerWave)],
             ["caster", Math.ceil(0.2*this.spawnAmountPerWave)],
             ["siege", Math.ceil(0.1*this.spawnAmountPerWave)],
-            ["hero", Math.ceil(0.1*this.spawnAmountPerWave)],
+            ["hero", Math.ceil(0*this.spawnAmountPerWave)],
         ]);
+
+        this.unitCompData.forEach((value, key) => {
+            print(`Category: ${key} - Amount: ${value}`);
+        })
+
+        /**
+         * @todo needs to be calculated in the future
+         */
         this.greatestUnitCountFromAllUnitCategories = Math.ceil(0.3*this.spawnAmountPerWave);
 
         this.spawnIcon = CreateMinimapIcon(this.spawnRec?.centerX ?? 0, this.spawnRec?.centerY ?? 0, 255, 255 - 150*this.spawnDifficulty, 255 - 255*this.spawnDifficulty, 'UI\\Minimap\\MiniMap-Boss.mdl', FOG_OF_WAR_FOGGED)
@@ -186,6 +196,8 @@ class SpawnData {
         if(this.spawnIcon) DestroyMinimapIcon(this.spawnIcon)
         if(this.currentTargetMinimapIcon) DestroyMinimapIcon(this.currentTargetMinimapIcon);
         if(this.currentTargetSpecialEffect) this.currentTargetSpecialEffect.destroy();
+        if(this.waveTimer) this.waveTimer.destroy();
+        if(this.trig_chooseNextTarget) this.trig_chooseNextTarget.destroy();
     }
 
     private orderNewAttack(attackingUnits: Unit[]){
@@ -221,38 +233,48 @@ class SpawnData {
 
     public createWaveUnits(){
         const unitsCreatedThisWave:Unit[] = [];
+        // print(`Base Tier3 Chance: ${this.baseTier3Chance}`);
+        // print(`Base Tier2 Chance: ${this.baseTier2Chance}`);
 
         //sample a random theta from 0 - PI/2
         //sin(theta) is uniformly distributed with a linear rate of change and valid for chance selection. each point on the curve is equally likely to be chosen as any other
         this.unitCompData.forEach((count, category) => {
             for(let x = 0; x < count; x++){
                 //Range [0, PI/2)
-                const randomTheta = Math.floor(Math.random()*Math.PI/2)
+                const randomTheta = (Math.random()*Math.PI/2)
                 //Range [0, 1)
                 const sampledValue = Math.sin(randomTheta);
-            
-                if(sampledValue - (1 - count/this.greatestUnitCountFromAllUnitCategories) <= this.currentTier3Chance){
+
+                // if(sampledValue - (1 - count/this.greatestUnitCountFromAllUnitCategories) <= this.currentTier3Chance){
+                if(sampledValue <= this.currentTier3Chance){
                     //spawn tier 3 unit
                     const u = this.spawnSingleUndeadUnit(category, 2);
                     if(u){
                         unitsCreatedThisWave.push(u);
                     }
-
+                    print("Tier 3 chosen with sample value: ",sampledValue);
                     //reset chance to base
                     this.currentTier3Chance = this.baseTier3Chance;
-                }else if(sampledValue - (1 - count/this.greatestUnitCountFromAllUnitCategories) <= this.currentTier2Chance){
+                }else if(sampledValue <= this.currentTier2Chance){
                     //Tier 3 was not selected, so we must increase the chance to be chosen
                     this.currentTier3Chance += this.tier3ChanceModifier;
+                    // print(`Current Tier3 Chance: ${this.currentTier3Chance}`);
+                    print("Tier 2 chosen with sample value: ",sampledValue);
+
                     //spawn tier 2 unit
                     const u = this.spawnSingleUndeadUnit(category, 1);
 
                     if(u){
                         unitsCreatedThisWave.push(u);
                     }
+
+                    this.currentTier2Chance = this.baseTier3Chance;
                 }
                 else{
                     //Tier 2 was not selected, so we must increase the chance to be chosen
                     this.currentTier2Chance += this.tier2ChanceModifier;
+                    // print(`Current Tier2 Chance: ${this.currentTier2Chance}`);
+                    print("Tier 1 chosen with sample value: ",sampledValue);
                     
                     //spawn a tier 1 unit
                     const u = this.spawnSingleUndeadUnit(category, 0);
@@ -268,7 +290,10 @@ class SpawnData {
     }
 
     private spawnSingleUndeadUnit(category: UnitCategory, tier: number){
-        if(currentZombieCount >= MAX_ZOMBIE_COUNT) return undefined;
+        if(currentZombieCount >= MAX_ZOMBIE_COUNT){
+            notifyPlayer("Reached max zombie count!");
+            return undefined
+        };
         
         let unitTypeId = 0;
         const categoryData = unitCategoryData.get(category);
@@ -345,7 +370,7 @@ const unitCategoryData = new Map<UnitCategory, {[key: string]: number[]}>([
                 //skeleton warriors
             ],
             tierII: [
-                CUSTOM_UNITS.skeletalArcher
+                CUSTOM_UNITS.skeletalOrcChampion
                 //skeletal orc champion
             ],
             tierIII: [
@@ -357,35 +382,38 @@ const unitCategoryData = new Map<UnitCategory, {[key: string]: number[]}>([
     ["missile", 
         {
             tierI: [
-                CUSTOM_UNITS.zombie
+                CUSTOM_UNITS.skeletalArcher
                 //basic skeleton marksman?
             ],
             tierII: [
-                CUSTOM_UNITS.skeletalArcher
                 //crypt fiends - maybe they can create eggs which hatch and spawn some spiderlings?
+                FourCC("ucry")
                 //some unit that shoots poison
                 //skeletal marksman
             ],
             tierIII: [
-                CUSTOM_UNITS.abomination
+                FourCC("edry")
             ],
         }
     ],
     ["caster", 
         {
             tierI: [
-                CUSTOM_UNITS.zombie
+                CUSTOM_UNITS.skeletalFrostMage,
+                CUSTOM_UNITS.obsidianStatue,
                 //skeletal frost mage
                 //obsidian statue
             ],
             tierII: [
-                CUSTOM_UNITS.skeletalArcher
+                CUSTOM_UNITS.lich,
+                CUSTOM_UNITS.necromancer,
+                CUSTOM_UNITS.greaterObsidianStatue,
                 //necromancer
                 //lich
                 //greater obsidian statue
             ],
             tierIII: [
-                CUSTOM_UNITS.abomination
+                FourCC("uktg")
                 //
             ],
         }
@@ -397,10 +425,10 @@ const unitCategoryData = new Map<UnitCategory, {[key: string]: number[]}>([
                 //meat wagon
             ],
             tierII: [
-                CUSTOM_UNITS.meatWagon
+                FourCC("hmtm")
             ],
             tierIII: [
-                CUSTOM_UNITS.meatWagon
+                FourCC("ocat")
                 //demon fire artillery
             ],
         }
@@ -408,14 +436,13 @@ const unitCategoryData = new Map<UnitCategory, {[key: string]: number[]}>([
     ["hero", 
         {
             tierI: [
-                // pitlord
-                CUSTOM_UNITS.zombie
+                FourCC("Udre")
             ],
             tierII: [
-                CUSTOM_UNITS.skeletalArcher
+                FourCC("Ucrl")
             ],
             tierIII: [
-                CUSTOM_UNITS.abomination
+                CUSTOM_UNITS.boss_pitLord
             ],
         }
     ],
@@ -442,207 +469,3 @@ function calcBaseAmountPerWave() {
 const unitTypeSpawnFunctions = new Map<number, () => void>([
     [CUSTOM_UNITS.abomination, () => {print("Special abom function!")}]
 ])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function spawnUndeadUnit(category: UnitCategory, tier: number){
-//     let unitTypeId = 0;
-//     const categoryData = unitCategoryData.get(category);
-    
-//     if(categoryData){
-//         const size = Object.values(categoryData)[tier].length;
-//         const randomIndex = Math.floor(Math.random()*size);
-//         unitTypeId = Object.values(categoryData)[tier][randomIndex];
-//     }
-
-//     if(!unitTypeId){
-//         return undefined;
-//     }
-
-//     const u = Unit.create(getNextUndeadPlayer(), unitTypeId, 0,0);
-
-//     return u;
-// }
-
-
-// //Should be unique for each spawning point.
-// function createSpawnConfig(){
-
-//     //This will determine the wave interval timer, which thus determines units spawned per wave
-//     const spawnDifficulty = 1;
-
-//     const totalSpawnCount = calcBaseAmountPerWave();
-//     //random number from the array;
-//     const waveInterval = Math.floor(Math.random()*waveIntervalOptions.length);
-
-//     //Of the units we are allocated, we must choose from our 
-                                 
-//     //the chance to spawn higher tier units increases as you create more units not of that tier, it then resets
-//     ///also the maount it increases depends on the tier
-//     //for example, spawn chance for tier 3 would be 10% and increases by 5% every unit spawned, the increased chance should be preserved across wave intervals
-//     //i suppose its an arbitrary number
-//     // as the nights go on, we can increase the %chance increase / unit and also increase the base chance as well.
-//     //which unit category would you choose from? how many per category. you would need to distribute a percentage to each category for spawn choice
-
-//     //also depending on the category chosen, perhaps they ought to get a bonus?
-//     //the category creation is key for making viable unit compositions for undead.
-
-//     //lets start with an even distribution
-
-//     const spawnAmountPerWave = waveInterval === 15 ? totalSpawnCount : totalSpawnCount * 1.75;
-
-//     /**
-//      * @unit_comp_distribution
-//      * how many of each type of unit are we going to choose?
-//      */
-
-//     const TIER_2_MAX_CHANCE = 0.80;
-//     const TIER_3_MAX_CHANCE = 0.60;
-
-//     //These should be the base values for the most spawned unit
-//     //55% base chance on final night to see Tier 2 units
-//     const baseTier2Chance = 0.15 + 0.04 * RoundManager.currentRound;
-//     //Determines how much to increase the tier 2 chance every time tier 2 is not selected
-//     const tier2ChanceModifier = 0.10;
-//     let currentTier2Chance = baseTier2Chance;
-//     //25% base chance to see Tier 3 units on final night
-//     const baseTier3Chance = 0.05 + 0.02 * RoundManager.currentRound;
-//     //Determines how much to increase the tier 3 chance every time tier 3 is not selected
-//     const tier3ChanceModifier = 0.05;
-//     let currentTier3Chance = baseTier3Chance;
-    
-//     const greatestUnitCountFromAllUnitCategories = Math.ceil(0.3*spawnAmountPerWave);
-//     //loop for each one and add them to the unit group
-//     const unitCompData = new Map<UnitCategory, number>([
-//         ["infantry", Math.ceil(0.3*spawnAmountPerWave)],
-//         ["missile", Math.ceil(0.3*spawnAmountPerWave)],
-//         ["caster", Math.ceil(0.2*spawnAmountPerWave)],
-//         ["siege", Math.ceil(0.1*spawnAmountPerWave)],
-//         ["hero", Math.ceil(0.1*spawnAmountPerWave)],
-//     ]);
-
-//     //sample a random theta from 0 - PI/2
-//     //sin(theta) is uniformly distributed with a linear rate of change and valid for chance selection. each point on the curve is equally likely to be chosen as any other
-//     unitCompData.forEach((count, category) => {
-//         for(let x = 0; x < count; x++){
-//             //Range [0, PI/2)
-//             const randomTheta = Math.floor(Math.random()*Math.PI/2)
-//             //Range [0, 1)
-//             const sampledValue = Math.sin(randomTheta);
-        
-//             //
-//             if(sampledValue - (1 - count/greatestUnitCountFromAllUnitCategories) <= currentTier3Chance){
-//                 //spawn tier 3 unit
-//                 spawnUndeadUnit(category, 2);
-//                 //reset chance to base
-//                 currentTier3Chance = baseTier3Chance;
-//             }else if(sampledValue - (1 - count/greatestUnitCountFromAllUnitCategories) <= currentTier2Chance){
-//                 //Tier 3 was not selected, so we must increase the chance to be chosen
-//                 currentTier3Chance += tier3ChanceModifier;
-//                 //spawn tier 2 unit
-//                 spawnUndeadUnit(category, 1);
-//             }
-//             else{
-//                 //Tier 2 was not selected, so we must increase the chance to be chosen
-//                 currentTier2Chance += tier2ChanceModifier;
-                
-//                 //spawn a tier 1 unit
-//                 spawnUndeadUnit(category, 0);
-//             }
-//         }
-//     })
-// }
