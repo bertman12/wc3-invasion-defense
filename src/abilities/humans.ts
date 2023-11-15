@@ -79,40 +79,87 @@ function trig_hireFlyingMachine(){
 }
 
 function trig_heroicLeap(){
-    const t = Trigger.create();
+    const trig = Trigger.create();
 
-    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SPELL_CAST);
-    t.addCondition(() => {
+    trig.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SPELL_CAST);
+    trig.addCondition(() => {
         const castedSpellId = GetSpellAbilityId();
         const caster = Unit.fromEvent();
         
         if(castedSpellId === ABILITIES.heroicLeap && caster){
-            print("Player cast heroic leap!!!!");
-            let timeElapsed = 0;
-            const originalAngle = caster?.facing;
-           
-            const t = Timer.create();
-            const distanceToTravel = 600; //100 units per tick?
-            const refreshInterval = 0.01;
-            const totalDuration = 2;
-
-            caster.disableAbility
-
-            t.start(refreshInterval, true, ()=>{
-                timeElapsed += refreshInterval;
-                const speed = distanceToTravel*refreshInterval;
-                
-                //speed of decay approaches our the max speed , thus slowly stopping us as more time elapses, just like friction 
-                caster.x += (speed) * Math.cos(Deg2Rad(originalAngle)) - (timeElapsed/totalDuration)*speed*Math.cos(Deg2Rad(originalAngle));
-                caster.y += (speed) * Math.sin(Deg2Rad(originalAngle)) - (timeElapsed/totalDuration)*speed*Math.sin(Deg2Rad(originalAngle));
-
-                if(timeElapsed >= totalDuration){
-                    print("timer duration expired!");
-                    t.destroy();
-                }
-            })
+            applyForceSmart(caster.facing, caster, 1200);
         }
 
         return false;
     });
+}
+
+function applyForce(angle: number, unit: Unit, distanceToTravel: number, time: number){
+    let timeElapsed = 0;
+    const timer = Timer.create();
+    const refreshInterval = 0.01;
+    const totalUpdates = time/refreshInterval;
+    const speed = (distanceToTravel)/totalUpdates;
+    
+    const updatesPerSecond = 1/refreshInterval;
+    const initialSpeed = 600 //units per second;
+    const decaySpeed = 100;
+
+    //arcsin(relativeYPosition)  angle to apply force and push away collision targets
+
+    // const decaySpeed = 100/totalUpdates;
+
+    const frictionStopTime = 1;
+    const totalTime = time + frictionStopTime;
+
+    timer.start(refreshInterval, true, ()=>{
+        timeElapsed += refreshInterval;
+        const xVelocity = (speed) * Math.cos(Deg2Rad(angle)) - (timeElapsed/totalTime)*decaySpeed*Math.cos(Deg2Rad(angle));
+        const yVelocity = (speed) * Math.sin(Deg2Rad(angle)) - (timeElapsed/totalTime)*decaySpeed*Math.sin(Deg2Rad(angle));
+        //friction needs to be constant
+
+        //speed of decay approaches our the max speed , thus slowly stopping us as more time elapses, just like friction 
+        unit.x += xVelocity;
+        unit.y += yVelocity;
+
+        if(xVelocity <= 0){
+            print("timer duration expired!");
+            timer.destroy();
+        }
+        // if(timeElapsed >= totalTime){
+        //     print("timer duration expired!");
+        //     timer.destroy();
+        // }
+    })
+}
+
+/**
+ * @param angle degrees 
+ * @param unit 
+ * @param initialSpeed meters per second
+ */
+function applyForceSmart(angle: number, unit: Unit, initialSpeed: number){
+    const timer = Timer.create();
+    const refreshInterval = 0.01;
+    const updatesPerSecond = 1/refreshInterval;
+    const frictionConstant = 600; //meters per second friction decay
+    let currentSpeed = initialSpeed;
+
+    timer.start(refreshInterval, true, ()=>{
+        const xVelocity = (currentSpeed/updatesPerSecond) * Math.cos(Deg2Rad(angle));
+        const yVelocity = (currentSpeed/updatesPerSecond) * Math.sin(Deg2Rad(angle));
+        
+        currentSpeed -= (frictionConstant/updatesPerSecond);
+
+        if(currentSpeed <= 0){
+            print("applied force has decayed!");
+            timer.destroy();
+        }
+
+        unit.x += xVelocity;
+        unit.y += yVelocity;
+        
+
+
+    })
 }
