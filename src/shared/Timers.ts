@@ -24,10 +24,10 @@ export class TimerManager {
         });
 
         const nd = CreateTimerDialogBJ(TimerManager.nightTimer.handle, "Time until dawn...");
-        if(nd) TimerManager.nightTimerDialog = nd;
+        if(nd) {TimerManager.nightTimerDialog = nd;}
 
         const dd = CreateTimerDialogBJ(TimerManager.dayTimer.handle, "Time until night fall...");
-        if(dd) TimerManager.dayTimerDialog = dd;
+        if(dd) {TimerManager.dayTimerDialog = dd;}
     }
 
     /**

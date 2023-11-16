@@ -68,7 +68,7 @@ function trig_playerBuysUnit(){
     t.registerAnyUnitEvent( EVENT_PLAYER_UNIT_SELL);
 
     t.addCondition(() => {
-        let u = Unit.fromHandle(GetSoldUnit()) as Unit;
+        const u = Unit.fromHandle(GetSoldUnit()) as Unit;
 
         if(u && playerStates.get(u.owner.id)?.rallyToHero){
             return true;
@@ -78,7 +78,7 @@ function trig_playerBuysUnit(){
     })
 
     t.addAction(() => {
-        let u = Unit.fromHandle(GetSoldUnit()) as Unit;
+        const u = Unit.fromHandle(GetSoldUnit()) as Unit;
         const widget = Widget.fromHandle(playerStates.get(u.owner.id)?.playerHero?.handle)
             
         if(u && widget){
@@ -94,7 +94,7 @@ function trig_heroPurchased(){
     t.registerAnyUnitEvent( EVENT_PLAYER_UNIT_SELL)
 
     t.addCondition(() => {
-        let u = Unit.fromHandle(GetBuyingUnit());
+        const u = Unit.fromHandle(GetBuyingUnit());
         if(u && u.typeId === FourCC("nshe")){
             return true;
         }
@@ -103,12 +103,12 @@ function trig_heroPurchased(){
     });
 
     t.addAction(() => {
-        let buyingUnit = Unit.fromHandle(GetBuyingUnit()) as Unit;
+        const buyingUnit = Unit.fromHandle(GetBuyingUnit()) as Unit;
         buyingUnit.kill();
     
-        let createdUnit = Unit.fromHandle(GetSoldUnit()) as Unit;
+        const createdUnit = Unit.fromHandle(GetSoldUnit()) as Unit;
         const playerState = playerStates.get(createdUnit.owner.id)
-        if(playerState) playerState.playerHero = createdUnit;
+        if(playerState) {playerState.playerHero = createdUnit;}
         
         createdUnit.x = -300;
         createdUnit.y = -300;
@@ -133,7 +133,7 @@ export function initializePlayers(){
     forEachAlliedPlayer((p, index) => {
         //Create Sheep
         const u = Unit.create(p, FourCC("nshe"), 18600 + (25 * index), -28965);
-        if(u) SetCameraPositionForPlayer(p.handle, u.x, u.y);
+        if(u) {SetCameraPositionForPlayer(p.handle, u.x, u.y);}
     });
 
     //Setup round end functions

@@ -23,7 +23,7 @@ export function trig_wayGate(){
         // const u = Unit.fromHandle(GetDyingUnit());
 
         forEachUnitOfPlayer(Players[9], (u) => {
-            if(u.typeId === FourCC("nwgt")) u.kill();
+            if(u.typeId === FourCC("nwgt")) {u.kill();}
         });
 
         print(`${tColor("!", "goldenrod")} - The portal to the north has been destroyed.`);

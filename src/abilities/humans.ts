@@ -26,7 +26,7 @@ function makeAlliance(){
             const targetPlayer = target.owner.handle;
             const redPlayerForce = GetForceOfPlayer(Players[0].handle);
 
-            if(redPlayerForce) ForForce(redPlayerForce, () => {
+            if(redPlayerForce) {ForForce(redPlayerForce, () => {
                 const player = GetEnumPlayer();
 
                 if(player){
@@ -40,7 +40,7 @@ function makeAlliance(){
                     SetPlayerAllianceBJ(targetPlayer, ALLIANCE_PASSIVE, true, player);
                     SetPlayerAllianceStateAllyBJ(targetPlayer, player, true);
                 }
-            });
+            });}
 
             SetPlayerName(target.owner.handle, target.owner.name.replace("Neutral", "Ally"));
 
@@ -106,6 +106,11 @@ function applyForce(angle: number, unit: Unit, initialSpeed: number, affectHeigh
     const updatesPerSecond = 1/refreshInterval;
     const frictionConstant = 600; //meters per second friction decay
     let currentSpeed = initialSpeed;
+
+    
+    //to make it so that the unit move speed is not calculated into the movement, subtract unit move x,y vector based on their CURRENT (in case their slowed) movement speed and angle. Slow wont affect our applied force only default unit move vector
+    //Subtract move vector from applied force vector if it > 0.
+    //Hopefully this prevents adding the units move speed to the vector
 
     timer.start(refreshInterval, true, ()=>{
         const xVelocity = (currentSpeed/updatesPerSecond) * Math.cos(Deg2Rad(angle));

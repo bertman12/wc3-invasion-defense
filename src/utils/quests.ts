@@ -31,6 +31,6 @@ export function addQuest(title: string, description: string, iconPath?: string){
     if(q){
         q.setTitle(title);
         q.setDescription(description);
-        if(iconPath) q.setIcon(iconPath);
+        if(iconPath) {q.setIcon(iconPath);}
     }
 }

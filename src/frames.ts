@@ -61,7 +61,7 @@ function playerUnitRallyCheckbox() {
           // Place the buttonFrame to the center of the screen
           const f = Frame.fromHandle(frame);
 
-          if(f) buttonIconFrame?.setPoint(FRAMEPOINT_RIGHT, f, FRAMEPOINT_LEFT, 0,0);
+          if(f) {buttonIconFrame?.setPoint(FRAMEPOINT_RIGHT, f, FRAMEPOINT_LEFT, 0,0);}
           // Give that buttonFrame a size
           buttonIconFrame?.setSize(0.025, 0.025);
 

@@ -11,7 +11,7 @@ import { Players } from "w3ts/globals";
 export function forEachUnitOfPlayerWithAbility(player: MapPlayer, abilityId:  number, cb: (unit: Unit) => void){
     forEachUnitOfPlayer(player, (u) => {
         for(let x = 0; x < 12; x++){
-            let currentAbility = u.getAbilityByIndex(x);
+            const currentAbility = u.getAbilityByIndex(x);
             
             if(currentAbility && currentAbility === u.getAbility(abilityId)){
                 cb(u);
@@ -69,8 +69,8 @@ export function forEachUnitOfPlayer(player: MapPlayer, cb:(unit: Unit) => void){
     Group.create()?.enumUnitsOfPlayer(player, () => {
         const unit = Group.getFilterUnit();
 
-        if(!unit) print("Enumerating over a unit that doesn't exist!");
-        if(unit) cb(unit);
+        if(!unit) {print("Enumerating over a unit that doesn't exist!");}
+        if(unit) {cb(unit);}
 
         return true;
     })
