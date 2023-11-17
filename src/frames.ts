@@ -4,126 +4,115 @@ import { playerStates } from "./players";
  * Nothing may exist outside the 4:3 aspect ration of your resolution
  */
 export function initFrames() {
-  playerUnitRallyCheckbox();
+    playerUnitRallyCheckbox();
 }
 
 function playerUnitRallyCheckbox() {
-  const originFrame = BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0);
-  
-  if(originFrame){
-    const frame = BlzCreateFrame("QuestCheckBox2",  originFrame, 0, 0)
-    const trigger = CreateTrigger();
+    const originFrame = BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0);
 
-    if(frame) {
-      
-      BlzFrameSetAbsPoint(frame, FRAMEPOINT_CENTER, 0.4, 0.16)
-      BlzFrameSetSize(frame, 0.025, 0.025);
-      BlzTriggerRegisterFrameEvent(trigger, frame, FRAMEEVENT_CHECKBOX_CHECKED)
-      BlzTriggerRegisterFrameEvent(trigger, frame, FRAMEEVENT_CHECKBOX_UNCHECKED)
+    if (originFrame) {
+        const frame = BlzCreateFrame("QuestCheckBox2", originFrame, 0, 0);
+        const trigger = CreateTrigger();
 
-      TriggerAddAction(trigger, () => {
-  
-        if (BlzGetTriggerFrameEvent() == FRAMEEVENT_CHECKBOX_CHECKED || BlzGetTriggerFrameEvent() == FRAMEEVENT_CHECKBOX_UNCHECKED){
+        if (frame) {
+            BlzFrameSetAbsPoint(frame, FRAMEPOINT_CENTER, 0.4, 0.16);
+            BlzFrameSetSize(frame, 0.025, 0.025);
+            BlzTriggerRegisterFrameEvent(trigger, frame, FRAMEEVENT_CHECKBOX_CHECKED);
+            BlzTriggerRegisterFrameEvent(trigger, frame, FRAMEEVENT_CHECKBOX_UNCHECKED);
 
-          const p = MapPlayer.fromEvent();
-          
-          if(p){
-            const playerState = playerStates.get(p.id);
+            TriggerAddAction(trigger, () => {
+                if (BlzGetTriggerFrameEvent() == FRAMEEVENT_CHECKBOX_CHECKED || BlzGetTriggerFrameEvent() == FRAMEEVENT_CHECKBOX_UNCHECKED) {
+                    const p = MapPlayer.fromEvent();
 
-            if(playerState) {
-              playerState.rallyToHero = !playerState.rallyToHero;
-              // if(playerState.rallyToHero) BlzDisplayChatMessage(p.handle, p.id,  "Setting: Units will rally to hero now.")
-              // if(!playerState.rallyToHero) BlzDisplayChatMessage(p.handle, p.id,  "Purchased units will no longer move to your hero automatically. ")
-              
-              playerStates.set(p.id, playerState);
-            };
-          }
-        }
-        
-      })
-      
-      const gameui = Frame.fromOrigin(ORIGIN_FRAME_GAME_UI, 0);
-   
+                    if (p) {
+                        const playerState = playerStates.get(p.id);
 
+                        if (playerState) {
+                            playerState.rallyToHero = !playerState.rallyToHero;
+                            // if(playerState.rallyToHero) BlzDisplayChatMessage(p.handle, p.id,  "Setting: Units will rally to hero now.")
+                            // if(!playerState.rallyToHero) BlzDisplayChatMessage(p.handle, p.id,  "Purchased units will no longer move to your hero automatically. ")
 
-      if (gameui) {
-        // Create a "GLUEBUTTON" named "Facebutton", the clickable Button, for game UI
-        const buttonFrame = Frame.createType("FaceButton", gameui, 0, "GLUEBUTTON", "");
-        
-        if (buttonFrame) {
-          // Create a BACKDROP named "FaceButtonIcon", the visible image, for buttonFrame.
-          const buttonIconFrame = Frame.createType("FaceButton", gameui, 0, "BACKDROP", "");
-          // buttonIconFrame will mimic buttonFrame in size and position
-          // buttonIconFrame?.setAllPoints(buttonFrame);
-          // Set a Texture
-          buttonIconFrame?.setTexture("ReplaceableTextures\\CommandButtons\\BTNRallyPoint.blp", 0, false);
-          // buttonIconFrame?.setTexture("ReplaceableTextures\\CommandButtons\\BTNSelectHeroOn", 0, false);
-          // Place the buttonFrame to the center of the screen
-          const f = Frame.fromHandle(frame);
+                            playerStates.set(p.id, playerState);
+                        }
+                    }
+                }
+            });
 
-          if(f) {buttonIconFrame?.setPoint(FRAMEPOINT_RIGHT, f, FRAMEPOINT_LEFT, 0,0);}
-          // Give that buttonFrame a size
-          buttonIconFrame?.setSize(0.025, 0.025);
+            const gameui = Frame.fromOrigin(ORIGIN_FRAME_GAME_UI, 0);
 
-          // -- Create the Background a Backdrop
-          const tooltipFrameBackGround = BlzCreateFrame("QuestButtonBaseTemplate", gameui.handle, 0, 0)
+            if (gameui) {
+                // Create a "GLUEBUTTON" named "Facebutton", the clickable Button, for game UI
+                const buttonFrame = Frame.createType("FaceButton", gameui, 0, "GLUEBUTTON", "");
 
-          if(tooltipFrameBackGround){
-            // -- create a new Button which inherits from "ScriptDialogButton"
-            // const button = BlzCreateFrameByType("GLUETEXTBUTTON", "MyScriptDialogButton", gameui.handle, "ScriptDialogButton", 0)
-            
-            // if(button){
-            //   // -- place the Button to the center of the Screen
-            //   BlzFrameSetAbsPoint(button, FRAMEPOINT_CENTER, 0.4, 0.3)
-            //   // -- set the Button's text
-            //   BlzFrameSetText(button, "My Button Text")
+                if (buttonFrame) {
+                    // Create a BACKDROP named "FaceButtonIcon", the visible image, for buttonFrame.
+                    const buttonIconFrame = Frame.createType("FaceButton", gameui, 0, "BACKDROP", "");
+                    // buttonIconFrame will mimic buttonFrame in size and position
+                    // buttonIconFrame?.setAllPoints(buttonFrame);
+                    // Set a Texture
+                    buttonIconFrame?.setTexture("ReplaceableTextures\\CommandButtons\\BTNRallyPoint.blp", 0, false);
+                    // buttonIconFrame?.setTexture("ReplaceableTextures\\CommandButtons\\BTNSelectHeroOn", 0, false);
+                    // Place the buttonFrame to the center of the screen
+                    const f = Frame.fromHandle(frame);
 
-            // }
+                    if (f) {
+                        buttonIconFrame?.setPoint(FRAMEPOINT_RIGHT, f, FRAMEPOINT_LEFT, 0, 0);
+                    }
+                    // Give that buttonFrame a size
+                    buttonIconFrame?.setSize(0.025, 0.025);
 
-            BlzFrameSetSize(tooltipFrameBackGround, 0.15, 0.025)
-            // -- Create the Text as child of the Background
-            const tooltipFrameText = BlzCreateFrameByType("TEXT", "MyScriptDialogButtonTooltip", tooltipFrameBackGround, "", 0)
+                    // -- Create the Background a Backdrop
+                    const tooltipFrameBackGround = BlzCreateFrame("QuestButtonBaseTemplate", gameui.handle, 0, 0);
 
-            if(tooltipFrameText && frame) {
+                    if (tooltipFrameBackGround) {
+                        // -- create a new Button which inherits from "ScriptDialogButton"
+                        // const button = BlzCreateFrameByType("GLUETEXTBUTTON", "MyScriptDialogButton", gameui.handle, "ScriptDialogButton", 0)
 
-              // -- Copy Size and Position with a small offset.
-              BlzFrameSetPoint(tooltipFrameText, FRAMEPOINT_BOTTOMLEFT, tooltipFrameBackGround, FRAMEPOINT_BOTTOMLEFT, 0.01, 0.01)
-              BlzFrameSetPoint(tooltipFrameText, FRAMEPOINT_TOPRIGHT, tooltipFrameBackGround, FRAMEPOINT_TOPRIGHT, -0.01, -0.01)
-              // -- The background becomes the button's tooltip, the Text as child of the background will share the visibility
-              BlzFrameSetTooltip(frame, tooltipFrameBackGround)
-              // -- Place the Tooltip above the Button 
-              BlzFrameSetPoint(tooltipFrameBackGround, FRAMEPOINT_BOTTOM, frame, FRAMEPOINT_TOP, 0, 0.01)
-              // -- Prevent the TEXT from taking mouse control
-              BlzFrameSetEnable(tooltipFrameText, true)
-              BlzFrameSetText(tooltipFrameText, "Rally troops to hero.")
+                        // if(button){
+                        //   // -- place the Button to the center of the Screen
+                        //   BlzFrameSetAbsPoint(button, FRAMEPOINT_CENTER, 0.4, 0.3)
+                        //   // -- set the Button's text
+                        //   BlzFrameSetText(button, "My Button Text")
+
+                        // }
+
+                        BlzFrameSetSize(tooltipFrameBackGround, 0.15, 0.025);
+                        // -- Create the Text as child of the Background
+                        const tooltipFrameText = BlzCreateFrameByType("TEXT", "MyScriptDialogButtonTooltip", tooltipFrameBackGround, "", 0);
+
+                        if (tooltipFrameText && frame) {
+                            // -- Copy Size and Position with a small offset.
+                            BlzFrameSetPoint(tooltipFrameText, FRAMEPOINT_BOTTOMLEFT, tooltipFrameBackGround, FRAMEPOINT_BOTTOMLEFT, 0.01, 0.01);
+                            BlzFrameSetPoint(tooltipFrameText, FRAMEPOINT_TOPRIGHT, tooltipFrameBackGround, FRAMEPOINT_TOPRIGHT, -0.01, -0.01);
+                            // -- The background becomes the button's tooltip, the Text as child of the background will share the visibility
+                            BlzFrameSetTooltip(frame, tooltipFrameBackGround);
+                            // -- Place the Tooltip above the Button
+                            BlzFrameSetPoint(tooltipFrameBackGround, FRAMEPOINT_BOTTOM, frame, FRAMEPOINT_TOP, 0, 0.01);
+                            // -- Prevent the TEXT from taking mouse control
+                            BlzFrameSetEnable(tooltipFrameText, true);
+                            BlzFrameSetText(tooltipFrameText, "Rally troops to hero.");
+                        }
+                    }
+
+                    // const t = Trigger.create();
+
+                    // t.triggerRegisterFrameEvent(buttonFrame, FRAMEEVENT_CONTROL_CLICK);
+
+                    // t.addAction(() => {print("My button was clicked!")});
+                }
             }
-
-          }
-
-          // const t = Trigger.create();
-
-          // t.triggerRegisterFrameEvent(buttonFrame, FRAMEEVENT_CONTROL_CLICK);
-
-          // t.addAction(() => {print("My button was clicked!")});
-       }
-
-      }
- 
- 
+        }
     }
-  }
-  
 }
 
-
 // BlzFrameSetAbsPoint takes one point of a Frame unbound that point and places it to a specific coordinates on the screen.
-function moveFrame(){}
+function moveFrame() {}
 // BlzFrameSetPoint places a point of FrameA relative to a point of FrameB. When FrameB moves FrameA's point will keep this rule and moves with it.
-function assignFrameChild(){}
+function assignFrameChild() {}
 // BlzFrameClearAllPoints removes all curent bound points of that frame.
-function releaseFrameChildren(){}
+function releaseFrameChildren() {}
 // BlzFrameSetAllPoints FrameA will copy FrameB in size and position. FrameA will update when FrameB is changed later
-function imitateFrame(){}
+function imitateFrame() {}
 
 // FRAMEPOINT_TOPLEFT
 // FRAMEPOINT_TOP

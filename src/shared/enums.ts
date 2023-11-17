@@ -1,4 +1,3 @@
-
 export enum ABILITIES {
     charge = FourCC("A005"),
     supplies = FourCC("A000"),
@@ -11,6 +10,7 @@ export enum ABILITIES {
     hireFlyingMachinePatrol = FourCC("A00G"),
     foodCapBonus = FourCC("A00I"),
     heroicLeap = FourCC("A00P"),
+    purchaseFarmGrant = FourCC("A00S"),
 }
 
 export enum UpgradeCodes {
@@ -21,7 +21,13 @@ export enum UpgradeCodes {
     nightTime = FourCC("R003"),
 }
 
+export enum PlayerIndices {
+    NeutralHostile = 24,
+    NeutralPassive = 25,
+}
+
 export enum CUSTOM_UNITS {
+    //Human Buildings
     farmTown = FourCC("h002"),
     townHall = FourCC("htow"),
     rampartCannonTower = FourCC("h008"),
@@ -32,13 +38,13 @@ export enum CUSTOM_UNITS {
     blacksmith = FourCC("h004"),
     cannonTower = FourCC("hctw"),
     guardTower = FourCC("hgtw"),
-
     workshop = FourCC("harm"),
-    flyingMachine = FourCC("hgyr"),
     arcaneSanctum = FourCC("hars"),
     lumberMill = FourCC("hlum"),
     granary = FourCC("h00C"),
     citadelOfTheNorthernKnights = FourCC("h00E"),
+    //Human units
+    flyingMachine = FourCC("hgyr"),
 
     //Undead
     abomination = FourCC("uabo"),
@@ -55,19 +61,26 @@ export enum CUSTOM_UNITS {
     greaterObsidianStatue = FourCC("u003"),
     gargoyle = FourCC("ugar"),
     skeletalOrcChampion = FourCC("nsoc"),
+
+    //Triggering Purposes
+    nullUnit = FourCC("n008"),
+}
+
+export enum ITEMS {
+    farmGrant = FourCC("I003"),
 }
 
 //Can find looking up models for a spell at the Art - Target field
-export type MINIMAP_ICONS = 
-   | "UI\\Minimap\\MiniMap-ControlPoint.mdl"
-   | "UI\\Minimap\\MiniMap-QuestGiver.mdl"
-   | "UI\\Minimap\\Minimap-QuestObjectiveBonus.mdl"
-   | "UI\\Minimap\\Minimap-QuestObjectivePrimary.mdl"
-   | "UI\\Minimap\\Minimap-QuestTurnIn.mdl"
-   | "UI\\Minimap\\MiniMap-Hero.mdl"
-   | "UI\\Minimap\\Minimap-Ping.mdl"
-   | "UI\\Minimap\\MiniMap-Item.mdl"
-   | "UI\\Minimap\\MiniMap-NeutralBuilding.mdl"
+export type MINIMAP_ICONS =
+    | "UI\\Minimap\\MiniMap-ControlPoint.mdl"
+    | "UI\\Minimap\\MiniMap-QuestGiver.mdl"
+    | "UI\\Minimap\\Minimap-QuestObjectiveBonus.mdl"
+    | "UI\\Minimap\\Minimap-QuestObjectivePrimary.mdl"
+    | "UI\\Minimap\\Minimap-QuestTurnIn.mdl"
+    | "UI\\Minimap\\MiniMap-Hero.mdl"
+    | "UI\\Minimap\\Minimap-Ping.mdl"
+    | "UI\\Minimap\\MiniMap-Item.mdl"
+    | "UI\\Minimap\\MiniMap-NeutralBuilding.mdl";
 
 export enum MinimapIconPath {
     controlPoint = "UI\\Minimap\\MiniMap-ControlPoint.mdl",
@@ -78,7 +91,7 @@ export enum MinimapIconPath {
     hero = "UI\\Minimap\\MiniMap-ControlPoint.mdl",
     item = "UI\\Minimap\\MiniMap-ControlPoint.mdl",
     neutralBuilding = "UI\\Minimap\\MiniMap-ControlPoint.mdl",
-    ping = "UI\\Minimap\\Minimap-Ping.mdl"
+    ping = "UI\\Minimap\\Minimap-Ping.mdl",
 }
 
 export const minimapIconPaths = new Set<MINIMAP_ICONS>([
@@ -90,5 +103,5 @@ export const minimapIconPaths = new Set<MINIMAP_ICONS>([
     "UI\\Minimap\\Minimap-Ping.mdl",
     "UI\\Minimap\\Minimap-QuestObjectiveBonus.mdl",
     "UI\\Minimap\\Minimap-QuestObjectivePrimary.mdl",
-    "UI\\Minimap\\Minimap-QuestTurnIn.mdl"
+    "UI\\Minimap\\Minimap-QuestTurnIn.mdl",
 ]);

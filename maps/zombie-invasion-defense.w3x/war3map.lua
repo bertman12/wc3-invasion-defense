@@ -74,6 +74,16 @@ local itemID
 BlzCreateItemWithSkin(FourCC("I000"), 17505.1, -29262.0, FourCC("I000"))
 end
 
+function CreateBuildingsForPlayer1()
+local p = Player(1)
+local u
+local unitID
+local t
+local life
+
+u = BlzCreateUnitWithSkin(p, FourCC("h002"), -4224.0, -1600.0, 270.000, FourCC("h002"))
+end
+
 function CreateBuildingsForPlayer9()
 local p = Player(9)
 local u
@@ -429,6 +439,16 @@ u = BlzCreateUnitWithSkin(p, FourCC("h00D"), -1957.1, 7790.9, 270.000, FourCC("h
 u = BlzCreateUnitWithSkin(p, FourCC("h00D"), -1651.5, 7674.7, 270.000, FourCC("h00D"))
 end
 
+function CreateNeutralHostile()
+local p = Player(PLAYER_NEUTRAL_AGGRESSIVE)
+local u
+local unitID
+local t
+local life
+
+u = BlzCreateUnitWithSkin(p, FourCC("nfsh"), -2736.6, 15580.9, 148.199, FourCC("nfsh"))
+end
+
 function CreateNeutralPassiveBuildings()
 local p = Player(PLAYER_NEUTRAL_PASSIVE)
 local u
@@ -441,6 +461,7 @@ SetUnitColor(u, ConvertPlayerColor(0))
 end
 
 function CreatePlayerBuildings()
+CreateBuildingsForPlayer1()
 CreateBuildingsForPlayer9()
 end
 
@@ -452,6 +473,7 @@ function CreateAllUnits()
 CreateNeutralHostileBuildings()
 CreateNeutralPassiveBuildings()
 CreatePlayerBuildings()
+CreateNeutralHostile()
 CreatePlayerUnits()
 end
 

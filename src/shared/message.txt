@@ -1,0 +1,179 @@
+```
+Ldrt	Dirt
+Ldro	Rough Dirt
+Ldrg	Grassy Dirt
+Lrok	Rock
+Lgrs	Grass
+Lgrd	Dark Grass
+Fdrt	Dirt
+Fdro	Rough Dirt
+Fdrg	Grassy Dirt
+Frok	Rock
+Fgrs	Grass
+Fgrd	Dark Grass
+Wdrt	Dirt
+Wdro	Rough Dirt
+Wsng	Grassy Snow
+Wrok	Rock
+Wgrs	Grass
+Wsnw	Snow
+Bdrt	Dirt
+Bdrh	Rough Dirt
+Bdrr	Pebbles
+Bdrg	Grassy Dirt
+Bdsr	Desert
+Bdsd	Dark Desert
+Bflr	Rock
+Bgrr	Grass
+Adrt	Dirt
+Adrd	Rough Dirt
+Agrs	Grass
+Arck	Rock
+Agrd	Lumpy Grass
+Avin	Vines
+Adrg	Grassy  Dirt
+Alvd	Leaves
+Cdrt	Dirt
+Cdrd	Rough Dirt
+Cpos	Poison
+Crck	Rock
+Cvin	Vines
+Cgrs	Grass
+Clvg	Leaves
+Ndrt	Dirt
+Ndrd	Dark Dirt
+Nrck	Rock
+Ngrs	Grass
+Nice	Ice
+Nsnw	Snow
+Nsnr	Rocky Snow
+Ydrt	Dirt
+Ydtr	Rough Dirt
+Yblm	Black Marble
+Ybtl	Brick
+Ysqd	Square Tiles
+Yrtl	Round Tiles
+Ygsb	Grass
+Yhdg	Grass Trim
+Ywmb	White Marble
+Vdrt	Dirt
+Vdrr	Rough Dirt
+Vcrp	Crops
+Vcbp	Cobble Path
+Vstp	Stone Path
+Vgrs	Short Grass
+Vrck	Rocks
+Vgrt	Thick Grass
+Qdrt	Dirt
+Qdrr	Rough Dirt
+Qcrp	Crops
+Qcbp	Cobble Path
+Qstp	Stone Path
+Qgrs	Short Grass
+Qrck	Rocks
+Qgrt	Thick Grass
+Xdrt	Dirt
+Xdtr	Rough Dirt
+Xblm	Black Marble
+Xbtl	Brick
+Xsqd	Square Tiles
+Xrtl	Round Tiles
+Xgsb	Grass
+Xhdg	Grass Trim
+Xwmb	White Marble
+Ddrt	Dirt
+Dbrk	Brick
+Drds	Red Stone
+Dlvc	Lava Cracks
+Dlav	Lava
+Ddkr	Dark Rock
+Dgrs	Grey Stones
+Dsqd	Square Tiles
+Gdrt	Dirt
+Gbrk	Brick
+Grds	Red Stone
+Glvc	Lava Cracks
+Glav	Lava
+Gdkr	Dark Rock
+Ggrs	Grey Stones
+Gsqd	Square Tiles
+Zdrt	Dirt
+Zdtr	Rough Dirt
+Zdrg	Grassy  Dirt
+Zbks	Small Bricks
+Zsan	Sand
+Zbkl	Large Bricks
+Ztil	RoundTiles
+Zgrs	Grass
+Zvin	Dark Grass
+Idrt	Dirt
+Idtr	Rough Dirt
+Idki	Dark Ice
+Ibkb	Black Bricks
+Irbk	Runed Bricks
+Itbk	Tiled Bricks
+Iice	Ice
+Ibsq	Black Squares
+Isnw	Snow
+Odrt	Dirt
+Odtr	Light Dirt
+Osmb	Rough Dirt
+Ofst	Cracked Dirt
+Olgb	Flat Stones
+Orok	Rock
+Ofsl	Light Flat Stone
+Oaby	Abyss
+Kdrt	Dirt
+Kfsl	Light Dirt
+Kdtr	Rough Dirt
+Kfst	Flat Stones
+Ksmb	Small Bricks
+Klgb	Large Bricks
+Ksqt	Square Tiles
+Kdkt	Dark Tiles
+Jdrt	Dirt
+Jdtr	Rough Dirt
+Jblm	Black Marble
+Jbtl	Brick
+Jsqd	Square Tiles
+Jrtl	Round Tiles
+Jgsb	Grass
+Jhdg	Grass Trim
+Jwmb	White Marble
+cAc2	Dirt
+cAc1	Grass
+cBc2	Desert
+cBc1	Grass
+cKc1	Dirt
+cKc2	Dark Tiles
+cYc2	Dirt
+cYc1	Square Tiles
+cXc2	Dirt
+cXc1	Square Tiles
+cJc2	Dirt
+cJc1	Square Tiles
+cDc2	Dirt
+cDc1	Square Tiles
+cCc2	Dirt
+cCc1	Grass
+cIc2	Runed Bricks
+cIc1	Snow
+cFc2	Dirt
+cFc1	Grass
+cLc2	Dirt
+cLc1	Grass
+cWc2	Grass
+cWc1	Snow
+cNc2	Dirt
+cNc1	Snow
+cOc1	Abyss
+cOc2	Rough Dirt
+cZc2	Dirt
+cZc1	Large Bricks
+cGc2	Dirt
+cGc1	Square Tiles
+cVc2	Dirt
+cVc1	Thick Grass
+cQc2	Dirt
+cQc1	Thick Grass
+```

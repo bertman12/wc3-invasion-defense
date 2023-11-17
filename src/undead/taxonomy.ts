@@ -5,7 +5,6 @@ import { notifyPlayer } from "src/utils/misc";
 import { forEachAlliedPlayer, forEachUnitTypeOfPlayer } from "src/utils/players";
 import { Effect, Point, Rectangle, Timer, Trigger, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
-import { Units } from "war3-objectdata-th";
 
 const UNDEAD_PLAYERS = [Players[10], Players[12], Players[13], Players[14], Players[15], Players[16], Players[17], Players[20], Players[21], Players[22], Players[23]];
 
@@ -47,7 +46,24 @@ export function setup_undeadSpawn() {
  * Handles zombie spawns each night
  */
 function undeadNightStart() {
-    const spawnConfigs = [gg_rct_ZombieSpawn1, gg_rct_zombieSpawn2, gg_rct_zNorthSpawn1].map((zone) => {
+    currentZombieCount = 0;
+
+    const spawns = [gg_rct_zombieSpawn2];
+
+    if (RoundManager.currentRound >= 2) {
+        spawns.push(gg_rct_zNorthSpawn1);
+    }
+    if (RoundManager.currentRound >= 3) {
+        spawns.push(gg_rct_ZombieSpawn1);
+    }
+    if (RoundManager.currentRound >= 4) {
+        spawns.push(gg_rct_zWestSpawn1);
+    }
+    if (RoundManager.currentRound >= 5) {
+        spawns.push(gg_rct_zEastCapitalSpawn);
+    }
+
+    const spawnConfigs = spawns.map((zone) => {
         return new SpawnData(zone);
     });
 
@@ -176,9 +192,11 @@ class SpawnData {
     }
 
     public cleanupSpawn() {
-        this.units.forEach((u) => {
+        this.units.forEach((u, index) => {
             if (u) {
-                u.kill();
+                if (Math.random() * 100 >= 10) {
+                    u.kill();
+                }
             }
         });
 
@@ -245,9 +263,9 @@ class SpawnData {
                 //Range [0, 1)
                 const sampledValue = Math.sin(randomTheta);
 
-                print("sampledValue - (1 - count/this.greatestUnitCountFromAllUnitCategories) = ", sampledValue - (1 - count / this.greatestUnitCountFromAllUnitCategories));
-                print("samplevalue: ", sampledValue);
-                print(`(1 - ${count}/${this.greatestUnitCountFromAllUnitCategories}): `, 1 - count / this.greatestUnitCountFromAllUnitCategories);
+                // print("sampledValue - (1 - count/this.greatestUnitCountFromAllUnitCategories) = ", sampledValue - (1 - count / this.greatestUnitCountFromAllUnitCategories));
+                // print("samplevalue: ", sampledValue);
+                // print(`(1 - ${count}/${this.greatestUnitCountFromAllUnitCategories}): `, 1 - count / this.greatestUnitCountFromAllUnitCategories);
 
                 // if(sampledValue - (1 - count/this.greatestUnitCountFromAllUnitCategories) <= this.currentTier3Chance){
                 if (sampledValue <= this.currentTier3Chance) {
@@ -256,14 +274,14 @@ class SpawnData {
                     if (u) {
                         unitsCreatedThisWave.push(u);
                     }
-                    print("Tier 3 chosen with sample value: ", sampledValue);
+                    // print("Tier 3 chosen with sample value: ", sampledValue);
                     //reset chance to base
                     this.currentTier3Chance = this.baseTier3Chance;
                 } else if (sampledValue <= this.currentTier2Chance) {
                     //Tier 3 was not selected, so we must increase the chance to be chosen
                     this.currentTier3Chance += this.tier3ChanceModifier;
                     // print(`Current Tier3 Chance: ${this.currentTier3Chance}`);
-                    print("Tier 2 chosen with sample value: ", sampledValue);
+                    // print("Tier 2 chosen with sample value: ", sampledValue);
 
                     //spawn tier 2 unit
                     const u = this.spawnSingleUndeadUnit(category, 1);
@@ -277,7 +295,7 @@ class SpawnData {
                     //Tier 2 was not selected, so we must increase the chance to be chosen
                     this.currentTier2Chance += this.tier2ChanceModifier;
                     // print(`Current Tier2 Chance: ${this.currentTier2Chance}`);
-                    print("Tier 1 chosen with sample value: ", sampledValue);
+                    // print("Tier 1 chosen with sample value: ", sampledValue);
 
                     //spawn a tier 1 unit
                     const u = this.spawnSingleUndeadUnit(category, 0);

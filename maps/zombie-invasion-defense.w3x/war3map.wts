@@ -1206,15 +1206,124 @@ STRING 276
 Heroic Leap
 }
 
-STRING 277
-// Abilities: A00P (Heroic Leap), Tip (Tooltip - Normal)
+STRING 279
+// Items: I002 (Mask of the Frenzied Ghoul), Name (Name)
 {
-Heroic Leap
+Mask of the Frenzied Ghoul
 }
 
-STRING 278
+STRING 280
+// Items: I002 (Mask of the Frenzied Ghoul), Tip (Tooltip - Basic)
+{
+Purchase Mask of the Frenzied Ghoul
+
+}
+
+STRING 283
+// Abilities: A00Q (Item Hero Stat Reduction), Name (Name)
+{
+Item Hero Stat Reduction
+}
+
+STRING 284
+// Abilities: A00Q (Item Hero Stat Reduction), EditorSuffix (Editor Suffix)
+{
+(-12 Intelligence)
+}
+
+STRING 285
+// Items: I002 (Mask of the Frenzied Ghoul), Ubertip (Tooltip - Extended)
+{
+While wearing this mask, a Hero will recover hit points equal to <AIva,DataA1,%>% of the attack damage dealt to an enemy unit. |n|n|cffff0000-12 |rIntelligence  |n|n|cffff0000Cannot be dropped.|r
+}
+
+STRING 286
+// Abilities: A00R (Glaives of Carnage), Name (Name)
+{
+Glaives of Carnage
+}
+
+STRING 287
+// Abilities: A00R (Glaives of Carnage), Tip (Tooltip - Normal)
+{
+Glaives of Carnage
+}
+
+STRING 288
+// Abilities: A00R (Glaives of Carnage), Ubertip (Tooltip - Normal - Extended)
+{
+Throw the glaives of carnage in a target direction, causing massive damage.
+}
+
+STRING 289
+// Units: u006 (Black Citadel), EditorSuffix (Name - Editor Suffix)
+{
+(Converted Structure)
+}
+
+STRING 290
+// Units: u005 (Spirit Tower), EditorSuffix (Name - Editor Suffix)
+{
+(Converted Structure)
+}
+
+STRING 291
+// Units: u007 (Undead Sentinel), Name (Name)
+{
+Undead Sentinel
+}
+
+STRING 292
+// Items: I003 (Purchase Farm Grant), Name (Name)
+{
+Purchase Farm Grant
+}
+
+STRING 293
+// Items: I003 (Purchase Farm Grant), Tip (Tooltip - Basic)
+{
+Purchase Farm Grant
+}
+
+STRING 294
+// Items: I003 (Purchase Farm Grant), Ubertip (Tooltip - Extended)
+{
+Grants ownership of the farm. Owning the farm enables you to gain the full income. It also allows training of a farm and Angry Farmers are added to your daily retinue.
+}
+
+STRING 295
+// Abilities: A00P (Heroic Leap), Tip (Tooltip - Normal)
+{
+Heroic Leap         |n|n     |TReplaceableTextures\WorldEditUI\Editor-Force.blp:0|
+}
+
+STRING 296
 // Abilities: A00P (Heroic Leap), Ubertip (Tooltip - Normal - Extended)
 {
-The hero jumps forward through the air and crashes down onto the earth.
+Heroic Leap         |n|n     |TReplaceableTextures\WorldEditUI\Editor-Force.blp:0|
+}
+
+STRING 297
+// Abilities: A00S (Purchase Farm Grant), Name (Name)
+{
+Purchase Farm Grant
+}
+
+STRING 298
+// Abilities: A00S (Purchase Farm Grant), EditorSuffix (Editor Suffix)
+{
+(Ability)
+}
+
+STRING 299
+// Units: n008 (null unit), Name (Name)
+{
+null unit
+}
+
+STRING 300
+// Units: n008 (null unit), EditorSuffix (Name - Editor Suffix)
+{
+(null unit)
 }
 

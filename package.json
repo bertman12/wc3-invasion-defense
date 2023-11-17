@@ -13,6 +13,7 @@
     "lint:fix": "npx eslint --fix src/*/*.ts"
   },
   "dependencies": {
+    "eslint-plugin-import": "^2.29.0",
     "w3ts": "^3.0.2"
   },
   "devDependencies": {
