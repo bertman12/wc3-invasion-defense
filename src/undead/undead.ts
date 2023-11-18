@@ -1,11 +1,10 @@
-import { Effect, Group, Point, Rectangle, Sound, Timer, Trigger, Unit } from "w3ts";
+import { Effect, Point, Rectangle, Timer, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
-import { forEachUnitTypeOfPlayer } from "../utils/players";
-import { primaryAttackTargets } from "../towns";
-import { CUSTOM_UNITS, MinimapIconPath } from "../shared/enums";
 import { TimerManager } from "../shared/Timers";
+import { CUSTOM_UNITS, MinimapIconPath } from "../shared/enums";
 import { RoundManager } from "../shared/round-manager";
-import { notifyPlayer } from "src/utils/misc";
+import { primaryAttackTargets } from "../towns";
+import { forEachUnitTypeOfPlayer } from "../utils/players";
 
 /**
  * A smart undead spawning system will choose from a pool of available units

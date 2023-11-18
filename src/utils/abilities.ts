@@ -24,10 +24,10 @@ export function aSpellIsCast<T extends (...args: any) => any>(eventType: Registe
     cb({ unit: u });
 }
 
-function useIt() {
-    const fn = Trigger.create().registerAnyUnitEvent;
+// function useIt() {
+//     const fn = Trigger.create().registerAnyUnitEvent;
 
-    aSpellIsCast<typeof fn>(fn, [EVENT_PLAYER_UNIT_DEATH], ({ unit }) => {
-        print(unit.name);
-    });
-}
+//     aSpellIsCast<typeof fn>(fn, [EVENT_PLAYER_UNIT_DEATH], ({ unit }) => {
+//         print(unit.name);
+//     });
+// }

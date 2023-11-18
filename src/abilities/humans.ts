@@ -11,6 +11,7 @@ export function init_humanSpells() {
     trig_hireFlyingMachine();
     trig_heroicLeap();
     purchaseStructure();
+    trig_battleCharge();
 }
 
 function makeAlliance() {
@@ -106,6 +107,9 @@ function trig_heroicLeap() {
     });
 }
 
+/**
+ * Handles all events where there is a unit you can buy that grants ownership over a building
+ */
 function purchaseStructure() {
     const t = Trigger.create();
 
@@ -122,18 +126,15 @@ function purchaseStructure() {
         //First we check to see if the the unit sold is one that may grant ownership. then we must also check that the seller is the unit type the sold unit can grant ownership for. then we proceed
         if (ownershipGrantingUnits.has(sellingUnit.typeId) && ownershipGrantingUnits.get(sellingUnit.typeId) === soldUnit.typeId) {
             soldUnit.destroy();
-
+            AddUnitToStockBJ(CUSTOM_UNITS.gargoyle, sellingUnit.handle, 3, 3);
             if (isPlayingUser(sellingUnit.owner) || sellingUnit.owner === soldUnit.owner) {
                 adjustGold(soldUnit.owner, GetUnitGoldCost(soldUnit.typeId));
                 adjustLumber(soldUnit.owner, GetUnitWoodCost(soldUnit.typeId));
-                notifyPlayer(`Cannot purchase ${sellingUnit.name} - Gold refunded.`);
+                notifyPlayer(`Cannot purchase ${sellingUnit.name} - Player refunded.`);
                 return;
             }
 
             const soldUnitOwner = soldUnit.getOwner();
-
-            print(sellingUnit.name);
-            print(soldUnit.name);
 
             if (soldUnitOwner) {
                 sellingUnit.setOwner(soldUnitOwner, true);
@@ -142,9 +143,105 @@ function purchaseStructure() {
     });
 }
 
+function trig_battleCharge() {
+    const trig = Trigger.create();
+
+    trig.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SPELL_CAST);
+
+    trig.addCondition(() => {
+        const castedSpellId = GetSpellAbilityId();
+
+        if (castedSpellId === ABILITIES.battleCharge) {
+            return true;
+        }
+
+        return false;
+    });
+
+    trig.addAction(() => {
+        const caster = Unit.fromEvent();
+
+        if (!caster) {
+            return;
+        }
+
+        caster.setTimeScale(2);
+        SetUnitAnimationByIndex(caster.handle, 3);
+
+        const { destroy } = unitGetsNearThisUnit(
+            caster,
+            200,
+            (u) => {
+                print("Unit was found in 300 range of the Demigod!");
+                print(u.name);
+                u.setVertexColor(255, 0, 0, 255);
+                applyForce(getRelativeAngleToUnit(caster, u), u, 500);
+            },
+            {
+                uniqueUnitsOnly: true,
+                onDestroy: (units) => {
+                    // units.forEach((u) => u.kill());
+                },
+            },
+        );
+
+        applyForce(caster.facing, caster, 600, {
+            sustainedForceDuration: 1.5,
+            onEnd(currentSpeed, timeElapsed) {
+                caster.setTimeScale(1);
+                SetUnitAnimationByIndex(caster.handle, 0);
+                destroy();
+            },
+        });
+    });
+}
+
+function unitGetsNearThisUnit(unit: Unit, range: number, cb: (u: Unit) => void, config?: { uniqueUnitsOnly: boolean; condition?: boolexpr | (() => boolean); onDestroy: (unitsEffected: Unit[]) => void }) {
+    const t = Trigger.create();
+    /**
+     * A unique set of the units effected
+     */
+    const effectedUnitPool: Unit[] = [];
+
+    t.registerUnitInRage(unit.handle, range, config?.condition ?? (() => true));
+    t.addAction(() => {
+        const u = Unit.fromEvent();
+
+        if (!u) {
+            return;
+        }
+
+        if (!effectedUnitPool.includes(u)) {
+            effectedUnitPool.push(u);
+        }
+
+        if (config?.uniqueUnitsOnly && !effectedUnitPool.includes(u)) {
+            cb(u);
+        } else {
+            cb(u);
+        }
+    });
+
+    return {
+        destroy: () => {
+            config?.onDestroy(effectedUnitPool);
+            t.destroy();
+        },
+    };
+}
+
+function getRelativeAngleToUnit(unit: Unit, relativeUnit: Unit) {
+    const locA = GetUnitLoc(unit.handle);
+    const locB = GetUnitLoc(relativeUnit.handle);
+
+    return AngleBetweenPoints(locA, locB);
+}
+
 /**
  * map unit sold to the unit the will transfer ownership
  *
  * then we only need one function to handle this behavior as long as it do so according to the map
  */
 const ownershipGrantingUnits = new Map<number, number>([[CUSTOM_UNITS.farmTown, CUSTOM_UNITS.nullUnit]]);
+
+// caster?.hasBuffs

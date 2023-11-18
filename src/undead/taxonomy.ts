@@ -42,26 +42,35 @@ export function setup_undeadSpawn() {
     RoundManager.onDayStart(undeadDayStart);
 }
 
+//This array is empty during runtime because the variables referenced here don't exist when the array is initialized. This is only an issue with generated constants.
+// const validUndeadSpawns = [gg_rct_zombieSpawn2, gg_rct_zNorthSpawn1, gg_rct_ZombieSpawn1, gg_rct_zWestSpawn1, gg_rct_zEastCapitalSpawn];
+
 /**
  * Handles zombie spawns each night
  */
 function undeadNightStart() {
+    const validUndeadSpawns = [gg_rct_zombieSpawn2, gg_rct_zNorthSpawn1, gg_rct_ZombieSpawn1, gg_rct_zWestSpawn1, gg_rct_zEastCapitalSpawn];
+
     currentZombieCount = 0;
 
-    const spawns = [gg_rct_zombieSpawn2];
+    let spawns: rect[] = [];
+    // [2,5] spawns will be chosen
+    const spawnCount = 2 + Math.ceil(Math.random() * 3);
+    const tempSet = new Set<rect>();
 
-    if (RoundManager.currentRound >= 2) {
-        spawns.push(gg_rct_zNorthSpawn1);
+    while (tempSet.size !== spawnCount) {
+        const randomIndex = Math.floor(Math.random() * validUndeadSpawns.length);
+        const chosenSpawn = validUndeadSpawns[randomIndex];
+
+        if (!tempSet.has(chosenSpawn)) {
+            tempSet.add(chosenSpawn);
+        }
     }
-    if (RoundManager.currentRound >= 3) {
-        spawns.push(gg_rct_ZombieSpawn1);
-    }
-    if (RoundManager.currentRound >= 4) {
-        spawns.push(gg_rct_zWestSpawn1);
-    }
-    if (RoundManager.currentRound >= 5) {
-        spawns.push(gg_rct_zEastCapitalSpawn);
-    }
+
+    spawns = [...tempSet];
+
+    print("Number of spawns to choose: ", spawnCount);
+    print("Number of actual spawns: ", spawns.length);
 
     const spawnConfigs = spawns.map((zone) => {
         return new SpawnData(zone);

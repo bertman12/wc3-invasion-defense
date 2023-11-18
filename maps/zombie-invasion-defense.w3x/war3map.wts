@@ -1274,13 +1274,13 @@ Undead Sentinel
 }
 
 STRING 292
-// Items: I003 (Purchase Farm Grant), Name (Name)
+// Units: n008 (Purchase Farm Grant), Name (Name)
 {
 Purchase Farm Grant
 }
 
 STRING 293
-// Items: I003 (Purchase Farm Grant), Tip (Tooltip - Basic)
+// Units: n008 (Purchase Farm Grant), Tip (Tooltip - Basic)
 {
 Purchase Farm Grant
 }
@@ -1304,7 +1304,7 @@ Heroic Leap         |n|n     |TReplaceableTextures\WorldEditUI\Editor-Force.blp:
 }
 
 STRING 297
-// Abilities: A00S (Purchase Farm Grant), Name (Name)
+// Items: I003 (Purchase Farm Grant), Name (Name)
 {
 Purchase Farm Grant
 }
@@ -1316,14 +1316,86 @@ STRING 298
 }
 
 STRING 299
-// Units: n008 (null unit), Name (Name)
+// Units: n009 (null unit), Name (Name)
 {
 null unit
 }
 
 STRING 300
-// Units: n008 (null unit), EditorSuffix (Name - Editor Suffix)
+// Units: n008 (Purchase Farm Grant), EditorSuffix (Name - Editor Suffix)
 {
 (null unit)
+}
+
+STRING 302
+// Units: n009 (null unit), EditorSuffix (Name - Editor Suffix)
+{
+(null unit)
+}
+
+STRING 303
+// Items: I003 (Purchase Farm Grant), Tip (Tooltip - Basic)
+{
+Purchase Farm Grant
+}
+
+STRING 304
+// Abilities: A00S (Purchase Farm Grant), Name (Name)
+{
+Purchase Farm Grant
+}
+
+STRING 305
+// Units: n008 (Purchase Farm Grant), Ubertip (Tooltip - Extended)
+{
+Grants ownership over the farm. Owning the farm will provide more income and will also add militia to your personal retinue every day. Also enables you to train peasants to build for you. |n|n|cffc0c0c0Can only be purchased from computer players or leavers.|r
+}
+
+STRING 306
+// Units: O003 (Demigod), Name (Name)
+{
+Demigod
+}
+
+STRING 307
+// Units: O003 (Demigod), Propernames (Proper Names)
+{
+Enkidu
+}
+
+STRING 308
+// Units: O003 (Demigod), Awakentip (Tooltip - Awaken)
+{
+Revive Demigod
+}
+
+STRING 309
+// Units: O003 (Demigod), Tip (Tooltip - Basic)
+{
+Summon Demigod
+}
+
+STRING 310
+// Units: O003 (Demigod), Ubertip (Tooltip - Extended)
+{
+An ancient demigod.
+}
+
+STRING 311
+// Units: O003 (Demigod), Revivetip (Tooltip - Revive)
+{
+Revive Demigod.
+}
+
+STRING 312
+// Abilities: A00T (Battle Charge), Name (Name)
+{
+Battle Charge
+}
+
+STRING 313
+// Abilities: A00T (Battle Charge), Ubertip (Tooltip - Normal - Extended)
+{
+Causes the unit to charge forward dealing immense damage.
 }
 

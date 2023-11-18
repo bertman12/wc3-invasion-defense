@@ -309,3 +309,7 @@ split the player forces up early.
 let players till the land if they want to create more farmland, just change the tile type
 
 // add petrificitaion mirror
+
+make walls take 3 minutes to build but make them strong - this way players arent building walls all willy nilly without thought . make them somewhat expensive to.
+
+caltrops can degrade over time with negative mana regen. once it reaches 0 remove the unit

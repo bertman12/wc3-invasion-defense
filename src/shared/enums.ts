@@ -11,6 +11,10 @@ export enum ABILITIES {
     foodCapBonus = FourCC("A00I"),
     heroicLeap = FourCC("A00P"),
     purchaseFarmGrant = FourCC("A00S"),
+    shopShareAlly = FourCC("Aall"),
+
+    //Demigod
+    battleCharge = FourCC("A00T"),
 }
 
 export enum UpgradeCodes {
