@@ -18,7 +18,11 @@ export const primaryAttackTargets = new Set([
 
 export const otherStructures = new Set([CUSTOM_UNITS.cannonTower, CUSTOM_UNITS.guardTower, CUSTOM_UNITS.rampartCannonTower, CUSTOM_UNITS.rampartGuardTower]);
 
-export const allDestroyableStructures = new Set([...primaryAttackTargets, ...otherStructures]);
+export const primaryCapturableUndeadTargets = new Set([CUSTOM_UNITS.blackCitadel, CUSTOM_UNITS.infectedGranary, CUSTOM_UNITS.templeOfTheDamned]);
+
+export const otherCapturableUndeadTargets = new Set([CUSTOM_UNITS.spiritTower, CUSTOM_UNITS.undeadSentinel, CUSTOM_UNITS.nerubianTower, CUSTOM_UNITS.undeadBarracks, CUSTOM_UNITS.undeadBlacksmith, CUSTOM_UNITS.undeadLumberMill]);
+
+export const allCapturableStructures = new Set([...primaryAttackTargets, ...otherStructures, ...primaryCapturableUndeadTargets, ...otherCapturableUndeadTargets]);
 
 //When a gets down to 20% health, transfer control to undead or humans
 export function trig_destroyHumanBuilding() {
@@ -30,7 +34,7 @@ export function trig_destroyHumanBuilding() {
         const u = Unit.fromEvent();
         const attacker = Unit.fromHandle(GetAttacker());
 
-        if (u && attacker && allDestroyableStructures.has(u.typeId) && u.life < u.maxLife * 0.25) {
+        if (u && attacker && allCapturableStructures.has(u.typeId) && u.life < u.maxLife * 0.25) {
             u.owner = Players[25]; //Neutral
             u.name = `[${tColor("Destroyed", "red")}] - ` + u.name;
             u.invulnerable = true;

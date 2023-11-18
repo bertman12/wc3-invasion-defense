@@ -12,7 +12,7 @@ STRING 3
 {
 Hero/Army Defense
 
-Hold out for 10 nights until reinforcements arrive.
+Hold out for 15 nights until reinforcements arrive.
 
 Supply horses grant healing for units.
 Buildings will provide various upgrades depending on the building.
@@ -517,11 +517,11 @@ Kingdom Zombie Defense
 
 STRING 142
 {
-|cffE0A526Objective|r - Hold out for 10 nights until reinforcements arrive. Start off by defending the northern farmlands.
+|cffE0A526Objective|r - Hold out for 15 nights until reinforcements arrive. Start off by defending the northern farmlands.
 
 |cffE0A526Supplies|r - Certain units carry supplies which can be used to heal units. They also get bonuses from supply structures.
 
-|cffE0A526Buying Units|r - Certain units are sold at different buildings.
+|cffE0A526Buying Units|r - Buy units at allied structures.
 
 |cffE0A526Upgrades|r - Certain buildings will provide upgrades to your units at the start of each day.
 
@@ -908,12 +908,6 @@ STRING 220
 This unit is being slowed while crossing a river.
 }
 
-STRING 221
-// Units: h005 (Caltrops), Ubertip (Tooltip - Extended)
-{
-Slows down the movement speed of nearby enemies by 50%.
-}
-
 STRING 222
 {
 [Ally] - Vindigoth Orc Tribe
@@ -1135,34 +1129,10 @@ STRING 264
 Light ranged unit that can cast Dispel Magic and Frost Armor. |n|n|cffffcc00Attacks land and air units.|r
 }
 
-STRING 265
-// Units: hwtw (Scout Tower), Ubertip (Tooltip - Extended)
-{
-Basic observation tower. Has magic sentry and 1800 vision range day and night.
-}
-
-STRING 268
-// Units: h00F (Obstacle), Ubertip (Tooltip - Extended)
-{
-Basic wall. 30s build time. Can only be repaired in the day.
-}
-
 STRING 269
-// Units: h00F (Obstacle), Tip (Tooltip - Basic)
+// Units: h00F (Barricade), Tip (Tooltip - Basic)
 {
 Build Barricade
-}
-
-STRING 270
-// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
-{
-Able to build and repair structures during the daytime only.|n|nCan repair buildings and builds a supply camp, scout tower(no upgrades) and Caltrops to slow down the enemy.
-}
-
-STRING 271
-// Units: h00F (Obstacle), Name (Name)
-{
-Obstacle
 }
 
 STRING 272
@@ -1218,12 +1188,6 @@ STRING 284
 // Abilities: A00Q (Item Hero Stat Reduction), EditorSuffix (Editor Suffix)
 {
 (-12 Intelligence)
-}
-
-STRING 285
-// Items: I002 (Mask of the Frenzied Ghoul), Ubertip (Tooltip - Extended)
-{
-While wearing this mask, a Hero will recover hit points equal to <AIva,DataA1,%>% of the attack damage dealt to an enemy unit. |n|n|cffff0000-12 |rIntelligence  |n|n|cffff0000Cannot be dropped.|r
 }
 
 STRING 286
@@ -1334,12 +1298,6 @@ STRING 304
 Purchase Farm Grant
 }
 
-STRING 305
-// Units: n008 (Purchase Farm Grant), Ubertip (Tooltip - Extended)
-{
-Grants ownership over the farm. Owning the farm will provide more income and will also add militia to your personal retinue every day. Also enables you to train peasants to build for you. |n|n|cffc0c0c0Can only be purchased from computer players or leavers.|r
-}
-
 STRING 306
 // Units: O003 (Demigod), Name (Name)
 {
@@ -1364,12 +1322,6 @@ STRING 309
 Summon Demigod
 }
 
-STRING 310
-// Units: O003 (Demigod), Ubertip (Tooltip - Extended)
-{
-An ancient demigod.
-}
-
 STRING 311
 // Units: O003 (Demigod), Revivetip (Tooltip - Revive)
 {
@@ -1383,7 +1335,7 @@ Battle Charge
 }
 
 STRING 313
-// Abilities: A00T (Battle Charge), Ubertip (Tooltip - Normal - Extended)
+// Abilities: A00V (Force Boots), Ubertip (Tooltip - Normal - Extended)
 {
 Causes the unit to charge forward dealing immense damage.
 }
@@ -1433,12 +1385,6 @@ STRING 321
 Force Boots
 }
 
-STRING 322
-// Abilities: A00V (Force Boots), Ubertip (Tooltip - Normal - Extended)
-{
-Causes the unit to charge forward dealing immense damage.
-}
-
 STRING 323
 // Abilities: A002 (Income), Ubertip (Tooltip - Normal - Extended)
 {
@@ -1457,5 +1403,233 @@ Grants |cff008000+35 lumber|r at the start of each day to all players.
 If you own the structure, you get double the gold.
 
 
+}
+
+STRING 325
+// Units: h00H (Infected Granary), Name (Name)
+{
+Infected Granary
+}
+
+STRING 326
+// Units: h00H (Infected Granary), EditorSuffix (Name - Editor Suffix)
+{
+(Town)
+}
+
+STRING 327
+// Abilities: A00T (Battle Charge), Tip (Tooltip - Normal)
+{
+Battle Charge
+}
+
+STRING 329
+// Abilities: A00T (Battle Charge), Ubertip (Tooltip - Normal - Extended)
+{
+Causes the demigod to charge forward dealing 150 damage to all enemies hit.
+}
+
+STRING 330
+// Items: I002 (Mask of the Frenzied Ghoul), Ubertip (Tooltip - Extended)
+{
+While wearing this mask, a Hero will recover hit points equal to <AIva,DataA1,%>% of the attack damage dealt to an enemy unit. |n|n|cffff0000-12 |rIntelligence  |n|n|cffff0000Drops on death|r
+}
+
+STRING 331
+// Units: h005 (Caltrops), Ubertip (Tooltip - Extended)
+{
+Slows down the movement speed of nearby enemies by 50%.    |n|n|cffff0000Destroyed at the start of each day.|r
+}
+
+STRING 332
+// Units: h00F (Barricade), Name (Name)
+{
+Barricade
+}
+
+STRING 333
+// Units: O003 (Demigod), Ubertip (Tooltip - Extended)
+{
+An ancient demigod. |n|nCan learn Cleaving Attack, Endurance Aura, War Stomp and Reincarnation. Has ability to use Battle Charge.
+}
+
+STRING 334
+// Units: Hpal (Paladin), Ubertip (Tooltip - Extended)
+{
+Warrior Hero, exceptional at defense and augmenting nearby friendly troops. Can learn Healing Wave, Drunken Brawler, Devotion Aura and Resurrection. |n|n|cffffcc00Attacks land units.|r
+}
+
+STRING 335
+// Units: Hpal (Paladin), Tip (Tooltip - Basic)
+{
+Modified - Summon Paladin
+}
+
+STRING 336
+// Units: h00F (Barricade), Ubertip (Tooltip - Extended)
+{
+Basic wall. 30s build time.
+}
+
+STRING 337
+// Abilities: A00W (Magic Guard - Info Ability), Name (Name)
+{
+Magic Guard - Info Ability
+}
+
+STRING 338
+// Abilities: A00W (Magic Guard - Info Ability), Tip (Tooltip - Normal)
+{
+Magic Guard - Info Ability
+}
+
+STRING 340
+// Abilities: A00W (Magic Guard - Info Ability), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 342
+// Abilities: A00W (Magic Guard - Info Ability), Ubertip (Tooltip - Normal - Extended)
+{
+Grants all allied units +15% spell damage reduction.
+}
+
+STRING 343
+// Abilities: A00X (Magic Guard), Name (Name)
+{
+Magic Guard
+}
+
+STRING 344
+// Upgrades: R004 (Submerge), Tip (Tooltip)
+{
+null tooltip
+}
+
+STRING 345
+// Upgrades: R004 (Submerge), Ubertip (Tooltip - Extended)
+{
+null tooltip extended
+}
+
+STRING 346
+// Upgrades: R004 (Submerge), EditorSuffix (Editor Suffix)
+{
+(null upgrade)
+}
+
+STRING 347
+// Abilities: A00X (Magic Guard), Tip (Tooltip - Normal)
+{
+Magic Guard
+}
+
+STRING 349
+// Upgrades: R004 (Submerge), Name (Name)
+{
+Magic Guard
+}
+
+STRING 350
+// Abilities: A00X (Magic Guard), Ubertip (Tooltip - Normal - Extended)
+{
+Reduces magic damage taken by 15% while you have an arcane sanctum under your control.
+}
+
+STRING 351
+// Items: I006 (Blink Dagger), Name (Name)
+{
+Blink Dagger
+}
+
+STRING 352
+// Items: I006 (Blink Dagger), Tip (Tooltip - Basic)
+{
+Purchase Blink Dagger
+}
+
+STRING 353
+// Abilities: A00Y (Item Hero Stat Reduction), Name (Name)
+{
+Item Hero Stat Reduction
+}
+
+STRING 354
+// Abilities: A00Y (Item Hero Stat Reduction), EditorSuffix (Editor Suffix)
+{
+(-10 Agility)
+}
+
+STRING 355
+// Items: arsh (Arcanite Shield), Ubertip (Tooltip - Extended)
+{
+Reduces damage from ranged attacks to <AIdd,DataA1,%>%. Also increases the Hero's armor by <AId5,DataA1> when worn. |n|n|cffff0000-10 |rAgility
+}
+
+STRING 356
+// Units: n008 (Purchase Farm Grant), Ubertip (Tooltip - Extended)
+{
+Grants ownership over the farm. Owning the farm will provide more income|cff404040 and will also add militia to your personal retinue every day. Also enables you to train peasants to build for you|r. |n|n|cffc0c0c0Can only be purchased from computer players or leavers.|r
+}
+
+STRING 358
+// Units: h00I (Heavy Cavalry), Name (Name)
+{
+Heavy Cavalry
+}
+
+STRING 359
+// Units: h00I (Heavy Cavalry), Tip (Tooltip - Basic)
+{
+Train Heavy Cavalry
+}
+
+STRING 361
+// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
+{
+Able to build (|cffd45e19only during day|r) and repair structures.|n|nCan repair buildings and builds a supply camp, scout tower(no upgrades) and Caltrops to slow down the enemy.
+}
+
+STRING 362
+// Units: u008 (Spirit Tower - Lumber Mill), EditorSuffix (Name - Editor Suffix)
+{
+(Converted Structure)
+}
+
+STRING 363
+// Units: u008 (Spirit Tower - Lumber Mill), Name (Name)
+{
+Spirit Tower - Lumber Mill
+}
+
+STRING 364
+// Units: u009 (Spirit Tower - Barracks), EditorSuffix (Name - Editor Suffix)
+{
+(Converted Structure)
+}
+
+STRING 365
+// Units: u009 (Spirit Tower - Barracks), Name (Name)
+{
+Spirit Tower - Barracks
+}
+
+STRING 366
+// Units: u00A (Spirit Tower - Blacksmith), EditorSuffix (Name - Editor Suffix)
+{
+(Converted Structure)
+}
+
+STRING 367
+// Units: u00A (Spirit Tower - Blacksmith), Name (Name)
+{
+Spirit Tower - Blacksmith
+}
+
+STRING 368
+// Units: h00I (Heavy Cavalry), Ubertip (Tooltip - Extended)
+{
+A stronger version of the knight with critical strike and cleave. Can trample his enemies and use his fierce lance to attack enemies.
 }
 

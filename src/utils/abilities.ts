@@ -32,7 +32,7 @@ export function aSpellIsCast<T extends (...args: any) => any>(eventType: Registe
 //     });
 // }
 
-export function unitGetsNearThisUnit(unit: Unit, range: number, cb: (u: Unit) => void, config?: { uniqueUnitsOnly: boolean; filter?: boolexpr | (() => boolean); onDestroy: (unitsEffected: Unit[]) => void }) {
+export function unitGetsNearThisUnit(unit: Unit, range: number, cb: (u: Unit) => void, config?: { uniqueUnitsOnly: boolean; filter?: boolexpr | (() => boolean); onDestroy?: (unitsEffected: Unit[]) => void }) {
     const t = Trigger.create();
 
     /**
@@ -61,7 +61,9 @@ export function unitGetsNearThisUnit(unit: Unit, range: number, cb: (u: Unit) =>
 
     return {
         destroy: () => {
-            config?.onDestroy(effectedUnitPool);
+            if (config?.onDestroy) {
+                config?.onDestroy(effectedUnitPool);
+            }
             t.destroy();
         },
     };

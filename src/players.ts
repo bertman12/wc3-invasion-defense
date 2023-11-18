@@ -107,6 +107,7 @@ function trig_heroPurchased() {
 
         const createdUnit = Unit.fromHandle(GetSoldUnit()) as Unit;
         const playerState = playerStates.get(createdUnit.owner.id);
+
         if (playerState) {
             playerState.playerHero = createdUnit;
         }
@@ -116,7 +117,7 @@ function trig_heroPurchased() {
         createdUnit?.addItemById(FourCC("cnob"));
         createdUnit?.addItemById(FourCC("ankh"));
         createdUnit?.addItemById(FourCC("stel"));
-        createdUnit?.addItemById(FourCC("I001"));
+        // createdUnit?.addItemById(FourCC("I001"));
 
         SetCameraPositionForPlayer(buyingUnit.owner.handle, createdUnit.x, createdUnit.y);
 
@@ -177,8 +178,8 @@ export function initializePlayerStateInstances() {
 
 export function init_startingResources() {
     Players.forEach((player) => {
-        player.setState(PLAYER_STATE_RESOURCE_GOLD, 350);
-        player.setState(PLAYER_STATE_RESOURCE_LUMBER, 300);
+        player.setState(PLAYER_STATE_RESOURCE_GOLD, 1000);
+        player.setState(PLAYER_STATE_RESOURCE_LUMBER, 1000);
     });
 
     // //Allow bounty from zombies.
@@ -194,6 +195,7 @@ function grantStartOfDayBonuses() {
     let meleeWeaponUpgradeCount = 0;
     let armorUpgradeCount = 0;
     let foodReserveStructures = 0;
+    let magicGuardStructures = 0;
     const basePlayerFoodCap = 20;
 
     const foodRoundBonus = 5 * RoundManager.currentRound;
@@ -211,6 +213,9 @@ function grantStartOfDayBonuses() {
         forEachUnitOfPlayerWithAbility(p, ABILITIES.foodCapBonus, (u) => {
             foodReserveStructures++;
         });
+        forEachUnitOfPlayerWithAbility(p, ABILITIES.magicGuardInfo, (u) => {
+            magicGuardStructures++;
+        });
     });
 
     const calculatedFoodCap = basePlayerFoodCap + foodRoundBonus + 2 * foodReserveStructures;
@@ -220,13 +225,14 @@ function grantStartOfDayBonuses() {
         p.setTechResearched(UpgradeCodes.armor, 0);
         p.setTechResearched(UpgradeCodes.meleeWeapons, 0);
         p.setTechResearched(UpgradeCodes.supplyUpgrade, 0);
+        p.setTechResearched(UpgradeCodes.magicGuardUpgrade, 0);
         p.setState(PLAYER_STATE_RESOURCE_FOOD_CAP, 0);
 
         //Adjust accordingly
         p.setTechResearched(UpgradeCodes.armor, armorUpgradeCount);
         p.setTechResearched(UpgradeCodes.meleeWeapons, meleeWeaponUpgradeCount);
         p.setTechResearched(UpgradeCodes.supplyUpgrade, totalSupplyBuildings);
-
+        p.setTechResearched(UpgradeCodes.magicGuardUpgrade, magicGuardStructures);
         //Set player food cap
         adjustFoodCap(p, calculatedFoodCap);
     });
@@ -256,7 +262,6 @@ export function player_giveHumansStartOfDayResources(round: number) {
             totalIncomeBuildings++;
             if (u.owner === p) {
                 playerOwnedIncomeBuildings++;
-                print("Player owned the farm!");
                 adjustGold(p, economicConstants.goldIncomeAbility);
             }
         });

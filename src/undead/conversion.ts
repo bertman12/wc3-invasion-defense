@@ -4,49 +4,72 @@ import { forEachUnitOfPlayer } from "src/utils/players";
 import { Unit } from "w3ts";
 import { Players } from "w3ts/globals";
 
-const replacedUnits = new Map<number, Unit>();
+const humanToUndead = new Map<number, number>([
+    [CUSTOM_UNITS.capital, CUSTOM_UNITS.blackCitadel],
+    [CUSTOM_UNITS.castle, CUSTOM_UNITS.blackCitadel],
+    [CUSTOM_UNITS.citadelOfTheNorthernKnights, CUSTOM_UNITS.blackCitadel],
+    [CUSTOM_UNITS.townHall, CUSTOM_UNITS.blackCitadel],
+    [CUSTOM_UNITS.rampartCannonTower, CUSTOM_UNITS.undeadSentinel],
+    [CUSTOM_UNITS.rampartGuardTower, CUSTOM_UNITS.undeadSentinel],
+    [CUSTOM_UNITS.granary, CUSTOM_UNITS.infectedGranary],
+    [CUSTOM_UNITS.farmTown, CUSTOM_UNITS.spiritTower],
+    [CUSTOM_UNITS.arcaneSanctum, CUSTOM_UNITS.templeOfTheDamned],
+    [CUSTOM_UNITS.lumberMill, CUSTOM_UNITS.undeadLumberMill],
+    [CUSTOM_UNITS.blacksmith, CUSTOM_UNITS.undeadBlacksmith],
+    [CUSTOM_UNITS.barracks, CUSTOM_UNITS.undeadBarracks],
+    [CUSTOM_UNITS.guardTower, CUSTOM_UNITS.nerubianTower],
+    [CUSTOM_UNITS.cannonTower, CUSTOM_UNITS.nerubianTower],
+]);
 
-export function convertHumanToUndeadStructures() {
+const undeadToHuman = new Map<number, number>([
+    [CUSTOM_UNITS.blackCitadel, CUSTOM_UNITS.castle],
+    [CUSTOM_UNITS.undeadSentinel, CUSTOM_UNITS.rampartGuardTower],
+    [CUSTOM_UNITS.infectedGranary, CUSTOM_UNITS.granary],
+    [CUSTOM_UNITS.spiritTower, CUSTOM_UNITS.farmTown],
+    [CUSTOM_UNITS.templeOfTheDamned, CUSTOM_UNITS.arcaneSanctum],
+    [CUSTOM_UNITS.undeadLumberMill, CUSTOM_UNITS.lumberMill],
+    [CUSTOM_UNITS.undeadBlacksmith, CUSTOM_UNITS.blacksmith],
+    [CUSTOM_UNITS.undeadBarracks, CUSTOM_UNITS.barracks],
+    [CUSTOM_UNITS.nerubianTower, CUSTOM_UNITS.guardTower],
+]);
 
+export function setupBuildingConversions() {
+    convertUndeadToHumanStructures();
+    convertHumanToUndeadStructures();
+}
+
+function convertHumanToUndeadStructures() {
     RoundManager.onNightStart(() => {
         forEachUnitOfPlayer(Players[PlayerIndices.NeutralPassive], (u) => {
             //Destroys and converts primary structures into undead ones.
             if (u.name.includes("Destroyed")) {
-                u.kill();
-
-                if ([CUSTOM_UNITS.capital, CUSTOM_UNITS.castle, CUSTOM_UNITS.townHall, CUSTOM_UNITS.citadelOfTheNorthernKnights].find((type) => u.typeId === type)) {
-                    const undeadStructure = Unit.create(Players[15], FourCC("u006"), u.x, u.y);
-                    
-                    print("Created Necropolis");
-                } else if ([CUSTOM_UNITS.rampartCannonTower, CUSTOM_UNITS.rampartGuardTower].find((type) => u.typeId === type)) {
-                    const undeadSentinel = Unit.create(Players[15], FourCC("u007"), u.x, u.y);
-                    print("Created Undead Sentinel");
-                } else {
-                    const undeadStructure = Unit.create(Players[15], FourCC("u005"), u.x, u.y);
-                    print("Created Ziggurat");
+                if (humanToUndead.has(u.typeId)) {
+                    const unitType = humanToUndead.get(u.typeId);
+                    if (unitType) {
+                        u.kill();
+                        print("Killing undead - ", u.name);
+                        Unit.create(Players[15], unitType, u.x, u.y);
+                    }
                 }
             }
         });
     });
 }
 
-export function convertUndeadToHumanStructures() {
+function convertUndeadToHumanStructures() {
     RoundManager.onDayStart(() => {
         forEachUnitOfPlayer(Players[PlayerIndices.NeutralPassive], (u) => {
             //Destroys and converts primary structures into undead ones.
             if (u.name.includes("Destroyed")) {
-                u.kill();
+                if (undeadToHuman.has(u.typeId)) {
+                    const unitType = undeadToHuman.get(u.typeId);
 
-                if ([CUSTOM_UNITS.capital, CUSTOM_UNITS.castle, CUSTOM_UNITS.townHall, CUSTOM_UNITS.citadelOfTheNorthernKnights].find((type) => u.typeId === type)) {
-                    Unit.create(Players[9], CUSTOM_UNITS.castle, u.x, u.y);
+                    if (unitType) {
+                        print("Killing human - ", u.name);
 
-                    print("Created Necropolis");
-                } else if ([CUSTOM_UNITS.rampartCannonTower, CUSTOM_UNITS.rampartGuardTower].find((type) => u.typeId === type)) {
-                    Unit.create(Players[15], FourCC("u007"), u.x, u.y);
-                    print("Created Undead Sentinel");
-                } else {
-                    const undeadStructure = Unit.create(Players[15], FourCC("u005"), u.x, u.y);
-                    print("Created Ziggurat");
+                        u.kill();
+                        Unit.create(Players[9], unitType, u.x, u.y);
+                    }
                 }
             }
         });
@@ -55,4 +78,4 @@ export function convertUndeadToHumanStructures() {
 
 //Perhaps we store in state the unit type this specific unit is replacing
 
-//Then 
+//Then

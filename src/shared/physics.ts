@@ -38,13 +38,13 @@ export function applyForce(angle: number, unit: Unit, initialSpeed: number, conf
     const unitIsMovingVector_x = unit.moveSpeed * Math.cos(Deg2Rad(unit.facing));
     const unitIsMovingVector_y = unit.moveSpeed * Math.sin(Deg2Rad(unit.facing));
     // unit.currentOrder ===
-    [OrderId.Move, OrderId.Attackground, OrderId.Patrol, OrderId.Attack].forEach((x) => print("Order id ref: ", x));
+    // [OrderId.Move, OrderId.Attackground, OrderId.Patrol, OrderId.Attack].forEach((x) => print("Order id ref: ", x));
     const clickMoveOrder = 851971;
 
     //Cancel unit commands
     unit.issueImmediateOrder(OrderId.Stop);
 
-    print("Current order id of unit: ", unit.currentOrder);
+    // print("Current order id of unit: ", unit.currentOrder);
     timer.start(refreshInterval, true, () => {
         const xVelocity = (currentSpeed / updatesPerSecond) * Math.cos(Deg2Rad(angle));
         const yVelocity = (currentSpeed / updatesPerSecond) * Math.sin(Deg2Rad(angle));
@@ -56,7 +56,7 @@ export function applyForce(angle: number, unit: Unit, initialSpeed: number, conf
 
         //Complete execution when current speed of the initial force has decayed
         if (currentSpeed <= 0) {
-            print("applied force has decayed!");
+            // print("applied force has decayed!");
             timer.destroy();
             return;
         }

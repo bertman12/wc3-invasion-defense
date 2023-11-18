@@ -316,14 +316,35 @@ caltrops can degrade over time with negative mana regen. once it reaches 0 remov
 
 some heroes are better at killing and some are better for economics
 
-====TODO make undead structures capturable- make human buildings units too
+====
+TODO make undead structures capturable- make human buildings units too
 
 Fix enkidus spell so it only effects enemies and not buildings too.
+need to first check that the units are not from any of the capturable targets
+also need to not affect allies
 
 Add more undead unit types
 
-make granaary convert to infected granary for undead
+make granary convert to infected granary for undead
 
 make it so player owned farms grant more money
 
 display to the player the gold they get from their owned buildings
+
+perhaps just replace it with circle of power first then have that circle of power upgrade to the correct structure so we dont need to remake everything into a unit
+
+make melee heroes capable of attacking air units
+
+add trigger if an undead unit has order id == 0 meaning they are doing nothing then order them to attack their spawns attack target
+
+close as many gaps as possible for pathing lol
+
+add ability for enkidu to trade health for mana
+
+=====
+
+items - shield that reduces ranged damage to target, costs agility
+
+give heroes custom reinforcements at the capital depending on the hero type
+
+Add heavy cavalry to the northern capital

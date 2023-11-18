@@ -1,4 +1,4 @@
-import { Sound, Timer, Unit } from "w3ts";
+import { FogModifier, Sound, Timer, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
 import { W3TS_HOOK, addScriptHook } from "w3ts/hooks";
 import { init_itemAbilities } from "./abilities/items";
@@ -11,9 +11,10 @@ import { TimerManager } from "./shared/Timers";
 import { setup_reportCasualtyCounts } from "./shared/misc";
 import { RoundManager } from "./shared/round-manager";
 import { trig_destroyHumanBuilding } from "./towns";
-import { convertHumanToUndeadStructures } from "./undead/conversion";
+import { setupBuildingConversions } from "./undead/conversion";
 import { setup_undeadSpawn } from "./undead/taxonomy";
 import { tColor } from "./utils/misc";
+import { forEachPlayer } from "./utils/players";
 import { init_quests } from "./utils/quests";
 
 const BUILD_DATE = compiletime(() => new Date().toUTCString());
@@ -48,7 +49,7 @@ function tsMain() {
         SetGameDifficulty(MAP_DIFFICULTY_INSANE);
         init_quests();
         trig_destroyHumanBuilding();
-        convertHumanToUndeadStructures();
+        setupBuildingConversions();
 
         //Environment setup
         SuspendTimeOfDay(true);
@@ -56,7 +57,6 @@ function tsMain() {
         ClearMapMusic();
         StopMusic(false);
         PlayMusic(gg_snd_NightElfX1);
-
         TimerManager.trig_setup();
         const u = Unit.create(Players[9], FourCC("hfoo"), 0, 0);
         u?.issueOrderAt(OrderId.Move, -300, 2850);
@@ -67,11 +67,13 @@ function tsMain() {
         //   CreateMinimapIcon(-20000 + (index*4000), 0, 255, 255, 255, path, FOG_OF_WAR_FOGGED);
         // });
 
-        // forEachPlayer(p => {
-        //   const clearFogState = FogModifier.create(Players[0], FOG_OF_WAR_VISIBLE, 0,0, 25000, true, true);
-        //   clearFogState?.start();
-        //   clearFogState?.destroy();
-        // })
+        forEachPlayer((p) => {
+            if (p.isPlayerAlly(Players[0]) === false) {
+                const clearFogState = FogModifier.create(p, FOG_OF_WAR_VISIBLE, 0, 0, 25000, true, true);
+                clearFogState?.start();
+            }
+            // clearFogState?.destroy();
+        });
 
         setup_reportCasualtyCounts();
         init_itemAbilities();

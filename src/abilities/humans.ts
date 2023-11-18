@@ -1,9 +1,11 @@
 import { adjustGold, adjustLumber } from "src/players";
 import { ABILITIES, CUSTOM_UNITS } from "src/shared/enums";
 import { applyForce } from "src/shared/physics";
+import { RoundManager } from "src/shared/round-manager";
+import { allCapturableStructures } from "src/towns";
 import { unitGetsNearThisUnit } from "src/utils/abilities";
-import { getRelativeAngleToUnit, notifyPlayer, tColor } from "src/utils/misc";
-import { isPlayingUser } from "src/utils/players";
+import { getRelativeAngleToUnit, notifyPlayer, tColor, useEffects } from "src/utils/misc";
+import { forEachAlliedPlayer, forEachUnitTypeOfPlayer, isPlayingUser } from "src/utils/players";
 import { Effect, MapPlayer, Trigger, Unit } from "w3ts";
 import { Players } from "w3ts/globals";
 
@@ -13,6 +15,8 @@ export function init_humanSpells() {
     trig_heroicLeap();
     purchaseStructure();
     trig_battleCharge();
+
+    RoundManager.onDayStart(removeCaltrops);
 }
 
 function makeAlliance() {
@@ -98,9 +102,6 @@ function trig_heroicLeap() {
             caster.setDiceNumber(0, 0);
             applyForce(caster.facing, caster, 600, {
                 sustainedForceDuration: 0,
-                whileActive(currentSpeed, timeElapsed) {
-                    print("My while active function is running!");
-                },
             });
         }
 
@@ -176,12 +177,16 @@ function trig_battleCharge() {
             caster,
             200,
             (u) => {
-                print("Unit was found in 300 range of the Demigod!");
+                if (u.isUnitType(UNIT_TYPE_STRUCTURE) || u.isAlly(Players[0]) || allCapturableStructures.has(u.typeId)) {
+                    print("Invalid charge target!");
+                    return;
+                }
+
                 print(u.name);
                 u.setVertexColor(255, 0, 0, 255);
                 applyForce(getRelativeAngleToUnit(caster, u), u, 900);
                 const thunderEffect = Effect.create("Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl", u.x, u.y);
-
+                u.damageTarget(u.handle, 150, true, false, ATTACK_TYPE_CHAOS, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS);
                 if (thunderEffect) {
                     thunderEffect.scale = 0.5;
                 }
@@ -190,53 +195,19 @@ function trig_battleCharge() {
             },
             {
                 uniqueUnitsOnly: true,
-                onDestroy: (units) => {
-                    units.forEach((u) => u.damageTarget(u.handle, 150, true, false, ATTACK_TYPE_CHAOS, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS));
-                },
             },
         );
 
         applyForce(caster.facing, caster, 900, {
             sustainedForceDuration: 1,
-            onEnd(currentSpeed, timeElapsed) {
+            onEnd() {
                 caster.setTimeScale(1);
                 SetUnitAnimationByIndex(caster.handle, 0);
                 destroy();
                 destroyAllEffects();
-                print("RemainingEffects: ", getEffects().length, " - Elements: ", ...getEffects());
             },
         });
     });
-}
-
-/**
- * Manages state of effects in this context so you don't have to!
- */
-function useEffects() {
-    const effects: Effect[] = [];
-
-    return {
-        addEffect: (effect: Effect | undefined) => {
-            if (effect) {
-                effects.push(effect);
-            }
-        },
-        /**
-         * @returns reference to effects array
-         */
-        getEffects: () => {
-            return effects;
-        },
-        destroyAllEffects: () => {
-            print("Before destroy: ", effects.length);
-            effects.forEach((e) => {
-                print("effect before destroy: ", e);
-                e.destroy();
-                print("effect after destory: ", e);
-            });
-            print("After destroy: ", effects.length);
-        },
-    };
 }
 
 /**
@@ -247,3 +218,9 @@ function useEffects() {
 const ownershipGrantingUnits = new Map<number, number>([[CUSTOM_UNITS.farmTown, CUSTOM_UNITS.nullUnit]]);
 
 // caster?.hasBuffs
+
+function removeCaltrops() {
+    forEachAlliedPlayer((p) => {
+        forEachUnitTypeOfPlayer(CUSTOM_UNITS.caltrops, p, (u) => u.kill());
+    });
+}

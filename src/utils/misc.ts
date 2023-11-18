@@ -1,4 +1,4 @@
-import { Unit } from "w3ts";
+import { Effect, Unit } from "w3ts";
 
 type ProperColors = "goldenrod" | "gold" | "green" | "yellow" | "red";
 
@@ -28,4 +28,30 @@ export function getRelativeAngleToUnit(unit: Unit, relativeUnit: Unit) {
     const locB = GetUnitLoc(relativeUnit.handle);
 
     return AngleBetweenPoints(locA, locB);
+}
+
+/**
+ * Manages state of effects in this context so you don't have to!
+ */
+export function useEffects() {
+    const effects: Effect[] = [];
+
+    return {
+        addEffect: (effect: Effect | undefined) => {
+            if (effect) {
+                effects.push(effect);
+            }
+        },
+        /**
+         * @returns reference to effects array
+         */
+        getEffects: () => {
+            return effects;
+        },
+        destroyAllEffects: () => {
+            effects.forEach((e) => {
+                e.destroy();
+            });
+        },
+    };
 }

@@ -2,7 +2,7 @@ import { CUSTOM_UNITS, MinimapIconPath } from "src/shared/enums";
 import { RoundManager } from "src/shared/round-manager";
 import { primaryAttackTargets } from "src/towns";
 import { notifyPlayer } from "src/utils/misc";
-import { forEachAlliedPlayer, forEachUnitTypeOfPlayer } from "src/utils/players";
+import { forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayer, forEachUnitTypeOfPlayer } from "src/utils/players";
 import { Effect, Point, Rectangle, Timer, Trigger, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
 
@@ -58,6 +58,13 @@ function undeadNightStart() {
     const spawnCount = 2 + Math.ceil(Math.random() * 3);
     const tempSet = new Set<rect>();
 
+    //Kill any undead leftover from the previous night and daytime
+    forEachPlayer((p) => {
+        if (!p.isPlayerAlly(Players[0])) {
+            forEachUnitOfPlayer(p, (u) => u.issueOrderAt(OrderId.Attack, 0, 0));
+        }
+    });
+
     while (tempSet.size !== spawnCount) {
         const randomIndex = Math.floor(Math.random() * validUndeadSpawns.length);
         const chosenSpawn = validUndeadSpawns[randomIndex];
@@ -68,9 +75,6 @@ function undeadNightStart() {
     }
 
     spawns = [...tempSet];
-
-    print("Number of spawns to choose: ", spawnCount);
-    print("Number of actual spawns: ", spawns.length);
 
     const spawnConfigs = spawns.map((zone) => {
         return new SpawnData(zone);
@@ -84,7 +88,6 @@ function undeadNightStart() {
 }
 
 function undeadDayStart() {
-    print("Cleaning up spawns!");
     currentSpawns.forEach((spawn) => spawn.cleanupSpawn());
     currentSpawns = [];
 }
@@ -154,16 +157,16 @@ class SpawnData {
         this.currentTier3Chance = this.baseTier3Chance;
 
         this.unitCompData = new Map<UnitCategory, number>([
-            ["infantry", Math.ceil(0.3 * this.spawnAmountPerWave)],
-            ["missile", Math.ceil(0.3 * this.spawnAmountPerWave)],
-            ["caster", Math.ceil(0.2 * this.spawnAmountPerWave)],
-            ["siege", Math.ceil(0.1 * this.spawnAmountPerWave)],
-            ["hero", Math.ceil(0 * this.spawnAmountPerWave)],
+            ["infantry", Math.ceil(0.775 * this.spawnAmountPerWave)],
+            ["missile", Math.ceil(0.1 * this.spawnAmountPerWave)],
+            ["caster", Math.ceil(0.1 * this.spawnAmountPerWave)],
+            ["siege", Math.ceil(0.025 * this.spawnAmountPerWave)],
+            ["hero", 0 * Math.ceil(0.015 * this.spawnAmountPerWave)],
         ]);
 
-        this.unitCompData.forEach((value, key) => {
-            print(`Category: ${key} - Amount: ${value}`);
-        });
+        // this.unitCompData.forEach((value, key) => {
+        //     print(`Category: ${key} - Amount: ${value}`);
+        // });
 
         /**
          * @todo needs to be calculated in the future
@@ -231,6 +234,16 @@ class SpawnData {
     private orderNewAttack(attackingUnits: Unit[]) {
         const newTarget = this.chooseForceAttackTarget(Point.create(this.spawnRec?.centerX ?? 0, this.spawnRec?.centerY ?? 0));
 
+        //Check for any idled units from this spawn and order them to attack the next target
+        const idledUnits: Unit[] = [];
+        if (this.units.length) {
+            this.units.forEach((u) => {
+                if (u.currentOrder === 0 || u.currentOrder === OrderId.Stop) {
+                    idledUnits.push(u);
+                }
+            });
+        }
+
         if (newTarget && newTarget !== this.currentAttackTarget) {
             //Creates an effect at the target attack point for player to see where the next attack location is
             const effect = Effect.create("Abilities\\Spells\\NightElf\\TrueshotAura\\TrueshotAura.mdl", newTarget.x, newTarget.y);
@@ -255,11 +268,17 @@ class SpawnData {
 
         this.currentAttackTarget = newTarget;
 
-        print("attacking force size", attackingUnits.length);
+        if (attackingUnits.length) {
+            attackingUnits.forEach((u) => {
+                u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0);
+            });
+        }
 
-        attackingUnits.forEach((u) => {
-            u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0);
-        });
+        if (idledUnits.length) {
+            idledUnits.forEach((u) => {
+                u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0);
+            });
+        }
     }
 
     public createWaveUnits() {
@@ -446,7 +465,7 @@ const unitCategoryData = new Map<UnitCategory, { [key: string]: number[] }>([
                 //greater obsidian statue
             ],
             tierIII: [
-                FourCC("uktg"),
+                FourCC("uban"),
                 //
             ],
         },

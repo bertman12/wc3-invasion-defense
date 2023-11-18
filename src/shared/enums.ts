@@ -1,10 +1,14 @@
 export enum ABILITIES {
-    charge = FourCC("A005"),
+    //InfoAbilities
     supplies = FourCC("A000"),
     income = FourCC("A002"),
     lumberIncome = FourCC("A00J"),
     armorUpgrade = FourCC("A006"),
     weaponUpgrade = FourCC("A007"),
+    magicGuardInfo = FourCC("A00W"),
+
+    //Other
+    charge = FourCC("A005"),
     makeAlliance = FourCC("A00A"),
     replenishLifeAndMana = FourCC("Ambt"),
     hireFlyingMachinePatrol = FourCC("A00G"),
@@ -14,6 +18,7 @@ export enum ABILITIES {
 
     //Special
     shopShareAlly = FourCC("Aall"),
+    magicGuard = FourCC("A00X"),
 
     //Demigod
     battleCharge = FourCC("A00T"),
@@ -28,6 +33,7 @@ export enum UpgradeCodes {
     supplyUpgrade = FourCC("R000"),
     dayTime = FourCC("R002"),
     nightTime = FourCC("R003"),
+    magicGuardUpgrade = FourCC("R004"),
 }
 
 export enum PlayerIndices {
@@ -51,6 +57,7 @@ export enum CUSTOM_UNITS {
     arcaneSanctum = FourCC("hars"),
     lumberMill = FourCC("hlum"),
     granary = FourCC("h00C"),
+    caltrops = FourCC("h005"),
     citadelOfTheNorthernKnights = FourCC("h00E"),
 
     //Human units
@@ -75,6 +82,13 @@ export enum CUSTOM_UNITS {
     //Undead Buildings
     blackCitadel = FourCC("u006"),
     spiritTower = FourCC("u005"),
+    infectedGranary = FourCC("h00H"),
+    undeadSentinel = FourCC("u007"),
+    templeOfTheDamned = FourCC("utod"),
+    nerubianTower = FourCC("uzg2"),
+    undeadLumberMill = FourCC("u008"),
+    undeadBlacksmith = FourCC("u00A"),
+    undeadBarracks = FourCC("u009"),
 
     //Triggering Purposes
     nullUnit = FourCC("n008"),
