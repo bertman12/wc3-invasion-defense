@@ -1,17 +1,11 @@
+import { Unit } from "w3ts";
 
-type ProperColors = 
-    | "goldenrod"  
-    | "gold"
-    | "green"
-    | "yellow"
-    | "red"
+type ProperColors = "goldenrod" | "gold" | "green" | "yellow" | "red";
 
-export function tColor(text: string, color?: ProperColors, hex?:string, alpha?: string){
-    
-    if(color){
+export function tColor(text: string, color?: ProperColors, hex?: string, alpha?: string) {
+    if (color) {
         return `|cff${properColorHexes.get(color) || "FFFFFF"}${alpha || ""}${text}|r`;
-    }
-    else if(hex){
+    } else if (hex) {
         return `|cff${hex}${alpha || ""}${text}|r`;
     }
 
@@ -25,8 +19,13 @@ const properColorHexes = new Map<ProperColors, string>([
     ["red", "FF0000"],
 ]);
 
-export function notifyPlayer(msg: string){
+export function notifyPlayer(msg: string) {
     print(`${tColor("!", "goldenrod")} - ${msg}`);
 }
 
+export function getRelativeAngleToUnit(unit: Unit, relativeUnit: Unit) {
+    const locA = GetUnitLoc(unit.handle);
+    const locB = GetUnitLoc(relativeUnit.handle);
 
+    return AngleBetweenPoints(locA, locB);
+}

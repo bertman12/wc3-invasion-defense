@@ -1,9 +1,10 @@
 import { adjustGold, adjustLumber } from "src/players";
 import { ABILITIES, CUSTOM_UNITS } from "src/shared/enums";
 import { applyForce } from "src/shared/physics";
-import { notifyPlayer, tColor } from "src/utils/misc";
+import { unitGetsNearThisUnit } from "src/utils/abilities";
+import { getRelativeAngleToUnit, notifyPlayer, tColor } from "src/utils/misc";
 import { isPlayingUser } from "src/utils/players";
-import { MapPlayer, Trigger, Unit } from "w3ts";
+import { Effect, MapPlayer, Trigger, Unit } from "w3ts";
 import { Players } from "w3ts/globals";
 
 export function init_humanSpells() {
@@ -126,7 +127,7 @@ function purchaseStructure() {
         //First we check to see if the the unit sold is one that may grant ownership. then we must also check that the seller is the unit type the sold unit can grant ownership for. then we proceed
         if (ownershipGrantingUnits.has(sellingUnit.typeId) && ownershipGrantingUnits.get(sellingUnit.typeId) === soldUnit.typeId) {
             soldUnit.destroy();
-            AddUnitToStockBJ(CUSTOM_UNITS.gargoyle, sellingUnit.handle, 3, 3);
+
             if (isPlayingUser(sellingUnit.owner) || sellingUnit.owner === soldUnit.owner) {
                 adjustGold(soldUnit.owner, GetUnitGoldCost(soldUnit.typeId));
                 adjustLumber(soldUnit.owner, GetUnitWoodCost(soldUnit.typeId));
@@ -137,6 +138,8 @@ function purchaseStructure() {
             const soldUnitOwner = soldUnit.getOwner();
 
             if (soldUnitOwner) {
+                //crashes the game lol
+                // sellingUnit.removeAbility(ABILITIES.shopShareAlly);
                 sellingUnit.setOwner(soldUnitOwner, true);
             }
         }
@@ -167,6 +170,7 @@ function trig_battleCharge() {
 
         caster.setTimeScale(2);
         SetUnitAnimationByIndex(caster.handle, 3);
+        const { addEffect, destroyAllEffects, getEffects } = useEffects();
 
         const { destroy } = unitGetsNearThisUnit(
             caster,
@@ -175,66 +179,64 @@ function trig_battleCharge() {
                 print("Unit was found in 300 range of the Demigod!");
                 print(u.name);
                 u.setVertexColor(255, 0, 0, 255);
-                applyForce(getRelativeAngleToUnit(caster, u), u, 500);
+                applyForce(getRelativeAngleToUnit(caster, u), u, 900);
+                const thunderEffect = Effect.create("Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl", u.x, u.y);
+
+                if (thunderEffect) {
+                    thunderEffect.scale = 0.5;
+                }
+
+                addEffect(thunderEffect);
             },
             {
                 uniqueUnitsOnly: true,
                 onDestroy: (units) => {
-                    // units.forEach((u) => u.kill());
+                    units.forEach((u) => u.damageTarget(u.handle, 150, true, false, ATTACK_TYPE_CHAOS, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS));
                 },
             },
         );
 
-        applyForce(caster.facing, caster, 600, {
-            sustainedForceDuration: 1.5,
+        applyForce(caster.facing, caster, 900, {
+            sustainedForceDuration: 1,
             onEnd(currentSpeed, timeElapsed) {
                 caster.setTimeScale(1);
                 SetUnitAnimationByIndex(caster.handle, 0);
                 destroy();
+                destroyAllEffects();
+                print("RemainingEffects: ", getEffects().length, " - Elements: ", ...getEffects());
             },
         });
     });
 }
 
-function unitGetsNearThisUnit(unit: Unit, range: number, cb: (u: Unit) => void, config?: { uniqueUnitsOnly: boolean; condition?: boolexpr | (() => boolean); onDestroy: (unitsEffected: Unit[]) => void }) {
-    const t = Trigger.create();
-    /**
-     * A unique set of the units effected
-     */
-    const effectedUnitPool: Unit[] = [];
-
-    t.registerUnitInRage(unit.handle, range, config?.condition ?? (() => true));
-    t.addAction(() => {
-        const u = Unit.fromEvent();
-
-        if (!u) {
-            return;
-        }
-
-        if (!effectedUnitPool.includes(u)) {
-            effectedUnitPool.push(u);
-        }
-
-        if (config?.uniqueUnitsOnly && !effectedUnitPool.includes(u)) {
-            cb(u);
-        } else {
-            cb(u);
-        }
-    });
+/**
+ * Manages state of effects in this context so you don't have to!
+ */
+function useEffects() {
+    const effects: Effect[] = [];
 
     return {
-        destroy: () => {
-            config?.onDestroy(effectedUnitPool);
-            t.destroy();
+        addEffect: (effect: Effect | undefined) => {
+            if (effect) {
+                effects.push(effect);
+            }
+        },
+        /**
+         * @returns reference to effects array
+         */
+        getEffects: () => {
+            return effects;
+        },
+        destroyAllEffects: () => {
+            print("Before destroy: ", effects.length);
+            effects.forEach((e) => {
+                print("effect before destroy: ", e);
+                e.destroy();
+                print("effect after destory: ", e);
+            });
+            print("After destroy: ", effects.length);
         },
     };
-}
-
-function getRelativeAngleToUnit(unit: Unit, relativeUnit: Unit) {
-    const locA = GetUnitLoc(unit.handle);
-    const locB = GetUnitLoc(relativeUnit.handle);
-
-    return AngleBetweenPoints(locA, locB);
 }
 
 /**

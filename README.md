@@ -313,3 +313,17 @@ let players till the land if they want to create more farmland, just change the 
 make walls take 3 minutes to build but make them strong - this way players arent building walls all willy nilly without thought . make them somewhat expensive to.
 
 caltrops can degrade over time with negative mana regen. once it reaches 0 remove the unit
+
+some heroes are better at killing and some are better for economics
+
+====TODO make undead structures capturable- make human buildings units too
+
+Fix enkidus spell so it only effects enemies and not buildings too.
+
+Add more undead unit types
+
+make granaary convert to infected granary for undead
+
+make it so player owned farms grant more money
+
+display to the player the gold they get from their owned buildings

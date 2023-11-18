@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Kingdom Zombie Defense alpha test 4
+Kingdom Zombie Defense alpha test 5
 }
 
 STRING 2
@@ -16,7 +16,8 @@ Hold out for 10 nights until reinforcements arrive.
 
 Supply horses grant healing for units.
 Buildings will provide various upgrades depending on the building.
-Certain units are sold at different buildings.
+Buy units at allied buildings.
+Recapture undead structures.
 
 
 }
@@ -823,12 +824,6 @@ STRING 202
 (Info Only)
 }
 
-STRING 204
-// Abilities: A002 (Income), Ubertip (Tooltip - Normal - Extended)
-{
-Grants gold at the start of each day.
-}
-
 STRING 205
 // Abilities: A00C (Food Income), Ubertip (Tooltip - Normal - Extended)
 {
@@ -863,12 +858,6 @@ STRING 210
 // Abilities: A00J (Lumber Income - Info Ability), Tip (Tooltip - Normal)
 {
 Lumber Income - Info Ability
-}
-
-STRING 211
-// Abilities: A00J (Lumber Income - Info Ability), Ubertip (Tooltip - Normal - Extended)
-{
-Grants lumber at the start of each day.
 }
 
 STRING 212
@@ -1397,5 +1386,76 @@ STRING 313
 // Abilities: A00T (Battle Charge), Ubertip (Tooltip - Normal - Extended)
 {
 Causes the unit to charge forward dealing immense damage.
+}
+
+STRING 314
+// Items: I004 (Force Boots), Name (Name)
+{
+Force Boots
+}
+
+STRING 315
+// Items: I004 (Force Boots), Tip (Tooltip - Basic)
+{
+Purchase Force Boots
+}
+
+STRING 316
+// Items: I004 (Force Boots), Description (Description)
+{
+Increases the movement speed of the Hero when worn. Also allows provides an active ability that thrusts your hero forward in whatever direction they are.
+}
+
+STRING 318
+// Abilities: A00U (Item Move Speed Bonus), EditorSuffix (Editor Suffix)
+{
+(Force Boots)
+}
+
+STRING 319
+// Items: I004 (Force Boots), Ubertip (Tooltip - Extended)
+{
+Increases the movement speed of the Hero when worn. Also allows provides an active ability that thrusts your hero forward in whatever direction they are. 
+
++30 Movespeed
+Active - Force Boots: Thrusts the hero forward.
+}
+
+STRING 320
+// Items: I005 (Boots of Speed), Ubertip (Tooltip - Extended)
+{
+Increases the movement speed of the Hero when worn.|n|n+60 Movespeed
+}
+
+STRING 321
+// Abilities: A00V (Force Boots), Name (Name)
+{
+Force Boots
+}
+
+STRING 322
+// Abilities: A00V (Force Boots), Ubertip (Tooltip - Normal - Extended)
+{
+Causes the unit to charge forward dealing immense damage.
+}
+
+STRING 323
+// Abilities: A002 (Income), Ubertip (Tooltip - Normal - Extended)
+{
+Grants |cffffff00+50 gold|r at the start of each day to all players.
+
+If you own the structure, you get double the gold.
+
+
+}
+
+STRING 324
+// Abilities: A00J (Lumber Income - Info Ability), Ubertip (Tooltip - Normal - Extended)
+{
+Grants |cff008000+35 lumber|r at the start of each day to all players.
+
+If you own the structure, you get double the gold.
+
+
 }
 

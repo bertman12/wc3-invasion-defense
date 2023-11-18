@@ -1,6 +1,7 @@
 import { Sound, Timer, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
 import { W3TS_HOOK, addScriptHook } from "w3ts/hooks";
+import { init_itemAbilities } from "./abilities/items";
 import { setupUndeadUnitPreview } from "./abilities/misc";
 import { trig_wayGate } from "./abilities/waygate";
 import { initFrames } from "./frames";
@@ -10,7 +11,7 @@ import { TimerManager } from "./shared/Timers";
 import { setup_reportCasualtyCounts } from "./shared/misc";
 import { RoundManager } from "./shared/round-manager";
 import { trig_destroyHumanBuilding } from "./towns";
-import { convertStructures } from "./undead/conversion";
+import { convertHumanToUndeadStructures } from "./undead/conversion";
 import { setup_undeadSpawn } from "./undead/taxonomy";
 import { tColor } from "./utils/misc";
 import { init_quests } from "./utils/quests";
@@ -47,7 +48,7 @@ function tsMain() {
         SetGameDifficulty(MAP_DIFFICULTY_INSANE);
         init_quests();
         trig_destroyHumanBuilding();
-        convertStructures();
+        convertHumanToUndeadStructures();
 
         //Environment setup
         SuspendTimeOfDay(true);
@@ -73,7 +74,7 @@ function tsMain() {
         // })
 
         setup_reportCasualtyCounts();
-
+        init_itemAbilities();
         init_map_triggers();
         RoundManager.trig_setup_StartRound();
 

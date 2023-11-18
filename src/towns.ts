@@ -1,7 +1,7 @@
 import { Trigger, Unit } from "w3ts";
 import { Players } from "w3ts/globals";
-import { tColor } from "./utils/misc";
 import { CUSTOM_UNITS } from "./shared/enums";
+import { tColor } from "./utils/misc";
 
 export const primaryAttackTargets = new Set([
     CUSTOM_UNITS.farmTown,
@@ -16,20 +16,12 @@ export const primaryAttackTargets = new Set([
     CUSTOM_UNITS.citadelOfTheNorthernKnights,
 ]);
 
-export const otherStructures = new Set([
-    CUSTOM_UNITS.cannonTower,
-    CUSTOM_UNITS.guardTower,
-    CUSTOM_UNITS.rampartCannonTower,
-    CUSTOM_UNITS.rampartGuardTower,
-]);
+export const otherStructures = new Set([CUSTOM_UNITS.cannonTower, CUSTOM_UNITS.guardTower, CUSTOM_UNITS.rampartCannonTower, CUSTOM_UNITS.rampartGuardTower]);
 
-export const allDestroyableStructures = new Set([
-    ...primaryAttackTargets,
-    ...otherStructures
-]);
+export const allDestroyableStructures = new Set([...primaryAttackTargets, ...otherStructures]);
 
 //When a gets down to 20% health, transfer control to undead or humans
-export function trig_destroyHumanBuilding(){
+export function trig_destroyHumanBuilding() {
     const t = Trigger.create();
 
     t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_ATTACKED);
@@ -38,7 +30,7 @@ export function trig_destroyHumanBuilding(){
         const u = Unit.fromEvent();
         const attacker = Unit.fromHandle(GetAttacker());
 
-        if(u && attacker && allDestroyableStructures.has(u.typeId) && u.life < u.maxLife*0.20){
+        if (u && attacker && allDestroyableStructures.has(u.typeId) && u.life < u.maxLife * 0.25) {
             u.owner = Players[25]; //Neutral
             u.name = `[${tColor("Destroyed", "red")}] - ` + u.name;
             u.invulnerable = true;

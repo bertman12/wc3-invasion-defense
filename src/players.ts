@@ -248,16 +248,27 @@ export function player_giveHumansStartOfDayResources(round: number) {
     let totalIncomeBuildings = 0;
     let totalSupplyBuildings = 0;
     let lumberAbilityCount = 0;
+    let playerOwnedIncomeBuildings = 0;
+    let playerOwnedLumberBuildings = 0;
 
     forEachAlliedPlayer((p) => {
         forEachUnitOfPlayerWithAbility(p, ABILITIES.income, (u) => {
             totalIncomeBuildings++;
+            if (u.owner === p) {
+                playerOwnedIncomeBuildings++;
+                print("Player owned the farm!");
+                adjustGold(p, economicConstants.goldIncomeAbility);
+            }
         });
         forEachUnitOfPlayerWithAbility(p, ABILITIES.supplies, (u) => {
             totalSupplyBuildings++;
         });
         forEachUnitOfPlayerWithAbility(p, ABILITIES.lumberIncome, (u) => {
             lumberAbilityCount++;
+            if (u.owner === p) {
+                playerOwnedLumberBuildings++;
+                adjustGold(p, economicConstants.lumberIncomeAbility);
+            }
         });
     });
 
@@ -277,12 +288,12 @@ export function player_giveHumansStartOfDayResources(round: number) {
     print("===Income Report===");
     print(`${tColor("Base Amount", "goldenrod")} - ${tColor("Gold", "yellow")}: ${baseGold}`);
     print(`${tColor("Round Bonus", "goldenrod")} #${round} - ${tColor("Gold", "yellow")}: ${roundGold}`);
-    print(`${tColor("Income Buildings", "goldenrod")} (${totalIncomeBuildings}) - ${tColor("Gold", "yellow")}: ${incomeBuildingGold}`);
+    print(`${tColor("Shared Gold Buildings", "goldenrod")} (${totalIncomeBuildings}) - ${tColor("Gold", "yellow")}: ${incomeBuildingGold}`);
     print(`${tColor("Total", "goldenrod")}: ${tColor("Gold", "yellow")}: ${totalGold}`);
     print("                                  ");
     print(`${tColor("Base Amount", "goldenrod")} - ${tColor("Lumber", "green")} - ${baseWood}`);
     print(`${tColor("Round Bonus", "goldenrod")} #${round} - ${tColor("Lumber", "green")}: ${roundWood}`);
-    print(`${tColor("Income Buildings", "goldenrod")} (${lumberAbilityCount}) - ${tColor("Lumber", "green")}: ${lumberIncome}`);
+    print(`${tColor("Shared Lumber Buildings", "goldenrod")} (${lumberAbilityCount}) - ${tColor("Lumber", "green")}: ${lumberIncome}`);
     print(`${tColor("Total", "goldenrod")}: ${tColor("Lumber", "green")}: ${totalLumber}`);
     print("==================");
 

@@ -11,10 +11,15 @@ export enum ABILITIES {
     foodCapBonus = FourCC("A00I"),
     heroicLeap = FourCC("A00P"),
     purchaseFarmGrant = FourCC("A00S"),
+
+    //Special
     shopShareAlly = FourCC("Aall"),
 
     //Demigod
     battleCharge = FourCC("A00T"),
+
+    //Items
+    forceBoots = FourCC("A00V"),
 }
 
 export enum UpgradeCodes {
@@ -47,6 +52,7 @@ export enum CUSTOM_UNITS {
     lumberMill = FourCC("hlum"),
     granary = FourCC("h00C"),
     citadelOfTheNorthernKnights = FourCC("h00E"),
+
     //Human units
     flyingMachine = FourCC("hgyr"),
 
@@ -65,6 +71,10 @@ export enum CUSTOM_UNITS {
     greaterObsidianStatue = FourCC("u003"),
     gargoyle = FourCC("ugar"),
     skeletalOrcChampion = FourCC("nsoc"),
+
+    //Undead Buildings
+    blackCitadel = FourCC("u006"),
+    spiritTower = FourCC("u005"),
 
     //Triggering Purposes
     nullUnit = FourCC("n008"),

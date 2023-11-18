@@ -31,3 +31,38 @@ export function aSpellIsCast<T extends (...args: any) => any>(eventType: Registe
 //         print(unit.name);
 //     });
 // }
+
+export function unitGetsNearThisUnit(unit: Unit, range: number, cb: (u: Unit) => void, config?: { uniqueUnitsOnly: boolean; filter?: boolexpr | (() => boolean); onDestroy: (unitsEffected: Unit[]) => void }) {
+    const t = Trigger.create();
+
+    /**
+     * A unique set of the units effected
+     */
+    const effectedUnitPool: Unit[] = [];
+
+    t.registerUnitInRage(unit.handle, range, config?.filter ?? (() => true));
+    t.addAction(() => {
+        const u = Unit.fromEvent();
+
+        if (!u) {
+            return;
+        }
+
+        if (!effectedUnitPool.includes(u)) {
+            effectedUnitPool.push(u);
+        }
+
+        if (config?.uniqueUnitsOnly && !effectedUnitPool.includes(u)) {
+            cb(u);
+        } else {
+            cb(u);
+        }
+    });
+
+    return {
+        destroy: () => {
+            config?.onDestroy(effectedUnitPool);
+            t.destroy();
+        },
+    };
+}
