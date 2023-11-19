@@ -181,11 +181,10 @@ function trig_battleCharge() {
                     return;
                 }
 
-                // print(u.name);
-                // u.setVertexColor(255, 0, 0, 255);
                 applyForce(getRelativeAngleToUnit(caster, u), u, 900);
                 const thunderEffect = Effect.create("Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl", u.x, u.y);
                 u.damageTarget(u.handle, 150, true, false, ATTACK_TYPE_CHAOS, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS);
+                
                 if (thunderEffect) {
                     thunderEffect.scale = 0.5;
                 }

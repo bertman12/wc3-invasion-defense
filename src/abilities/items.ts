@@ -32,7 +32,7 @@ function trig_forceBoots() {
         SetUnitAnimationByIndex(caster.handle, 3);
 
         applyForce(caster.facing, caster, 1800, {
-            // sustainedForceDuration: 1.5,
+            // sustainedForceDuration: 0,
             onEnd(currentSpeed, timeElapsed) {
                 caster.setTimeScale(1);
                 SetUnitAnimationByIndex(caster.handle, 0);

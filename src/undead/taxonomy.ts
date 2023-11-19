@@ -34,18 +34,6 @@ let currentZombieCount = 0;
 let currentSpawns: SpawnData[] = [];
 
 /**
- * Runs after map starts
- */
-
-// export function setup_undeadSpawn() {
-//     RoundManager.onNightStart(undeadNightStart);
-//     RoundManager.onDayStart(undeadDayStart);
-// }
-
-//This array is empty during runtime because the variables referenced here don't exist when the array is initialized. This is only an issue with generated constants.
-// const validUndeadSpawns = [gg_rct_zombieSpawn2, gg_rct_zNorthSpawn1, gg_rct_ZombieSpawn1, gg_rct_zWestSpawn1, gg_rct_zEastCapitalSpawn];
-
-/**
  * Handles zombie spawns each night
  */
 export function undeadNightStart() {
@@ -412,12 +400,13 @@ const unitCategoryData = new Map<UnitCategory, { [key: string]: number[] }>([
             tierI: [
                 CUSTOM_UNITS.zombie,
                 //skeletal orc
-                FourCC("nsko"),
+                CUSTOM_UNITS.skeletalOrc,
                 //zombies
                 //skeleton warriors
             ],
             tierII: [
                 CUSTOM_UNITS.skeletalOrcChampion,
+                CUSTOM_UNITS.fleshBeetle,
                 //skeletal orc champion
             ],
             tierIII: [
@@ -475,7 +464,7 @@ const unitCategoryData = new Map<UnitCategory, { [key: string]: number[] }>([
             ],
             tierII: [FourCC("ocat")],
             tierIII: [
-                FourCC("ninm"),
+                CUSTOM_UNITS.infernalMachine,
                 //demon fire artillery
             ],
         },
@@ -483,7 +472,9 @@ const unitCategoryData = new Map<UnitCategory, { [key: string]: number[] }>([
     [
         "hero",
         {
+            //dread lord
             tierI: [FourCC("Udre")],
+            //crypt lord
             tierII: [FourCC("Ucrl")],
             tierIII: [CUSTOM_UNITS.boss_pitLord],
         },
@@ -501,7 +492,6 @@ function calcBaseAmountPerWave() {
     forEachAlliedPlayer(() => {
         numPlayers++;
     });
-    // print("Number of players: ", numPlayers);
 
     const enemiesPerWave = 25 + 3 * numPlayers;
     return enemiesPerWave;

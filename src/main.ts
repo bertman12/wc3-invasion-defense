@@ -9,7 +9,6 @@ import { setupNightAndDayHooks } from "./hooks/startOfDay";
 import { init_map_triggers } from "./init";
 import { init_startingResources, setupPlayers } from "./players";
 import { TimerManager } from "./shared/Timers";
-import { setup_reportCasualtyCounts } from "./shared/misc";
 import { RoundManager } from "./shared/round-manager";
 import { trig_destroyHumanBuilding } from "./towns";
 import { tColor } from "./utils/misc";
@@ -69,7 +68,6 @@ function tsMain() {
             // clearFogState?.destroy();
         });
 
-        setup_reportCasualtyCounts();
         init_itemAbilities();
         init_map_triggers();
         RoundManager.trig_setup_StartRound();

@@ -65,6 +65,7 @@ export enum CUSTOM_UNITS {
 
     //Undead
     abomination = FourCC("uabo"),
+    skeletalOrc = FourCC("nsko"),
     meatWagon = FourCC("umtw"),
     boss_pitLord = FourCC("N005"),
     fleshBeetle = FourCC("u002"),
@@ -78,6 +79,7 @@ export enum CUSTOM_UNITS {
     greaterObsidianStatue = FourCC("u003"),
     gargoyle = FourCC("ugar"),
     skeletalOrcChampion = FourCC("nsoc"),
+    infernalMachine = FourCC("ninm"),
 
     //Undead Buildings
     blackCitadel = FourCC("u006"),

@@ -1,4 +1,4 @@
-import { Frame, MapPlayer, Trigger } from "w3ts";
+import { Frame, MapPlayer } from "w3ts";
 import { playerStates } from "./players";
 /**
  * Nothing may exist outside the 4:3 aspect ration of your resolution
@@ -90,7 +90,7 @@ function playerUnitRallyCheckbox() {
                             BlzFrameSetPoint(tooltipFrameBackGround, FRAMEPOINT_BOTTOM, frame, FRAMEPOINT_TOP, 0, 0.01);
                             // -- Prevent the TEXT from taking mouse control
                             BlzFrameSetEnable(tooltipFrameText, true);
-                            BlzFrameSetText(tooltipFrameText, "Rally troops to hero.");
+                            BlzFrameSetText(tooltipFrameText, "Trained units will rally to your hero.");
                         }
                     }
 

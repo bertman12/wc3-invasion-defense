@@ -32,14 +32,8 @@ const undeadToHuman = new Map<number, number>([
     // [CUSTOM_UNITS.nerubianTower, CUSTOM_UNITS.guardTower],
 ]);
 
-// export function setupBuildingConversions() {
-//     convertUndeadToHumanStructures();
-//     convertHumanToUndeadStructures();
-// }
-
 export function convertHumanToUndeadStructures() {
     print("converting human to undead structures");
-    // RoundManager.onNightStart(() => {
     forEachUnitOfPlayer(Players[PlayerIndices.NeutralPassive], (u) => {
         //Destroys and converts primary structures into undead ones.
         if (u.name.includes("Destroyed")) {
@@ -47,19 +41,16 @@ export function convertHumanToUndeadStructures() {
                 const unitType = humanToUndead.get(u.typeId);
                 if (unitType) {
                     u.kill();
-                    // print("Killing undead - ", u.name);
                     Unit.create(Players[15], unitType, u.x, u.y);
                 }
             }
         }
     });
-    // });
 }
 
 export function convertUndeadToHumanStructures() {
     print("converting undead to human structures");
 
-    // RoundManager.onDayStart(() => {
     forEachUnitOfPlayer(Players[PlayerIndices.NeutralPassive], (u) => {
         //Destroys and converts primary structures into undead ones.
         if (u.name.includes("Destroyed")) {
@@ -67,17 +58,12 @@ export function convertUndeadToHumanStructures() {
                 const unitType = undeadToHuman.get(u.typeId);
 
                 if (unitType) {
-                    // print("Killing human - ", u.name);
-
                     u.kill();
                     Unit.create(Players[9], unitType, u.x, u.y);
                 }
             }
         }
     });
-    // });
 }
 
 //Perhaps we store in state the unit type this specific unit is replacing
-
-//Then
