@@ -178,12 +178,11 @@ function trig_battleCharge() {
             200,
             (u) => {
                 if (u.isUnitType(UNIT_TYPE_STRUCTURE) || u.isAlly(Players[0]) || allCapturableStructures.has(u.typeId)) {
-                    print("Invalid charge target!");
                     return;
                 }
 
-                print(u.name);
-                u.setVertexColor(255, 0, 0, 255);
+                // print(u.name);
+                // u.setVertexColor(255, 0, 0, 255);
                 applyForce(getRelativeAngleToUnit(caster, u), u, 900);
                 const thunderEffect = Effect.create("Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl", u.x, u.y);
                 u.damageTarget(u.handle, 150, true, false, ATTACK_TYPE_CHAOS, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS);

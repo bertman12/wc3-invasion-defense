@@ -1,7 +1,6 @@
 import { CUSTOM_UNITS, MinimapIconPath } from "src/shared/enums";
 import { RoundManager } from "src/shared/round-manager";
 import { primaryAttackTargets } from "src/towns";
-import { notifyPlayer } from "src/utils/misc";
 import { forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayer, forEachUnitTypeOfPlayer } from "src/utils/players";
 import { Effect, Point, Rectangle, Timer, Trigger, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
@@ -151,9 +150,9 @@ class SpawnData {
         this.waveIntervalTime = waveIntervalOptions[difficulty];
         this.spawnAmountPerWave = this.waveIntervalTime === 15 ? this.totalSpawnCount : this.totalSpawnCount * 1.75;
 
-        this.baseTier2Chance = 0.05 + 0.04 * RoundManager.currentRound;
+        this.baseTier2Chance = 0.08 + 0.04 * RoundManager.currentRound;
         this.currentTier2Chance = this.baseTier2Chance;
-        this.baseTier3Chance = 0.01 + 0.02 * RoundManager.currentRound;
+        this.baseTier3Chance = 0.05 + 0.02 * RoundManager.currentRound;
         this.currentTier3Chance = this.baseTier3Chance;
 
         this.unitCompData = new Map<UnitCategory, number>([
@@ -161,7 +160,7 @@ class SpawnData {
             ["missile", Math.ceil(0.1 * this.spawnAmountPerWave)],
             ["caster", Math.ceil(0.1 * this.spawnAmountPerWave)],
             ["siege", Math.ceil(0.025 * this.spawnAmountPerWave)],
-            ["hero", 0 * Math.ceil(0.015 * this.spawnAmountPerWave)],
+            ["hero", Math.ceil(0.015 * this.spawnAmountPerWave)],
         ]);
 
         // this.unitCompData.forEach((value, key) => {
@@ -342,7 +341,7 @@ class SpawnData {
 
     private spawnSingleUndeadUnit(category: UnitCategory, tier: number) {
         if (currentZombieCount >= MAX_ZOMBIE_COUNT) {
-            notifyPlayer("Reached max zombie count!");
+            // notifyPlayer("Reached max zombie count!");
             return undefined;
         }
 
@@ -393,16 +392,18 @@ class SpawnData {
         //If y is greater than r*sin(theta) or x is greater than r*cos(theta) then
         primaryAttackTargets.forEach((structureType) => {
             //Checking attack points owned by Allied Human Forces
-            forEachUnitTypeOfPlayer(structureType, Players[9], (u) => {
-                //Dont check neutral units
-                const locU = Location(u.x, u.y);
-                const dist = DistanceBetweenPoints(currLoc, locU);
+            forEachAlliedPlayer((p) => {
+                forEachUnitTypeOfPlayer(structureType, p, (u) => {
+                    //Dont check neutral units
+                    const locU = Location(u.x, u.y);
+                    const dist = DistanceBetweenPoints(currLoc, locU);
 
-                //Choose the point closest to the current attack point
-                if (dist < shortestDistance) {
-                    shortestDistance = dist;
-                    closestCapturableStructure = u;
-                }
+                    //Choose the point closest to the current attack point
+                    if (dist < shortestDistance) {
+                        shortestDistance = dist;
+                        closestCapturableStructure = u;
+                    }
+                });
             });
         });
 
@@ -418,6 +419,8 @@ const unitCategoryData = new Map<UnitCategory, { [key: string]: number[] }>([
         {
             tierI: [
                 CUSTOM_UNITS.zombie,
+                //skeletal orc
+                FourCC("nsko"),
                 //zombies
                 //skeleton warriors
             ],
@@ -444,7 +447,8 @@ const unitCategoryData = new Map<UnitCategory, { [key: string]: number[] }>([
                 //some unit that shoots poison
                 //skeletal marksman
             ],
-            tierIII: [FourCC("edry")],
+            //gargoyle
+            tierIII: [FourCC("ugar")],
         },
     ],
     [
@@ -477,9 +481,9 @@ const unitCategoryData = new Map<UnitCategory, { [key: string]: number[] }>([
                 CUSTOM_UNITS.meatWagon,
                 //meat wagon
             ],
-            tierII: [FourCC("hmtm")],
+            tierII: [FourCC("ocat")],
             tierIII: [
-                FourCC("ocat"),
+                FourCC("ninm"),
                 //demon fire artillery
             ],
         },
@@ -505,7 +509,7 @@ function calcBaseAmountPerWave() {
     forEachAlliedPlayer(() => {
         numPlayers++;
     });
-    print("Number of players: ", numPlayers);
+    // print("Number of players: ", numPlayers);
 
     const enemiesPerWave = 25 + 3 * numPlayers;
     return enemiesPerWave;

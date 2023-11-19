@@ -16,7 +16,7 @@ export const primaryAttackTargets = new Set([
     CUSTOM_UNITS.citadelOfTheNorthernKnights,
 ]);
 
-export const otherStructures = new Set([CUSTOM_UNITS.cannonTower, CUSTOM_UNITS.guardTower, CUSTOM_UNITS.rampartCannonTower, CUSTOM_UNITS.rampartGuardTower]);
+export const otherStructures = new Set([CUSTOM_UNITS.rampartCannonTower, CUSTOM_UNITS.rampartGuardTower]);
 
 export const primaryCapturableUndeadTargets = new Set([CUSTOM_UNITS.blackCitadel, CUSTOM_UNITS.infectedGranary, CUSTOM_UNITS.templeOfTheDamned]);
 

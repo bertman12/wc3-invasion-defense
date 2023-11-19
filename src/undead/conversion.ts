@@ -17,8 +17,8 @@ const humanToUndead = new Map<number, number>([
     [CUSTOM_UNITS.lumberMill, CUSTOM_UNITS.undeadLumberMill],
     [CUSTOM_UNITS.blacksmith, CUSTOM_UNITS.undeadBlacksmith],
     [CUSTOM_UNITS.barracks, CUSTOM_UNITS.undeadBarracks],
-    [CUSTOM_UNITS.guardTower, CUSTOM_UNITS.nerubianTower],
-    [CUSTOM_UNITS.cannonTower, CUSTOM_UNITS.nerubianTower],
+    // [CUSTOM_UNITS.guardTower, CUSTOM_UNITS.nerubianTower],
+    // [CUSTOM_UNITS.cannonTower, CUSTOM_UNITS.nerubianTower],
 ]);
 
 const undeadToHuman = new Map<number, number>([
@@ -30,7 +30,7 @@ const undeadToHuman = new Map<number, number>([
     [CUSTOM_UNITS.undeadLumberMill, CUSTOM_UNITS.lumberMill],
     [CUSTOM_UNITS.undeadBlacksmith, CUSTOM_UNITS.blacksmith],
     [CUSTOM_UNITS.undeadBarracks, CUSTOM_UNITS.barracks],
-    [CUSTOM_UNITS.nerubianTower, CUSTOM_UNITS.guardTower],
+    // [CUSTOM_UNITS.nerubianTower, CUSTOM_UNITS.guardTower],
 ]);
 
 export function setupBuildingConversions() {
@@ -47,7 +47,7 @@ function convertHumanToUndeadStructures() {
                     const unitType = humanToUndead.get(u.typeId);
                     if (unitType) {
                         u.kill();
-                        print("Killing undead - ", u.name);
+                        // print("Killing undead - ", u.name);
                         Unit.create(Players[15], unitType, u.x, u.y);
                     }
                 }
@@ -58,6 +58,7 @@ function convertHumanToUndeadStructures() {
 
 function convertUndeadToHumanStructures() {
     RoundManager.onDayStart(() => {
+        print("converting undead structures back into human ones");
         forEachUnitOfPlayer(Players[PlayerIndices.NeutralPassive], (u) => {
             //Destroys and converts primary structures into undead ones.
             if (u.name.includes("Destroyed")) {
@@ -65,7 +66,7 @@ function convertUndeadToHumanStructures() {
                     const unitType = undeadToHuman.get(u.typeId);
 
                     if (unitType) {
-                        print("Killing human - ", u.name);
+                        // print("Killing human - ", u.name);
 
                         u.kill();
                         Unit.create(Players[9], unitType, u.x, u.y);

@@ -125,7 +125,7 @@ function trig_heroPurchased() {
     });
 }
 
-export function initializePlayers() {
+export function setupPlayers() {
     initializePlayerStateInstances();
     trig_playerBuysUnit();
     trig_heroPurchased();
@@ -133,7 +133,7 @@ export function initializePlayers() {
     players_dayStart();
 
     forEachAlliedPlayer((p, index) => {
-        //Create Sheep
+        //Create Sheep to buy hero
         const u = Unit.create(p, FourCC("nshe"), 18600 + 25 * index, -28965);
         if (u) {
             SetCameraPositionForPlayer(p.handle, u.x, u.y);
@@ -142,6 +142,7 @@ export function initializePlayers() {
 
     //Setup round end functions
     RoundManager.onDayStart((round) => {
+        print("running human on day start");
         player_giveHumansStartOfDayResources(round);
         players_dayStart();
     });
@@ -280,9 +281,9 @@ export function player_giveHumansStartOfDayResources(round: number) {
     grantStartOfDayBonuses();
 
     const baseGold = 100;
-    const baseWood = 50;
-    const roundGold = 25 * round;
-    const roundWood = 10 * round;
+    const baseWood = 100;
+    const roundGold = 50 * round;
+    const roundWood = 50 * round;
 
     const incomeBuildingGold = economicConstants.goldIncomeAbility * totalIncomeBuildings;
     const lumberIncome = economicConstants.lumberIncomeAbility * lumberAbilityCount;

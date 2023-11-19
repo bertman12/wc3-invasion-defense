@@ -6,7 +6,7 @@ import { setupUndeadUnitPreview } from "./abilities/misc";
 import { trig_wayGate } from "./abilities/waygate";
 import { initFrames } from "./frames";
 import { init_map_triggers } from "./init";
-import { init_startingResources, initializePlayers } from "./players";
+import { init_startingResources, setupPlayers } from "./players";
 import { TimerManager } from "./shared/Timers";
 import { setup_reportCasualtyCounts } from "./shared/misc";
 import { RoundManager } from "./shared/round-manager";
@@ -45,7 +45,7 @@ function tsMain() {
             print(`Type ${tColor("-start", "goldenrod")} to start the game.`);
         });
 
-        initializePlayers();
+        setupPlayers();
         SetGameDifficulty(MAP_DIFFICULTY_INSANE);
         init_quests();
         trig_destroyHumanBuilding();
@@ -61,11 +61,6 @@ function tsMain() {
         const u = Unit.create(Players[9], FourCC("hfoo"), 0, 0);
         u?.issueOrderAt(OrderId.Move, -300, 2850);
         u?.setTimeScale(0.25);
-
-        //For looking at minimap icons
-        // Array.from(minimapIconPaths).forEach((path, index) => {
-        //   CreateMinimapIcon(-20000 + (index*4000), 0, 255, 255, 255, path, FOG_OF_WAR_FOGGED);
-        // });
 
         forEachPlayer((p) => {
             if (p.isPlayerAlly(Players[0]) === false) {
@@ -83,6 +78,11 @@ function tsMain() {
         init_startingResources();
         setup_undeadSpawn();
         // setup_zombies();
+
+        //For looking at minimap icons
+        // Array.from(minimapIconPaths).forEach((path, index) => {
+        //   CreateMinimapIcon(-20000 + (index*4000), 0, 255, 255, 255, path, FOG_OF_WAR_FOGGED);
+        // });
     } catch (e) {
         print("An error occurred: ", e);
     }

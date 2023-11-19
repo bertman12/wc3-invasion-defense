@@ -73,6 +73,7 @@ export class RoundManager {
 
         RoundManager.roundEndSubscribers.forEach((cb) => {
             cb(RoundManager.currentRound);
+            //I would like to hook into before income is applied and after
         });
 
         ClearMapMusic();
@@ -83,7 +84,6 @@ export class RoundManager {
 
         Timer.create().start(5, false, () => {
             Sound.fromHandle(gg_snd_Hint)?.start();
-            // print(`[${tColor("WARNING", "red")}] - The remaining undead are marching upon your capital.`)
             print("Supply horses have arrived at the capital. Use them to heal your units.");
         });
 

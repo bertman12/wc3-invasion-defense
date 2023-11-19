@@ -348,3 +348,11 @@ items - shield that reduces ranged damage to target, costs agility
 give heroes custom reinforcements at the capital depending on the hero type
 
 Add heavy cavalry to the northern capital
+
+===
+
+make an ability that has the text from the income report
+
+also next patch add some more enemies in higher tiers and focus on teahcing user
+
+let
