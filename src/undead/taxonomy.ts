@@ -292,25 +292,16 @@ class SpawnData {
                 //Range [0, 1)
                 const sampledValue = Math.sin(randomTheta);
 
-                // print("sampledValue - (1 - count/this.greatestUnitCountFromAllUnitCategories) = ", sampledValue - (1 - count / this.greatestUnitCountFromAllUnitCategories));
-                // print("samplevalue: ", sampledValue);
-                // print(`(1 - ${count}/${this.greatestUnitCountFromAllUnitCategories}): `, 1 - count / this.greatestUnitCountFromAllUnitCategories);
-
-                // if(sampledValue - (1 - count/this.greatestUnitCountFromAllUnitCategories) <= this.currentTier3Chance){
                 if (sampledValue <= this.currentTier3Chance) {
                     //spawn tier 3 unit
                     const u = this.spawnSingleUndeadUnit(category, 2);
                     if (u) {
                         unitsCreatedThisWave.push(u);
                     }
-                    // print("Tier 3 chosen with sample value: ", sampledValue);
-                    //reset chance to base
                     this.currentTier3Chance = this.baseTier3Chance;
                 } else if (sampledValue <= this.currentTier2Chance) {
                     //Tier 3 was not selected, so we must increase the chance to be chosen
                     this.currentTier3Chance += this.tier3ChanceModifier;
-                    // print(`Current Tier3 Chance: ${this.currentTier3Chance}`);
-                    // print("Tier 2 chosen with sample value: ", sampledValue);
 
                     //spawn tier 2 unit
                     const u = this.spawnSingleUndeadUnit(category, 1);
@@ -323,8 +314,6 @@ class SpawnData {
                 } else {
                     //Tier 2 was not selected, so we must increase the chance to be chosen
                     this.currentTier2Chance += this.tier2ChanceModifier;
-                    // print(`Current Tier2 Chance: ${this.currentTier2Chance}`);
-                    // print("Tier 1 chosen with sample value: ", sampledValue);
 
                     //spawn a tier 1 unit
                     const u = this.spawnSingleUndeadUnit(category, 0);
@@ -341,7 +330,6 @@ class SpawnData {
 
     private spawnSingleUndeadUnit(category: UnitCategory, tier: number) {
         if (currentZombieCount >= MAX_ZOMBIE_COUNT) {
-            // notifyPlayer("Reached max zombie count!");
             return undefined;
         }
 

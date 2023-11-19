@@ -117,7 +117,6 @@ function trig_heroPurchased() {
         createdUnit?.addItemById(FourCC("cnob"));
         createdUnit?.addItemById(FourCC("ankh"));
         createdUnit?.addItemById(FourCC("stel"));
-        // createdUnit?.addItemById(FourCC("I001"));
 
         SetCameraPositionForPlayer(buyingUnit.owner.handle, createdUnit.x, createdUnit.y);
 
@@ -130,7 +129,6 @@ export function setupPlayers() {
     trig_playerBuysUnit();
     trig_heroPurchased();
     trig_heroDies();
-    players_dayStart();
 
     forEachAlliedPlayer((p, index) => {
         //Create Sheep to buy hero
@@ -139,27 +137,10 @@ export function setupPlayers() {
             SetCameraPositionForPlayer(p.handle, u.x, u.y);
         }
     });
-
-    //Setup round end functions
-    RoundManager.onDayStart((round) => {
-        print("running human on day start");
-        player_giveHumansStartOfDayResources(round);
-        players_dayStart();
-    });
-
-    RoundManager.onNightStart(() => {
-        players_nightStart();
-    });
 }
 
-function players_dayStart() {
-    forEachPlayer((p) => {
-        p.setTechResearched(UpgradeCodes.dayTime, 1);
-        p.setTechResearched(UpgradeCodes.nightTime, 0);
-    });
-}
-
-function players_nightStart() {
+export function players_nightStart() {
+    print("night start for players ran");
     forEachPlayer((p) => {
         p.setTechResearched(UpgradeCodes.dayTime, 0);
         p.setTechResearched(UpgradeCodes.nightTime, 1);
@@ -240,6 +221,8 @@ function grantStartOfDayBonuses() {
 }
 
 export function player_giveHumansStartOfDayResources(round: number) {
+    print("Giving start of day resources for humans");
+
     //Creates supply horses for the player
     forEachAlliedPlayer((player) => {
         playerStates.get(player.id)?.createSupplyHorse();
@@ -250,6 +233,8 @@ export function player_giveHumansStartOfDayResources(round: number) {
         forEachUnitOfPlayerWithAbility(p, ABILITIES.replenishLifeAndMana, (u) => {
             u.mana = u.maxMana;
         });
+        p.setTechResearched(UpgradeCodes.dayTime, 1);
+        p.setTechResearched(UpgradeCodes.nightTime, 0);
     });
 
     let totalIncomeBuildings = 0;

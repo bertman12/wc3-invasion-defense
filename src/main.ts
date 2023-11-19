@@ -5,6 +5,7 @@ import { init_itemAbilities } from "./abilities/items";
 import { setupUndeadUnitPreview } from "./abilities/misc";
 import { trig_wayGate } from "./abilities/waygate";
 import { initFrames } from "./frames";
+import { setupNightDayHooks } from "./hooks/startOfDay";
 import { init_map_triggers } from "./init";
 import { init_startingResources, setupPlayers } from "./players";
 import { TimerManager } from "./shared/Timers";
@@ -77,12 +78,12 @@ function tsMain() {
 
         init_startingResources();
         setup_undeadSpawn();
-        // setup_zombies();
-
+        setupNightDayHooks();
         //For looking at minimap icons
         // Array.from(minimapIconPaths).forEach((path, index) => {
         //   CreateMinimapIcon(-20000 + (index*4000), 0, 255, 255, 255, path, FOG_OF_WAR_FOGGED);
         // });
+        
     } catch (e) {
         print("An error occurred: ", e);
     }

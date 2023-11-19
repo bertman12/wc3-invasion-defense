@@ -16,8 +16,8 @@ type RoundStartFn = (round: number) => void;
 
 export class RoundManager {
     static currentRound: number = 0;
-    static roundStartSubscribers: RoundStartFn[] = [];
-    static roundEndSubscribers: RoundEndFn[] = [];
+    private static roundStartSubscribers: RoundStartFn[] = [];
+    private static roundEndSubscribers: RoundEndFn[] = [];
 
     static trig_setup_StartRound() {
         const tStart = Trigger.create();
