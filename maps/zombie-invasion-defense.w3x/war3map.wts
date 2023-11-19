@@ -1465,12 +1465,6 @@ STRING 335
 Modified - Summon Paladin
 }
 
-STRING 336
-// Units: h00F (Barricade), Ubertip (Tooltip - Extended)
-{
-Basic wall. 30s build time.
-}
-
 STRING 337
 // Abilities: A00W (Magic Guard - Info Ability), Name (Name)
 {
@@ -1631,5 +1625,11 @@ STRING 368
 // Units: h00I (Heavy Cavalry), Ubertip (Tooltip - Extended)
 {
 A stronger version of the knight with critical strike and cleave. Can trample his enemies and use his fierce lance to attack enemies.
+}
+
+STRING 369
+// Units: h00F (Barricade), Ubertip (Tooltip - Extended)
+{
+Basic wall.
 }
 

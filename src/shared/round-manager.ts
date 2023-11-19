@@ -35,7 +35,7 @@ export class RoundManager {
 
     static startNextRound() {
         RoundManager.currentRound++;
-
+        
         if (RoundManager.currentRound >= 15) {
             print("Congratulations, you have won. The map is still in development with many more features to come.");
             print("Nights will continue forever now.");

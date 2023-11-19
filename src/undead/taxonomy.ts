@@ -36,10 +36,11 @@ let currentSpawns: SpawnData[] = [];
 /**
  * Runs after map starts
  */
-export function setup_undeadSpawn() {
-    RoundManager.onNightStart(undeadNightStart);
-    RoundManager.onDayStart(undeadDayStart);
-}
+
+// export function setup_undeadSpawn() {
+//     RoundManager.onNightStart(undeadNightStart);
+//     RoundManager.onDayStart(undeadDayStart);
+// }
 
 //This array is empty during runtime because the variables referenced here don't exist when the array is initialized. This is only an issue with generated constants.
 // const validUndeadSpawns = [gg_rct_zombieSpawn2, gg_rct_zNorthSpawn1, gg_rct_ZombieSpawn1, gg_rct_zWestSpawn1, gg_rct_zEastCapitalSpawn];
@@ -47,7 +48,8 @@ export function setup_undeadSpawn() {
 /**
  * Handles zombie spawns each night
  */
-function undeadNightStart() {
+export function undeadNightStart() {
+    print("undead night start");
     const validUndeadSpawns = [gg_rct_zombieSpawn2, gg_rct_zNorthSpawn1, gg_rct_ZombieSpawn1, gg_rct_zWestSpawn1, gg_rct_zEastCapitalSpawn];
 
     currentZombieCount = 0;
@@ -86,7 +88,9 @@ function undeadNightStart() {
     });
 }
 
-function undeadDayStart() {
+export function undeadDayStart() {
+    print("undead day start");
+
     currentSpawns.forEach((spawn) => spawn.cleanupSpawn());
     currentSpawns = [];
 }

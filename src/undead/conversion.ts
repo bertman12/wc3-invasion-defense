@@ -1,5 +1,4 @@
 import { CUSTOM_UNITS, PlayerIndices } from "src/shared/enums";
-import { RoundManager } from "src/shared/round-manager";
 import { forEachUnitOfPlayer } from "src/utils/players";
 import { Unit } from "w3ts";
 import { Players } from "w3ts/globals";
@@ -33,48 +32,50 @@ const undeadToHuman = new Map<number, number>([
     // [CUSTOM_UNITS.nerubianTower, CUSTOM_UNITS.guardTower],
 ]);
 
-export function setupBuildingConversions() {
-    convertUndeadToHumanStructures();
-    convertHumanToUndeadStructures();
-}
+// export function setupBuildingConversions() {
+//     convertUndeadToHumanStructures();
+//     convertHumanToUndeadStructures();
+// }
 
-function convertHumanToUndeadStructures() {
-    RoundManager.onNightStart(() => {
-        forEachUnitOfPlayer(Players[PlayerIndices.NeutralPassive], (u) => {
-            //Destroys and converts primary structures into undead ones.
-            if (u.name.includes("Destroyed")) {
-                if (humanToUndead.has(u.typeId)) {
-                    const unitType = humanToUndead.get(u.typeId);
-                    if (unitType) {
-                        u.kill();
-                        // print("Killing undead - ", u.name);
-                        Unit.create(Players[15], unitType, u.x, u.y);
-                    }
+export function convertHumanToUndeadStructures() {
+    print("converting human to undead structures");
+    // RoundManager.onNightStart(() => {
+    forEachUnitOfPlayer(Players[PlayerIndices.NeutralPassive], (u) => {
+        //Destroys and converts primary structures into undead ones.
+        if (u.name.includes("Destroyed")) {
+            if (humanToUndead.has(u.typeId)) {
+                const unitType = humanToUndead.get(u.typeId);
+                if (unitType) {
+                    u.kill();
+                    // print("Killing undead - ", u.name);
+                    Unit.create(Players[15], unitType, u.x, u.y);
                 }
             }
-        });
+        }
     });
+    // });
 }
 
-function convertUndeadToHumanStructures() {
-    RoundManager.onDayStart(() => {
-        print("converting undead structures back into human ones");
-        forEachUnitOfPlayer(Players[PlayerIndices.NeutralPassive], (u) => {
-            //Destroys and converts primary structures into undead ones.
-            if (u.name.includes("Destroyed")) {
-                if (undeadToHuman.has(u.typeId)) {
-                    const unitType = undeadToHuman.get(u.typeId);
+export function convertUndeadToHumanStructures() {
+    print("converting undead to human structures");
 
-                    if (unitType) {
-                        // print("Killing human - ", u.name);
+    // RoundManager.onDayStart(() => {
+    forEachUnitOfPlayer(Players[PlayerIndices.NeutralPassive], (u) => {
+        //Destroys and converts primary structures into undead ones.
+        if (u.name.includes("Destroyed")) {
+            if (undeadToHuman.has(u.typeId)) {
+                const unitType = undeadToHuman.get(u.typeId);
 
-                        u.kill();
-                        Unit.create(Players[9], unitType, u.x, u.y);
-                    }
+                if (unitType) {
+                    // print("Killing human - ", u.name);
+
+                    u.kill();
+                    Unit.create(Players[9], unitType, u.x, u.y);
                 }
             }
-        });
+        }
     });
+    // });
 }
 
 //Perhaps we store in state the unit type this specific unit is replacing

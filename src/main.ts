@@ -5,15 +5,13 @@ import { init_itemAbilities } from "./abilities/items";
 import { setupUndeadUnitPreview } from "./abilities/misc";
 import { trig_wayGate } from "./abilities/waygate";
 import { initFrames } from "./frames";
-import { setupNightDayHooks } from "./hooks/startOfDay";
+import { setupNightAndDayHooks } from "./hooks/startOfDay";
 import { init_map_triggers } from "./init";
 import { init_startingResources, setupPlayers } from "./players";
 import { TimerManager } from "./shared/Timers";
 import { setup_reportCasualtyCounts } from "./shared/misc";
 import { RoundManager } from "./shared/round-manager";
 import { trig_destroyHumanBuilding } from "./towns";
-import { setupBuildingConversions } from "./undead/conversion";
-import { setup_undeadSpawn } from "./undead/taxonomy";
 import { tColor } from "./utils/misc";
 import { forEachPlayer } from "./utils/players";
 import { init_quests } from "./utils/quests";
@@ -32,6 +30,7 @@ function tsMain() {
         print(`Typescript: v${TS_VERSION}`);
         print(`Transpiler: v${TSTL_VERSION}`);
         print(" ");
+
         trig_wayGate();
         setupUndeadUnitPreview();
         initFrames();
@@ -50,7 +49,6 @@ function tsMain() {
         SetGameDifficulty(MAP_DIFFICULTY_INSANE);
         init_quests();
         trig_destroyHumanBuilding();
-        setupBuildingConversions();
 
         //Environment setup
         SuspendTimeOfDay(true);
@@ -77,13 +75,13 @@ function tsMain() {
         RoundManager.trig_setup_StartRound();
 
         init_startingResources();
-        setup_undeadSpawn();
-        setupNightDayHooks();
+
+        setupNightAndDayHooks();
+
         //For looking at minimap icons
         // Array.from(minimapIconPaths).forEach((path, index) => {
         //   CreateMinimapIcon(-20000 + (index*4000), 0, 255, 255, 255, path, FOG_OF_WAR_FOGGED);
         // });
-        
     } catch (e) {
         print("An error occurred: ", e);
     }

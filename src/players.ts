@@ -140,7 +140,6 @@ export function setupPlayers() {
 }
 
 export function players_nightStart() {
-    print("night start for players ran");
     forEachPlayer((p) => {
         p.setTechResearched(UpgradeCodes.dayTime, 0);
         p.setTechResearched(UpgradeCodes.nightTime, 1);
@@ -165,8 +164,8 @@ export function init_startingResources() {
     });
 
     // //Allow bounty from zombies.
-    // Players.forEach(p => {
-    //     if(p.race === RACE_UNDEAD){
+    // Players.forEach((p) => {
+    //     if (p.race === RACE_UNDEAD) {
     //         p.setState(PLAYER_STATE_GIVES_BOUNTY, 1);
     //     }
     // });

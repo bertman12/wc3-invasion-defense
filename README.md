@@ -355,4 +355,4 @@ make an ability that has the text from the income report
 
 also next patch add some more enemies in higher tiers and focus on teahcing user
 
-let
+for farmers, let them build a structure then where that unit is placed you add the farm tile. and destroy the unit
