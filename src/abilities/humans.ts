@@ -1,5 +1,5 @@
 import { adjustGold, adjustLumber } from "src/players";
-import { ABILITIES, CUSTOM_UNITS } from "src/shared/enums";
+import { ABILITIES, UNITS } from "src/shared/enums";
 import { applyForce } from "src/shared/physics";
 import { RoundManager } from "src/shared/round-manager";
 import { allCapturableStructures } from "src/towns";
@@ -76,7 +76,7 @@ function trig_hireFlyingMachine() {
 
         if (castedSpellId === ABILITIES.hireFlyingMachinePatrol && caster && triggeringPlayer) {
             while (units.length < 6) {
-                const u = Unit.create(triggeringPlayer, CUSTOM_UNITS.flyingMachine, caster.x, caster.y);
+                const u = Unit.create(triggeringPlayer, UNITS.flyingMachine, caster.x, caster.y);
                 if (u) {
                     units.push(u);
                 }
@@ -184,7 +184,7 @@ function trig_battleCharge() {
                 applyForce(getRelativeAngleToUnit(caster, u), u, 900);
                 const thunderEffect = Effect.create("Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl", u.x, u.y);
                 u.damageTarget(u.handle, 150, true, false, ATTACK_TYPE_CHAOS, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS);
-                
+
                 if (thunderEffect) {
                     thunderEffect.scale = 0.5;
                 }
@@ -213,12 +213,12 @@ function trig_battleCharge() {
  *
  * then we only need one function to handle this behavior as long as it do so according to the map
  */
-const ownershipGrantingUnits = new Map<number, number>([[CUSTOM_UNITS.farmTown, CUSTOM_UNITS.nullUnit]]);
+const ownershipGrantingUnits = new Map<number, number>([[UNITS.farmTown, UNITS.nullUnit]]);
 
 // caster?.hasBuffs
 
 function removeCaltrops() {
     forEachAlliedPlayer((p) => {
-        forEachUnitTypeOfPlayer(CUSTOM_UNITS.caltrops, p, (u) => u.kill());
+        forEachUnitTypeOfPlayer(UNITS.caltrops, p, (u) => u.kill());
     });
 }

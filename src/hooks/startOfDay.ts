@@ -3,7 +3,7 @@ import { RoundManager } from "src/shared/round-manager";
 import { convertHumanToUndeadStructures, convertUndeadToHumanStructures } from "src/undead/conversion";
 import { undeadDayStart, undeadNightStart } from "src/undead/taxonomy";
 import { tColor } from "src/utils/misc";
-import { Trigger, Unit } from "w3ts";
+import { Timer, Trigger, Unit } from "w3ts";
 import { Players } from "w3ts/globals";
 
 /**
@@ -15,8 +15,16 @@ function hook_startOfDay() {
         print(`${tColor("Human Casualties", "goldenrod")}: ${humanDeathCount}`);
         print(`${tColor("Undead Casualties", "goldenrod")}: ${undeadDeathCount}`);
 
-        //Cleans up undead units
-        undeadDayStart();
+        //Displays where undead will spawn next
+        const t = Timer.create();
+        t.start(5, false, () => {
+            print("undead day start timer elapsed!!!!");
+            print("undead day start timer elapsed!!!!");
+            print("undead day start timer elapsed!!!!");
+            undeadDayStart();
+            t.destroy();
+        });
+
         //Convert destroyed undead units into human units
         convertUndeadToHumanStructures();
 

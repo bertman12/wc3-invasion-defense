@@ -1,8 +1,9 @@
-import { CUSTOM_UNITS, MinimapIconPath } from "src/shared/enums";
+import { MinimapIconPath, UNITS } from "src/shared/enums";
 import { RoundManager } from "src/shared/round-manager";
 import { primaryAttackTargets } from "src/towns";
+import { notifyPlayer } from "src/utils/misc";
 import { forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayer, forEachUnitTypeOfPlayer } from "src/utils/players";
-import { Effect, Point, Rectangle, Timer, Trigger, Unit } from "w3ts";
+import { Effect, Point, Rectangle, Sound, Timer, Trigger, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
 
 const UNDEAD_PLAYERS = [Players[10], Players[12], Players[13], Players[14], Players[15], Players[16], Players[17], Players[20], Players[21], Players[22], Players[23]];
@@ -37,22 +38,40 @@ let currentSpawns: SpawnData[] = [];
  * Handles zombie spawns each night
  */
 export function undeadNightStart() {
-    print("undead night start");
-    const validUndeadSpawns = [gg_rct_zombieSpawn2, gg_rct_zNorthSpawn1, gg_rct_ZombieSpawn1, gg_rct_zWestSpawn1, gg_rct_zEastCapitalSpawn];
-
     currentZombieCount = 0;
 
-    let spawns: rect[] = [];
-    // [2,5] spawns will be chosen
-    const spawnCount = 2 + Math.ceil(Math.random() * 3);
-    const tempSet = new Set<rect>();
-
-    //Kill any undead leftover from the previous night and daytime
+    //Order remaining undaed to attack the capital
     forEachPlayer((p) => {
         if (!p.isPlayerAlly(Players[0])) {
             forEachUnitOfPlayer(p, (u) => u.issueOrderAt(OrderId.Attack, 0, 0));
         }
     });
+
+    currentSpawns.forEach((config) => {
+        print("Spawn diff: ", config.spawnDifficulty);
+        config.startSpawning();
+    });
+}
+
+export function init_undead() {
+    Timer.create().start(10, false, () => {
+        Sound.fromHandle(gg_snd_Hint)?.start();
+        undeadDayStart();
+    });
+}
+
+export function undeadDayStart() {
+    currentSpawns.forEach((spawn) => spawn.cleanupSpawn());
+
+    currentSpawns = [];
+
+    notifyPlayer("Undead spawns are now visible.");
+
+    const validUndeadSpawns = [gg_rct_zombieSpawn2, gg_rct_zNorthSpawn1, gg_rct_ZombieSpawn1, gg_rct_zWestSpawn1, gg_rct_zEastCapitalSpawn];
+    let spawns: rect[] = [];
+    // [2,5] spawns will be chosen
+    const spawnCount = 2 + Math.ceil(Math.random() * 3);
+    const tempSet = new Set<rect>();
 
     while (tempSet.size !== spawnCount) {
         const randomIndex = Math.floor(Math.random() * validUndeadSpawns.length);
@@ -70,17 +89,6 @@ export function undeadNightStart() {
     });
 
     currentSpawns = spawnConfigs;
-
-    spawnConfigs.forEach((config) => {
-        config.startSpawning();
-    });
-}
-
-export function undeadDayStart() {
-    print("undead day start");
-
-    currentSpawns.forEach((spawn) => spawn.cleanupSpawn());
-    currentSpawns = [];
 }
 
 type UnitCategory = "infantry" | "missile" | "caster" | "siege" | "hero";
@@ -88,7 +96,7 @@ type UnitCategory = "infantry" | "missile" | "caster" | "siege" | "hero";
 class SpawnData {
     public spawnRec: Rectangle | undefined;
     //This will determine the wave interval timer, which thus determines units spawned per wave
-    private spawnDifficulty = 1;
+    public spawnDifficulty = 15;
     private totalSpawnCount = 0;
     //random number from the array;
     public waveIntervalTime = 15;
@@ -138,13 +146,15 @@ class SpawnData {
         this.totalSpawnCount = calcBaseAmountPerWave();
 
         const difficulty = Math.floor(Math.random() * waveIntervalOptions.length);
+        const isHardDiff = difficulty === 1;
+
         this.spawnDifficulty = difficulty;
         this.waveIntervalTime = waveIntervalOptions[difficulty];
         this.spawnAmountPerWave = this.waveIntervalTime === 15 ? this.totalSpawnCount : this.totalSpawnCount * 1.75;
-
-        this.baseTier2Chance = 0.08 + 0.04 * RoundManager.currentRound;
+        print("spawn is hard?: ", isHardDiff, " diff:", difficulty);
+        this.baseTier2Chance = 0.08 + 0.04 * RoundManager.currentRound + (isHardDiff ? 0.08 : 0);
         this.currentTier2Chance = this.baseTier2Chance;
-        this.baseTier3Chance = 0.05 + 0.02 * RoundManager.currentRound;
+        this.baseTier3Chance = 0.05 + 0.02 * RoundManager.currentRound + (isHardDiff ? 0.05 : 0);
         this.currentTier3Chance = this.baseTier3Chance;
 
         this.unitCompData = new Map<UnitCategory, number>([
@@ -284,7 +294,7 @@ class SpawnData {
                 //Range [0, 1)
                 const sampledValue = Math.sin(randomTheta);
 
-                if (sampledValue <= this.currentTier3Chance) {
+                if (this.spawnDifficulty === 1 && sampledValue <= this.currentTier3Chance) {
                     //spawn tier 3 unit
                     const u = this.spawnSingleUndeadUnit(category, 2);
                     if (u) {
@@ -398,19 +408,30 @@ const unitCategoryData = new Map<UnitCategory, { [key: string]: number[] }>([
         "infantry",
         {
             tierI: [
-                CUSTOM_UNITS.zombie,
-                //skeletal orc
-                CUSTOM_UNITS.skeletalOrc,
-                //zombies
-                //skeleton warriors
+                UNITS.zombie,
+                UNITS.skeletalOrc,
+                //mini overlord
+                FourCC("nfgu"),
+                //giant skeletal warrior
+                FourCC("nsgk"),
+                //
             ],
             tierII: [
-                CUSTOM_UNITS.skeletalOrcChampion,
-                CUSTOM_UNITS.fleshBeetle,
-                //skeletal orc champion
+                UNITS.skeletalOrcChampion,
+                UNITS.fleshBeetle,
+                //overlord
+                FourCC("nfov"),
             ],
             tierIII: [
-                CUSTOM_UNITS.abomination,
+                UNITS.abomination,
+                //infernal
+                FourCC("ninf"),
+                //doom guard
+                FourCC("nbal"),
+                //satyr hell caller
+                FourCC("nsth"),
+                //sea giant behemoth
+                FourCC("nsgb"),
                 //abomination
             ],
         },
@@ -419,38 +440,52 @@ const unitCategoryData = new Map<UnitCategory, { [key: string]: number[] }>([
         "missile",
         {
             tierI: [
-                CUSTOM_UNITS.skeletalArcher,
+                UNITS.skeletalArcher,
+                //ice troll
+                FourCC("nitr"),
+                //void walker
+                FourCC("nvdw"),
                 //basic skeleton marksman?
             ],
             tierII: [
                 //crypt fiends - maybe they can create eggs which hatch and spawn some spiderlings?
                 FourCC("ucry"),
-                //some unit that shoots poison
-                //skeletal marksman
+                //fire archer
+                FourCC("nskf"),
             ],
-            //gargoyle
-            tierIII: [FourCC("ugar")],
+            tierIII: [
+                FourCC("nndr"),
+                FourCC("ufro"),
+                //
+            ],
         },
     ],
     [
         "caster",
         {
             tierI: [
-                CUSTOM_UNITS.skeletalFrostMage,
-                CUSTOM_UNITS.obsidianStatue,
+                UNITS.skeletalFrostMage,
+                UNITS.obsidianStatue,
+                //kobold geomancer
+                FourCC("nkog"),
                 //skeletal frost mage
                 //obsidian statue
             ],
             tierII: [
-                CUSTOM_UNITS.lich,
-                CUSTOM_UNITS.necromancer,
-                CUSTOM_UNITS.greaterObsidianStatue,
+                UNITS.lich,
+                UNITS.necromancer,
+                UNITS.greaterObsidianStatue,
                 //necromancer
                 //lich
                 //greater obsidian statue
             ],
             tierIII: [
-                FourCC("uban"),
+                //eredar warlock
+                FourCC("nerw"),
+                //queen of suffering
+                FourCC("ndqs"),
+                //thudner lizzard
+                FourCC("nstw"),
                 //
             ],
         },
@@ -459,12 +494,12 @@ const unitCategoryData = new Map<UnitCategory, { [key: string]: number[] }>([
         "siege",
         {
             tierI: [
-                CUSTOM_UNITS.meatWagon,
+                UNITS.meatWagon,
                 //meat wagon
             ],
             tierII: [FourCC("ocat")],
             tierIII: [
-                CUSTOM_UNITS.infernalMachine,
+                UNITS.infernalMachine,
                 //demon fire artillery
             ],
         },
@@ -476,7 +511,7 @@ const unitCategoryData = new Map<UnitCategory, { [key: string]: number[] }>([
             tierI: [FourCC("Udre")],
             //crypt lord
             tierII: [FourCC("Ucrl")],
-            tierIII: [CUSTOM_UNITS.boss_pitLord],
+            tierIII: [UNITS.boss_pitLord],
         },
     ],
 ]);
@@ -500,7 +535,7 @@ function calcBaseAmountPerWave() {
 //Optional set for doing specific things when a specific unit type spawns; like if a special hero spawns you do something cool? or something
 const unitTypeSpawnFunctions = new Map<number, () => void>([
     [
-        CUSTOM_UNITS.abomination,
+        UNITS.abomination,
         () => {
             print("Special abom function!");
         },

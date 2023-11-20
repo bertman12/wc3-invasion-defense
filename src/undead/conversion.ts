@@ -1,39 +1,40 @@
-import { CUSTOM_UNITS, PlayerIndices } from "src/shared/enums";
+import { PlayerIndices, UNITS } from "src/shared/enums";
 import { forEachUnitOfPlayer } from "src/utils/players";
 import { Unit } from "w3ts";
 import { Players } from "w3ts/globals";
 
 const humanToUndead = new Map<number, number>([
-    [CUSTOM_UNITS.capital, CUSTOM_UNITS.blackCitadel],
-    [CUSTOM_UNITS.castle, CUSTOM_UNITS.blackCitadel],
-    [CUSTOM_UNITS.citadelOfTheNorthernKnights, CUSTOM_UNITS.blackCitadel],
-    [CUSTOM_UNITS.townHall, CUSTOM_UNITS.blackCitadel],
-    [CUSTOM_UNITS.rampartCannonTower, CUSTOM_UNITS.undeadSentinel],
-    [CUSTOM_UNITS.rampartGuardTower, CUSTOM_UNITS.undeadSentinel],
-    [CUSTOM_UNITS.granary, CUSTOM_UNITS.infectedGranary],
-    [CUSTOM_UNITS.farmTown, CUSTOM_UNITS.spiritTower],
-    [CUSTOM_UNITS.arcaneSanctum, CUSTOM_UNITS.templeOfTheDamned],
-    [CUSTOM_UNITS.lumberMill, CUSTOM_UNITS.undeadLumberMill],
-    [CUSTOM_UNITS.blacksmith, CUSTOM_UNITS.undeadBlacksmith],
-    [CUSTOM_UNITS.barracks, CUSTOM_UNITS.undeadBarracks],
+    [UNITS.capital, UNITS.blackCitadel],
+    [UNITS.castle, UNITS.blackCitadel],
+    [UNITS.citadelOfTheNorthernKnights, UNITS.blackCitadelNorth],
+    [UNITS.townHall, UNITS.blackCitadelTownHall],
+    [UNITS.rampartCannonTower, UNITS.undeadSentinel],
+    [UNITS.rampartGuardTower, UNITS.undeadSentinel],
+    [UNITS.granary, UNITS.infectedGranary],
+    [UNITS.farmTown, UNITS.spiritTower],
+    [UNITS.arcaneSanctum, UNITS.templeOfTheDamned],
+    [UNITS.lumberMill, UNITS.undeadLumberMill],
+    [UNITS.blacksmith, UNITS.undeadBlacksmith],
+    [UNITS.barracks, UNITS.undeadBarracks],
     // [CUSTOM_UNITS.guardTower, CUSTOM_UNITS.nerubianTower],
     // [CUSTOM_UNITS.cannonTower, CUSTOM_UNITS.nerubianTower],
 ]);
 
 const undeadToHuman = new Map<number, number>([
-    [CUSTOM_UNITS.blackCitadel, CUSTOM_UNITS.castle],
-    [CUSTOM_UNITS.undeadSentinel, CUSTOM_UNITS.rampartGuardTower],
-    [CUSTOM_UNITS.infectedGranary, CUSTOM_UNITS.granary],
-    [CUSTOM_UNITS.spiritTower, CUSTOM_UNITS.farmTown],
-    [CUSTOM_UNITS.templeOfTheDamned, CUSTOM_UNITS.arcaneSanctum],
-    [CUSTOM_UNITS.undeadLumberMill, CUSTOM_UNITS.lumberMill],
-    [CUSTOM_UNITS.undeadBlacksmith, CUSTOM_UNITS.blacksmith],
-    [CUSTOM_UNITS.undeadBarracks, CUSTOM_UNITS.barracks],
+    [UNITS.blackCitadel, UNITS.castle],
+    [UNITS.blackCitadelNorth, UNITS.citadelOfTheNorthernKnights],
+    [UNITS.blackCitadelTownHall, UNITS.townHall],
+    [UNITS.undeadSentinel, UNITS.rampartGuardTower],
+    [UNITS.infectedGranary, UNITS.granary],
+    [UNITS.spiritTower, UNITS.farmTown],
+    [UNITS.templeOfTheDamned, UNITS.arcaneSanctum],
+    [UNITS.undeadLumberMill, UNITS.lumberMill],
+    [UNITS.undeadBlacksmith, UNITS.blacksmith],
+    [UNITS.undeadBarracks, UNITS.barracks],
     // [CUSTOM_UNITS.nerubianTower, CUSTOM_UNITS.guardTower],
 ]);
 
 export function convertHumanToUndeadStructures() {
-    print("converting human to undead structures");
     forEachUnitOfPlayer(Players[PlayerIndices.NeutralPassive], (u) => {
         //Destroys and converts primary structures into undead ones.
         if (u.name.includes("Destroyed")) {
@@ -49,8 +50,6 @@ export function convertHumanToUndeadStructures() {
 }
 
 export function convertUndeadToHumanStructures() {
-    print("converting undead to human structures");
-
     forEachUnitOfPlayer(Players[PlayerIndices.NeutralPassive], (u) => {
         //Destroys and converts primary structures into undead ones.
         if (u.name.includes("Destroyed")) {

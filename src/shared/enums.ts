@@ -37,11 +37,13 @@ export enum UpgradeCodes {
 }
 
 export enum PlayerIndices {
+    KingdomOfAlexandria = 9,
     NeutralHostile = 24,
     NeutralPassive = 25,
+    Items = 27,
 }
 
-export enum CUSTOM_UNITS {
+export enum UNITS {
     //Human Buildings
     farmTown = FourCC("h002"),
     townHall = FourCC("htow"),
@@ -62,6 +64,7 @@ export enum CUSTOM_UNITS {
 
     //Human units
     flyingMachine = FourCC("hgyr"),
+    engineer = FourCC("n000"),
 
     //Undead
     abomination = FourCC("uabo"),
@@ -83,6 +86,8 @@ export enum CUSTOM_UNITS {
 
     //Undead Buildings
     blackCitadel = FourCC("u006"),
+    blackCitadelNorth = FourCC("u00B"),
+    blackCitadelTownHall = FourCC("u00C"),
     spiritTower = FourCC("u005"),
     infectedGranary = FourCC("h00H"),
     undeadSentinel = FourCC("u007"),

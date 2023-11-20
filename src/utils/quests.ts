@@ -3,32 +3,47 @@ import { tColor } from "./misc";
 
 export function init_quests() {
     Timer.create().start(1, false, () => {
-        addQuest("Map Info", "Created by JediMindTrix/NihilismIsDeath", "ReplaceableTextures\\CommandButtons\\BTNPeon.blp");
-
         addQuest(
             "Player 1 Commands",
             `
         ${tColor("-start", "goldenrod")} : starts the round.
         ${tColor("-end", "goldenrod")} : ends the round.
         `,
-            "ReplaceableTextures\\CommandButtons\\BTNClayFigurine.blp",
+            "ReplaceableTextures\\WorldEditUI\\StartingLocation.blp",
         );
 
         addQuest(
             "Basic Game Info",
-            `
-        |cffE0A526Objective|r - Hold out for 15 nights until reinforcements arrive.
-
-        |cffE0A526Supplies|r - Certain units benefit from supply income which can be used to heal units.
-
-        |cffE0A526Buying Units|r -Buy units at allied buildings.
-
-        |cffE0A526Upgrades|r - Certain buildings will provide upgrades to your units at the start of each day.
-
-        |cffE0A526Economy|r - Certain buildings will grant lumber, gold, supplies and food.
+            `\n
+            \n${tColor("Main Objective", "goldenrod")}: Hold out for 15 nights until reinforcements arrive.
+            \n${tColor("Upgrades", "goldenrod")}: Certain allied buildings that are not destroyed will provide upgrades.
+            \n${tColor("Buying Units", "goldenrod")}: Buy units from allied buildings.
+            \n${tColor("Economy", "goldenrod")}: Farms, towns and castles will provide daily income. You can also buy farms to earn +50 gold per day.
         `,
-            "ReplaceableTextures\\CommandButtons\\BTNClayFigurine.blp",
+            "ReplaceableTextures\\CommandButtons\\BTNPeasant.blp",
         );
+
+        addQuest(
+            "Capturing and Losing Buildings",
+            `
+            \n${tColor("Human Structures", "goldenrod")}: - Destroyed human structures will turn into undead structures at the start of the next night.
+            \n${tColor("Undead Structures", "goldenrod")}: - Destroyed undead structures will turn into human structures at the start of the next day.
+        `,
+            "ReplaceableTextures\\CommandButtons\\BTNTownHall.blp",
+        );
+
+        addQuest(
+            "About Undead",
+            `\n
+             \n${tColor("Undead Spawns", "goldenrod")}: 2 - 5 undead spawns will be chosen at random every night. The skulls on the minimap show their chosen spawn locations.
+             \n${tColor("White Skull Spawns", "goldenrod")}: This is your standard undead spawn. It will only spawn tier 1 and 2 units. Undead will spawn every 15 seconds from these spawns. 
+             \n${tColor("Orange Skull Spawns", "goldenrod")}: May spawn Tier 1,2 and 3 units. 75% more undead will spawn every 30 seconds from these spawns with a higher chance to spawn stronger undead. 
+             \n${tColor("Undead Scaling", "goldenrod")}: Every night that passes, the chance for stronger undead units to spawn will increase. 
+        `,
+            "ReplaceableTextures\\CommandButtons\\BTNSkeletalOrcChampion.blp",
+        );
+
+        addQuest("Map Info", "Created by JediMindTrix/NihilismIsDeath", "ReplaceableTextures\\CommandButtons\\BTNClayFigurine.blp");
     });
 }
 

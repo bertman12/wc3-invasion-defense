@@ -10,7 +10,8 @@ import { init_map_triggers } from "./init";
 import { init_startingResources, setupPlayers } from "./players";
 import { TimerManager } from "./shared/Timers";
 import { RoundManager } from "./shared/round-manager";
-import { trig_destroyHumanBuilding } from "./towns";
+import { setup_destroyStructure } from "./towns";
+import { init_undead } from "./undead/taxonomy";
 import { tColor } from "./utils/misc";
 import { forEachPlayer } from "./utils/players";
 import { init_quests } from "./utils/quests";
@@ -41,13 +42,14 @@ function tsMain() {
             print(`[${tColor("Objective", "goldenrod")}] - Defend the capital city`);
             print("The elite nobles of the Kingdom of Alexandria must rally their forces to fight the undead. The capital city must survive!");
             print("");
-            print(`Type ${tColor("-start", "goldenrod")} to start the game.`);
+            print(`Player 1 Type ${tColor("-start", "goldenrod")} to start the game.`);
         });
 
         setupPlayers();
         SetGameDifficulty(MAP_DIFFICULTY_INSANE);
         init_quests();
-        trig_destroyHumanBuilding();
+
+        setup_destroyStructure();
 
         //Environment setup
         SuspendTimeOfDay(true);
@@ -55,6 +57,7 @@ function tsMain() {
         ClearMapMusic();
         StopMusic(false);
         PlayMusic(gg_snd_NightElfX1);
+
         TimerManager.trig_setup();
         const u = Unit.create(Players[9], FourCC("hfoo"), 0, 0);
         u?.issueOrderAt(OrderId.Move, -300, 2850);
@@ -75,7 +78,8 @@ function tsMain() {
         init_startingResources();
 
         setupNightAndDayHooks();
-
+        //10 second timer
+        init_undead();
         //For looking at minimap icons
         // Array.from(minimapIconPaths).forEach((path, index) => {
         //   CreateMinimapIcon(-20000 + (index*4000), 0, 255, 255, 255, path, FOG_OF_WAR_FOGGED);

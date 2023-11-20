@@ -76,7 +76,7 @@ function playerUnitRallyCheckbox() {
 
                         // }
 
-                        BlzFrameSetSize(tooltipFrameBackGround, 0.15, 0.025);
+                        BlzFrameSetSize(tooltipFrameBackGround, 0.2, 0.025);
                         // -- Create the Text as child of the Background
                         const tooltipFrameText = BlzCreateFrameByType("TEXT", "MyScriptDialogButtonTooltip", tooltipFrameBackGround, "", 0);
 

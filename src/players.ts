@@ -1,9 +1,9 @@
 import { MapPlayer, Sound, Timer, Trigger, Unit, Widget } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
 import { economicConstants } from "./shared/constants";
-import { ABILITIES, UpgradeCodes } from "./shared/enums";
+import { ABILITIES, PlayerIndices, UNITS, UpgradeCodes } from "./shared/enums";
 import { RoundManager } from "./shared/round-manager";
-import { tColor } from "./utils/misc";
+import { notifyPlayer, tColor } from "./utils/misc";
 import { forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayerWithAbility, forEachUnitTypeOfPlayer } from "./utils/players";
 
 export const playerStates = new Map<number, PlayerState>();
@@ -114,13 +114,18 @@ function trig_heroPurchased() {
 
         createdUnit.x = -300;
         createdUnit.y = -300;
-        createdUnit?.addItemById(FourCC("cnob"));
         createdUnit?.addItemById(FourCC("ankh"));
         createdUnit?.addItemById(FourCC("stel"));
 
         SetCameraPositionForPlayer(buyingUnit.owner.handle, createdUnit.x, createdUnit.y);
 
         playerState?.createSupplyHorse();
+
+        const engineer = Unit.create(createdUnit.owner, UNITS.engineer, -300 + createdUnit.owner.id * 50, 300);
+        if (engineer) {
+            engineer.setUseFood(false);
+            engineer.issueTargetOrder(OrderId.Move, playerState?.playerHero as Widget);
+        }
     });
 }
 
@@ -129,7 +134,7 @@ export function setupPlayers() {
     trig_playerBuysUnit();
     trig_heroPurchased();
     trig_heroDies();
-
+    playerLeaves();
     forEachAlliedPlayer((p, index) => {
         //Create Sheep to buy hero
         const u = Unit.create(p, FourCC("nshe"), 18600 + 25 * index, -28965);
@@ -159,8 +164,8 @@ export function initializePlayerStateInstances() {
 
 export function init_startingResources() {
     Players.forEach((player) => {
-        player.setState(PLAYER_STATE_RESOURCE_GOLD, 1000);
-        player.setState(PLAYER_STATE_RESOURCE_LUMBER, 1000);
+        player.setState(PLAYER_STATE_RESOURCE_GOLD, 2000);
+        player.setState(PLAYER_STATE_RESOURCE_LUMBER, 850);
     });
 
     // //Allow bounty from zombies.
@@ -216,6 +221,9 @@ function grantStartOfDayBonuses() {
         p.setTechResearched(UpgradeCodes.magicGuardUpgrade, magicGuardStructures);
         //Set player food cap
         adjustFoodCap(p, calculatedFoodCap);
+
+        p.setTechResearched(UpgradeCodes.dayTime, 1);
+        p.setTechResearched(UpgradeCodes.nightTime, 0);
     });
 }
 
@@ -307,7 +315,45 @@ export function adjustLumber(player: MapPlayer, amount: number) {
 }
 
 export function adjustFoodCap(player: MapPlayer, amount: number) {
-    // print("Adjusting food cap:", amount);
-
     player.setState(PLAYER_STATE_RESOURCE_FOOD_CAP, player.getState(PLAYER_STATE_RESOURCE_FOOD_CAP) + amount);
+}
+
+function playerLeaves() {
+    const t = Trigger.create();
+
+    forEachAlliedPlayer((p) => {
+        TriggerRegisterPlayerEventLeave(t.handle, p.handle);
+    });
+
+    t.addAction(() => {
+        const leaver = MapPlayer.fromHandle(GetTriggerPlayer());
+
+        if (leaver) {
+            notifyPlayer(`${leaver.name} has been routed from the battlefield. Their remaining resources are split up amongst the remaining players.`);
+
+            const leaverGold = leaver.getState(PLAYER_STATE_RESOURCE_GOLD);
+            const leaverLumber = leaver.getState(PLAYER_STATE_RESOURCE_LUMBER);
+
+            let playerCount = 0;
+
+            forEachAlliedPlayer((p) => {
+                playerCount++;
+            });
+
+            forEachAlliedPlayer((p) => {
+                if (p.id !== PlayerIndices.KingdomOfAlexandria) {
+                    adjustGold(p, Math.ceil(leaverGold / playerCount));
+                    adjustLumber(p, Math.ceil(leaverLumber / playerCount));
+
+                    p.setAlliance(leaver, ALLIANCE_SHARED_CONTROL, true);
+                    p.setAlliance(leaver, ALLIANCE_SHARED_ADVANCED_CONTROL, true);
+                    p.setAlliance(leaver, ALLIANCE_SHARED_SPELLS, true);
+
+                    leaver.setAlliance(p, ALLIANCE_SHARED_CONTROL, true);
+                    leaver.setAlliance(p, ALLIANCE_SHARED_ADVANCED_CONTROL, true);
+                    leaver.setAlliance(p, ALLIANCE_SHARED_SPELLS, true);
+                }
+            });
+        }
+    });
 }
