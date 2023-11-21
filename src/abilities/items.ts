@@ -1,6 +1,6 @@
-import { adjustGold } from "src/players";
 import { ABILITIES } from "src/shared/enums";
 import { applyForce } from "src/shared/physics";
+import { adjustGold } from "src/utils/players";
 import { Effect, Timer, Trigger, Unit } from "w3ts";
 
 export function init_itemAbilities() {
@@ -34,8 +34,7 @@ function trig_forceBoots() {
         SetUnitAnimationByIndex(caster.handle, 3);
 
         applyForce(caster.facing, caster, 1800, {
-            // sustainedForceDuration: 0,
-            onEnd(currentSpeed, timeElapsed) {
+            onEnd() {
                 caster.setTimeScale(1);
                 SetUnitAnimationByIndex(caster.handle, 0);
             },
@@ -46,14 +45,21 @@ function trig_forceBoots() {
 function handOfMidas() {
     const t = Trigger.create();
 
-    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_ATTACKED);
+    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_DAMAGED);
 
     t.addCondition(() => {
         const attacker = Unit.fromHandle(GetAttacker());
         const victim = Unit.fromHandle(GetAttackedUnitBJ());
+        const u = Unit.fromEvent();
+        const damageSource = Unit.fromHandle(GetEventDamageSource());
+        // print("unit damaged");
+        // print("attacker", attacker?.name);
+        // print("victim", victim?.name);
+        // print("u", u?.name);
+        // print("damageSource", damageSource?.name);
 
-        if (attacker && victim && !attacker.owner.isPlayerAlly(victim?.owner)) {
-            const i = GetItemOfTypeFromUnitBJ(attacker.handle, FourCC("I007"));
+        if (damageSource && victim && !damageSource.owner.isPlayerAlly(victim?.owner)) {
+            const i = GetItemOfTypeFromUnitBJ(damageSource.handle, FourCC("I007"));
             const itemProcChance = 14;
 
             if (i && math.random(0, 100) <= itemProcChance) {

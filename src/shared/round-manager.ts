@@ -15,7 +15,7 @@ type RoundEndFn = (round: number) => void;
 type RoundStartFn = (round: number) => void;
 
 export class RoundManager {
-    static currentRound: number = 0;
+    static currentRound: number = 1;
     private static roundStartSubscribers: RoundStartFn[] = [];
     private static roundEndSubscribers: RoundEndFn[] = [];
 
@@ -34,7 +34,9 @@ export class RoundManager {
     }
 
     static startNextRound() {
-        RoundManager.currentRound++;
+        // if (RoundManager.currentRound !== 1) {
+        // RoundManager.currentRound++;
+        // }
 
         if (RoundManager.currentRound >= 15) {
             print("Congratulations, you have won. The map is still in development with many more features to come.");
@@ -68,6 +70,7 @@ export class RoundManager {
 
     static endCurrentRound() {
         print(`Night ${RoundManager.currentRound} has ended...`);
+
         SetTimeOfDay(12);
 
         const nightTextFrame = BlzGetFrameByName("nightTextDisplay", 0);
@@ -94,6 +97,8 @@ export class RoundManager {
         TimerManager.startDayTimer(() => {
             RoundManager.startNextRound();
         });
+
+        RoundManager.currentRound++;
     }
 
     static onNightStart(cb: RoundStartFn) {

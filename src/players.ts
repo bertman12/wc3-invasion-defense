@@ -4,7 +4,7 @@ import { economicConstants } from "./shared/constants";
 import { ABILITIES, PlayerIndices, UNITS, UpgradeCodes } from "./shared/enums";
 import { RoundManager } from "./shared/round-manager";
 import { notifyPlayer, tColor } from "./utils/misc";
-import { forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayerWithAbility, forEachUnitTypeOfPlayer } from "./utils/players";
+import { adjustFoodCap, adjustGold, adjustLumber, forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayerWithAbility, forEachUnitTypeOfPlayer } from "./utils/players";
 
 export const playerStates = new Map<number, PlayerState>();
 
@@ -48,10 +48,10 @@ function trig_heroDies() {
 
         if (u && u.isHero() && u.owner.race !== RACE_UNDEAD) {
             Sound.fromHandle(gg_snd_QuestFailed)?.start();
-            print(`${tColor("!", "goldenrod")} - Your hero will revive in 15 seconds.`);
+            print(`${tColor("!", "goldenrod")} - ${u.owner.name}, your hero will revive in ${15 + u.level} seconds.`);
             const timer = Timer.create();
 
-            timer.start(15, false, () => {
+            timer.start(15 + u.level, false, () => {
                 u.revive(0, 0, true);
             });
 
@@ -275,7 +275,7 @@ export function player_giveHumansStartOfDayResources(round: number) {
     const baseGold = 100;
     const baseWood = 100;
     const roundGold = 50 * round;
-    const roundWood = 50 * round;
+    const roundWood = 35 * round;
 
     const incomeBuildingGold = economicConstants.goldIncomeAbility * totalIncomeBuildings;
     const lumberIncome = economicConstants.lumberIncomeAbility * lumberAbilityCount;
@@ -300,22 +300,6 @@ export function player_giveHumansStartOfDayResources(round: number) {
         adjustGold(player, totalGold);
         adjustLumber(player, totalLumber);
     });
-}
-
-export function adjustPlayerState(player: MapPlayer, whichState: playerstate, amount: number) {
-    player.setState(whichState, player.getState(whichState) + amount);
-}
-
-export function adjustGold(player: MapPlayer, amount: number) {
-    player.setState(PLAYER_STATE_RESOURCE_GOLD, player.getState(PLAYER_STATE_RESOURCE_GOLD) + amount);
-}
-
-export function adjustLumber(player: MapPlayer, amount: number) {
-    player.setState(PLAYER_STATE_RESOURCE_LUMBER, player.getState(PLAYER_STATE_RESOURCE_LUMBER) + amount);
-}
-
-export function adjustFoodCap(player: MapPlayer, amount: number) {
-    player.setState(PLAYER_STATE_RESOURCE_FOOD_CAP, player.getState(PLAYER_STATE_RESOURCE_FOOD_CAP) + amount);
 }
 
 function playerLeaves() {

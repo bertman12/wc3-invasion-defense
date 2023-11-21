@@ -1821,12 +1821,6 @@ STRING 425
 Heavy defensive structure. Particularly effective against clusters of troops. |n|n800 range |n|n|cffffcc00Attacks land units and trees.|r
 }
 
-STRING 426
-// Units: ngme (Damage Items), Name (Name)
-{
-Damage Items
-}
-
 STRING 428
 // Items: thdm (Thunderlizard Diamond), Ubertip (Tooltip - Extended)
 {
@@ -1931,5 +1925,89 @@ Grants |cffffff00+50 gold|r at the start of each day to all players.
 The owner gets double the gold from this structure.
 
 
+}
+
+STRING 450
+// Units: h00J (Barricade - Fortified), Hotkey (Hotkey)
+{
+B
+}
+
+STRING 451
+// Units: n00E (Consumables), Name (Name)
+{
+Consumables
+}
+
+STRING 452
+// Units: ngme (Items 1), Name (Name)
+{
+Items 1
+}
+
+STRING 453
+// Units: n00F (Goblin Land Mine), EditorSuffix (Name - Editor Suffix)
+{
+(Tinker)
+}
+
+STRING 454
+// Abilities: A015 (Place Goblin Land Mine), Name (Name)
+{
+Place Goblin Land Mine
+}
+
+STRING 455
+// Abilities: A015 (Place Goblin Land Mine), EditorSuffix (Editor Suffix)
+{
+(hero)
+}
+
+STRING 456
+// Abilities: A015 (Place Goblin Land Mine), Tip (Tooltip - Normal)
+{
+Place Goblin Land Mine
+}
+
+STRING 458
+// Abilities: A016 (AOE damage upon death), EditorSuffix (Editor Suffix)
+{
+(Tinkers Goblin Mine)
+}
+
+STRING 459
+// Abilities: A017 (Mine - exploding), EditorSuffix (Editor Suffix)
+{
+ (Tinkers Goblin Land Mine)
+}
+
+STRING 461
+// Abilities: A015 (Place Goblin Land Mine), Ubertip (Tooltip - Normal - Extended)
+{
+Places an invisible goblin land mine that explodes and causes 300 damage to units in 150 range and 150 damage to units in 300 range. Has a 2 second activation time. |n|n|cffc0c0c0300 range area of effect.|r
+}
+
+STRING 462
+// Abilities: A015 (Place Goblin Land Mine), Hotkey (Hotkey - Normal)
+{
+G
+}
+
+STRING 463
+// Units: Ntin (Tinker), Ubertip (Tooltip - Extended)
+{
+Cunning Hero, exceptional at disrupting battles and enduring damage. Can learn Pocket Factory, Cluster Rockets, Engineering Upgrade and Robo-Goblin.|n|n[New] - Can also place mines.    |n|n|cffffcc00Attacks land units.|r
+}
+
+STRING 464
+// Units: Nplh (Pit Lord), Ubertip (Tooltip - Extended)
+{
+Warrior Hero, adept at terrorizing enemies. Can learn Rain of Fire, Howl of Terror, Cleaving Attack, and Doom. |n|nCan cast Battle Charge, charging in his current direction knocking enemies out of his way. |n|n|cffffcc00Attacks land units.|r
+}
+
+STRING 465
+// Items: dtsb (Drek'thar's Spellbook), Ubertip (Tooltip - Extended)
+{
+|cffff8c00Artifact|r|nGrants the ability to teleport you and nearby units to castles or towns (|cffc0c0c0no cooldown|r). Also reduces spell damage by <AIsr,DataB1,%>% and increases the Hero's mana by <AImv,DataA1> while equipped.|n|cffffcc00History|r|n|cffffdeadDrek'Thar's old spellbook is filled with pages stolen from Kirin Tor mages that were slain in battle.|r
 }
 

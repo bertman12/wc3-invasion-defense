@@ -1,11 +1,10 @@
-import { adjustGold, adjustLumber } from "src/players";
 import { ABILITIES, UNITS } from "src/shared/enums";
 import { applyForce } from "src/shared/physics";
 import { RoundManager } from "src/shared/round-manager";
 import { allCapturableStructures } from "src/towns";
 import { unitGetsNearThisUnit } from "src/utils/abilities";
 import { getRelativeAngleToUnit, notifyPlayer, tColor, useEffects } from "src/utils/misc";
-import { forEachAlliedPlayer, forEachUnitTypeOfPlayer, isPlayingUser } from "src/utils/players";
+import { adjustGold, adjustLumber, forEachAlliedPlayer, forEachUnitTypeOfPlayer, isPlayingUser } from "src/utils/players";
 import { Effect, MapPlayer, Trigger, Unit } from "w3ts";
 import { Players } from "w3ts/globals";
 

@@ -106,6 +106,22 @@ export function isPlayingUser(player: MapPlayer | player) {
     return isUser(player) && isPlaying(player);
 }
 
+export function adjustPlayerState(player: MapPlayer, whichState: playerstate, amount: number) {
+    player.setState(whichState, player.getState(whichState) + amount);
+}
+
+export function adjustGold(player: MapPlayer, amount: number) {
+    player.setState(PLAYER_STATE_RESOURCE_GOLD, player.getState(PLAYER_STATE_RESOURCE_GOLD) + amount);
+}
+
+export function adjustLumber(player: MapPlayer, amount: number) {
+    player.setState(PLAYER_STATE_RESOURCE_LUMBER, player.getState(PLAYER_STATE_RESOURCE_LUMBER) + amount);
+}
+
+export function adjustFoodCap(player: MapPlayer, amount: number) {
+    player.setState(PLAYER_STATE_RESOURCE_FOOD_CAP, player.getState(PLAYER_STATE_RESOURCE_FOOD_CAP) + amount);
+}
+
 /**
  * Used later on to check if a unit has a specific ability
  * Function will save abilities from index [0,11]

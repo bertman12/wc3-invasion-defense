@@ -89,7 +89,7 @@ export function undeadDayStart() {
     }
 
     //were off by 1 lol
-    const spawnBoss = RoundManager.currentRound > 0 && (RoundManager.currentRound + 1) % 3 === 0;
+    const spawnBoss = RoundManager.currentRound > 0 && RoundManager.currentRound % 3 === 0;
 
     const spawnConfigs = spawns.map((zone, index) => {
         if (index === 0 && spawnBoss) {

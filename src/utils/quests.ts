@@ -45,6 +45,28 @@ export function init_quests() {
             "ReplaceableTextures\\CommandButtons\\BTNSkeletalOrcChampion.blp",
         );
 
+        addQuest(
+            "More Tips",
+            `|cffff00ffObjective|r - Hold out for 15 nights until reinforcements arrive. 
+
+        |cff00ff00Starter Tip|r - Spend your starting money on some defenses, units and items. 
+        
+        |cff00ff00Defenses|r - Strategically decide which areas to build defenses and hold.
+        
+        |cff00ff00Engineers|r - Trained at blacksmiths. Able to build defensive structures. 
+        
+        |cff00ffffRivers|r - All units fighting in the river are severly hindered.
+        
+        |cffff0000Destroyed Buildings|r - Destroyed human buildings turn into undead ones at the start of night. Destroyed undead buildings turn into human at the start of day.
+        
+        |cffffff00Buying Units|r - Buy units at allied structures.
+        
+        |cffffff00Upgrades|r - Allied buildings provide upgrades to all units, as long as they are alive.
+        
+        |c00ffff00Economy|r - Allied buildings will also grant gold and lumber and food as long as they are alive. You may also purchase a farm for additional gold income.
+        `,
+            "ReplaceableTextures\\CommandButtons\\BTNClayFigurine.blp",
+        );
         addQuest("Map Info", "Created by JediMindTrix/NihilismIsDeath", "ReplaceableTextures\\CommandButtons\\BTNClayFigurine.blp");
     });
 }
@@ -59,4 +81,6 @@ export function addQuest(title: string, description: string, iconPath?: string) 
             q.setIcon(iconPath);
         }
     }
+
+    return q;
 }
