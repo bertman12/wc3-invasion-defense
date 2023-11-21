@@ -17,6 +17,7 @@ Buy units at allied buildings.
 Destroy undead buildings to convert back to human ones.
 
 
+
 }
 
 STRING 4
@@ -514,17 +515,23 @@ Kingdom Zombie Defense
 
 STRING 142
 {
-|cffE0A526Objective|r - Hold out for 15 nights until reinforcements arrive. Start off by defending the northern farmlands.
+|cffff00ffObjective|r - Hold out for 15 nights until reinforcements arrive. 
 
-|cffE0A526New Player|r - Dont spend all your money on items. Save for some units for the first round.
+|cff00ff00Starter Tip|r - Spend your starting money on some defenses, units and items. 
 
-|cffE0A526Destroyed Buildings|r - Destroyed human buildings turn into undead ones at the start of night. Destroyed undead buildings turn into human at the start of day.
+|cff00ff00Defenses|r - Strategically decide which areas to build defenses and hold.
 
-|cffE0A526Buying Units|r - Buy units at allied structures.
+|cff00ff00Engineers|r - Trained at blacksmiths. Able to build defensive structures. 
 
-|cffE0A526Upgrades|r - Alied buildings provide upgrade to all units, as long as they are alive.
+|cff00ffffRivers|r - All units fighting in the river are severly hindered.
 
-|cffE0A526Economy|r - Allied buildings will also grant gold and lumber and food as long as they are alive. You may also purchase a farm for additional gold income.
+|cffff0000Destroyed Buildings|r - Destroyed human buildings turn into undead ones at the start of night. Destroyed undead buildings turn into human at the start of day.
+
+|cffffff00Buying Units|r - Buy units at allied structures.
+
+|cffffff00Upgrades|r - Allied buildings provide upgrades to all units, as long as they are alive.
+
+|c00ffff00Economy|r - Allied buildings will also grant gold and lumber and food as long as they are alive. You may also purchase a farm for additional gold income.
 
 Made by JediMindTrix/NihilismIsDeath
 
@@ -899,12 +906,6 @@ STRING 219
 // Buffs/Effects: B001 (), Bufftip (Tooltip)
 {
 River Ford
-}
-
-STRING 220
-// Buffs/Effects: B001 (), Buffubertip (Tooltip - Extended)
-{
-This unit is being slowed while crossing a river.
 }
 
 STRING 222
@@ -1303,12 +1304,6 @@ STRING 308
 Revive Demigod
 }
 
-STRING 309
-// Units: O003 (Demigod), Tip (Tooltip - Basic)
-{
-Summon Demigod
-}
-
 STRING 311
 // Units: O003 (Demigod), Revivetip (Tooltip - Revive)
 {
@@ -1372,16 +1367,6 @@ STRING 321
 Force Boots
 }
 
-STRING 323
-// Abilities: A002 (Income), Ubertip (Tooltip - Normal - Extended)
-{
-Grants |cffffff00+50 gold|r at the start of each day to all players.
-
-If you own the structure, you get double the gold.
-
-
-}
-
 STRING 324
 // Abilities: A00J (Lumber Income - Info Ability), Ubertip (Tooltip - Normal - Extended)
 {
@@ -1414,12 +1399,6 @@ STRING 329
 // Abilities: A00T (Battle Charge), Ubertip (Tooltip - Normal - Extended)
 {
 Causes the demigod to charge forward dealing 150 damage to all enemies hit.
-}
-
-STRING 331
-// Units: h005 (Caltrops), Ubertip (Tooltip - Extended)
-{
-Slows down the movement speed of nearby enemies by 50%.    |n|n|cffff0000Destroyed at the start of each day.|r
 }
 
 STRING 332
@@ -1542,12 +1521,6 @@ STRING 359
 Train Heavy Cavalry
 }
 
-STRING 361
-// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
-{
-Able to build (|cffd45e19only during day|r) and repair structures.|n|nCan repair buildings and builds a supply camp, scout tower(no upgrades) and Caltrops to slow down the enemy.
-}
-
 STRING 362
 // Units: u008 (Spirit Tower - Lumber Mill), EditorSuffix (Name - Editor Suffix)
 {
@@ -1668,24 +1641,6 @@ STRING 383
 Items 3
 }
 
-STRING 384
-// Units: h00J (Barricade - Opened), Ubertip (Tooltip - Extended)
-{
-Basic wall.
-}
-
-STRING 385
-// Units: h00J (Barricade - Opened), Name (Name)
-{
-Barricade - Opened
-}
-
-STRING 386
-// Units: h00J (Barricade - Opened), Tip (Tooltip - Basic)
-{
-Build Barricade
-}
-
 STRING 387
 // Items: I002 (Mask of the Frenzied Ghoul), Ubertip (Tooltip - Extended)
 {
@@ -1746,12 +1701,6 @@ STRING 396
 Fires short jets of flame. Good at destroying enemies that get close. |n|n450 attack range.
 }
 
-STRING 398
-// Units: n00D (Flame Tower), Ubertip (Tooltip - Extended)
-{
-Fires short jets of flame. Good at destroying enemies that get close. |n|n450 attack range.
-}
-
 STRING 399
 // Items: rwiz (Sobi Mask), Ubertip (Tooltip - Extended)
 {
@@ -1768,5 +1717,219 @@ STRING 401
 // Units: n00C (Cold Tower), Ubertip (Tooltip - Extended)
 {
 Fires shards of ice at a slow rate. Good at slowing down enemies. |n|n1000 range.
+}
+
+STRING 402
+// Units: O003 (Demigod), Tip (Tooltip - Basic)
+{
+[|cffff0000Hard|r] Summon Demigod
+}
+
+STRING 403
+// Abilities: A010 (Armor Reduction Aura), Name (Name)
+{
+Armor Reduction Aura
+}
+
+STRING 404
+// Abilities: A011 (Armor Reduction Aura), Name (Name)
+{
+Armor Reduction Aura
+}
+
+STRING 405
+// Buffs/Effects: B002 (Armor Reduction Aura), EditorName (Name (Editor Only))
+{
+Armor Reduction Aura
+}
+
+STRING 407
+// Units: h00F (Barricade), Hotkey (Hotkey)
+{
+B
+}
+
+STRING 409
+// Abilities: Ahrp (Repair), Ubertip (Tooltip - Normal - Extended)
+{
+Repairs mechanical units and structures at the cost of resources. |n|n300 range.
+}
+
+STRING 411
+// Buffs/Effects: B002 (Armor Reduction Aura), Bufftip (Tooltip)
+{
+|cffff0000Armor Reduction Aura|r
+}
+
+STRING 412
+// Buffs/Effects: B001 (), Buffubertip (Tooltip - Extended)
+{
+This unit's |cffff0000move speed|r is slowed by |cffff000075%|r and|cffff0000 attack speed|r by|cffff0000 50%|r while crossing a river.
+}
+
+STRING 413
+// Buffs/Effects: B003 (Armor Reduction Aura - Caltrops), Buffubertip (Tooltip - Extended)
+{
+This unit's armor is being reduced by |cffff00002|r.
+}
+
+STRING 414
+// Abilities: A010 (Armor Reduction Aura), EditorSuffix (Editor Suffix)
+{
+(River Ford)
+}
+
+STRING 419
+// Units: h00J (Barricade - Fortified), Name (Name)
+{
+Barricade - Fortified
+}
+
+STRING 420
+// Units: h00J (Barricade - Fortified), Tip (Tooltip - Basic)
+{
+Fortify Barricade
+}
+
+STRING 421
+// Units: h00J (Barricade - Fortified), Ubertip (Tooltip - Extended)
+{
+Adds 6 fortified armor and 500 health.
+}
+
+STRING 422
+// Units: h005 (Caltrops), Ubertip (Tooltip - Extended)
+{
+Severely inhibits nearby enemy units.|n |n|cffff0000-50%|r movespeed |n|cffff0000-20%|r attack speed |n|cffff0000-2|r armor    |n|n|cffff0000Destroyed at the start of each day.|r
+}
+
+STRING 423
+// Units: n00D (Flame Tower), Ubertip (Tooltip - Extended)
+{
+Fires short jets of flame. Good at destroying enemies that get close. |n|n600 attack range.
+}
+
+STRING 424
+// Units: hgtw (Guard Tower), Ubertip (Tooltip - Extended)
+{
+Primary defensive structure. |n|n700 range |n|n|cffffcc00Attacks land and air units.|r
+}
+
+STRING 425
+// Units: hctw (Cannon Tower), Ubertip (Tooltip - Extended)
+{
+Heavy defensive structure. Particularly effective against clusters of troops. |n|n800 range |n|n|cffffcc00Attacks land units and trees.|r
+}
+
+STRING 426
+// Units: ngme (Damage Items), Name (Name)
+{
+Damage Items
+}
+
+STRING 428
+// Items: thdm (Thunderlizard Diamond), Ubertip (Tooltip - Extended)
+{
+|cff8b00ffUnique|r|nCasts bolts of lightning that deals 100 damage to multiple targets. |n|n9 second cooldown.
+}
+
+STRING 430
+// Items: sbok (Spell Book), Ubertip (Tooltip - Extended)
+{
+A book full of random spells. Provides various utility. |n|nCan cast Battle Roar, Entangling roots, Dispel Magic.
+}
+
+STRING 431
+// Abilities: A012 (Caltrops - Info Ability), Name (Name)
+{
+Caltrops - Info Ability
+}
+
+STRING 432
+// Abilities: A012 (Caltrops - Info Ability), Tip (Tooltip - Normal)
+{
+Caltrops - Info Ability
+}
+
+STRING 433
+// Abilities: A012 (Caltrops - Info Ability), Ubertip (Tooltip - Normal - Extended)
+{
+Severely inhibits nearby enemy units.|n |n|cffff0000-50%|r movespeed |n|cffff0000-20%|r attack speed |n|cffff0000-2|r armor    |n|n|cffff0000Destroyed at the start of each day.|r
+}
+
+STRING 434
+// Abilities: A012 (Caltrops - Info Ability), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 435
+// Units: u00D (Black Citadel Meat Wagon), Name (Name)
+{
+Black Citadel Meat Wagon
+}
+
+STRING 437
+// Abilities: A014 (Disease Cloud), EditorSuffix (Editor Suffix)
+{
+ (Black Citadel Meat Wagon)
+}
+
+STRING 438
+// Units: u00E (Disease Cloud), EditorSuffix (Name - Editor Suffix)
+{
+(Ward - Black Citadel Meat Wagon)
+}
+
+STRING 439
+// Abilities: A013 (Disease Cloud), EditorSuffix (Editor Suffix)
+{
+(Ward - Black Citadel Meat Wagon)
+}
+
+STRING 440
+// Buffs/Effects: B002 (Armor Reduction Aura), Buffubertip (Tooltip - Extended)
+{
+This unit's armor is being reduced by |cffff00005|r.
+}
+
+STRING 441
+// Buffs/Effects: B002 (Armor Reduction Aura), EditorSuffix (Editor Suffix)
+{
+(River)
+}
+
+STRING 445
+// Buffs/Effects: B003 (Armor Reduction Aura - Caltrops), Bufftip (Tooltip)
+{
+|cffff0000Armor Reduction Aura - Caltrops|r
+}
+
+STRING 446
+// Buffs/Effects: B003 (Armor Reduction Aura - Caltrops), EditorName (Name (Editor Only))
+{
+Armor Reduction Aura - Caltrops
+}
+
+STRING 447
+// Abilities: A011 (Armor Reduction Aura), EditorSuffix (Editor Suffix)
+{
+(Caltrops)
+}
+
+STRING 448
+// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
+{
+Able to build (|cffd45e19only during day|r) and repair structures.|n|nCan build a scout tower that can be upgraded into to other towers; a barricade; a supply tent which can heal units; and caltrops, which can severely hinder enemy units.
+}
+
+STRING 449
+// Abilities: A002 (Income), Ubertip (Tooltip - Normal - Extended)
+{
+Grants |cffffff00+50 gold|r at the start of each day to all players.
+
+The owner gets double the gold from this structure.
+
+
 }
 

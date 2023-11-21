@@ -37,7 +37,9 @@ export function init_quests() {
             `\n
              \n${tColor("Undead Spawns", "goldenrod")}: 2 - 5 undead spawns will be chosen at random every night. The skulls on the minimap show their chosen spawn locations.
              \n${tColor("White Skull Spawns", "goldenrod")}: This is your standard undead spawn. It will only spawn tier 1 and 2 units. Undead will spawn every 15 seconds from these spawns. 
-             \n${tColor("Orange Skull Spawns", "goldenrod")}: May spawn Tier 1,2 and 3 units. 75% more undead will spawn every 30 seconds from these spawns with a higher chance to spawn stronger undead. 
+             \n${tColor("Yellow Skull Spawns", "goldenrod")}: May spawn Tier 1,2 and 3 units. 75% more undead will spawn every 30 seconds from these spawns with a higher chance to spawn stronger undead. 
+             \n${tColor("Orange Skull Spawns", "goldenrod")}: 1 spawn every 3rd night will be orange. Only spawns Tier 2 and 3 units. 
+             \n${tColor("Red Skull Spawns", "goldenrod")}: Only spawns Tier 3. All spawns on the 14th and 15th night will be red. 
              \n${tColor("Undead Scaling", "goldenrod")}: Every night that passes, the chance for stronger undead units to spawn will increase. 
         `,
             "ReplaceableTextures\\CommandButtons\\BTNSkeletalOrcChampion.blp",

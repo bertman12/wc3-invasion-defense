@@ -165,7 +165,7 @@ export function initializePlayerStateInstances() {
 export function init_startingResources() {
     Players.forEach((player) => {
         player.setState(PLAYER_STATE_RESOURCE_GOLD, 2000);
-        player.setState(PLAYER_STATE_RESOURCE_LUMBER, 850);
+        player.setState(PLAYER_STATE_RESOURCE_LUMBER, 1200);
     });
 
     // //Allow bounty from zombies.

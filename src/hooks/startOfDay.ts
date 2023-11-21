@@ -7,20 +7,25 @@ import { Timer, Trigger, Unit } from "w3ts";
 import { Players } from "w3ts/globals";
 
 /**
+ * Tracks number of undead killed each night.
+ */
+let undeadDeathCount = 0;
+let undeadCountBeforeTriggerKill = 0;
+let humanDeathCount = 0;
+
+/**
  * for the purpose of having one function where all start of day and start of night functions are to be called
  */
 function hook_startOfDay() {
     RoundManager.onDayStart(() => {
         //Print casualties before undead are killed
-        print(`${tColor("Human Casualties", "goldenrod")}: ${humanDeathCount}`);
-        print(`${tColor("Undead Casualties", "goldenrod")}: ${undeadDeathCount}`);
+        print(`${tColor("Total Human Casualties", "goldenrod")}: ${humanDeathCount}`);
+        print(`${tColor("Total Undead Casualties", "goldenrod")}: ${undeadDeathCount}`);
+        undeadCountBeforeTriggerKill = undeadDeathCount;
 
         //Displays where undead will spawn next
         const t = Timer.create();
         t.start(5, false, () => {
-            print("undead day start timer elapsed!!!!");
-            print("undead day start timer elapsed!!!!");
-            print("undead day start timer elapsed!!!!");
             undeadDayStart();
             t.destroy();
         });
@@ -39,8 +44,7 @@ function hook_startOfNight() {
         convertHumanToUndeadStructures();
         players_nightStart();
 
-        humanDeathCount = 0;
-        undeadDeathCount = 0;
+        undeadDeathCount = undeadCountBeforeTriggerKill;
     });
 }
 
@@ -50,12 +54,6 @@ export function setupNightAndDayHooks() {
     hook_startOfDay();
     hook_startOfNight();
 }
-
-/**
- * Tracks number of undead killed each night.
- */
-let undeadDeathCount = 0;
-let humanDeathCount = 0;
 
 //unit number matches an array of ability number the units uses
 function trig_countUndeadCasualties() {

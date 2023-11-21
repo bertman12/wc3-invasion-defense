@@ -25,7 +25,6 @@ ItemStackingEnabled=1
 MaxHeroLevel=100
 MaxLevelHeroesDrainExp=0
 MaxUnitLevel=100
-PawnItemRange=
 ReviveBaseFactor=0.1
 ReviveLevelFactor=0.0
 ReviveMaxFactor=0.1

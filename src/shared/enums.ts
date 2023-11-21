@@ -83,6 +83,7 @@ export enum UNITS {
     gargoyle = FourCC("ugar"),
     skeletalOrcChampion = FourCC("nsoc"),
     infernalMachine = FourCC("ninm"),
+    blackCitadelMeatWagon = FourCC("u00D"),
 
     //Undead Buildings
     blackCitadel = FourCC("u006"),

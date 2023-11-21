@@ -1,6 +1,6 @@
 import { MinimapIconPath, UNITS } from "src/shared/enums";
 import { RoundManager } from "src/shared/round-manager";
-import { primaryAttackTargets } from "src/towns";
+import { primaryCapturableHumanTargets } from "src/towns";
 import { notifyPlayer } from "src/utils/misc";
 import { forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayer, forEachUnitTypeOfPlayer } from "src/utils/players";
 import { Effect, Point, Rectangle, Sound, Timer, Trigger, Unit } from "w3ts";
@@ -48,7 +48,6 @@ export function undeadNightStart() {
     });
 
     currentSpawns.forEach((config) => {
-        print("Spawn diff: ", config.spawnDifficulty);
         config.startSpawning();
     });
 }
@@ -56,6 +55,7 @@ export function undeadNightStart() {
 export function init_undead() {
     Timer.create().start(10, false, () => {
         Sound.fromHandle(gg_snd_Hint)?.start();
+
         undeadDayStart();
     });
 }
@@ -84,7 +84,17 @@ export function undeadDayStart() {
 
     spawns = [...tempSet];
 
-    const spawnConfigs = spawns.map((zone) => {
+    if (RoundManager.currentRound >= 14) {
+        spawns = validUndeadSpawns;
+    }
+
+    //were off by 1 lol
+    const spawnBoss = RoundManager.currentRound > 0 && (RoundManager.currentRound + 1) % 3 === 0;
+
+    const spawnConfigs = spawns.map((zone, index) => {
+        if (index === 0 && spawnBoss) {
+            return new SpawnData(zone, false, spawnBoss);
+        }
         return new SpawnData(zone);
     });
 
@@ -93,10 +103,21 @@ export function undeadDayStart() {
 
 type UnitCategory = "infantry" | "missile" | "caster" | "siege" | "hero";
 
+enum SpawnDifficulty {
+    normal,
+    hard,
+    boss,
+    final,
+}
+
 class SpawnData {
     public spawnRec: Rectangle | undefined;
+    /**
+     * Determines whether or not to show effects and minimap icons for the spawn.
+     */
+    public hideUI: boolean = false;
     //This will determine the wave interval timer, which thus determines units spawned per wave
-    public spawnDifficulty = 15;
+    public spawnDifficulty = 0;
     private totalSpawnCount = 0;
     //random number from the array;
     public waveIntervalTime = 15;
@@ -135,23 +156,35 @@ class SpawnData {
     public currentAttackTarget: Unit | undefined;
     private trig_chooseNextTarget: Trigger | undefined;
     private lastCreatedWaveUnits: Unit[] = [];
-
+    private spawnBoss: boolean = false;
     //Special Effects and Icons
     private spawnIcon: minimapicon | undefined;
     private currentTargetSpecialEffect: Effect | undefined;
     private currentTargetMinimapIcon: minimapicon | undefined;
 
-    constructor(spawn: rect) {
+    constructor(spawn: rect, hideUI: boolean = false, spawnBoss: boolean = false) {
+        this.hideUI = hideUI;
+        this.spawnBoss = spawnBoss;
+
         this.spawnRec = Rectangle.fromHandle(spawn);
         this.totalSpawnCount = calcBaseAmountPerWave();
 
         const difficulty = Math.floor(Math.random() * waveIntervalOptions.length);
-        const isHardDiff = difficulty === 1;
-
+        //its currently 50/50 chance for hard or normal spawns
+        const isHardDiff = difficulty === SpawnDifficulty.hard;
         this.spawnDifficulty = difficulty;
+
         this.waveIntervalTime = waveIntervalOptions[difficulty];
+
+        if (spawnBoss) {
+            this.spawnDifficulty = SpawnDifficulty.boss;
+        }
+
+        if (RoundManager.currentRound >= 14) {
+            this.spawnDifficulty = SpawnDifficulty.final;
+        }
+
         this.spawnAmountPerWave = this.waveIntervalTime === 15 ? this.totalSpawnCount : this.totalSpawnCount * 1.75;
-        print("spawn is hard?: ", isHardDiff, " diff:", difficulty);
         this.baseTier2Chance = 0.08 + 0.04 * RoundManager.currentRound + (isHardDiff ? 0.08 : 0);
         this.currentTier2Chance = this.baseTier2Chance;
         this.baseTier3Chance = 0.05 + 0.02 * RoundManager.currentRound + (isHardDiff ? 0.05 : 0);
@@ -172,9 +205,24 @@ class SpawnData {
         /**
          * @todo needs to be calculated in the future
          */
-        this.greatestUnitCountFromAllUnitCategories = Math.ceil(0.3 * this.spawnAmountPerWave);
+        this.greatestUnitCountFromAllUnitCategories = Math.ceil(0.775 * this.spawnAmountPerWave);
+        const { red, green, blue } = this.getMinimapRGB();
+        this.spawnIcon = CreateMinimapIcon(this.spawnRec?.centerX ?? 0, this.spawnRec?.centerY ?? 0, red, green, blue, "UI\\Minimap\\MiniMap-Boss.mdl", FOG_OF_WAR_FOGGED);
+    }
 
-        this.spawnIcon = CreateMinimapIcon(this.spawnRec?.centerX ?? 0, this.spawnRec?.centerY ?? 0, 255, 255 - 150 * this.spawnDifficulty, 255 - 255 * this.spawnDifficulty, "UI\\Minimap\\MiniMap-Boss.mdl", FOG_OF_WAR_FOGGED);
+    private getMinimapRGB() {
+        switch (this.spawnDifficulty) {
+            case SpawnDifficulty.normal:
+                return { red: 255, green: 255, blue: 255 };
+            case SpawnDifficulty.hard:
+                return { red: 255, green: 255, blue: 0 };
+            case SpawnDifficulty.boss:
+                return { red: 255, green: 105, blue: 0 };
+            case SpawnDifficulty.final:
+                return { red: 255, green: 0, blue: 0 };
+            default:
+                return { red: 255, green: 0, blue: 0 };
+        }
     }
 
     public startSpawning() {
@@ -294,14 +342,17 @@ class SpawnData {
                 //Range [0, 1)
                 const sampledValue = Math.sin(randomTheta);
 
-                if (this.spawnDifficulty === 1 && sampledValue <= this.currentTier3Chance) {
+                //will always spawn tier 3 units on the last 2 nights
+                if (this.spawnDifficulty === SpawnDifficulty.final || (this.spawnDifficulty >= SpawnDifficulty.hard && sampledValue <= this.currentTier3Chance)) {
                     //spawn tier 3 unit
                     const u = this.spawnSingleUndeadUnit(category, 2);
                     if (u) {
                         unitsCreatedThisWave.push(u);
                     }
                     this.currentTier3Chance = this.baseTier3Chance;
-                } else if (sampledValue <= this.currentTier2Chance) {
+                } else if (this.spawnDifficulty === SpawnDifficulty.boss || sampledValue <= this.currentTier2Chance) {
+                    //For boss spawns, the weakest enemy type will be tier 2 and higher
+
                     //Tier 3 was not selected, so we must increase the chance to be chosen
                     this.currentTier3Chance += this.tier3ChanceModifier;
 
@@ -341,7 +392,25 @@ class SpawnData {
         if (categoryData) {
             const size = Object.values(categoryData)[tier].length;
             const randomIndex = Math.floor(Math.random() * size);
-            unitTypeId = Object.values(categoryData)[tier][randomIndex];
+
+            switch (tier) {
+                case 0:
+                    unitTypeId = categoryData.tierI[randomIndex];
+                    break;
+                case 1:
+                    unitTypeId = categoryData.tierII[randomIndex];
+
+                    break;
+                case 2:
+                    unitTypeId = categoryData.tierIII[randomIndex];
+
+                    break;
+                default:
+                    print("Failed to pick zombie from a valid tier!");
+                    break;
+            }
+
+            // unitTypeId = Object.values(categoryData)[tier][randomIndex];
         }
 
         if (!unitTypeId) {
@@ -380,7 +449,7 @@ class SpawnData {
         const currLoc = Location(currentPoint.x, currentPoint.y);
 
         //If y is greater than r*sin(theta) or x is greater than r*cos(theta) then
-        primaryAttackTargets.forEach((structureType) => {
+        primaryCapturableHumanTargets.forEach((structureType) => {
             //Checking attack points owned by Allied Human Forces
             forEachAlliedPlayer((p) => {
                 forEachUnitTypeOfPlayer(structureType, p, (u) => {
@@ -403,7 +472,7 @@ class SpawnData {
     }
 }
 
-const unitCategoryData = new Map<UnitCategory, { [key: string]: number[] }>([
+const unitCategoryData = new Map<UnitCategory, { tierI: number[]; tierII: number[]; tierIII: number[] }>([
     [
         "infantry",
         {
@@ -499,7 +568,7 @@ const unitCategoryData = new Map<UnitCategory, { [key: string]: number[] }>([
             ],
             tierII: [FourCC("ocat")],
             tierIII: [
-                UNITS.infernalMachine,
+                UNITS.blackCitadelMeatWagon,
                 //demon fire artillery
             ],
         },

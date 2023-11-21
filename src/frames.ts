@@ -5,6 +5,7 @@ import { playerStates } from "./players";
  */
 export function initFrames() {
     playerUnitRallyCheckbox();
+    showCurrentNight();
 }
 
 function playerUnitRallyCheckbox() {
@@ -113,6 +114,47 @@ function assignFrameChild() {}
 function releaseFrameChildren() {}
 // BlzFrameSetAllPoints FrameA will copy FrameB in size and position. FrameA will update when FrameB is changed later
 function imitateFrame() {}
+
+function showCurrentNight() {
+    const gameui = Frame.fromOrigin(ORIGIN_FRAME_GAME_UI, 0);
+
+    if (!gameui) {
+        return;
+    }
+
+    // const tooltipFrameBackGround = BlzCreateFrame("OptionsPanel", gameui.handle, 0, 0);
+    // const tooltipFrameBackGround = BlzCreateFrame("LumberBackdrop", gameui.handle, 0, 3);
+    // const tooltipFrameBackGround = BlzCreateFrame("EscMenuBackdrop", gameui.handle, 0, 0);
+    const tooltipFrameBackGround = BlzCreateFrame("QuestButtonBaseTemplate", gameui.handle, 0, 0);
+
+    // const tooltipFrameBackGround = BlzGetFrameByName("LogArea", 0);
+
+    if (!tooltipFrameBackGround) {
+        return;
+    }
+
+    BlzFrameSetAbsPoint(tooltipFrameBackGround, FRAMEPOINT_TOP, 0.5, 0.575);
+    BlzFrameSetSize(tooltipFrameBackGround, 0.12, 0.025);
+
+    // BlzFrameSetSize(tooltipFrameBackGround, 0.2, 0.025);
+    // -- Create the Text as child of the Background
+    const tooltipFrameText = BlzCreateFrameByType("TEXT", "nightTextDisplay", tooltipFrameBackGround, "", 0);
+
+    if (!tooltipFrameText) {
+        return;
+    }
+
+    // -- Copy Size and Position with a small offset.
+    BlzFrameSetPoint(tooltipFrameText, FRAMEPOINT_BOTTOMLEFT, tooltipFrameBackGround, FRAMEPOINT_BOTTOMLEFT, 0.01, 0.01);
+    BlzFrameSetPoint(tooltipFrameText, FRAMEPOINT_TOPRIGHT, tooltipFrameBackGround, FRAMEPOINT_TOPRIGHT, -0.01, -0.01);
+    // -- The background becomes the button's tooltip, the Text as child of the background will share the visibility
+    // BlzFrameSetTooltip(frame, tooltipFrameBackGround);
+    // -- Place the Tooltip above the Button
+    // BlzFrameSetPoint(tooltipFrameBackGround, FRAMEPOINT_BOTTOM, frame, FRAMEPOINT_TOP, 0, 0.01);
+    // -- Prevent the TEXT from taking mouse control
+    BlzFrameSetEnable(tooltipFrameText, true);
+    BlzFrameSetText(tooltipFrameText, "Nights Passed: 0");
+}
 
 // FRAMEPOINT_TOPLEFT
 // FRAMEPOINT_TOP

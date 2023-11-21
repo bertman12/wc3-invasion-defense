@@ -35,7 +35,7 @@ export class RoundManager {
 
     static startNextRound() {
         RoundManager.currentRound++;
-        
+
         if (RoundManager.currentRound >= 15) {
             print("Congratulations, you have won. The map is still in development with many more features to come.");
             print("Nights will continue forever now.");
@@ -58,7 +58,6 @@ export class RoundManager {
         print(`Night ${RoundManager.currentRound} has begun...`);
 
         RoundManager.roundStartSubscribers.forEach((cb) => {
-            // print("runing on night start!");
             cb(RoundManager.currentRound);
         });
 
@@ -70,6 +69,11 @@ export class RoundManager {
     static endCurrentRound() {
         print(`Night ${RoundManager.currentRound} has ended...`);
         SetTimeOfDay(12);
+
+        const nightTextFrame = BlzGetFrameByName("nightTextDisplay", 0);
+        if (nightTextFrame) {
+            BlzFrameSetText(nightTextFrame, `Nights Passed: ${RoundManager.currentRound}`);
+        }
 
         RoundManager.roundEndSubscribers.forEach((cb) => {
             cb(RoundManager.currentRound);
