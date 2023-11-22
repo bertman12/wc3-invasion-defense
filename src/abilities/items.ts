@@ -48,17 +48,10 @@ function handOfMidas() {
     t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_DAMAGED);
 
     t.addCondition(() => {
-        const attacker = Unit.fromHandle(GetAttacker());
         const victim = Unit.fromHandle(GetAttackedUnitBJ());
-        const u = Unit.fromEvent();
         const damageSource = Unit.fromHandle(GetEventDamageSource());
-        // print("unit damaged");
-        // print("attacker", attacker?.name);
-        // print("victim", victim?.name);
-        // print("u", u?.name);
-        // print("damageSource", damageSource?.name);
 
-        if (damageSource && victim && !damageSource.owner.isPlayerAlly(victim?.owner)) {
+        if (damageSource && victim && !damageSource.owner.isPlayerAlly(victim.owner)) {
             const i = GetItemOfTypeFromUnitBJ(damageSource.handle, FourCC("I007"));
             const itemProcChance = 14;
 
@@ -71,14 +64,14 @@ function handOfMidas() {
     });
 
     t.addAction(() => {
-        const u = Unit.fromHandle(GetAttackedUnitBJ());
-        const attacker = Unit.fromHandle(GetAttacker());
+        const victim = Unit.fromHandle(GetAttackedUnitBJ());
+        const damageSource = Unit.fromHandle(GetEventDamageSource());
 
-        if (u && attacker) {
-            const e = Effect.createAttachment("Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl", u, "origin");
+        if (victim && damageSource) {
+            const e = Effect.createAttachment("Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl", victim, "origin");
             const t = Timer.create();
 
-            adjustGold(attacker.owner, 20);
+            adjustGold(damageSource.owner, 20);
 
             t.start(1.5, false, () => {
                 e?.destroy();

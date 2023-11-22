@@ -69,8 +69,6 @@ export class RoundManager {
     }
 
     static endCurrentRound() {
-        print(`Night ${RoundManager.currentRound} has ended...`);
-
         SetTimeOfDay(12);
 
         const nightTextFrame = BlzGetFrameByName("nightTextDisplay", 0);

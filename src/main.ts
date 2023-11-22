@@ -41,8 +41,7 @@ function tsMain() {
             Sound.fromHandle(gg_snd_Hint)?.start();
             print(`[${tColor("Objective", "goldenrod")}] - Defend the capital city`);
             print("The elite nobles of the Kingdom of Alexandria must rally their forces to fight the undead. The capital city must survive!");
-            print("");
-            print(`Player 1 Type ${tColor("-start", "goldenrod")} to start the game.`);
+
         });
 
         setupPlayers();

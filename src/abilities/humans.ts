@@ -176,7 +176,8 @@ function trig_battleCharge() {
             caster,
             200,
             (u) => {
-                if (u.isUnitType(UNIT_TYPE_STRUCTURE) || u.isAlly(Players[0]) || allCapturableStructures.has(u.typeId)) {
+                if (u.isUnitType(UNIT_TYPE_STRUCTURE) || u.isAlly(caster.owner) || allCapturableStructures.has(u.typeId)) {
+                    // if (u.isUnitType(UNIT_TYPE_STRUCTURE) || u.isAlly(Players[0]) || allCapturableStructures.has(u.typeId)) {
                     return;
                 }
 

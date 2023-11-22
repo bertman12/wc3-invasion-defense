@@ -313,7 +313,7 @@ function playerLeaves() {
         const leaver = MapPlayer.fromHandle(GetTriggerPlayer());
 
         if (leaver) {
-            notifyPlayer(`${leaver.name} has been routed from the battlefield. Their remaining resources are split up amongst the remaining players.`);
+            notifyPlayer(`${leaver.name} has left. Their remaining resources are split up amongst the remaining players.`);
 
             const leaverGold = leaver.getState(PLAYER_STATE_RESOURCE_GOLD);
             const leaverLumber = leaver.getState(PLAYER_STATE_RESOURCE_LUMBER);

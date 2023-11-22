@@ -1,7 +1,7 @@
 import { MinimapIconPath, UNITS } from "src/shared/enums";
 import { RoundManager } from "src/shared/round-manager";
 import { primaryCapturableHumanTargets } from "src/towns";
-import { notifyPlayer } from "src/utils/misc";
+import { notifyPlayer, tColor } from "src/utils/misc";
 import { forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayer, forEachUnitTypeOfPlayer } from "src/utils/players";
 import { Effect, Point, Rectangle, Sound, Timer, Trigger, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
@@ -57,6 +57,8 @@ export function init_undead() {
         Sound.fromHandle(gg_snd_Hint)?.start();
 
         undeadDayStart();
+        print("");
+        print(`Player 1 Type ${tColor("-start", "goldenrod")} to start the game.`);
     });
 }
 
