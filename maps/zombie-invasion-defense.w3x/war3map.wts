@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Kingdom Zombie Defense alpha test 6
+Kingdom Zombie Defense alpha test 7
 }
 
 STRING 2
@@ -32,7 +32,7 @@ Player 1
 
 STRING 7
 {
-alpha testing #6
+alpha testing #7
 }
 
 STRING 9
@@ -509,7 +509,7 @@ STRING 142
 
 |cff00ff00Defenses|r - Strategically decide which areas to build defenses and hold.
 
-|cff00ff00Engineers|r - Trained at blacksmiths. Able to build defensive structures. 
+|cff00ff00Engineers|r - Trained at blacksmiths. Able to build economic and defensive structures. 
 
 |cff00ffffRivers|r - All units fighting in the river are severly hindered.
 
@@ -519,7 +519,7 @@ STRING 142
 
 |cffffff00Upgrades|r - Allied buildings provide upgrades to all units, as long as they are alive.
 
-|c00ffff00Economy|r - Allied buildings will also grant gold and lumber and food as long as they are alive. You may also purchase a farm for additional gold income.
+|c00ffff00Economy|r - Allied buildings will grant gold, lumber and food as long as they are alive. You may also purchase a farm for additional gold income and use the engineer to build more economic structures.
 
 Made by JediMindTrix/NihilismIsDeath
 
@@ -1990,12 +1990,6 @@ STRING 479
 (+8 Strength)
 }
 
-STRING 483
-// Items: I002 (Mask of the Frenzied Ghoul), Ubertip (Tooltip - Extended)
-{
-While wearing this mask, a Hero will recover hit points equal to <AIva,DataA1,%>% of the attack damage dealt to an enemy unit. |n|n -8 |cff8080ffIntelligence|r |n+5 |cff00ff00Agility|r
-}
-
 STRING 484
 // Units: hwtw (Scout Tower), Ubertip (Tooltip - Extended)
 {
@@ -2299,22 +2293,10 @@ STRING 562
 Grain Silo
 }
 
-STRING 563
-// Abilities: A01G (Grain Silo), Tip (Tooltip - Normal)
-{
-Human Laborer - Info Ability
-}
-
 STRING 565
 // Abilities: A01G (Grain Silo), EditorSuffix (Editor Suffix)
 {
 (Info Only)
-}
-
-STRING 568
-// Abilities: A01G (Grain Silo), Ubertip (Tooltip - Normal - Extended)
-{
-Increases your food cap by +5. After 5 days the structure will be destroyed. |n|nThe max mana of the structure increases every day to show how many days have passed.
 }
 
 STRING 569
@@ -2327,12 +2309,6 @@ STRING 570
 // Abilities: A01F (Peon Laborer), Ubertip (Tooltip - Normal - Extended)
 {
 After 2 days, the laborer will earn you (|cffffff001.5 x its cost|r) in gold. |n|nThe|cff8080ff max mana|r of the structure increases every day to show how many days have passed.
-}
-
-STRING 571
-// Units: h00N (Grain Silo), Ubertip (Tooltip - Extended)
-{
-Build a Grain Silo that raises your food cap by +5. This structure will be destroyed on the 5th day.
 }
 
 STRING 572
@@ -2369,5 +2345,29 @@ STRING 579
 // Abilities: A01I (Disband Unit), Ubertip (Tooltip - Normal - Extended)
 {
 Disbands the unit, freeing up food. 5 second cast time.|n|n|cffff0000Does not refund cost.|r
+}
+
+STRING 580
+// Items: I002 (Mask of the Frenzied Ghoul), Ubertip (Tooltip - Extended)
+{
+While wearing this mask, a Hero will recover hit points equal to <AIva,DataA1,%>% of the attack damage dealt to an enemy unit. |n|n |cffff0000-8|r |cff8080ffIntelligence|r |n+5 |cff00ff00Agility|r
+}
+
+STRING 581
+// Units: h00N (Grain Silo), Ubertip (Tooltip - Extended)
+{
+Build a Grain Silo that raises your food cap by +5. This structure will be destroyed after 5 days.
+}
+
+STRING 582
+// Abilities: A01G (Grain Silo), Tip (Tooltip - Normal)
+{
+Grain Silo - Info Ability
+}
+
+STRING 583
+// Abilities: A01G (Grain Silo), Ubertip (Tooltip - Normal - Extended)
+{
+Increases your food cap by +5. After 5 days the structure will be destroyed. |n|nThe|cff8080ff max mana|r of the structure increases every day to show how many days have passed.
 }
 

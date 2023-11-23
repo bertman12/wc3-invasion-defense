@@ -213,11 +213,11 @@ function grantStartOfDayBonuses() {
 
     const calculatedFoodCap = basePlayerFoodCap + foodRoundBonus + 2 * foodReserveStructures + 5 * grainSiloCount;
 
-    print("Base food ", basePlayerFoodCap);
-    print("Food round bonus ", foodRoundBonus);
-    print("Food reserve structure ", 2 * foodReserveStructures);
-    print("grain silos ", 5 * grainSiloCount);
-    print("New food cap - ", calculatedFoodCap);
+    // print("Base food ", basePlayerFoodCap);
+    // print("Food round bonus ", foodRoundBonus);
+    // print("Food reserve structure ", 2 * foodReserveStructures);
+    // print("grain silos ", 5 * grainSiloCount);
+    // print("New food cap - ", calculatedFoodCap);
 
     forEachAlliedPlayer((p) => {
         //Reset to 0
@@ -286,7 +286,7 @@ export function player_giveHumansStartOfDayResources(round: number) {
     const baseGold = 100;
     const baseWood = 100;
     const roundGold = 50 * round;
-    const roundWood = 35 * round;
+    const roundWood = 100 * round;
 
     const incomeBuildingGold = economicConstants.goldIncomeAbility * totalIncomeBuildings;
     const lumberIncome = economicConstants.lumberIncomeAbility * lumberAbilityCount;

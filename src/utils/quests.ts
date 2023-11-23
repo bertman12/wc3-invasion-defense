@@ -5,9 +5,8 @@ export function init_quests() {
     Timer.create().start(1, false, () => {
         addQuest(
             "Player 1 Commands",
-            `
+            `Only needs to be used once otherwise it will break the game timer cycle.
         ${tColor("-start", "goldenrod")} : starts the round.
-        ${tColor("-end", "goldenrod")} : ends the round.
         `,
             "ReplaceableTextures\\WorldEditUI\\StartingLocation.blp",
         );
@@ -18,9 +17,17 @@ export function init_quests() {
             \n${tColor("Main Objective", "goldenrod")}: Hold out for 15 nights until reinforcements arrive.
             \n${tColor("Upgrades", "goldenrod")}: Certain allied buildings that are not destroyed will provide upgrades.
             \n${tColor("Buying Units", "goldenrod")}: Buy units from allied buildings.
-            \n${tColor("Economy", "goldenrod")}: Farms, towns and castles will provide daily income. You can also buy farms to earn +50 gold per day.
         `,
             "ReplaceableTextures\\CommandButtons\\BTNPeasant.blp",
+        );
+        addQuest(
+            "Economy",
+            `\n
+            \n${tColor("Economy", "goldenrod")}: Farms, towns and castles will provide daily income. You can also buy farms to earn +50 gold per day.
+            \n${tColor("The Engineer", "goldenrod")}: The engineer can build laborers which will provide you gold after a set amount of days.
+        `,
+            "ReplaceableTextures\\CommandButtons\\BTNChestOfGold.blp",
+            false,
         );
 
         addQuest(
@@ -48,22 +55,14 @@ export function init_quests() {
         addQuest(
             "More Tips",
             `\n|cffff00ffObjective|r - Hold out for 15 nights until reinforcements arrive. 
-
-        \n|cff00ff00Starter Tip|r - Spend your starting money on some defenses, units and items. 
-        
-        \n|cff00ff00Defenses|r - Strategically decide which areas to build defenses and hold.
-        
-        \n|cff00ff00Engineers|r - Trained at blacksmiths. Able to build defensive structures. 
-        
-        \n|cff00ffffRivers|r - All units fighting in the river are severly hindered.
-        
-        \n|cffff0000Destroyed Buildings|r - Destroyed human buildings turn into undead ones at the start of night. Destroyed undead buildings turn into human at the start of day.
-        
-        \n|cffffff00Buying Units|r - Buy units at allied structures.
-        
-        \n|cffffff00Upgrades|r - Allied buildings provide upgrades to all units, as long as they are alive.
-        
-        \n|c00ffff00Economy|r - Allied buildings will also grant gold and lumber and food as long as they are alive. You may also purchase a farm for additional gold income.
+            \n|cff00ff00Starter Tip|r - Spend your starting money on some defenses, units and items. 
+            \n|cff00ff00Defenses|r - Strategically decide which areas to build defenses and hold.
+            \n|cff00ff00Engineers|r - Trained at blacksmiths. Able to build economic and defensive structures. 
+            \n|cff00ffffRivers|r - All units fighting in the river are severly hindered.
+            \n|cffff0000Destroyed Buildings|r - Destroyed human buildings turn into undead ones at the start of night. Destroyed undead buildings turn into human at the start of day.
+            \n|cffffff00Buying Units|r - Buy units at allied structures.
+            \n|cffffff00Upgrades|r - Allied buildings provide upgrades to all units, as long as they are alive.
+            \n|c00ffff00Economy|r - Allied buildings will grant gold, lumber and food as long as they are alive. You may also purchase a farm for additional gold income and use the engineer to build more economic structures.
         `,
             "ReplaceableTextures\\CommandButtons\\BTNBansheeRanger.blp",
             false,

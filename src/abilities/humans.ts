@@ -1,4 +1,4 @@
-import { ABILITIES, UNITS } from "src/shared/enums";
+import { ABILITIES, MinimapIconPath, UNITS } from "src/shared/enums";
 import { applyForce } from "src/shared/physics";
 import { RoundManager } from "src/shared/round-manager";
 import { allCapturableStructures } from "src/towns";
@@ -257,6 +257,18 @@ function generalHired() {
 
         if (soldUnit && [UNITS.infantryGeneral, UNITS.archerGeneral].includes(soldUnit?.typeId)) {
             notifyPlayer(`An ${soldUnit.name} has arrived at the capital.`);
+            const generalMinimapIcon = CreateMinimapIconOnUnit(soldUnit.handle, 0, 0, 255, MinimapIconPath.hero, FOG_OF_WAR_FOGGED);
+
+            const subTrig = Trigger.create();
+            subTrig.registerAnyUnitEvent(EVENT_PLAYER_UNIT_DEATH);
+
+            subTrig.addAction(() => {
+                const dyingUnit = Unit.fromHandle(GetDyingUnit());
+                if (dyingUnit === soldUnit && generalMinimapIcon) {
+                    DestroyMinimapIcon(generalMinimapIcon);
+                    subTrig.destroy();
+                }
+            });
         }
     });
 }

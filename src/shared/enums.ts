@@ -130,17 +130,17 @@ export type MINIMAP_ICONS =
 
 export enum MinimapIconPath {
     controlPoint = "UI\\Minimap\\MiniMap-ControlPoint.mdl",
-    questGiver = "UI\\Minimap\\MiniMap-ControlPoint.mdl",
-    questObjectiveBonus = "UI\\Minimap\\MiniMap-ControlPoint.mdl",
-    questObjectivePrimary = "UI\\Minimap\\MiniMap-ControlPoint.mdl",
-    questTurnIn = "UI\\Minimap\\MiniMap-ControlPoint.mdl",
-    hero = "UI\\Minimap\\MiniMap-ControlPoint.mdl",
-    item = "UI\\Minimap\\MiniMap-ControlPoint.mdl",
-    neutralBuilding = "UI\\Minimap\\MiniMap-ControlPoint.mdl",
+    questGiver = "UI\\Minimap\\MiniMap-QuestGiver.mdl",
+    questObjectiveBonus = "UI\\Minimap\\Minimap-QuestObjectiveBonus.mdl",
+    questObjectivePrimary = "UI\\Minimap\\Minimap-QuestObjectivePrimary.mdl",
+    questTurnIn = "UI\\Minimap\\Minimap-QuestTurnIn.mdl",
+    hero = "UI\\Minimap\\MiniMap-Hero.mdl",
+    item = "UI\\Minimap\\MiniMap-Item.mdl",
+    neutralBuilding = "UI\\Minimap\\MiniMap-NeutralBuilding.mdl",
     ping = "UI\\Minimap\\Minimap-Ping.mdl",
 }
 
-export const minimapIconPaths = new Set<MINIMAP_ICONS>([
+export const minimapIconPathsSet = new Set<MINIMAP_ICONS>([
     "UI\\Minimap\\MiniMap-ControlPoint.mdl",
     "UI\\Minimap\\MiniMap-Hero.mdl",
     "UI\\Minimap\\MiniMap-Item.mdl",

@@ -41,7 +41,6 @@ function tsMain() {
             Sound.fromHandle(gg_snd_Hint)?.start();
             print(`[${tColor("Objective", "goldenrod")}] - Defend the capital city`);
             print("The elite nobles of the Kingdom of Alexandria must rally their forces to fight the undead. The capital city must survive!");
-
         });
 
         setupPlayers();
@@ -80,8 +79,9 @@ function tsMain() {
         //10 second timer
         init_undead();
         //For looking at minimap icons
-        // Array.from(minimapIconPaths).forEach((path, index) => {
-        //   CreateMinimapIcon(-20000 + (index*4000), 0, 255, 255, 255, path, FOG_OF_WAR_FOGGED);
+        // Array.from(minimapIconPathsSet).forEach((path, index) => {
+        //     print(index, " - ", path);
+        //     CreateMinimapIcon(-20000 + index * 4000, 0, 255, 255, 255, path, FOG_OF_WAR_FOGGED);
         // });
     } catch (e) {
         print("An error occurred: ", e);
