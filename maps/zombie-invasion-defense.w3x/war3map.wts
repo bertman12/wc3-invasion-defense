@@ -199,18 +199,6 @@ STRING 56
 Farm 
 }
 
-STRING 57
-// Units: hcth (General), Name (Name)
-{
-General
-}
-
-STRING 58
-// Units: hcth (General), Tip (Tooltip - Basic)
-{
-Train a General
-}
-
 STRING 60
 // Abilities: S000 (Endurance Aura), EditorSuffix (Editor Suffix)
 {
@@ -938,7 +926,7 @@ Supply Camp
 }
 
 STRING 231
-// Units: hcth (General), Ubertip (Tooltip - Extended)
+// Units: hcth ([|cffffcc00Elite|r] - Infantry General), Ubertip (Tooltip - Extended)
 {
 An elite support unit, bolstering the morale of your troops. The General can also enlist footman. |n|nProvides an aura increasing movement and attack speed by 25%.
 }
@@ -1842,12 +1830,6 @@ STRING 447
 (Caltrops)
 }
 
-STRING 448
-// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
-{
-Able to build (|cffd45e19only during day|r) and repair structures.|n|nCan build a scout tower that can be upgraded into to other towers; a barricade; a supply tent which can heal units; and caltrops, which can severely hinder enemy units.
-}
-
 STRING 449
 // Abilities: A002 (Income), Ubertip (Tooltip - Normal - Extended)
 {
@@ -1919,7 +1901,7 @@ Places an invisible goblin land mine that explodes and causes 300 damage to unit
 }
 
 STRING 462
-// Abilities: A015 (Place Goblin Land Mine), Hotkey (Hotkey - Normal)
+// Units: hcth ([|cffffcc00Elite|r] - Infantry General), Hotkey (Hotkey)
 {
 G
 }
@@ -2129,5 +2111,227 @@ Increases the movement speed of the Hero when worn. Also allows provides an acti
 
 +30 Movespeed
 Active - Thrusts the hero forward. |n    25 |cff8080ffmana|r|n    |cffc0c0c012 second cooldown|r
+}
+
+STRING 513
+// Abilities: A01C (Flat Trueshot Aura), Name (Name)
+{
+Flat Trueshot Aura
+}
+
+STRING 515
+// Abilities: A01C (Flat Trueshot Aura), Tip (Tooltip - Normal)
+{
+Trueshot Aura (Flat)
+}
+
+STRING 516
+// Abilities: A01C (Flat Trueshot Aura), Ubertip (Tooltip - Normal - Extended)
+{
+An aura that gives nearby friendly units a 15 bonus damage to their ranged attacks.
+}
+
+STRING 519
+// Units: n00H ([|cffffcc00Elite|r] Archer General), Hotkey (Hotkey)
+{
+E
+}
+
+STRING 522
+// Units: h00N (Grain Silo), Hotkey (Hotkey)
+{
+G
+}
+
+STRING 523
+// Units: hcth ([|cffffcc00Elite|r] - Infantry General), Name (Name)
+{
+[|cffffcc00Elite|r] - Infantry General
+}
+
+STRING 524
+// Units: hcth ([|cffffcc00Elite|r] - Infantry General), Tip (Tooltip - Basic)
+{
+[|cffffcc00Elite|r] - Hire an Infantry General
+}
+
+STRING 525
+// Units: n00H ([|cffffcc00Elite|r] Archer General), Name (Name)
+{
+[|cffffcc00Elite|r] Archer General
+}
+
+STRING 526
+// Units: n00H ([|cffffcc00Elite|r] Archer General), Tip (Tooltip - Basic)
+{
+[|cffffcc00Elite|r] - Hire Archer General
+}
+
+STRING 527
+// Units: n00H ([|cffffcc00Elite|r] Archer General), Ubertip (Tooltip - Extended)
+{
+Elite ranged unit with critical strike that can also enlist archers herself. |n|nProvides an aura for ranged units that increases their damage by   +15.
+}
+
+STRING 528
+// Units: h00K (Peon Laborer), Name (Name)
+{
+Peon Laborer
+}
+
+STRING 529
+// Units: h00K (Peon Laborer), Hotkey (Hotkey)
+{
+P
+}
+
+STRING 530
+// Units: h00K (Peon Laborer), Tip (Tooltip - Basic)
+{
+Hire Peon Laborer
+}
+
+STRING 532
+// Units: h00L (Human Laborer), Name (Name)
+{
+Human Laborer
+}
+
+STRING 537
+// Units: h00L (Human Laborer), Hotkey (Hotkey)
+{
+H
+}
+
+STRING 540
+// Units: h00L (Human Laborer), Tip (Tooltip - Basic)
+{
+Hire Human Laborer
+}
+
+STRING 541
+// Units: h00M (Laborer's Guild), Name (Name)
+{
+Laborer's Guild
+}
+
+STRING 542
+// Abilities: A01D (Unit Inventory), EditorSuffix (Editor Suffix)
+{
+(Engineer)
+}
+
+STRING 543
+// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
+{
+Able to build (|cffd45e19only during day|r) and repair structures. Can also use items.|n|nCan build a scout tower that can be upgraded into to other towers; a barricade; a supply tent which can heal units; and caltrops, which can severely hinder enemy units.
+}
+
+STRING 544
+// Abilities: A01E (Human Laborer), Name (Name)
+{
+Human Laborer
+}
+
+STRING 545
+// Abilities: A01E (Human Laborer), Tip (Tooltip - Normal)
+{
+Human Laborer - Info Ability
+}
+
+STRING 547
+// Abilities: A01E (Human Laborer), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 550
+// Abilities: A01F (Peon Laborer), Tip (Tooltip - Normal)
+{
+Human Laborer - Info Ability
+}
+
+STRING 552
+// Abilities: A01F (Peon Laborer), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 553
+// Abilities: A01F (Peon Laborer), Name (Name)
+{
+Peon Laborer
+}
+
+STRING 554
+// Units: h00L (Human Laborer), Ubertip (Tooltip - Extended)
+{
+After 4 days, the laborer will return (|cffffff003 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 555
+// Units: h00K (Peon Laborer), Ubertip (Tooltip - Extended)
+{
+After 2 days, the peon will return (|cffffff001.5 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 558
+// Units: h00N (Grain Silo), Name (Name)
+{
+Grain Silo
+}
+
+STRING 559
+// Units: h00N (Grain Silo), Tip (Tooltip - Basic)
+{
+Build Grain Silo
+}
+
+STRING 560
+// Units: h00N (Grain Silo), Ubertip (Tooltip - Extended)
+{
+Build a Grain Silo that raises your good cap by +5. This structure will be destroyed on the 5th day.
+}
+
+STRING 561
+// Abilities: A015 (Place Goblin Land Mine), Hotkey (Hotkey - Normal)
+{
+G
+}
+
+STRING 562
+// Abilities: A01G (Grain Silo), Name (Name)
+{
+Grain Silo
+}
+
+STRING 563
+// Abilities: A01G (Grain Silo), Tip (Tooltip - Normal)
+{
+Human Laborer - Info Ability
+}
+
+STRING 565
+// Abilities: A01G (Grain Silo), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 566
+// Abilities: A01E (Human Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 4 days, the laborer will earn you (3 x its cost) in gold. |n|nThe max mana of the structure increases every day to show how many days have passed.
+}
+
+STRING 567
+// Abilities: A01F (Peon Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 2 days, the laborer will earn you (1.5 x its cost) in gold. |n|nThe max mana of the structure increases every day to show how many days have passed.
+}
+
+STRING 568
+// Abilities: A01G (Grain Silo), Ubertip (Tooltip - Normal - Extended)
+{
+Increases your food cap by +5. After 5 days the structure will be destroyed. |n|nThe max mana of the structure increases every day to show how many days have passed.
 }
 

@@ -373,3 +373,17 @@ potion of holy fire that casts holy light on a lot of nearby undead units , ever
 let players choose a starting bonus like
 
 -   administrative skills, grants bonus base food for the user
+
+-   create peon laborer that can only be placed on crop tiles , takes up a large space, will payoff in a couple turns granting 50% the cost back to the user if it survives
+
+-   create human laborer that returns double the money back but takes longer to complete
+
+you also have the option to complete the progress immediately but at 25% gains instead of the intended gains when it was completed completely.
+
+add a gold mine that produces a good amount of gold and would be valuable to protect
+
+add ranger general with trueshot aura
+
+to know when a laborer has completed their work increase their max mana every day, when it reaches 2 for peon and 4 for human grant the money. also add the ability to complete early for reduced price.
+
+let players build a granary that temporarily boosts food by 5 and permanently increases it by 2 once its time has expired.

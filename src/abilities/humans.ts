@@ -14,6 +14,7 @@ export function init_humanSpells() {
     trig_heroicLeap();
     purchaseStructure();
     trig_battleCharge();
+    generalHired();
 
     RoundManager.onDayStart(removeCaltrops);
 }
@@ -183,7 +184,7 @@ function trig_battleCharge() {
 
                 applyForce(getRelativeAngleToUnit(caster, u), u, 900, { obeyPathing: true });
 
-                if ( u.isAlly(caster.owner)) {
+                if (u.isAlly(caster.owner)) {
                     return;
                 }
 
@@ -226,5 +227,19 @@ const ownershipGrantingUnits = new Map<number, number>([[UNITS.farmTown, UNITS.n
 function removeCaltrops() {
     forEachAlliedPlayer((p) => {
         forEachUnitTypeOfPlayer(UNITS.caltrops, p, (u) => u.kill());
+    });
+}
+
+function generalHired() {
+    const t = Trigger.create();
+
+    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SELL);
+
+    t.addAction(() => {
+        const soldUnit = Unit.fromHandle(GetSoldUnit());
+
+        if (soldUnit && [UNITS.infantryGeneral, UNITS.archerGeneral].includes(soldUnit?.typeId)) {
+            notifyPlayer(`An ${soldUnit.name} has arrived at the capital.`);
+        }
     });
 }

@@ -1,7 +1,7 @@
 import { MapPlayer, Sound, Timer, Trigger, Unit, Widget } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
 import { economicConstants } from "./shared/constants";
-import { ABILITIES, PlayerIndices, UNITS, UpgradeCodes } from "./shared/enums";
+import { ABILITIES, PlayerIndices, TERRAIN_CODE, UNITS, UpgradeCodes } from "./shared/enums";
 import { RoundManager } from "./shared/round-manager";
 import { notifyPlayer, tColor } from "./utils/misc";
 import { adjustFoodCap, adjustGold, adjustLumber, forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayerWithAbility, forEachUnitTypeOfPlayer } from "./utils/players";
@@ -134,6 +134,7 @@ export function setupPlayers() {
     trig_playerBuysUnit();
     trig_heroPurchased();
     trig_heroDies();
+    trig_checkFarmLaborerPlacement();
     playerLeaves();
     forEachAlliedPlayer((p, index) => {
         //Create Sheep to buy hero
@@ -177,12 +178,13 @@ export function init_startingResources() {
 }
 
 function grantStartOfDayBonuses() {
+    const basePlayerFoodCap = 10;
     let totalSupplyBuildings = 0;
     let meleeWeaponUpgradeCount = 0;
     let armorUpgradeCount = 0;
     let foodReserveStructures = 0;
     let magicGuardStructures = 0;
-    const basePlayerFoodCap = 20;
+    let grainSiloCount = 0;
 
     const foodRoundBonus = 5 * RoundManager.currentRound;
 
@@ -202,9 +204,26 @@ function grantStartOfDayBonuses() {
         forEachUnitOfPlayerWithAbility(p, ABILITIES.magicGuardInfo, (u) => {
             magicGuardStructures++;
         });
+
+        forEachUnitOfPlayerWithAbility(p, ABILITIES.grainSiloInfo, (u) => {
+            //@ts-ignore
+            print("Unit build time: ", BlzGetUnitIntegerField(u.handle, UNIT_IF_BUILD_TIME));
+            // UNIT_IF_AGILITY
+            // == UnitBuildTime[UnitTypeId(u)])
+            /**
+             * currently you can gimmick the system if you build your granary before the night is completed. it will still
+             */
+            grainSiloCount++;
+        });
     });
 
-    const calculatedFoodCap = basePlayerFoodCap + foodRoundBonus + 2 * foodReserveStructures;
+    const calculatedFoodCap = basePlayerFoodCap + foodRoundBonus + 2 * foodReserveStructures + 5 * grainSiloCount;
+
+    print("Base food ", basePlayerFoodCap);
+    print("Food round bonus ", foodRoundBonus);
+    print("Food reserve structure ", 2 * foodReserveStructures);
+    print("grain silos ", 5 * grainSiloCount);
+    print("New food cap - ", calculatedFoodCap);
 
     forEachAlliedPlayer((p) => {
         //Reset to 0
@@ -337,5 +356,80 @@ function playerLeaves() {
                 }
             });
         }
+    });
+}
+
+/**
+ * Ensures farms are only placed on crop tiles.
+ */
+function trig_checkFarmLaborerPlacement() {
+    const t = Trigger.create();
+    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_CONSTRUCT_START);
+
+    t.addCondition(() => {
+        //Get the building being built
+        const u = Unit.fromEvent() as Unit;
+        if ([UNITS.humanLaborer, UNITS.peonLaborer].includes(u.typeId) && GetTerrainType(u.x, u.y) === TERRAIN_CODE.crops) {
+            return true;
+        }
+        //refunds laborer if its not built on crop tile
+        else if ([UNITS.humanLaborer, UNITS.peonLaborer].includes(u.typeId) && GetTerrainType(u.x, u.y) != TERRAIN_CODE.crops) {
+            const g = GetUnitGoldCost(u.typeId);
+            const w = GetUnitWoodCost(u.typeId);
+
+            const p = u.owner;
+
+            adjustGold(p, g);
+            adjustLumber(p, w);
+
+            print(`Laborer must be built on crop tiles. Refunding ${g} gold.`);
+            u.destroy();
+        }
+
+        //prevents anything but laborers to be built on crop tiles
+        // else if ([UNITS.humanLaborer, UNITS.peonLaborer].includes(u.typeId) && GetTerrainType(u.x, u.y) === TERRAIN_CODE.crops) {
+        //     const g = GetUnitGoldCost(u.typeId);
+        //     const w = GetUnitWoodCost(u.typeId);
+
+        //     print(`Only laborers can be built on crop tiles. Refunding ${g} gold and ${w} wood.`);
+
+        //     const p = u.owner;
+        //     adjustGold(p, g);
+        //     adjustLumber(p, w);
+
+        //     u.destroy();
+        // }
+
+        return false;
+    });
+}
+
+const laborerTypes = [
+    {
+        unitTypeCode: UNITS.peonLaborer,
+        goldCostMultiplierAward: 1.5,
+        maxManaRequirement: 2,
+    },
+    {
+        unitTypeCode: UNITS.humanLaborer,
+        goldCostMultiplierAward: 3,
+        maxManaRequirement: 4,
+    },
+];
+
+export function addProgressForLaborers() {
+    forEachAlliedPlayer((p) => {
+        laborerTypes.forEach((config) => {
+            forEachUnitTypeOfPlayer(config.unitTypeCode, p, (u) => {
+                u.maxMana++;
+                if (u.maxMana === config.maxManaRequirement) {
+                    u.kill();
+                    const unitGoldCost = GetUnitGoldCost(config.unitTypeCode);
+                    const goldAwarded = unitGoldCost * config.goldCostMultiplierAward;
+                    adjustGold(p, goldAwarded);
+                    print(`${u.owner.name} has been awarded ${tColor(goldAwarded.toString(), "yellow")} gold for ${u.name} completing their work.`);
+                }
+            });
+        });
     });
 }

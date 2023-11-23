@@ -1,4 +1,4 @@
-import { player_giveHumansStartOfDayResources, players_nightStart } from "src/players";
+import { addProgressForLaborers, player_giveHumansStartOfDayResources, players_nightStart } from "src/players";
 import { RoundManager } from "src/shared/round-manager";
 import { convertHumanToUndeadStructures, convertUndeadToHumanStructures } from "src/undead/conversion";
 import { undeadDayStart, undeadNightStart } from "src/undead/taxonomy";
@@ -21,6 +21,7 @@ function hook_startOfDay() {
 
         //Then do income calculation so players benefit from the converted undead on the same day they are converted
         player_giveHumansStartOfDayResources(RoundManager.currentRound);
+        addProgressForLaborers();
     });
 }
 

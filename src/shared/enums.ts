@@ -6,6 +6,7 @@ export enum ABILITIES {
     armorUpgrade = FourCC("A006"),
     weaponUpgrade = FourCC("A007"),
     magicGuardInfo = FourCC("A00W"),
+    grainSiloInfo = FourCC("A01G"),
 
     //Other
     charge = FourCC("A005"),
@@ -61,10 +62,14 @@ export enum UNITS {
     granary = FourCC("h00C"),
     caltrops = FourCC("h005"),
     citadelOfTheNorthernKnights = FourCC("h00E"),
+    humanLaborer = FourCC("h00L"),
+    peonLaborer = FourCC("h00K"),
 
     //Human units
     flyingMachine = FourCC("hgyr"),
     engineer = FourCC("n000"),
+    infantryGeneral = FourCC("hcth"),
+    archerGeneral = FourCC("n00H"),
 
     //Undead
     abomination = FourCC("uabo"),
@@ -144,3 +149,20 @@ export const minimapIconPaths = new Set<MINIMAP_ICONS>([
     "UI\\Minimap\\Minimap-QuestObjectivePrimary.mdl",
     "UI\\Minimap\\Minimap-QuestTurnIn.mdl",
 ]);
+
+export enum TERRAIN_CODE {
+    //Lordaeron Summer - 12 prefix
+    dirt = 1281651316,
+    grass = 1281847923,
+    darkGrass = 1281847908,
+    grassyDirt = 1281651303,
+    roughDirt = 1281651311,
+    rocks = 1282568043,
+    //Village Tileset - 14 prefix
+    stonePath = 1450407024,
+    cobblePath = 1449353840,
+    crops = 1365471856, //on lordaeron summer
+    //Nope
+    // blightMaybe = 12816513,
+    // blight_ = 1282568043
+}

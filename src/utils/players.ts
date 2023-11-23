@@ -42,6 +42,7 @@ export function forEachPlayer(cb: (player: MapPlayer, index?: number) => void) {
 }
 
 /**
+ * Executes the callback function for each unit matching the unit type for the player
  * @param unitType Unit Type Id or the Unit Type String "hcas", etc
  */
 export function forEachUnitTypeOfPlayer(unitType: number | string, player: MapPlayer, cb: (unit: Unit) => void) {
