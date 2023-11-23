@@ -15,7 +15,7 @@ export function init_humanSpells() {
     purchaseStructure();
     trig_battleCharge();
     generalHired();
-
+    trig_disbandUnit();
     RoundManager.onDayStart(removeCaltrops);
 }
 
@@ -103,6 +103,23 @@ function trig_heroicLeap() {
             applyForce(caster.facing, caster, 600, {
                 sustainedForceDuration: 0,
             });
+        }
+
+        return false;
+    });
+}
+
+function trig_disbandUnit() {
+    const trig = Trigger.create();
+
+    trig.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SPELL_FINISH);
+
+    trig.addCondition(() => {
+        const castedSpellId = GetSpellAbilityId();
+        const caster = Unit.fromEvent();
+
+        if (castedSpellId === ABILITIES.disbandUnit && caster) {
+            caster.destroy();
         }
 
         return false;

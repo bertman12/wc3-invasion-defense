@@ -18,10 +18,10 @@ function hook_startOfDay() {
 
         //Convert destroyed undead units into human units
         convertUndeadToHumanStructures();
+        addProgressForLaborers();
 
         //Then do income calculation so players benefit from the converted undead on the same day they are converted
         player_giveHumansStartOfDayResources(RoundManager.currentRound);
-        addProgressForLaborers();
     });
 }
 

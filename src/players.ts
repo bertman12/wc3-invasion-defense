@@ -206,14 +206,8 @@ function grantStartOfDayBonuses() {
         });
 
         forEachUnitOfPlayerWithAbility(p, ABILITIES.grainSiloInfo, (u) => {
-            //@ts-ignore
-            print("Unit build time: ", BlzGetUnitIntegerField(u.handle, UNIT_IF_BUILD_TIME));
-            // UNIT_IF_AGILITY
-            // == UnitBuildTime[UnitTypeId(u)])
-            /**
-             * currently you can gimmick the system if you build your granary before the night is completed. it will still
-             */
-            grainSiloCount++;
+            // constant native GetPlayerTypedUnitCount takes player whichPlayer, string unitName, boolean includeIncomplete, boolean includeUpgrades returns integer
+            grainSiloCount = GetPlayerTypedUnitCount(p.handle, `custom_h00N`, false, true);
         });
     });
 
@@ -415,9 +409,16 @@ const laborerTypes = [
         goldCostMultiplierAward: 3,
         maxManaRequirement: 4,
     },
+    {
+        unitTypeCode: UNITS.grainSilo,
+        goldCostMultiplierAward: 0,
+        maxManaRequirement: 2,
+    },
 ];
 
 export function addProgressForLaborers() {
+    // GetPlayerTypedUnitCount(p.handle, `custom_h00N`, false, true);
+
     forEachAlliedPlayer((p) => {
         laborerTypes.forEach((config) => {
             forEachUnitTypeOfPlayer(config.unitTypeCode, p, (u) => {
@@ -426,8 +427,11 @@ export function addProgressForLaborers() {
                     u.kill();
                     const unitGoldCost = GetUnitGoldCost(config.unitTypeCode);
                     const goldAwarded = unitGoldCost * config.goldCostMultiplierAward;
-                    adjustGold(p, goldAwarded);
-                    print(`${u.owner.name} has been awarded ${tColor(goldAwarded.toString(), "yellow")} gold for ${u.name} completing their work.`);
+
+                    if (goldAwarded) {
+                        adjustGold(p, goldAwarded);
+                        print(`${u.owner.name} has been awarded ${tColor(goldAwarded.toString(), "yellow")} gold for ${u.name} completing their work.`);
+                    }
                 }
             });
         });

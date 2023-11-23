@@ -2287,12 +2287,6 @@ STRING 559
 Build Grain Silo
 }
 
-STRING 560
-// Units: h00N (Grain Silo), Ubertip (Tooltip - Extended)
-{
-Build a Grain Silo that raises your good cap by +5. This structure will be destroyed on the 5th day.
-}
-
 STRING 561
 // Abilities: A015 (Place Goblin Land Mine), Hotkey (Hotkey - Normal)
 {
@@ -2317,21 +2311,63 @@ STRING 565
 (Info Only)
 }
 
-STRING 566
-// Abilities: A01E (Human Laborer), Ubertip (Tooltip - Normal - Extended)
-{
-After 4 days, the laborer will earn you (3 x its cost) in gold. |n|nThe max mana of the structure increases every day to show how many days have passed.
-}
-
-STRING 567
-// Abilities: A01F (Peon Laborer), Ubertip (Tooltip - Normal - Extended)
-{
-After 2 days, the laborer will earn you (1.5 x its cost) in gold. |n|nThe max mana of the structure increases every day to show how many days have passed.
-}
-
 STRING 568
 // Abilities: A01G (Grain Silo), Ubertip (Tooltip - Normal - Extended)
 {
 Increases your food cap by +5. After 5 days the structure will be destroyed. |n|nThe max mana of the structure increases every day to show how many days have passed.
+}
+
+STRING 569
+// Abilities: A01E (Human Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 4 days, the laborer will earn you (|cffffff003 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 570
+// Abilities: A01F (Peon Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 2 days, the laborer will earn you (|cffffff001.5 x its cost|r) in gold. |n|nThe|cff8080ff max mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 571
+// Units: h00N (Grain Silo), Ubertip (Tooltip - Extended)
+{
+Build a Grain Silo that raises your food cap by +5. This structure will be destroyed on the 5th day.
+}
+
+STRING 572
+// Abilities: A01H (Blink (Engineer)), Name (Name)
+{
+Blink (Engineer)
+}
+
+STRING 573
+// Abilities: A01H (Blink (Engineer)), Tip (Tooltip - Normal)
+{
+Blink
+}
+
+STRING 574
+// Abilities: A01H (Blink (Engineer)), Ubertip (Tooltip - Normal - Extended)
+{
+Blink a short distance.
+}
+
+STRING 575
+// Abilities: A01I (Disband Unit), Name (Name)
+{
+Disband Unit
+}
+
+STRING 576
+// Abilities: A01I (Disband Unit), Tip (Tooltip - Normal)
+{
+Disband Unit
+}
+
+STRING 579
+// Abilities: A01I (Disband Unit), Ubertip (Tooltip - Normal - Extended)
+{
+Disbands the unit, freeing up food. 5 second cast time.|n|n|cffff0000Does not refund cost.|r
 }
 

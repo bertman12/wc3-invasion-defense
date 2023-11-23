@@ -82,7 +82,7 @@ function addBlinkToBoots() {
             return;
         }
 
-        print("buying unit: ", u.name);
+        // print("buying unit: ", u.name);
 
         //Check if the player has blink dagger equipped
         const blinkDagger = GetItemOfTypeFromUnitBJ(u.handle, ITEMS.blinkDagger);
@@ -92,10 +92,10 @@ function addBlinkToBoots() {
             Item.fromHandle(blinkDagger)?.getAbility(FourCC("Albk"));
         }
 
-        print("blinkDagger", blinkDagger);
-        print("bootsOfSpeed", bootsOfSpeed);
+        // print("blinkDagger", blinkDagger);
+        // print("bootsOfSpeed", bootsOfSpeed);
 
-        print("Player picked up item");
+        // print("Player picked up item");
     });
 }
 

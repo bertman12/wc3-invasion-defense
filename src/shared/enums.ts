@@ -16,6 +16,7 @@ export enum ABILITIES {
     foodCapBonus = FourCC("A00I"),
     heroicLeap = FourCC("A00P"),
     purchaseFarmGrant = FourCC("A00S"),
+    disbandUnit = FourCC("A01I"),
 
     //Special
     shopShareAlly = FourCC("Aall"),
@@ -64,6 +65,7 @@ export enum UNITS {
     citadelOfTheNorthernKnights = FourCC("h00E"),
     humanLaborer = FourCC("h00L"),
     peonLaborer = FourCC("h00K"),
+    grainSilo = FourCC("h00N"),
 
     //Human units
     flyingMachine = FourCC("hgyr"),

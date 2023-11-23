@@ -72,7 +72,6 @@ function CreateAllItems()
 local itemID
 
 BlzCreateItemWithSkin(FourCC("I000"), -12448.3, 13480.1, FourCC("I000"))
-BlzCreateItemWithSkin(FourCC("I000"), 1510.1, -918.4, FourCC("I000"))
 BlzCreateItemWithSkin(FourCC("I000"), 17495.5, -29312.1, FourCC("I000"))
 end
 
@@ -205,7 +204,7 @@ u = BlzCreateUnitWithSkin(p, FourCC("hctw"), 5440.0, 17920.0, 270.000, FourCC("h
 u = BlzCreateUnitWithSkin(p, FourCC("hctw"), 5504.0, 17152.0, 270.000, FourCC("hctw"))
 u = BlzCreateUnitWithSkin(p, FourCC("hctw"), 4672.0, 17088.0, 270.000, FourCC("hctw"))
 u = BlzCreateUnitWithSkin(p, FourCC("htow"), -4416.0, 16128.0, 270.000, FourCC("htow"))
-u = BlzCreateUnitWithSkin(p, FourCC("h00M"), 1600.0, -384.0, 270.000, FourCC("h00M"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00M"), 1408.0, -704.0, 270.000, FourCC("h00M"))
 end
 
 function CreateUnitsForPlayer9()
