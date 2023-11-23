@@ -29,7 +29,7 @@ function getNextUndeadPlayer() {
 //30 seconds being the hard spawn, 15 second intervals being the normal spawn difficulty; maybe fr
 const waveIntervalOptions = [15, 30];
 
-const MAX_ZOMBIE_COUNT = 600 as const;
+const MAX_ZOMBIE_COUNT = 550 as const;
 
 let currentZombieCount = 0;
 let currentSpawns: SpawnData[] = [];
@@ -86,11 +86,11 @@ export function undeadDayStart() {
 
     spawns = [...tempSet];
 
+    //On the 14th night, all spawns are active
     if (RoundManager.currentRound >= 14) {
         spawns = validUndeadSpawns;
     }
 
-    //were off by 1 lol
     const spawnBoss = RoundManager.currentRound > 0 && RoundManager.currentRound % 3 === 0;
 
     const spawnConfigs = spawns.map((zone, index) => {
@@ -98,6 +98,14 @@ export function undeadDayStart() {
             return new SpawnData(zone, false, spawnBoss);
         }
         return new SpawnData(zone);
+    });
+
+    spawnConfigs.forEach((config) => {
+        const newTarget = config.chooseForceAttackTarget(Point.create(config.spawnRec?.centerX ?? 0, config.spawnRec?.centerY ?? 0));
+
+        if (newTarget) {
+            config.applyAttackTargetEffects(newTarget);
+        }
     });
 
     currentSpawns = spawnConfigs;
@@ -248,6 +256,7 @@ class SpawnData {
         });
 
         this.waveTimer = Timer.create();
+
         this.waveTimer.start(this.waveIntervalTime, true, () => {
             this.createWaveUnits();
             this.orderNewAttack(this.lastCreatedWaveUnits);
@@ -285,36 +294,8 @@ class SpawnData {
     private orderNewAttack(attackingUnits: Unit[]) {
         const newTarget = this.chooseForceAttackTarget(Point.create(this.spawnRec?.centerX ?? 0, this.spawnRec?.centerY ?? 0));
 
-        //Check for any idled units from this spawn and order them to attack the next target
-        const idledUnits: Unit[] = [];
-        if (this.units.length) {
-            this.units.forEach((u) => {
-                if (u.currentOrder === 0 || u.currentOrder === OrderId.Stop) {
-                    idledUnits.push(u);
-                }
-            });
-        }
-
         if (newTarget && newTarget !== this.currentAttackTarget) {
-            //Creates an effect at the target attack point for player to see where the next attack location is
-            const effect = Effect.create("Abilities\\Spells\\NightElf\\TrueshotAura\\TrueshotAura.mdl", newTarget.x, newTarget.y);
-
-            if (effect) {
-                effect.scale = 3;
-                effect.setColor(255, 255, 255);
-            }
-
-            //destroy the old effect
-            if (this.currentTargetSpecialEffect) {
-                this.currentTargetSpecialEffect.destroy();
-            }
-            this.currentTargetSpecialEffect = effect;
-
-            const icon = CreateMinimapIcon(newTarget.x, newTarget.y, 255, 100, 50, MinimapIconPath.ping, FOG_OF_WAR_FOGGED);
-            if (this.currentTargetMinimapIcon) {
-                DestroyMinimapIcon(this.currentTargetMinimapIcon);
-            }
-            this.currentTargetMinimapIcon = icon;
+            this.applyAttackTargetEffects(newTarget);
         }
 
         this.currentAttackTarget = newTarget;
@@ -325,11 +306,38 @@ class SpawnData {
             });
         }
 
-        if (idledUnits.length) {
-            idledUnits.forEach((u) => {
-                u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0);
+        //If there are any idle units, then make them attack the current target or 0,0
+        if (this.units.length) {
+            this.units.forEach((u) => {
+                if (u.currentOrder === 0 || u.currentOrder === OrderId.Stop) {
+                    u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0);
+                }
             });
         }
+    }
+
+    public applyAttackTargetEffects(target: Unit) {
+        //Creates an effect at the target attack point for player to see where the next attack location is
+        const effect = Effect.create("Abilities\\Spells\\NightElf\\TrueshotAura\\TrueshotAura.mdl", target.x, target.y);
+
+        if (effect) {
+            effect.scale = 3;
+            effect.setColor(255, 255, 255);
+        }
+
+        //destroy the old effect
+        if (this.currentTargetSpecialEffect) {
+            this.currentTargetSpecialEffect.destroy();
+        }
+
+        this.currentTargetSpecialEffect = effect;
+
+        const icon = CreateMinimapIcon(target.x, target.y, 255, 100, 50, MinimapIconPath.ping, FOG_OF_WAR_FOGGED);
+        if (this.currentTargetMinimapIcon) {
+            DestroyMinimapIcon(this.currentTargetMinimapIcon);
+        }
+
+        this.currentTargetMinimapIcon = icon;
     }
 
     public createWaveUnits() {
@@ -437,7 +445,8 @@ class SpawnData {
      *
      * We choose the next point of attack relative to the current point
      */
-    private chooseForceAttackTarget(currentPoint: Point): Unit | undefined {
+    public chooseForceAttackTarget(currentPoint: Point): Unit | undefined {
+        // print("Choosing force attack target");
         //So we want to iterate our towns.
         /**
          * @WARNING
@@ -495,8 +504,10 @@ const unitCategoryData = new Map<UnitCategory, { tierI: number[]; tierII: number
             ],
             tierIII: [
                 UNITS.abomination,
+                //siege golem
+                FourCC("nsgg"),
                 //infernal
-                FourCC("ninf"),
+                // FourCC("ninf"),
                 //doom guard
                 FourCC("nbal"),
                 //satyr hell caller
@@ -515,7 +526,9 @@ const unitCategoryData = new Map<UnitCategory, { tierI: number[]; tierII: number
                 //ice troll
                 FourCC("nitr"),
                 //void walker
-                FourCC("nvdw"),
+                FourCC("nska"),
+                //void walker
+                // FourCC("nvdw"),
                 //basic skeleton marksman?
             ],
             tierII: [
@@ -579,10 +592,25 @@ const unitCategoryData = new Map<UnitCategory, { tierI: number[]; tierII: number
         "hero",
         {
             //dread lord
-            tierI: [FourCC("Udre")],
+            tierI: [
+                //
+                UNITS.zombie,
+
+                // FourCC("Udre"),
+            ],
             //crypt lord
-            tierII: [FourCC("Ucrl")],
-            tierIII: [UNITS.boss_pitLord],
+            tierII: [
+                //
+                UNITS.zombie,
+
+                // FourCC("Ucrl"),
+            ],
+            tierIII: [
+                //
+                UNITS.zombie,
+
+                // UNITS.boss_pitLord,
+            ],
         },
     ],
 ]);

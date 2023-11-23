@@ -176,12 +176,17 @@ function trig_battleCharge() {
             caster,
             200,
             (u) => {
-                if (u.isUnitType(UNIT_TYPE_STRUCTURE) || u.isAlly(caster.owner) || allCapturableStructures.has(u.typeId)) {
-                    // if (u.isUnitType(UNIT_TYPE_STRUCTURE) || u.isAlly(Players[0]) || allCapturableStructures.has(u.typeId)) {
+                //to prevent moving things like rampart canon tower which is a flying unit
+                if (allCapturableStructures.has(u.typeId) || u.isUnitType(UNIT_TYPE_STRUCTURE)) {
                     return;
                 }
 
-                applyForce(getRelativeAngleToUnit(caster, u), u, 900);
+                applyForce(getRelativeAngleToUnit(caster, u), u, 900, { obeyPathing: true });
+
+                if ( u.isAlly(caster.owner)) {
+                    return;
+                }
+
                 const thunderEffect = Effect.create("Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl", u.x, u.y);
                 u.damageTarget(u.handle, 150, true, false, ATTACK_TYPE_CHAOS, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS);
 
@@ -198,6 +203,7 @@ function trig_battleCharge() {
 
         applyForce(caster.facing, caster, 900, {
             sustainedForceDuration: 1,
+            obeyPathing: true,
             onEnd() {
                 caster.setTimeScale(1);
                 SetUnitAnimationByIndex(caster.handle, 0);

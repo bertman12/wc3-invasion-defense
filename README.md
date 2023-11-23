@@ -363,3 +363,13 @@ add edge map protection so it doesnt crash the game if someone makes unit go out
 
 make it so the kingdom will send recapture forces to retake undead buildings.
 should use the same spawning attacking system as
+
+====
+
+potion of holy fire that casts holy light on a lot of nearby undead units , every half sec
+
+//remove the ability if the unit dies.
+
+let players choose a starting bonus like
+
+-   administrative skills, grants bonus base food for the user

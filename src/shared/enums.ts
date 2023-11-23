@@ -104,6 +104,9 @@ export enum UNITS {
 
 export enum ITEMS {
     farmGrant = FourCC("I003"),
+    blinkDagger = FourCC("I006"),
+    bootsOfSpeed = FourCC("I005"),
+    handOfMidas = FourCC("I007"),
 }
 
 //Can find looking up models for a spell at the Art - Target field

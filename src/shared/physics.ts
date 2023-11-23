@@ -10,6 +10,7 @@ interface ApplyForceConfig {
      * Default: 600
      */
     frictionConstant?: number;
+    obeyPathing?: boolean;
     whileActive?: (currentSpeed?: number, timeElapsed?: number) => void;
     onStart?: (currentSpeed?: number, timeElapsed?: number) => void;
     onEnd?: (currentSpeed?: number, timeElapsed?: number) => void;
@@ -37,6 +38,9 @@ export function applyForce(angle: number, unit: Unit, initialSpeed: number, conf
 
     timer.start(refreshInterval, true, () => {
         //if the unit's move speed vector is greater than the remaining applied force vector then we may stop the applied force function; should only run while the unit has the move order
+        if (config?.obeyPathing && currentSpeed > unit.moveSpeed) {
+            unit.issueImmediateOrder(OrderId.Stop);
+        }
 
         const xVelocity = (currentSpeed / updatesPerSecond) * Math.cos(Deg2Rad(angle));
         const yVelocity = (currentSpeed / updatesPerSecond) * Math.sin(Deg2Rad(angle));

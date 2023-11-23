@@ -228,8 +228,6 @@ function grantStartOfDayBonuses() {
 }
 
 export function player_giveHumansStartOfDayResources(round: number) {
-    print("Giving start of day resources for humans");
-
     //Creates supply horses for the player
     forEachAlliedPlayer((player) => {
         playerStates.get(player.id)?.createSupplyHorse();
