@@ -121,6 +121,9 @@ export enum ITEMS {
     handOfMidas = FourCC("I007"),
     recipe_blinkTreads = FourCC("I009"),
     blinkTreads = FourCC("I00A"),
+    sobiMask = FourCC("rwiz"),
+    greaterSobiMask = FourCC("I00B"),
+    recipe_greaterSobiMask = FourCC("I00C"),
 }
 
 //Can find looking up models for a spell at the Art - Target field

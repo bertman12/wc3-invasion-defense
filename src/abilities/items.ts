@@ -166,7 +166,7 @@ function itemRecipes() {
 
 function checkItemRecipeRequirements(unit: Unit, recipeItem: Item) {
     if (recipeItem.name.toLowerCase().includes("recipe")) {
-        let requiredItems: ItemRecipeRequirement[] | null = null;
+        let requiredItems: RecipeItemRequirement[] | null = null;
         let itemToCreateId = null;
 
         for (const [key, value] of itemRecipesMap.entries()) {
@@ -184,7 +184,7 @@ function checkItemRecipeRequirements(unit: Unit, recipeItem: Item) {
         /**
          * unique list of item types and their quantity and charges that we found on the unit
          */
-        const matchingItems: ItemRecipeRequirement[] = [];
+        const matchingItems: RecipeItemRequirement[] = [];
 
         //Loop through the units item slots
         for (let x = 0; x < 6; x++) {
@@ -217,17 +217,6 @@ function checkItemRecipeRequirements(unit: Unit, recipeItem: Item) {
                 return false;
             }) && matchingItems.length > 0;
 
-        // const satisfiesRecipe =
-        //     matchingItems.every((foundItemData) => {
-        //         const requiredItem = requiredItems?.find((reqItemData) => reqItemData.itemTypeId === foundItemData.itemTypeId);
-        //         if (requiredItem) {
-        //             print(`${requiredItem.itemTypeId}`)
-        //             return foundItemData.quantity >= requiredItem.quantity;
-        //         }
-
-        //         return false;
-        //     }) && matchingItems.length > 0;
-
         if (!itemToCreateId) {
             print("Missing the item type id of the item to create for this recipe: ", recipeItem.name);
         }
@@ -235,12 +224,11 @@ function checkItemRecipeRequirements(unit: Unit, recipeItem: Item) {
         if (satisfiesRecipe && itemToCreateId) {
             //add the item
 
-            requiredItems.forEach((req: ItemRecipeRequirement) => {
+            requiredItems.forEach((req: RecipeItemRequirement) => {
                 for (let x = 0; x < req.quantity; x++) {
                     for (let x = 0; x < 6; x++) {
                         const currItem = unit?.getItemInSlot(x);
                         if (currItem?.typeId === req.itemTypeId) {
-                            print(`Destroyed item: ${currItem?.name}`);
                             currItem?.destroy();
                         }
                     }
@@ -262,7 +250,7 @@ function checkItemRecipeRequirements(unit: Unit, recipeItem: Item) {
     }
 }
 
-interface ItemRecipeRequirement {
+interface RecipeItemRequirement {
     itemTypeId: ITEMS;
     quantity: number;
     charges: number;
@@ -273,14 +261,18 @@ interface RecipeItem {
     itemId: number;
 }
 
-const itemRecipesMap = new Map<RecipeItem, ItemRecipeRequirement[]>([
-    //
+const itemRecipesMap = new Map<RecipeItem, RecipeItemRequirement[]>([
     [
         { recipeId: ITEMS.recipe_blinkTreads, itemId: ITEMS.blinkTreads },
         [
-            { itemTypeId: ITEMS.bootsOfSpeed, quantity: 1, charges: 0 },
-            { itemTypeId: ITEMS.blinkDagger, quantity: 2, charges: 0 },
+            { itemTypeId: ITEMS.bootsOfSpeed, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.blinkDagger, quantity: 2, charges: 0 }, //
         ],
     ],
-    //
+    [
+        { recipeId: ITEMS.recipe_greaterSobiMask, itemId: ITEMS.greaterSobiMask },
+        [
+            { itemTypeId: ITEMS.sobiMask, quantity: 2, charges: 0 }, //
+        ],
+    ],
 ]);

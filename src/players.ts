@@ -53,10 +53,11 @@ function trig_heroDies() {
 
         if (u && u.isHero() && u.owner.race !== RACE_UNDEAD) {
             Sound.fromHandle(gg_snd_QuestFailed)?.start();
-            print(`${tColor("!", "goldenrod")} - ${u.owner.name}, your hero will revive in ${15 + u.level} seconds.`);
+            const respawnTime = 15 + u.level + RoundManager.currentRound;
+            print(`${tColor("!", "goldenrod")} - ${u.owner.name}, your hero will revive in ${respawnTime} seconds.`);
             const timer = Timer.create();
 
-            timer.start(15 + u.level, false, () => {
+            timer.start(respawnTime, false, () => {
                 u.revive(0, 0, true);
             });
 

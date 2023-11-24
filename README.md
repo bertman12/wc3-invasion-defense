@@ -429,3 +429,9 @@ for wood income we can let teh player build tree of ages, and its max mana will 
 let players individually upgrade their units, using troll berserker upgrade
 
 what if you also let the player combine towers too?
+
+perhaps there can be a spell book recipe that adds spells to your spellbook
+
+==
+
+item system is not checking quantity is met or exceeded and also will not build the item if you have more than the required amount for the item

@@ -502,9 +502,9 @@ end
 function CreateRegions()
 local we
 
-gg_rct_ZombieSpawn1 = Rect(7136.0, 18880.0, 8384.0, 20160.0)
-gg_rct_zombieSpawn2 = Rect(-10688.0, 19520.0, -9248.0, 21184.0)
-gg_rct_zNorthSpawn1 = Rect(224.0, 22784.0, 1536.0, 24256.0)
+gg_rct_ZombieSpawn1 = Rect(6432.0, 18912.0, 7680.0, 20192.0)
+gg_rct_zombieSpawn2 = Rect(-8768.0, 19072.0, -7808.0, 20192.0)
+gg_rct_zNorthSpawn1 = Rect(-416.0, 22080.0, 672.0, 23200.0)
 gg_rct_zWestSpawn1 = Rect(-13952.0, 4768.0, -12832.0, 5888.0)
 gg_rct_waygateBase = Rect(-224.0, -352.0, 224.0, 384.0)
 gg_rct_waygateNorth = Rect(-1664.0, 16480.0, -1152.0, 16800.0)

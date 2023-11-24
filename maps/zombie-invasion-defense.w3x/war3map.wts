@@ -2629,3 +2629,51 @@ STRING 664
 Purchase Blink Treads
 }
 
+STRING 665
+// Items: I00B (Greater Sobi Mask), Ubertip (Tooltip - Extended)
+{
+Increases the Hero's rate of mana regeneration by 50% when worn.
+}
+
+STRING 666
+// Items: I00B (Greater Sobi Mask), Name (Name)
+{
+Greater Sobi Mask
+}
+
+STRING 667
+// Items: I00B (Greater Sobi Mask), Tip (Tooltip - Basic)
+{
+Purchase Greater Sobi Mask
+}
+
+STRING 668
+// Abilities: A01O (Item Mana Regeneration), EditorSuffix (Editor Suffix)
+{
+ (50%)
+}
+
+STRING 669
+// Items: I00C ([|cffffcc00Recipe|r] Greater Sobi Mask), Ubertip (Tooltip - Extended)
+{
+Increases the Hero's rate of mana regeneration by 50% when worn.
+}
+
+STRING 670
+// Items: I00C ([|cffffcc00Recipe|r] Greater Sobi Mask), Name (Name)
+{
+[|cffffcc00Recipe|r] Greater Sobi Mask
+}
+
+STRING 671
+// Items: I00C ([|cffffcc00Recipe|r] Greater Sobi Mask), Tip (Tooltip - Basic)
+{
+Purchase [|cffffcc00Recipe|r] Greater Sobi Mask
+}
+
+STRING 672
+// Items: I00C ([|cffffcc00Recipe|r] Greater Sobi Mask), Description (Description)
+{
+Increases the Hero's rate of mana regeneration by 50% when worn.
+}
+
