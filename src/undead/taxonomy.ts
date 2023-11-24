@@ -85,9 +85,12 @@ export function undeadDayStart() {
     }
 
     spawns = [...tempSet];
-
     //On the 14th night, all spawns are active
     if (RoundManager.currentRound >= 14) {
+        spawns = validUndeadSpawns;
+    }
+    //Every 5th night, all spawns are active
+    else if (RoundManager.currentRound % 5 === 0) {
         spawns = validUndeadSpawns;
     }
 
@@ -171,6 +174,7 @@ class SpawnData {
     private spawnIcon: minimapicon | undefined;
     private currentTargetSpecialEffect: Effect | undefined;
     private currentTargetMinimapIcon: minimapicon | undefined;
+    private spawnPortalDisplay: Unit | undefined;
 
     constructor(spawn: rect, hideUI: boolean = false, spawnBoss: boolean = false) {
         this.hideUI = hideUI;
@@ -190,12 +194,12 @@ class SpawnData {
             this.spawnDifficulty = SpawnDifficulty.boss;
         }
 
-        if (RoundManager.currentRound >= 14) {
-            this.spawnDifficulty = SpawnDifficulty.final;
+        if (RoundManager.currentRound % 5 == 0) {
+            this.spawnDifficulty = SpawnDifficulty.boss;
         }
 
-        if (RoundManager.currentRound == 5) {
-            this.spawnDifficulty = SpawnDifficulty.hard;
+        if (RoundManager.currentRound >= 14) {
+            this.spawnDifficulty = SpawnDifficulty.final;
         }
 
         this.spawnAmountPerWave = this.waveIntervalTime === 15 ? this.totalSpawnCount : this.totalSpawnCount * 1.75;
@@ -222,6 +226,8 @@ class SpawnData {
         this.greatestUnitCountFromAllUnitCategories = Math.ceil(0.775 * this.spawnAmountPerWave);
         const { red, green, blue } = this.getMinimapRGB();
         this.spawnIcon = CreateMinimapIcon(this.spawnRec?.centerX ?? 0, this.spawnRec?.centerY ?? 0, red, green, blue, "UI\\Minimap\\MiniMap-Boss.mdl", FOG_OF_WAR_FOGGED);
+
+        this.spawnPortalDisplay = Unit.create(Players[15], UNITS.undeadSpawn, this.spawnRec?.centerX ?? 0, this.spawnRec?.centerY ?? 0, 305);
     }
 
     private getMinimapRGB() {
@@ -293,6 +299,8 @@ class SpawnData {
         if (this.trig_chooseNextTarget) {
             this.trig_chooseNextTarget.destroy();
         }
+
+        this.spawnPortalDisplay?.destroy();
     }
 
     private orderNewAttack(attackingUnits: Unit[]) {
@@ -498,6 +506,8 @@ const unitCategoryData = new Map<UnitCategory, { tierI: number[]; tierII: number
                 FourCC("nfgu"),
                 //giant skeletal warrior
                 FourCC("nsgk"),
+                //ghouls
+                FourCC("ugho"),
                 //
             ],
             tierII: [
@@ -511,7 +521,7 @@ const unitCategoryData = new Map<UnitCategory, { tierI: number[]; tierII: number
                 //siege golem
                 FourCC("nsgg"),
                 //infernal
-                // FourCC("ninf"),
+                FourCC("ninf"),
                 //doom guard
                 FourCC("nbal"),
                 //satyr hell caller
@@ -540,6 +550,8 @@ const unitCategoryData = new Map<UnitCategory, { tierI: number[]; tierII: number
                 FourCC("ucry"),
                 //fire archer
                 FourCC("nskf"),
+                //garg
+                FourCC("ugar"),
             ],
             tierIII: [
                 //nether drake - to fucking op lol

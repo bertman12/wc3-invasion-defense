@@ -38,21 +38,13 @@ export class RoundManager {
         // RoundManager.currentRound++;
         // }
 
-        if (RoundManager.currentRound >= 15) {
-            print("Congratulations, you have won. The map is still in development with many more features to come.");
-            print("Nights will continue forever now.");
-
-            forEachPlayer((p) => {
-                const clearFogState = FogModifier.create(Players[0], FOG_OF_WAR_VISIBLE, 0, 0, 25000, true, true);
-                clearFogState?.start();
-            });
-        }
-
         Sound.fromHandle(gg_snd_QuestNew)?.start();
         Sound.fromHandle(gg_snd_TheHornOfCenarius)?.start();
         ClearMapMusic();
         StopMusic(false);
-        PlayMusic(gg_snd_NightElfX1);
+        // PlayMusic(gg_snd_UndeadVictory);
+        // SetMapMusic
+        PlayMusic(gg_snd_Undead3);
 
         //Set to night time
         SetTimeOfDay(0);
@@ -62,6 +54,10 @@ export class RoundManager {
         RoundManager.roundStartSubscribers.forEach((cb) => {
             cb(RoundManager.currentRound);
         });
+
+        if (RoundManager.currentRound >= 15) {
+            TimerManager.nightTimeDuration = 300;
+        }
 
         TimerManager.startNightTimer(() => {
             RoundManager.endCurrentRound();
@@ -81,9 +77,23 @@ export class RoundManager {
             //I would like to hook into before income is applied and after
         });
 
-        ClearMapMusic();
-        StopMusic(false);
-        PlayMusic(gg_snd_IllidansTheme);
+        if (RoundManager.currentRound >= 15) {
+            print("Congratulations, you have won. The map is still in development with many more features to come.");
+
+            forEachPlayer((p) => {
+                const clearFogState = FogModifier.create(Players[0], FOG_OF_WAR_VISIBLE, 0, 0, 25000, true, true);
+                clearFogState?.start();
+            });
+
+            ClearMapMusic();
+            StopMusic(true);
+            PlayMusic(gg_snd_HeroicVictory);
+            // return;
+        } else {
+            // ClearMapMusic();
+            StopMusic(false);
+            PlayMusic(gg_snd_BloodElfTheme);
+        }
 
         Sound.fromHandle(gg_snd_QuestCompleted)?.start();
 
@@ -92,9 +102,11 @@ export class RoundManager {
             print("Supply horses have arrived at the capital. Use them to heal your units.");
         });
 
-        TimerManager.startDayTimer(() => {
-            RoundManager.startNextRound();
-        });
+        if (RoundManager.currentRound !== 15) {
+            TimerManager.startDayTimer(() => {
+                RoundManager.startNextRound();
+            });
+        }
 
         RoundManager.currentRound++;
     }

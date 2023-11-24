@@ -9,7 +9,7 @@ export const otherHumanCapturableStructures = new Set([UNITS.rampartCannonTower,
 
 export const primaryCapturableUndeadTargets = new Set([UNITS.blackCitadel, UNITS.infectedGranary, UNITS.templeOfTheDamned, UNITS.blackCitadelNorth, UNITS.blackCitadelTownHall]);
 
-export const otherCapturableUndeadStructures = new Set([UNITS.spiritTower, UNITS.undeadSentinel, UNITS.nerubianTower, UNITS.undeadBarracks, UNITS.undeadBlacksmith, UNITS.undeadLumberMill]);
+export const otherCapturableUndeadStructures = new Set([UNITS.spiritTower, UNITS.undeadSentinelGuard, UNITS.undeadSentinelCannon, UNITS.nerubianTower, UNITS.undeadBarracks, UNITS.undeadBlacksmith, UNITS.undeadLumberMill]);
 
 export const allCapturableStructures = new Set([...primaryCapturableHumanTargets, ...otherHumanCapturableStructures, ...primaryCapturableUndeadTargets, ...otherCapturableUndeadStructures]);
 

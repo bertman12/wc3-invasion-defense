@@ -137,3 +137,24 @@ function handOfMidas() {
         }
     });
 }
+
+// Player should pick up recipes when needed. if they are missing items then the recipe cost is refunded
+function itemRecipes() {
+    //takes a set of items
+    //unit or unit clicks
+    const t = Trigger.create();
+
+    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_PICKUP_ITEM);
+    t.addAction(() => {
+        const i = Item.fromEvent();
+
+        print(i?.name);
+
+        if (i?.name.toLowerCase().includes("recipe")) {
+            print("item has recipe in its name!");
+            //check if the player has all the required items.
+            //if not then refund gold
+        }
+    });
+    //
+}

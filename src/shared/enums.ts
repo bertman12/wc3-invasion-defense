@@ -72,6 +72,7 @@ export enum UNITS {
     //Human units
     flyingMachine = FourCC("hgyr"),
     engineer = FourCC("n000"),
+    farmHand = FourCC("h00Q"),
     infantryGeneral = FourCC("hcth"),
     archerGeneral = FourCC("n00H"),
 
@@ -100,12 +101,14 @@ export enum UNITS {
     blackCitadelTownHall = FourCC("u00C"),
     spiritTower = FourCC("u005"),
     infectedGranary = FourCC("h00H"),
-    undeadSentinel = FourCC("u007"),
+    undeadSentinelGuard = FourCC("u007"),
+    undeadSentinelCannon = FourCC("u00G"),
     templeOfTheDamned = FourCC("utod"),
     nerubianTower = FourCC("uzg2"),
     undeadLumberMill = FourCC("u008"),
     undeadBlacksmith = FourCC("u00A"),
     undeadBarracks = FourCC("u009"),
+    undeadSpawn = FourCC("u00F"),
 
     //Triggering Purposes
     nullUnit = FourCC("n008"),

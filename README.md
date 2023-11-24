@@ -417,3 +417,13 @@ same with grain silos
 show a portal where the undead spawns are.
 
 add some icons with tooltips so users can see the breakdown for food lumber and gold income
+
+lets have some players be able to build blacksmiths of their own but tax them every day for owning it.
+
+each one is 10% of your income.
+
+===
+
+for wood income we can let teh player build tree of ages, and its max mana will grant the player
+
+

@@ -40,7 +40,7 @@ function tsMain() {
             Sound.fromHandle(gg_snd_U08Archimonde19)?.start();
             Sound.fromHandle(gg_snd_Hint)?.start();
             print(`[${tColor("Objective", "goldenrod")}] - Defend the capital city`);
-            print("The elite nobles of the Kingdom of Alexandria must rally their forces to fight the undead. The capital city must survive!");
+            print("The Heroes of the Kingdom of Alexandria must rally their forces to fight the undead. The capital city must survive!");
         });
 
         setupPlayers();
@@ -52,7 +52,7 @@ function tsMain() {
         //Environment setup
         SuspendTimeOfDay(true);
         SetTimeOfDay(12);
-        ClearMapMusic();
+        // ClearMapMusic();
         StopMusic(false);
         PlayMusic(gg_snd_NightElfX1);
 
@@ -66,6 +66,9 @@ function tsMain() {
                 const clearFogState = FogModifier.create(p, FOG_OF_WAR_VISIBLE, 0, 0, 25000, true, true);
                 clearFogState?.start();
             }
+
+            // SetPlayerMaxHeroesAllowed(1, p.handle);
+
             // clearFogState?.destroy();
         });
 

@@ -925,12 +925,6 @@ STRING 231
 An elite support unit, bolstering the morale of your troops. The General can also enlist footman. |n|nProvides an aura increasing movement and attack speed by 25%.
 }
 
-STRING 232
-// Units: hsor (Sorceress), Ubertip (Tooltip - Extended)
-{
-Does moderate magic damage from attacks and can cast mass teleport.
-}
-
 STRING 233
 // Upgrades: R001 (Submerge), Name (Name)
 {
@@ -1166,12 +1160,6 @@ STRING 290
 (Converted Structure)
 }
 
-STRING 291
-// Units: u007 (Undead Sentinel), Name (Name)
-{
-Undead Sentinel
-}
-
 STRING 292
 // Units: n008 (Purchase Farm Grant), Name (Name)
 {
@@ -1310,16 +1298,6 @@ STRING 321
 Force Boots
 }
 
-STRING 324
-// Abilities: A00J (Lumber Income - Info Ability), Ubertip (Tooltip - Normal - Extended)
-{
-Grants |cff008000+35 lumber|r at the start of each day to all players.
-
-If you own the structure, you get double the gold.
-
-
-}
-
 STRING 325
 // Units: h00H (Infected Granary), Name (Name)
 {
@@ -1348,12 +1326,6 @@ STRING 332
 // Units: h00F (Barricade), Name (Name)
 {
 Barricade
-}
-
-STRING 333
-// Units: O003 (Demigod), Ubertip (Tooltip - Extended)
-{
-An ancient demigod. |n|nCan learn Cleaving Attack, Endurance Aura, War Stomp and Reincarnation. Has ability to use Battle Charge.
 }
 
 STRING 334
@@ -1620,12 +1592,6 @@ STRING 401
 Fires shards of ice at a slow rate. Good at slowing down enemies. |n|n1000 range.
 }
 
-STRING 402
-// Units: O003 (Demigod), Tip (Tooltip - Basic)
-{
-[|cffff0000Hard|r] Summon Demigod
-}
-
 STRING 403
 // Abilities: A010 (Armor Reduction Aura), Name (Name)
 {
@@ -1880,18 +1846,6 @@ STRING 462
 // Units: hcth ([|cffffcc00Elite|r] - Infantry General), Hotkey (Hotkey)
 {
 G
-}
-
-STRING 463
-// Units: Ntin (Tinker), Ubertip (Tooltip - Extended)
-{
-Cunning Hero, exceptional at disrupting battles and enduring damage. Can learn Pocket Factory, Cluster Rockets, Engineering Upgrade and Robo-Goblin.|n|n[New] - Can also place mines.    |n|n|cffffcc00Attacks land units.|r
-}
-
-STRING 464
-// Units: Nplh (Pit Lord), Ubertip (Tooltip - Extended)
-{
-Warrior Hero, adept at terrorizing enemies. Can learn Rain of Fire, Howl of Terror, Cleaving Attack, and Doom. |n|nCan cast Battle Charge, charging in his current direction knocking enemies out of his way. |n|n|cffffcc00Attacks land units.|r
 }
 
 STRING 466
@@ -2240,7 +2194,7 @@ Build Grain Silo
 }
 
 STRING 561
-// Abilities: A015 (Place Goblin Land Mine), Hotkey (Hotkey - Normal)
+// Units: h00R (Stone of Fortification), Hotkey (Hotkey)
 {
 G
 }
@@ -2365,12 +2319,6 @@ STRING 592
 D
 }
 
-STRING 594
-// Units: h00O (Druid Laborer), Ubertip (Tooltip - Extended)
-{
-After 5 days, the laborer will return (|cffffff001.8 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
-}
-
 STRING 595
 // Abilities: A01J (Druid Laborer), Name (Name)
 {
@@ -2381,12 +2329,6 @@ STRING 596
 // Abilities: A01J (Druid Laborer), Tip (Tooltip - Normal)
 {
 Druid Laborer - Info Ability
-}
-
-STRING 597
-// Abilities: A01J (Druid Laborer), Ubertip (Tooltip - Normal - Extended)
-{
-After 5 days, the laborer will earn you (|cffffff001.8 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
 }
 
 STRING 598
@@ -2477,5 +2419,171 @@ STRING 618
 // Units: h00N (Grain Silo), Ubertip (Tooltip - Extended)
 {
 Build a Grain Silo that raises your food cap by +5. |n|n|cffffcc00This structure will be destroyed after 5 days.|r
+}
+
+STRING 622
+// Abilities: A01H (Blink (Engineer)), Hotkey (Hotkey - Normal)
+{
+R
+}
+
+STRING 623
+// Abilities: A01L (Bloodlust), EditorSuffix (Editor Suffix)
+{
+ (Sorceress)
+}
+
+STRING 624
+// Units: hsor (Sorceress), Ubertip (Tooltip - Extended)
+{
+Does moderate magic damage from attacks and can cast mass teleport and blood lust.
+}
+
+STRING 625
+// Units: u00F (|cffff0000Undead Spawn|r), EditorSuffix (Name - Editor Suffix)
+{
+(Converted Structure)
+}
+
+STRING 626
+// Units: u00F (|cffff0000Undead Spawn|r), Name (Name)
+{
+|cffff0000Undead Spawn|r
+}
+
+STRING 627
+// Units: h00Q (Farm Hand), Name (Name)
+{
+Farm Hand
+}
+
+STRING 628
+// Units: h00Q (Farm Hand), Tip (Tooltip - Basic)
+{
+Train Farm Hand
+}
+
+STRING 629
+// Units: h00Q (Farm Hand), Ubertip (Tooltip - Extended)
+{
+Able to hire laborers to work the farm and also build grain silo's to temporarily increase your food cap.
+}
+
+STRING 630
+// Units: h00Q (Farm Hand), Hotkey (Hotkey)
+{
+A
+}
+
+STRING 631
+// Units: h00R (Stone of Fortification), Name (Name)
+{
+Stone of Fortification
+}
+
+STRING 634
+// Abilities: A015 (Place Goblin Land Mine), Hotkey (Hotkey - Normal)
+{
+G
+}
+
+STRING 635
+// Units: h00R (Stone of Fortification), Tip (Tooltip - Basic)
+{
+Build Stone of Fortification
+}
+
+STRING 638
+// Units: h00O (Druid Laborer), Ubertip (Tooltip - Extended)
+{
+After 5 days, the laborer will return (|cffffff002 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 639
+// Abilities: A01J (Druid Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 5 days, the laborer will earn you (|cffffff002 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 640
+// Abilities: A01M (Devotion Aura), EditorSuffix (Editor Suffix)
+{
+ (Stone of Fortification)
+}
+
+STRING 644
+// Units: h00R (Stone of Fortification), Ubertip (Tooltip - Extended)
+{
+Builds a Stone of Fortification, granting nearby units and structures in 1200 range +6 armor.
+}
+
+STRING 645
+// Abilities: A01N (Roar), EditorSuffix (Editor Suffix)
+{
+(Beast Master)
+}
+
+STRING 646
+// Abilities: A01N (Roar), Ubertip (Tooltip - Normal - Extended)
+{
+Gives nearby friendly units a 35% bonus to damage. |nLasts 60 seconds.
+}
+
+STRING 648
+// Units: Ntin (Tinker), Ubertip (Tooltip - Extended)
+{
+Cunning Hero, exceptional at disrupting battles and enduring damage. Can learn Pocket Factory, Cluster Rockets, Engineering Upgrade and Robo-Goblin.|n|n[|cff00ff00New|r] - Can set Goblin Land Mines every minute that deal 300 damage in a small area.
+}
+
+STRING 649
+// Units: Nplh (Pit Lord), Ubertip (Tooltip - Extended)
+{
+Warrior Hero, adept at terrorizing enemies. Can learn Rain of Fire, Howl of Terror, Cleaving Attack, and Doom.|n|n[|cff00ff00New|r] - Can cast battle charge, causing the hero to charge in their facing direction knocking back and dealing 150 damage to enemies.
+}
+
+STRING 650
+// Units: O003 (Demigod), Ubertip (Tooltip - Extended)
+{
+An ancient demigod. Can learn Cleaving Attack, Endurance Aura, War Stomp and Reincarnation. Has ability to use Battle Charge. |n|n[|cff00ff00New|r] - Can cast battle charge, causing the hero to charge in their facing direction knocking back and dealing 150 damage to enemies.
+}
+
+STRING 651
+// Units: Nbst (Beastmaster), Ubertip (Tooltip - Extended)
+{
+Warrior Hero, adept at summoning beasts into battle. Can learn Summon Bear, Summon Quilbeast, Summon Hawk, and Stampede. |n|n[|cff00ff00New|r] Able to cast roar giving allies +35% damage. His engineers can also build Stone of Fortification granting +6 armor to allies and structures in 1200 range.
+}
+
+STRING 652
+// Abilities: A01M (Devotion Aura), Ubertip (Tooltip - Normal - Extended)
+{
+Gives 6 additional armor to nearby friendly units and structures in 1200 range.
+}
+
+STRING 653
+// Abilities: A00J (Lumber Income - Info Ability), Ubertip (Tooltip - Normal - Extended)
+{
+Grants |cff008000+50 lumber|r at the start of each day to all players.
+
+If you own the structure, you get double the gold.
+
+
+}
+
+STRING 654
+// Units: O003 (Demigod), Tip (Tooltip - Basic)
+{
+Summon Demigod
+}
+
+STRING 655
+// Units: u007 ([|cffffcc00Rampart Guard Tower|r] Undead Sentinel), Name (Name)
+{
+[|cffffcc00Rampart Guard Tower|r] Undead Sentinel
+}
+
+STRING 656
+// Units: u00G ([|cffffcc00Rampart Cannon Tower|r] Undead Sentinel), Name (Name)
+{
+[|cffffcc00Rampart Cannon Tower|r] Undead Sentinel
 }
 

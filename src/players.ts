@@ -103,13 +103,17 @@ function trig_heroPurchased() {
             return true;
         }
 
+        // const createdUnit = Unit.fromHandle(GetSoldUnit()) as Unit;
+
+        // createdUnit?.destroy();
+
         return false;
     });
 
     t.addAction(() => {
         const buyingUnit = Unit.fromHandle(GetBuyingUnit()) as Unit;
         buyingUnit.kill();
-
+        const seller = Unit.fromHandle(GetSellingUnit());
         const createdUnit = Unit.fromHandle(GetSoldUnit()) as Unit;
         const playerState = playerStates.get(createdUnit.owner.id);
 
@@ -121,15 +125,21 @@ function trig_heroPurchased() {
         createdUnit.y = -300;
         createdUnit?.addItemById(FourCC("ankh"));
         createdUnit?.addItemById(FourCC("stel"));
+        seller?.select(false);
+        createdUnit.select(true);
 
         SetCameraPositionForPlayer(buyingUnit.owner.handle, createdUnit.x, createdUnit.y);
 
         playerState?.createSupplyHorse();
 
         const engineer = Unit.create(createdUnit.owner, UNITS.engineer, -300 + createdUnit.owner.id * 50, 300);
-        if (engineer) {
+        const farmHand = Unit.create(createdUnit.owner, UNITS.farmHand, -300 + createdUnit.owner.id * 50, 300);
+
+        if (engineer && farmHand) {
             engineer.setUseFood(false);
+            farmHand.setUseFood(false);
             engineer.issueTargetOrder(OrderId.Move, playerState?.playerHero as Widget);
+            farmHand.issueTargetOrder(OrderId.Move, playerState?.playerHero as Widget);
         }
     });
 }
@@ -285,12 +295,16 @@ export function player_giveHumansStartOfDayResources(round: number) {
                 adjustGold(p, economicConstants.lumberIncomeAbility);
             }
         });
+
+        // forEachUnitTypeOfPlayer(UNITS.farmTown, p, (u) => {
+        //     print("farm grant ability level: ", GetUnitAbilityLevel(u.handle, ABILITIES.purchaseFarmGrant));
+        // });
     });
 
     grantStartOfDayBonuses();
 
     const baseGold = 100;
-    const baseWood = 100;
+    const baseWood = 150;
     const roundGold = 50 * round;
     const roundWood = 50 * round;
 
@@ -417,8 +431,8 @@ const laborerTypes = [
     },
     {
         unitTypeCode: UNITS.druidLaborer,
-        goldCostMultiplierAward: 1.8,
-        maxManaRequirement: 4,
+        goldCostMultiplierAward: 2,
+        maxManaRequirement: 5,
     },
     {
         unitTypeCode: UNITS.acolyteSlaveLaborer,
@@ -435,13 +449,12 @@ const laborerTypes = [
 
 export function addProgressForLaborers() {
     // GetPlayerTypedUnitCount(p.handle, `custom_h00N`, false, true);
-
     forEachAlliedPlayer((p) => {
         laborerTypes.forEach((config) => {
             forEachUnitTypeOfPlayer(config.unitTypeCode, p, (u) => {
                 u.maxMana++;
 
-                u.setVertexColor(0, 255, 0, 255);
+                // u.setVertexColor(0, 255, 0, 255);
 
                 if (u.maxMana === config.maxManaRequirement) {
                     const e = Effect.createAttachment("Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl", u, "origin");
@@ -473,12 +486,11 @@ function laborerBuilt() {
     t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_CONSTRUCT_FINISH);
 
     t.addAction(() => {
-        print("unit finished building!");
         const u = Unit.fromEvent();
 
         if (u && TimerManager.isDayTime()) {
             u.setAnimation("attack");
-            u.queueAnimation("attack");
+            u.addAnimationProps("channel", true);
             // u.maxMana++;
         }
     });

@@ -12,11 +12,12 @@ export function setupUndeadUnitPreview() {
                 u.addAbility(FourCC("Aall"));
                 u.setField(UNIT_RF_HIT_POINTS_REGENERATION_RATE, 10);
                 u.setField(UNIT_RF_MANA_REGENERATION, -100);
+                //@ts-ignore
+                // u.setField(UNIT_IF_MOVE_TYPE, 3);
+                // ConvertMoveType();
             }
 
             return true;
         });
     }
 }
-
-

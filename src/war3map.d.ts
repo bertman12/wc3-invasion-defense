@@ -21,3 +21,5 @@ declare var gg_snd_TheHornOfCenarius: sound;
 declare var gg_snd_SargerasRoar: sound;
 declare var gg_snd_SargerasLaugh: sound;
 declare var gg_snd_U08Archimonde19: sound;
+declare var gg_snd_HeroicVictory: string;
+declare var gg_snd_BloodElfTheme: string;

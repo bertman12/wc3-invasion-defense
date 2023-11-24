@@ -1,5 +1,5 @@
 export const economicConstants = {
-    lumberIncomeAbility: 35,
+    lumberIncomeAbility: 50,
     goldIncomeAbility: 50,
     // suppliesIncomeAbility: 50,
     foodIncomeAbility: 5,
