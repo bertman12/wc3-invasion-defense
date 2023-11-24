@@ -119,6 +119,8 @@ export enum ITEMS {
     blinkDagger = FourCC("I006"),
     bootsOfSpeed = FourCC("I005"),
     handOfMidas = FourCC("I007"),
+    recipe_blinkTreads = FourCC("I009"),
+    blinkTreads = FourCC("I00A"),
 }
 
 //Can find looking up models for a spell at the Art - Target field

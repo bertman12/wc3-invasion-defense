@@ -426,4 +426,6 @@ each one is 10% of your income.
 
 for wood income we can let teh player build tree of ages, and its max mana will grant the player
 
+let players individually upgrade their units, using troll berserker upgrade
 
+what if you also let the player combine towers too?

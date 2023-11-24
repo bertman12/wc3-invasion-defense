@@ -276,7 +276,7 @@ class SpawnData {
     public cleanupSpawn() {
         this.units.forEach((u, index) => {
             if (u) {
-                if (Math.random() * 100 >= 10) {
+                if (Math.random() * 100 >= 15) {
                     u.kill();
                 }
             }

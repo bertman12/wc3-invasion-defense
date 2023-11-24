@@ -2587,3 +2587,45 @@ STRING 656
 [|cffffcc00Rampart Cannon Tower|r] Undead Sentinel
 }
 
+STRING 658
+// Items: I009 ([|cffffcc00Recipe|r] Blink Treads), Ubertip (Tooltip - Extended)
+{
+Increases the movement speed of the Hero when worn and allows the hero to blink.|n|n+60 Movespeed
+}
+
+STRING 659
+// Items: I009 ([|cffffcc00Recipe|r] Blink Treads), Name (Name)
+{
+[|cffffcc00Recipe|r] Blink Treads
+}
+
+STRING 660
+// Items: I009 ([|cffffcc00Recipe|r] Blink Treads), Tip (Tooltip - Basic)
+{
+Purchase [|cffffcc00Recipe|r] Blink Treads
+}
+
+STRING 661
+// Units: n00G (Recipes 1), Name (Name)
+{
+Recipes 1
+}
+
+STRING 662
+// Items: I00A (Blink Treads), Ubertip (Tooltip - Extended)
+{
+Increases the movement speed of the Hero when worn and allows the hero to blink.|n|n+60 Movespeed
+}
+
+STRING 663
+// Items: I00A (Blink Treads), Name (Name)
+{
+Blink Treads
+}
+
+STRING 664
+// Items: I00A (Blink Treads), Tip (Tooltip - Basic)
+{
+Purchase Blink Treads
+}
+

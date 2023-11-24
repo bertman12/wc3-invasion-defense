@@ -1,4 +1,4 @@
-import { Effect, Unit } from "w3ts";
+import { Effect, Timer, Unit } from "w3ts";
 
 type ProperColors = "goldenrod" | "gold" | "green" | "yellow" | "red";
 
@@ -54,4 +54,15 @@ export function useEffects() {
             });
         },
     };
+}
+
+export function useTempEffect(effect: Effect | undefined, duration: number = 1.5) {
+    if (effect) {
+        const timer = Timer.create();
+
+        timer.start(duration, false, () => {
+            effect.destroy();
+            timer.destroy();
+        });
+    }
 }

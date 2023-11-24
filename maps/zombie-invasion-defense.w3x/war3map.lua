@@ -469,6 +469,7 @@ local life
 
 u = BlzCreateUnitWithSkin(p, FourCC("ntav"), 18368.0, -28800.0, 270.000, FourCC("ntav"))
 SetUnitColor(u, ConvertPlayerColor(0))
+u = BlzCreateUnitWithSkin(p, FourCC("n00G"), 1163.7, -1091.6, 270.000, FourCC("n00G"))
 end
 
 function CreateNeutralPassive()
