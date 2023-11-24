@@ -9,9 +9,9 @@ import { Effect, MapPlayer, Trigger, Unit } from "w3ts";
 import { Players } from "w3ts/globals";
 
 export function init_humanSpells() {
-    makeAlliance();
-    trig_hireFlyingMachine();
-    trig_heroicLeap();
+    // makeAlliance();
+    // trig_hireFlyingMachine();
+    // trig_heroicLeap();
     purchaseStructure();
     trig_battleCharge();
     generalHired();
@@ -243,7 +243,7 @@ const ownershipGrantingUnits = new Map<number, number>([[UNITS.farmTown, UNITS.n
 
 function removeCaltrops() {
     forEachAlliedPlayer((p) => {
-        forEachUnitTypeOfPlayer(UNITS.caltrops, p, (u) => u.kill());
+        forEachUnitTypeOfPlayer(UNITS.caltrops, p, (u) => u.destroy());
     });
 }
 
@@ -257,7 +257,7 @@ function generalHired() {
 
         if (soldUnit && [UNITS.infantryGeneral, UNITS.archerGeneral].includes(soldUnit?.typeId)) {
             notifyPlayer(`An ${soldUnit.name} has arrived at the capital.`);
-            const generalMinimapIcon = CreateMinimapIconOnUnit(soldUnit.handle, 0, 0, 255, MinimapIconPath.hero, FOG_OF_WAR_FOGGED);
+            const generalMinimapIcon = CreateMinimapIconOnUnit(soldUnit.handle, 255, 255, 255, MinimapIconPath.hero, FOG_OF_WAR_FOGGED);
 
             const subTrig = Trigger.create();
             subTrig.registerAnyUnitEvent(EVENT_PLAYER_UNIT_DEATH);

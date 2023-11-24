@@ -830,12 +830,6 @@ STRING 206
 Food Reserves
 }
 
-STRING 207
-// Abilities: A00I (Food Reserves), Ubertip (Tooltip - Normal - Extended)
-{
-Provides a flat bonus to the food cap at the start of each day.
-}
-
 STRING 208
 // Abilities: A00I (Food Reserves), Tip (Tooltip - Normal)
 {
@@ -1167,7 +1161,7 @@ STRING 289
 }
 
 STRING 290
-// Units: u005 (Spirit Tower), EditorSuffix (Name - Editor Suffix)
+// Units: u005 ([|cffffcc00Farm|r] Spirit Tower), EditorSuffix (Name - Editor Suffix)
 {
 (Converted Structure)
 }
@@ -1471,39 +1465,21 @@ Train Heavy Cavalry
 }
 
 STRING 362
-// Units: u008 (Spirit Tower - Lumber Mill), EditorSuffix (Name - Editor Suffix)
+// Units: u008 ([|cffffcc00Lumber Mill|r] Spirit Tower), EditorSuffix (Name - Editor Suffix)
 {
 (Converted Structure)
-}
-
-STRING 363
-// Units: u008 (Spirit Tower - Lumber Mill), Name (Name)
-{
-Spirit Tower - Lumber Mill
 }
 
 STRING 364
-// Units: u009 (Spirit Tower - Barracks), EditorSuffix (Name - Editor Suffix)
+// Units: u009 ([|cffffcc00Barracks|r] Spirit Tower), EditorSuffix (Name - Editor Suffix)
 {
 (Converted Structure)
-}
-
-STRING 365
-// Units: u009 (Spirit Tower - Barracks), Name (Name)
-{
-Spirit Tower - Barracks
 }
 
 STRING 366
-// Units: u00A (Spirit Tower - Blacksmith), EditorSuffix (Name - Editor Suffix)
+// Units: u00A ([|cffffcc00Blacksmith|r] Spirit Tower), EditorSuffix (Name - Editor Suffix)
 {
 (Converted Structure)
-}
-
-STRING 367
-// Units: u00A (Spirit Tower - Blacksmith), Name (Name)
-{
-Spirit Tower - Blacksmith
 }
 
 STRING 368
@@ -2239,12 +2215,6 @@ STRING 547
 (Info Only)
 }
 
-STRING 550
-// Abilities: A01F (Peon Laborer), Tip (Tooltip - Normal)
-{
-Human Laborer - Info Ability
-}
-
 STRING 552
 // Abilities: A01F (Peon Laborer), EditorSuffix (Editor Suffix)
 {
@@ -2255,18 +2225,6 @@ STRING 553
 // Abilities: A01F (Peon Laborer), Name (Name)
 {
 Peon Laborer
-}
-
-STRING 554
-// Units: h00L (Human Laborer), Ubertip (Tooltip - Extended)
-{
-After 4 days, the laborer will return (|cffffff003 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
-}
-
-STRING 555
-// Units: h00K (Peon Laborer), Ubertip (Tooltip - Extended)
-{
-After 2 days, the peon will return (|cffffff001.5 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
 }
 
 STRING 558
@@ -2297,18 +2255,6 @@ STRING 565
 // Abilities: A01G (Grain Silo), EditorSuffix (Editor Suffix)
 {
 (Info Only)
-}
-
-STRING 569
-// Abilities: A01E (Human Laborer), Ubertip (Tooltip - Normal - Extended)
-{
-After 4 days, the laborer will earn you (|cffffff003 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
-}
-
-STRING 570
-// Abilities: A01F (Peon Laborer), Ubertip (Tooltip - Normal - Extended)
-{
-After 2 days, the laborer will earn you (|cffffff001.5 x its cost|r) in gold. |n|nThe|cff8080ff max mana|r of the structure increases every day to show how many days have passed.
 }
 
 STRING 572
@@ -2353,12 +2299,6 @@ STRING 580
 While wearing this mask, a Hero will recover hit points equal to <AIva,DataA1,%>% of the attack damage dealt to an enemy unit. |n|n |cffff0000-8|r |cff8080ffIntelligence|r |n+5 |cff00ff00Agility|r
 }
 
-STRING 581
-// Units: h00N (Grain Silo), Ubertip (Tooltip - Extended)
-{
-Build a Grain Silo that raises your food cap by +5. This structure will be destroyed after 5 days.
-}
-
 STRING 582
 // Abilities: A01G (Grain Silo), Tip (Tooltip - Normal)
 {
@@ -2369,5 +2309,173 @@ STRING 583
 // Abilities: A01G (Grain Silo), Ubertip (Tooltip - Normal - Extended)
 {
 Increases your food cap by +5. After 5 days the structure will be destroyed. |n|nThe|cff8080ff max mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 584
+// Abilities: A01F (Peon Laborer), Tip (Tooltip - Normal)
+{
+Peon Laborer - Info Ability
+}
+
+STRING 585
+// Abilities: A00I (Food Reserves), Ubertip (Tooltip - Normal - Extended)
+{
+Provides +2 food to the food cap.
+}
+
+STRING 586
+// Units: u005 ([|cffffcc00Farm|r] Spirit Tower), Name (Name)
+{
+[|cffffcc00Farm|r] Spirit Tower
+}
+
+STRING 587
+// Units: u008 ([|cffffcc00Lumber Mill|r] Spirit Tower), Name (Name)
+{
+[|cffffcc00Lumber Mill|r] Spirit Tower
+}
+
+STRING 588
+// Units: u009 ([|cffffcc00Barracks|r] Spirit Tower), Name (Name)
+{
+[|cffffcc00Barracks|r] Spirit Tower
+}
+
+STRING 589
+// Units: u00A ([|cffffcc00Blacksmith|r] Spirit Tower), Name (Name)
+{
+[|cffffcc00Blacksmith|r] Spirit Tower
+}
+
+STRING 590
+// Items: ssil (Staff of Silence), Ubertip (Tooltip - Extended)
+{
+Stops all enemies in a target area from casting spells for <AIse,Dur1> seconds. |n|n    +5 |cff8080ffIntelligence|r |n+100 |cff8080ffmana|r |n|cffc0c0c01600 cast range|r
+}
+
+STRING 591
+// Units: h00O (Druid Laborer), Name (Name)
+{
+Druid Laborer
+}
+
+STRING 592
+// Units: h00O (Druid Laborer), Hotkey (Hotkey)
+{
+D
+}
+
+STRING 594
+// Units: h00O (Druid Laborer), Ubertip (Tooltip - Extended)
+{
+After 5 days, the laborer will return (|cffffff001.8 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 595
+// Abilities: A01J (Druid Laborer), Name (Name)
+{
+Druid Laborer
+}
+
+STRING 596
+// Abilities: A01J (Druid Laborer), Tip (Tooltip - Normal)
+{
+Druid Laborer - Info Ability
+}
+
+STRING 597
+// Abilities: A01J (Druid Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 5 days, the laborer will earn you (|cffffff001.8 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 598
+// Abilities: A01J (Druid Laborer), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 599
+// Units: h00P (Acolyte Slave Laborer), Name (Name)
+{
+Acolyte Slave Laborer
+}
+
+STRING 603
+// Units: h00P (Acolyte Slave Laborer), Tip (Tooltip - Basic)
+{
+Hire Acolyte Slave Laborer
+}
+
+STRING 607
+// Abilities: A01K (Acolyte Slave Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 1 days, the laborer will earn you (|cffffff001.15 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 608
+// Abilities: A01K (Acolyte Slave Laborer), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 609
+// Units: h00P (Acolyte Slave Laborer), Hotkey (Hotkey)
+{
+O
+}
+
+STRING 610
+// Units: h00K (Peon Laborer), Ubertip (Tooltip - Extended)
+{
+After 2 days, the peon will return (|cffffff001.3 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 611
+// Units: h00L (Human Laborer), Ubertip (Tooltip - Extended)
+{
+After 4 days, the laborer will return (|cffffff001.5 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 612
+// Abilities: A01E (Human Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 4 days, the laborer will earn you (|cffffff001.5 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 613
+// Abilities: A01F (Peon Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 2 days, the laborer will earn you (|cffffff001.3 x its cost|r) in gold. |n|nThe|cff8080ff max mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 614
+// Abilities: A01K (Acolyte Slave Laborer), Name (Name)
+{
+Acolyte Slave Laborer
+}
+
+STRING 615
+// Abilities: A01K (Acolyte Slave Laborer), Tip (Tooltip - Normal)
+{
+Acolyte Slave Laborer - Info Ability
+}
+
+STRING 616
+// Units: h00O (Druid Laborer), Tip (Tooltip - Basic)
+{
+Hire Druid Laborer
+}
+
+STRING 617
+// Units: h00P (Acolyte Slave Laborer), Ubertip (Tooltip - Extended)
+{
+After 1 day, the laborer will return (|cffffff001.15 x its cost in gold|r). Quick labor at a higher initial cost and lower return. If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 618
+// Units: h00N (Grain Silo), Ubertip (Tooltip - Extended)
+{
+Build a Grain Silo that raises your food cap by +5. |n|n|cffffcc00This structure will be destroyed after 5 days.|r
 }
 

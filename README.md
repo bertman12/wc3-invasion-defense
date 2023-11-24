@@ -387,3 +387,33 @@ add ranger general with trueshot aura
 to know when a laborer has completed their work increase their max mana every day, when it reaches 2 for peon and 4 for human grant the money. also add the ability to complete early for reduced price.
 
 let players build a granary that temporarily boosts food by 5 and permanently increases it by 2 once its time has expired.
+
+===
+
+add forward spawns in the center of the map when the citadels fall
+
+the max farms you can own should be the total farms in the map / number of active players
+
+every 5th night, all spawns will be hard spawns
+
+put a portal where the spawns are so player can visually see as well.
+
+we need to walk the spawns forward and get rid of the older ones - also, we should make the new spawns invulnerable for 1 night and if we do that then we need to show the divine shield effect on it
+
+if any of the new spawns are taken they will remain open permanently
+
+add tanks that you can garrison with 6 units should be massive unit
+
+bloodlust mages
+
+bonus range on staff of silence
+
+perhaps give users a scroll of mass teleportation with 5 charges on it.
+
+make the laboreres more gold looking so its easy to tell when they will finish
+
+same with grain silos
+
+show a portal where the undead spawns are.
+
+add some icons with tooltips so users can see the breakdown for food lumber and gold income

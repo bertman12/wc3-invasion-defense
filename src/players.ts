@@ -1,7 +1,8 @@
-import { MapPlayer, Sound, Timer, Trigger, Unit, Widget } from "w3ts";
+import { Effect, MapPlayer, Sound, Timer, Trigger, Unit, Widget } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
+import { TimerManager } from "./shared/Timers";
 import { economicConstants } from "./shared/constants";
-import { ABILITIES, PlayerIndices, TERRAIN_CODE, UNITS, UpgradeCodes } from "./shared/enums";
+import { ABILITIES, PlayerIndices, TERRAIN_CODE, UNITS, UpgradeCodes, laborerUnitSet } from "./shared/enums";
 import { RoundManager } from "./shared/round-manager";
 import { notifyPlayer, tColor } from "./utils/misc";
 import { adjustFoodCap, adjustGold, adjustLumber, forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayerWithAbility, forEachUnitTypeOfPlayer } from "./utils/players";
@@ -16,6 +17,10 @@ class PlayerState {
     maxSupplyHorses: number = 3;
     playerHero: Unit | undefined;
     rallyToHero: boolean = false;
+    /**
+     * grain silos will permanently increase your food
+     */
+    permanentFoodCapIncrease: number = 0;
 
     constructor(player: MapPlayer) {
         this.player = player;
@@ -136,6 +141,7 @@ export function setupPlayers() {
     trig_heroDies();
     trig_checkFarmLaborerPlacement();
     playerLeaves();
+    laborerBuilt();
     forEachAlliedPlayer((p, index) => {
         //Create Sheep to buy hero
         const u = Unit.create(p, FourCC("nshe"), 18600 + 25 * index, -28965);
@@ -286,7 +292,7 @@ export function player_giveHumansStartOfDayResources(round: number) {
     const baseGold = 100;
     const baseWood = 100;
     const roundGold = 50 * round;
-    const roundWood = 100 * round;
+    const roundWood = 50 * round;
 
     const incomeBuildingGold = economicConstants.goldIncomeAbility * totalIncomeBuildings;
     const lumberIncome = economicConstants.lumberIncomeAbility * lumberAbilityCount;
@@ -363,11 +369,11 @@ function trig_checkFarmLaborerPlacement() {
     t.addCondition(() => {
         //Get the building being built
         const u = Unit.fromEvent() as Unit;
-        if ([UNITS.humanLaborer, UNITS.peonLaborer].includes(u.typeId) && GetTerrainType(u.x, u.y) === TERRAIN_CODE.crops) {
+        if (laborerUnitSet.has(u.typeId) && GetTerrainType(u.x, u.y) === TERRAIN_CODE.crops) {
             return true;
         }
         //refunds laborer if its not built on crop tile
-        else if ([UNITS.humanLaborer, UNITS.peonLaborer].includes(u.typeId) && GetTerrainType(u.x, u.y) != TERRAIN_CODE.crops) {
+        else if (laborerUnitSet.has(u.typeId) && GetTerrainType(u.x, u.y) != TERRAIN_CODE.crops) {
             const g = GetUnitGoldCost(u.typeId);
             const w = GetUnitWoodCost(u.typeId);
 
@@ -401,18 +407,29 @@ function trig_checkFarmLaborerPlacement() {
 const laborerTypes = [
     {
         unitTypeCode: UNITS.peonLaborer,
-        goldCostMultiplierAward: 1.5,
+        goldCostMultiplierAward: 1.3,
         maxManaRequirement: 2,
     },
     {
         unitTypeCode: UNITS.humanLaborer,
-        goldCostMultiplierAward: 3,
+        goldCostMultiplierAward: 1.5,
         maxManaRequirement: 4,
+    },
+    {
+        unitTypeCode: UNITS.druidLaborer,
+        goldCostMultiplierAward: 1.8,
+        maxManaRequirement: 4,
+    },
+    {
+        unitTypeCode: UNITS.acolyteSlaveLaborer,
+        goldCostMultiplierAward: 1.15,
+        maxManaRequirement: 1,
     },
     {
         unitTypeCode: UNITS.grainSilo,
         goldCostMultiplierAward: 0,
-        maxManaRequirement: 2,
+        maxManaRequirement: 5,
+        //onCompletion ... do something maybe different for different structures
     },
 ];
 
@@ -423,17 +440,46 @@ export function addProgressForLaborers() {
         laborerTypes.forEach((config) => {
             forEachUnitTypeOfPlayer(config.unitTypeCode, p, (u) => {
                 u.maxMana++;
+
+                u.setVertexColor(0, 255, 0, 255);
+
                 if (u.maxMana === config.maxManaRequirement) {
+                    const e = Effect.createAttachment("Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl", u, "origin");
+                    const t = Timer.create();
+
+                    t.start(1.5, false, () => {
+                        e?.destroy();
+                        t.destroy();
+                    });
+
                     u.kill();
                     const unitGoldCost = GetUnitGoldCost(config.unitTypeCode);
                     const goldAwarded = unitGoldCost * config.goldCostMultiplierAward;
 
                     if (goldAwarded) {
                         adjustGold(p, goldAwarded);
-                        print(`${u.owner.name} has been awarded ${tColor(goldAwarded.toString(), "yellow")} gold for ${u.name} completing their work.`);
+                        // print(`${u.owner.name} has been awarded ${tColor(goldAwarded.toString(), "yellow")} gold for ${u.name} completing their work.`);
                     }
                 }
             });
         });
+    });
+}
+
+//if its built during the day then set its max mana to 1
+function laborerBuilt() {
+    const t = Trigger.create();
+
+    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_CONSTRUCT_FINISH);
+
+    t.addAction(() => {
+        print("unit finished building!");
+        const u = Unit.fromEvent();
+
+        if (u && TimerManager.isDayTime()) {
+            u.setAnimation("attack");
+            u.queueAnimation("attack");
+            // u.maxMana++;
+        }
     });
 }

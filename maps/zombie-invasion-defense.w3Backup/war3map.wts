@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Kingdom Zombie Defense alpha test 3
+Kingdom Zombie Defense alpha test 7
 }
 
 STRING 2
@@ -10,11 +10,14 @@ Any
 
 STRING 3
 {
-Supply horses grant healing for units.
-Buildings will provide various upgrades depending on the building.
-Certain units are sold at different buildings.
+===Hero/Army Defense===
+Hold out for 15 nights until reinforcements arrive.
+New Players: Dont spend all your starting money on items.
+Buy units at allied buildings.
+Destroy undead buildings to convert back to human ones.
 
-Hold out for 10 nights until reinforcements arrive.
+
+
 }
 
 STRING 4
@@ -29,7 +32,7 @@ Player 1
 
 STRING 7
 {
-alpha testing #3
+alpha testing #7
 }
 
 STRING 9
@@ -107,19 +110,19 @@ Base - Info Ability
 }
 
 STRING 38
-// Abilities: A000 (Supplies), Name (Name)
+// Abilities: A00L (Supplies), Name (Name)
 {
 Supplies
 }
 
 STRING 39
-// Abilities: A000 (Supplies), Tip (Tooltip - Normal)
+// Abilities: A00L (Supplies), Tip (Tooltip - Normal)
 {
 Supplies
 }
 
 STRING 41
-// Abilities: A000 (Supplies), EditorSuffix (Editor Suffix)
+// Abilities: A000 (Supply Bonus), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -196,18 +199,6 @@ STRING 56
 Farm 
 }
 
-STRING 57
-// Units: hcth (General), Name (Name)
-{
-General
-}
-
-STRING 58
-// Units: hcth (General), Tip (Tooltip - Basic)
-{
-Train a General
-}
-
 STRING 60
 // Abilities: S000 (Endurance Aura), EditorSuffix (Editor Suffix)
 {
@@ -245,7 +236,7 @@ Causes the unit to move faster and run through units.
 }
 
 STRING 67
-// Abilities: A005 (Charge), Hotkey (Hotkey - Normal)
+// Units: h007 (Supply Camp), Hotkey (Hotkey)
 {
 C
 }
@@ -293,7 +284,7 @@ STRING 76
 }
 
 STRING 77
-// Upgrades: R000 (Chaos), Name (Name)
+// Abilities: A000 (Supply Bonus), Name (Name)
 {
 Supply Bonus
 }
@@ -359,7 +350,7 @@ Slow Trap
 }
 
 STRING 92
-// Units: h005 (Caltrops), Ubertip (Tooltip - Extended)
+// Units: h00D (River Ford ), Ubertip (Tooltip - Extended)
 {
 Slows down the movement speed of nearby enemies.
 }
@@ -411,11 +402,6 @@ STRING 112
 [Neutral] - Kingdom of Hyperian
 }
 
-STRING 113
-{
-[Neutral] - Vindigoth Orc Tribe
-}
-
 STRING 114
 // Abilities: A009 (Base - Target Unit), Name (Name)
 {
@@ -458,22 +444,10 @@ STRING 123
 Create Diplomatic Offering
 }
 
-STRING 128
-// Units: h007 (Camp), Name (Name)
-{
-Camp
-}
-
 STRING 129
-// Units: h007 (Camp), Tip (Tooltip - Basic)
+// Units: h007 (Supply Camp), Tip (Tooltip - Basic)
 {
 Build Camp
-}
-
-STRING 130
-// Units: h007 (Camp), Ubertip (Tooltip - Extended)
-{
-Provides supplies for nearby units to benefit from.
 }
 
 STRING 131
@@ -488,7 +462,7 @@ D
 }
 
 STRING 134
-// Abilities: A00A (Make Alliance), Hotkey (Hotkey - Normal)
+// Abilities: A005 (Charge), Hotkey (Hotkey - Normal)
 {
 C
 }
@@ -529,14 +503,23 @@ Kingdom Zombie Defense
 
 STRING 142
 {
-Hold out for 10 nights until reinforcements arrive.
+|cffff00ffObjective|r - Hold out for 15 nights until reinforcements arrive. 
 
-Supply horses grant healing for units.
-Buildings will provide various upgrades depending on the building.
-Certain units are sold at different buildings.
-Food is increased by 5 after every night.
+|cff00ff00Starter Tip|r - Spend your starting money on some defenses, units and items. 
 
+|cff00ff00Defenses|r - Strategically decide which areas to build defenses and hold.
 
+|cff00ff00Engineers|r - Trained at blacksmiths. Able to build economic and defensive structures. 
+
+|cff00ffffRivers|r - All units fighting in the river are severly hindered.
+
+|cffff0000Destroyed Buildings|r - Destroyed human buildings turn into undead ones at the start of night. Destroyed undead buildings turn into human at the start of day.
+
+|cffffff00Buying Units|r - Buy units at allied structures.
+
+|cffffff00Upgrades|r - Allied buildings provide upgrades to all units, as long as they are alive.
+
+|c00ffff00Economy|r - Allied buildings will grant gold, lumber and food as long as they are alive. You may also purchase a farm for additional gold income and use the engineer to build more economic structures.
 
 Made by JediMindTrix/NihilismIsDeath
 
@@ -596,7 +579,7 @@ War Bear
 }
 
 STRING 152
-// Abilities: A000 (Supplies), Ubertip (Tooltip - Normal - Extended)
+// Abilities: A000 (Supply Bonus), Ubertip (Tooltip - Normal - Extended)
 {
 Increases the supplies(mana) that supply type units can carry.
 }
@@ -665,12 +648,6 @@ STRING 163
 // Units: n004 (War Bear), Ubertip (Tooltip - Extended)
 {
 A heavy melee unit, with cleaving armor, bash and resistant skin.
-}
-
-STRING 164
-// Units: hcth (General), Ubertip (Tooltip - Extended)
-{
-An elite support unit, bolstering the morale of your troops.
 }
 
 STRING 165
@@ -757,12 +734,6 @@ STRING 181
 Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
 }
 
-STRING 182
-// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
-{
-Can repair buildings and builds a camp with supplies and Caltrops to slow down the enemy.
-}
-
 STRING 183
 // Units: hkni (Knight), Ubertip (Tooltip - Extended)
 {
@@ -847,12 +818,6 @@ STRING 202
 (Info Only)
 }
 
-STRING 204
-// Abilities: A002 (Income), Ubertip (Tooltip - Normal - Extended)
-{
-Grants gold at the start of each day.
-}
-
 STRING 205
 // Abilities: A00C (Food Income), Ubertip (Tooltip - Normal - Extended)
 {
@@ -889,12 +854,6 @@ STRING 210
 Lumber Income - Info Ability
 }
 
-STRING 211
-// Abilities: A00J (Lumber Income - Info Ability), Ubertip (Tooltip - Normal - Extended)
-{
-Grants lumber at the start of each day.
-}
-
 STRING 212
 // Abilities: A00J (Lumber Income - Info Ability), EditorSuffix (Editor Suffix)
 {
@@ -919,12 +878,6 @@ STRING 215
 River Ford 
 }
 
-STRING 216
-// Units: h00D (River Ford ), Ubertip (Tooltip - Extended)
-{
-Slows down the movement speed of nearby enemies.
-}
-
 STRING 217
 // Units: h00D (River Ford ), EditorSuffix (Name - Editor Suffix)
 {
@@ -935,5 +888,1486 @@ STRING 218
 // Abilities: A00K (Slow Aura), EditorSuffix (Editor Suffix)
 {
 (River Ford)
+}
+
+STRING 219
+// Buffs/Effects: B001 (), Bufftip (Tooltip)
+{
+River Ford
+}
+
+STRING 222
+{
+[Ally] - Vindigoth Orc Tribe
+}
+
+STRING 224
+// Units: h007 (Supply Camp), Ubertip (Tooltip - Extended)
+{
+A supply structure that heals fellow units. 
+}
+
+STRING 225
+// Units: h005 (Caltrops), Hotkey (Hotkey)
+{
+R
+}
+
+STRING 226
+// Abilities: A00A (Make Alliance), Hotkey (Hotkey - Normal)
+{
+C
+}
+
+STRING 229
+// Units: h007 (Supply Camp), Name (Name)
+{
+Supply Camp
+}
+
+STRING 231
+// Units: hcth ([|cffffcc00Elite|r] - Infantry General), Ubertip (Tooltip - Extended)
+{
+An elite support unit, bolstering the morale of your troops. The General can also enlist footman. |n|nProvides an aura increasing movement and attack speed by 25%.
+}
+
+STRING 232
+// Units: hsor (Sorceress), Ubertip (Tooltip - Extended)
+{
+Does moderate magic damage from attacks and can cast mass teleport.
+}
+
+STRING 233
+// Upgrades: R001 (Submerge), Name (Name)
+{
+Base - Null Upgrade
+}
+
+STRING 234
+// Upgrades: R001 (Submerge), Tip (Tooltip)
+{
+null tooltip
+}
+
+STRING 235
+// Upgrades: R001 (Submerge), Ubertip (Tooltip - Extended)
+{
+null tooltip extended
+}
+
+STRING 236
+// Upgrades: R001 (Submerge), EditorSuffix (Editor Suffix)
+{
+(null upgrade)
+}
+
+STRING 237
+// Upgrades: R002 (Submerge), Name (Name)
+{
+Day Time
+}
+
+STRING 238
+// Upgrades: R002 (Submerge), Tip (Tooltip)
+{
+null tooltip
+}
+
+STRING 239
+// Upgrades: R002 (Submerge), Ubertip (Tooltip - Extended)
+{
+null tooltip extended
+}
+
+STRING 240
+// Upgrades: R003 (Submerge), Name (Name)
+{
+Night Time
+}
+
+STRING 241
+// Upgrades: R003 (Submerge), Tip (Tooltip)
+{
+null tooltip
+}
+
+STRING 242
+// Upgrades: R003 (Submerge), Ubertip (Tooltip - Extended)
+{
+null tooltip extended
+}
+
+STRING 243
+// Upgrades: R002 (Submerge), EditorSuffix (Editor Suffix)
+{
+(null upgrade)
+}
+
+STRING 244
+// Upgrades: R003 (Submerge), EditorSuffix (Editor Suffix)
+{
+(null upgrade)
+}
+
+STRING 245
+// Items: I000 (Magic Eggplant), Ubertip (Tooltip - Extended)
+{
+Grants +10000000000000000000000000000 to all stats.
+}
+
+STRING 248
+// Items: I000 (Magic Eggplant), Description (Description)
+{
+Grants +69 to all stats.
+}
+
+STRING 249
+// Items: I000 (Magic Eggplant), Name (Name)
+{
+Magic Eggplant
+}
+
+STRING 250
+// Abilities: A000 (Supply Bonus), Tip (Tooltip - Normal)
+{
+Supply Bonus
+}
+
+STRING 251
+// Upgrades: R000 (Chaos), Name (Name)
+{
+Supply Bonus
+}
+
+STRING 252
+// Abilities: A00L (Supplies), Ubertip (Tooltip - Normal - Extended)
+{
+This unit benefits from supply upgrades, increasing it's mana pool.
+}
+
+STRING 253
+// Abilities: A00L (Supplies), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 254
+// Units: u003 (Greater Obsidian Statue), Name (Name)
+{
+Greater Obsidian Statue
+}
+
+STRING 255
+// Units: u004 (Lich), Name (Name)
+{
+Lich
+}
+
+STRING 256
+// Abilities: A00N (Siphon Mana), EditorSuffix (Editor Suffix)
+{
+(Lich)
+}
+
+STRING 257
+// Abilities: A00O (Death Coil Spray), Name (Name)
+{
+Death Coil Spray
+}
+
+STRING 258
+// Abilities: A00O (Death Coil Spray), Tip (Tooltip - Normal)
+{
+Death Coil Spray
+}
+
+STRING 259
+// Abilities: A00O (Death Coil Spray), EditorSuffix (Editor Suffix)
+{
+(Lich - Pheonix Fire)
+}
+
+STRING 260
+// Abilities: A00M (Greater Essence of Blight), Name (Name)
+{
+Greater Essence of Blight
+}
+
+STRING 261
+// Abilities: A00M (Greater Essence of Blight), Ubertip (Tooltip - Normal - Extended)
+{
+Restores 250 hit points to nearby friendly units.
+}
+
+STRING 262
+// Abilities: A00D (Cleaving Attack), Ubertip (Tooltip - Normal - Extended)
+{
+The creature strikes with such force that 75% of their damage strikes through to enemies near the primary attacked unit.
+}
+
+STRING 263
+// Units: h00E (Citadel of the Northern Knights), Name (Name)
+{
+Citadel of the Northern Knights
+}
+
+STRING 264
+// Units: nwzr (Rogue Wizard), Ubertip (Tooltip - Extended)
+{
+Light ranged unit that can cast Dispel Magic and Frost Armor. |n|n|cffffcc00Attacks land and air units.|r
+}
+
+STRING 269
+// Units: h00F (Barricade), Tip (Tooltip - Basic)
+{
+Build Barricade
+}
+
+STRING 276
+// Abilities: A00P (Heroic Leap), Name (Name)
+{
+Heroic Leap
+}
+
+STRING 279
+// Items: I002 (Mask of the Frenzied Ghoul), Name (Name)
+{
+Mask of the Frenzied Ghoul
+}
+
+STRING 280
+// Items: I002 (Mask of the Frenzied Ghoul), Tip (Tooltip - Basic)
+{
+Purchase Mask of the Frenzied Ghoul
+
+}
+
+STRING 286
+// Abilities: A00R (Glaives of Carnage), Name (Name)
+{
+Glaives of Carnage
+}
+
+STRING 287
+// Abilities: A00R (Glaives of Carnage), Tip (Tooltip - Normal)
+{
+Glaives of Carnage
+}
+
+STRING 288
+// Abilities: A00R (Glaives of Carnage), Ubertip (Tooltip - Normal - Extended)
+{
+Throw the glaives of carnage in a target direction, causing massive damage.
+}
+
+STRING 289
+// Units: u006 (Black Citadel), EditorSuffix (Name - Editor Suffix)
+{
+(Converted Structure)
+}
+
+STRING 290
+// Units: u005 (Spirit Tower), EditorSuffix (Name - Editor Suffix)
+{
+(Converted Structure)
+}
+
+STRING 291
+// Units: u007 (Undead Sentinel), Name (Name)
+{
+Undead Sentinel
+}
+
+STRING 292
+// Units: n008 (Purchase Farm Grant), Name (Name)
+{
+Purchase Farm Grant
+}
+
+STRING 293
+// Units: n008 (Purchase Farm Grant), Tip (Tooltip - Basic)
+{
+Purchase Farm Grant
+}
+
+STRING 294
+// Items: I003 (Purchase Farm Grant), Ubertip (Tooltip - Extended)
+{
+Grants ownership of the farm. Owning the farm enables you to gain the full income. It also allows training of a farm and Angry Farmers are added to your daily retinue.
+}
+
+STRING 295
+// Abilities: A00P (Heroic Leap), Tip (Tooltip - Normal)
+{
+Heroic Leap         |n|n     |TReplaceableTextures\WorldEditUI\Editor-Force.blp:0|
+}
+
+STRING 296
+// Abilities: A00P (Heroic Leap), Ubertip (Tooltip - Normal - Extended)
+{
+Heroic Leap         |n|n     |TReplaceableTextures\WorldEditUI\Editor-Force.blp:0|
+}
+
+STRING 297
+// Items: I003 (Purchase Farm Grant), Name (Name)
+{
+Purchase Farm Grant
+}
+
+STRING 298
+// Abilities: A00S (Purchase Farm Grant), EditorSuffix (Editor Suffix)
+{
+(Ability)
+}
+
+STRING 299
+// Units: n009 (null unit), Name (Name)
+{
+null unit
+}
+
+STRING 300
+// Units: n008 (Purchase Farm Grant), EditorSuffix (Name - Editor Suffix)
+{
+(null unit)
+}
+
+STRING 302
+// Units: n009 (null unit), EditorSuffix (Name - Editor Suffix)
+{
+(null unit)
+}
+
+STRING 303
+// Items: I003 (Purchase Farm Grant), Tip (Tooltip - Basic)
+{
+Purchase Farm Grant
+}
+
+STRING 304
+// Abilities: A00S (Purchase Farm Grant), Name (Name)
+{
+Purchase Farm Grant
+}
+
+STRING 306
+// Units: O003 (Demigod), Name (Name)
+{
+Demigod
+}
+
+STRING 307
+// Units: O003 (Demigod), Propernames (Proper Names)
+{
+Enkidu
+}
+
+STRING 308
+// Units: O003 (Demigod), Awakentip (Tooltip - Awaken)
+{
+Revive Demigod
+}
+
+STRING 311
+// Units: O003 (Demigod), Revivetip (Tooltip - Revive)
+{
+Revive Demigod.
+}
+
+STRING 312
+// Abilities: A00T (Battle Charge), Name (Name)
+{
+Battle Charge
+}
+
+STRING 313
+// Abilities: A00V (Force Boots), Ubertip (Tooltip - Normal - Extended)
+{
+Causes the unit to charge forward dealing immense damage.
+}
+
+STRING 314
+// Items: I004 (Force Boots), Name (Name)
+{
+Force Boots
+}
+
+STRING 315
+// Items: I004 (Force Boots), Tip (Tooltip - Basic)
+{
+Purchase Force Boots
+}
+
+STRING 316
+// Items: I004 (Force Boots), Description (Description)
+{
+Increases the movement speed of the Hero when worn. Also allows provides an active ability that thrusts your hero forward in whatever direction they are.
+}
+
+STRING 320
+// Items: I005 (Boots of Speed), Ubertip (Tooltip - Extended)
+{
+Increases the movement speed of the Hero when worn.|n|n+60 Movespeed
+}
+
+STRING 321
+// Abilities: A00V (Force Boots), Name (Name)
+{
+Force Boots
+}
+
+STRING 324
+// Abilities: A00J (Lumber Income - Info Ability), Ubertip (Tooltip - Normal - Extended)
+{
+Grants |cff008000+35 lumber|r at the start of each day to all players.
+
+If you own the structure, you get double the gold.
+
+
+}
+
+STRING 325
+// Units: h00H (Infected Granary), Name (Name)
+{
+Infected Granary
+}
+
+STRING 326
+// Units: h00H (Infected Granary), EditorSuffix (Name - Editor Suffix)
+{
+(Town)
+}
+
+STRING 327
+// Abilities: A00T (Battle Charge), Tip (Tooltip - Normal)
+{
+Battle Charge
+}
+
+STRING 329
+// Abilities: A00T (Battle Charge), Ubertip (Tooltip - Normal - Extended)
+{
+Causes the demigod to charge forward dealing 150 damage to all enemies hit.
+}
+
+STRING 332
+// Units: h00F (Barricade), Name (Name)
+{
+Barricade
+}
+
+STRING 333
+// Units: O003 (Demigod), Ubertip (Tooltip - Extended)
+{
+An ancient demigod. |n|nCan learn Cleaving Attack, Endurance Aura, War Stomp and Reincarnation. Has ability to use Battle Charge.
+}
+
+STRING 334
+// Units: Hpal (Paladin), Ubertip (Tooltip - Extended)
+{
+Warrior Hero, exceptional at defense and augmenting nearby friendly troops. Can learn Healing Wave, Drunken Brawler, Devotion Aura and Resurrection. |n|n|cffffcc00Attacks land units.|r
+}
+
+STRING 335
+// Units: Hpal (Paladin), Tip (Tooltip - Basic)
+{
+Modified - Summon Paladin
+}
+
+STRING 337
+// Abilities: A00W (Magic Guard - Info Ability), Name (Name)
+{
+Magic Guard - Info Ability
+}
+
+STRING 338
+// Abilities: A00W (Magic Guard - Info Ability), Tip (Tooltip - Normal)
+{
+Magic Guard - Info Ability
+}
+
+STRING 340
+// Abilities: A00W (Magic Guard - Info Ability), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 342
+// Abilities: A00W (Magic Guard - Info Ability), Ubertip (Tooltip - Normal - Extended)
+{
+Grants all allied units +15% spell damage reduction.
+}
+
+STRING 343
+// Abilities: A00X (Magic Guard), Name (Name)
+{
+Magic Guard
+}
+
+STRING 344
+// Upgrades: R004 (Submerge), Tip (Tooltip)
+{
+null tooltip
+}
+
+STRING 345
+// Upgrades: R004 (Submerge), Ubertip (Tooltip - Extended)
+{
+null tooltip extended
+}
+
+STRING 346
+// Upgrades: R004 (Submerge), EditorSuffix (Editor Suffix)
+{
+(null upgrade)
+}
+
+STRING 347
+// Abilities: A00X (Magic Guard), Tip (Tooltip - Normal)
+{
+Magic Guard
+}
+
+STRING 349
+// Upgrades: R004 (Submerge), Name (Name)
+{
+Magic Guard
+}
+
+STRING 350
+// Abilities: A00X (Magic Guard), Ubertip (Tooltip - Normal - Extended)
+{
+Reduces magic damage taken by 15% while you have an arcane sanctum under your control.
+}
+
+STRING 351
+// Items: I006 (Blink Dagger), Name (Name)
+{
+Blink Dagger
+}
+
+STRING 352
+// Items: I006 (Blink Dagger), Tip (Tooltip - Basic)
+{
+Purchase Blink Dagger
+}
+
+STRING 356
+// Units: n008 (Purchase Farm Grant), Ubertip (Tooltip - Extended)
+{
+Grants ownership over the farm. Owning the farm will provide more income|cff404040 and will also add militia to your personal retinue every day. Also enables you to train peasants to build for you|r. |n|n|cffc0c0c0Can only be purchased from computer players or leavers.|r
+}
+
+STRING 358
+// Units: h00I (Heavy Cavalry), Name (Name)
+{
+Heavy Cavalry
+}
+
+STRING 359
+// Units: h00I (Heavy Cavalry), Tip (Tooltip - Basic)
+{
+Train Heavy Cavalry
+}
+
+STRING 362
+// Units: u008 (Spirit Tower - Lumber Mill), EditorSuffix (Name - Editor Suffix)
+{
+(Converted Structure)
+}
+
+STRING 363
+// Units: u008 (Spirit Tower - Lumber Mill), Name (Name)
+{
+Spirit Tower - Lumber Mill
+}
+
+STRING 364
+// Units: u009 (Spirit Tower - Barracks), EditorSuffix (Name - Editor Suffix)
+{
+(Converted Structure)
+}
+
+STRING 365
+// Units: u009 (Spirit Tower - Barracks), Name (Name)
+{
+Spirit Tower - Barracks
+}
+
+STRING 366
+// Units: u00A (Spirit Tower - Blacksmith), EditorSuffix (Name - Editor Suffix)
+{
+(Converted Structure)
+}
+
+STRING 367
+// Units: u00A (Spirit Tower - Blacksmith), Name (Name)
+{
+Spirit Tower - Blacksmith
+}
+
+STRING 368
+// Units: h00I (Heavy Cavalry), Ubertip (Tooltip - Extended)
+{
+A stronger version of the knight with critical strike and cleave. Can trample his enemies and use his fierce lance to attack enemies.
+}
+
+STRING 372
+// Abilities: A00Z (Item Stat Bonus), Name (Name)
+{
+Item Stat Bonus
+}
+
+STRING 373
+// Abilities: A00Z (Item Stat Bonus), EditorSuffix (Editor Suffix)
+{
+(+6 Agility)
+}
+
+STRING 374
+// Abilities: A00Q (Item Stat Reduction), Name (Name)
+{
+Item Stat Reduction
+}
+
+STRING 375
+// Abilities: A00Y (Item Stat Reduction), Name (Name)
+{
+Item Stat Reduction
+}
+
+STRING 376
+// Items: I007 (Hand of Midas), Name (Name)
+{
+Hand of Midas
+}
+
+STRING 377
+// Items: I007 (Hand of Midas), Tip (Tooltip - Basic)
+{
+Purchase Hand of Midas
+}
+
+STRING 379
+// Items: I007 (Hand of Midas), Description (Description)
+{
+Grants a chance on hit to earn gold.
+}
+
+STRING 380
+// Units: n00A (Items 2), Name (Name)
+{
+Items 2
+}
+
+STRING 381
+// Items: plcl (Lesser Clarity Potion), Ubertip (Tooltip - Extended)
+{
+|cff87ceebNon-Combat Consumable|r|nRegenerates the Hero's mana by <AIpl,DataB1> over 15 seconds when used.
+}
+
+STRING 382
+// Items: spsh (Amulet of Spell Shield), Ubertip (Tooltip - Extended)
+{
+Blocks a negative spell that an enemy casts on the Hero once every 20 seconds.
+}
+
+STRING 383
+// Units: n00B (Items 3), Name (Name)
+{
+Items 3
+}
+
+STRING 388
+// Abilities: A00Q (Item Stat Reduction), EditorSuffix (Editor Suffix)
+{
+(-8 Intelligence)
+}
+
+STRING 390
+// Abilities: A00Y (Item Stat Reduction), EditorSuffix (Editor Suffix)
+{
+(-5 Agility)
+}
+
+STRING 391
+// Units: u00B (Black Citadel - North), EditorSuffix (Name - Editor Suffix)
+{
+(Converted Structure)
+}
+
+STRING 392
+// Units: u00B (Black Citadel - North), Name (Name)
+{
+Black Citadel - North
+}
+
+STRING 393
+// Units: u00C (Black Citadel - Town Hall), EditorSuffix (Name - Editor Suffix)
+{
+(Converted Structure)
+}
+
+STRING 394
+// Units: u00C (Black Citadel - Town Hall), Name (Name)
+{
+Black Citadel - Town Hall
+}
+
+STRING 395
+// Units: ndt1 (Cold Tower), Ubertip (Tooltip - Extended)
+{
+Fires shards of ice. Good at slowing down enemies. 
+}
+
+STRING 396
+// Units: nft1 (Flame Tower), Ubertip (Tooltip - Extended)
+{
+Fires short jets of flame. Good at destroying enemies that get close. |n|n450 attack range.
+}
+
+STRING 399
+// Items: rwiz (Sobi Mask), Ubertip (Tooltip - Extended)
+{
+Increases the Hero's rate of mana regeneration by 20% when worn.
+}
+
+STRING 400
+// Abilities: AIrm (Item Mana Regeneration), EditorSuffix (Editor Suffix)
+{
+ (20%)
+}
+
+STRING 401
+// Units: n00C (Cold Tower), Ubertip (Tooltip - Extended)
+{
+Fires shards of ice at a slow rate. Good at slowing down enemies. |n|n1000 range.
+}
+
+STRING 402
+// Units: O003 (Demigod), Tip (Tooltip - Basic)
+{
+[|cffff0000Hard|r] Summon Demigod
+}
+
+STRING 403
+// Abilities: A010 (Armor Reduction Aura), Name (Name)
+{
+Armor Reduction Aura
+}
+
+STRING 404
+// Abilities: A011 (Armor Reduction Aura), Name (Name)
+{
+Armor Reduction Aura
+}
+
+STRING 405
+// Buffs/Effects: B002 (Armor Reduction Aura), EditorName (Name (Editor Only))
+{
+Armor Reduction Aura
+}
+
+STRING 407
+// Units: h00F (Barricade), Hotkey (Hotkey)
+{
+B
+}
+
+STRING 409
+// Abilities: Ahrp (Repair), Ubertip (Tooltip - Normal - Extended)
+{
+Repairs mechanical units and structures at the cost of resources. |n|n300 range.
+}
+
+STRING 411
+// Buffs/Effects: B002 (Armor Reduction Aura), Bufftip (Tooltip)
+{
+|cffff0000Armor Reduction Aura|r
+}
+
+STRING 412
+// Buffs/Effects: B001 (), Buffubertip (Tooltip - Extended)
+{
+This unit's |cffff0000move speed|r is slowed by |cffff000075%|r and|cffff0000 attack speed|r by|cffff0000 50%|r while crossing a river.
+}
+
+STRING 413
+// Buffs/Effects: B003 (Armor Reduction Aura - Caltrops), Buffubertip (Tooltip - Extended)
+{
+This unit's armor is being reduced by |cffff00002|r.
+}
+
+STRING 414
+// Abilities: A010 (Armor Reduction Aura), EditorSuffix (Editor Suffix)
+{
+(River Ford)
+}
+
+STRING 419
+// Units: h00J (Barricade - Fortified), Name (Name)
+{
+Barricade - Fortified
+}
+
+STRING 420
+// Units: h00J (Barricade - Fortified), Tip (Tooltip - Basic)
+{
+Fortify Barricade
+}
+
+STRING 421
+// Units: h00J (Barricade - Fortified), Ubertip (Tooltip - Extended)
+{
+Adds 6 fortified armor and 500 health.
+}
+
+STRING 422
+// Units: h005 (Caltrops), Ubertip (Tooltip - Extended)
+{
+Severely inhibits nearby enemy units.|n |n|cffff0000-50%|r movespeed |n|cffff0000-20%|r attack speed |n|cffff0000-2|r armor    |n|n|cffff0000Destroyed at the start of each day.|r
+}
+
+STRING 423
+// Units: n00D (Flame Tower), Ubertip (Tooltip - Extended)
+{
+Fires short jets of flame. Good at destroying enemies that get close. |n|n600 attack range.
+}
+
+STRING 424
+// Units: hgtw (Guard Tower), Ubertip (Tooltip - Extended)
+{
+Primary defensive structure. |n|n700 range |n|n|cffffcc00Attacks land and air units.|r
+}
+
+STRING 425
+// Units: hctw (Cannon Tower), Ubertip (Tooltip - Extended)
+{
+Heavy defensive structure. Particularly effective against clusters of troops. |n|n800 range |n|n|cffffcc00Attacks land units and trees.|r
+}
+
+STRING 430
+// Items: sbok (Spell Book), Ubertip (Tooltip - Extended)
+{
+A book full of random spells. Provides various utility. |n|nCan cast Battle Roar, Entangling roots, Dispel Magic.
+}
+
+STRING 431
+// Abilities: A012 (Caltrops - Info Ability), Name (Name)
+{
+Caltrops - Info Ability
+}
+
+STRING 432
+// Abilities: A012 (Caltrops - Info Ability), Tip (Tooltip - Normal)
+{
+Caltrops - Info Ability
+}
+
+STRING 433
+// Abilities: A011 (Armor Reduction Aura), Ubertip (Tooltip - Normal - Extended)
+{
+Severely inhibits nearby enemy units.|n |n|cffff0000-50%|r movespeed |n|cffff0000-20%|r attack speed |n|cffff0000-2|r armor    |n|n|cffff0000Destroyed at the start of each day.|r
+}
+
+STRING 434
+// Abilities: A012 (Caltrops - Info Ability), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 435
+// Units: u00D (Black Citadel Meat Wagon), Name (Name)
+{
+Black Citadel Meat Wagon
+}
+
+STRING 437
+// Abilities: A014 (Disease Cloud), EditorSuffix (Editor Suffix)
+{
+ (Black Citadel Meat Wagon)
+}
+
+STRING 438
+// Units: u00E (Disease Cloud), EditorSuffix (Name - Editor Suffix)
+{
+(Ward - Black Citadel Meat Wagon)
+}
+
+STRING 439
+// Abilities: A013 (Disease Cloud), EditorSuffix (Editor Suffix)
+{
+(Ward - Black Citadel Meat Wagon)
+}
+
+STRING 440
+// Buffs/Effects: B002 (Armor Reduction Aura), Buffubertip (Tooltip - Extended)
+{
+This unit's armor is being reduced by |cffff00005|r.
+}
+
+STRING 441
+// Buffs/Effects: B002 (Armor Reduction Aura), EditorSuffix (Editor Suffix)
+{
+(River)
+}
+
+STRING 445
+// Buffs/Effects: B003 (Armor Reduction Aura - Caltrops), Bufftip (Tooltip)
+{
+|cffff0000Armor Reduction Aura - Caltrops|r
+}
+
+STRING 446
+// Buffs/Effects: B003 (Armor Reduction Aura - Caltrops), EditorName (Name (Editor Only))
+{
+Armor Reduction Aura - Caltrops
+}
+
+STRING 447
+// Abilities: A011 (Armor Reduction Aura), EditorSuffix (Editor Suffix)
+{
+(Caltrops)
+}
+
+STRING 449
+// Abilities: A002 (Income), Ubertip (Tooltip - Normal - Extended)
+{
+Grants |cffffff00+50 gold|r at the start of each day to all players.
+
+The owner gets double the gold from this structure.
+
+
+}
+
+STRING 450
+// Units: h00J (Barricade - Fortified), Hotkey (Hotkey)
+{
+B
+}
+
+STRING 451
+// Units: n00E (Consumables), Name (Name)
+{
+Consumables
+}
+
+STRING 452
+// Units: ngme (Items 1), Name (Name)
+{
+Items 1
+}
+
+STRING 453
+// Units: n00F (Goblin Land Mine), EditorSuffix (Name - Editor Suffix)
+{
+(Tinker)
+}
+
+STRING 454
+// Abilities: A015 (Place Goblin Land Mine), Name (Name)
+{
+Place Goblin Land Mine
+}
+
+STRING 455
+// Abilities: A015 (Place Goblin Land Mine), EditorSuffix (Editor Suffix)
+{
+(hero)
+}
+
+STRING 456
+// Abilities: A015 (Place Goblin Land Mine), Tip (Tooltip - Normal)
+{
+Place Goblin Land Mine
+}
+
+STRING 458
+// Abilities: A016 (AOE damage upon death), EditorSuffix (Editor Suffix)
+{
+(Tinkers Goblin Mine)
+}
+
+STRING 459
+// Abilities: A017 (Mine - exploding), EditorSuffix (Editor Suffix)
+{
+ (Tinkers Goblin Land Mine)
+}
+
+STRING 461
+// Abilities: A015 (Place Goblin Land Mine), Ubertip (Tooltip - Normal - Extended)
+{
+Places an invisible goblin land mine that explodes and causes 300 damage to units in 150 range and 150 damage to units in 300 range. Has a 2 second activation time. |n|n|cffc0c0c0300 range area of effect.|r
+}
+
+STRING 462
+// Units: hcth ([|cffffcc00Elite|r] - Infantry General), Hotkey (Hotkey)
+{
+G
+}
+
+STRING 463
+// Units: Ntin (Tinker), Ubertip (Tooltip - Extended)
+{
+Cunning Hero, exceptional at disrupting battles and enduring damage. Can learn Pocket Factory, Cluster Rockets, Engineering Upgrade and Robo-Goblin.|n|n[New] - Can also place mines.    |n|n|cffffcc00Attacks land units.|r
+}
+
+STRING 464
+// Units: Nplh (Pit Lord), Ubertip (Tooltip - Extended)
+{
+Warrior Hero, adept at terrorizing enemies. Can learn Rain of Fire, Howl of Terror, Cleaving Attack, and Doom. |n|nCan cast Battle Charge, charging in his current direction knocking enemies out of his way. |n|n|cffffcc00Attacks land units.|r
+}
+
+STRING 466
+// Abilities: A011 (Armor Reduction Aura), Tip (Tooltip - Normal)
+{
+Caltrops
+}
+
+STRING 467
+// Abilities: A012 (Caltrops - Info Ability), Ubertip (Tooltip - Normal - Extended)
+{
+Severely inhibits nearby enemy units.|n |n|cffff0000-50%|r movespeed |n|cffff0000-20%|r attack speed |n|cffff0000-2|r armor    |n|n|cffff0000Destroyed at the start of each day.|r
+}
+
+STRING 468
+// Units: n00C (Cold Tower), Hotkey (Hotkey)
+{
+O
+}
+
+STRING 469
+// Abilities: S001 (Death And Decay), EditorSuffix (Editor Suffix)
+{
+(Lich)
+}
+
+STRING 471
+// Abilities: A018 (Item Mana Bonus (150)), Name (Name)
+{
+Item Mana Bonus (150)
+}
+
+STRING 472
+// Items: arsh (Arcanite Shield), Ubertip (Tooltip - Extended)
+{
+Reduces damage from ranged attacks to <AIdd,DataA1,%>%. Also increases the Hero's armor by <AId5,DataA1> when worn. 
+}
+
+STRING 474
+// Items: I006 (Blink Dagger), Description (Description)
+{
+Teleports the Hero a long distance.
+}
+
+STRING 475
+// Items: I008 (Corpse Cleaver), Name (Name)
+{
+Corpse Cleaver
+}
+
+STRING 476
+// Items: I008 (Corpse Cleaver), Tip (Tooltip - Basic)
+{
+Purchase Corpse Cleaver
+}
+
+STRING 477
+// Items: I008 (Corpse Cleaver), Ubertip (Tooltip - Extended)
+{
+Causes melee attacks cleave for 25% damage. |n|n+8|cffff0000 Strength|r |n+5 |cffc0c0c0Attack Damage|r
+}
+
+STRING 478
+// Abilities: A019 (Item Stat Bonus), Name (Name)
+{
+Item Stat Bonus
+}
+
+STRING 479
+// Abilities: A019 (Item Stat Bonus), EditorSuffix (Editor Suffix)
+{
+(+8 Strength)
+}
+
+STRING 484
+// Units: hwtw (Scout Tower), Ubertip (Tooltip - Extended)
+{
+Basic observation tower. Has no attack, but can be upgraded into a Guard Tower, a FlameTower, a Cold Tower,  or a Cannon Tower. 
+}
+
+STRING 485
+// Units: h00F (Barricade), Ubertip (Tooltip - Extended)
+{
+A basic wall. Can be upgraded once to increase health and armor.
+}
+
+STRING 486
+// Abilities: A01A (Potion of Holy Fire), Name (Name)
+{
+Potion of Holy Fire
+}
+
+STRING 487
+// Abilities: A01A (Potion of Holy Fire), Tip (Tooltip - Normal)
+{
+Death Coil Spray
+}
+
+STRING 488
+// Abilities: A01A (Potion of Holy Fire), EditorSuffix (Editor Suffix)
+{
+(Potion - Holy Fire)
+}
+
+STRING 489
+// Buffs/Effects: B004 (custom fire), EditorName (Name (Editor Only))
+{
+custom fire
+}
+
+STRING 490
+// Buffs/Effects: B004 (custom fire), Bufftip (Tooltip)
+{
+Holy Fire
+}
+
+STRING 491
+// Buffs/Effects: B004 (custom fire), Buffubertip (Tooltip - Extended)
+{
+This unit is being burned by Holy Fire; it will take damage over time.
+}
+
+STRING 497
+// Abilities: A00U (Item Move Speed Bonus), EditorSuffix (Editor Suffix)
+{
+(+30)
+}
+
+STRING 499
+// Items: I001 (Wind Walker Treads), Tip (Tooltip - Basic)
+{
+Purchase Wind Walker's Treads
+}
+
+STRING 500
+// Items: I001 (Wind Walker Treads), Description (Description)
+{
+Increases movement rate and lets the user wind walk.
+}
+
+STRING 501
+// Items: dtsb (Drek'thar's Spellbook), Ubertip (Tooltip - Extended)
+{
+Grants the ability to teleport you and nearby units to |cffffcc00castles|r or |cffffcc00towns|r (75 |cff8080ffmana|r - |cffc0c0c0no cooldown|r).|n|n+150 |cff8080ffMana|r |n -33% |cffff00ffSpell Damage|r Taken
+}
+
+STRING 502
+// Items: thdm (Thunderlizard Diamond), Ubertip (Tooltip - Extended)
+{
+Casts bolts of lightning that deals 100 damage to multiple targets. |n|n|cffc0c0c09 second cooldown|r.|n50 |cff8080ffmana|r cost.
+}
+
+STRING 506
+// Abilities: A01B (Wind Walk), EditorSuffix (Editor Suffix)
+{
+(item)
+}
+
+STRING 507
+// Items: I007 (Hand of Midas), Ubertip (Tooltip - Extended)
+{
+Gives a 15% chance to grant |cffffff0010 gold|r whenever you deal any damage. |n|n+6 |cff00ff00Agility|r
+}
+
+STRING 508
+// Items: I001 (Wind Walker Treads), Name (Name)
+{
+Wind Walker Treads
+}
+
+STRING 509
+// Items: I006 (Blink Dagger), Ubertip (Tooltip - Extended)
+{
+Allows the Hero to teleport 1800 units away. |n|N|cffc0c0c018 second cooldown|r
+}
+
+STRING 510
+// Items: I001 (Wind Walker Treads), Ubertip (Tooltip - Extended)
+{
+Increases the movement speed of the Hero when worn.  |n|n+30 Movespeed |nActive - Wind Walk |n    6 second duration|n    20 |cff8080ffmana|r|N    |cffc0c0c012 second cooldown|r
+}
+
+STRING 511
+// Items: I004 (Force Boots), Ubertip (Tooltip - Extended)
+{
+Increases the movement speed of the Hero when worn. Also allows provides an active ability that thrusts your hero forward in whatever direction they are. 
+
++30 Movespeed
+Active - Thrusts the hero forward. |n    25 |cff8080ffmana|r|n    |cffc0c0c012 second cooldown|r
+}
+
+STRING 513
+// Abilities: A01C (Flat Trueshot Aura), Name (Name)
+{
+Flat Trueshot Aura
+}
+
+STRING 515
+// Abilities: A01C (Flat Trueshot Aura), Tip (Tooltip - Normal)
+{
+Trueshot Aura (Flat)
+}
+
+STRING 516
+// Abilities: A01C (Flat Trueshot Aura), Ubertip (Tooltip - Normal - Extended)
+{
+An aura that gives nearby friendly units a 15 bonus damage to their ranged attacks.
+}
+
+STRING 519
+// Units: n00H ([|cffffcc00Elite|r] Archer General), Hotkey (Hotkey)
+{
+E
+}
+
+STRING 522
+// Units: h00N (Grain Silo), Hotkey (Hotkey)
+{
+G
+}
+
+STRING 523
+// Units: hcth ([|cffffcc00Elite|r] - Infantry General), Name (Name)
+{
+[|cffffcc00Elite|r] - Infantry General
+}
+
+STRING 524
+// Units: hcth ([|cffffcc00Elite|r] - Infantry General), Tip (Tooltip - Basic)
+{
+[|cffffcc00Elite|r] - Hire an Infantry General
+}
+
+STRING 525
+// Units: n00H ([|cffffcc00Elite|r] Archer General), Name (Name)
+{
+[|cffffcc00Elite|r] Archer General
+}
+
+STRING 526
+// Units: n00H ([|cffffcc00Elite|r] Archer General), Tip (Tooltip - Basic)
+{
+[|cffffcc00Elite|r] - Hire Archer General
+}
+
+STRING 527
+// Units: n00H ([|cffffcc00Elite|r] Archer General), Ubertip (Tooltip - Extended)
+{
+Elite ranged unit with critical strike that can also enlist archers herself. |n|nProvides an aura for ranged units that increases their damage by   +15.
+}
+
+STRING 528
+// Units: h00K (Peon Laborer), Name (Name)
+{
+Peon Laborer
+}
+
+STRING 529
+// Units: h00K (Peon Laborer), Hotkey (Hotkey)
+{
+P
+}
+
+STRING 530
+// Units: h00K (Peon Laborer), Tip (Tooltip - Basic)
+{
+Hire Peon Laborer
+}
+
+STRING 532
+// Units: h00L (Human Laborer), Name (Name)
+{
+Human Laborer
+}
+
+STRING 537
+// Units: h00L (Human Laborer), Hotkey (Hotkey)
+{
+H
+}
+
+STRING 540
+// Units: h00L (Human Laborer), Tip (Tooltip - Basic)
+{
+Hire Human Laborer
+}
+
+STRING 541
+// Units: h00M (Laborer's Guild), Name (Name)
+{
+Laborer's Guild
+}
+
+STRING 542
+// Abilities: A01D (Unit Inventory), EditorSuffix (Editor Suffix)
+{
+(Engineer)
+}
+
+STRING 543
+// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
+{
+Able to build (|cffd45e19only during day|r) and repair structures. Can also use items.|n|nCan build a scout tower that can be upgraded into to other towers; a barricade; a supply tent which can heal units; and caltrops, which can severely hinder enemy units.
+}
+
+STRING 544
+// Abilities: A01E (Human Laborer), Name (Name)
+{
+Human Laborer
+}
+
+STRING 545
+// Abilities: A01E (Human Laborer), Tip (Tooltip - Normal)
+{
+Human Laborer - Info Ability
+}
+
+STRING 547
+// Abilities: A01E (Human Laborer), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 552
+// Abilities: A01F (Peon Laborer), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 553
+// Abilities: A01F (Peon Laborer), Name (Name)
+{
+Peon Laborer
+}
+
+STRING 554
+// Units: h00L (Human Laborer), Ubertip (Tooltip - Extended)
+{
+After 4 days, the laborer will return (|cffffff003 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 555
+// Units: h00K (Peon Laborer), Ubertip (Tooltip - Extended)
+{
+After 2 days, the peon will return (|cffffff001.5 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 558
+// Units: h00N (Grain Silo), Name (Name)
+{
+Grain Silo
+}
+
+STRING 559
+// Units: h00N (Grain Silo), Tip (Tooltip - Basic)
+{
+Build Grain Silo
+}
+
+STRING 561
+// Abilities: A015 (Place Goblin Land Mine), Hotkey (Hotkey - Normal)
+{
+G
+}
+
+STRING 562
+// Abilities: A01G (Grain Silo), Name (Name)
+{
+Grain Silo
+}
+
+STRING 565
+// Abilities: A01G (Grain Silo), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 569
+// Abilities: A01E (Human Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 4 days, the laborer will earn you (|cffffff003 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 570
+// Abilities: A01F (Peon Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 2 days, the laborer will earn you (|cffffff001.5 x its cost|r) in gold. |n|nThe|cff8080ff max mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 572
+// Abilities: A01H (Blink (Engineer)), Name (Name)
+{
+Blink (Engineer)
+}
+
+STRING 573
+// Abilities: A01H (Blink (Engineer)), Tip (Tooltip - Normal)
+{
+Blink
+}
+
+STRING 574
+// Abilities: A01H (Blink (Engineer)), Ubertip (Tooltip - Normal - Extended)
+{
+Blink a short distance.
+}
+
+STRING 575
+// Abilities: A01I (Disband Unit), Name (Name)
+{
+Disband Unit
+}
+
+STRING 576
+// Abilities: A01I (Disband Unit), Tip (Tooltip - Normal)
+{
+Disband Unit
+}
+
+STRING 579
+// Abilities: A01I (Disband Unit), Ubertip (Tooltip - Normal - Extended)
+{
+Disbands the unit, freeing up food. 5 second cast time.|n|n|cffff0000Does not refund cost.|r
+}
+
+STRING 580
+// Items: I002 (Mask of the Frenzied Ghoul), Ubertip (Tooltip - Extended)
+{
+While wearing this mask, a Hero will recover hit points equal to <AIva,DataA1,%>% of the attack damage dealt to an enemy unit. |n|n |cffff0000-8|r |cff8080ffIntelligence|r |n+5 |cff00ff00Agility|r
+}
+
+STRING 581
+// Units: h00N (Grain Silo), Ubertip (Tooltip - Extended)
+{
+Build a Grain Silo that raises your food cap by +5. This structure will be destroyed after 5 days.
+}
+
+STRING 582
+// Abilities: A01G (Grain Silo), Tip (Tooltip - Normal)
+{
+Grain Silo - Info Ability
+}
+
+STRING 583
+// Abilities: A01G (Grain Silo), Ubertip (Tooltip - Normal - Extended)
+{
+Increases your food cap by +5. After 5 days the structure will be destroyed. |n|nThe|cff8080ff max mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 584
+// Abilities: A01F (Peon Laborer), Tip (Tooltip - Normal)
+{
+Peon Laborer - Info Ability
 }
 

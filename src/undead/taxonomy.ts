@@ -194,6 +194,10 @@ class SpawnData {
             this.spawnDifficulty = SpawnDifficulty.final;
         }
 
+        if (RoundManager.currentRound == 5) {
+            this.spawnDifficulty = SpawnDifficulty.hard;
+        }
+
         this.spawnAmountPerWave = this.waveIntervalTime === 15 ? this.totalSpawnCount : this.totalSpawnCount * 1.75;
         this.baseTier2Chance = 0.08 + 0.04 * RoundManager.currentRound + (isHardDiff ? 0.08 : 0);
         this.currentTier2Chance = this.baseTier2Chance;
@@ -538,7 +542,9 @@ const unitCategoryData = new Map<UnitCategory, { tierI: number[]; tierII: number
                 FourCC("nskf"),
             ],
             tierIII: [
+                //nether drake - to fucking op lol
                 FourCC("nndr"),
+                //frost wyrm
                 FourCC("ufro"),
                 //
             ],

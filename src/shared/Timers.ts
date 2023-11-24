@@ -5,7 +5,7 @@ import { Timer, Trigger } from "w3ts";
 export class TimerManager {
     static nightTimer: Timer = Timer.create();
     static dayTimer: Timer = Timer.create();
-    static dayTimeDuration = 105;
+    static dayTimeDuration = 120;
     static nightTimeDuration = 150;
     private static nightTimerDialog: timerdialog;
     private static dayTimerDialog: timerdialog;
@@ -50,5 +50,15 @@ export class TimerManager {
         TimerManager.dayTimer.start(duration ?? TimerManager.dayTimeDuration, false, cb);
         TimerDialogDisplayBJ(true, TimerManager.dayTimerDialog);
         TimerDialogSetTitle(TimerManager.dayTimerDialog, "Time until night fall...");
+    }
+
+    static isDayTime() {
+        const time = GetTimeOfDay();
+
+        if (time === 12) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -65,6 +65,8 @@ export enum UNITS {
     citadelOfTheNorthernKnights = FourCC("h00E"),
     humanLaborer = FourCC("h00L"),
     peonLaborer = FourCC("h00K"),
+    druidLaborer = FourCC("h00O"),
+    acolyteSlaveLaborer = FourCC("h00P"),
     grainSilo = FourCC("h00N"),
 
     //Human units
@@ -168,3 +170,5 @@ export enum TERRAIN_CODE {
     // blightMaybe = 12816513,
     // blight_ = 1282568043
 }
+
+export const laborerUnitSet = new Set<number>([UNITS.peonLaborer, UNITS.druidLaborer, UNITS.humanLaborer, UNITS.acolyteSlaveLaborer]);
