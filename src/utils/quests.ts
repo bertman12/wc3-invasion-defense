@@ -92,8 +92,5 @@ export function addQuest(title: string, description: string, iconPath?: string, 
         if (iconPath) {
             q.setIcon(iconPath);
         }
-        // q.required = false;
     }
-
-    return q as Quest;
 }

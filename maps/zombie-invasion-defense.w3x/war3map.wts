@@ -2938,3 +2938,27 @@ STRING 766
 Elite ranged unit with critical strike that can also enlist archers herself. |n|nProvides an aura for ranged units that increases their damage by +15. |n|N|cffffcc00Able to use items and has a minimap icon representing where it is.|r
 }
 
+STRING 767
+// Items: I00K (Claws of Attack +20), Name (Name)
+{
+Claws of Attack +20
+}
+
+STRING 768
+// Items: I00K (Claws of Attack +20), Description (Description)
+{
+Boosts attack damage by 20
+}
+
+STRING 769
+// Items: I00K (Claws of Attack +20), Tip (Tooltip - Basic)
+{
+Purchase Claws of Attack +20
+}
+
+STRING 770
+// Items: I00K (Claws of Attack +20), Ubertip (Tooltip - Extended)
+{
++20 Attack Damage
+}
+

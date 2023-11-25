@@ -63,6 +63,7 @@ export function init_undead() {
 }
 
 export function undeadDayStart() {
+    print("Current spawns length: ", currentSpawns.length);
     currentSpawns.forEach((spawn) => spawn.cleanupSpawn());
 
     currentSpawns = [];
@@ -71,8 +72,16 @@ export function undeadDayStart() {
 
     const validUndeadSpawns = [gg_rct_zombieSpawn2, gg_rct_zNorthSpawn1, gg_rct_ZombieSpawn1, gg_rct_zWestSpawn1, gg_rct_zEastCapitalSpawn];
     let spawns: rect[] = [];
-    // [2,5] spawns will be chosen
-    const spawnCount = 2 + Math.ceil(Math.random() * 5);
+
+    // [MIN_SPAWN_AMOUNT, validUndeadSpawns.length] spawns will be chosen
+    const MIN_SPAWN_AMOUNT = 2;
+    let spawnCount = Math.ceil(Math.random() * validUndeadSpawns.length);
+
+    //If the chosen amount is less than the minimum then set to min amount
+    if (spawnCount < MIN_SPAWN_AMOUNT) {
+        spawnCount = MIN_SPAWN_AMOUNT;
+    }
+
     const tempSet = new Set<rect>();
 
     while (tempSet.size !== spawnCount) {
@@ -94,7 +103,7 @@ export function undeadDayStart() {
         spawns = validUndeadSpawns;
     }
 
-    const spawnBoss = RoundManager.currentRound > 0 && RoundManager.currentRound % 3 === 0;
+    const spawnBoss = RoundManager.currentRound % 3 === 0;
 
     const spawnConfigs = spawns.map((zone, index) => {
         if (index === 0 && spawnBoss) {
@@ -312,14 +321,14 @@ class SpawnData {
 
         this.currentAttackTarget = newTarget;
 
-        if (attackingUnits.length) {
+        if (attackingUnits.length > 0) {
             attackingUnits.forEach((u) => {
                 u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0);
             });
         }
 
         //If there are any idle units, then make them attack the current target or 0,0
-        if (this.units.length) {
+        if (this.units.length > 0) {
             this.units.forEach((u) => {
                 if (u.currentOrder === 0 || u.currentOrder === OrderId.Stop) {
                     u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0);

@@ -74,7 +74,7 @@ function trig_playerBuysUnit() {
     t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SELL);
 
     t.addCondition(() => {
-        const u = Unit.fromHandle(GetSoldUnit()) as Unit;
+        const u = Unit.fromHandle(GetSoldUnit());
 
         if (u && playerStates.get(u.owner.id)?.rallyToHero) {
             return true;
@@ -84,10 +84,15 @@ function trig_playerBuysUnit() {
     });
 
     t.addAction(() => {
-        const u = Unit.fromHandle(GetSoldUnit()) as Unit;
+        const u = Unit.fromHandle(GetSoldUnit());
+
+        if (!u) {
+            return;
+        }
+
         const widget = Widget.fromHandle(playerStates.get(u.owner.id)?.playerHero?.handle);
 
-        if (u && widget) {
+        if (widget) {
             u.issueTargetOrder(OrderId.Move, widget);
         }
     });
@@ -104,18 +109,19 @@ function trig_heroPurchased() {
             return true;
         }
 
-        // const createdUnit = Unit.fromHandle(GetSoldUnit()) as Unit;
-
-        // createdUnit?.destroy();
-
         return false;
     });
 
     t.addAction(() => {
-        const buyingUnit = Unit.fromHandle(GetBuyingUnit()) as Unit;
+        const buyingUnit = Unit.fromHandle(GetBuyingUnit());
+        const createdUnit = Unit.fromHandle(GetSoldUnit());
+
+        if (!buyingUnit || !createdUnit) {
+            return;
+        }
+
         buyingUnit.kill();
         const seller = Unit.fromHandle(GetSellingUnit());
-        const createdUnit = Unit.fromHandle(GetSoldUnit()) as Unit;
         const playerState = playerStates.get(createdUnit.owner.id);
 
         if (playerState) {
@@ -139,8 +145,12 @@ function trig_heroPurchased() {
         if (engineer && farmHand) {
             engineer.setUseFood(false);
             farmHand.setUseFood(false);
-            engineer.issueTargetOrder(OrderId.Move, playerState?.playerHero as Widget);
-            farmHand.issueTargetOrder(OrderId.Move, playerState?.playerHero as Widget);
+            const playerHero = playerState?.playerHero;
+
+            if (playerHero) {
+                engineer.issueTargetOrder(OrderId.Move, playerHero);
+                farmHand.issueTargetOrder(OrderId.Move, playerHero);
+            }
         }
     });
 }
@@ -381,7 +391,12 @@ function trig_checkFarmLaborerPlacement() {
 
     t.addCondition(() => {
         //Get the building being built
-        const u = Unit.fromEvent() as Unit;
+        const u = Unit.fromEvent();
+
+        if (!u) {
+            return false;
+        }
+
         if (laborerUnitSet.has(u.typeId) && GetTerrainType(u.x, u.y) === TERRAIN_CODE.crops) {
             return true;
         }
@@ -468,7 +483,7 @@ export function addProgressForLaborers() {
                     const unitGoldCost = GetUnitGoldCost(config.unitTypeCode);
                     const goldAwarded = unitGoldCost * config.goldCostMultiplierAward;
 
-                    if (goldAwarded) {
+                    if (goldAwarded > 0) {
                         adjustGold(p, goldAwarded);
                         // print(`${u.owner.name} has been awarded ${tColor(goldAwarded.toString(), "yellow")} gold for ${u.name} completing their work.`);
                     }
