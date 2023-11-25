@@ -75,6 +75,7 @@ export enum UNITS {
     farmHand = FourCC("h00Q"),
     infantryGeneral = FourCC("hcth"),
     archerGeneral = FourCC("n00H"),
+    goblinLandMine = FourCC("n00F"),
 
     //Undead
     abomination = FourCC("uabo"),
@@ -121,9 +122,21 @@ export enum ITEMS {
     handOfMidas = FourCC("I007"),
     recipe_blinkTreads = FourCC("I009"),
     blinkTreads = FourCC("I00A"),
+    windWalkerTreads = FourCC("I001"),
     sobiMask = FourCC("rwiz"),
     greaterSobiMask = FourCC("I00B"),
     recipe_greaterSobiMask = FourCC("I00C"),
+    recipe_bladeOfTheWindWalker = FourCC("I00E"),
+    recipe_staffOfPrimalThunder = FourCC("I00H"),
+    bladeOfTheWindWalker = FourCC("I00D"),
+    savageBlade = FourCC("srbd"),
+    staffOfKnowledge = FourCC("I00F"),
+    staffOfPrimalThunder = FourCC("I00G"),
+    thunderLizardDiamond = FourCC("thdm"),
+    berserkersCleaver = FourCC("I00I"),
+    recipe_berserkersCleaver = FourCC("I00J"),
+    helmOfBattleThirst = FourCC("hbth"),
+    corpseCleaver = FourCC("I008"),
 }
 
 //Can find looking up models for a spell at the Art - Target field

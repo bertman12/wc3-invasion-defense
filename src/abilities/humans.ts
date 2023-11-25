@@ -195,7 +195,7 @@ function trig_battleCharge() {
             200,
             (u) => {
                 //to prevent moving things like rampart canon tower which is a flying unit
-                if (allCapturableStructures.has(u.typeId) || u.isUnitType(UNIT_TYPE_STRUCTURE)) {
+                if (allCapturableStructures.has(u.typeId) || u.isUnitType(UNIT_TYPE_STRUCTURE) || u.typeId === UNITS.goblinLandMine) {
                     return;
                 }
 

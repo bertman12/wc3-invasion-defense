@@ -570,12 +570,19 @@ const unitCategoryData = new Map<UnitCategory, { tierI: number[]; tierII: number
                 UNITS.obsidianStatue,
                 //kobold geomancer
                 FourCC("nkog"),
+                //poison treant
+                FourCC("nenp"),
                 //skeletal frost mage
                 //obsidian statue
             ],
             tierII: [
                 UNITS.lich,
                 UNITS.necromancer,
+                //stormreaver necrolyte
+                FourCC("nsrn"),
+                //eredar diabolist
+                FourCC("nerd"),
+
                 UNITS.greaterObsidianStatue,
                 //necromancer
                 //lich

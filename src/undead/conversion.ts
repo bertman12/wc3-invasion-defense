@@ -43,7 +43,8 @@ export function convertHumanToUndeadStructures() {
                 const unitType = humanToUndead.get(u.typeId);
                 if (unitType) {
                     u.kill();
-                    Unit.create(Players[15], unitType, u.x, u.y);
+                    const createdUnit = Unit.create(Players[15], unitType, u.x, u.y);
+                    createdUnit?.setField(UNIT_BF_IS_A_BUILDING, true);
                 }
             }
         }

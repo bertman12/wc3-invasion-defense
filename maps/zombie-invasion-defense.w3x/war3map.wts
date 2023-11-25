@@ -1117,19 +1117,6 @@ STRING 276
 Heroic Leap
 }
 
-STRING 279
-// Items: I002 (Mask of the Frenzied Ghoul), Name (Name)
-{
-Mask of the Frenzied Ghoul
-}
-
-STRING 280
-// Items: I002 (Mask of the Frenzied Ghoul), Tip (Tooltip - Basic)
-{
-Purchase Mask of the Frenzied Ghoul
-
-}
-
 STRING 286
 // Abilities: A00R (Glaives of Carnage), Name (Name)
 {
@@ -1574,12 +1561,6 @@ STRING 396
 Fires short jets of flame. Good at destroying enemies that get close. |n|n450 attack range.
 }
 
-STRING 399
-// Items: rwiz (Sobi Mask), Ubertip (Tooltip - Extended)
-{
-Increases the Hero's rate of mana regeneration by 20% when worn.
-}
-
 STRING 400
 // Abilities: AIrm (Item Mana Regeneration), EditorSuffix (Editor Suffix)
 {
@@ -1998,18 +1979,6 @@ STRING 502
 Casts bolts of lightning that deals 100 damage to multiple targets. |n|n|cffc0c0c09 second cooldown|r.|n50 |cff8080ffmana|r cost.
 }
 
-STRING 506
-// Abilities: A01B (Wind Walk), EditorSuffix (Editor Suffix)
-{
-(item)
-}
-
-STRING 507
-// Items: I007 (Hand of Midas), Ubertip (Tooltip - Extended)
-{
-Gives a 15% chance to grant |cffffff0010 gold|r whenever you deal any damage. |n|n+6 |cff00ff00Agility|r
-}
-
 STRING 508
 // Items: I001 (Wind Walker Treads), Name (Name)
 {
@@ -2020,21 +1989,6 @@ STRING 509
 // Items: I006 (Blink Dagger), Ubertip (Tooltip - Extended)
 {
 Allows the Hero to teleport 1800 units away. |n|N|cffc0c0c018 second cooldown|r
-}
-
-STRING 510
-// Items: I001 (Wind Walker Treads), Ubertip (Tooltip - Extended)
-{
-Increases the movement speed of the Hero when worn.  |n|n+30 Movespeed |nActive - Wind Walk |n    6 second duration|n    20 |cff8080ffmana|r|N    |cffc0c0c012 second cooldown|r
-}
-
-STRING 511
-// Items: I004 (Force Boots), Ubertip (Tooltip - Extended)
-{
-Increases the movement speed of the Hero when worn. Also allows provides an active ability that thrusts your hero forward in whatever direction they are. 
-
-+30 Movespeed
-Active - Thrusts the hero forward. |n    25 |cff8080ffmana|r|n    |cffc0c0c012 second cooldown|r
 }
 
 STRING 513
@@ -2248,7 +2202,7 @@ Disbands the unit, freeing up food. 5 second cast time.|n|n|cffff0000Does not re
 }
 
 STRING 580
-// Items: I002 (Mask of the Frenzied Ghoul), Ubertip (Tooltip - Extended)
+// Items: I002 ([|cffff0000Cursed|r] Mask of the Frenzied Ghoul), Ubertip (Tooltip - Extended)
 {
 While wearing this mask, a Hero will recover hit points equal to <AIva,DataA1,%>% of the attack damage dealt to an enemy unit. |n|n |cffff0000-8|r |cff8080ffIntelligence|r |n+5 |cff00ff00Agility|r
 }
@@ -2541,12 +2495,6 @@ STRING 649
 Warrior Hero, adept at terrorizing enemies. Can learn Rain of Fire, Howl of Terror, Cleaving Attack, and Doom.|n|n[|cff00ff00New|r] - Can cast battle charge, causing the hero to charge in their facing direction knocking back and dealing 150 damage to enemies.
 }
 
-STRING 650
-// Units: O003 (Demigod), Ubertip (Tooltip - Extended)
-{
-An ancient demigod. Can learn Cleaving Attack, Endurance Aura, War Stomp and Reincarnation. Has ability to use Battle Charge. |n|n[|cff00ff00New|r] - Can cast battle charge, causing the hero to charge in their facing direction knocking back and dealing 150 damage to enemies.
-}
-
 STRING 651
 // Units: Nbst (Beastmaster), Ubertip (Tooltip - Extended)
 {
@@ -2588,7 +2536,7 @@ STRING 656
 }
 
 STRING 658
-// Items: I009 ([|cffffcc00Recipe|r] Blink Treads), Ubertip (Tooltip - Extended)
+// Items: I00A (Blink Treads), Ubertip (Tooltip - Extended)
 {
 Increases the movement speed of the Hero when worn and allows the hero to blink.|n|n+60 Movespeed
 }
@@ -2611,12 +2559,6 @@ STRING 661
 Recipes 1
 }
 
-STRING 662
-// Items: I00A (Blink Treads), Ubertip (Tooltip - Extended)
-{
-Increases the movement speed of the Hero when worn and allows the hero to blink.|n|n+60 Movespeed
-}
-
 STRING 663
 // Items: I00A (Blink Treads), Name (Name)
 {
@@ -2627,12 +2569,6 @@ STRING 664
 // Items: I00A (Blink Treads), Tip (Tooltip - Basic)
 {
 Purchase Blink Treads
-}
-
-STRING 665
-// Items: I00B (Greater Sobi Mask), Ubertip (Tooltip - Extended)
-{
-Increases the Hero's rate of mana regeneration by 50% when worn.
 }
 
 STRING 666
@@ -2653,12 +2589,6 @@ STRING 668
  (50%)
 }
 
-STRING 669
-// Items: I00C ([|cffffcc00Recipe|r] Greater Sobi Mask), Ubertip (Tooltip - Extended)
-{
-Increases the Hero's rate of mana regeneration by 50% when worn.
-}
-
 STRING 670
 // Items: I00C ([|cffffcc00Recipe|r] Greater Sobi Mask), Name (Name)
 {
@@ -2671,9 +2601,334 @@ STRING 671
 Purchase [|cffffcc00Recipe|r] Greater Sobi Mask
 }
 
-STRING 672
+STRING 673
+// Units: n00I (Building Transition), Name (Name)
+{
+Building Transition
+}
+
+STRING 675
+// Items: I00D (Blade of the Wind Walker), Name (Name)
+{
+Blade of the Wind Walker
+}
+
+STRING 676
+// Items: I00D (Blade of the Wind Walker), Tip (Tooltip - Basic)
+{
+Purchase Blade of the Wind Walker
+}
+
+STRING 677
+// Abilities: A01B (Wind Walk), EditorSuffix (Editor Suffix)
+{
+(Wind walker treads)
+}
+
+STRING 678
+// Abilities: A01P (Wind Walk), EditorSuffix (Editor Suffix)
+{
+(blade of the wind walker)
+}
+
+STRING 679
+// Items: I00E ([|cffffcc00Recipe|r] Blade of The Wind Walker), Name (Name)
+{
+[|cffffcc00Recipe|r] Blade of The Wind Walker
+}
+
+STRING 681
+// Items: I00E ([|cffffcc00Recipe|r] Blade of The Wind Walker), Tip (Tooltip - Basic)
+{
+Purchase [|cffffcc00Recipe|r] Blade of the Wind Walker
+}
+
+STRING 683
+// Abilities: A01Q (Critical Strike), EditorSuffix (Editor Suffix)
+{
+ (25% 2xdmg)
+}
+
+STRING 685
+// Items: srbd (Savage Blade), Name (Name)
+{
+Savage Blade
+}
+
+STRING 686
+// Items: srbd (Savage Blade), Tip (Tooltip - Basic)
+{
+Purchase Savage Blade
+}
+
+STRING 687
+// Items: srbd (Savage Blade), Ubertip (Tooltip - Extended)
+{
+Critical Strike - 15% chance (1.5 x damage)|n+5 Attack Damage
+}
+
+STRING 689
+// Abilities: AIcs (Critical Strike), EditorSuffix (Editor Suffix)
+{
+ (15% 1.5xdmg)
+}
+
+STRING 693
+// Abilities: A01S (Flat Mana Regeneration), Name (Name)
+{
+Flat Mana Regeneration
+}
+
+STRING 694
+// Items: I002 ([|cffff0000Cursed|r] Mask of the Frenzied Ghoul), Name (Name)
+{
+[|cffff0000Cursed|r] Mask of the Frenzied Ghoul
+}
+
+STRING 698
+// Abilities: A01R (Flat Mana Regeneration), Name (Name)
+{
+Flat Mana Regeneration
+}
+
+STRING 701
 // Items: I00C ([|cffffcc00Recipe|r] Greater Sobi Mask), Description (Description)
 {
-Increases the Hero's rate of mana regeneration by 50% when worn.
+Increases the Hero's rate of mana regeneration by 2.5 when worn.
+}
+
+STRING 703
+// Abilities: A01S (Flat Mana Regeneration), EditorSuffix (Editor Suffix)
+{
+(0.5)
+}
+
+STRING 704
+// Abilities: A01R (Flat Mana Regeneration), EditorSuffix (Editor Suffix)
+{
+(2.5)
+}
+
+STRING 706
+// Items: I004 (Force Boots), Ubertip (Tooltip - Extended)
+{
+Increases the movement speed of the Hero when worn. Also allows provides an active ability that thrusts your hero forward in whatever direction they are. 
+
++30 Movespeed
+Active - Thrusts the hero forward. |n    25 |cff8080ffmana|r|n    |cffc0c0c06 second cooldown|r
+}
+
+STRING 709
+// Units: O003 (Demigod), Ubertip (Tooltip - Extended)
+{
+An ancient demigod. Can learn Shockwave, Endurance Aura, War Stomp and Reincarnation. Has ability to use Battle Charge. |n|n[|cff00ff00New|r] - Can cast battle charge, causing the hero to charge in their facing direction knocking back and dealing 150 damage to enemies.
+}
+
+STRING 710
+// Items: I00F (Staff of Knowledge), Name (Name)
+{
+Staff of Knowledge
+}
+
+STRING 711
+// Items: I00F (Staff of Knowledge), Description (Description)
+{
+Boosts Intelligence by 5.
+}
+
+STRING 712
+// Items: I00F (Staff of Knowledge), Tip (Tooltip - Basic)
+{
+Purchase Staff of Knowledge
+}
+
+STRING 713
+// Items: I00F (Staff of Knowledge), Ubertip (Tooltip - Extended)
+{
++5 |cff8080ffIntelligence|r
+}
+
+STRING 714
+// Items: I00G (Staff of Primal Thunder), Name (Name)
+{
+Staff of Primal Thunder
+}
+
+STRING 715
+// Units: n00J (Primitives), Name (Name)
+{
+Primitives
+}
+
+STRING 718
+// Abilities: A01T (Greater Chain Lightning), Name (Name)
+{
+Greater Chain Lightning
+}
+
+STRING 719
+// Items: I00G (Staff of Primal Thunder), Tip (Tooltip - Basic)
+{
+Purchase Staff of Primal Thunder
+}
+
+STRING 720
+// Abilities: A01U (Item Stat Bonus), Name (Name)
+{
+Item Stat Bonus
+}
+
+STRING 721
+// Abilities: A01U (Item Stat Bonus), EditorSuffix (Editor Suffix)
+{
+ = 10 int
+}
+
+STRING 722
+// Items: I00H ([|cffffcc00Recipe|r] Staff of Primal Thunder), Name (Name)
+{
+[|cffffcc00Recipe|r] Staff of Primal Thunder
+}
+
+STRING 724
+// Items: I00H ([|cffffcc00Recipe|r] Staff of Primal Thunder), Tip (Tooltip - Basic)
+{
+Purchase [|cffffcc00Recipe|r] Staff of Primal Thunder
+}
+
+STRING 726
+// Items: I002 ([|cffff0000Cursed|r] Mask of the Frenzied Ghoul), Tip (Tooltip - Basic)
+{
+Purchase [|cffff0000Cursed|r] Mask of the Frenzied Ghoul
+
+}
+
+STRING 727
+// Items: I007 (Hand of Midas), Ubertip (Tooltip - Extended)
+{
+Gives a 15% chance to grant |cffffff0010 gold|r whenever you deal any damage. |n|n+3 |cffffcc00All Stats|R
+}
+
+STRING 728
+// Items: hbth (Helm of Battlethirst), Ubertip (Tooltip - Extended)
+{
+Grants the ability to go Berserk, causing the Hero to attack <AIxk,DataB1,%>% faster but take <AIxk,DataC1,%>% more damage.|n|N+4 |cffff0000Strength|r|n+4 |cff00ff00Agility|r
+}
+
+STRING 729
+// Items: I00I (Berserker's Cleaver), Name (Name)
+{
+Berserker's Cleaver
+}
+
+STRING 730
+// Items: I00I (Berserker's Cleaver), Tip (Tooltip - Basic)
+{
+Purchase Corpse Cleaver
+}
+
+STRING 732
+// Abilities: A01V (Item Stat Bonus), Name (Name)
+{
+Item Stat Bonus
+}
+
+STRING 733
+// Abilities: A01V (Item Stat Bonus), EditorSuffix (Editor Suffix)
+{
+ = 12 str
+}
+
+STRING 734
+// Abilities: A01W (Cleaving Attack), EditorSuffix (Editor Suffix)
+{
+ (50%)
+}
+
+STRING 735
+// Abilities: ACce (Cleaving Attack), EditorSuffix (Editor Suffix)
+{
+= 25%
+}
+
+STRING 737
+// Items: I00J ([|cffffcc00Recipe|r] Berserker's Cleaver), Name (Name)
+{
+[|cffffcc00Recipe|r] Berserker's Cleaver
+}
+
+STRING 738
+// Items: I00J ([|cffffcc00Recipe|r] Berserker's Cleaver), Tip (Tooltip - Basic)
+{
+Purchase [|cffffcc00Recipe|r] Berserker's Cleaver
+}
+
+STRING 744
+// Items: rwiz (Sobi Mask), Ubertip (Tooltip - Extended)
+{
++0.5 |cff8080ffmana regeneration|r
+}
+
+STRING 745
+// Items: I00B (Greater Sobi Mask), Ubertip (Tooltip - Extended)
+{
++2.5 |cff8080ffmana regeneration|r
+}
+
+STRING 746
+// Items: I00C ([|cffffcc00Recipe|r] Greater Sobi Mask), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0 2 Sobi Mask|r   |n|N+2.5 |cff8080ffmana regeneration|r
+}
+
+STRING 748
+// Items: I009 ([|cffffcc00Recipe|r] Blink Treads), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Boots of Speed, Blink Dagger|r  |n|nIncreases the movement speed of the Hero when worn and allows the hero to blink.|n|n+60 Movespeed
+}
+
+STRING 749
+// Items: I00H ([|cffffcc00Recipe|r] Staff of Primal Thunder), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0(2) Thunderlizard Diamond, (2) Staff of Knowledge|r|N|n+10 |cff8080ffIntelligence|r |n|n|cffffcc00Greater Chain Lightning|R - Deals an initial 300 damage and bounces to nearby enemies. |n
+200 |cff8080ffmana cost|r
+|cffc0c0c09 second cooldown|r
+}
+
+STRING 750
+// Items: I00D (Blade of the Wind Walker), Ubertip (Tooltip - Extended)
+{
++25% Critical Strike Chance (2x damage)|n+20 Attack Damage|n+30 Move Speed  |N|N|cffffcc00Wind Walk|r - Go invisible for 10 seconds. Adds 200 bonus damage to your next attack. 
+}
+
+STRING 751
+// Items: I00E ([|cffffcc00Recipe|r] Blade of The Wind Walker), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Treads of the Wind Walker, Savage Blade|r     |n|n+25% Critical Strike Chance (2x damage)|n+20 Attack Damage  |N|N|cffffcc00Wind Walk|r - Go invisible for 10 seconds. Adds 200 bonus damage to your next attack. 
+}
+
+STRING 752
+// Items: I00G (Staff of Primal Thunder), Ubertip (Tooltip - Extended)
+{
++10 |cff8080ffIntelligence|r |n|n|cffffcc00Greater Chain Lightning|r - Deals an initial 300 damage and bounces to nearby enemies.
+}
+
+STRING 753
+// Items: I00I (Berserker's Cleaver), Ubertip (Tooltip - Extended)
+{
+Causes melee attacks cleave for 50% damage. |n|n+12|cffff0000 Strength|r |N  +4 |cff00ff00Agility|r   |n+10 |cffc0c0c0Attack Damage|r |N|N|cffffcc00Berserk|r: Attack 50% faster but takes 50% more damage.
+}
+
+STRING 754
+// Items: I00J ([|cffffcc00Recipe|r] Berserker's Cleaver), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Corpse Cleaver, Helm of Battlethirst|r
+Causes melee attacks cleave for 50% damage. |n|n+12|cffff0000 Strength|r |N  +4 |cff00ff00Agility|r   |n+10 |cffc0c0c0Attack Damage|r |N|N|cffffcc00Berserk|r: Attack 50% faster but takes 50% more damage.
+}
+
+STRING 755
+// Items: I001 (Wind Walker Treads), Ubertip (Tooltip - Extended)
+{
+Increases the movement speed of the Hero when worn.  |n|n+30 Movespeed |n|cffffcc00Wind Walk|r - Go invisible for 5 seconds. |n    20 |cff8080ffmana|r|N    |cffc0c0c012 second cooldown|r
 }
 

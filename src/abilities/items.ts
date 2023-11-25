@@ -1,4 +1,4 @@
-import { ABILITIES, ITEMS } from "src/shared/enums";
+import { ABILITIES, ITEMS, UNITS } from "src/shared/enums";
 import { applyForce } from "src/shared/physics";
 import { allCapturableStructures } from "src/towns";
 import { unitGetsNearThisUnit } from "src/utils/abilities";
@@ -9,7 +9,6 @@ import { Effect, Item, Timer, Trigger, Unit } from "w3ts";
 export function init_itemAbilities() {
     trig_forceBoots();
     handOfMidas();
-    addBlinkToBoots();
     itemRecipes();
 }
 
@@ -43,7 +42,7 @@ function trig_forceBoots() {
             200,
             (u) => {
                 //to prevent moving things like rampart canon tower which is a flying unit
-                if (allCapturableStructures.has(u.typeId) || u.isUnitType(UNIT_TYPE_STRUCTURE)) {
+                if (allCapturableStructures.has(u.typeId) || u.isUnitType(UNIT_TYPE_STRUCTURE) || u.typeId === UNITS.goblinLandMine) {
                     return;
                 }
 
@@ -66,37 +65,6 @@ function trig_forceBoots() {
                 destroy();
             },
         });
-    });
-}
-
-function addBlinkToBoots() {
-    const t = Trigger.create();
-
-    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_PICKUP_ITEM);
-
-    t.addAction(() => {
-        const boughtItem = Item.fromHandle(GetSoldItem());
-
-        const u = Unit.fromEvent();
-
-        if (!u) {
-            return;
-        }
-
-        // print("buying unit: ", u.name);
-
-        //Check if the player has blink dagger equipped
-        const blinkDagger = GetItemOfTypeFromUnitBJ(u.handle, ITEMS.blinkDagger);
-        const bootsOfSpeed = GetItemOfTypeFromUnitBJ(u.handle, ITEMS.bootsOfSpeed);
-        if (blinkDagger && bootsOfSpeed) {
-            //add blink to boots
-            Item.fromHandle(blinkDagger)?.getAbility(FourCC("Albk"));
-        }
-
-        // print("blinkDagger", blinkDagger);
-        // print("bootsOfSpeed", bootsOfSpeed);
-
-        // print("Player picked up item");
     });
 }
 
@@ -211,7 +179,7 @@ function checkItemRecipeRequirements(unit: Unit, recipeItem: Item) {
                 const matching = matchingItems?.find((matchingItemData) => matchingItemData.itemTypeId === reqItemData.itemTypeId);
 
                 if (matching) {
-                    return reqItemData.quantity >= matching.quantity;
+                    return matching.quantity >= reqItemData.quantity;
                 }
 
                 return false;
@@ -221,15 +189,16 @@ function checkItemRecipeRequirements(unit: Unit, recipeItem: Item) {
             print("Missing the item type id of the item to create for this recipe: ", recipeItem.name);
         }
 
+        //destroys more items than it needds to
         if (satisfiesRecipe && itemToCreateId) {
             //add the item
-
             requiredItems.forEach((req: RecipeItemRequirement) => {
                 for (let x = 0; x < req.quantity; x++) {
                     for (let x = 0; x < 6; x++) {
                         const currItem = unit?.getItemInSlot(x);
                         if (currItem?.typeId === req.itemTypeId) {
                             currItem?.destroy();
+                            break;
                         }
                     }
                 }
@@ -238,7 +207,11 @@ function checkItemRecipeRequirements(unit: Unit, recipeItem: Item) {
             recipeItem.destroy();
 
             unit.addItemById(itemToCreateId);
+
             useTempEffect(Effect.create("Abilities\\Spells\\Other\\Monsoon\\MonsoonBoltTarget.mdl", unit.x, unit.y));
+            const clap = Effect.create("Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl", unit.x, unit.y);
+            clap?.setScaleMatrix(0.5, 0.5, 0.5);
+            useTempEffect(clap);
         }
 
         if (!satisfiesRecipe) {
@@ -261,18 +234,44 @@ interface RecipeItem {
     itemId: number;
 }
 
+//The item cost of a recipe should be the added value of whatever stats +100 gold for freeing up a slot
+//50 gold per stat?
+
+//thunderlizard gems and a staff of knowledge
+
 const itemRecipesMap = new Map<RecipeItem, RecipeItemRequirement[]>([
     [
         { recipeId: ITEMS.recipe_blinkTreads, itemId: ITEMS.blinkTreads },
         [
             { itemTypeId: ITEMS.bootsOfSpeed, quantity: 1, charges: 0 }, //
-            { itemTypeId: ITEMS.blinkDagger, quantity: 2, charges: 0 }, //
+            { itemTypeId: ITEMS.blinkDagger, quantity: 1, charges: 0 }, //
         ],
     ],
     [
         { recipeId: ITEMS.recipe_greaterSobiMask, itemId: ITEMS.greaterSobiMask },
         [
             { itemTypeId: ITEMS.sobiMask, quantity: 2, charges: 0 }, //
+        ],
+    ],
+    [
+        { recipeId: ITEMS.recipe_bladeOfTheWindWalker, itemId: ITEMS.bladeOfTheWindWalker },
+        [
+            { itemTypeId: ITEMS.windWalkerTreads, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.savageBlade, quantity: 1, charges: 0 }, //
+        ],
+    ],
+    [
+        { recipeId: ITEMS.recipe_staffOfPrimalThunder, itemId: ITEMS.staffOfPrimalThunder },
+        [
+            { itemTypeId: ITEMS.staffOfKnowledge, quantity: 2, charges: 0 }, //
+            { itemTypeId: ITEMS.thunderLizardDiamond, quantity: 2, charges: 0 }, //
+        ],
+    ],
+    [
+        { recipeId: ITEMS.recipe_berserkersCleaver, itemId: ITEMS.berserkersCleaver },
+        [
+            { itemTypeId: ITEMS.helmOfBattleThirst, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.corpseCleaver, quantity: 1, charges: 0 }, //
         ],
     ],
 ]);

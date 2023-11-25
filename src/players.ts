@@ -195,7 +195,7 @@ export function init_startingResources() {
 }
 
 function grantStartOfDayBonuses() {
-    const basePlayerFoodCap = 10;
+    const basePlayerFoodCap = 15;
     let totalSupplyBuildings = 0;
     let meleeWeaponUpgradeCount = 0;
     let armorUpgradeCount = 0;
