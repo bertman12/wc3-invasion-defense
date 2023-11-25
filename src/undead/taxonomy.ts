@@ -71,8 +71,8 @@ export function undeadDayStart() {
 
     const validUndeadSpawns = [gg_rct_zombieSpawn2, gg_rct_zNorthSpawn1, gg_rct_ZombieSpawn1, gg_rct_zWestSpawn1, gg_rct_zEastCapitalSpawn];
     let spawns: rect[] = [];
-    // [2,4] spawns will be chosen
-    const spawnCount = 2 + Math.ceil(Math.random() * 2);
+    // [2,5] spawns will be chosen
+    const spawnCount = 2 + Math.ceil(Math.random() * 5);
     const tempSet = new Set<rect>();
 
     while (tempSet.size !== spawnCount) {
