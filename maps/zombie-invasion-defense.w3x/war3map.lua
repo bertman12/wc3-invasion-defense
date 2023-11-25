@@ -528,11 +528,11 @@ local unitID
 local t
 local life
 
-u = BlzCreateUnitWithSkin(p, FourCC("udes"), -9998.0, 304.2, -12.181, FourCC("udes"))
+u = BlzCreateUnitWithSkin(p, FourCC("udes"), -9998.0, 304.2, 347.819, FourCC("udes"))
 u = BlzCreateUnitWithSkin(p, FourCC("udes"), -13806.9, 1893.2, 172.470, FourCC("udes"))
 u = BlzCreateUnitWithSkin(p, FourCC("udes"), -12528.7, -23.4, 246.482, FourCC("udes"))
 u = BlzCreateUnitWithSkin(p, FourCC("uubs"), -11498.5, 1001.4, 66.745, FourCC("uubs"))
-u = BlzCreateUnitWithSkin(p, FourCC("uubs"), -12157.0, 1846.3, -3.116, FourCC("uubs"))
+u = BlzCreateUnitWithSkin(p, FourCC("uubs"), -12157.0, 1846.3, 356.884, FourCC("uubs"))
 u = BlzCreateUnitWithSkin(p, FourCC("uubs"), -11933.6, 1296.5, 45.473, FourCC("uubs"))
 u = BlzCreateUnitWithSkin(p, FourCC("uubs"), -10906.6, 751.7, 89.458, FourCC("uubs"))
 u = BlzCreateUnitWithSkin(p, FourCC("udes"), -8777.7, 463.8, 128.923, FourCC("udes"))

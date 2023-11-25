@@ -223,8 +223,7 @@ function grantStartOfDayBonuses() {
         });
 
         forEachUnitOfPlayerWithAbility(p, ABILITIES.grainSiloInfo, (u) => {
-            // constant native GetPlayerTypedUnitCount takes player whichPlayer, string unitName, boolean includeIncomplete, boolean includeUpgrades returns integer
-            grainSiloCount = GetPlayerTypedUnitCount(p.handle, `custom_h00N`, false, true);
+            grainSiloCount++;
         });
     });
 

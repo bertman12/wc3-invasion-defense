@@ -2583,12 +2583,6 @@ STRING 667
 Purchase Greater Sobi Mask
 }
 
-STRING 668
-// Abilities: A01O (Item Mana Regeneration), EditorSuffix (Editor Suffix)
-{
- (50%)
-}
-
 STRING 670
 // Items: I00C ([|cffffcc00Recipe|r] Greater Sobi Mask), Name (Name)
 {
@@ -2641,12 +2635,6 @@ STRING 681
 // Items: I00E ([|cffffcc00Recipe|r] Blade of The Wind Walker), Tip (Tooltip - Basic)
 {
 Purchase [|cffffcc00Recipe|r] Blade of the Wind Walker
-}
-
-STRING 683
-// Abilities: A01Q (Critical Strike), EditorSuffix (Editor Suffix)
-{
- (25% 2xdmg)
 }
 
 STRING 685
@@ -2778,12 +2766,6 @@ STRING 720
 Item Stat Bonus
 }
 
-STRING 721
-// Abilities: A01U (Item Stat Bonus), EditorSuffix (Editor Suffix)
-{
- = 10 int
-}
-
 STRING 722
 // Items: I00H ([|cffffcc00Recipe|r] Staff of Primal Thunder), Name (Name)
 {
@@ -2831,18 +2813,6 @@ STRING 732
 // Abilities: A01V (Item Stat Bonus), Name (Name)
 {
 Item Stat Bonus
-}
-
-STRING 733
-// Abilities: A01V (Item Stat Bonus), EditorSuffix (Editor Suffix)
-{
- = 12 str
-}
-
-STRING 734
-// Abilities: A01W (Cleaving Attack), EditorSuffix (Editor Suffix)
-{
- (50%)
 }
 
 STRING 735
@@ -2930,5 +2900,35 @@ STRING 755
 // Items: I001 (Wind Walker Treads), Ubertip (Tooltip - Extended)
 {
 Increases the movement speed of the Hero when worn.  |n|n+30 Movespeed |n|cffffcc00Wind Walk|r - Go invisible for 5 seconds. |n    20 |cff8080ffmana|r|N    |cffc0c0c012 second cooldown|r
+}
+
+STRING 756
+// Abilities: A01O (Item Mana Regeneration), EditorSuffix (Editor Suffix)
+{
+ (0.5)
+}
+
+STRING 758
+// Abilities: A01U (Item Stat Bonus), EditorSuffix (Editor Suffix)
+{
+(10 int)
+}
+
+STRING 759
+// Abilities: A01V (Item Stat Bonus), EditorSuffix (Editor Suffix)
+{
+(12 str)
+}
+
+STRING 761
+// Abilities: A01Q (Critical Strike), EditorSuffix (Editor Suffix)
+{
+ (25% 2xdmg)
+}
+
+STRING 762
+// Abilities: A01W (Cleaving Attack), EditorSuffix (Editor Suffix)
+{
+ (50%)
 }
 
