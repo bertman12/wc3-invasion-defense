@@ -221,7 +221,6 @@ function grantStartOfDayBonuses() {
         forEachUnitOfPlayerWithAbility(p, ABILITIES.magicGuardInfo, (u) => {
             magicGuardStructures++;
         });
-
         forEachUnitOfPlayerWithAbility(p, ABILITIES.grainSiloInfo, (u) => {
             grainSiloCount++;
         });

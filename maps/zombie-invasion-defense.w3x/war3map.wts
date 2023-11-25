@@ -169,12 +169,6 @@ STRING 50
 Impaling Lance
 }
 
-STRING 51
-// Abilities: A004 (Impaling Lance), Ubertip (Tooltip - Normal - Extended)
-{
-Adds bonus damage to an attack against enemies.
-}
-
 STRING 52
 // Abilities: A004 (Impaling Lance), Tip (Tooltip - Normal)
 {
@@ -917,12 +911,6 @@ STRING 229
 // Units: h007 (Supply Camp), Name (Name)
 {
 Supply Camp
-}
-
-STRING 231
-// Units: hcth ([|cffffcc00Elite|r] - Infantry General), Ubertip (Tooltip - Extended)
-{
-An elite support unit, bolstering the morale of your troops. The General can also enlist footman. |n|nProvides an aura increasing movement and attack speed by 25%.
 }
 
 STRING 233
@@ -2045,12 +2033,6 @@ STRING 526
 [|cffffcc00Elite|r] - Hire Archer General
 }
 
-STRING 527
-// Units: n00H ([|cffffcc00Elite|r] Archer General), Ubertip (Tooltip - Extended)
-{
-Elite ranged unit with critical strike that can also enlist archers herself. |n|nProvides an aura for ranged units that increases their damage by   +15.
-}
-
 STRING 528
 // Units: h00K (Peon Laborer), Name (Name)
 {
@@ -2930,5 +2912,29 @@ STRING 762
 // Abilities: A01W (Cleaving Attack), EditorSuffix (Editor Suffix)
 {
  (50%)
+}
+
+STRING 763
+// Abilities: A004 (Impaling Lance), Ubertip (Tooltip - Normal - Extended)
+{
+Adds 100 bonus damage to an attack against enemies.
+}
+
+STRING 764
+// Abilities: A01X (Unit Inventory), EditorSuffix (Editor Suffix)
+{
+(General)
+}
+
+STRING 765
+// Units: hcth ([|cffffcc00Elite|r] - Infantry General), Ubertip (Tooltip - Extended)
+{
+An elite support unit, bolstering the morale of your troops. The General can also enlist footman. |n|nProvides an aura increasing movement and attack speed by 25%. |n|N|cffffcc00Able to use items and has a minimap icon representing where it is.|r
+}
+
+STRING 766
+// Units: n00H ([|cffffcc00Elite|r] Archer General), Ubertip (Tooltip - Extended)
+{
+Elite ranged unit with critical strike that can also enlist archers herself. |n|nProvides an aura for ranged units that increases their damage by +15. |n|N|cffffcc00Able to use items and has a minimap icon representing where it is.|r
 }
 

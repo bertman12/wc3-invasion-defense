@@ -30,8 +30,6 @@ function playerUnitRallyCheckbox() {
 
                         if (playerState) {
                             playerState.rallyToHero = !playerState.rallyToHero;
-                            // if(playerState.rallyToHero) BlzDisplayChatMessage(p.handle, p.id,  "Setting: Units will rally to hero now.")
-                            // if(!playerState.rallyToHero) BlzDisplayChatMessage(p.handle, p.id,  "Purchased units will no longer move to your hero automatically. ")
 
                             playerStates.set(p.id, playerState);
                         }

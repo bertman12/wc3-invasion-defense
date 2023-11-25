@@ -1,4 +1,3 @@
-// import { unitTypeAbilities } from "src/shared/misc";
 import { Group, MapPlayer, Unit } from "w3ts";
 import { Players } from "w3ts/globals";
 
@@ -49,7 +48,9 @@ export function forEachUnitTypeOfPlayer(unitType: number | string, player: MapPl
         unitType = FourCC(unitType);
     }
 
-    Group.create()?.enumUnitsOfPlayer(player, () => {
+    const g = Group.create();
+
+    g?.enumUnitsOfPlayer(player, () => {
         const unit = Group.getFilterUnit();
 
         if (unit && unit?.typeId === unitType) {
@@ -58,13 +59,17 @@ export function forEachUnitTypeOfPlayer(unitType: number | string, player: MapPl
 
         return true;
     });
+
+    g?.destroy();
 }
 
 /**
  * @param unitType Unit Type Id or the Unit Type String "hcas", etc
  */
 export function forEachUnitOfPlayer(player: MapPlayer, cb: (unit: Unit) => void) {
-    Group.create()?.enumUnitsOfPlayer(player, () => {
+    const g = Group.create();
+
+    g?.enumUnitsOfPlayer(player, () => {
         const unit = Group.getFilterUnit();
 
         if (!unit) {
@@ -76,6 +81,8 @@ export function forEachUnitOfPlayer(player: MapPlayer, cb: (unit: Unit) => void)
 
         return true;
     });
+
+    g?.destroy();
 }
 
 export function isPlaying(player: MapPlayer | player) {
