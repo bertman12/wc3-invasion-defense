@@ -63,7 +63,6 @@ export function init_undead() {
 }
 
 export function undeadDayStart() {
-    print("Current spawns length: ", currentSpawns.length);
     currentSpawns.forEach((spawn) => spawn.cleanupSpawn());
 
     currentSpawns = [];
@@ -74,7 +73,7 @@ export function undeadDayStart() {
     let spawns: rect[] = [];
 
     // [MIN_SPAWN_AMOUNT, validUndeadSpawns.length] spawns will be chosen
-    const MIN_SPAWN_AMOUNT = 2;
+    const MIN_SPAWN_AMOUNT = 3;
     let spawnCount = Math.ceil(Math.random() * validUndeadSpawns.length);
 
     //If the chosen amount is less than the minimum then set to min amount

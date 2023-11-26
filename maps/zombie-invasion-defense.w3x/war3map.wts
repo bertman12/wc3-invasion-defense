@@ -2962,3 +2962,15 @@ STRING 770
 +20 Attack Damage
 }
 
+STRING 771
+// Abilities: Ambt (Replenish Mana and Life), EditorSuffix (Editor Suffix)
+{
+(supply camp)
+}
+
+STRING 773
+// Abilities: Ambt (Replenish Mana and Life), Ubertip (Tooltip - Normal - Extended)
+{
+Replenish the life and mana of a target friendly unit. |n|N|cffc0c0c0800 range|r
+}
+
