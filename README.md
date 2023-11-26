@@ -435,3 +435,5 @@ perhaps there can be a spell book recipe that adds spells to your spellbook
 ==
 
 item system is not checking quantity is met or exceeded and also will not build the item if you have more than the required amount for the item
+
+always have the south west spawn open since the nearby city provides a lot of resources

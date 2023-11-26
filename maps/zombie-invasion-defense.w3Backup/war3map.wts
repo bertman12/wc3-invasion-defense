@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Kingdom Zombie Defense alpha test 7
+Kingdom Zombie Defense alpha test 8
 }
 
 STRING 2
@@ -32,7 +32,7 @@ Player 1
 
 STRING 7
 {
-alpha testing #7
+alpha testing #8
 }
 
 STRING 9
@@ -167,12 +167,6 @@ STRING 50
 // Abilities: A004 (Impaling Lance), Name (Name)
 {
 Impaling Lance
-}
-
-STRING 51
-// Abilities: A004 (Impaling Lance), Ubertip (Tooltip - Normal - Extended)
-{
-Adds bonus damage to an attack against enemies.
 }
 
 STRING 52
@@ -830,12 +824,6 @@ STRING 206
 Food Reserves
 }
 
-STRING 207
-// Abilities: A00I (Food Reserves), Ubertip (Tooltip - Normal - Extended)
-{
-Provides a flat bonus to the food cap at the start of each day.
-}
-
 STRING 208
 // Abilities: A00I (Food Reserves), Tip (Tooltip - Normal)
 {
@@ -923,18 +911,6 @@ STRING 229
 // Units: h007 (Supply Camp), Name (Name)
 {
 Supply Camp
-}
-
-STRING 231
-// Units: hcth ([|cffffcc00Elite|r] - Infantry General), Ubertip (Tooltip - Extended)
-{
-An elite support unit, bolstering the morale of your troops. The General can also enlist footman. |n|nProvides an aura increasing movement and attack speed by 25%.
-}
-
-STRING 232
-// Units: hsor (Sorceress), Ubertip (Tooltip - Extended)
-{
-Does moderate magic damage from attacks and can cast mass teleport.
 }
 
 STRING 233
@@ -1129,19 +1105,6 @@ STRING 276
 Heroic Leap
 }
 
-STRING 279
-// Items: I002 (Mask of the Frenzied Ghoul), Name (Name)
-{
-Mask of the Frenzied Ghoul
-}
-
-STRING 280
-// Items: I002 (Mask of the Frenzied Ghoul), Tip (Tooltip - Basic)
-{
-Purchase Mask of the Frenzied Ghoul
-
-}
-
 STRING 286
 // Abilities: A00R (Glaives of Carnage), Name (Name)
 {
@@ -1167,15 +1130,9 @@ STRING 289
 }
 
 STRING 290
-// Units: u005 (Spirit Tower), EditorSuffix (Name - Editor Suffix)
+// Units: u005 ([|cffffcc00Farm|r] Spirit Tower), EditorSuffix (Name - Editor Suffix)
 {
 (Converted Structure)
-}
-
-STRING 291
-// Units: u007 (Undead Sentinel), Name (Name)
-{
-Undead Sentinel
 }
 
 STRING 292
@@ -1316,16 +1273,6 @@ STRING 321
 Force Boots
 }
 
-STRING 324
-// Abilities: A00J (Lumber Income - Info Ability), Ubertip (Tooltip - Normal - Extended)
-{
-Grants |cff008000+35 lumber|r at the start of each day to all players.
-
-If you own the structure, you get double the gold.
-
-
-}
-
 STRING 325
 // Units: h00H (Infected Granary), Name (Name)
 {
@@ -1354,12 +1301,6 @@ STRING 332
 // Units: h00F (Barricade), Name (Name)
 {
 Barricade
-}
-
-STRING 333
-// Units: O003 (Demigod), Ubertip (Tooltip - Extended)
-{
-An ancient demigod. |n|nCan learn Cleaving Attack, Endurance Aura, War Stomp and Reincarnation. Has ability to use Battle Charge.
 }
 
 STRING 334
@@ -1471,39 +1412,21 @@ Train Heavy Cavalry
 }
 
 STRING 362
-// Units: u008 (Spirit Tower - Lumber Mill), EditorSuffix (Name - Editor Suffix)
+// Units: u008 ([|cffffcc00Lumber Mill|r] Spirit Tower), EditorSuffix (Name - Editor Suffix)
 {
 (Converted Structure)
-}
-
-STRING 363
-// Units: u008 (Spirit Tower - Lumber Mill), Name (Name)
-{
-Spirit Tower - Lumber Mill
 }
 
 STRING 364
-// Units: u009 (Spirit Tower - Barracks), EditorSuffix (Name - Editor Suffix)
+// Units: u009 ([|cffffcc00Barracks|r] Spirit Tower), EditorSuffix (Name - Editor Suffix)
 {
 (Converted Structure)
-}
-
-STRING 365
-// Units: u009 (Spirit Tower - Barracks), Name (Name)
-{
-Spirit Tower - Barracks
 }
 
 STRING 366
-// Units: u00A (Spirit Tower - Blacksmith), EditorSuffix (Name - Editor Suffix)
+// Units: u00A ([|cffffcc00Blacksmith|r] Spirit Tower), EditorSuffix (Name - Editor Suffix)
 {
 (Converted Structure)
-}
-
-STRING 367
-// Units: u00A (Spirit Tower - Blacksmith), Name (Name)
-{
-Spirit Tower - Blacksmith
 }
 
 STRING 368
@@ -1626,12 +1549,6 @@ STRING 396
 Fires short jets of flame. Good at destroying enemies that get close. |n|n450 attack range.
 }
 
-STRING 399
-// Items: rwiz (Sobi Mask), Ubertip (Tooltip - Extended)
-{
-Increases the Hero's rate of mana regeneration by 20% when worn.
-}
-
 STRING 400
 // Abilities: AIrm (Item Mana Regeneration), EditorSuffix (Editor Suffix)
 {
@@ -1642,12 +1559,6 @@ STRING 401
 // Units: n00C (Cold Tower), Ubertip (Tooltip - Extended)
 {
 Fires shards of ice at a slow rate. Good at slowing down enemies. |n|n1000 range.
-}
-
-STRING 402
-// Units: O003 (Demigod), Tip (Tooltip - Basic)
-{
-[|cffff0000Hard|r] Summon Demigod
 }
 
 STRING 403
@@ -1906,18 +1817,6 @@ STRING 462
 G
 }
 
-STRING 463
-// Units: Ntin (Tinker), Ubertip (Tooltip - Extended)
-{
-Cunning Hero, exceptional at disrupting battles and enduring damage. Can learn Pocket Factory, Cluster Rockets, Engineering Upgrade and Robo-Goblin.|n|n[New] - Can also place mines.    |n|n|cffffcc00Attacks land units.|r
-}
-
-STRING 464
-// Units: Nplh (Pit Lord), Ubertip (Tooltip - Extended)
-{
-Warrior Hero, adept at terrorizing enemies. Can learn Rain of Fire, Howl of Terror, Cleaving Attack, and Doom. |n|nCan cast Battle Charge, charging in his current direction knocking enemies out of his way. |n|n|cffffcc00Attacks land units.|r
-}
-
 STRING 466
 // Abilities: A011 (Armor Reduction Aura), Tip (Tooltip - Normal)
 {
@@ -2068,18 +1967,6 @@ STRING 502
 Casts bolts of lightning that deals 100 damage to multiple targets. |n|n|cffc0c0c09 second cooldown|r.|n50 |cff8080ffmana|r cost.
 }
 
-STRING 506
-// Abilities: A01B (Wind Walk), EditorSuffix (Editor Suffix)
-{
-(item)
-}
-
-STRING 507
-// Items: I007 (Hand of Midas), Ubertip (Tooltip - Extended)
-{
-Gives a 15% chance to grant |cffffff0010 gold|r whenever you deal any damage. |n|n+6 |cff00ff00Agility|r
-}
-
 STRING 508
 // Items: I001 (Wind Walker Treads), Name (Name)
 {
@@ -2090,21 +1977,6 @@ STRING 509
 // Items: I006 (Blink Dagger), Ubertip (Tooltip - Extended)
 {
 Allows the Hero to teleport 1800 units away. |n|N|cffc0c0c018 second cooldown|r
-}
-
-STRING 510
-// Items: I001 (Wind Walker Treads), Ubertip (Tooltip - Extended)
-{
-Increases the movement speed of the Hero when worn.  |n|n+30 Movespeed |nActive - Wind Walk |n    6 second duration|n    20 |cff8080ffmana|r|N    |cffc0c0c012 second cooldown|r
-}
-
-STRING 511
-// Items: I004 (Force Boots), Ubertip (Tooltip - Extended)
-{
-Increases the movement speed of the Hero when worn. Also allows provides an active ability that thrusts your hero forward in whatever direction they are. 
-
-+30 Movespeed
-Active - Thrusts the hero forward. |n    25 |cff8080ffmana|r|n    |cffc0c0c012 second cooldown|r
 }
 
 STRING 513
@@ -2159,12 +2031,6 @@ STRING 526
 // Units: n00H ([|cffffcc00Elite|r] Archer General), Tip (Tooltip - Basic)
 {
 [|cffffcc00Elite|r] - Hire Archer General
-}
-
-STRING 527
-// Units: n00H ([|cffffcc00Elite|r] Archer General), Ubertip (Tooltip - Extended)
-{
-Elite ranged unit with critical strike that can also enlist archers herself. |n|nProvides an aura for ranged units that increases their damage by   +15.
 }
 
 STRING 528
@@ -2251,18 +2117,6 @@ STRING 553
 Peon Laborer
 }
 
-STRING 554
-// Units: h00L (Human Laborer), Ubertip (Tooltip - Extended)
-{
-After 4 days, the laborer will return (|cffffff003 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
-}
-
-STRING 555
-// Units: h00K (Peon Laborer), Ubertip (Tooltip - Extended)
-{
-After 2 days, the peon will return (|cffffff001.5 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
-}
-
 STRING 558
 // Units: h00N (Grain Silo), Name (Name)
 {
@@ -2276,7 +2130,7 @@ Build Grain Silo
 }
 
 STRING 561
-// Abilities: A015 (Place Goblin Land Mine), Hotkey (Hotkey - Normal)
+// Units: h00R (Stone of Fortification), Hotkey (Hotkey)
 {
 G
 }
@@ -2291,18 +2145,6 @@ STRING 565
 // Abilities: A01G (Grain Silo), EditorSuffix (Editor Suffix)
 {
 (Info Only)
-}
-
-STRING 569
-// Abilities: A01E (Human Laborer), Ubertip (Tooltip - Normal - Extended)
-{
-After 4 days, the laborer will earn you (|cffffff003 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
-}
-
-STRING 570
-// Abilities: A01F (Peon Laborer), Ubertip (Tooltip - Normal - Extended)
-{
-After 2 days, the laborer will earn you (|cffffff001.5 x its cost|r) in gold. |n|nThe|cff8080ff max mana|r of the structure increases every day to show how many days have passed.
 }
 
 STRING 572
@@ -2342,15 +2184,9 @@ Disbands the unit, freeing up food. 5 second cast time.|n|n|cffff0000Does not re
 }
 
 STRING 580
-// Items: I002 (Mask of the Frenzied Ghoul), Ubertip (Tooltip - Extended)
+// Items: I002 ([|cffff0000Cursed|r] Mask of the Frenzied Ghoul), Ubertip (Tooltip - Extended)
 {
 While wearing this mask, a Hero will recover hit points equal to <AIva,DataA1,%>% of the attack damage dealt to an enemy unit. |n|n |cffff0000-8|r |cff8080ffIntelligence|r |n+5 |cff00ff00Agility|r
-}
-
-STRING 581
-// Units: h00N (Grain Silo), Ubertip (Tooltip - Extended)
-{
-Build a Grain Silo that raises your food cap by +5. This structure will be destroyed after 5 days.
 }
 
 STRING 582
@@ -2369,5 +2205,772 @@ STRING 584
 // Abilities: A01F (Peon Laborer), Tip (Tooltip - Normal)
 {
 Peon Laborer - Info Ability
+}
+
+STRING 585
+// Abilities: A00I (Food Reserves), Ubertip (Tooltip - Normal - Extended)
+{
+Provides +2 food to the food cap.
+}
+
+STRING 586
+// Units: u005 ([|cffffcc00Farm|r] Spirit Tower), Name (Name)
+{
+[|cffffcc00Farm|r] Spirit Tower
+}
+
+STRING 587
+// Units: u008 ([|cffffcc00Lumber Mill|r] Spirit Tower), Name (Name)
+{
+[|cffffcc00Lumber Mill|r] Spirit Tower
+}
+
+STRING 588
+// Units: u009 ([|cffffcc00Barracks|r] Spirit Tower), Name (Name)
+{
+[|cffffcc00Barracks|r] Spirit Tower
+}
+
+STRING 589
+// Units: u00A ([|cffffcc00Blacksmith|r] Spirit Tower), Name (Name)
+{
+[|cffffcc00Blacksmith|r] Spirit Tower
+}
+
+STRING 590
+// Items: ssil (Staff of Silence), Ubertip (Tooltip - Extended)
+{
+Stops all enemies in a target area from casting spells for <AIse,Dur1> seconds. |n|n    +5 |cff8080ffIntelligence|r |n+100 |cff8080ffmana|r |n|cffc0c0c01600 cast range|r
+}
+
+STRING 591
+// Units: h00O (Druid Laborer), Name (Name)
+{
+Druid Laborer
+}
+
+STRING 592
+// Units: h00O (Druid Laborer), Hotkey (Hotkey)
+{
+D
+}
+
+STRING 595
+// Abilities: A01J (Druid Laborer), Name (Name)
+{
+Druid Laborer
+}
+
+STRING 596
+// Abilities: A01J (Druid Laborer), Tip (Tooltip - Normal)
+{
+Druid Laborer - Info Ability
+}
+
+STRING 598
+// Abilities: A01J (Druid Laborer), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 599
+// Units: h00P (Acolyte Slave Laborer), Name (Name)
+{
+Acolyte Slave Laborer
+}
+
+STRING 603
+// Units: h00P (Acolyte Slave Laborer), Tip (Tooltip - Basic)
+{
+Hire Acolyte Slave Laborer
+}
+
+STRING 607
+// Abilities: A01K (Acolyte Slave Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 1 days, the laborer will earn you (|cffffff001.15 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 608
+// Abilities: A01K (Acolyte Slave Laborer), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 609
+// Units: h00P (Acolyte Slave Laborer), Hotkey (Hotkey)
+{
+O
+}
+
+STRING 610
+// Units: h00K (Peon Laborer), Ubertip (Tooltip - Extended)
+{
+After 2 days, the peon will return (|cffffff001.3 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 611
+// Units: h00L (Human Laborer), Ubertip (Tooltip - Extended)
+{
+After 4 days, the laborer will return (|cffffff001.5 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 612
+// Abilities: A01E (Human Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 4 days, the laborer will earn you (|cffffff001.5 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 613
+// Abilities: A01F (Peon Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 2 days, the laborer will earn you (|cffffff001.3 x its cost|r) in gold. |n|nThe|cff8080ff max mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 614
+// Abilities: A01K (Acolyte Slave Laborer), Name (Name)
+{
+Acolyte Slave Laborer
+}
+
+STRING 615
+// Abilities: A01K (Acolyte Slave Laborer), Tip (Tooltip - Normal)
+{
+Acolyte Slave Laborer - Info Ability
+}
+
+STRING 616
+// Units: h00O (Druid Laborer), Tip (Tooltip - Basic)
+{
+Hire Druid Laborer
+}
+
+STRING 617
+// Units: h00P (Acolyte Slave Laborer), Ubertip (Tooltip - Extended)
+{
+After 1 day, the laborer will return (|cffffff001.15 x its cost in gold|r). Quick labor at a higher initial cost and lower return. If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 618
+// Units: h00N (Grain Silo), Ubertip (Tooltip - Extended)
+{
+Build a Grain Silo that raises your food cap by +5. |n|n|cffffcc00This structure will be destroyed after 5 days.|r
+}
+
+STRING 622
+// Abilities: A01H (Blink (Engineer)), Hotkey (Hotkey - Normal)
+{
+R
+}
+
+STRING 623
+// Abilities: A01L (Bloodlust), EditorSuffix (Editor Suffix)
+{
+ (Sorceress)
+}
+
+STRING 624
+// Units: hsor (Sorceress), Ubertip (Tooltip - Extended)
+{
+Does moderate magic damage from attacks and can cast mass teleport and blood lust.
+}
+
+STRING 625
+// Units: u00F (|cffff0000Undead Spawn|r), EditorSuffix (Name - Editor Suffix)
+{
+(Converted Structure)
+}
+
+STRING 626
+// Units: u00F (|cffff0000Undead Spawn|r), Name (Name)
+{
+|cffff0000Undead Spawn|r
+}
+
+STRING 627
+// Units: h00Q (Farm Hand), Name (Name)
+{
+Farm Hand
+}
+
+STRING 628
+// Units: h00Q (Farm Hand), Tip (Tooltip - Basic)
+{
+Train Farm Hand
+}
+
+STRING 629
+// Units: h00Q (Farm Hand), Ubertip (Tooltip - Extended)
+{
+Able to hire laborers to work the farm and also build grain silo's to temporarily increase your food cap.
+}
+
+STRING 630
+// Units: h00Q (Farm Hand), Hotkey (Hotkey)
+{
+A
+}
+
+STRING 631
+// Units: h00R (Stone of Fortification), Name (Name)
+{
+Stone of Fortification
+}
+
+STRING 634
+// Abilities: A015 (Place Goblin Land Mine), Hotkey (Hotkey - Normal)
+{
+G
+}
+
+STRING 635
+// Units: h00R (Stone of Fortification), Tip (Tooltip - Basic)
+{
+Build Stone of Fortification
+}
+
+STRING 638
+// Units: h00O (Druid Laborer), Ubertip (Tooltip - Extended)
+{
+After 5 days, the laborer will return (|cffffff002 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 639
+// Abilities: A01J (Druid Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 5 days, the laborer will earn you (|cffffff002 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 640
+// Abilities: A01M (Devotion Aura), EditorSuffix (Editor Suffix)
+{
+ (Stone of Fortification)
+}
+
+STRING 644
+// Units: h00R (Stone of Fortification), Ubertip (Tooltip - Extended)
+{
+Builds a Stone of Fortification, granting nearby units and structures in 1200 range +6 armor.
+}
+
+STRING 645
+// Abilities: A01N (Roar), EditorSuffix (Editor Suffix)
+{
+(Beast Master)
+}
+
+STRING 646
+// Abilities: A01N (Roar), Ubertip (Tooltip - Normal - Extended)
+{
+Gives nearby friendly units a 35% bonus to damage. |nLasts 60 seconds.
+}
+
+STRING 648
+// Units: Ntin (Tinker), Ubertip (Tooltip - Extended)
+{
+Cunning Hero, exceptional at disrupting battles and enduring damage. Can learn Pocket Factory, Cluster Rockets, Engineering Upgrade and Robo-Goblin.|n|n[|cff00ff00New|r] - Can set Goblin Land Mines every minute that deal 300 damage in a small area.
+}
+
+STRING 649
+// Units: Nplh (Pit Lord), Ubertip (Tooltip - Extended)
+{
+Warrior Hero, adept at terrorizing enemies. Can learn Rain of Fire, Howl of Terror, Cleaving Attack, and Doom.|n|n[|cff00ff00New|r] - Can cast battle charge, causing the hero to charge in their facing direction knocking back and dealing 150 damage to enemies.
+}
+
+STRING 651
+// Units: Nbst (Beastmaster), Ubertip (Tooltip - Extended)
+{
+Warrior Hero, adept at summoning beasts into battle. Can learn Summon Bear, Summon Quilbeast, Summon Hawk, and Stampede. |n|n[|cff00ff00New|r] Able to cast roar giving allies +35% damage. His engineers can also build Stone of Fortification granting +6 armor to allies and structures in 1200 range.
+}
+
+STRING 652
+// Abilities: A01M (Devotion Aura), Ubertip (Tooltip - Normal - Extended)
+{
+Gives 6 additional armor to nearby friendly units and structures in 1200 range.
+}
+
+STRING 653
+// Abilities: A00J (Lumber Income - Info Ability), Ubertip (Tooltip - Normal - Extended)
+{
+Grants |cff008000+50 lumber|r at the start of each day to all players.
+
+If you own the structure, you get double the gold.
+
+
+}
+
+STRING 654
+// Units: O003 (Demigod), Tip (Tooltip - Basic)
+{
+Summon Demigod
+}
+
+STRING 655
+// Units: u007 ([|cffffcc00Rampart Guard Tower|r] Undead Sentinel), Name (Name)
+{
+[|cffffcc00Rampart Guard Tower|r] Undead Sentinel
+}
+
+STRING 656
+// Units: u00G ([|cffffcc00Rampart Cannon Tower|r] Undead Sentinel), Name (Name)
+{
+[|cffffcc00Rampart Cannon Tower|r] Undead Sentinel
+}
+
+STRING 658
+// Items: I00A (Blink Treads), Ubertip (Tooltip - Extended)
+{
+Increases the movement speed of the Hero when worn and allows the hero to blink.|n|n+60 Movespeed
+}
+
+STRING 659
+// Items: I009 ([|cffffcc00Recipe|r] Blink Treads), Name (Name)
+{
+[|cffffcc00Recipe|r] Blink Treads
+}
+
+STRING 660
+// Items: I009 ([|cffffcc00Recipe|r] Blink Treads), Tip (Tooltip - Basic)
+{
+Purchase [|cffffcc00Recipe|r] Blink Treads
+}
+
+STRING 661
+// Units: n00G (Recipes 1), Name (Name)
+{
+Recipes 1
+}
+
+STRING 663
+// Items: I00A (Blink Treads), Name (Name)
+{
+Blink Treads
+}
+
+STRING 664
+// Items: I00A (Blink Treads), Tip (Tooltip - Basic)
+{
+Purchase Blink Treads
+}
+
+STRING 666
+// Items: I00B (Greater Sobi Mask), Name (Name)
+{
+Greater Sobi Mask
+}
+
+STRING 667
+// Items: I00B (Greater Sobi Mask), Tip (Tooltip - Basic)
+{
+Purchase Greater Sobi Mask
+}
+
+STRING 670
+// Items: I00C ([|cffffcc00Recipe|r] Greater Sobi Mask), Name (Name)
+{
+[|cffffcc00Recipe|r] Greater Sobi Mask
+}
+
+STRING 671
+// Items: I00C ([|cffffcc00Recipe|r] Greater Sobi Mask), Tip (Tooltip - Basic)
+{
+Purchase [|cffffcc00Recipe|r] Greater Sobi Mask
+}
+
+STRING 673
+// Units: n00I (Building Transition), Name (Name)
+{
+Building Transition
+}
+
+STRING 675
+// Items: I00D (Blade of the Wind Walker), Name (Name)
+{
+Blade of the Wind Walker
+}
+
+STRING 676
+// Items: I00D (Blade of the Wind Walker), Tip (Tooltip - Basic)
+{
+Purchase Blade of the Wind Walker
+}
+
+STRING 677
+// Abilities: A01B (Wind Walk), EditorSuffix (Editor Suffix)
+{
+(Wind walker treads)
+}
+
+STRING 678
+// Abilities: A01P (Wind Walk), EditorSuffix (Editor Suffix)
+{
+(blade of the wind walker)
+}
+
+STRING 679
+// Items: I00E ([|cffffcc00Recipe|r] Blade of The Wind Walker), Name (Name)
+{
+[|cffffcc00Recipe|r] Blade of The Wind Walker
+}
+
+STRING 681
+// Items: I00E ([|cffffcc00Recipe|r] Blade of The Wind Walker), Tip (Tooltip - Basic)
+{
+Purchase [|cffffcc00Recipe|r] Blade of the Wind Walker
+}
+
+STRING 685
+// Items: srbd (Savage Blade), Name (Name)
+{
+Savage Blade
+}
+
+STRING 686
+// Items: srbd (Savage Blade), Tip (Tooltip - Basic)
+{
+Purchase Savage Blade
+}
+
+STRING 687
+// Items: srbd (Savage Blade), Ubertip (Tooltip - Extended)
+{
+Critical Strike - 15% chance (1.5 x damage)|n+5 Attack Damage
+}
+
+STRING 689
+// Abilities: AIcs (Critical Strike), EditorSuffix (Editor Suffix)
+{
+ (15% 1.5xdmg)
+}
+
+STRING 693
+// Abilities: A01S (Flat Mana Regeneration), Name (Name)
+{
+Flat Mana Regeneration
+}
+
+STRING 694
+// Items: I002 ([|cffff0000Cursed|r] Mask of the Frenzied Ghoul), Name (Name)
+{
+[|cffff0000Cursed|r] Mask of the Frenzied Ghoul
+}
+
+STRING 698
+// Abilities: A01R (Flat Mana Regeneration), Name (Name)
+{
+Flat Mana Regeneration
+}
+
+STRING 701
+// Items: I00C ([|cffffcc00Recipe|r] Greater Sobi Mask), Description (Description)
+{
+Increases the Hero's rate of mana regeneration by 2.5 when worn.
+}
+
+STRING 703
+// Abilities: A01S (Flat Mana Regeneration), EditorSuffix (Editor Suffix)
+{
+(0.5)
+}
+
+STRING 704
+// Abilities: A01R (Flat Mana Regeneration), EditorSuffix (Editor Suffix)
+{
+(2.5)
+}
+
+STRING 706
+// Items: I004 (Force Boots), Ubertip (Tooltip - Extended)
+{
+Increases the movement speed of the Hero when worn. Also allows provides an active ability that thrusts your hero forward in whatever direction they are. 
+
++30 Movespeed
+Active - Thrusts the hero forward. |n    25 |cff8080ffmana|r|n    |cffc0c0c06 second cooldown|r
+}
+
+STRING 709
+// Units: O003 (Demigod), Ubertip (Tooltip - Extended)
+{
+An ancient demigod. Can learn Shockwave, Endurance Aura, War Stomp and Reincarnation. Has ability to use Battle Charge. |n|n[|cff00ff00New|r] - Can cast battle charge, causing the hero to charge in their facing direction knocking back and dealing 150 damage to enemies.
+}
+
+STRING 710
+// Items: I00F (Staff of Knowledge), Name (Name)
+{
+Staff of Knowledge
+}
+
+STRING 711
+// Items: I00F (Staff of Knowledge), Description (Description)
+{
+Boosts Intelligence by 5.
+}
+
+STRING 712
+// Items: I00F (Staff of Knowledge), Tip (Tooltip - Basic)
+{
+Purchase Staff of Knowledge
+}
+
+STRING 713
+// Items: I00F (Staff of Knowledge), Ubertip (Tooltip - Extended)
+{
++5 |cff8080ffIntelligence|r
+}
+
+STRING 714
+// Items: I00G (Staff of Primal Thunder), Name (Name)
+{
+Staff of Primal Thunder
+}
+
+STRING 715
+// Units: n00J (Primitives), Name (Name)
+{
+Primitives
+}
+
+STRING 718
+// Abilities: A01T (Greater Chain Lightning), Name (Name)
+{
+Greater Chain Lightning
+}
+
+STRING 719
+// Items: I00G (Staff of Primal Thunder), Tip (Tooltip - Basic)
+{
+Purchase Staff of Primal Thunder
+}
+
+STRING 720
+// Abilities: A01U (Item Stat Bonus), Name (Name)
+{
+Item Stat Bonus
+}
+
+STRING 722
+// Items: I00H ([|cffffcc00Recipe|r] Staff of Primal Thunder), Name (Name)
+{
+[|cffffcc00Recipe|r] Staff of Primal Thunder
+}
+
+STRING 724
+// Items: I00H ([|cffffcc00Recipe|r] Staff of Primal Thunder), Tip (Tooltip - Basic)
+{
+Purchase [|cffffcc00Recipe|r] Staff of Primal Thunder
+}
+
+STRING 726
+// Items: I002 ([|cffff0000Cursed|r] Mask of the Frenzied Ghoul), Tip (Tooltip - Basic)
+{
+Purchase [|cffff0000Cursed|r] Mask of the Frenzied Ghoul
+
+}
+
+STRING 727
+// Items: I007 (Hand of Midas), Ubertip (Tooltip - Extended)
+{
+Gives a 15% chance to grant |cffffff0010 gold|r whenever you deal any damage. |n|n+3 |cffffcc00All Stats|R
+}
+
+STRING 728
+// Items: hbth (Helm of Battlethirst), Ubertip (Tooltip - Extended)
+{
+Grants the ability to go Berserk, causing the Hero to attack <AIxk,DataB1,%>% faster but take <AIxk,DataC1,%>% more damage.|n|N+4 |cffff0000Strength|r|n+4 |cff00ff00Agility|r
+}
+
+STRING 729
+// Items: I00I (Berserker's Cleaver), Name (Name)
+{
+Berserker's Cleaver
+}
+
+STRING 730
+// Items: I00I (Berserker's Cleaver), Tip (Tooltip - Basic)
+{
+Purchase Corpse Cleaver
+}
+
+STRING 732
+// Abilities: A01V (Item Stat Bonus), Name (Name)
+{
+Item Stat Bonus
+}
+
+STRING 735
+// Abilities: ACce (Cleaving Attack), EditorSuffix (Editor Suffix)
+{
+= 25%
+}
+
+STRING 737
+// Items: I00J ([|cffffcc00Recipe|r] Berserker's Cleaver), Name (Name)
+{
+[|cffffcc00Recipe|r] Berserker's Cleaver
+}
+
+STRING 738
+// Items: I00J ([|cffffcc00Recipe|r] Berserker's Cleaver), Tip (Tooltip - Basic)
+{
+Purchase [|cffffcc00Recipe|r] Berserker's Cleaver
+}
+
+STRING 744
+// Items: rwiz (Sobi Mask), Ubertip (Tooltip - Extended)
+{
++0.5 |cff8080ffmana regeneration|r
+}
+
+STRING 745
+// Items: I00B (Greater Sobi Mask), Ubertip (Tooltip - Extended)
+{
++2.5 |cff8080ffmana regeneration|r
+}
+
+STRING 746
+// Items: I00C ([|cffffcc00Recipe|r] Greater Sobi Mask), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0 2 Sobi Mask|r   |n|N+2.5 |cff8080ffmana regeneration|r
+}
+
+STRING 748
+// Items: I009 ([|cffffcc00Recipe|r] Blink Treads), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Boots of Speed, Blink Dagger|r  |n|nIncreases the movement speed of the Hero when worn and allows the hero to blink.|n|n+60 Movespeed
+}
+
+STRING 749
+// Items: I00H ([|cffffcc00Recipe|r] Staff of Primal Thunder), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0(2) Thunderlizard Diamond, (2) Staff of Knowledge|r|N|n+10 |cff8080ffIntelligence|r |n|n|cffffcc00Greater Chain Lightning|R - Deals an initial 300 damage and bounces to nearby enemies. |n
+200 |cff8080ffmana cost|r
+|cffc0c0c09 second cooldown|r
+}
+
+STRING 750
+// Items: I00D (Blade of the Wind Walker), Ubertip (Tooltip - Extended)
+{
++25% Critical Strike Chance (2x damage)|n+20 Attack Damage|n+30 Move Speed  |N|N|cffffcc00Wind Walk|r - Go invisible for 10 seconds. Adds 200 bonus damage to your next attack. 
+}
+
+STRING 751
+// Items: I00E ([|cffffcc00Recipe|r] Blade of The Wind Walker), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Treads of the Wind Walker, Savage Blade|r     |n|n+25% Critical Strike Chance (2x damage)|n+20 Attack Damage  |N|N|cffffcc00Wind Walk|r - Go invisible for 10 seconds. Adds 200 bonus damage to your next attack. 
+}
+
+STRING 752
+// Items: I00G (Staff of Primal Thunder), Ubertip (Tooltip - Extended)
+{
++10 |cff8080ffIntelligence|r |n|n|cffffcc00Greater Chain Lightning|r - Deals an initial 300 damage and bounces to nearby enemies.
+}
+
+STRING 753
+// Items: I00I (Berserker's Cleaver), Ubertip (Tooltip - Extended)
+{
+Causes melee attacks cleave for 50% damage. |n|n+12|cffff0000 Strength|r |N  +4 |cff00ff00Agility|r   |n+10 |cffc0c0c0Attack Damage|r |N|N|cffffcc00Berserk|r: Attack 50% faster but takes 50% more damage.
+}
+
+STRING 754
+// Items: I00J ([|cffffcc00Recipe|r] Berserker's Cleaver), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Corpse Cleaver, Helm of Battlethirst|r
+Causes melee attacks cleave for 50% damage. |n|n+12|cffff0000 Strength|r |N  +4 |cff00ff00Agility|r   |n+10 |cffc0c0c0Attack Damage|r |N|N|cffffcc00Berserk|r: Attack 50% faster but takes 50% more damage.
+}
+
+STRING 755
+// Items: I001 (Wind Walker Treads), Ubertip (Tooltip - Extended)
+{
+Increases the movement speed of the Hero when worn.  |n|n+30 Movespeed |n|cffffcc00Wind Walk|r - Go invisible for 5 seconds. |n    20 |cff8080ffmana|r|N    |cffc0c0c012 second cooldown|r
+}
+
+STRING 756
+// Abilities: A01O (Item Mana Regeneration), EditorSuffix (Editor Suffix)
+{
+ (0.5)
+}
+
+STRING 758
+// Abilities: A01U (Item Stat Bonus), EditorSuffix (Editor Suffix)
+{
+(10 int)
+}
+
+STRING 759
+// Abilities: A01V (Item Stat Bonus), EditorSuffix (Editor Suffix)
+{
+(12 str)
+}
+
+STRING 761
+// Abilities: A01Q (Critical Strike), EditorSuffix (Editor Suffix)
+{
+ (25% 2xdmg)
+}
+
+STRING 762
+// Abilities: A01W (Cleaving Attack), EditorSuffix (Editor Suffix)
+{
+ (50%)
+}
+
+STRING 763
+// Abilities: A004 (Impaling Lance), Ubertip (Tooltip - Normal - Extended)
+{
+Adds 100 bonus damage to an attack against enemies.
+}
+
+STRING 764
+// Abilities: A01X (Unit Inventory), EditorSuffix (Editor Suffix)
+{
+(General)
+}
+
+STRING 765
+// Units: hcth ([|cffffcc00Elite|r] - Infantry General), Ubertip (Tooltip - Extended)
+{
+An elite support unit, bolstering the morale of your troops. The General can also enlist footman. |n|nProvides an aura increasing movement and attack speed by 25%. |n|N|cffffcc00Able to use items and has a minimap icon representing where it is.|r
+}
+
+STRING 766
+// Units: n00H ([|cffffcc00Elite|r] Archer General), Ubertip (Tooltip - Extended)
+{
+Elite ranged unit with critical strike that can also enlist archers herself. |n|nProvides an aura for ranged units that increases their damage by +15. |n|N|cffffcc00Able to use items and has a minimap icon representing where it is.|r
+}
+
+STRING 767
+// Items: I00K (Claws of Attack +20), Name (Name)
+{
+Claws of Attack +20
+}
+
+STRING 768
+// Items: I00K (Claws of Attack +20), Description (Description)
+{
+Boosts attack damage by 20
+}
+
+STRING 769
+// Items: I00K (Claws of Attack +20), Tip (Tooltip - Basic)
+{
+Purchase Claws of Attack +20
+}
+
+STRING 770
+// Items: I00K (Claws of Attack +20), Ubertip (Tooltip - Extended)
+{
++20 Attack Damage
+}
+
+STRING 771
+// Abilities: Ambt (Replenish Mana and Life), EditorSuffix (Editor Suffix)
+{
+(supply camp)
+}
+
+STRING 773
+// Abilities: Ambt (Replenish Mana and Life), Ubertip (Tooltip - Normal - Extended)
+{
+Replenish the life and mana of a target friendly unit. |n|N|cffc0c0c0800 range|r
 }
 
