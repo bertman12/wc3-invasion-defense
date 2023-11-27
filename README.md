@@ -437,3 +437,34 @@ perhaps there can be a spell book recipe that adds spells to your spellbook
 item system is not checking quantity is met or exceeded and also will not build the item if you have more than the required amount for the item
 
 always have the south west spawn open since the nearby city provides a lot of resources
+
+give brewmaster keg of ale for their supply camp instead.
+
+also game needs to be harder chokes are to easy to hold.
+
+nerf wood income, fix food cap calculation so grain silo bonus only counts for the owner
+
+nerf start food
+
+add special events
+
+add more items of course
+
+edit the heroes more
+
+maybe have all spawns open all the time. if there are more than 5 players
+hmmm perhaps you can spawn a ground unit that can go through players and stuff that will be used to determine what should be attacked by the spawn
+
+perhaps there is a chance that a small undead fleet will dock somewhere on the waters that willl then spawn tier 1 units - 10 every 15 seconds. choose from a random fleet spawn from a set of
+also use the undead flying barge that will fly towards the spawn target and when it arrives it will drop off units there if it is not killed
+
+maybe add troll head hunters to mercenary camp maybe
+
+make war bears require rexxar to be on the ally team.
+once bought set tech for rexxar to researched.
+
+in general the game kinda gets stale after the 5 night, because it is repetitive, you control a choke etc,
+
+add some tooltip button ui to show current income rate and other stats too, like upgrades .
+
+i wonder if it would be interesting if you could take a portal to an island and defend some things there too

@@ -17,6 +17,7 @@ class PlayerState {
     maxSupplyHorses: number = 3;
     playerHero: Unit | undefined;
     rallyToHero: boolean = false;
+    foodCapIncrease: number = 0;
     /**
      * grain silos will permanently increase your food
      */
@@ -169,6 +170,8 @@ export function setupPlayers() {
         if (u) {
             SetCameraPositionForPlayer(p.handle, u.x, u.y);
         }
+
+        SetPlayerHandicapXP(p.handle, 0.25);
     });
 }
 
@@ -183,8 +186,8 @@ export function players_nightStart() {
  * Should be first trigger to run
  */
 export function initializePlayerStateInstances() {
-    forEachAlliedPlayer((player) => {
-        playerStates.set(player.id, new PlayerState(player));
+    forEachAlliedPlayer((p) => {
+        playerStates.set(p.id, new PlayerState(p));
     });
 
     grantStartOfDayBonuses();
@@ -192,8 +195,8 @@ export function initializePlayerStateInstances() {
 
 export function init_startingResources() {
     Players.forEach((player) => {
-        player.setState(PLAYER_STATE_RESOURCE_GOLD, 2000);
-        player.setState(PLAYER_STATE_RESOURCE_LUMBER, 1200);
+        player.setState(PLAYER_STATE_RESOURCE_GOLD, 1600);
+        player.setState(PLAYER_STATE_RESOURCE_LUMBER, 900);
     });
 
     // //Allow bounty from zombies.
@@ -205,15 +208,14 @@ export function init_startingResources() {
 }
 
 function grantStartOfDayBonuses() {
-    const basePlayerFoodCap = 15;
+    const basePlayerFoodCap = 0;
     let totalSupplyBuildings = 0;
     let meleeWeaponUpgradeCount = 0;
     let armorUpgradeCount = 0;
     let foodReserveStructures = 0;
     let magicGuardStructures = 0;
-    let grainSiloCount = 0;
 
-    const foodRoundBonus = 5 * RoundManager.currentRound;
+    const foodRoundBonus = economicConstants.capitalDailyFoodCapValue * RoundManager.currentRound;
 
     forEachAlliedPlayer((p) => {
         forEachUnitOfPlayerWithAbility(p, ABILITIES.supplies, (u) => {
@@ -231,12 +233,18 @@ function grantStartOfDayBonuses() {
         forEachUnitOfPlayerWithAbility(p, ABILITIES.magicGuardInfo, (u) => {
             magicGuardStructures++;
         });
+
+        //increment for each player
         forEachUnitOfPlayerWithAbility(p, ABILITIES.grainSiloInfo, (u) => {
-            grainSiloCount++;
+            const playerState = playerStates.get(p.id);
+
+            if (playerState) {
+                playerState.foodCapIncrease++;
+            }
         });
     });
 
-    const calculatedFoodCap = basePlayerFoodCap + foodRoundBonus + 2 * foodReserveStructures + 5 * grainSiloCount;
+    const calculatedFoodCap = basePlayerFoodCap + foodRoundBonus + economicConstants.granaryFoodCapIncrease * foodReserveStructures;
 
     // print("Base food ", basePlayerFoodCap);
     // print("Food round bonus ", foodRoundBonus);
@@ -258,7 +266,13 @@ function grantStartOfDayBonuses() {
         p.setTechResearched(UpgradeCodes.supplyUpgrade, totalSupplyBuildings);
         p.setTechResearched(UpgradeCodes.magicGuardUpgrade, magicGuardStructures);
         //Set player food cap
-        adjustFoodCap(p, calculatedFoodCap);
+
+        const playerState = playerStates.get(p.id);
+
+        if (playerState) {
+            // print("Personal food cap for  ", p.name, " : ", playerState.foodCapIncrease);
+            adjustFoodCap(p, playerState.foodCapIncrease + calculatedFoodCap);
+        }
 
         p.setTechResearched(UpgradeCodes.dayTime, 1);
         p.setTechResearched(UpgradeCodes.nightTime, 0);
@@ -291,7 +305,7 @@ export function player_giveHumansStartOfDayResources(round: number) {
             totalIncomeBuildings++;
             if (u.owner === p) {
                 playerOwnedIncomeBuildings++;
-                adjustGold(p, economicConstants.goldIncomeAbility);
+                adjustGold(p, economicConstants.goldProducingAbility);
             }
         });
         forEachUnitOfPlayerWithAbility(p, ABILITIES.supplies, (u) => {
@@ -301,7 +315,7 @@ export function player_giveHumansStartOfDayResources(round: number) {
             lumberAbilityCount++;
             if (u.owner === p) {
                 playerOwnedLumberBuildings++;
-                adjustGold(p, economicConstants.lumberIncomeAbility);
+                adjustGold(p, economicConstants.lumberProducingAbility);
             }
         });
 
@@ -312,16 +326,16 @@ export function player_giveHumansStartOfDayResources(round: number) {
 
     grantStartOfDayBonuses();
 
-    const baseGold = 100;
-    const baseWood = 150;
-    const roundGold = 50 * round;
-    const roundWood = 50 * round;
+    const baseGold = economicConstants.baseGoldPerRound;
+    const baseWood = economicConstants.baseLumberPerRound;
+    const roundGold = economicConstants.goldRoundMultiplier * round;
+    const roundLumber = economicConstants.lumberRoundMultiplier * round;
 
-    const incomeBuildingGold = economicConstants.goldIncomeAbility * totalIncomeBuildings;
-    const lumberIncome = economicConstants.lumberIncomeAbility * lumberAbilityCount;
+    const incomeBuildingGold = economicConstants.goldProducingAbility * totalIncomeBuildings;
+    const lumberIncome = economicConstants.lumberProducingAbility * lumberAbilityCount;
 
     const totalGold = baseGold + roundGold + incomeBuildingGold;
-    const totalLumber = baseWood + roundWood + lumberIncome;
+    const totalLumber = baseWood + roundLumber + lumberIncome;
 
     print("===Income Report===");
     print(`${tColor("Base Amount", "goldenrod")} - ${tColor("Gold", "yellow")}: ${baseGold}`);
@@ -330,7 +344,7 @@ export function player_giveHumansStartOfDayResources(round: number) {
     print(`${tColor("Total", "goldenrod")}: ${tColor("Gold", "yellow")}: ${totalGold}`);
     print("                                  ");
     print(`${tColor("Base Amount", "goldenrod")} - ${tColor("Lumber", "green")} - ${baseWood}`);
-    print(`${tColor("Round Bonus", "goldenrod")} #${round} - ${tColor("Lumber", "green")}: ${roundWood}`);
+    print(`${tColor("Round Bonus", "goldenrod")} #${round} - ${tColor("Lumber", "green")}: ${roundLumber}`);
     print(`${tColor("Shared Lumber Buildings", "goldenrod")} (${lumberAbilityCount}) - ${tColor("Lumber", "green")}: ${lumberIncome}`);
     print(`${tColor("Total", "goldenrod")}: ${tColor("Lumber", "green")}: ${totalLumber}`);
     print("==================");

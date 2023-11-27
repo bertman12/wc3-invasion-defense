@@ -812,12 +812,6 @@ STRING 202
 (Info Only)
 }
 
-STRING 205
-// Abilities: A00C (Food Income), Ubertip (Tooltip - Normal - Extended)
-{
-Increases the food cap by 5 at the start of each day.
-}
-
 STRING 206
 // Abilities: A00I (Food Reserves), Name (Name)
 {
@@ -1741,16 +1735,6 @@ STRING 447
 (Caltrops)
 }
 
-STRING 449
-// Abilities: A002 (Income), Ubertip (Tooltip - Normal - Extended)
-{
-Grants |cffffff00+50 gold|r at the start of each day to all players.
-
-The owner gets double the gold from this structure.
-
-
-}
-
 STRING 450
 // Units: h00J (Barricade - Fortified), Hotkey (Hotkey)
 {
@@ -2489,16 +2473,6 @@ STRING 652
 Gives 6 additional armor to nearby friendly units and structures in 1200 range.
 }
 
-STRING 653
-// Abilities: A00J (Lumber Income - Info Ability), Ubertip (Tooltip - Normal - Extended)
-{
-Grants |cff008000+50 lumber|r at the start of each day to all players.
-
-If you own the structure, you get double the gold.
-
-
-}
-
 STRING 654
 // Units: O003 (Demigod), Tip (Tooltip - Basic)
 {
@@ -2972,5 +2946,55 @@ STRING 773
 // Abilities: Ambt (Replenish Mana and Life), Ubertip (Tooltip - Normal - Extended)
 {
 Replenish the life and mana of a target friendly unit. |n|N|cffc0c0c0800 range|r
+}
+
+STRING 775
+// Abilities: A002 (Income), Ubertip (Tooltip - Normal - Extended)
+{
+Grants |cffffff00+40 gold|r at the start of each day to all players.
+
+The owner gets double the gold from this structure.
+
+
+}
+
+STRING 776
+// Abilities: A00J (Lumber Income - Info Ability), Ubertip (Tooltip - Normal - Extended)
+{
+Grants |cff008000+30 lumber|r at the start of each day to all players.
+
+If you own the structure, you get double the gold.
+
+
+}
+
+STRING 777
+// Abilities: A00C (Food Income), Ubertip (Tooltip - Normal - Extended)
+{
+Increases the food cap by 3 at the start of each day.
+}
+
+STRING 778
+// Items: I00L (Claws of Attack +10), Name (Name)
+{
+Claws of Attack +10
+}
+
+STRING 779
+// Items: I00L (Claws of Attack +10), Tip (Tooltip - Basic)
+{
+Purchase Claws of Attack +10
+}
+
+STRING 780
+// Items: I00L (Claws of Attack +10), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of the Hero by 10 when worn.
+}
+
+STRING 781
+// Items: I00L (Claws of Attack +10), Description (Description)
+{
+Boosts attack damage by 10
 }
 

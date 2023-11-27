@@ -40,7 +40,7 @@ function tsMain() {
             Sound.fromHandle(gg_snd_U08Archimonde19)?.start();
             Sound.fromHandle(gg_snd_Hint)?.start();
             print(`[${tColor("Objective", "goldenrod")}] - Defend the capital city`);
-            print("The Heroes of the Kingdom of Alexandria must rally their forces to fight the undead. The capital city must survive!");
+            print("The Heroes of the Kingdom of Alexandria must rally their forces to fight the undead.");
         });
 
         setupPlayers();

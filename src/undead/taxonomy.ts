@@ -295,15 +295,19 @@ class SpawnData {
         if (this.spawnIcon) {
             DestroyMinimapIcon(this.spawnIcon);
         }
+
         if (this.currentTargetMinimapIcon) {
             DestroyMinimapIcon(this.currentTargetMinimapIcon);
         }
+
         if (this.currentTargetSpecialEffect) {
             this.currentTargetSpecialEffect.destroy();
         }
+
         if (this.waveTimer) {
             this.waveTimer.destroy();
         }
+
         if (this.trig_chooseNextTarget) {
             this.trig_chooseNextTarget.destroy();
         }
@@ -451,6 +455,11 @@ class SpawnData {
 
         if (u) {
             currentZombieCount++;
+
+            if (u.isHero()) {
+                u.setHeroLevel(RoundManager.currentRound, false);
+            }
+
             this.units.push(u);
             return u;
         }
