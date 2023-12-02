@@ -116,6 +116,7 @@ export function undeadDayStart() {
 
         if (newTarget) {
             config.applyAttackTargetEffects(newTarget);
+            config.createPathfinders(newTarget);
         }
     });
 
@@ -183,6 +184,7 @@ class SpawnData {
     private currentTargetSpecialEffect: Effect | undefined;
     private currentTargetMinimapIcon: minimapicon | undefined;
     private spawnPortalDisplay: Unit | undefined;
+    private preSpawnFunctions: ((...args: any) => void)[] = [];
 
     constructor(spawn: rect, hideUI: boolean = false, spawnBoss: boolean = false) {
         this.hideUI = hideUI;
@@ -238,6 +240,34 @@ class SpawnData {
         this.spawnPortalDisplay = Unit.create(Players[15], UNITS.undeadSpawn, this.spawnRec?.centerX ?? 0, this.spawnRec?.centerY ?? 0, 305);
     }
 
+    /**
+     * Helps the players to see where units are going to move
+     */
+    public createPathfinders(target: Unit) {
+        //every 10 seconds create a path finder - make sure its not added to undead count
+        const units: Unit[] = [];
+        const t = Timer.create();
+        t.start(10, true, () => {
+            const u = Unit.create(getNextUndeadPlayer(), UNITS.pathFinder, this.spawnRec?.centerX ?? 0, this.spawnRec?.centerY ?? 0);
+            const deathTimer = Timer.create();
+
+            if (u) {
+                u.issueOrderAt(OrderId.Move, target.x, target.y);
+                units.push(u);
+
+                deathTimer.start(30, false, () => {
+                    u.destroy();
+                    deathTimer.destroy();
+                });
+            }
+        });
+
+        this.preSpawnFunctions.push(() => {
+            units.forEach((u) => u.destroy());
+            t.destroy();
+        });
+    }
+
     private getMinimapRGB() {
         switch (this.spawnDifficulty) {
             case SpawnDifficulty.normal:
@@ -254,6 +284,7 @@ class SpawnData {
     }
 
     public startSpawning() {
+        this.preSpawnFunctions.forEach((fn) => fn());
         this.createWaveUnits();
         this.orderNewAttack(this.units);
 

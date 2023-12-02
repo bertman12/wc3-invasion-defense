@@ -68,6 +68,7 @@ export enum UNITS {
     druidLaborer = FourCC("h00O"),
     acolyteSlaveLaborer = FourCC("h00P"),
     grainSilo = FourCC("h00N"),
+    militia = FourCC("h000"),
 
     //Human units
     flyingMachine = FourCC("hgyr"),
@@ -95,6 +96,7 @@ export enum UNITS {
     skeletalOrcChampion = FourCC("nsoc"),
     infernalMachine = FourCC("ninm"),
     blackCitadelMeatWagon = FourCC("u00D"),
+    pathFinder = FourCC("u00H"),
 
     //Undead Buildings
     blackCitadel = FourCC("u006"),
@@ -137,6 +139,7 @@ export enum ITEMS {
     recipe_berserkersCleaver = FourCC("I00J"),
     helmOfBattleThirst = FourCC("hbth"),
     corpseCleaver = FourCC("I008"),
+    clawsOfAttack_10 = FourCC("I00L"),
 }
 
 //Can find looking up models for a spell at the Art - Target field

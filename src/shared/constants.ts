@@ -1,4 +1,6 @@
 export const economicConstants = {
+    startingGold: 2000,
+    startingLumber: 950,
     baseGoldPerRound: 100,
     baseLumberPerRound: 100,
     goldRoundMultiplier: 50,

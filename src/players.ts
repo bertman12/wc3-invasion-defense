@@ -5,7 +5,8 @@ import { economicConstants } from "./shared/constants";
 import { ABILITIES, PlayerIndices, TERRAIN_CODE, UNITS, UpgradeCodes, laborerUnitSet } from "./shared/enums";
 import { RoundManager } from "./shared/round-manager";
 import { notifyPlayer, tColor } from "./utils/misc";
-import { adjustFoodCap, adjustGold, adjustLumber, forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayerWithAbility, forEachUnitTypeOfPlayer } from "./utils/players";
+import { adjustFoodCap, adjustGold, adjustLumber, forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayerWithAbility, forEachUnitTypeOfPlayer, isPlayingUser } from "./utils/players";
+import { createUnits } from "./utils/units";
 
 export const playerStates = new Map<number, PlayerState>();
 
@@ -74,27 +75,39 @@ function trig_playerBuysUnit() {
 
     t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SELL);
 
-    t.addCondition(() => {
-        const u = Unit.fromHandle(GetSoldUnit());
-
-        if (u && playerStates.get(u.owner.id)?.rallyToHero) {
-            return true;
-        }
-
-        return false;
-    });
-
     t.addAction(() => {
         const u = Unit.fromHandle(GetSoldUnit());
+        const seller = Unit.fromHandle(GetSellingUnit());
 
-        if (!u) {
+        if (!u || !seller) {
             return;
         }
+        //send to hero
+        if (u && playerStates.get(u.owner.id)?.rallyToHero) {
+            const widget = Widget.fromHandle(playerStates.get(u.owner.id)?.playerHero?.handle);
 
-        const widget = Widget.fromHandle(playerStates.get(u.owner.id)?.playerHero?.handle);
+            if (widget) {
+                u.issueTargetOrder(OrderId.Move, widget);
+            }
+        }
 
-        if (widget) {
-            u.issueTargetOrder(OrderId.Move, widget);
+        // else if (seller.rallyUnit) {
+        //     u.issueOrderAt(OrderId.Move, seller.rallyUnit.x, seller.rallyUnit.y);
+        // }
+        // // send to rally point
+        // else if (seller.rallyPoint) {
+        //     u.issueOrderAt(OrderId.Move, seller.rallyPoint.x, seller.rallyPoint.y);
+        // }
+    });
+}
+
+function createDailyUnits() {
+    forEachAlliedPlayer((p) => {
+        // PLAYER_STATE_FOOD_CAP_CEILING
+        if (isPlayingUser(p)) {
+            forEachUnitTypeOfPlayer(UNITS.farmTown, p, (u) => {
+                createUnits(4, false, p, UNITS.militia, p.startLocationX, p.startLocationY);
+            });
         }
     });
 }
@@ -195,16 +208,9 @@ export function initializePlayerStateInstances() {
 
 export function init_startingResources() {
     Players.forEach((player) => {
-        player.setState(PLAYER_STATE_RESOURCE_GOLD, 1600);
-        player.setState(PLAYER_STATE_RESOURCE_LUMBER, 900);
+        player.setState(PLAYER_STATE_RESOURCE_GOLD, economicConstants.startingGold);
+        player.setState(PLAYER_STATE_RESOURCE_LUMBER, economicConstants.startingLumber);
     });
-
-    // //Allow bounty from zombies.
-    // Players.forEach((p) => {
-    //     if (p.race === RACE_UNDEAD) {
-    //         p.setState(PLAYER_STATE_GIVES_BOUNTY, 1);
-    //     }
-    // });
 }
 
 function grantStartOfDayBonuses() {
@@ -217,6 +223,7 @@ function grantStartOfDayBonuses() {
 
     const foodRoundBonus = economicConstants.capitalDailyFoodCapValue * RoundManager.currentRound;
 
+    createDailyUnits();
     forEachAlliedPlayer((p) => {
         forEachUnitOfPlayerWithAbility(p, ABILITIES.supplies, (u) => {
             totalSupplyBuildings++;

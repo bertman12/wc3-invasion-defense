@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Kingdom Zombie Defense alpha test 8
+Kingdom Zombie Defense alpha test 10
 }
 
 STRING 2
@@ -10,9 +10,9 @@ Any
 
 STRING 3
 {
-===Hero/Army Defense===
+Extremely Hard Zombie Def
+==Hero/Army Defense==
 Hold out for 15 nights until reinforcements arrive.
-New Players: Dont spend all your starting money on items.
 Buy units at allied buildings.
 Destroy undead buildings to convert back to human ones.
 
@@ -32,7 +32,7 @@ Player 1
 
 STRING 7
 {
-alpha testing #8
+alpha testing #10
 }
 
 STRING 9
@@ -456,15 +456,9 @@ D
 }
 
 STRING 134
-// Abilities: A005 (Charge), Hotkey (Hotkey - Normal)
+// Units: o004 (Orcish Light Cavalry), Hotkey (Hotkey)
 {
 C
-}
-
-STRING 135
-// Units: o000 (Orc Tent), Name (Name)
-{
-Orc Tent
 }
 
 STRING 136
@@ -642,12 +636,6 @@ STRING 163
 // Units: n004 (War Bear), Ubertip (Tooltip - Extended)
 {
 A heavy melee unit, with cleaving armor, bash and resistant skin.
-}
-
-STRING 165
-// Abilities: S000 (Endurance Aura), Ubertip (Tooltip - Normal - Extended)
-{
-The general increases nearby friendly units' movement speed by 25% and attack rate by 25%. |n|nAt least one general should be present to support an army.
 }
 
 STRING 166
@@ -896,7 +884,7 @@ R
 }
 
 STRING 226
-// Abilities: A00A (Make Alliance), Hotkey (Hotkey - Normal)
+// Abilities: A005 (Charge), Hotkey (Hotkey - Normal)
 {
 C
 }
@@ -1367,12 +1355,6 @@ STRING 349
 // Upgrades: R004 (Submerge), Name (Name)
 {
 Magic Guard
-}
-
-STRING 350
-// Abilities: A00X (Magic Guard), Ubertip (Tooltip - Normal - Extended)
-{
-Reduces magic damage taken by 15% while you have an arcane sanctum under your control.
 }
 
 STRING 351
@@ -1975,12 +1957,6 @@ STRING 515
 Trueshot Aura (Flat)
 }
 
-STRING 516
-// Abilities: A01C (Flat Trueshot Aura), Ubertip (Tooltip - Normal - Extended)
-{
-An aura that gives nearby friendly units a 15 bonus damage to their ranged attacks.
-}
-
 STRING 519
 // Units: n00H ([|cffffcc00Elite|r] Archer General), Hotkey (Hotkey)
 {
@@ -2329,12 +2305,6 @@ STRING 616
 Hire Druid Laborer
 }
 
-STRING 617
-// Units: h00P (Acolyte Slave Laborer), Ubertip (Tooltip - Extended)
-{
-After 1 day, the laborer will return (|cffffff001.15 x its cost in gold|r). Quick labor at a higher initial cost and lower return. If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
-}
-
 STRING 618
 // Units: h00N (Grain Silo), Ubertip (Tooltip - Extended)
 {
@@ -2351,12 +2321,6 @@ STRING 623
 // Abilities: A01L (Bloodlust), EditorSuffix (Editor Suffix)
 {
  (Sorceress)
-}
-
-STRING 624
-// Units: hsor (Sorceress), Ubertip (Tooltip - Extended)
-{
-Does moderate magic damage from attacks and can cast mass teleport and blood lust.
 }
 
 STRING 625
@@ -2827,12 +2791,6 @@ STRING 750
 +25% Critical Strike Chance (2x damage)|n+20 Attack Damage|n+30 Move Speed  |N|N|cffffcc00Wind Walk|r - Go invisible for 10 seconds. Adds 200 bonus damage to your next attack. 
 }
 
-STRING 751
-// Items: I00E ([|cffffcc00Recipe|r] Blade of The Wind Walker), Ubertip (Tooltip - Extended)
-{
-Requires: |cffc0c0c0Treads of the Wind Walker, Savage Blade|r     |n|n+25% Critical Strike Chance (2x damage)|n+20 Attack Damage  |N|N|cffffcc00Wind Walk|r - Go invisible for 10 seconds. Adds 200 bonus damage to your next attack. 
-}
-
 STRING 752
 // Items: I00G (Staff of Primal Thunder), Ubertip (Tooltip - Extended)
 {
@@ -2986,15 +2944,201 @@ STRING 779
 Purchase Claws of Attack +10
 }
 
-STRING 780
-// Items: I00L (Claws of Attack +10), Ubertip (Tooltip - Extended)
-{
-Increases the attack damage of the Hero by 10 when worn.
-}
-
 STRING 781
 // Items: I00L (Claws of Attack +10), Description (Description)
 {
 Boosts attack damage by 10
+}
+
+STRING 782
+// Items: I00E ([|cffffcc00Recipe|r] Blade of The Wind Walker), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Treads of the Wind Walker, Savage Blade, Claws of Attack +10|r     |n|n+25% Critical Strike Chance (2x damage)|n+20 Attack Damage  |N|N|cffffcc00Wind Walk|r - Go invisible for 10 seconds. Adds 200 bonus damage to your next attack. 
+}
+
+STRING 783
+// Items: I00L (Claws of Attack +10), Ubertip (Tooltip - Extended)
+{
++10 Attack Damage
+}
+
+STRING 787
+// Units: o004 (Orcish Light Cavalry), Tip (Tooltip - Basic)
+{
+Hire Orcish Light Cavalry
+}
+
+STRING 789
+// Abilities: A00A (Make Alliance), Hotkey (Hotkey - Normal)
+{
+C
+}
+
+STRING 791
+// Units: o004 (Orcish Light Cavalry), Name (Name)
+{
+Orcish Light Cavalry
+}
+
+STRING 793
+// Units: o005 (Headhunter), Tip (Tooltip - Basic)
+{
+Hire Headhunter
+}
+
+STRING 794
+// Abilities: A00X (Magic Guard), Ubertip (Tooltip - Normal - Extended)
+{
++15% |cffff00ffmagic resist|r|n|N|cffffcc00Requires Arcane Sanctum|r
+}
+
+STRING 795
+// Units: o004 (Orcish Light Cavalry), Ubertip (Tooltip - Extended)
+{
+Great units for fighting in mass on large fields of battle. Can help combat the undead in open areas when supported by other units as well.|n|N+ |cff00ff00Large Battlefields|r    |n-  |cffff0000Choke Points|r
+}
+
+STRING 796
+// Units: o005 (Headhunter), Ubertip (Tooltip - Extended)
+{
+250 range    |n+ |cff00ff00Large Battlefields|r    |n-  |cffff0000Choke Points|r
+}
+
+STRING 797
+// Abilities: A01Y (Improved Mass Teleport), EditorSuffix (Editor Suffix)
+{
+(elite general)
+}
+
+STRING 798
+// Abilities: A01Y (Improved Mass Teleport), Ubertip (Tooltip - Normal - Extended)
+{
+Teleports all of the player's nearby units to a friendly ground unit or structure.
+}
+
+STRING 799
+// Abilities: A01Y (Improved Mass Teleport), Name (Name)
+{
+Improved Mass Teleport
+}
+
+STRING 800
+// Abilities: A01Y (Improved Mass Teleport), Tip (Tooltip - Normal)
+{
+Improved Mass Teleport
+}
+
+STRING 801
+// Units: o000 (Troll Camp), Tip (Tooltip - Basic)
+{
+Troll Camp
+}
+
+STRING 802
+// Units: o000 (Troll Camp), Name (Name)
+{
+Troll Camp
+}
+
+STRING 803
+// Abilities: S000 (Endurance Aura), Ubertip (Tooltip - Normal - Extended)
+{
+[|cffffcc00Aura|r] +25% Movespeed +25% Attack Speed        |n|n|cffc0c0c02400 Range|r
+}
+
+STRING 804
+// Abilities: A01C (Flat Trueshot Aura), Ubertip (Tooltip - Normal - Extended)
+{
+[|cffffcc00Aura|r] +15 Flat Ranged Damage        |n|n|cffc0c0c02400 Range|r
+}
+
+STRING 805
+// Units: u00H (Pathfinder), Name (Name)
+{
+Pathfinder
+}
+
+STRING 807
+// Units: hsor (Sorceress), Ubertip (Tooltip - Extended)
+{
+Does moderate magic damage from attacks and can cast |cffffcc00mass teleport|r.
+}
+
+STRING 808
+// Abilities: A01Z (Thunderous Strikes), Name (Name)
+{
+Thunderous Strikes
+}
+
+STRING 809
+// Abilities: A01Z (Thunderous Strikes), Researchtip (Tooltip - Learn)
+{
+Learn Thunderous Strikes
+}
+
+STRING 810
+// Abilities: A01Z (Thunderous Strikes), Researchubertip (Tooltip - Learn - Extended)
+{
+Each attack has a chance to cause damage in a small area.
+}
+
+STRING 811
+// Abilities: A01Z (Thunderous Strikes), Tip (Tooltip - Normal)
+{
+Thunderous Strikes
+}
+
+STRING 812
+// Abilities: A01Z (Thunderous Strikes), Tip (Tooltip - Normal)
+{
+Thunderous Strikes
+}
+
+STRING 813
+// Abilities: A01Z (Thunderous Strikes), Tip (Tooltip - Normal)
+{
+Thunderous Strikes
+}
+
+STRING 815
+// Abilities: A01Z (Thunderous Strikes), Researchhotkey (Hotkey - Learn)
+{
+D
+}
+
+STRING 816
+// Abilities: A01Z (Thunderous Strikes), EditorSuffix (Editor Suffix)
+{
+(pulverize)
+}
+
+STRING 817
+// Abilities: A01Z (Thunderous Strikes), Ubertip (Tooltip - Normal - Extended)
+{
+Gives a 20% chance that an attack will deal 150 damage to nearby units.
+}
+
+STRING 818
+// Abilities: A01Z (Thunderous Strikes), Ubertip (Tooltip - Normal - Extended)
+{
+Gives a 20% chance that an attack will deal 50 damage to nearby units.
+}
+
+STRING 819
+// Abilities: A01Z (Thunderous Strikes), Ubertip (Tooltip - Normal - Extended)
+{
+Gives a 20% chance that an attack will deal 100 damage to nearby units.
+}
+
+STRING 820
+// Units: Hmkg (Mountain King), Ubertip (Tooltip - Extended)
+{
+Warrior Hero, adept at offensive combat and disrupting enemy troops. Can learn Storm Bolt, Thunderous Strikes, Bash and Avatar.   |n|n[|cff00ff00New|r] |cffffcc00Thunderous Strikes|r - Attacks have a chance to deal damage in a small area.
+}
+
+STRING 821
+// Units: h00P (Acolyte Slave Laborer), Ubertip (Tooltip - Extended)
+{
+After 1 day, the laborer will return (|cffffff001.15 x its cost in gold|r). Quick and cheap labor with a lower return. If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
 }
 

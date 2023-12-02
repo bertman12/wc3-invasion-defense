@@ -468,3 +468,24 @@ in general the game kinda gets stale after the 5 night, because it is repetitive
 add some tooltip button ui to show current income rate and other stats too, like upgrades .
 
 i wonder if it would be interesting if you could take a portal to an island and defend some things there too
+
+depending on the player the hero chose they will get an item that will let them summon a personal retinue every 2 minutes. free of charge? the units will fill a niche and theme related to the hero.
+
+Also players should start the game with a commander? Commanders should have mass tp
+Units also should have in their tooltip what roles they are good for like choke points, open fields, etc.
+
+PURCHASING TOWNS WILL SPAWN UNITS FOR YOU AT THE START OF EVERY DAY. YOU MUST PAY A LARGE SUM OF MONEY TO GET A TOWN and not cost you any food
+
+after evry night, the percentage of undead that are leftover increases; also prevent buying farms,e tc on 1st day
+
+start night timer at 1:30 ; increase by 30 secs per round
+
+add tax evasion upgrade that allows you to earn more money from farms.
+
+allow players to go into debt. at high interest rates
+
+add upgrades to increase the number of free units you get from owned buildings
+
+maybe let some players play as bandits that fuck with teh regular players. but dont make them stronger than normal players.
+
+for barricades, maybe after they are built i can change teh isBuilding unit field to false, that way undead will attack them instead of going around them.

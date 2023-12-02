@@ -3,26 +3,24 @@ import { applyForce } from "src/shared/physics";
 import { RoundManager } from "src/shared/round-manager";
 import { allCapturableStructures } from "src/towns";
 import { unitGetsNearThisUnit } from "src/utils/abilities";
-import { getRelativeAngleToUnit, notifyPlayer, tColor, useEffects } from "src/utils/misc";
+import { getRelativeAngleToUnit, notifyPlayer, tColor, useEffects, useTempEffect } from "src/utils/misc";
 import { adjustGold, adjustLumber, forEachAlliedPlayer, forEachUnitTypeOfPlayer, isPlayingUser } from "src/utils/players";
-import { Effect, MapPlayer, Trigger, Unit } from "w3ts";
+import { Effect, Group, MapPlayer, Timer, Trigger, Unit } from "w3ts";
 import { Players } from "w3ts/globals";
 
 export function init_humanSpells() {
-    // makeAlliance();
-    // trig_hireFlyingMachine();
-    // trig_heroicLeap();
     purchaseStructure();
     trig_battleCharge();
     generalHired();
     trig_disbandUnit();
+    thunderousStrikes();
     RoundManager.onDayStart(removeCaltrops);
 }
 
 function makeAlliance() {
     const t = Trigger.create();
 
-    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SPELL_CAST);
+    // t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SPELL_CAST);
 
     t.addCondition(() => {
         const castedSpellId = GetSpellAbilityId();
@@ -244,6 +242,53 @@ const ownershipGrantingUnits = new Map<number, number>([[UNITS.farmTown, UNITS.n
 function removeCaltrops() {
     forEachAlliedPlayer((p) => {
         forEachUnitTypeOfPlayer(UNITS.caltrops, p, (u) => u.destroy());
+    });
+}
+
+//the spell can only happen once every attackcd/4
+function thunderousStrikes() {
+    const t = Trigger.create();
+    const unitsOnCooldown = new Set<Unit>();
+
+    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_ATTACKED);
+
+    t.addAction(() => {
+        const attacker = Unit.fromHandle(GetAttacker());
+        const victim = Unit.fromHandle(GetAttackedUnitBJ());
+        const level = attacker?.getAbilityLevel(FourCC("A01Z"));
+
+        if (level && level >= 1 && attacker && victim && Math.ceil(Math.random() * 100) <= 20) {
+            if (unitsOnCooldown.has(attacker)) {
+                return;
+            }
+
+            unitsOnCooldown.add(attacker);
+
+            const t = Timer.create();
+
+            t.start(attacker.getAttackCooldown(0) / 3, false, () => {
+                unitsOnCooldown.delete(attacker);
+                t.destroy();
+            });
+
+            useTempEffect(Effect.create("Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl", victim.x, victim.y));
+
+            const affectedUnits = Group.create();
+
+            if (affectedUnits) {
+                affectedUnits.enumUnitsInRange(attacker.x, attacker.y, 350, () => {
+                    const unit = Group.getFilterUnit();
+
+                    if (unit && !unit.isAlly(attacker.owner)) {
+                        attacker.damageTarget(unit.handle, 50 * level, false, false, ATTACK_TYPE_HERO, DAMAGE_TYPE_DIVINE, WEAPON_TYPE_WHOKNOWS);
+                    }
+
+                    return true;
+                });
+
+                affectedUnits?.destroy();
+            }
+        }
     });
 }
 

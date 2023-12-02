@@ -237,7 +237,7 @@ interface RecipeItem {
 //The item cost of a recipe should be the added value of whatever stats +100 gold for freeing up a slot
 //50 gold per stat?
 
-//thunderlizard gems and a staff of knowledge
+//thunder lizard gems and a staff of knowledge
 
 const itemRecipesMap = new Map<RecipeItem, RecipeItemRequirement[]>([
     [
@@ -258,6 +258,7 @@ const itemRecipesMap = new Map<RecipeItem, RecipeItemRequirement[]>([
         [
             { itemTypeId: ITEMS.windWalkerTreads, quantity: 1, charges: 0 }, //
             { itemTypeId: ITEMS.savageBlade, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.clawsOfAttack_10, quantity: 1, charges: 0 }, //
         ],
     ],
     [
