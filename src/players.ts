@@ -1,7 +1,7 @@
+import { forEachUnitOfPlayer } from "src/utils/players";
 import { Effect, MapPlayer, Sound, Timer, Trigger, Unit, Widget } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
-import { TimerManager } from "./shared/Timers";
-import { economicConstants } from "./shared/constants";
+import { economicConstants, unitTypeOwnerBonusMap } from "./shared/constants";
 import { ABILITIES, PlayerIndices, TERRAIN_CODE, UNITS, UpgradeCodes, laborerUnitSet } from "./shared/enums";
 import { RoundManager } from "./shared/round-manager";
 import { notifyPlayer, tColor } from "./utils/misc";
@@ -44,6 +44,25 @@ class PlayerState {
             }
         }
     }
+}
+
+export function setupPlayers() {
+    initializePlayerStateInstances();
+    trig_playerBuysUnit();
+    trig_heroPurchased();
+    trig_heroDies();
+    trig_checkFarmLaborerPlacement();
+    playerLeaves();
+    laborerBuilt();
+    forEachAlliedPlayer((p, index) => {
+        //Create Sheep to buy hero
+        const u = Unit.create(p, FourCC("nshe"), 18600 + 25 * index, -28965);
+        if (u) {
+            SetCameraPositionForPlayer(p.handle, u.x, u.y);
+        }
+
+        SetPlayerHandicapXP(p.handle, 0.25);
+    });
 }
 
 function trig_heroDies() {
@@ -101,10 +120,28 @@ function trig_playerBuysUnit() {
     });
 }
 
+const ownedBuildingUnitBonusMap = new Map<number, { unitType: number; quantity: number }>([
+    [UNITS.farmTown, { unitType: UNITS.militia, quantity: 3 }],
+    [UNITS.townHall, { unitType: UNITS.footman, quantity: 3 }],
+    [UNITS.castle, { unitType: UNITS.knight, quantity: 3 }],
+]);
+
 function createDailyUnits() {
     forEachAlliedPlayer((p) => {
         // PLAYER_STATE_FOOD_CAP_CEILING
+
         if (isPlayingUser(p)) {
+            forEachUnitOfPlayer(p, (u) => {
+                if (ownedBuildingUnitBonusMap.has(u.typeId)) {
+                    const unitData = ownedBuildingUnitBonusMap.get(u.typeId);
+                    if (!unitData) {
+                        return;
+                    }
+
+                    createUnits(unitData.quantity, false, p, unitData.unitType, p.startLocationX, p.startLocationY);
+                }
+            });
+
             forEachUnitTypeOfPlayer(UNITS.farmTown, p, (u) => {
                 createUnits(4, false, p, UNITS.militia, p.startLocationX, p.startLocationY);
             });
@@ -166,25 +203,6 @@ function trig_heroPurchased() {
                 farmHand.issueTargetOrder(OrderId.Move, playerHero);
             }
         }
-    });
-}
-
-export function setupPlayers() {
-    initializePlayerStateInstances();
-    trig_playerBuysUnit();
-    trig_heroPurchased();
-    trig_heroDies();
-    trig_checkFarmLaborerPlacement();
-    playerLeaves();
-    laborerBuilt();
-    forEachAlliedPlayer((p, index) => {
-        //Create Sheep to buy hero
-        const u = Unit.create(p, FourCC("nshe"), 18600 + 25 * index, -28965);
-        if (u) {
-            SetCameraPositionForPlayer(p.handle, u.x, u.y);
-        }
-
-        SetPlayerHandicapXP(p.handle, 0.25);
     });
 }
 
@@ -304,15 +322,23 @@ export function player_giveHumansStartOfDayResources(round: number) {
     let totalIncomeBuildings = 0;
     let totalSupplyBuildings = 0;
     let lumberAbilityCount = 0;
-    let playerOwnedIncomeBuildings = 0;
-    let playerOwnedLumberBuildings = 0;
+    const playerOwnedGoldResourceBonuses = new Map<number, number>();
+    const playerOwnedLumberResourceBonuses = new Map<number, number>();
 
     forEachAlliedPlayer((p) => {
-        forEachUnitOfPlayerWithAbility(p, ABILITIES.income, (u) => {
+        forEachUnitOfPlayerWithAbility(p, ABILITIES.goldIncome, (u) => {
             totalIncomeBuildings++;
             if (u.owner === p) {
-                playerOwnedIncomeBuildings++;
-                adjustGold(p, economicConstants.goldProducingAbility);
+                if (unitTypeOwnerBonusMap.has(u.typeId)) {
+                    //default 1 if wwe cant find however should be unlikely
+                    const bonusValue = unitTypeOwnerBonusMap.get(u.typeId) ?? 1;
+                    const goldAward = economicConstants.goldProducingAbility * bonusValue;
+                    let currentPlayerGoldAmount = playerOwnedGoldResourceBonuses.get(p.id);
+
+                    playerOwnedGoldResourceBonuses.set(p.id, currentPlayerGoldAmount ? (currentPlayerGoldAmount += goldAward) : goldAward);
+                    adjustGold(p, goldAward);
+                    print(`Gave ${p.name} ${tColor(goldAward, "gold")} gold.`);
+                }
             }
         });
         forEachUnitOfPlayerWithAbility(p, ABILITIES.supplies, (u) => {
@@ -321,14 +347,18 @@ export function player_giveHumansStartOfDayResources(round: number) {
         forEachUnitOfPlayerWithAbility(p, ABILITIES.lumberIncome, (u) => {
             lumberAbilityCount++;
             if (u.owner === p) {
-                playerOwnedLumberBuildings++;
-                adjustGold(p, economicConstants.lumberProducingAbility);
+                if (unitTypeOwnerBonusMap.has(u.typeId)) {
+                    //default 1 if wwe cant find however should be unlikely
+                    const bonusValue = unitTypeOwnerBonusMap.get(u.typeId) ?? 1;
+                    const lumberAward = economicConstants.goldProducingAbility * bonusValue;
+                    let currentPlayerLumberAmount = playerOwnedLumberResourceBonuses.get(p.id);
+
+                    playerOwnedLumberResourceBonuses.set(p.id, currentPlayerLumberAmount ? (currentPlayerLumberAmount += lumberAward) : lumberAward);
+                    adjustGold(p, lumberAward);
+                    print(`Gave ${p.name} ${tColor(lumberAward, "green")} lumber.`);
+                }
             }
         });
-
-        // forEachUnitTypeOfPlayer(UNITS.farmTown, p, (u) => {
-        //     print("farm grant ability level: ", GetUnitAbilityLevel(u.handle, ABILITIES.purchaseFarmGrant));
-        // });
     });
 
     grantStartOfDayBonuses();
@@ -471,7 +501,7 @@ const laborerTypes = [
     },
     {
         unitTypeCode: UNITS.acolyteSlaveLaborer,
-        goldCostMultiplierAward: 1.15,
+        goldCostMultiplierAward: 1.1,
         maxManaRequirement: 1,
     },
     {
@@ -506,6 +536,8 @@ export function addProgressForLaborers() {
 
                     if (goldAwarded > 0) {
                         adjustGold(p, goldAwarded);
+                        const locP = GetLocalPlayer();
+                        BlzDisplayChatMessage(locP, p.id, `${tColor(u.name, "goldenrod")} awared +${tColor(goldAwarded.toString(), "yellow")} gold.`);
                         // print(`${u.owner.name} has been awarded ${tColor(goldAwarded.toString(), "yellow")} gold for ${u.name} completing their work.`);
                     }
                 }
@@ -516,17 +548,14 @@ export function addProgressForLaborers() {
 
 //if its built during the day then set its max mana to 1
 function laborerBuilt() {
-    const t = Trigger.create();
-
-    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_CONSTRUCT_FINISH);
-
-    t.addAction(() => {
-        const u = Unit.fromEvent();
-
-        if (u && TimerManager.isDayTime()) {
-            u.setAnimation("attack");
-            u.addAnimationProps("channel", true);
-            // u.maxMana++;
-        }
-    });
+    // const t = Trigger.create();
+    // t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_CONSTRUCT_FINISH);
+    // t.addAction(() => {
+    //     const u = Unit.fromEvent();
+    //     if (u && TimerManager.isDayTime()) {
+    //         // u.setAnimation("attack");
+    //         // u.addAnimationProps("channel", true);
+    //         // u.maxMana++;
+    //     }
+    // });
 }

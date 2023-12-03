@@ -154,7 +154,7 @@ function purchaseStructure() {
             const soldUnitOwner = soldUnit.getOwner();
 
             if (soldUnitOwner) {
-                //crashes the game lol
+                //crashes the game lol - unnecessary to do anyways
                 // sellingUnit.removeAbility(ABILITIES.shopShareAlly);
                 sellingUnit.setOwner(soldUnitOwner, true);
             }
@@ -235,7 +235,12 @@ function trig_battleCharge() {
  *
  * then we only need one function to handle this behavior as long as it do so according to the map
  */
-const ownershipGrantingUnits = new Map<number, number>([[UNITS.farmTown, UNITS.nullUnit]]);
+const ownershipGrantingUnits = new Map<number, number>([
+    [UNITS.farmTown, UNITS.farmGrant],
+    [UNITS.townHall, UNITS.townGrant],
+    [UNITS.castle, UNITS.castleGrant],
+    [UNITS.lumberMill, UNITS.lumberMillGrant],
+]);
 
 // caster?.hasBuffs
 

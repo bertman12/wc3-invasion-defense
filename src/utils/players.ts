@@ -11,6 +11,7 @@ export function forEachUnitOfPlayerWithAbility(player: MapPlayer, abilityId: num
     forEachUnitOfPlayer(player, (u) => {
         for (let x = 0; x < 12; x++) {
             const currentAbility = u.getAbilityByIndex(x);
+
             if (currentAbility && currentAbility === u.getAbility(abilityId)) {
                 cb(u);
             }

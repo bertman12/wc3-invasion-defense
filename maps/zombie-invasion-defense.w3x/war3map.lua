@@ -76,25 +76,6 @@ function CreateAllItems()
 local itemID
 
 BlzCreateItemWithSkin(FourCC("I000"), -12448.3, 13480.1, FourCC("I000"))
-BlzCreateItemWithSkin(FourCC("gcel"), -1120.6, 5337.2, FourCC("gcel"))
-BlzCreateItemWithSkin(FourCC("gcel"), -1179.0, 5431.4, FourCC("gcel"))
-BlzCreateItemWithSkin(FourCC("gcel"), -1352.2, 5572.8, FourCC("gcel"))
-BlzCreateItemWithSkin(FourCC("gcel"), -1301.8, 5469.6, FourCC("gcel"))
-BlzCreateItemWithSkin(FourCC("gcel"), -1242.7, 5396.6, FourCC("gcel"))
-BlzCreateItemWithSkin(FourCC("gcel"), -1239.0, 5253.2, FourCC("gcel"))
-end
-
-function CreateUnitsForPlayer0()
-local p = Player(0)
-local u
-local unitID
-local t
-local life
-
-u = BlzCreateUnitWithSkin(p, FourCC("Hmkg"), -1127.4, 5545.3, 103.440, FourCC("Hmkg"))
-SetHeroLevel(u, 18, false)
-SelectHeroSkill(u, FourCC("A01Z"))
-IssueImmediateOrder(u, "")
 end
 
 function CreateBuildingsForPlayer9()
@@ -195,13 +176,11 @@ u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -8448.0, 1536.0, 270.000, FourCC("h
 u = BlzCreateUnitWithSkin(p, FourCC("h004"), -11136.0, 2752.0, 270.000, FourCC("h004"))
 u = BlzCreateUnitWithSkin(p, FourCC("h002"), -8064.0, 2816.0, 270.000, FourCC("h002"))
 u = BlzCreateUnitWithSkin(p, FourCC("htow"), -10176.0, 2432.0, 270.000, FourCC("htow"))
-u = BlzCreateUnitWithSkin(p, FourCC("h002"), -8704.0, 3776.0, 270.000, FourCC("h002"))
+u = BlzCreateUnitWithSkin(p, FourCC("h002"), -8704.0, 3840.0, 270.000, FourCC("h002"))
 u = BlzCreateUnitWithSkin(p, FourCC("hbar"), -10368.0, 5312.0, 270.000, FourCC("hbar"))
 u = BlzCreateUnitWithSkin(p, FourCC("hbar"), -10368.0, 4928.0, 270.000, FourCC("hbar"))
 u = BlzCreateUnitWithSkin(p, FourCC("hctw"), -11456.0, 4672.0, 270.000, FourCC("hctw"))
-u = BlzCreateUnitWithSkin(p, FourCC("hctw"), -11520.0, 4032.0, 270.000, FourCC("hctw"))
-u = BlzCreateUnitWithSkin(p, FourCC("hctw"), -11456.0, 4992.0, 270.000, FourCC("hctw"))
-u = BlzCreateUnitWithSkin(p, FourCC("hctw"), -11328.0, 3712.0, 270.000, FourCC("hctw"))
+u = BlzCreateUnitWithSkin(p, FourCC("hctw"), -11456.0, 4032.0, 270.000, FourCC("hctw"))
 u = BlzCreateUnitWithSkin(p, FourCC("hctw"), 4480.0, -1024.0, 270.000, FourCC("hctw"))
 u = BlzCreateUnitWithSkin(p, FourCC("h00C"), 4032.0, 17600.0, 270.000, FourCC("h00C"))
 u = BlzCreateUnitWithSkin(p, FourCC("h004"), -832.0, 16704.0, 270.000, FourCC("h004"))
@@ -253,7 +232,7 @@ u = BlzCreateUnitWithSkin(p, FourCC("hctw"), 4672.0, 17088.0, 270.000, FourCC("h
 u = BlzCreateUnitWithSkin(p, FourCC("htow"), -4416.0, 16128.0, 270.000, FourCC("htow"))
 u = BlzCreateUnitWithSkin(p, FourCC("htow"), 1408.0, 18496.0, 270.000, FourCC("htow"))
 u = BlzCreateUnitWithSkin(p, FourCC("hlum"), 4448.0, 10976.0, 270.000, FourCC("hlum"))
-u = BlzCreateUnitWithSkin(p, FourCC("h00M"), 1408.0, -704.0, 270.000, FourCC("h00M"))
+u = BlzCreateUnitWithSkin(p, FourCC("h00M"), 1728.0, -832.0, 270.000, FourCC("h00M"))
 end
 
 function CreateUnitsForPlayer9()
@@ -521,25 +500,6 @@ u = BlzCreateUnitWithSkin(p, FourCC("h00D"), 5747.9, 18738.7, 270.000, FourCC("h
 u = BlzCreateUnitWithSkin(p, FourCC("h00D"), 5544.5, 18884.7, 270.000, FourCC("h00D"))
 end
 
-function CreateNeutralHostile()
-local p = Player(PLAYER_NEUTRAL_AGGRESSIVE)
-local u
-local unitID
-local t
-local life
-
-u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), -1195.6, 6344.7, 316.570, FourCC("hfoo"))
-u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), -838.1, 6412.9, 300.969, FourCC("hfoo"))
-u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), -716.1, 6359.5, 268.892, FourCC("hfoo"))
-u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), -637.0, 6322.4, 296.684, FourCC("hfoo"))
-u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), -515.1, 6236.0, 173.589, FourCC("hfoo"))
-u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), -1253.9, 6225.6, 316.570, FourCC("hfoo"))
-u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), -896.4, 6293.8, 300.969, FourCC("hfoo"))
-u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), -774.4, 6240.3, 268.892, FourCC("hfoo"))
-u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), -695.3, 6203.3, 296.684, FourCC("hfoo"))
-u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), -573.4, 6116.8, 173.589, FourCC("hfoo"))
-end
-
 function CreateNeutralPassiveBuildings()
 local p = Player(PLAYER_NEUTRAL_PASSIVE)
 local u
@@ -581,7 +541,6 @@ CreateBuildingsForPlayer9()
 end
 
 function CreatePlayerUnits()
-CreateUnitsForPlayer0()
 CreateUnitsForPlayer9()
 end
 
@@ -589,7 +548,6 @@ function CreateAllUnits()
 CreateNeutralHostileBuildings()
 CreateNeutralPassiveBuildings()
 CreatePlayerBuildings()
-CreateNeutralHostile()
 CreateNeutralPassive()
 CreatePlayerUnits()
 end

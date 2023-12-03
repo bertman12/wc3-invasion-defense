@@ -489,3 +489,19 @@ add upgrades to increase the number of free units you get from owned buildings
 maybe let some players play as bandits that fuck with teh regular players. but dont make them stronger than normal players.
 
 for barricades, maybe after they are built i can change teh isBuilding unit field to false, that way undead will attack them instead of going around them.
+
+make each spawn able to spawn more units as long as the units they have are less than 175 instead of stop spawning from all spawns when there is more than 550 units
+
+perhaps instead of telling the enemy to move towards teh attack target, we can move towards teh spawn pathfinder instead, since it will be somewhere accessible
+
+make it so if a laborer is built on corn farm , they get bonus +10% gold back
+
+let players designate a spawn point for their units, if that spawn point unit diess, then just set it to default to be at the capital
+
+players can buy a town/castle or build there own. building their own should cost more
+
+give players a spot to build new towns on a specific tile. only allow one town per player.
+
+maybe after the 5th round we can give the players a portion of the gold and lumber LB has.
+
+<give druids a bonus amount of gold when built on corn crops />

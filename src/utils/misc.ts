@@ -2,14 +2,14 @@ import { Effect, Timer, Unit } from "w3ts";
 
 type ProperColors = "goldenrod" | "gold" | "green" | "yellow" | "red";
 
-export function tColor(text: string, color?: ProperColors, hex?: string, alpha?: string) {
+export function tColor(text: string | number, color?: ProperColors, hex?: string, alpha?: string) {
     if (color) {
         return `|cff${properColorHexes.get(color) || "FFFFFF"}${alpha || ""}${text}|r`;
     } else if (hex) {
         return `|cff${hex}${alpha || ""}${text}|r`;
     }
 
-    return text;
+    return String(text);
 }
 
 const properColorHexes = new Map<ProperColors, string>([

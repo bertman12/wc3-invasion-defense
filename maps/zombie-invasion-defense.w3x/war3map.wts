@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Kingdom Zombie Defense alpha test 10
+Undead Siege Defense alpha test 10
 }
 
 STRING 2
@@ -241,34 +241,16 @@ STRING 68
 Armor Upgrade
 }
 
-STRING 70
-// Abilities: A006 (Armor Upgrade), Ubertip (Tooltip - Normal - Extended)
-{
-Base - Info Ability
-}
-
 STRING 71
 // Abilities: A006 (Armor Upgrade), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
 
-STRING 72
-// Abilities: A006 (Armor Upgrade), Tip (Tooltip - Normal)
-{
-[|cff8080ffUpgrade|r] - Increases the armor of units.
-}
-
 STRING 73
 // Abilities: A007 (Weapon Upgrade), Name (Name)
 {
 Weapon Upgrade
-}
-
-STRING 75
-// Abilities: A007 (Weapon Upgrade), Ubertip (Tooltip - Normal - Extended)
-{
-Base - Info Ability
 }
 
 STRING 76
@@ -385,12 +367,6 @@ STRING 110
 F
 }
 
-STRING 111
-// Abilities: A007 (Weapon Upgrade), Tip (Tooltip - Normal)
-{
-[|cff8080ffUpgrade|r] - Increases the damage of units.
-}
-
 STRING 112
 {
 [Neutral] - Kingdom of Hyperian
@@ -486,7 +462,7 @@ Stone Walls - Free Form Doodad
 
 STRING 141
 {
-Kingdom Zombie Defense 
+Undead Siege Defense
 }
 
 STRING 142
@@ -2257,12 +2233,6 @@ STRING 608
 (Info Only)
 }
 
-STRING 609
-// Units: h00P (Acolyte Slave Laborer), Hotkey (Hotkey)
-{
-O
-}
-
 STRING 610
 // Units: h00K (Peon Laborer), Ubertip (Tooltip - Extended)
 {
@@ -2312,7 +2282,7 @@ Build a Grain Silo that raises your food cap by +5. |n|n|cffffcc00This structure
 }
 
 STRING 622
-// Abilities: A01H (Blink (Engineer)), Hotkey (Hotkey - Normal)
+// Units: n008 (Purchase Farm Grant), Hotkey (Hotkey)
 {
 R
 }
@@ -2354,7 +2324,7 @@ Able to hire laborers to work the farm and also build grain silo's to temporaril
 }
 
 STRING 630
-// Units: h00Q (Farm Hand), Hotkey (Hotkey)
+// Units: h00P (Acolyte Slave Laborer), Hotkey (Hotkey)
 {
 A
 }
@@ -2411,24 +2381,6 @@ STRING 646
 // Abilities: A01N (Roar), Ubertip (Tooltip - Normal - Extended)
 {
 Gives nearby friendly units a 35% bonus to damage. |nLasts 60 seconds.
-}
-
-STRING 648
-// Units: Ntin (Tinker), Ubertip (Tooltip - Extended)
-{
-Cunning Hero, exceptional at disrupting battles and enduring damage. Can learn Pocket Factory, Cluster Rockets, Engineering Upgrade and Robo-Goblin.|n|n[|cff00ff00New|r] - Can set Goblin Land Mines every minute that deal 300 damage in a small area.
-}
-
-STRING 649
-// Units: Nplh (Pit Lord), Ubertip (Tooltip - Extended)
-{
-Warrior Hero, adept at terrorizing enemies. Can learn Rain of Fire, Howl of Terror, Cleaving Attack, and Doom.|n|n[|cff00ff00New|r] - Can cast battle charge, causing the hero to charge in their facing direction knocking back and dealing 150 damage to enemies.
-}
-
-STRING 651
-// Units: Nbst (Beastmaster), Ubertip (Tooltip - Extended)
-{
-Warrior Hero, adept at summoning beasts into battle. Can learn Summon Bear, Summon Quilbeast, Summon Hawk, and Stampede. |n|n[|cff00ff00New|r] Able to cast roar giving allies +35% damage. His engineers can also build Stone of Fortification granting +6 armor to allies and structures in 1200 range.
 }
 
 STRING 652
@@ -2624,12 +2576,6 @@ Increases the movement speed of the Hero when worn. Also allows provides an acti
 
 +30 Movespeed
 Active - Thrusts the hero forward. |n    25 |cff8080ffmana|r|n    |cffc0c0c06 second cooldown|r
-}
-
-STRING 709
-// Units: O003 (Demigod), Ubertip (Tooltip - Extended)
-{
-An ancient demigod. Can learn Shockwave, Endurance Aura, War Stomp and Reincarnation. Has ability to use Battle Charge. |n|n[|cff00ff00New|r] - Can cast battle charge, causing the hero to charge in their facing direction knocking back and dealing 150 damage to enemies.
 }
 
 STRING 710
@@ -2906,16 +2852,6 @@ STRING 773
 Replenish the life and mana of a target friendly unit. |n|N|cffc0c0c0800 range|r
 }
 
-STRING 775
-// Abilities: A002 (Income), Ubertip (Tooltip - Normal - Extended)
-{
-Grants |cffffff00+40 gold|r at the start of each day to all players.
-
-The owner gets double the gold from this structure.
-
-
-}
-
 STRING 776
 // Abilities: A00J (Lumber Income - Info Ability), Ubertip (Tooltip - Normal - Extended)
 {
@@ -3140,5 +3076,201 @@ STRING 821
 // Units: h00P (Acolyte Slave Laborer), Ubertip (Tooltip - Extended)
 {
 After 1 day, the laborer will return (|cffffff001.15 x its cost in gold|r). Quick and cheap labor with a lower return. If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 822
+// Items: I00M (Scroll of the Reanimation), Name (Name)
+{
+Scroll of the Reanimation
+}
+
+STRING 823
+// Items: I00M (Scroll of the Reanimation), Tip (Tooltip - Basic)
+{
+Purchase Scroll of the Reanimation
+}
+
+STRING 824
+// Items: I00M (Scroll of the Reanimation), Ubertip (Tooltip - Extended)
+{
+Reanimates 6 dead units around you.
+}
+
+STRING 825
+// Items: I00M (Scroll of the Reanimation), Description (Description)
+{
+Reanimates 6 dead units around you.
+}
+
+STRING 826
+// Abilities: A020 (Animate Dead), EditorSuffix (Editor Suffix)
+{
+(scroll of reanimation)
+}
+
+STRING 827
+// Units: h00Q (Farm Hand), Hotkey (Hotkey)
+{
+A
+}
+
+STRING 828
+// Units: n00L (Purchase Town Grant), Hotkey (Hotkey)
+{
+R
+}
+
+STRING 830
+// Units: hfoo (Footman), Ubertip (Tooltip - Extended)
+{
+Low damage, durable infantry unit. Basically a wall. Has the Defend ability.|n|N+ |cff00ff00Choke Points|r |n|n|cffffcc00Wall Unit|R
+}
+
+STRING 831
+// Units: Nplh (Pit Lord), Ubertip (Tooltip - Extended)
+{
+Warrior Hero, adept at terrorizing enemies. Can learn Rain of Fire, Howl of Terror, Cleaving Attack, and Doom.|n|n[|cff00ff00New|r] - |cffffcc00Battle Charge|r - The Hero charges in their facing direction, knocking back and dealing 150 damage to enemies.
+}
+
+STRING 832
+// Units: O003 (Demigod), Ubertip (Tooltip - Extended)
+{
+An ancient demigod. Can learn Shockwave, Endurance Aura, War Stomp and Reincarnation. Has ability to use Battle Charge. |n|n[|cff00ff00New|r] - |cffffcc00Battle Charge|r - The Hero charges in their facing direction, knocking back and dealing 150 damage to enemies.
+}
+
+STRING 833
+// Units: Ntin (Tinker), Ubertip (Tooltip - Extended)
+{
+Cunning Hero, exceptional at disrupting battles and enduring damage. Can learn Pocket Factory, Cluster Rockets, Engineering Upgrade and Robo-Goblin.|n|n[|cff00ff00New|r] - |cffffcc00Goblin Land Mine|r - Deals 300 damage in a small area.
+}
+
+STRING 834
+// Units: Nbst (Beastmaster), Ubertip (Tooltip - Extended)
+{
+Warrior Hero, adept at summoning beasts into battle. Can learn Summon Bear, Summon Quilbeast, Summon Hawk, and Stampede. |n|n[|cff00ff00New|r] |cffffcc00Roar|r - Gives allies +35% damage. |n|NHis engineers can also build |cffffcc00Stone of Fortification|r granting +6 armor to allies and structures in 1200 range.
+}
+
+STRING 835
+// Abilities: A002 (Income), Ubertip (Tooltip - Normal - Extended)
+{
+Grants |cffffff00+40 gold|r at the start of each day to all players.
+
+Owner Bonus Gold   |n|cffffcc00Farm|r - 2x Gold   |n|cffffcc00Town|r - 3x Gold   |n|cffffcc00Castle|r - 4x Gold
+
+
+}
+
+STRING 836
+// Units: n00L (Purchase Town Grant), Name (Name)
+{
+Purchase Town Grant
+}
+
+STRING 837
+// Units: n00L (Purchase Town Grant), EditorSuffix (Name - Editor Suffix)
+{
+(null unit)
+}
+
+STRING 838
+// Units: n00L (Purchase Town Grant), Tip (Tooltip - Basic)
+{
+Purchase Town Grant
+}
+
+STRING 839
+// Units: n00L (Purchase Town Grant), Ubertip (Tooltip - Extended)
+{
+Grants ownership over the farm. Owning the farm will provide more income|cff404040 and will also add militia to your personal retinue every day. Also enables you to train peasants to build for you|r. |n|n|cffc0c0c0Can only be purchased from computer players or leavers.|r
+}
+
+STRING 840
+// Units: n00M (Purchase Castle Grant), Name (Name)
+{
+Purchase Castle Grant
+}
+
+STRING 841
+// Units: n00M (Purchase Castle Grant), EditorSuffix (Name - Editor Suffix)
+{
+(null unit)
+}
+
+STRING 842
+// Units: n00M (Purchase Castle Grant), Tip (Tooltip - Basic)
+{
+Purchase Castle Grant
+}
+
+STRING 843
+// Units: n00M (Purchase Castle Grant), Ubertip (Tooltip - Extended)
+{
+Grants ownership over the farm. Owning the farm will provide more income|cff404040 and will also add militia to your personal retinue every day. Also enables you to train peasants to build for you|r. |n|n|cffc0c0c0Can only be purchased from computer players or leavers.|r
+}
+
+STRING 844
+// Units: n00M (Purchase Castle Grant), Hotkey (Hotkey)
+{
+R
+}
+
+STRING 845
+// Units: n00N (Purchase Lumber Mill Grant), Hotkey (Hotkey)
+{
+R
+}
+
+STRING 846
+// Units: n00N (Purchase Lumber Mill Grant), Name (Name)
+{
+Purchase Lumber Mill Grant
+}
+
+STRING 847
+// Units: n00N (Purchase Lumber Mill Grant), EditorSuffix (Name - Editor Suffix)
+{
+(null unit)
+}
+
+STRING 848
+// Units: n00N (Purchase Lumber Mill Grant), Tip (Tooltip - Basic)
+{
+Purchase Castle Grant
+}
+
+STRING 849
+// Units: n00N (Purchase Lumber Mill Grant), Ubertip (Tooltip - Extended)
+{
+Grants ownership over the farm. Owning the farm will provide more income|cff404040 and will also add militia to your personal retinue every day. Also enables you to train peasants to build for you|r. |n|n|cffc0c0c0Can only be purchased from computer players or leavers.|r
+}
+
+STRING 850
+// Abilities: A01H (Blink (Engineer)), Hotkey (Hotkey - Normal)
+{
+R
+}
+
+STRING 851
+// Abilities: A006 (Armor Upgrade), Tip (Tooltip - Normal)
+{
+[|cff8080ffUpgrade|r] - Armor
+}
+
+STRING 852
+// Abilities: A006 (Armor Upgrade), Ubertip (Tooltip - Normal - Extended)
+{
+Increases the armor of units.
+}
+
+STRING 853
+// Abilities: A007 (Weapon Upgrade), Tip (Tooltip - Normal)
+{
+[|cff8080ffUpgrade|r] - Damage
+}
+
+STRING 854
+// Abilities: A007 (Weapon Upgrade), Ubertip (Tooltip - Normal - Extended)
+{
+Increases the damage of units.
 }
 

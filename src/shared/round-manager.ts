@@ -34,16 +34,10 @@ export class RoundManager {
     }
 
     static startNextRound() {
-        // if (RoundManager.currentRound !== 1) {
-        // RoundManager.currentRound++;
-        // }
-
         Sound.fromHandle(gg_snd_QuestNew)?.start();
         Sound.fromHandle(gg_snd_TheHornOfCenarius)?.start();
         ClearMapMusic();
         StopMusic(false);
-        // PlayMusic(gg_snd_UndeadVictory);
-        // SetMapMusic
         PlayMusic(gg_snd_Undead3);
 
         //Set to night time
@@ -59,9 +53,12 @@ export class RoundManager {
             TimerManager.nightTimeDuration = 300;
         }
 
-        TimerManager.startNightTimer(() => {
-            RoundManager.endCurrentRound();
-        });
+        TimerManager.startNightTimer(
+            () => {
+                RoundManager.endCurrentRound();
+            },
+            90 + 15 * RoundManager.currentRound,
+        );
     }
 
     static endCurrentRound() {

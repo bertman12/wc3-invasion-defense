@@ -43,7 +43,11 @@ export function undeadNightStart() {
     //Order remaining undaed to attack the capital
     forEachPlayer((p) => {
         if (!p.isPlayerAlly(Players[0])) {
-            forEachUnitOfPlayer(p, (u) => u.issueOrderAt(OrderId.Attack, 0, 0));
+            forEachUnitOfPlayer(p, (u) => {
+                if (u.typeId !== UNITS.pathFinder) {
+                    u.issueOrderAt(OrderId.Attack, 0, 0);
+                }
+            });
         }
     });
 
@@ -185,6 +189,8 @@ class SpawnData {
     private currentTargetMinimapIcon: minimapicon | undefined;
     private spawnPortalDisplay: Unit | undefined;
     private preSpawnFunctions: ((...args: any) => void)[] = [];
+    private onCleanupFunctions: ((...args: any) => void)[] = [];
+    private pathFinderAttackPoint: Point | undefined;
 
     constructor(spawn: rect, hideUI: boolean = false, spawnBoss: boolean = false) {
         this.hideUI = hideUI;
@@ -247,22 +253,42 @@ class SpawnData {
         //every 10 seconds create a path finder - make sure its not added to undead count
         const units: Unit[] = [];
         const t = Timer.create();
+
         t.start(10, true, () => {
             const u = Unit.create(getNextUndeadPlayer(), UNITS.pathFinder, this.spawnRec?.centerX ?? 0, this.spawnRec?.centerY ?? 0);
             const deathTimer = Timer.create();
 
             if (u) {
-                u.issueOrderAt(OrderId.Move, target.x, target.y);
+                const trig = Trigger.create();
+                trig.registerUnitEvent(u, EVENT_UNIT_ISSUED_ORDER);
+                trig.registerUnitEvent(u, EVENT_UNIT_ISSUED_POINT_ORDER);
+                trig.registerUnitEvent(u, EVENT_UNIT_ISSUED_TARGET_ORDER);
+
+                trig.addAction(() => {
+                    if (u?.typeId === UNITS.pathFinder && (u.currentOrder === 0 || u?.currentOrder === OrderId.Stop)) {
+                        this.pathFinderAttackPoint = Point.create(u.x, u.y);
+
+                        print("PATH FINDER STOPPED");
+                        u.destroy();
+                        trig.destroy();
+                        deathTimer.destroy();
+                    }
+                });
+
+                u.issueOrderAt(OrderId.Move, this.currentAttackTarget?.x ?? target.x, this.currentAttackTarget?.y ?? target.y);
                 units.push(u);
 
                 deathTimer.start(30, false, () => {
+                    //we want to follow the one most recentyl destroyed instead
+                    this.pathFinderAttackPoint = Point.create(u.x, u.y);
                     u.destroy();
                     deathTimer.destroy();
                 });
             }
         });
 
-        this.preSpawnFunctions.push(() => {
+        this.onCleanupFunctions.push(() => {
+            print("cleaning up pathfinders");
             units.forEach((u) => u.destroy());
             t.destroy();
         });
@@ -307,8 +333,12 @@ class SpawnData {
         this.waveTimer = Timer.create();
 
         this.waveTimer.start(this.waveIntervalTime, true, () => {
-            this.createWaveUnits();
-            this.orderNewAttack(this.lastCreatedWaveUnits);
+            if (this.pathFinderAttackPoint) {
+                this.createWaveUnits();
+                this.orderNewAttack(this.lastCreatedWaveUnits);
+            } else {
+                print("Missing path finder attack point. Units will stay still at spawn.");
+            }
         });
     }
 
@@ -344,8 +374,16 @@ class SpawnData {
         }
 
         this.spawnPortalDisplay?.destroy();
+
+        this.onCleanupFunctions.forEach((cb) => {
+            cb();
+        });
     }
 
+    /**
+     * units will firstly use the path finder's location to get an initial target, then they will attack the true target, this will help with pathing
+     * @param attackingUnits
+     */
     private orderNewAttack(attackingUnits: Unit[]) {
         const newTarget = this.chooseForceAttackTarget(Point.create(this.spawnRec?.centerX ?? 0, this.spawnRec?.centerY ?? 0));
 
@@ -357,7 +395,13 @@ class SpawnData {
 
         if (attackingUnits.length > 0) {
             attackingUnits.forEach((u) => {
+                // u.setPathing(false);
                 u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0);
+                // BlzQueuePointOrderById
+                // BlzQueuePointOrderById(u.handle, OrderId.Attack, this.pathFinderAttackPoint?.x ?? 0, this.pathFinderAttackPoint?.y ?? 0);
+
+                // u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0);
+                // BlzQueuePointOrderById(u.handle, OrderId.Attack, this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0);
             });
         }
 
@@ -365,7 +409,13 @@ class SpawnData {
         if (this.units.length > 0) {
             this.units.forEach((u) => {
                 if (u.currentOrder === 0 || u.currentOrder === OrderId.Stop) {
+                    // u.setPathing(false);
+                    // BlzQueuePointOrderById(u.handle, OrderId.Attack, this.pathFinderAttackPoint?.x ?? 0, this.pathFinderAttackPoint?.y ?? 0);
                     u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0);
+
+                    // u.issueOrderAt(OrderId.Attack, this.pathFinderAttackPoint?.x ?? 0, this.pathFinderAttackPoint?.y ?? 0);
+                    // u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0);
+                    // BlzQueuePointOrderById(u.handle, OrderId.Attack, this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0);
                 }
             });
         }
@@ -506,7 +556,6 @@ class SpawnData {
      * We choose the next point of attack relative to the current point
      */
     public chooseForceAttackTarget(currentPoint: Point): Unit | undefined {
-        // print("Choosing force attack target");
         //So we want to iterate our towns.
         /**
          * @WARNING

@@ -1,7 +1,7 @@
 export enum ABILITIES {
     //InfoAbilities
     supplies = FourCC("A000"),
-    income = FourCC("A002"),
+    goldIncome = FourCC("A002"),
     lumberIncome = FourCC("A00J"),
     armorUpgrade = FourCC("A006"),
     weaponUpgrade = FourCC("A007"),
@@ -73,6 +73,8 @@ export enum UNITS {
     //Human units
     flyingMachine = FourCC("hgyr"),
     engineer = FourCC("n000"),
+    footman = FourCC("hfoo"),
+    knight = FourCC("hkni"),
     farmHand = FourCC("h00Q"),
     infantryGeneral = FourCC("hcth"),
     archerGeneral = FourCC("n00H"),
@@ -114,7 +116,10 @@ export enum UNITS {
     undeadSpawn = FourCC("u00F"),
 
     //Triggering Purposes
-    nullUnit = FourCC("n008"),
+    farmGrant = FourCC("n008"),
+    townGrant = FourCC("n00L"),
+    castleGrant = FourCC("n00M"),
+    lumberMillGrant = FourCC("n00N"),
 }
 
 export enum ITEMS {

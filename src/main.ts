@@ -1,4 +1,4 @@
-import { FogModifier, Sound, Timer, Unit } from "w3ts";
+import { Sound, Timer, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
 import { W3TS_HOOK, addScriptHook } from "w3ts/hooks";
 import { init_itemAbilities } from "./abilities/items";
@@ -13,7 +13,6 @@ import { RoundManager } from "./shared/round-manager";
 import { setup_destroyStructure } from "./towns";
 import { init_undead } from "./undead/taxonomy";
 import { tColor } from "./utils/misc";
-import { forEachPlayer } from "./utils/players";
 import { init_quests } from "./utils/quests";
 
 const BUILD_DATE = compiletime(() => new Date().toUTCString());
@@ -61,16 +60,17 @@ function tsMain() {
         u?.issueOrderAt(OrderId.Move, -300, 2850);
         u?.setTimeScale(0.25);
 
-        forEachPlayer((p) => {
-            if (p.isPlayerAlly(Players[0]) === false) {
-                const clearFogState = FogModifier.create(p, FOG_OF_WAR_VISIBLE, 0, 0, 25000, true, true);
-                clearFogState?.start();
-            }
+        //Give undead map vision
+        // forEachPlayer((p) => {
+        //     if (p.isPlayerAlly(Players[0]) === false) {
+        //         const clearFogState = FogModifier.create(p, FOG_OF_WAR_VISIBLE, 0, 0, 25000, true, true);
+        //         clearFogState?.start();
+        //     }
 
-            // SetPlayerMaxHeroesAllowed(1, p.handle);
+        //     // SetPlayerMaxHeroesAllowed(1, p.handle);
 
-            // clearFogState?.destroy();
-        });
+        //     // clearFogState?.destroy();
+        // });
 
         init_itemAbilities();
         init_map_triggers();
