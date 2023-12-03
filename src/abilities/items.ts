@@ -287,12 +287,14 @@ const itemRecipesMap = new Map<RecipeItem, RecipeItemRequirement[]>([
         { recipeId: ITEMS.recipe_crownOfReanimation_lvl2, itemId: ITEMS.crownOfReanimation_lvl2 },
         [
             { itemTypeId: ITEMS.pendantOfEnergy_200, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.crownOfReanimation_lvl1, quantity: 1, charges: 0 }, //
         ],
     ],
     [
         { recipeId: ITEMS.recipe_crownOfReanimation_lvl3, itemId: ITEMS.crownOfReanimation_lvl3 },
         [
             { itemTypeId: ITEMS.pendantOfEnergy_200, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.crownOfReanimation_lvl2, quantity: 1, charges: 0 }, //
         ],
     ],
 ]);

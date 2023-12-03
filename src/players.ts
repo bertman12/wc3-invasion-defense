@@ -522,9 +522,6 @@ export function addProgressForLaborers() {
 
                     if (goldAwarded > 0) {
                         adjustGold(p, goldAwarded);
-                        const locP = GetLocalPlayer();
-                        BlzDisplayChatMessage(locP, p.id, `${tColor(u.name, "goldenrod")} awared +${tColor(goldAwarded.toString(), "yellow")} gold.`);
-                        // print(`${u.owner.name} has been awarded ${tColor(goldAwarded.toString(), "yellow")} gold for ${u.name} completing their work.`);
                     }
                 }
             });

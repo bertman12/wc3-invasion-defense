@@ -40,6 +40,9 @@ function tsMain() {
             Sound.fromHandle(gg_snd_Hint)?.start();
             print(`[${tColor("Objective", "goldenrod")}] - Defend the capital city`);
             print("The Heroes of the Kingdom of Alexandria must rally their forces to fight the undead.");
+            print(" ");
+            print("Take your time to prepare for battle. Get footman to hold choke points, buy some items and invest some money into building Farm Laborers or purchasing structures.");
+            print(" ");
         });
 
         setupPlayers();

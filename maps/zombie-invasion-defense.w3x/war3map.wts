@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Undead Siege Defense alpha test 10
+Undead Siege Defense alpha test 11
 }
 
 STRING 2
@@ -32,7 +32,7 @@ Player 1
 
 STRING 7
 {
-alpha testing #10
+alpha testing #11
 }
 
 STRING 9
@@ -469,11 +469,11 @@ STRING 142
 {
 |cffff00ffObjective|r - Hold out for 15 nights until reinforcements arrive. 
 
-|cff00ff00Starter Tip|r - Spend your starting money on some defenses, units and items. 
+|cff00ff00Starter Tip|r - Spend your starting money on items, units, and some economic structures or farm laborers.
 
-|cff00ff00Defenses|r - Strategically decide which areas to build defenses and hold.
+|cff00ff00Farm Hand Worker|r - Buy at farms. Can build grain silos for increased food cap and can also build farm laborers to invest your gold.
 
-|cff00ff00Engineers|r - Trained at blacksmiths. Able to build economic and defensive structures. 
+|cff00ff00Engineers|r - Trained at blacksmiths. Able to build defensive structures. 
 
 |cffff0000Destroyed Buildings|r - Destroyed human buildings turn into undead ones at the start of night. Destroyed undead buildings turn into human at the start of day.
 
@@ -481,7 +481,7 @@ STRING 142
 
 |cffffff00Upgrades|r - Allied buildings provide upgrades to all units, as long as they are alive.
 
-|c00ffff00Economy|r - Allied buildings will grant gold, lumber and food as long as they are alive. You may also purchase a farm for additional gold income and use the engineer to build more economic structures.
+|c00ffff00Economy|r - Allied buildings will grant gold, lumber and food as long as they are alive. Purchasing allied buildings will grant you bonus income per day and give free units.
 
 Made by JediMindTrix/NihilismIsDeath
 
@@ -1566,7 +1566,7 @@ Adds 6 fortified armor and 500 health.
 }
 
 STRING 422
-// Units: h005 (Caltrops), Ubertip (Tooltip - Extended)
+// Abilities: A011 (Armor Reduction Aura), Ubertip (Tooltip - Normal - Extended)
 {
 Severely inhibits nearby enemy units.|n |n|cffff0000-50%|r movespeed |n|cffff0000-20%|r attack speed |n|cffff0000-2|r armor    |n|n|cffff0000Destroyed at the start of each day.|r
 }
@@ -1608,7 +1608,7 @@ Caltrops - Info Ability
 }
 
 STRING 433
-// Abilities: A011 (Armor Reduction Aura), Ubertip (Tooltip - Normal - Extended)
+// Abilities: A012 (Caltrops - Info Ability), Ubertip (Tooltip - Normal - Extended)
 {
 Severely inhibits nearby enemy units.|n |n|cffff0000-50%|r movespeed |n|cffff0000-20%|r attack speed |n|cffff0000-2|r armor    |n|n|cffff0000Destroyed at the start of each day.|r
 }
@@ -1743,12 +1743,6 @@ STRING 466
 // Abilities: A011 (Armor Reduction Aura), Tip (Tooltip - Normal)
 {
 Caltrops
-}
-
-STRING 467
-// Abilities: A012 (Caltrops - Info Ability), Ubertip (Tooltip - Normal - Extended)
-{
-Severely inhibits nearby enemy units.|n |n|cffff0000-50%|r movespeed |n|cffff0000-20%|r attack speed |n|cffff0000-2|r armor    |n|n|cffff0000Destroyed at the start of each day.|r
 }
 
 STRING 468
@@ -2855,12 +2849,6 @@ STRING 794
 +15% |cffff00ffmagic resist|r|n|N|cffffcc00Requires Arcane Sanctum|r
 }
 
-STRING 795
-// Units: o004 (Orcish Light Cavalry), Ubertip (Tooltip - Extended)
-{
-Great units for fighting in mass on large fields of battle. Can help combat the undead in open areas when supported by other units as well.|n|N+ |cff00ff00Large Battlefields|r    |n-  |cffff0000Choke Points|r
-}
-
 STRING 797
 // Abilities: A01Y (Improved Mass Teleport), EditorSuffix (Editor Suffix)
 {
@@ -3600,12 +3588,6 @@ STRING 950
 [|cffffcc00Recipe|r] Crown of Reanimation - Level 2
 }
 
-STRING 952
-// Items: I00T ([|cffffcc00Recipe|r] Crown of Reanimation - Level 2), Ubertip (Tooltip - Extended)
-{
-Requires: |cffffcc00Recipe: |cffc0c0c0Crown of Reanimation - Level 2, Pendant of Energy +200|r  |N|N    +5 |cffffcc00All Stats|r  |n+400 |cff8080ffMana|r |n|n|cffffcc00Reanimate Dead|R - Allows you to reanimate 12 dead units for 60 seconds. |cffc0c0c045 second cooldown|r
-}
-
 STRING 953
 // Items: I00U ([|cffffcc00Recipe|r] Crown of Reanimation - Level 3), Name (Name)
 {
@@ -3618,9 +3600,27 @@ STRING 954
 [|cffffcc00Recipe|r] Crown of Reanimation - Level 3
 }
 
-STRING 955
+STRING 956
+// Units: o004 (Orcish Light Cavalry), Ubertip (Tooltip - Extended)
+{
+Great units for fighting in mass on large fields of battle. Can help combat the undead in open areas when supported by other units as well.|n|N+ |cff00ff00Large Battlefields|r    |n-  |cffff0000Choke Points|r|n|N|cffffcc00This unit moves at max move speed.|r
+}
+
+STRING 957
+// Items: I00T ([|cffffcc00Recipe|r] Crown of Reanimation - Level 2), Ubertip (Tooltip - Extended)
+{
+Requires:|cffc0c0c0 Pendant of Energy +200|r  |N|N    +5 |cffffcc00All Stats|r  |n+400 |cff8080ffMana|r |n|n|cffffcc00Reanimate Dead|R - Allows you to reanimate 12 dead units for 60 seconds. |cffc0c0c045 second cooldown|r
+}
+
+STRING 958
 // Items: I00U ([|cffffcc00Recipe|r] Crown of Reanimation - Level 3), Ubertip (Tooltip - Extended)
 {
-Requires: |cffffcc00Recipe: |cffc0c0c0Crown of Reanimation - Level 3, Pendant of Energy +200|r  |N|N    +5 |cffffcc00All Stats|r  |n+600 |cff8080ffMana|r |n|n|cffffcc00Reanimate Dead|R - Allows you to reanimate 18 dead units for 60 seconds. |cffc0c0c045 second cooldown|r
+Requires: |cffc0c0c0Pendant of Energy +200|r  |N|N    +5 |cffffcc00All Stats|r  |n+600 |cff8080ffMana|r |n|n|cffffcc00Reanimate Dead|R - Allows you to reanimate 18 dead units for 60 seconds. |cffc0c0c045 second cooldown|r
+}
+
+STRING 959
+// Units: h005 (Caltrops), Ubertip (Tooltip - Extended)
+{
+Severely inhibits nearby enemy units in 200 range.|n |n|cffff0000-50%|r movespeed |n|cffff0000-20%|r attack speed |n|cffff0000-2|r armor    |n|n|cffff0000Destroyed at the start of each day.|r
 }
 

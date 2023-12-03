@@ -29,10 +29,22 @@ function getNextUndeadPlayer() {
 //30 seconds being the hard spawn, 15 second intervals being the normal spawn difficulty; maybe fr
 const waveIntervalOptions = [15, 30];
 
-const MAX_ZOMBIE_COUNT = 800 as const;
+const MAX_ZOMBIE_COUNT = 600 as const;
 
 let currentZombieCount = 0;
 let currentSpawns: SpawnData[] = [];
+
+function removeUndeadFromCount() {
+    const t = Trigger.create();
+    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_DEATH);
+    t.addAction(() => {
+        const u = Unit.fromEvent();
+
+        if (u && !u.owner.isPlayerAlly(Players[0]) && u.typeId !== UNITS.pathFinder) {
+            currentZombieCount--;
+        }
+    });
+}
 
 /**
  * Handles zombie spawns each night
@@ -42,7 +54,7 @@ export function undeadNightStart() {
 
     //Order remaining undaed to attack the capital
     forEachPlayer((p) => {
-        if (!p.isPlayerAlly(Players[0])) {
+        if (!p.isPlayerAlly(Players[0]) && p !== Players[0]) {
             forEachUnitOfPlayer(p, (u) => {
                 if (u.typeId !== UNITS.pathFinder) {
                     u.issueOrderAt(OrderId.Attack, 0, 0);
@@ -59,7 +71,7 @@ export function undeadNightStart() {
 export function init_undead() {
     Timer.create().start(10, false, () => {
         Sound.fromHandle(gg_snd_Hint)?.start();
-
+        removeUndeadFromCount();
         undeadDayStart();
         print("");
         print(`Player 1 Type ${tColor("-start", "goldenrod")} to start the game.`);
@@ -83,6 +95,10 @@ export function undeadDayStart() {
     //If the chosen amount is less than the minimum then set to min amount
     if (spawnCount < MIN_SPAWN_AMOUNT) {
         spawnCount = MIN_SPAWN_AMOUNT;
+    }
+
+    if (RoundManager.currentRound === 1) {
+        spawnCount = 3;
     }
 
     const tempSet = new Set<rect>();
@@ -267,8 +283,6 @@ class SpawnData {
                 trig.addAction(() => {
                     if (u?.typeId === UNITS.pathFinder && (u.currentOrder === 0 || u?.currentOrder === OrderId.Stop)) {
                         this.pathFinderAttackPoint = Point.create(u.x, u.y);
-
-                        print("PATH FINDER STOPPED");
                         u.destroy();
                         trig.destroy();
                         deathTimer.destroy();
@@ -287,8 +301,7 @@ class SpawnData {
             }
         });
 
-        this.onCleanupFunctions.push(() => {
-            print("cleaning up pathfinders");
+        this.preSpawnFunctions.push(() => {
             units.forEach((u) => u.destroy());
             t.destroy();
         });
@@ -333,19 +346,19 @@ class SpawnData {
         this.waveTimer = Timer.create();
 
         this.waveTimer.start(this.waveIntervalTime, true, () => {
-            if (this.pathFinderAttackPoint) {
-                this.createWaveUnits();
-                this.orderNewAttack(this.lastCreatedWaveUnits);
-            } else {
-                print("Missing path finder attack point. Units will stay still at spawn.");
-            }
+            this.createWaveUnits();
+            this.orderNewAttack(this.lastCreatedWaveUnits);
+            // if (this.pathFinderAttackPoint) {
+            // } else {
+            //     print("Missing path finder attack point. Units will stay still at spawn.");
+            // }
         });
     }
 
     public cleanupSpawn() {
         this.units.forEach((u, index) => {
             if (u) {
-                if (Math.random() * 100 >= 15 + RoundManager.currentRound * 2) {
+                if (Math.random() * 100 >= 5 + Math.floor(RoundManager.currentRound * 0.5)) {
                     u.kill();
                 }
             }
