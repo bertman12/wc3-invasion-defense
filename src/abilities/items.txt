@@ -1,0 +1,42 @@
+Mana (per point) - 1.67 gold
+Armor (per point) - 83.33 gold
+Attack Speed (1% increase) - 25 gold
+HP Regen (per 1 point) - 500 gold
+Mana Regen (per 1 point) - 500 gold
+Damage Increase (1%) - 50 gold
+Flat Damage +1 - 50 gold
+Health Points (per point) - 1 gold
+Move Speed - 5 gold
+1% Cleave - 20 gold
+
+|cff00ff00Health Points (per point)|r - 1 gold
+|cffcc3333HP Regen (per 1 point)|r - 500 gold
+|cff3366ffMana Regen (per 1 point)|r - 500 gold
+|cff3333ffMana (per point)|r - 1.67 gold
+|cffffcc33Move Speed|r - 5 gold
+|cff808080Armor (per point)|r - 83 gold
+|cffff8000Attack Speed (1% increase)|r - 25 gold
+|cffff0000Damage Increase (1%)|r - 50 gold
+|cffcc0000Flat Damage +1|r - 50 gold
+|cffcc99ff1% Cleave|r - 20 gold
+
+Structure Purchase
+Pay off the gold and lumber bonus in 2 days + 2 days value of the units you gain for free each day
+
+===Blade of the wind walker===
+ 1425g from items
+
+Recipe Bonus
+17.5% dmg increase and 10 damage
+875g + 500g = 1375g
+
+Total
+1375g + 1425 = 2800
+
+
+Berserker's Cleaver
+500 + 650 = 1150
+700 + 1150 = 1850
+500g recipe for the added value + 100g for item slot
+600g
+

@@ -69,7 +69,7 @@ export function init_quests() {
             \n|cff00ff00Defenses|r - Strategically decide which areas to build defenses and hold.
             \n|cff00ff00Engineers|r - Trained at blacksmiths. Able to build defensive structures. 
             \n|cff00ff00Farm Hands|r - Trained at farms. Able to build economic structures. 
-            \n|cff00ffffRivers|r - All units fighting in the river are severely hindered.
+            \n|cff00ffffSwamps|r - All units fighting in the swamps are severely hindered.
             \n|cffff0000Destroyed Buildings|r - Destroyed human buildings turn into undead ones at the start of night. Destroyed undead buildings turn into human at the start of day.
             \n|cffffff00Buying Units|r - Buy units at allied structures.
             \n|cffffff00Upgrades|r - Allied buildings provide upgrades to all units, as long as they are alive.

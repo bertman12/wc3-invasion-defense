@@ -1,3 +1,4 @@
+import { ownershipGrantingUnits } from "src/shared/constants";
 import { ABILITIES, MinimapIconPath, UNITS } from "src/shared/enums";
 import { applyForce } from "src/shared/physics";
 import { RoundManager } from "src/shared/round-manager";
@@ -229,18 +230,6 @@ function trig_battleCharge() {
         });
     });
 }
-
-/**
- * map unit sold to the unit the will transfer ownership
- *
- * then we only need one function to handle this behavior as long as it do so according to the map
- */
-const ownershipGrantingUnits = new Map<number, number>([
-    [UNITS.farmTown, UNITS.farmGrant],
-    [UNITS.townHall, UNITS.townGrant],
-    [UNITS.castle, UNITS.castleGrant],
-    [UNITS.lumberMill, UNITS.lumberMillGrant],
-]);
 
 // caster?.hasBuffs
 

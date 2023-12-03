@@ -475,8 +475,6 @@ STRING 142
 
 |cff00ff00Engineers|r - Trained at blacksmiths. Able to build economic and defensive structures. 
 
-|cff00ffffRivers|r - All units fighting in the river are severly hindered.
-
 |cffff0000Destroyed Buildings|r - Destroyed human buildings turn into undead ones at the start of night. Destroyed undead buildings turn into human at the start of day.
 
 |cffffff00Buying Units|r - Buy units at allied structures.
@@ -1346,7 +1344,7 @@ Purchase Blink Dagger
 }
 
 STRING 356
-// Units: n008 (Purchase Farm Grant), Ubertip (Tooltip - Extended)
+// Units: n00N (Purchase Lumber Mill Grant), Ubertip (Tooltip - Extended)
 {
 Grants ownership over the farm. Owning the farm will provide more income|cff404040 and will also add militia to your personal retinue every day. Also enables you to train peasants to build for you|r. |n|n|cffc0c0c0Can only be purchased from computer players or leavers.|r
 }
@@ -1886,13 +1884,13 @@ STRING 497
 }
 
 STRING 499
-// Items: I001 (Wind Walker Treads), Tip (Tooltip - Basic)
+// Items: I001 (Treads of the Wind Walker ), Tip (Tooltip - Basic)
 {
 Purchase Wind Walker's Treads
 }
 
 STRING 500
-// Items: I001 (Wind Walker Treads), Description (Description)
+// Items: I001 (Treads of the Wind Walker ), Description (Description)
 {
 Increases movement rate and lets the user wind walk.
 }
@@ -1907,12 +1905,6 @@ STRING 502
 // Items: thdm (Thunderlizard Diamond), Ubertip (Tooltip - Extended)
 {
 Casts bolts of lightning that deals 100 damage to multiple targets. |n|n|cffc0c0c09 second cooldown|r.|n50 |cff8080ffmana|r cost.
-}
-
-STRING 508
-// Items: I001 (Wind Walker Treads), Name (Name)
-{
-Wind Walker Treads
 }
 
 STRING 509
@@ -2749,15 +2741,8 @@ STRING 753
 Causes melee attacks cleave for 50% damage. |n|n+12|cffff0000 Strength|r |N  +4 |cff00ff00Agility|r   |n+10 |cffc0c0c0Attack Damage|r |N|N|cffffcc00Berserk|r: Attack 50% faster but takes 50% more damage.
 }
 
-STRING 754
-// Items: I00J ([|cffffcc00Recipe|r] Berserker's Cleaver), Ubertip (Tooltip - Extended)
-{
-Requires: |cffc0c0c0Corpse Cleaver, Helm of Battlethirst|r
-Causes melee attacks cleave for 50% damage. |n|n+12|cffff0000 Strength|r |N  +4 |cff00ff00Agility|r   |n+10 |cffc0c0c0Attack Damage|r |N|N|cffffcc00Berserk|r: Attack 50% faster but takes 50% more damage.
-}
-
 STRING 755
-// Items: I001 (Wind Walker Treads), Ubertip (Tooltip - Extended)
+// Items: I001 (Treads of the Wind Walker ), Ubertip (Tooltip - Extended)
 {
 Increases the movement speed of the Hero when worn.  |n|n+30 Movespeed |n|cffffcc00Wind Walk|r - Go invisible for 5 seconds. |n    20 |cff8080ffmana|r|N    |cffc0c0c012 second cooldown|r
 }
@@ -2850,16 +2835,6 @@ STRING 773
 // Abilities: Ambt (Replenish Mana and Life), Ubertip (Tooltip - Normal - Extended)
 {
 Replenish the life and mana of a target friendly unit. |n|N|cffc0c0c0800 range|r
-}
-
-STRING 776
-// Abilities: A00J (Lumber Income - Info Ability), Ubertip (Tooltip - Normal - Extended)
-{
-Grants |cff008000+30 lumber|r at the start of each day to all players.
-
-If you own the structure, you get double the gold.
-
-
 }
 
 STRING 777
@@ -3178,12 +3153,6 @@ STRING 838
 Purchase Town Grant
 }
 
-STRING 839
-// Units: n00L (Purchase Town Grant), Ubertip (Tooltip - Extended)
-{
-Grants ownership over the farm. Owning the farm will provide more income|cff404040 and will also add militia to your personal retinue every day. Also enables you to train peasants to build for you|r. |n|n|cffc0c0c0Can only be purchased from computer players or leavers.|r
-}
-
 STRING 840
 // Units: n00M (Purchase Castle Grant), Name (Name)
 {
@@ -3200,12 +3169,6 @@ STRING 842
 // Units: n00M (Purchase Castle Grant), Tip (Tooltip - Basic)
 {
 Purchase Castle Grant
-}
-
-STRING 843
-// Units: n00M (Purchase Castle Grant), Ubertip (Tooltip - Extended)
-{
-Grants ownership over the farm. Owning the farm will provide more income|cff404040 and will also add militia to your personal retinue every day. Also enables you to train peasants to build for you|r. |n|n|cffc0c0c0Can only be purchased from computer players or leavers.|r
 }
 
 STRING 844
@@ -3238,14 +3201,8 @@ STRING 848
 Purchase Castle Grant
 }
 
-STRING 849
-// Units: n00N (Purchase Lumber Mill Grant), Ubertip (Tooltip - Extended)
-{
-Grants ownership over the farm. Owning the farm will provide more income|cff404040 and will also add militia to your personal retinue every day. Also enables you to train peasants to build for you|r. |n|n|cffc0c0c0Can only be purchased from computer players or leavers.|r
-}
-
 STRING 850
-// Abilities: A01H (Blink (Engineer)), Hotkey (Hotkey - Normal)
+// Units: n00O (Purchase Title - Duchy of the Northern Knights), Hotkey (Hotkey)
 {
 R
 }
@@ -3272,5 +3229,110 @@ STRING 854
 // Abilities: A007 (Weapon Upgrade), Ubertip (Tooltip - Normal - Extended)
 {
 Increases the damage of units.
+}
+
+STRING 855
+// Abilities: A00J (Lumber Income - Info Ability), Ubertip (Tooltip - Normal - Extended)
+{
+Grants |cff008000+30 lumber|r at the start of each day to all players.
+
+Owner Bonus Lumber   |n|cffffcc00Lumber Mill|r - 2x Lumber   |n|cffffcc00Town|r - 3x Lumber   |n|cffffcc00Castle|r - 4x Lumber
+
+
+}
+
+STRING 856
+// Units: n008 (Purchase Farm Grant), Ubertip (Tooltip - Extended)
+{
++3 Militia per Day - Spawns at the Capital|n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r
+}
+
+STRING 857
+// Units: n00L (Purchase Town Grant), Ubertip (Tooltip - Extended)
+{
++6 Footman per Day - Spawns at the Capital|n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r
+}
+
+STRING 858
+// Units: n00M (Purchase Castle Grant), Ubertip (Tooltip - Extended)
+{
++6 Knights per Day - Spawns at the Capital|n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r
+}
+
+STRING 859
+// Items: I001 (Treads of the Wind Walker ), Name (Name)
+{
+Treads of the Wind Walker 
+}
+
+STRING 861
+// Items: I00J ([|cffffcc00Recipe|r] Berserker's Cleaver), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Corpse Cleaver, Helm of Battlethirst, Claws of Attack +5|r
+Causes melee attacks to cleave for 50% damage. |n|n+12|cffff0000 Strength|r |N  +4 |cff00ff00Agility|r   |n+10 |cffc0c0c0Attack Damage|r |N|N|cffffcc00Berserk|r: Attack 50% faster but takes 50% more damage.
+}
+
+STRING 862
+// Abilities: A021 (Stat Cost Breakdown - Info Ability), Name (Name)
+{
+Stat Cost Breakdown - Info Ability
+}
+
+STRING 863
+// Abilities: A021 (Stat Cost Breakdown - Info Ability), Tip (Tooltip - Normal)
+{
+Stat Cost Breakdown - Info Ability
+}
+
+STRING 865
+// Abilities: A021 (Stat Cost Breakdown - Info Ability), EditorSuffix (Editor Suffix)
+{
+(Info Only)
+}
+
+STRING 866
+// Abilities: A021 (Stat Cost Breakdown - Info Ability), Ubertip (Tooltip - Normal - Extended)
+{
+|cff9999ffAttribute Point|r - 50 gold
+|cff00ff00Health Points (per point)|r - 1 gold
+|cffcc3333HP Regen (per 1 point)|r - 500 gold
+|cff3366ffMana Regen (per 1 point)|r - 500 gold
+|cff3333ffMana (per point)|r - 1.67 gold
+|cffffcc33Move Speed|r - 5 gold
+|cff808080Armor (per point)|r - 83 gold
+|cffff8000Attack Speed (1% increase)|r - 25 gold
+|cffff0000Damage Increase (1%)|r - 50 gold
+|cffcc0000Flat Damage +1|r - 50 gold
+|cffcc99ff1% Cleave|r - 20 gold
+}
+
+STRING 867
+// Units: n00O (Purchase Title - Duchy of the Northern Knights), Tip (Tooltip - Basic)
+{
+Purchase Castle Grant
+}
+
+STRING 868
+// Units: n00O (Purchase Title - Duchy of the Northern Knights), EditorSuffix (Name - Editor Suffix)
+{
+(null unit)
+}
+
+STRING 871
+// Abilities: A01H (Blink (Engineer)), Hotkey (Hotkey - Normal)
+{
+R
+}
+
+STRING 872
+// Units: n00O (Purchase Title - Duchy of the Northern Knights), Name (Name)
+{
+Purchase Title - Duchy of the Northern Knights
+}
+
+STRING 873
+// Units: n00O (Purchase Title - Duchy of the Northern Knights), Ubertip (Tooltip - Extended)
+{
++5 Heavy Cavalry per Day - Spawns at the Capital|n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r
 }
 

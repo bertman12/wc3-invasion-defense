@@ -79,6 +79,7 @@ export enum UNITS {
     infantryGeneral = FourCC("hcth"),
     archerGeneral = FourCC("n00H"),
     goblinLandMine = FourCC("n00F"),
+    heavyCavalry = FourCC("h00I"),
 
     //Undead
     abomination = FourCC("uabo"),
@@ -120,6 +121,7 @@ export enum UNITS {
     townGrant = FourCC("n00L"),
     castleGrant = FourCC("n00M"),
     lumberMillGrant = FourCC("n00N"),
+    title_duchyOfTheNorthernKnights = FourCC("n00O"),
 }
 
 export enum ITEMS {
@@ -145,6 +147,7 @@ export enum ITEMS {
     helmOfBattleThirst = FourCC("hbth"),
     corpseCleaver = FourCC("I008"),
     clawsOfAttack_10 = FourCC("I00L"),
+    clawsOfAttack_5 = FourCC("rat6"),
 }
 
 //Can find looking up models for a spell at the Art - Target field

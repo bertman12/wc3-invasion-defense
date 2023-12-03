@@ -1,7 +1,7 @@
 import { forEachUnitOfPlayer } from "src/utils/players";
 import { Effect, MapPlayer, Sound, Timer, Trigger, Unit, Widget } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
-import { economicConstants, unitTypeOwnerBonusMap } from "./shared/constants";
+import { economicConstants, ownedBuildingUnitBonusMap, unitTypeOwnerBonusMap } from "./shared/constants";
 import { ABILITIES, PlayerIndices, TERRAIN_CODE, UNITS, UpgradeCodes, laborerUnitSet } from "./shared/enums";
 import { RoundManager } from "./shared/round-manager";
 import { notifyPlayer, tColor } from "./utils/misc";
@@ -119,12 +119,6 @@ function trig_playerBuysUnit() {
         // }
     });
 }
-
-const ownedBuildingUnitBonusMap = new Map<number, { unitType: number; quantity: number }>([
-    [UNITS.farmTown, { unitType: UNITS.militia, quantity: 3 }],
-    [UNITS.townHall, { unitType: UNITS.footman, quantity: 3 }],
-    [UNITS.castle, { unitType: UNITS.knight, quantity: 3 }],
-]);
 
 function createDailyUnits() {
     forEachAlliedPlayer((p) => {
@@ -271,12 +265,6 @@ function grantStartOfDayBonuses() {
 
     const calculatedFoodCap = basePlayerFoodCap + foodRoundBonus + economicConstants.granaryFoodCapIncrease * foodReserveStructures;
 
-    // print("Base food ", basePlayerFoodCap);
-    // print("Food round bonus ", foodRoundBonus);
-    // print("Food reserve structure ", 2 * foodReserveStructures);
-    // print("grain silos ", 5 * grainSiloCount);
-    // print("New food cap - ", calculatedFoodCap);
-
     forEachAlliedPlayer((p) => {
         //Reset to 0
         p.setTechResearched(UpgradeCodes.armor, 0);
@@ -337,7 +325,6 @@ export function player_giveHumansStartOfDayResources(round: number) {
 
                     playerOwnedGoldResourceBonuses.set(p.id, currentPlayerGoldAmount ? (currentPlayerGoldAmount += goldAward) : goldAward);
                     adjustGold(p, goldAward);
-                    print(`Gave ${p.name} ${tColor(goldAward, "gold")} gold.`);
                 }
             }
         });
@@ -355,7 +342,6 @@ export function player_giveHumansStartOfDayResources(round: number) {
 
                     playerOwnedLumberResourceBonuses.set(p.id, currentPlayerLumberAmount ? (currentPlayerLumberAmount += lumberAward) : lumberAward);
                     adjustGold(p, lumberAward);
-                    print(`Gave ${p.name} ${tColor(lumberAward, "green")} lumber.`);
                 }
             }
         });

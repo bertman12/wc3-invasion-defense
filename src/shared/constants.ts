@@ -21,3 +21,23 @@ export const unitTypeOwnerBonusMap = new Map<number, number>([
     [UNITS.townHall, 2],
     [UNITS.castle, 3],
 ]);
+
+export const ownedBuildingUnitBonusMap = new Map<number, { unitType: number; quantity: number }>([
+    [UNITS.farmTown, { unitType: UNITS.militia, quantity: 3 }],
+    [UNITS.townHall, { unitType: UNITS.footman, quantity: 6 }],
+    [UNITS.castle, { unitType: UNITS.knight, quantity: 6 }],
+    [UNITS.citadelOfTheNorthernKnights, { unitType: UNITS.heavyCavalry, quantity: 5 }],
+]);
+
+/**
+ * map unit sold to the unit the will transfer ownership
+ *
+ * then we only need one function to handle this behavior as long as it do so according to the map
+ */
+export const ownershipGrantingUnits = new Map<number, number>([
+    [UNITS.farmTown, UNITS.farmGrant],
+    [UNITS.townHall, UNITS.townGrant],
+    [UNITS.castle, UNITS.castleGrant],
+    [UNITS.lumberMill, UNITS.lumberMillGrant],
+    [UNITS.citadelOfTheNorthernKnights, UNITS.title_duchyOfTheNorthernKnights],
+]);

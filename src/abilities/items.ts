@@ -273,6 +273,7 @@ const itemRecipesMap = new Map<RecipeItem, RecipeItemRequirement[]>([
         [
             { itemTypeId: ITEMS.helmOfBattleThirst, quantity: 1, charges: 0 }, //
             { itemTypeId: ITEMS.corpseCleaver, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.clawsOfAttack_5, quantity: 1, charges: 0 }, //
         ],
     ],
 ]);
