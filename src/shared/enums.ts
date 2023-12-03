@@ -148,7 +148,15 @@ export enum ITEMS {
     corpseCleaver = FourCC("I008"),
     clawsOfAttack_10 = FourCC("I00L"),
     clawsOfAttack_5 = FourCC("rat6"),
-    crownOfTheNorthernKnights = FourCC("I00N"),
+    crownOfTheNorthernKnights_15 = FourCC("I00N"),
+    crownOfReanimation_lvl1 = FourCC("I00O"),
+    crownOfReanimation_lvl2 = FourCC("I00P"),
+    crownOfReanimation_lvl3 = FourCC("I00Q"),
+    recipe_crownOfReanimation_lvl1 = FourCC("I00S"),
+    recipe_crownOfReanimation_lvl2 = FourCC("I00T"),
+    recipe_crownOfReanimation_lvl3 = FourCC("I00U"),
+    pendantOfEnergy_200 = FourCC("I00R"),
+    crownOfKings_5 = FourCC("ckng"),
 }
 
 //Can find looking up models for a spell at the Art - Target field

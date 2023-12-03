@@ -57,7 +57,7 @@ export class RoundManager {
             () => {
                 RoundManager.endCurrentRound();
             },
-            90 + 15 * RoundManager.currentRound,
+            75 + 15 * RoundManager.currentRound,
         );
     }
 

@@ -1122,7 +1122,7 @@ Heroic Leap         |n|n     |TReplaceableTextures\WorldEditUI\Editor-Force.blp:
 }
 
 STRING 297
-// Items: I003 (Purchase Farm Grant), Name (Name)
+// Units: n00P (Purchase Grant - Arcane Sanctum), Tip (Tooltip - Basic)
 {
 Purchase Farm Grant
 }
@@ -1152,13 +1152,13 @@ STRING 302
 }
 
 STRING 303
-// Items: I003 (Purchase Farm Grant), Tip (Tooltip - Basic)
+// Units: n00Q (Purchase Grant - Barracks), Tip (Tooltip - Basic)
 {
 Purchase Farm Grant
 }
 
 STRING 304
-// Abilities: A00S (Purchase Farm Grant), Name (Name)
+// Items: I003 (Purchase Farm Grant), Name (Name)
 {
 Purchase Farm Grant
 }
@@ -1259,18 +1259,6 @@ STRING 332
 Barricade
 }
 
-STRING 334
-// Units: Hpal (Paladin), Ubertip (Tooltip - Extended)
-{
-Warrior Hero, exceptional at defense and augmenting nearby friendly troops. Can learn Healing Wave, Drunken Brawler, Devotion Aura and Resurrection. |n|n|cffffcc00Attacks land units.|r
-}
-
-STRING 335
-// Units: Hpal (Paladin), Tip (Tooltip - Basic)
-{
-Modified - Summon Paladin
-}
-
 STRING 337
 // Abilities: A00W (Magic Guard - Info Ability), Name (Name)
 {
@@ -1341,12 +1329,6 @@ STRING 352
 // Items: I006 (Blink Dagger), Tip (Tooltip - Basic)
 {
 Purchase Blink Dagger
-}
-
-STRING 356
-// Units: n00N (Purchase Lumber Mill Grant), Ubertip (Tooltip - Extended)
-{
-Grants ownership over the farm. Owning the farm will provide more income|cff404040 and will also add militia to your personal retinue every day. Also enables you to train peasants to build for you|r. |n|n|cffc0c0c0Can only be purchased from computer players or leavers.|r
 }
 
 STRING 358
@@ -1883,12 +1865,6 @@ STRING 497
 (+30)
 }
 
-STRING 499
-// Items: I001 (Treads of the Wind Walker ), Tip (Tooltip - Basic)
-{
-Purchase Wind Walker's Treads
-}
-
 STRING 500
 // Items: I001 (Treads of the Wind Walker ), Description (Description)
 {
@@ -2109,12 +2085,6 @@ STRING 579
 // Abilities: A01I (Disband Unit), Ubertip (Tooltip - Normal - Extended)
 {
 Disbands the unit, freeing up food. 5 second cast time.|n|n|cffff0000Does not refund cost.|r
-}
-
-STRING 580
-// Items: I002 ([|cffff0000Cursed|r] Mask of the Frenzied Ghoul), Ubertip (Tooltip - Extended)
-{
-While wearing this mask, a Hero will recover hit points equal to <AIva,DataA1,%>% of the attack damage dealt to an enemy unit. |n|n |cffff0000-8|r |cff8080ffIntelligence|r |n+5 |cff00ff00Agility|r
 }
 
 STRING 582
@@ -2643,12 +2613,6 @@ Purchase [|cffff0000Cursed|r] Mask of the Frenzied Ghoul
 
 }
 
-STRING 727
-// Items: I007 (Hand of Midas), Ubertip (Tooltip - Extended)
-{
-Gives a 15% chance to grant |cffffff0010 gold|r whenever you deal any damage. |n|n+3 |cffffcc00All Stats|R
-}
-
 STRING 728
 // Items: hbth (Helm of Battlethirst), Ubertip (Tooltip - Extended)
 {
@@ -2789,18 +2753,6 @@ STRING 764
 (General)
 }
 
-STRING 765
-// Units: hcth ([|cffffcc00Elite|r] - Infantry General), Ubertip (Tooltip - Extended)
-{
-An elite support unit, bolstering the morale of your troops. The General can also enlist footman. |n|nProvides an aura increasing movement and attack speed by 25%. |n|N|cffffcc00Able to use items and has a minimap icon representing where it is.|r
-}
-
-STRING 766
-// Units: n00H ([|cffffcc00Elite|r] Archer General), Ubertip (Tooltip - Extended)
-{
-Elite ranged unit with critical strike that can also enlist archers herself. |n|nProvides an aura for ranged units that increases their damage by +15. |n|N|cffffcc00Able to use items and has a minimap icon representing where it is.|r
-}
-
 STRING 767
 // Items: I00K (Claws of Attack +20), Name (Name)
 {
@@ -2907,12 +2859,6 @@ STRING 795
 // Units: o004 (Orcish Light Cavalry), Ubertip (Tooltip - Extended)
 {
 Great units for fighting in mass on large fields of battle. Can help combat the undead in open areas when supported by other units as well.|n|N+ |cff00ff00Large Battlefields|r    |n-  |cffff0000Choke Points|r
-}
-
-STRING 796
-// Units: o005 (Headhunter), Ubertip (Tooltip - Extended)
-{
-250 range    |n+ |cff00ff00Large Battlefields|r    |n-  |cffff0000Choke Points|r
 }
 
 STRING 797
@@ -3041,12 +2987,6 @@ STRING 819
 Gives a 20% chance that an attack will deal 100 damage to nearby units.
 }
 
-STRING 820
-// Units: Hmkg (Mountain King), Ubertip (Tooltip - Extended)
-{
-Warrior Hero, adept at offensive combat and disrupting enemy troops. Can learn Storm Bolt, Thunderous Strikes, Bash and Avatar.   |n|n[|cff00ff00New|r] |cffffcc00Thunderous Strikes|r - Attacks have a chance to deal damage in a small area.
-}
-
 STRING 821
 // Units: h00P (Acolyte Slave Laborer), Ubertip (Tooltip - Extended)
 {
@@ -3099,30 +3039,6 @@ STRING 830
 // Units: hfoo (Footman), Ubertip (Tooltip - Extended)
 {
 Low damage, durable infantry unit. Basically a wall. Has the Defend ability.|n|N+ |cff00ff00Choke Points|r |n|n|cffffcc00Wall Unit|R
-}
-
-STRING 831
-// Units: Nplh (Pit Lord), Ubertip (Tooltip - Extended)
-{
-Warrior Hero, adept at terrorizing enemies. Can learn Rain of Fire, Howl of Terror, Cleaving Attack, and Doom.|n|n[|cff00ff00New|r] - |cffffcc00Battle Charge|r - The Hero charges in their facing direction, knocking back and dealing 150 damage to enemies.
-}
-
-STRING 832
-// Units: O003 (Demigod), Ubertip (Tooltip - Extended)
-{
-An ancient demigod. Can learn Shockwave, Endurance Aura, War Stomp and Reincarnation. Has ability to use Battle Charge. |n|n[|cff00ff00New|r] - |cffffcc00Battle Charge|r - The Hero charges in their facing direction, knocking back and dealing 150 damage to enemies.
-}
-
-STRING 833
-// Units: Ntin (Tinker), Ubertip (Tooltip - Extended)
-{
-Cunning Hero, exceptional at disrupting battles and enduring damage. Can learn Pocket Factory, Cluster Rockets, Engineering Upgrade and Robo-Goblin.|n|n[|cff00ff00New|r] - |cffffcc00Goblin Land Mine|r - Deals 300 damage in a small area.
-}
-
-STRING 834
-// Units: Nbst (Beastmaster), Ubertip (Tooltip - Extended)
-{
-Warrior Hero, adept at summoning beasts into battle. Can learn Summon Bear, Summon Quilbeast, Summon Hawk, and Stampede. |n|n[|cff00ff00New|r] |cffffcc00Roar|r - Gives allies +35% damage. |n|NHis engineers can also build |cffffcc00Stone of Fortification|r granting +6 armor to allies and structures in 1200 range.
 }
 
 STRING 835
@@ -3193,12 +3109,6 @@ STRING 847
 // Units: n00N (Purchase Lumber Mill Grant), EditorSuffix (Name - Editor Suffix)
 {
 (null unit)
-}
-
-STRING 848
-// Units: n00N (Purchase Lumber Mill Grant), Tip (Tooltip - Basic)
-{
-Purchase Castle Grant
 }
 
 STRING 850
@@ -3306,12 +3216,6 @@ STRING 866
 |cffcc99ff1% Cleave|r - 20 gold
 }
 
-STRING 867
-// Units: n00O (Purchase Title - Duchy of the Northern Knights), Tip (Tooltip - Basic)
-{
-Purchase Castle Grant
-}
-
 STRING 868
 // Units: n00O (Purchase Title - Duchy of the Northern Knights), EditorSuffix (Name - Editor Suffix)
 {
@@ -3319,7 +3223,7 @@ STRING 868
 }
 
 STRING 871
-// Abilities: A01H (Blink (Engineer)), Hotkey (Hotkey - Normal)
+// Units: n00P (Purchase Grant - Arcane Sanctum), Hotkey (Hotkey)
 {
 R
 }
@@ -3328,12 +3232,6 @@ STRING 872
 // Units: n00O (Purchase Title - Duchy of the Northern Knights), Name (Name)
 {
 Purchase Title - Duchy of the Northern Knights
-}
-
-STRING 873
-// Units: n00O (Purchase Title - Duchy of the Northern Knights), Ubertip (Tooltip - Extended)
-{
-+5 Heavy Cavalry per Day - Spawns at the Capital|n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r
 }
 
 STRING 874
@@ -3370,5 +3268,359 @@ STRING 879
 // Units: h00S ([|cffffcc00Player Stash|r]), Name (Name)
 {
 [|cffffcc00Player Stash|r]
+}
+
+STRING 882
+// Units: O003 (Demigod), Ubertip (Tooltip - Extended)
+{
+An ancient demigod. Can learn Shockwave, Endurance Aura, War Stomp and Reincarnation.  |n|n[|cff00ff00New|r] - |cffffcc00Battle Charge|r - The Hero charges in their facing direction, knocking back and dealing 150 damage to enemies.
+}
+
+STRING 886
+// Units: Hpal (Paladin), Tip (Tooltip - Basic)
+{
+[|cffffcc00Modified|r] - Summon Paladin
+}
+
+STRING 889
+// Units: Nngs (Sea Witch), Ubertip (Tooltip - Extended)
+{
+Can learn Forked Lightning, Frost Arrows, Mana Shield, and Tornado.
+}
+
+STRING 890
+// Units: Ntin (Tinker), Ubertip (Tooltip - Extended)
+{
+Can learn Pocket Factory, Cluster Rockets, Engineering Upgrade and Robo-Goblin.|n|n[|cff00ff00New|r] - |cffffcc00Goblin Land Mine|r - Deals 300 damage in a small area.
+}
+
+STRING 891
+// Units: Hpal (Paladin), Ubertip (Tooltip - Extended)
+{
+Can learn Healing Wave, Holy Light, Devotion Aura and Resurrection.
+}
+
+STRING 892
+// Units: Nalc (Alchemist), Ubertip (Tooltip - Extended)
+{
+Can learn Healing Spray, Chemical Rage, Acid Bomb and Transmute.
+}
+
+STRING 893
+// Units: Nbst (Beastmaster), Ubertip (Tooltip - Extended)
+{
+ Can learn Summon Bear, Summon Quilbeast, Summon Hawk, and Stampede. |n|n[|cff00ff00New|r] |cffffcc00Roar|r - Gives allies +35% damage. |n|NHis engineers can also build |cffffcc00Stone of Fortification|r granting +6 armor to allies and structures in 1200 range.
+}
+
+STRING 894
+// Units: Npbm (Brewmaster), Ubertip (Tooltip - Extended)
+{
+Can learn Breath of Fire, Drunken Haze, Drunken Brawler and Storm, Earth, And Fire.
+}
+
+STRING 895
+// Units: Nbrn (Dark Ranger), Ubertip (Tooltip - Extended)
+{
+Can learn Silence, Black Arrow, Life Drain, and Charm.
+}
+
+STRING 896
+// Units: Nfir (Firelord), Ubertip (Tooltip - Extended)
+{
+Can learn Soul Burn, Summon Lava Spawn, Incinerate and Volcano.
+}
+
+STRING 897
+// Units: Nplh (Pit Lord), Ubertip (Tooltip - Extended)
+{
+Can learn Rain of Fire, Howl of Terror, Cleaving Attack, and Doom.|n|n[|cff00ff00New|r] - |cffffcc00Battle Charge|r - The Hero charges in their facing direction, knocking back and dealing 150 damage to enemies.
+}
+
+STRING 898
+// Units: Hmkg (Mountain King), Ubertip (Tooltip - Extended)
+{
+Can learn Storm Bolt, Thunderous Strikes, Bash and Avatar.   |n|n[|cff00ff00New|r] |cffffcc00Thunderous Strikes|r - Attacks have a chance to deal damage in a small area.
+}
+
+STRING 899
+// Units: Hblm (Blood Mage), Ubertip (Tooltip - Extended)
+{
+Can learn Flame Strike, Banish, Siphon Mana and Phoenix. 
+}
+
+STRING 900
+// Units: n00P (Purchase Grant - Arcane Sanctum), Name (Name)
+{
+Purchase Grant - Arcane Sanctum
+}
+
+STRING 901
+// Units: n00P (Purchase Grant - Arcane Sanctum), EditorSuffix (Name - Editor Suffix)
+{
+(null unit)
+}
+
+STRING 902
+// Units: n00P (Purchase Grant - Arcane Sanctum), Ubertip (Tooltip - Extended)
+{
++3 Militia per Day - Spawns at the Capital|n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r
+}
+
+STRING 903
+// Items: I003 (Purchase Farm Grant), Tip (Tooltip - Basic)
+{
+Purchase Farm Grant
+}
+
+STRING 904
+// Units: n00Q (Purchase Grant - Barracks), Hotkey (Hotkey)
+{
+R
+}
+
+STRING 905
+// Units: n00Q (Purchase Grant - Barracks), Name (Name)
+{
+Purchase Grant - Barracks
+}
+
+STRING 906
+// Units: n00Q (Purchase Grant - Barracks), EditorSuffix (Name - Editor Suffix)
+{
+(null unit)
+}
+
+STRING 907
+// Units: n00Q (Purchase Grant - Barracks), Ubertip (Tooltip - Extended)
+{
++3 Militia per Day - Spawns at the Capital|n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r
+}
+
+STRING 908
+// Abilities: A00S (Purchase Farm Grant), Name (Name)
+{
+Purchase Farm Grant
+}
+
+STRING 909
+// Abilities: A01H (Blink (Engineer)), Hotkey (Hotkey - Normal)
+{
+R
+}
+
+STRING 910
+// Abilities: A022 (Item Stat Bonus), Name (Name)
+{
+Item Stat Bonus
+}
+
+STRING 911
+// Abilities: A022 (Item Stat Bonus), EditorSuffix (Editor Suffix)
+{
+(+15 All)
+}
+
+STRING 912
+// Units: n00O (Purchase Title - Duchy of the Northern Knights), Tip (Tooltip - Basic)
+{
+Purchase Title - Duchy of the Northern Knights
+}
+
+STRING 914
+// Units: hcth ([|cffffcc00Elite|r] - Infantry General), Ubertip (Tooltip - Extended)
+{
+An elite support unit, bolstering the morale of your troops. The General can also enlist footman. Also has |cffffcc00Mass Teleport|r. |n|nProvides an aura increasing movement and attack speed by 25%. |n|N|cffffcc00Able to use items and has a minimap icon representing where it is.|r
+}
+
+STRING 915
+// Units: n00H ([|cffffcc00Elite|r] Archer General), Ubertip (Tooltip - Extended)
+{
+Elite ranged unit with critical strike that can also enlist archers herself. Also has |cffffcc00Mass Teleport|r. |n|nProvides an aura for ranged units that increases their damage by +15. |n|N|cffffcc00Able to use items and has a minimap icon representing where it is.|r
+}
+
+STRING 916
+// Units: n00N (Purchase Lumber Mill Grant), Tip (Tooltip - Basic)
+{
+Purchase Lumber Mill Grant
+}
+
+STRING 917
+// Units: n00N (Purchase Lumber Mill Grant), Ubertip (Tooltip - Extended)
+{
+Grants ownership over the Lumber Mill. |N|N|cffffcc00Can only be purchased from computer players or leavers.|r
+}
+
+STRING 918
+// Items: I001 (Treads of the Wind Walker ), Tip (Tooltip - Basic)
+{
+Purchase Treads of the Wind Walker 
+}
+
+STRING 919
+// Units: n00O (Purchase Title - Duchy of the Northern Knights), Ubertip (Tooltip - Extended)
+{
++5 Heavy Cavalry per Day - Spawns at the Capital |nAlso gives you the |cffffcc00Crown of The Northern Knights|R item (+15 All Stats) |n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r
+}
+
+STRING 920
+// Items: I007 (Hand of Midas), Ubertip (Tooltip - Extended)
+{
+Gives a 10% chance to grant |cffffff0010 gold|r whenever you deal any damage. |n|n+3 |cffffcc00All Stats|R
+}
+
+STRING 921
+// Items: I002 ([|cffff0000Cursed|r] Mask of the Frenzied Ghoul), Ubertip (Tooltip - Extended)
+{
+While wearing this mask, a Hero will recover hit points equal to 25% of the attack damage dealt to an enemy unit. |n|n |cffff0000-8|r |cff8080ffIntelligence|r |n+5 |cff00ff00Agility|r
+}
+
+STRING 922
+// Abilities: A023 (Item Life Steal), EditorSuffix (Editor Suffix)
+{
+(25%)
+}
+
+STRING 923
+// Units: o005 (Headhunter), Ubertip (Tooltip - Extended)
+{
+225 range    |n+ |cff00ff00Large Battlefields|r    |n-  |cffff0000Choke Points|r
+}
+
+STRING 924
+// Items: I00O (Crown of Reanimation - Level 1), Name (Name)
+{
+Crown of Reanimation - Level 1
+}
+
+STRING 927
+// Abilities: A024 (Animate Dead), EditorSuffix (Editor Suffix)
+{
+(level 1 = Crown of Reanimation)
+}
+
+STRING 928
+// Abilities: A025 (Animate Dead), EditorSuffix (Editor Suffix)
+{
+(level 2 = Crown of Reanimation)
+}
+
+STRING 929
+// Abilities: A026 (Animate Dead), EditorSuffix (Editor Suffix)
+{
+(level 3 = Crown of Reanimation)
+}
+
+STRING 930
+// Abilities: A027 (Item Mana Bonus (400)), Name (Name)
+{
+Item Mana Bonus (400)
+}
+
+STRING 931
+// Abilities: A028 (Item Mana Bonus (600)), Name (Name)
+{
+Item Mana Bonus (600)
+}
+
+STRING 932
+// Items: I00O (Crown of Reanimation - Level 1), Ubertip (Tooltip - Extended)
+{
++5 |cffffcc00All Stats|r  |n+200 |cff8080ffMana|r |n|n|cffffcc00Reanimate Dead|R - Allows you to reanimate 6 dead units for 60 seconds. |cffc0c0c045 second cooldown|r
+}
+
+STRING 933
+// Items: I00P (Crown of Reanimation - Level 2), Name (Name)
+{
+Crown of Reanimation - Level 2
+}
+
+STRING 935
+// Items: I00Q (Crown of Reanimation - Level 3), Name (Name)
+{
+Crown of Reanimation - Level 3
+}
+
+STRING 939
+// Items: I00P (Crown of Reanimation - Level 2), Ubertip (Tooltip - Extended)
+{
++5 |cffffcc00All Stats|r  |n+400 |cff8080ffMana|r |n|n|cffffcc00Reanimate Dead|R - Allows you to reanimate 12 dead units for 60 seconds. |cffc0c0c045 second cooldown|r
+}
+
+STRING 940
+// Items: I00Q (Crown of Reanimation - Level 3), Ubertip (Tooltip - Extended)
+{
++5 |cffffcc00All Stats|r  |n+600 |cff8080ffMana|r |n|n|cffffcc00Reanimate Dead|R - Allows you to reanimate 18 dead units for 60 seconds. |cffc0c0c045 second cooldown|r
+}
+
+STRING 941
+// Items: I00R (Pendant of Energy +200), Name (Name)
+{
+Pendant of Energy +200
+}
+
+STRING 942
+// Items: I00R (Pendant of Energy +200), Tip (Tooltip - Basic)
+{
+Pendant of Energy +200
+}
+
+STRING 943
+// Items: I00R (Pendant of Energy +200), Ubertip (Tooltip - Extended)
+{
++200 |cff8080ffMana|r
+}
+
+STRING 946
+// Items: I00S ([|cffffcc00Recipe|r] Crown of Reanimation - Level 1), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Crown of Kings +5, Pendant of Energy +200|r  |N|N  +5 |cffffcc00All Stats|r  |n+200 |cff8080ffMana|r |n|n|cffffcc00Reanimate Dead|R - Allows you to reanimate 6 dead units for 60 seconds. |cffc0c0c045 second cooldown|r
+}
+
+STRING 947
+// Items: I00S ([|cffffcc00Recipe|r] Crown of Reanimation - Level 1), Name (Name)
+{
+[|cffffcc00Recipe|r] Crown of Reanimation - Level 1
+}
+
+STRING 948
+// Items: I00S ([|cffffcc00Recipe|r] Crown of Reanimation - Level 1), Tip (Tooltip - Basic)
+{
+[|cffffcc00Recipe|r] Crown of Reanimation - Level 1
+}
+
+STRING 949
+// Items: I00T ([|cffffcc00Recipe|r] Crown of Reanimation - Level 2), Name (Name)
+{
+[|cffffcc00Recipe|r] Crown of Reanimation - Level 2
+}
+
+STRING 950
+// Items: I00T ([|cffffcc00Recipe|r] Crown of Reanimation - Level 2), Tip (Tooltip - Basic)
+{
+[|cffffcc00Recipe|r] Crown of Reanimation - Level 2
+}
+
+STRING 952
+// Items: I00T ([|cffffcc00Recipe|r] Crown of Reanimation - Level 2), Ubertip (Tooltip - Extended)
+{
+Requires: |cffffcc00Recipe: |cffc0c0c0Crown of Reanimation - Level 2, Pendant of Energy +200|r  |N|N    +5 |cffffcc00All Stats|r  |n+400 |cff8080ffMana|r |n|n|cffffcc00Reanimate Dead|R - Allows you to reanimate 12 dead units for 60 seconds. |cffc0c0c045 second cooldown|r
+}
+
+STRING 953
+// Items: I00U ([|cffffcc00Recipe|r] Crown of Reanimation - Level 3), Name (Name)
+{
+[|cffffcc00Recipe|r] Crown of Reanimation - Level 3
+}
+
+STRING 954
+// Items: I00U ([|cffffcc00Recipe|r] Crown of Reanimation - Level 3), Tip (Tooltip - Basic)
+{
+[|cffffcc00Recipe|r] Crown of Reanimation - Level 3
+}
+
+STRING 955
+// Items: I00U ([|cffffcc00Recipe|r] Crown of Reanimation - Level 3), Ubertip (Tooltip - Extended)
+{
+Requires: |cffffcc00Recipe: |cffc0c0c0Crown of Reanimation - Level 3, Pendant of Energy +200|r  |N|N    +5 |cffffcc00All Stats|r  |n+600 |cff8080ffMana|r |n|n|cffffcc00Reanimate Dead|R - Allows you to reanimate 18 dead units for 60 seconds. |cffc0c0c045 second cooldown|r
 }
 

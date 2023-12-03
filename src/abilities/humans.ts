@@ -162,10 +162,10 @@ function purchaseStructure() {
                 if (sellingUnit.typeId === UNITS.citadelOfTheNorthernKnights) {
                     print("You purchased the Duchy of The Northern Knights.");
                     if (playerStates.get(soldUnitOwner.id)?.playerHero) {
-                        playerStates.get(soldUnitOwner.id)?.playerHero?.addItemById(ITEMS.crownOfTheNorthernKnights);
+                        playerStates.get(soldUnitOwner.id)?.playerHero?.addItemById(ITEMS.crownOfTheNorthernKnights_15);
                     } else {
                         notifyPlayer("Crown of The Northern Knights was placed next to the Citadel of The Northern Knights");
-                        Item.create(ITEMS.crownOfTheNorthernKnights, sellingUnit.x, sellingUnit.y);
+                        Item.create(ITEMS.crownOfTheNorthernKnights_15, sellingUnit.x, sellingUnit.y);
                         //add to player stash -- later
                     }
                 }

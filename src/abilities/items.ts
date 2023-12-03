@@ -79,7 +79,7 @@ function handOfMidas() {
 
         if (damageSource && victim && !damageSource.owner.isPlayerAlly(victim.owner)) {
             const i = GetItemOfTypeFromUnitBJ(damageSource.handle, ITEMS.handOfMidas);
-            const itemProcChance = 14;
+            const itemProcChance = 10;
 
             if (i && math.random(0, 100) <= itemProcChance) {
                 return true;
@@ -274,6 +274,25 @@ const itemRecipesMap = new Map<RecipeItem, RecipeItemRequirement[]>([
             { itemTypeId: ITEMS.helmOfBattleThirst, quantity: 1, charges: 0 }, //
             { itemTypeId: ITEMS.corpseCleaver, quantity: 1, charges: 0 }, //
             { itemTypeId: ITEMS.clawsOfAttack_5, quantity: 1, charges: 0 }, //
+        ],
+    ],
+    [
+        { recipeId: ITEMS.recipe_crownOfReanimation_lvl1, itemId: ITEMS.crownOfReanimation_lvl1 },
+        [
+            { itemTypeId: ITEMS.crownOfKings_5, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.pendantOfEnergy_200, quantity: 1, charges: 0 }, //
+        ],
+    ],
+    [
+        { recipeId: ITEMS.recipe_crownOfReanimation_lvl2, itemId: ITEMS.crownOfReanimation_lvl2 },
+        [
+            { itemTypeId: ITEMS.pendantOfEnergy_200, quantity: 1, charges: 0 }, //
+        ],
+    ],
+    [
+        { recipeId: ITEMS.recipe_crownOfReanimation_lvl3, itemId: ITEMS.crownOfReanimation_lvl3 },
+        [
+            { itemTypeId: ITEMS.pendantOfEnergy_200, quantity: 1, charges: 0 }, //
         ],
     ],
 ]);
