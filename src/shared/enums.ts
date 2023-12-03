@@ -148,6 +148,7 @@ export enum ITEMS {
     corpseCleaver = FourCC("I008"),
     clawsOfAttack_10 = FourCC("I00L"),
     clawsOfAttack_5 = FourCC("rat6"),
+    crownOfTheNorthernKnights = FourCC("I00N"),
 }
 
 //Can find looking up models for a spell at the Art - Target field

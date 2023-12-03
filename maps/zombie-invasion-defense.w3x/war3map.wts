@@ -3336,3 +3336,39 @@ STRING 873
 +5 Heavy Cavalry per Day - Spawns at the Capital|n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r
 }
 
+STRING 874
+// Items: I00N (Crown of The Northern Knights), Name (Name)
+{
+Crown of The Northern Knights
+}
+
+STRING 875
+// Items: I00N (Crown of The Northern Knights), Tip (Tooltip - Basic)
+{
+Crown of The Northern Knights
+}
+
+STRING 876
+// Items: I00N (Crown of The Northern Knights), Ubertip (Tooltip - Extended)
+{
++15 |cffffcc00All Stats|r
+}
+
+STRING 877
+// Items: I00N (Crown of The Northern Knights), Description (Description)
+{
++15 |cffffcc00All Stats|r
+}
+
+STRING 878
+// Units: h00S ([|cffffcc00Player Stash|r]), Ubertip (Tooltip - Extended)
+{
+Basic observation tower. Has no attack, but can be upgraded into a Guard Tower, a FlameTower, a Cold Tower,  or a Cannon Tower. 
+}
+
+STRING 879
+// Units: h00S ([|cffffcc00Player Stash|r]), Name (Name)
+{
+[|cffffcc00Player Stash|r]
+}
+

@@ -1,12 +1,13 @@
+import { playerStates } from "src/players";
 import { ownershipGrantingUnits } from "src/shared/constants";
-import { ABILITIES, MinimapIconPath, UNITS } from "src/shared/enums";
+import { ABILITIES, ITEMS, MinimapIconPath, UNITS } from "src/shared/enums";
 import { applyForce } from "src/shared/physics";
 import { RoundManager } from "src/shared/round-manager";
 import { allCapturableStructures } from "src/towns";
 import { unitGetsNearThisUnit } from "src/utils/abilities";
 import { getRelativeAngleToUnit, notifyPlayer, tColor, useEffects, useTempEffect } from "src/utils/misc";
 import { adjustGold, adjustLumber, forEachAlliedPlayer, forEachUnitTypeOfPlayer, isPlayingUser } from "src/utils/players";
-import { Effect, Group, MapPlayer, Timer, Trigger, Unit } from "w3ts";
+import { Effect, Group, Item, MapPlayer, Timer, Trigger, Unit } from "w3ts";
 import { Players } from "w3ts/globals";
 
 export function init_humanSpells() {
@@ -158,6 +159,16 @@ function purchaseStructure() {
                 //crashes the game lol - unnecessary to do anyways
                 // sellingUnit.removeAbility(ABILITIES.shopShareAlly);
                 sellingUnit.setOwner(soldUnitOwner, true);
+                if (sellingUnit.typeId === UNITS.citadelOfTheNorthernKnights) {
+                    print("You purchased the Duchy of The Northern Knights.");
+                    if (playerStates.get(soldUnitOwner.id)?.playerHero) {
+                        playerStates.get(soldUnitOwner.id)?.playerHero?.addItemById(ITEMS.crownOfTheNorthernKnights);
+                    } else {
+                        notifyPlayer("Crown of The Northern Knights was placed next to the Citadel of The Northern Knights");
+                        Item.create(ITEMS.crownOfTheNorthernKnights, sellingUnit.x, sellingUnit.y);
+                        //add to player stash -- later
+                    }
+                }
             }
         }
     });

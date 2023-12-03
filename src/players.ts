@@ -1,7 +1,7 @@
 import { forEachUnitOfPlayer } from "src/utils/players";
 import { Effect, MapPlayer, Sound, Timer, Trigger, Unit, Widget } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
-import { economicConstants, ownedBuildingUnitBonusMap, unitTypeOwnerBonusMap } from "./shared/constants";
+import { buildingOwnerDailyUnitBonusMap, buildingOwnerIncomeBonusMap, economicConstants } from "./shared/constants";
 import { ABILITIES, PlayerIndices, TERRAIN_CODE, UNITS, UpgradeCodes, laborerUnitSet } from "./shared/enums";
 import { RoundManager } from "./shared/round-manager";
 import { notifyPlayer, tColor } from "./utils/misc";
@@ -126,8 +126,8 @@ function createDailyUnits() {
 
         if (isPlayingUser(p)) {
             forEachUnitOfPlayer(p, (u) => {
-                if (ownedBuildingUnitBonusMap.has(u.typeId)) {
-                    const unitData = ownedBuildingUnitBonusMap.get(u.typeId);
+                if (buildingOwnerDailyUnitBonusMap.has(u.typeId)) {
+                    const unitData = buildingOwnerDailyUnitBonusMap.get(u.typeId);
                     if (!unitData) {
                         return;
                     }
@@ -317,9 +317,9 @@ export function player_giveHumansStartOfDayResources(round: number) {
         forEachUnitOfPlayerWithAbility(p, ABILITIES.goldIncome, (u) => {
             totalIncomeBuildings++;
             if (u.owner === p) {
-                if (unitTypeOwnerBonusMap.has(u.typeId)) {
+                if (buildingOwnerIncomeBonusMap.has(u.typeId)) {
                     //default 1 if wwe cant find however should be unlikely
-                    const bonusValue = unitTypeOwnerBonusMap.get(u.typeId) ?? 1;
+                    const bonusValue = buildingOwnerIncomeBonusMap.get(u.typeId) ?? 1;
                     const goldAward = economicConstants.goldProducingAbility * bonusValue;
                     let currentPlayerGoldAmount = playerOwnedGoldResourceBonuses.get(p.id);
 
@@ -334,9 +334,9 @@ export function player_giveHumansStartOfDayResources(round: number) {
         forEachUnitOfPlayerWithAbility(p, ABILITIES.lumberIncome, (u) => {
             lumberAbilityCount++;
             if (u.owner === p) {
-                if (unitTypeOwnerBonusMap.has(u.typeId)) {
+                if (buildingOwnerIncomeBonusMap.has(u.typeId)) {
                     //default 1 if wwe cant find however should be unlikely
-                    const bonusValue = unitTypeOwnerBonusMap.get(u.typeId) ?? 1;
+                    const bonusValue = buildingOwnerIncomeBonusMap.get(u.typeId) ?? 1;
                     const lumberAward = economicConstants.goldProducingAbility * bonusValue;
                     let currentPlayerLumberAmount = playerOwnedLumberResourceBonuses.get(p.id);
 

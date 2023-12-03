@@ -78,6 +78,16 @@ local itemID
 BlzCreateItemWithSkin(FourCC("I000"), -12448.3, 13480.1, FourCC("I000"))
 end
 
+function CreateBuildingsForPlayer0()
+local p = Player(0)
+local u
+local unitID
+local t
+local life
+
+u = BlzCreateUnitWithSkin(p, FourCC("h00S"), -1366.9, -1653.0, 270.000, FourCC("h00S"))
+end
+
 function CreateBuildingsForPlayer9()
 local p = Player(9)
 local u
@@ -476,6 +486,7 @@ u = BlzCreateUnitWithSkin(p, FourCC("n00H"), 14787.2, -29053.1, 247.140, FourCC(
 end
 
 function CreatePlayerBuildings()
+CreateBuildingsForPlayer0()
 CreateBuildingsForPlayer9()
 end
 
