@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Undead Siege Defense alpha test 11
+Undead Siege Defense alpha test 12
 }
 
 STRING 2
@@ -10,13 +10,11 @@ Any
 
 STRING 3
 {
-Extremely Hard Zombie Def
-==Hero/Army Defense==
+Kill undead structures to convert back.
 Hold out for 15 nights until reinforcements arrive.
-Buy units at allied buildings.
-Destroy undead buildings to convert back to human ones.
-
-
+Buy buildings for free units.
+|cffffcc00Free Militia|r at Town Halls and Castles.
+New Player: Buy 10 footman and 2 Human Laborers. Spend the rest on items. 
 
 }
 
@@ -32,7 +30,7 @@ Player 1
 
 STRING 7
 {
-alpha testing #11
+alpha testing #12
 }
 
 STRING 9
@@ -128,13 +126,7 @@ STRING 41
 }
 
 STRING 42
-// Abilities: A002 (Income), Name (Name)
-{
-Income
-}
-
-STRING 43
-// Abilities: A002 (Income), Tip (Tooltip - Normal)
+// Abilities: A002 (Gold Income), Tip (Tooltip - Normal)
 {
 Income
 }
@@ -146,7 +138,7 @@ STRING 45
 }
 
 STRING 46
-// Abilities: A002 (Income), EditorSuffix (Editor Suffix)
+// Abilities: A002 (Gold Income), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -307,12 +299,6 @@ STRING 86
 Hire Ogre Champion
 }
 
-STRING 87
-// Units: n002 (Ogre Champion), Ubertip (Tooltip - Extended)
-{
-Massive unit with a cleaving attack and shockwave ability.
-}
-
 STRING 89
 // Abilities: A008 (Slow Aura), EditorSuffix (Editor Suffix)
 {
@@ -353,12 +339,6 @@ STRING 107
 // Units: n003 (Angry Farmer), Tip (Tooltip - Basic)
 {
 Enlist Angry Farmer
-}
-
-STRING 109
-// Units: n003 (Angry Farmer), Ubertip (Tooltip - Extended)
-{
-This farmer is |cffff0000VERY|r upset about the undead ruining his crops.
 }
 
 STRING 110
@@ -469,7 +449,9 @@ STRING 142
 {
 |cffff00ffObjective|r - Hold out for 15 nights until reinforcements arrive. 
 
-|cff00ff00Starter Tip|r - Spend your starting money on items, units, and some economic structures or farm laborers.
+ |cffffcc00Free Militia|r at Town Halls and Castles.
+
+|cff00ff00New Player|r - New Player: Buy 10 footman and 2 Human Laborers. Spend the rest on items. 
 
 |cff00ff00Farm Hand Worker|r - Buy at farms. Can build grain silos for increased food cap and can also build farm laborers to invest your gold.
 
@@ -540,22 +522,10 @@ STRING 151
 War Bear
 }
 
-STRING 152
-// Abilities: A000 (Supply Bonus), Ubertip (Tooltip - Normal - Extended)
-{
-Increases the supplies(mana) that supply type units can carry.
-}
-
 STRING 153
 // Units: h009 (Musketeer), Tip (Tooltip - Basic)
 {
 Enlist Musketeer
-}
-
-STRING 154
-// Units: h009 (Musketeer), Ubertip (Tooltip - Extended)
-{
-Highly skilled sharpshooter. Can use mana imbued powder for powerful shots. |n|n|cffffcc00Attacks land and air units.|r
 }
 
 STRING 155
@@ -568,12 +538,6 @@ STRING 156
 // Units: h000 (Militia), Tip (Tooltip - Basic)
 {
 Enlist Local Militia
-}
-
-STRING 157
-// Units: h000 (Militia), Ubertip (Tooltip - Extended)
-{
-Disgruntled and poorly equipped serfs, able to be levied quickly.
 }
 
 STRING 158
@@ -604,12 +568,6 @@ STRING 162
 // Units: n004 (War Bear), Tip (Tooltip - Basic)
 {
 Train War Bear
-}
-
-STRING 163
-// Units: n004 (War Bear), Ubertip (Tooltip - Extended)
-{
-A heavy melee unit, with cleaving armor, bash and resistant skin.
 }
 
 STRING 166
@@ -688,12 +646,6 @@ STRING 181
 // Units: Hblm (Blood Mage), Propernames (Proper Names)
 {
 Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
-}
-
-STRING 183
-// Units: hkni (Knight), Ubertip (Tooltip - Extended)
-{
-Powerful mounted warrior. Can trample his enemies and use his fierce lance to attack enemies. |n|nKnights excel when in large nubmers on open fields where many can charge at once and retreat.
 }
 
 STRING 184
@@ -971,12 +923,6 @@ STRING 251
 Supply Bonus
 }
 
-STRING 252
-// Abilities: A00L (Supplies), Ubertip (Tooltip - Normal - Extended)
-{
-This unit benefits from supply upgrades, increasing it's mana pool.
-}
-
 STRING 253
 // Abilities: A00L (Supplies), EditorSuffix (Editor Suffix)
 {
@@ -1041,12 +987,6 @@ STRING 263
 // Units: h00E (Citadel of the Northern Knights), Name (Name)
 {
 Citadel of the Northern Knights
-}
-
-STRING 264
-// Units: nwzr (Rogue Wizard), Ubertip (Tooltip - Extended)
-{
-Light ranged unit that can cast Dispel Magic and Frost Armor. |n|n|cffffcc00Attacks land and air units.|r
 }
 
 STRING 269
@@ -1361,12 +1301,6 @@ STRING 366
 (Converted Structure)
 }
 
-STRING 368
-// Units: h00I (Heavy Cavalry), Ubertip (Tooltip - Extended)
-{
-A stronger version of the knight with critical strike and cleave. Can trample his enemies and use his fierce lance to attack enemies.
-}
-
 STRING 372
 // Abilities: A00Z (Item Stat Bonus), Name (Name)
 {
@@ -1421,22 +1355,10 @@ STRING 381
 |cff87ceebNon-Combat Consumable|r|nRegenerates the Hero's mana by <AIpl,DataB1> over 15 seconds when used.
 }
 
-STRING 382
-// Items: spsh (Amulet of Spell Shield), Ubertip (Tooltip - Extended)
-{
-Blocks a negative spell that an enemy casts on the Hero once every 20 seconds.
-}
-
 STRING 383
 // Units: n00B (Items 3), Name (Name)
 {
 Items 3
-}
-
-STRING 388
-// Abilities: A00Q (Item Stat Reduction), EditorSuffix (Editor Suffix)
-{
-(-8 Intelligence)
 }
 
 STRING 390
@@ -1979,12 +1901,6 @@ STRING 542
 (Engineer)
 }
 
-STRING 543
-// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
-{
-Able to build (|cffd45e19only during day|r) and repair structures. Can also use items.|n|nCan build a scout tower that can be upgraded into to other towers; a barricade; a supply tent which can heal units; and caltrops, which can severely hinder enemy units.
-}
-
 STRING 544
 // Abilities: A01E (Human Laborer), Name (Name)
 {
@@ -2099,12 +2015,6 @@ STRING 584
 Peon Laborer - Info Ability
 }
 
-STRING 585
-// Abilities: A00I (Food Reserves), Ubertip (Tooltip - Normal - Extended)
-{
-Provides +2 food to the food cap.
-}
-
 STRING 586
 // Units: u005 ([|cffffcc00Farm|r] Spirit Tower), Name (Name)
 {
@@ -2195,12 +2105,6 @@ STRING 610
 After 2 days, the peon will return (|cffffff001.3 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
 }
 
-STRING 611
-// Units: h00L (Human Laborer), Ubertip (Tooltip - Extended)
-{
-After 4 days, the laborer will return (|cffffff001.5 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
-}
-
 STRING 612
 // Abilities: A01E (Human Laborer), Ubertip (Tooltip - Normal - Extended)
 {
@@ -2229,12 +2133,6 @@ STRING 616
 // Units: h00O (Druid Laborer), Tip (Tooltip - Basic)
 {
 Hire Druid Laborer
-}
-
-STRING 618
-// Units: h00N (Grain Silo), Ubertip (Tooltip - Extended)
-{
-Build a Grain Silo that raises your food cap by +5. |n|n|cffffcc00This structure will be destroyed after 5 days.|r
 }
 
 STRING 622
@@ -2273,12 +2171,6 @@ STRING 628
 Train Farm Hand
 }
 
-STRING 629
-// Units: h00Q (Farm Hand), Ubertip (Tooltip - Extended)
-{
-Able to hire laborers to work the farm and also build grain silo's to temporarily increase your food cap.
-}
-
 STRING 630
 // Units: h00P (Acolyte Slave Laborer), Hotkey (Hotkey)
 {
@@ -2301,12 +2193,6 @@ STRING 635
 // Units: h00R (Stone of Fortification), Tip (Tooltip - Basic)
 {
 Build Stone of Fortification
-}
-
-STRING 638
-// Units: h00O (Druid Laborer), Ubertip (Tooltip - Extended)
-{
-After 5 days, the laborer will return (|cffffff002 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
 }
 
 STRING 639
@@ -2783,12 +2669,6 @@ STRING 773
 Replenish the life and mana of a target friendly unit. |n|N|cffc0c0c0800 range|r
 }
 
-STRING 777
-// Abilities: A00C (Food Income), Ubertip (Tooltip - Normal - Extended)
-{
-Increases the food cap by 3 at the start of each day.
-}
-
 STRING 778
 // Items: I00L (Claws of Attack +10), Name (Name)
 {
@@ -2903,12 +2783,6 @@ STRING 805
 Pathfinder
 }
 
-STRING 807
-// Units: hsor (Sorceress), Ubertip (Tooltip - Extended)
-{
-Does moderate magic damage from attacks and can cast |cffffcc00mass teleport|r.
-}
-
 STRING 808
 // Abilities: A01Z (Thunderous Strikes), Name (Name)
 {
@@ -2975,12 +2849,6 @@ STRING 819
 Gives a 20% chance that an attack will deal 100 damage to nearby units.
 }
 
-STRING 821
-// Units: h00P (Acolyte Slave Laborer), Ubertip (Tooltip - Extended)
-{
-After 1 day, the laborer will return (|cffffff001.15 x its cost in gold|r). Quick and cheap labor with a lower return. If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
-}
-
 STRING 822
 // Items: I00M (Scroll of the Reanimation), Name (Name)
 {
@@ -3023,14 +2891,8 @@ STRING 828
 R
 }
 
-STRING 830
-// Units: hfoo (Footman), Ubertip (Tooltip - Extended)
-{
-Low damage, durable infantry unit. Basically a wall. Has the Defend ability.|n|N+ |cff00ff00Choke Points|r |n|n|cffffcc00Wall Unit|R
-}
-
 STRING 835
-// Abilities: A002 (Income), Ubertip (Tooltip - Normal - Extended)
+// Abilities: A002 (Gold Income), Ubertip (Tooltip - Normal - Extended)
 {
 Grants |cffffff00+40 gold|r at the start of each day to all players.
 
@@ -3161,13 +3023,6 @@ STRING 859
 // Items: I001 (Treads of the Wind Walker ), Name (Name)
 {
 Treads of the Wind Walker 
-}
-
-STRING 861
-// Items: I00J ([|cffffcc00Recipe|r] Berserker's Cleaver), Ubertip (Tooltip - Extended)
-{
-Requires: |cffc0c0c0Corpse Cleaver, Helm of Battlethirst, Claws of Attack +5|r
-Causes melee attacks to cleave for 50% damage. |n|n+12|cffff0000 Strength|r |N  +4 |cff00ff00Agility|r   |n+10 |cffc0c0c0Attack Damage|r |N|N|cffffcc00Berserk|r: Attack 50% faster but takes 50% more damage.
 }
 
 STRING 862
@@ -3414,18 +3269,6 @@ STRING 912
 Purchase Title - Duchy of the Northern Knights
 }
 
-STRING 914
-// Units: hcth ([|cffffcc00Elite|r] - Infantry General), Ubertip (Tooltip - Extended)
-{
-An elite support unit, bolstering the morale of your troops. The General can also enlist footman. Also has |cffffcc00Mass Teleport|r. |n|nProvides an aura increasing movement and attack speed by 25%. |n|N|cffffcc00Able to use items and has a minimap icon representing where it is.|r
-}
-
-STRING 915
-// Units: n00H ([|cffffcc00Elite|r] Archer General), Ubertip (Tooltip - Extended)
-{
-Elite ranged unit with critical strike that can also enlist archers herself. Also has |cffffcc00Mass Teleport|r. |n|nProvides an aura for ranged units that increases their damage by +15. |n|N|cffffcc00Able to use items and has a minimap icon representing where it is.|r
-}
-
 STRING 916
 // Units: n00N (Purchase Lumber Mill Grant), Tip (Tooltip - Basic)
 {
@@ -3454,12 +3297,6 @@ STRING 920
 // Items: I007 (Hand of Midas), Ubertip (Tooltip - Extended)
 {
 Gives a 10% chance to grant |cffffff0010 gold|r whenever you deal any damage. |n|n+3 |cffffcc00All Stats|R
-}
-
-STRING 921
-// Items: I002 ([|cffff0000Cursed|r] Mask of the Frenzied Ghoul), Ubertip (Tooltip - Extended)
-{
-While wearing this mask, a Hero will recover hit points equal to 25% of the attack damage dealt to an enemy unit. |n|n |cffff0000-8|r |cff8080ffIntelligence|r |n+5 |cff00ff00Agility|r
 }
 
 STRING 922
@@ -3606,21 +3443,299 @@ STRING 956
 Great units for fighting in mass on large fields of battle. Can help combat the undead in open areas when supported by other units as well.|n|N+ |cff00ff00Large Battlefields|r    |n-  |cffff0000Choke Points|r|n|N|cffffcc00This unit moves at max move speed.|r
 }
 
-STRING 957
-// Items: I00T ([|cffffcc00Recipe|r] Crown of Reanimation - Level 2), Ubertip (Tooltip - Extended)
-{
-Requires:|cffc0c0c0 Pendant of Energy +200|r  |N|N    +5 |cffffcc00All Stats|r  |n+400 |cff8080ffMana|r |n|n|cffffcc00Reanimate Dead|R - Allows you to reanimate 12 dead units for 60 seconds. |cffc0c0c045 second cooldown|r
-}
-
-STRING 958
-// Items: I00U ([|cffffcc00Recipe|r] Crown of Reanimation - Level 3), Ubertip (Tooltip - Extended)
-{
-Requires: |cffc0c0c0Pendant of Energy +200|r  |N|N    +5 |cffffcc00All Stats|r  |n+600 |cff8080ffMana|r |n|n|cffffcc00Reanimate Dead|R - Allows you to reanimate 18 dead units for 60 seconds. |cffc0c0c045 second cooldown|r
-}
-
 STRING 959
 // Units: h005 (Caltrops), Ubertip (Tooltip - Extended)
 {
 Severely inhibits nearby enemy units in 200 range.|n |n|cffff0000-50%|r movespeed |n|cffff0000-20%|r attack speed |n|cffff0000-2|r armor    |n|n|cffff0000Destroyed at the start of each day.|r
+}
+
+STRING 960
+// Items: I00T ([|cffffcc00Recipe|r] Crown of Reanimation - Level 2), Ubertip (Tooltip - Extended)
+{
+Requires:|cffc0c0c0 Pendant of Energy +200, Crown of Reanimation - Level 1|r  |N|N    +5 |cffffcc00All Stats|r  |n+400 |cff8080ffMana|r |n|n|cffffcc00Reanimate Dead|R - Allows you to reanimate 12 dead units for 60 seconds. |cffc0c0c045 second cooldown|r
+}
+
+STRING 961
+// Items: I00U ([|cffffcc00Recipe|r] Crown of Reanimation - Level 3), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Pendant of Energy +200, Crown of Reanimation - Level 2|r  |N|N    +5 |cffffcc00All Stats|r  |n+600 |cff8080ffMana|r |n|n|cffffcc00Reanimate Dead|R - Allows you to reanimate 18 dead units for 60 seconds. |cffc0c0c045 second cooldown|r
+}
+
+STRING 962
+// Units: h009 (Musketeer), Ubertip (Tooltip - Extended)
+{
+Highly skilled sharpshooter. Can use mana imbued powder for powerful shots.|n|n+ |cff00ff00Choke Points|r    |n-  |cffff0000Open Areas|r
+}
+
+STRING 963
+// Units: hkni (Knight), Ubertip (Tooltip - Extended)
+{
+Powerful mounted warrior. Can trample his enemies and use his fierce lance to attack enemies. |n|nKnights excel when in large nubmers on open fields where many can charge at once and retreat.|n|n+ |cff00ff00Choke Points|r    |n+ |cff00ff00Open Areas|r 
+}
+
+STRING 964
+// Units: h00I (Heavy Cavalry), Ubertip (Tooltip - Extended)
+{
+A stronger version of the knight with critical strike and cleave. Can trample his enemies and use his fierce lance to attack enemies.|n|n+ |cff00ff00Choke Points|r    |n+ |cff00ff00Open Areas|r 
+}
+
+STRING 965
+// Units: h000 (Militia), Ubertip (Tooltip - Extended)
+{
+Disgruntled and poorly equipped serfs, able to be levied quickly. |n|N~ |cffff8800Choke Points|r |n~ |cffff8800Open Areas|r 
+}
+
+STRING 966
+// Units: n003 (Angry Farmer), Ubertip (Tooltip - Extended)
+{
+This farmer is |cffff0000VERY|r upset about the undead ruining his crops.|n|N~|cffff8800Choke Points|r |n~|cffff8800Open Areas|r 
+}
+
+STRING 967
+// Units: n006 (Archer), Ubertip (Tooltip - Extended)
+{
+Basic long-ranged attacker. |n|n+ |cff00ff00Choke Points|r    |n~ |cffff8800Open Areas|r
+}
+
+STRING 968
+// Units: hfoo (Footman), Ubertip (Tooltip - Extended)
+{
+Low damage, durable infantry unit. Basically a wall. Has the Defend ability.|n|n+ |cff00ff00Choke Points|r    |n+ |cff00ff00Open Areas|r  |n|n|cffffcc00Wall Unit|R
+}
+
+STRING 971
+// Units: nwzr (Rogue Wizard), Ubertip (Tooltip - Extended)
+{
+Light ranged unit that can cast |cffffcc00Dispel Magic|r and |cffffcc00Frost Armor|r. |n|N|cffff00ffSupport Unit|r
+}
+
+STRING 972
+// Units: hsor (Sorceress), Ubertip (Tooltip - Extended)
+{
+Does good magic damage from attacks and can cast |cffffcc00Mass Teleport|r and |cffffcc00Bloodlust|r. |n|N|cffff00ffSupport Unit|r
+}
+
+STRING 973
+// Units: hspt (Spellbreaker), Ubertip (Tooltip - Extended)
+{
+Initially has Spell Steal, which manipulates buffs to your advantage, Spell Immunity and Feedback. Can also learn Control Magic.|n|N
+}
+
+STRING 974
+// Units: hcth ([|cffffcc00Elite|r] - Infantry General), Ubertip (Tooltip - Extended)
+{
+An elite support unit, bolstering the morale of your troops. The General can also enlist footman. Also has |cffffcc00Mass Teleport|r. |n|n+ |cff00ff00Choke Points|r     |n+ |cff00ff00Open Areas|r|n|cffff00ffSupport Unit  |r|n|nProvides an aura increasing movement and attack speed by 25%. |n|N|cffffcc00Able to use items and has a minimap icon representing where it is.|r
+}
+
+STRING 975
+// Units: n00H ([|cffffcc00Elite|r] Archer General), Ubertip (Tooltip - Extended)
+{
+Elite ranged unit with critical strike that can also enlist archers herself. Also has |cffffcc00Mass Teleport|r.|n|n+ |cff00ff00Choke Points|r     |n+ |cff00ff00Open Areas|r|n|cffff00ffSupport Unit  |r |n|nProvides an aura for ranged units that increases their damage by +15. |n|N|cffffcc00Able to use items and has a minimap icon representing where it is.|r
+}
+
+STRING 976
+// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
+{
+Able to build (|cffd45e19only during day|r) and repair structures. Can also carry items.|n|nCan build a scout tower that can be upgraded into to other towers; a barricade; a supply tent which can heal units; and caltrops, which can severely hinder enemy units. |n|n|cff00ffffWorker|r
+}
+
+STRING 977
+// Units: h00Q (Farm Hand), Ubertip (Tooltip - Extended)
+{
+Able to hire laborers to work the farm and also build grain silo's to temporarily increase your food cap.|n|n|cff00ffffWorker|r
+}
+
+STRING 978
+// Units: h00L (Human Laborer), Ubertip (Tooltip - Extended)
+{
+After 4 days, the laborer will return (|cffffff001.7 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 979
+// Units: n002 (Ogre Champion), Ubertip (Tooltip - Extended)
+{
+Massive unit with a cleaving attack and shockwave ability.|n|n+ |cff00ff00Choke Points|r    |n+ |cff00ff00Open Areas|r 
+}
+
+STRING 980
+// Units: n004 (War Bear), Ubertip (Tooltip - Extended)
+{
+A heavy melee unit, with cleaving armor, bash and resistant skin.|n|n+ |cff00ff00Choke Points|r    |n+ |cff00ff00Open Areas|r 
+}
+
+STRING 981
+// Units: e000 (Huntress), Ubertip (Tooltip - Extended)
+{
+Agile short-ranged warrior. Can learn the Sentinel ability and the Moon Glaive attack. |n|n~ |cffffcc00Choke Points|r    |n+ |cff00ff00Open Areas|r 
+}
+
+STRING 982
+// Units: h00O (Druid Laborer), Ubertip (Tooltip - Extended)
+{
+After 5 days, the laborer will return (|cffffff002.2 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 983
+// Units: h00P (Acolyte Slave Laborer), Ubertip (Tooltip - Extended)
+{
+After 1 day, the laborer will return (|cffffff001.10 x its cost in gold|r). Quick and cheap labor with a lower return. If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 984
+// Units: h00N (Grain Silo), Ubertip (Tooltip - Extended)
+{
+|cffff6600+5 Food Cap|r |n|n|cffffcc00This structure will be destroyed after 5 days.|r
+}
+
+STRING 985
+// Abilities: A00I (Food Reserves), Ubertip (Tooltip - Normal - Extended)
+{
+|cffff6600+2 Food Cap|r
+}
+
+STRING 986
+// Abilities: A002 (Gold Income), Name (Name)
+{
+Gold Income
+}
+
+STRING 987
+// Abilities: A00C (Food Income), Ubertip (Tooltip - Normal - Extended)
+{
+Increases food cap per day - |cffff6600+3 Food Cap|r 
+}
+
+STRING 988
+// Abilities: A000 (Supply Bonus), Ubertip (Tooltip - Normal - Extended)
+{
+Increases the supplies(|cff8080ffmana|r) that supply type units can carry.
+}
+
+STRING 989
+// Abilities: A00L (Supplies), Ubertip (Tooltip - Normal - Extended)
+{
+This unit benefits from supply upgrades, increasing it's|cff8080ff mana|r pool.
+}
+
+STRING 991
+// Items: I00V (Amulet of the Sentinel), Name (Name)
+{
+Amulet of the Sentinel
+}
+
+STRING 993
+// Items: I00V (Amulet of the Sentinel), Tip (Tooltip - Basic)
+{
+Purchase Amulet of the Sentinel
+}
+
+STRING 995
+// Items: evtl (Talisman of Evasion), Ubertip (Tooltip - Extended)
+{
+ +15% |cfaafff00Evasion|r |nDoes not stack with Evasion or Drunken Brawler.
+}
+
+STRING 998
+// Abilities: A029 (Spell Shield), EditorSuffix (Editor Suffix)
+{
+ (15 sec)
+}
+
+STRING 999
+// Abilities: A02A (Evasion), EditorSuffix (Editor Suffix)
+{
+(Item 20%)
+}
+
+STRING 1001
+// Items: I00W ([|cffffcc00Recipe|r] Amulet of the Sentinel), Name (Name)
+{
+[|cffffcc00Recipe|r] Amulet of the Sentinel
+}
+
+STRING 1003
+// Items: I00W ([|cffffcc00Recipe|r] Amulet of the Sentinel), Tip (Tooltip - Basic)
+{
+Purchase [|cffffcc00Recipe|r] Amulet of the Sentinel
+}
+
+STRING 1006
+// Items: I00V (Amulet of the Sentinel), Ubertip (Tooltip - Extended)
+{
+Spell Block - |cffc0c0c015 sec cooldown|r |n|N+20% |cfaafff00Evasion|r |n     +5 |cffffcc00All Stats|r |n     +5 |cffccccccArmor|r|n|n|cffffcc00Evasion doesn't stack.|r
+}
+
+STRING 1008
+// Items: I00W ([|cffffcc00Recipe|r] Amulet of the Sentinel), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Crown of Kings +5, Amulet of Spell Shield, Talisman of Evasion, Ring Of Protection +5|r  |N|NSpell Block - |cffc0c0c015 sec cooldown|r |n|N+20% |cfaafff00Evasion|r |n     +5 |cffffcc00All Stats|r |n     +5 |cffccccccArmor|r  |n|n|cffffcc00Evasion doesn't stack.|r
+}
+
+STRING 1009
+// Items: spsh (Amulet of Spell Shield), Ubertip (Tooltip - Extended)
+{
+Spell Block - |cffc0c0c020 sec cooldown|r
+}
+
+STRING 1010
+// Items: I00X ([|cffff0000Cursed|R] Ghoulish Mask of Midas), Name (Name)
+{
+[|cffff0000Cursed|R] Ghoulish Mask of Midas
+}
+
+STRING 1011
+// Items: I00X ([|cffff0000Cursed|R] Ghoulish Mask of Midas), Tip (Tooltip - Basic)
+{
+Purchase [|cffff0000Cursed|R] Ghoulish Mask of Midas
+}
+
+STRING 1013
+// Items: I002 ([|cffff0000Cursed|r] Mask of the Frenzied Ghoul), Ubertip (Tooltip - Extended)
+{
+While wearing this mask, a Hero will recover hit points equal to 25% of the attack damage dealt to an enemy unit. |n|n |cffff0000-6|r |cff8080ffIntelligence|r |n+5 |cff00ff00Agility|r
+}
+
+STRING 1016
+// Items: I00J ([|cffffcc00Recipe|r] Berserker's Cleaver), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Corpse Cleaver, Helm of Battlethirst, Claws of Attack +5|r|n
+Causes melee attacks to cleave for 50% damage. |n|n+12|cffff0000 Strength|r |N  +4 |cff00ff00Agility|r   |n+10 |cffc0c0c0Attack Damage|r |N|N|cffffcc00Berserk|r: Attack 50% faster but takes 50% more damage.
+}
+
+STRING 1017
+// Items: I00Y ([|cffffcc00Recipe|r] [|cffff0000Cursed|R] Ghoulish Mask of Midas), Name (Name)
+{
+[|cffffcc00Recipe|r] [|cffff0000Cursed|R] Ghoulish Mask of Midas
+}
+
+STRING 1018
+// Items: I00Y ([|cffffcc00Recipe|r] [|cffff0000Cursed|R] Ghoulish Mask of Midas), Tip (Tooltip - Basic)
+{
+Purchase [|cffffcc00Recipe|r] [|cffff0000Cursed|R] Ghoulish Mask of Midas
+}
+
+STRING 1022
+// Abilities: A02B (Item Life Steal), EditorSuffix (Editor Suffix)
+{
+(35%)
+}
+
+STRING 1023
+// Abilities: A00Q (Item Stat Reduction), EditorSuffix (Editor Suffix)
+{
+(-6 Intelligence)
+}
+
+STRING 1024
+// Items: I00X ([|cffff0000Cursed|R] Ghoulish Mask of Midas), Ubertip (Tooltip - Extended)
+{
++35% Lifesteal|n+3 |cffffcc00All Stats|R|n|cffff0000-6|r|cff8080ff Intelligence|r |n+5 |cff00ff00Agility|r |n|NGives a 25% chance to grant |cffffff0010 gold|r whenever you deal any damage. |cffff0000Consumes 35 health when you gain gold.|r
+}
+
+STRING 1026
+// Items: I00Y ([|cffffcc00Recipe|r] [|cffff0000Cursed|R] Ghoulish Mask of Midas), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Hand of Midas, Mask of The Frenzied Ghoul|r|n
++35% Lifesteal|n+3 |cffffcc00All Stats|R|n|cffff0000-6|r|cff8080ff Intelligence|r |n+5 |cff00ff00Agility|r |n|NGives a 25% chance to grant |cffffff0010 gold|r whenever you deal any damage. |cffff0000Consumes 35 health when you gain gold.|r
 }
 

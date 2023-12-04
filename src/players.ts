@@ -477,12 +477,12 @@ const laborerTypes = [
     },
     {
         unitTypeCode: UNITS.humanLaborer,
-        goldCostMultiplierAward: 1.5,
+        goldCostMultiplierAward: 1.7,
         maxManaRequirement: 4,
     },
     {
         unitTypeCode: UNITS.druidLaborer,
-        goldCostMultiplierAward: 2,
+        goldCostMultiplierAward: 2.2,
         maxManaRequirement: 5,
     },
     {

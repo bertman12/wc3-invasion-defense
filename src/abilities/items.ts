@@ -78,32 +78,35 @@ function handOfMidas() {
         const damageSource = Unit.fromHandle(GetEventDamageSource());
 
         if (damageSource && victim && !damageSource.owner.isPlayerAlly(victim.owner)) {
-            const i = GetItemOfTypeFromUnitBJ(damageSource.handle, ITEMS.handOfMidas);
-            const itemProcChance = 10;
+            const handOfMidas = GetItemOfTypeFromUnitBJ(damageSource.handle, ITEMS.handOfMidas);
+            const ghoulishMaskOfMidas = GetItemOfTypeFromUnitBJ(damageSource.handle, ITEMS.ghoulishMaskOfMidas);
+            let itemProcChance = 0;
 
-            if (i && math.random(0, 100) <= itemProcChance) {
-                return true;
+            if (ghoulishMaskOfMidas) {
+                itemProcChance = 25;
+            } else if (handOfMidas) {
+                itemProcChance = 10;
+            }
+
+            if ((handOfMidas || ghoulishMaskOfMidas) && math.random(0, 100) <= itemProcChance) {
+                const e = Effect.createAttachment("Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl", victim, "origin");
+                const t = Timer.create();
+
+                adjustGold(damageSource.owner, 10);
+
+                if (ghoulishMaskOfMidas) {
+                    useTempEffect(Effect.create("Abilities\\Spells\\Undead\\RaiseSkeletonWarrior\\RaiseSkeleton.mdl", damageSource.x, damageSource.y));
+                    damageSource.life -= 35;
+                }
+
+                t.start(1.5, false, () => {
+                    e?.destroy();
+                    t.destroy();
+                });
             }
         }
 
         return false;
-    });
-
-    t.addAction(() => {
-        const victim = Unit.fromHandle(GetAttackedUnitBJ());
-        const damageSource = Unit.fromHandle(GetEventDamageSource());
-
-        if (victim && damageSource) {
-            const e = Effect.createAttachment("Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl", victim, "origin");
-            const t = Timer.create();
-
-            adjustGold(damageSource.owner, 10);
-
-            t.start(1.5, false, () => {
-                e?.destroy();
-                t.destroy();
-            });
-        }
     });
 }
 
@@ -295,6 +298,22 @@ const itemRecipesMap = new Map<RecipeItem, RecipeItemRequirement[]>([
         [
             { itemTypeId: ITEMS.pendantOfEnergy_200, quantity: 1, charges: 0 }, //
             { itemTypeId: ITEMS.crownOfReanimation_lvl2, quantity: 1, charges: 0 }, //
+        ],
+    ],
+    [
+        { recipeId: ITEMS.recipe_amuletOfTheSentinel, itemId: ITEMS.amuletOfTheSentinel },
+        [
+            { itemTypeId: ITEMS.amuletOfSpellShield, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.talismanOfEvasion_15, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.crownOfKings_5, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.ringOfProtection_5, quantity: 1, charges: 0 }, //
+        ],
+    ],
+    [
+        { recipeId: ITEMS.recipe_ghoulishMaskOfMidas, itemId: ITEMS.ghoulishMaskOfMidas },
+        [
+            { itemTypeId: ITEMS.handOfMidas, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.maskOfTheFrenziedGhoul, quantity: 1, charges: 0 }, //
         ],
     ],
 ]);

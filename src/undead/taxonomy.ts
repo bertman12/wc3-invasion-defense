@@ -29,7 +29,7 @@ function getNextUndeadPlayer() {
 //30 seconds being the hard spawn, 15 second intervals being the normal spawn difficulty; maybe fr
 const waveIntervalOptions = [15, 30];
 
-const MAX_ZOMBIE_COUNT = 600 as const;
+const MAX_ZOMBIE_COUNT = 450 as const;
 
 let currentZombieCount = 0;
 let currentSpawns: SpawnData[] = [];

@@ -157,6 +157,14 @@ export enum ITEMS {
     recipe_crownOfReanimation_lvl3 = FourCC("I00U"),
     pendantOfEnergy_200 = FourCC("I00R"),
     crownOfKings_5 = FourCC("ckng"),
+    talismanOfEvasion_15 = FourCC("evtl"),
+    amuletOfSpellShield = FourCC("spsh"),
+    amuletOfTheSentinel = FourCC("I00V"),
+    recipe_amuletOfTheSentinel = FourCC("I00W"),
+    ringOfProtection_5 = FourCC("rde4"),
+    ghoulishMaskOfMidas = FourCC("I00X"),
+    recipe_ghoulishMaskOfMidas = FourCC("I00Y"),
+    maskOfTheFrenziedGhoul = FourCC("I002"),
 }
 
 //Can find looking up models for a spell at the Art - Target field
