@@ -165,6 +165,7 @@ export enum ITEMS {
     ghoulishMaskOfMidas = FourCC("I00X"),
     recipe_ghoulishMaskOfMidas = FourCC("I00Y"),
     maskOfTheFrenziedGhoul = FourCC("I002"),
+    staffOfTeleportation = FourCC("stel"),
 }
 
 //Can find looking up models for a spell at the Art - Target field

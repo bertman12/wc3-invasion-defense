@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Undead Siege Defense alpha test 12
+Undead Siege Defense alpha test 13
 }
 
 STRING 2
@@ -30,7 +30,7 @@ Player 1
 
 STRING 7
 {
-alpha testing #12
+alpha testing #13
 }
 
 STRING 9
@@ -451,7 +451,7 @@ STRING 142
 
  |cffffcc00Free Militia|r at Town Halls and Castles.
 
-|cff00ff00New Player|r - New Player: Buy 10 footman and 2 Human Laborers. Spend the rest on items. 
+|cff00ff00New Player|r - New Player: Buy 10 footmen and 2 Human Laborers. Spend the rest on items. 
 
 |cff00ff00Farm Hand Worker|r - Buy at farms. Can build grain silos for increased food cap and can also build farm laborers to invest your gold.
 
@@ -1529,12 +1529,6 @@ STRING 432
 Caltrops - Info Ability
 }
 
-STRING 433
-// Abilities: A012 (Caltrops - Info Ability), Ubertip (Tooltip - Normal - Extended)
-{
-Severely inhibits nearby enemy units.|n |n|cffff0000-50%|r movespeed |n|cffff0000-20%|r attack speed |n|cffff0000-2|r armor    |n|n|cffff0000Destroyed at the start of each day.|r
-}
-
 STRING 434
 // Abilities: A012 (Caltrops - Info Ability), EditorSuffix (Editor Suffix)
 {
@@ -1685,12 +1679,6 @@ STRING 471
 Item Mana Bonus (150)
 }
 
-STRING 472
-// Items: arsh (Arcanite Shield), Ubertip (Tooltip - Extended)
-{
-Reduces damage from ranged attacks to <AIdd,DataA1,%>%. Also increases the Hero's armor by <AId5,DataA1> when worn. 
-}
-
 STRING 474
 // Items: I006 (Blink Dagger), Description (Description)
 {
@@ -1728,7 +1716,7 @@ STRING 479
 }
 
 STRING 484
-// Units: hwtw (Scout Tower), Ubertip (Tooltip - Extended)
+// Units: h00S ([|cffffcc00Player Stash|r]), Ubertip (Tooltip - Extended)
 {
 Basic observation tower. Has no attack, but can be upgraded into a Guard Tower, a FlameTower, a Cold Tower,  or a Cannon Tower. 
 }
@@ -2205,12 +2193,6 @@ STRING 640
 // Abilities: A01M (Devotion Aura), EditorSuffix (Editor Suffix)
 {
  (Stone of Fortification)
-}
-
-STRING 644
-// Units: h00R (Stone of Fortification), Ubertip (Tooltip - Extended)
-{
-Builds a Stone of Fortification, granting nearby units and structures in 1200 range +6 armor.
 }
 
 STRING 645
@@ -3001,24 +2983,6 @@ Owner Bonus Lumber   |n|cffffcc00Lumber Mill|r - 2x Lumber   |n|cffffcc00Town|r 
 
 }
 
-STRING 856
-// Units: n008 (Purchase Farm Grant), Ubertip (Tooltip - Extended)
-{
-+3 Militia per Day - Spawns at the Capital|n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r
-}
-
-STRING 857
-// Units: n00L (Purchase Town Grant), Ubertip (Tooltip - Extended)
-{
-+6 Footman per Day - Spawns at the Capital|n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r
-}
-
-STRING 858
-// Units: n00M (Purchase Castle Grant), Ubertip (Tooltip - Extended)
-{
-+6 Knights per Day - Spawns at the Capital|n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r
-}
-
 STRING 859
 // Items: I001 (Treads of the Wind Walker ), Name (Name)
 {
@@ -3099,12 +3063,6 @@ STRING 877
 // Items: I00N (Crown of The Northern Knights), Description (Description)
 {
 +15 |cffffcc00All Stats|r
-}
-
-STRING 878
-// Units: h00S ([|cffffcc00Player Stash|r]), Ubertip (Tooltip - Extended)
-{
-Basic observation tower. Has no attack, but can be upgraded into a Guard Tower, a FlameTower, a Cold Tower,  or a Cannon Tower. 
 }
 
 STRING 879
@@ -3203,12 +3161,6 @@ STRING 901
 (null unit)
 }
 
-STRING 902
-// Units: n00P (Purchase Grant - Arcane Sanctum), Ubertip (Tooltip - Extended)
-{
-+3 Militia per Day - Spawns at the Capital|n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r
-}
-
 STRING 903
 // Items: I003 (Purchase Farm Grant), Tip (Tooltip - Basic)
 {
@@ -3231,12 +3183,6 @@ STRING 906
 // Units: n00Q (Purchase Grant - Barracks), EditorSuffix (Name - Editor Suffix)
 {
 (null unit)
-}
-
-STRING 907
-// Units: n00Q (Purchase Grant - Barracks), Ubertip (Tooltip - Extended)
-{
-+3 Militia per Day - Spawns at the Capital|n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r
 }
 
 STRING 908
@@ -3275,22 +3221,10 @@ STRING 916
 Purchase Lumber Mill Grant
 }
 
-STRING 917
-// Units: n00N (Purchase Lumber Mill Grant), Ubertip (Tooltip - Extended)
-{
-Grants ownership over the Lumber Mill. |N|N|cffffcc00Can only be purchased from computer players or leavers.|r
-}
-
 STRING 918
 // Items: I001 (Treads of the Wind Walker ), Tip (Tooltip - Basic)
 {
 Purchase Treads of the Wind Walker 
-}
-
-STRING 919
-// Units: n00O (Purchase Title - Duchy of the Northern Knights), Ubertip (Tooltip - Extended)
-{
-+5 Heavy Cavalry per Day - Spawns at the Capital |nAlso gives you the |cffffcc00Crown of The Northern Knights|R item (+15 All Stats) |n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r
 }
 
 STRING 920
@@ -3437,12 +3371,6 @@ STRING 954
 [|cffffcc00Recipe|r] Crown of Reanimation - Level 3
 }
 
-STRING 956
-// Units: o004 (Orcish Light Cavalry), Ubertip (Tooltip - Extended)
-{
-Great units for fighting in mass on large fields of battle. Can help combat the undead in open areas when supported by other units as well.|n|N+ |cff00ff00Large Battlefields|r    |n-  |cffff0000Choke Points|r|n|N|cffffcc00This unit moves at max move speed.|r
-}
-
 STRING 959
 // Units: h005 (Caltrops), Ubertip (Tooltip - Extended)
 {
@@ -3533,40 +3461,16 @@ STRING 975
 Elite ranged unit with critical strike that can also enlist archers herself. Also has |cffffcc00Mass Teleport|r.|n|n+ |cff00ff00Choke Points|r     |n+ |cff00ff00Open Areas|r|n|cffff00ffSupport Unit  |r |n|nProvides an aura for ranged units that increases their damage by +15. |n|N|cffffcc00Able to use items and has a minimap icon representing where it is.|r
 }
 
-STRING 976
-// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
-{
-Able to build (|cffd45e19only during day|r) and repair structures. Can also carry items.|n|nCan build a scout tower that can be upgraded into to other towers; a barricade; a supply tent which can heal units; and caltrops, which can severely hinder enemy units. |n|n|cff00ffffWorker|r
-}
-
-STRING 977
-// Units: h00Q (Farm Hand), Ubertip (Tooltip - Extended)
-{
-Able to hire laborers to work the farm and also build grain silo's to temporarily increase your food cap.|n|n|cff00ffffWorker|r
-}
-
 STRING 978
 // Units: h00L (Human Laborer), Ubertip (Tooltip - Extended)
 {
 After 4 days, the laborer will return (|cffffff001.7 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
 }
 
-STRING 979
-// Units: n002 (Ogre Champion), Ubertip (Tooltip - Extended)
-{
-Massive unit with a cleaving attack and shockwave ability.|n|n+ |cff00ff00Choke Points|r    |n+ |cff00ff00Open Areas|r 
-}
-
 STRING 980
 // Units: n004 (War Bear), Ubertip (Tooltip - Extended)
 {
 A heavy melee unit, with cleaving armor, bash and resistant skin.|n|n+ |cff00ff00Choke Points|r    |n+ |cff00ff00Open Areas|r 
-}
-
-STRING 981
-// Units: e000 (Huntress), Ubertip (Tooltip - Extended)
-{
-Agile short-ranged warrior. Can learn the Sentinel ability and the Moon Glaive attack. |n|n~ |cffffcc00Choke Points|r    |n+ |cff00ff00Open Areas|r 
 }
 
 STRING 982
@@ -3605,12 +3509,6 @@ STRING 987
 Increases food cap per day - |cffff6600+3 Food Cap|r 
 }
 
-STRING 988
-// Abilities: A000 (Supply Bonus), Ubertip (Tooltip - Normal - Extended)
-{
-Increases the supplies(|cff8080ffmana|r) that supply type units can carry.
-}
-
 STRING 989
 // Abilities: A00L (Supplies), Ubertip (Tooltip - Normal - Extended)
 {
@@ -3627,12 +3525,6 @@ STRING 993
 // Items: I00V (Amulet of the Sentinel), Tip (Tooltip - Basic)
 {
 Purchase Amulet of the Sentinel
-}
-
-STRING 995
-// Items: evtl (Talisman of Evasion), Ubertip (Tooltip - Extended)
-{
- +15% |cfaafff00Evasion|r |nDoes not stack with Evasion or Drunken Brawler.
 }
 
 STRING 998
@@ -3657,18 +3549,6 @@ STRING 1003
 // Items: I00W ([|cffffcc00Recipe|r] Amulet of the Sentinel), Tip (Tooltip - Basic)
 {
 Purchase [|cffffcc00Recipe|r] Amulet of the Sentinel
-}
-
-STRING 1006
-// Items: I00V (Amulet of the Sentinel), Ubertip (Tooltip - Extended)
-{
-Spell Block - |cffc0c0c015 sec cooldown|r |n|N+20% |cfaafff00Evasion|r |n     +5 |cffffcc00All Stats|r |n     +5 |cffccccccArmor|r|n|n|cffffcc00Evasion doesn't stack.|r
-}
-
-STRING 1008
-// Items: I00W ([|cffffcc00Recipe|r] Amulet of the Sentinel), Ubertip (Tooltip - Extended)
-{
-Requires: |cffc0c0c0Crown of Kings +5, Amulet of Spell Shield, Talisman of Evasion, Ring Of Protection +5|r  |N|NSpell Block - |cffc0c0c015 sec cooldown|r |n|N+20% |cfaafff00Evasion|r |n     +5 |cffffcc00All Stats|r |n     +5 |cffccccccArmor|r  |n|n|cffffcc00Evasion doesn't stack.|r
 }
 
 STRING 1009
@@ -3726,16 +3606,160 @@ STRING 1023
 (-6 Intelligence)
 }
 
-STRING 1024
-// Items: I00X ([|cffff0000Cursed|R] Ghoulish Mask of Midas), Ubertip (Tooltip - Extended)
+STRING 1027
+// Units: o004 (Orcish Light Cavalry), Ubertip (Tooltip - Extended)
 {
-+35% Lifesteal|n+3 |cffffcc00All Stats|R|n|cffff0000-6|r|cff8080ff Intelligence|r |n+5 |cff00ff00Agility|r |n|NGives a 25% chance to grant |cffffff0010 gold|r whenever you deal any damage. |cffff0000Consumes 35 health when you gain gold.|r
++ |cff00ff00Large Battlefields|r    |n-  |cffff0000Choke Points|r|n|N|cffffcc00This unit moves at max move speed.|r
 }
 
-STRING 1026
+STRING 1028
+// Units: e000 (Huntress), Ubertip (Tooltip - Extended)
+{
+Agile short-ranged warrior.  |n|n~ |cffffcc00Choke Points|r    |n+ |cff00ff00Open Areas|r 
+}
+
+STRING 1029
+// Units: n002 (Ogre Champion), Ubertip (Tooltip - Extended)
+{
+Massive unit with a cleaving attack and shockwave ability.|n|n+ |cff00ff00Choke Points|r    |n+ |cff00ff00Open Areas|r  |n|N|cffffcc00Durable.|r
+}
+
+STRING 1030
+// Units: h00Q (Farm Hand), Ubertip (Tooltip - Extended)
+{
+Can build Farm Laborers (|cffffff00Gold|r) and Grain Silos (|cffff8800Food|r).|n|n|cff00ffffWorker|r
+}
+
+STRING 1031
+// Abilities: A000 (Supply Bonus), Ubertip (Tooltip - Normal - Extended)
+{
+Supply units gain +50 |cff8080ffmana|r
+}
+
+STRING 1032
+// Units: hwtw (Scout Tower), Ubertip (Tooltip - Extended)
+{
+Can be upgraded into a |cffffcc00Guard Tower|r, a |cffffcc00FlameTower|R, a |cffffcc00Cold Tower|r,  or a |cffffcc00Cannon Tower|r. |n|N|cffc0c0c01800/1800 Sight Range (Day/Night)|r
+}
+
+STRING 1033
+// Items: I00V (Amulet of the Sentinel), Ubertip (Tooltip - Extended)
+{
+Spell Block - |cffc0c0c015 sec cooldown|r|nTeleport - |cffc0c0c0Hero Only|r |n|N+20% |cfaafff00Evasion|r |n     +5 |cffffcc00All Stats|r |n     +5 |cffccccccArmor|r|n|n|cffffcc00Evasion doesn't stack.|r
+}
+
+STRING 1034
+// Items: I00W ([|cffffcc00Recipe|r] Amulet of the Sentinel), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Crown of Kings +5, Amulet of Spell Shield, Talisman of Evasion, Ring Of Protection +5, Staff of Teleportation|r  |N|NSpell Block - |cffc0c0c015 sec cooldown|r |nTeleport - |cffc0c0c0Hero Only|r  |n|N+20% |cfaafff00Evasion|r |n     +5 |cffffcc00All Stats|r |n     +5 |cffccccccArmor|r  |n|n|cffffcc00Evasion doesn't stack.|r
+}
+
+STRING 1035
+// Items: I00X ([|cffff0000Cursed|R] Ghoulish Mask of Midas), Ubertip (Tooltip - Extended)
+{
++35% Lifesteal|n+3 |cffffcc00All Stats|R|n|cffff0000-6|r|cff8080ff Intelligence|r |n+5 |cff00ff00Agility|r |n|NGives a 25% chance to grant |cffffff0025 gold|r whenever you deal any damage. |cffff0000Consumes 35 health when you gain gold.|r
+}
+
+STRING 1036
 // Items: I00Y ([|cffffcc00Recipe|r] [|cffff0000Cursed|R] Ghoulish Mask of Midas), Ubertip (Tooltip - Extended)
 {
 Requires: |cffc0c0c0Hand of Midas, Mask of The Frenzied Ghoul|r|n
-+35% Lifesteal|n+3 |cffffcc00All Stats|R|n|cffff0000-6|r|cff8080ff Intelligence|r |n+5 |cff00ff00Agility|r |n|NGives a 25% chance to grant |cffffff0010 gold|r whenever you deal any damage. |cffff0000Consumes 35 health when you gain gold.|r
++35% Lifesteal|n+3 |cffffcc00All Stats|R|n|cffff0000-6|r|cff8080ff Intelligence|r |n+5 |cff00ff00Agility|r |n|NGives a 25% chance to grant |cffffff0025 gold|r whenever you deal any damage. |cffff0000Consumes 35 health when you gain gold.|r
+}
+
+STRING 1037
+// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
+{
+Can build a scout tower that can be upgraded into to other towers; a supply tent which can heal units; and caltrops, which can severely hinder enemy units. |n|n|cffffcc00Only builds during daytime.|n|r|n|cffffcc00Carries items. |n|n|cff00ffffWorker|r
+}
+
+STRING 1038
+// Items: rde4 (Ring of Protection +5), Ubertip (Tooltip - Extended)
+{
++5 |cffc0c0c0Armor|r
+}
+
+STRING 1039
+// Items: ckng (Crown of Kings +5), Ubertip (Tooltip - Extended)
+{
++5 |cffffcc00All Stats|r
+}
+
+STRING 1041
+// Items: evtl (Talisman of Evasion), Ubertip (Tooltip - Extended)
+{
+ +15% |cfaafff00Evasion|r |n|n|cffffcc00Evasion doesn't stack.|r
+}
+
+STRING 1042
+// Items: arsh (Arcanite Shield), Ubertip (Tooltip - Extended)
+{
+-70% ranged damage taken|n+5 |cffc0c0c0Armor|r|n+6|cffff0000 Strength|r
+}
+
+STRING 1043
+// Items: rat6 (Claws of Attack +5), Ubertip (Tooltip - Extended)
+{
++5 Attack Damage
+}
+
+STRING 1044
+// Abilities: Aamk (Attribute Bonus), Researchubertip (Tooltip - Learn - Extended)
+{
+Gives a permanent bonus to Agility, Intelligence, and Strength. |n|n|cffffcc00Level 1|r - Adds three points to all stats.|n|cffffcc00Level 2|r - Adds three additional points.|n|cffffcc00Level 3|r - Adds three additional points.|n|cffffcc00Level 4|r - Adds three additional points. |n|n|cffff0000Hidden from command card.|r
+}
+
+STRING 1045
+// Abilities: A012 (Caltrops - Info Ability), Ubertip (Tooltip - Normal - Extended)
+{
+Severely inhibits nearby enemy units in 200 range.|n |n|cffff0000-50%|r movespeed |n|cffff0000-20%|r attack speed |n|cffff0000-2|r armor    |n|n|cffff0000Destroyed at the start of each day.|r
+}
+
+STRING 1046
+// Units: n008 (Purchase Farm Grant), Ubertip (Tooltip - Extended)
+{
++3 Militia per Day - Spawns at the Capital|n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r|n|n|cff80ff80Pays off after 2 days.|r
+}
+
+STRING 1047
+// Units: n00L (Purchase Town Grant), Ubertip (Tooltip - Extended)
+{
++6 Footman per Day - Spawns at the Capital|n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r|n|n|cff80ff80Pays off after 2 days.|r
+}
+
+STRING 1048
+// Units: n00M (Purchase Castle Grant), Ubertip (Tooltip - Extended)
+{
++6 Knights per Day - Spawns at the Capital|n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r |n|n|cff80ff80Pays off after 2 days.|r
+}
+
+STRING 1049
+// Units: n00N (Purchase Lumber Mill Grant), Ubertip (Tooltip - Extended)
+{
+Grants ownership over the Lumber Mill. |N|N|cffffcc00Can only be purchased from computer players or leavers.|r|n|n|cff80ff80Pays off after 2 days.|r
+}
+
+STRING 1051
+// Units: n00P (Purchase Grant - Arcane Sanctum), Ubertip (Tooltip - Extended)
+{
++3 Militia per Day - Spawns at the Capital|n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r|n|n|cff80ff80Pays off after 2 days.|r
+}
+
+STRING 1052
+// Units: n00Q (Purchase Grant - Barracks), Ubertip (Tooltip - Extended)
+{
++3 Militia per Day - Spawns at the Capital|n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r|n|n|cff80ff80Pays off after 2 days.|r
+}
+
+STRING 1053
+// Units: n00O (Purchase Title - Duchy of the Northern Knights), Ubertip (Tooltip - Extended)
+{
++5 Heavy Cavalry per Day - Spawns at the Capital |nGives item: |cffffcc00Crown of The Northern Knights|R (+15 All Stats) |n |n|cffffcc00Units spawned do not consume food.  |N|NCan only be purchased from computer players or leavers.|r|n|n|cff80ff80Pays off after 2 days.|r
+}
+
+STRING 1054
+// Units: h00R (Stone of Fortification), Ubertip (Tooltip - Extended)
+{
+Grants nearby units and structures in 1200 range +6 armor.
 }
 

@@ -80,7 +80,7 @@ function handOfMidas() {
         if (damageSource && victim && !damageSource.owner.isPlayerAlly(victim.owner)) {
             const handOfMidas = GetItemOfTypeFromUnitBJ(damageSource.handle, ITEMS.handOfMidas);
             const ghoulishMaskOfMidas = GetItemOfTypeFromUnitBJ(damageSource.handle, ITEMS.ghoulishMaskOfMidas);
-            let itemProcChance = 0;
+            let itemProcChance = -1;
 
             if (ghoulishMaskOfMidas) {
                 itemProcChance = 25;
@@ -92,7 +92,7 @@ function handOfMidas() {
                 const e = Effect.createAttachment("Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl", victim, "origin");
                 const t = Timer.create();
 
-                adjustGold(damageSource.owner, 10);
+                adjustGold(damageSource.owner, ghoulishMaskOfMidas ? 25 : 10);
 
                 if (ghoulishMaskOfMidas) {
                     useTempEffect(Effect.create("Abilities\\Spells\\Undead\\RaiseSkeletonWarrior\\RaiseSkeleton.mdl", damageSource.x, damageSource.y));
@@ -307,6 +307,7 @@ const itemRecipesMap = new Map<RecipeItem, RecipeItemRequirement[]>([
             { itemTypeId: ITEMS.talismanOfEvasion_15, quantity: 1, charges: 0 }, //
             { itemTypeId: ITEMS.crownOfKings_5, quantity: 1, charges: 0 }, //
             { itemTypeId: ITEMS.ringOfProtection_5, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.staffOfTeleportation, quantity: 1, charges: 0 }, //
         ],
     ],
     [

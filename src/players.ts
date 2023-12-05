@@ -44,6 +44,23 @@ class PlayerState {
             }
         }
     }
+
+    /**
+     * If the user has toggled on rally to hero, then the units in this array will move towards the hero , if they are alive.
+     * @param units
+     */
+    sendUnitsToHero(units: Unit[]) {
+        print(this.playerHero?.name);
+        units.forEach((u) => {
+            if (u && this.rallyToHero) {
+                const widget = Widget.fromHandle(this.playerHero?.handle);
+
+                if (widget) {
+                    u.issueTargetOrder(OrderId.Move, widget);
+                }
+            }
+        });
+    }
 }
 
 export function setupPlayers() {
@@ -61,7 +78,7 @@ export function setupPlayers() {
             SetCameraPositionForPlayer(p.handle, u.x, u.y);
         }
 
-        SetPlayerHandicapXP(p.handle, 0.25);
+        SetPlayerHandicapXP(p.handle, 0.35);
     });
 }
 
@@ -102,12 +119,8 @@ function trig_playerBuysUnit() {
             return;
         }
         //send to hero
-        if (u && playerStates.get(u.owner.id)?.rallyToHero) {
-            const widget = Widget.fromHandle(playerStates.get(u.owner.id)?.playerHero?.handle);
-
-            if (widget) {
-                u.issueTargetOrder(OrderId.Move, widget);
-            }
+        if (u) {
+            playerStates.get(u.owner.id)?.sendUnitsToHero([u]);
         }
 
         // else if (seller.rallyUnit) {
@@ -132,12 +145,8 @@ function createDailyUnits() {
                         return;
                     }
 
-                    createUnits(unitData.quantity, false, p, unitData.unitType, p.startLocationX, p.startLocationY);
+                    playerStates.get(p.id)?.sendUnitsToHero(createUnits(unitData.quantity, false, p, unitData.unitType, p.startLocationX, p.startLocationY));
                 }
-            });
-
-            forEachUnitTypeOfPlayer(UNITS.farmTown, p, (u) => {
-                createUnits(4, false, p, UNITS.militia, p.startLocationX, p.startLocationY);
             });
         }
     });
@@ -175,7 +184,6 @@ function trig_heroPurchased() {
 
         createdUnit.x = -300;
         createdUnit.y = -300;
-        createdUnit?.addItemById(FourCC("ankh"));
         createdUnit?.addItemById(FourCC("stel"));
         seller?.select(false);
         createdUnit.select(true);
@@ -450,20 +458,6 @@ function trig_checkFarmLaborerPlacement() {
             print(`Laborer must be built on crop tiles. Refunding ${g} gold.`);
             u.destroy();
         }
-
-        //prevents anything but laborers to be built on crop tiles
-        // else if ([UNITS.humanLaborer, UNITS.peonLaborer].includes(u.typeId) && GetTerrainType(u.x, u.y) === TERRAIN_CODE.crops) {
-        //     const g = GetUnitGoldCost(u.typeId);
-        //     const w = GetUnitWoodCost(u.typeId);
-
-        //     print(`Only laborers can be built on crop tiles. Refunding ${g} gold and ${w} wood.`);
-
-        //     const p = u.owner;
-        //     adjustGold(p, g);
-        //     adjustLumber(p, w);
-
-        //     u.destroy();
-        // }
 
         return false;
     });

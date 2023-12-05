@@ -505,3 +505,7 @@ give players a spot to build new towns on a specific tile. only allow one town p
 maybe after the 5th round we can give the players a portion of the gold and lumber LB has.
 
 <give druids a bonus amount of gold when built on corn crops />
+
+========= give players some starter items, that can't be dropped. it will allow them to choose a kind of starting bonus. bonus hero stats; bonus economic stuff(maybe some free laborers); bonus units? Perhaps I can do this after every night?
+
+add gift of fire, which is temporary immolation buff
