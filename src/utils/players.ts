@@ -12,7 +12,7 @@ export function forEachUnitOfPlayerWithAbility(player: MapPlayer, abilityId: num
         for (let x = 0; x < 12; x++) {
             const currentAbility = u.getAbilityByIndex(x);
 
-            if (currentAbility && currentAbility === u.getAbility(abilityId)) {
+            if (currentAbility && currentAbility === u.getAbility(abilityId) && u.isAlive()) {
                 cb(u);
             }
         }
@@ -54,7 +54,7 @@ export function forEachUnitTypeOfPlayer(unitType: number | string, player: MapPl
     g?.enumUnitsOfPlayer(player, () => {
         const unit = Group.getFilterUnit();
 
-        if (unit && unit?.typeId === unitType) {
+        if (unit && unit?.typeId === unitType && unit.isAlive()) {
             cb(unit);
         }
 
@@ -76,7 +76,7 @@ export function forEachUnitOfPlayer(player: MapPlayer, cb: (unit: Unit) => void)
         if (!unit) {
             print("Enumerating over a unit that doesn't exist!");
         }
-        if (unit) {
+        if (unit && unit.isAlive()) {
             cb(unit);
         }
 

@@ -797,12 +797,6 @@ STRING 222
 [Ally] - Vindigoth Orc Tribe
 }
 
-STRING 224
-// Units: h007 (Supply Camp), Ubertip (Tooltip - Extended)
-{
-A supply structure that heals fellow units. 
-}
-
 STRING 225
 // Units: h005 (Caltrops), Hotkey (Hotkey)
 {
@@ -834,7 +828,7 @@ null tooltip
 }
 
 STRING 235
-// Upgrades: R001 (Submerge), Ubertip (Tooltip - Extended)
+// Abilities: A02C (Base - Null Target Point Ability), Ubertip (Tooltip - Normal - Extended)
 {
 null tooltip extended
 }
@@ -858,7 +852,7 @@ null tooltip
 }
 
 STRING 239
-// Upgrades: R002 (Submerge), Ubertip (Tooltip - Extended)
+// Upgrades: R001 (Submerge), Ubertip (Tooltip - Extended)
 {
 null tooltip extended
 }
@@ -876,7 +870,7 @@ null tooltip
 }
 
 STRING 242
-// Upgrades: R003 (Submerge), Ubertip (Tooltip - Extended)
+// Upgrades: R002 (Submerge), Ubertip (Tooltip - Extended)
 {
 null tooltip extended
 }
@@ -1236,7 +1230,7 @@ null tooltip
 }
 
 STRING 345
-// Upgrades: R004 (Submerge), Ubertip (Tooltip - Extended)
+// Upgrades: R003 (Submerge), Ubertip (Tooltip - Extended)
 {
 null tooltip extended
 }
@@ -1812,7 +1806,7 @@ E
 }
 
 STRING 522
-// Units: h00N (Grain Silo), Hotkey (Hotkey)
+// Units: h00R (Stone of Fortification), Hotkey (Hotkey)
 {
 G
 }
@@ -1847,12 +1841,6 @@ STRING 528
 Peon Laborer
 }
 
-STRING 529
-// Units: h00K (Peon Laborer), Hotkey (Hotkey)
-{
-P
-}
-
 STRING 530
 // Units: h00K (Peon Laborer), Tip (Tooltip - Basic)
 {
@@ -1863,12 +1851,6 @@ STRING 532
 // Units: h00L (Human Laborer), Name (Name)
 {
 Human Laborer
-}
-
-STRING 537
-// Units: h00L (Human Laborer), Hotkey (Hotkey)
-{
-H
 }
 
 STRING 540
@@ -1932,7 +1914,7 @@ Build Grain Silo
 }
 
 STRING 561
-// Units: h00R (Stone of Fortification), Hotkey (Hotkey)
+// Abilities: A015 (Place Goblin Land Mine), Hotkey (Hotkey - Normal)
 {
 G
 }
@@ -1991,12 +1973,6 @@ STRING 582
 Grain Silo - Info Ability
 }
 
-STRING 583
-// Abilities: A01G (Grain Silo), Ubertip (Tooltip - Normal - Extended)
-{
-Increases your food cap by +5. After 5 days the structure will be destroyed. |n|nThe|cff8080ff max mana|r of the structure increases every day to show how many days have passed.
-}
-
 STRING 584
 // Abilities: A01F (Peon Laborer), Tip (Tooltip - Normal)
 {
@@ -2040,7 +2016,7 @@ Druid Laborer
 }
 
 STRING 592
-// Units: h00O (Druid Laborer), Hotkey (Hotkey)
+// Abilities: A01Z (Thunderous Strikes), Researchhotkey (Hotkey - Learn)
 {
 D
 }
@@ -2075,28 +2051,10 @@ STRING 603
 Hire Acolyte Slave Laborer
 }
 
-STRING 607
-// Abilities: A01K (Acolyte Slave Laborer), Ubertip (Tooltip - Normal - Extended)
-{
-After 1 days, the laborer will earn you (|cffffff001.15 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
-}
-
 STRING 608
 // Abilities: A01K (Acolyte Slave Laborer), EditorSuffix (Editor Suffix)
 {
 (Info Only)
-}
-
-STRING 610
-// Units: h00K (Peon Laborer), Ubertip (Tooltip - Extended)
-{
-After 2 days, the peon will return (|cffffff001.3 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
-}
-
-STRING 612
-// Abilities: A01E (Human Laborer), Ubertip (Tooltip - Normal - Extended)
-{
-After 4 days, the laborer will earn you (|cffffff001.5 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
 }
 
 STRING 613
@@ -2160,7 +2118,7 @@ Train Farm Hand
 }
 
 STRING 630
-// Units: h00P (Acolyte Slave Laborer), Hotkey (Hotkey)
+// Units: h00N (Grain Silo), Hotkey (Hotkey)
 {
 A
 }
@@ -2171,22 +2129,10 @@ STRING 631
 Stone of Fortification
 }
 
-STRING 634
-// Abilities: A015 (Place Goblin Land Mine), Hotkey (Hotkey - Normal)
-{
-G
-}
-
 STRING 635
 // Units: h00R (Stone of Fortification), Tip (Tooltip - Basic)
 {
 Build Stone of Fortification
-}
-
-STRING 639
-// Abilities: A01J (Druid Laborer), Ubertip (Tooltip - Normal - Extended)
-{
-After 5 days, the laborer will earn you (|cffffff002 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
 }
 
 STRING 640
@@ -2801,12 +2747,6 @@ STRING 813
 Thunderous Strikes
 }
 
-STRING 815
-// Abilities: A01Z (Thunderous Strikes), Researchhotkey (Hotkey - Learn)
-{
-D
-}
-
 STRING 816
 // Abilities: A01Z (Thunderous Strikes), EditorSuffix (Editor Suffix)
 {
@@ -2868,7 +2808,7 @@ A
 }
 
 STRING 828
-// Units: n00L (Purchase Town Grant), Hotkey (Hotkey)
+// Units: h00O (Druid Laborer), Hotkey (Hotkey)
 {
 R
 }
@@ -2920,13 +2860,13 @@ Purchase Castle Grant
 }
 
 STRING 844
-// Units: n00M (Purchase Castle Grant), Hotkey (Hotkey)
+// Units: n00L (Purchase Town Grant), Hotkey (Hotkey)
 {
 R
 }
 
 STRING 845
-// Units: n00N (Purchase Lumber Mill Grant), Hotkey (Hotkey)
+// Units: n00M (Purchase Castle Grant), Hotkey (Hotkey)
 {
 R
 }
@@ -2944,7 +2884,7 @@ STRING 847
 }
 
 STRING 850
-// Units: n00O (Purchase Title - Duchy of the Northern Knights), Hotkey (Hotkey)
+// Units: n00N (Purchase Lumber Mill Grant), Hotkey (Hotkey)
 {
 R
 }
@@ -3030,7 +2970,7 @@ STRING 868
 }
 
 STRING 871
-// Units: n00P (Purchase Grant - Arcane Sanctum), Hotkey (Hotkey)
+// Units: n00O (Purchase Title - Duchy of the Northern Knights), Hotkey (Hotkey)
 {
 R
 }
@@ -3168,7 +3108,7 @@ Purchase Farm Grant
 }
 
 STRING 904
-// Units: n00Q (Purchase Grant - Barracks), Hotkey (Hotkey)
+// Units: n00P (Purchase Grant - Arcane Sanctum), Hotkey (Hotkey)
 {
 R
 }
@@ -3192,7 +3132,7 @@ Purchase Farm Grant
 }
 
 STRING 909
-// Abilities: A01H (Blink (Engineer)), Hotkey (Hotkey - Normal)
+// Units: n00Q (Purchase Grant - Barracks), Hotkey (Hotkey)
 {
 R
 }
@@ -3461,28 +3401,10 @@ STRING 975
 Elite ranged unit with critical strike that can also enlist archers herself. Also has |cffffcc00Mass Teleport|r.|n|n+ |cff00ff00Choke Points|r     |n+ |cff00ff00Open Areas|r|n|cffff00ffSupport Unit  |r |n|nProvides an aura for ranged units that increases their damage by +15. |n|N|cffffcc00Able to use items and has a minimap icon representing where it is.|r
 }
 
-STRING 978
-// Units: h00L (Human Laborer), Ubertip (Tooltip - Extended)
-{
-After 4 days, the laborer will return (|cffffff001.7 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
-}
-
 STRING 980
 // Units: n004 (War Bear), Ubertip (Tooltip - Extended)
 {
 A heavy melee unit, with cleaving armor, bash and resistant skin.|n|n+ |cff00ff00Choke Points|r    |n+ |cff00ff00Open Areas|r 
-}
-
-STRING 982
-// Units: h00O (Druid Laborer), Ubertip (Tooltip - Extended)
-{
-After 5 days, the laborer will return (|cffffff002.2 x its cost in gold|r). If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
-}
-
-STRING 983
-// Units: h00P (Acolyte Slave Laborer), Ubertip (Tooltip - Extended)
-{
-After 1 day, the laborer will return (|cffffff001.10 x its cost in gold|r). Quick and cheap labor with a lower return. If the unit dies it will not provide any income. |n|n|cffffcc00Must be placed on crop tiles.|r
 }
 
 STRING 984
@@ -3667,12 +3589,6 @@ Requires: |cffc0c0c0Hand of Midas, Mask of The Frenzied Ghoul|r|n
 +35% Lifesteal|n+3 |cffffcc00All Stats|R|n|cffff0000-6|r|cff8080ff Intelligence|r |n+5 |cff00ff00Agility|r |n|NGives a 25% chance to grant |cffffff0025 gold|r whenever you deal any damage. |cffff0000Consumes 35 health when you gain gold.|r
 }
 
-STRING 1037
-// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
-{
-Can build a scout tower that can be upgraded into to other towers; a supply tent which can heal units; and caltrops, which can severely hinder enemy units. |n|n|cffffcc00Only builds during daytime.|n|r|n|cffffcc00Carries items. |n|n|cff00ffffWorker|r
-}
-
 STRING 1038
 // Items: rde4 (Ring of Protection +5), Ubertip (Tooltip - Extended)
 {
@@ -3761,5 +3677,257 @@ STRING 1054
 // Units: h00R (Stone of Fortification), Ubertip (Tooltip - Extended)
 {
 Grants nearby units and structures in 1200 range +6 armor.
+}
+
+STRING 1056
+// Units: h00K (Peon Laborer), Ubertip (Tooltip - Extended)
+{
+After 2 Days - Returns (|cffffff001.3 x its cost in gold|r). |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 1057
+// Units: h00L (Human Laborer), Ubertip (Tooltip - Extended)
+{
+After 4 Days - Returns (|cffffff001.7 x its cost in gold|r). |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 1058
+// Units: h00O (Druid Laborer), Ubertip (Tooltip - Extended)
+{
+After 5 Days - Returns (|cffffff002.2 x its cost in gold|r). |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 1059
+// Units: h00P (Acolyte Slave Laborer), Ubertip (Tooltip - Extended)
+{
+After 1 Day - Returns (|cffffff001.10 x its cost in gold|r)  |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 1060
+// Abilities: A01E (Human Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 4 days, the laborer will earn you (|cffffff001.7 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 1061
+// Abilities: A01J (Druid Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 5 days, the laborer will earn you (|cffffff002.2 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 1062
+// Abilities: A01K (Acolyte Slave Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 1 days, the laborer will earn you (|cffffff001.10 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 1063
+// Units: h00K (Peon Laborer), Hotkey (Hotkey)
+{
+W
+}
+
+STRING 1064
+// Units: h00L (Human Laborer), Hotkey (Hotkey)
+{
+E
+}
+
+STRING 1065
+// Units: h00P (Acolyte Slave Laborer), Hotkey (Hotkey)
+{
+Q
+}
+
+STRING 1066
+// Abilities: A01H (Blink (Engineer)), Hotkey (Hotkey - Normal)
+{
+R
+}
+
+STRING 1067
+// Abilities: A01G (Grain Silo), Ubertip (Tooltip - Normal - Extended)
+{
++5 |cffff8800Food|r   |n|nThe|cff8080ff mana|r represents how many days have passed. |n|n|cffffcc00This structure will be destroyed in 5 days.|r
+}
+
+STRING 1068
+// Units: h007 (Supply Camp), Ubertip (Tooltip - Extended)
+{
+Heals nearby units.|n|n|cffff00ffSupport Structure|r
+}
+
+STRING 1069
+// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
+{
+Can build a |cffffcc00scout tower|r that can be upgraded into to other towers; a |cffffcc00supply tent|r which can heal units; and |cffffcc00caltrops|r, which can severely hinder enemy units. |n|n|cffffcc00Only builds during daytime.|n|r|n|cffffcc00Carries items. |n|n|cff00ffffWorker|r
+}
+
+STRING 1070
+// Units: H00T (Army Controller), Name (Name)
+{
+Army Controller
+}
+
+STRING 1071
+// Abilities: A02C (Base - Null Target Point Ability), Name (Name)
+{
+Base - Null Target Point Ability
+}
+
+STRING 1072
+// Abilities: A02C (Base - Null Target Point Ability), Tip (Tooltip - Normal)
+{
+null normal tooltip
+}
+
+STRING 1073
+// Upgrades: R004 (Submerge), Ubertip (Tooltip - Extended)
+{
+null tooltip extended
+}
+
+STRING 1077
+// Abilities: A02D (Military - Move), Tip (Tooltip - Normal)
+{
+|cffffcc00Military|r - |cff80ff80Move|r
+}
+
+STRING 1078
+// Abilities: A02D (Military - Move), Ubertip (Tooltip - Normal - Extended)
+{
+Orders all military units to |cff80ff80move|r to the selected point.
+}
+
+STRING 1080
+// Abilities: A02E (Military - Attack Move), Tip (Tooltip - Normal)
+{
+|cffffcc00Military|r -|cffff0000 Attack Move|r
+}
+
+STRING 1083
+// Abilities: A02E (Military - Attack Move), Ubertip (Tooltip - Normal - Extended)
+{
+Orders all military units to|cffff0000 attack move |rto the selected point.
+}
+
+STRING 1084
+// Abilities: A02D (Military - Move), Name (Name)
+{
+Military - Move
+}
+
+STRING 1085
+// Abilities: A02E (Military - Attack Move), Name (Name)
+{
+Military - Attack Move
+}
+
+STRING 1087
+// Abilities: A02F (Military - Move Melee), Hotkey (Hotkey - Normal)
+{
+A
+}
+
+STRING 1088
+// Abilities: A02D (Military - Move), Hotkey (Hotkey - Normal)
+{
+Q
+}
+
+STRING 1089
+// Abilities: A02E (Military - Attack Move), Hotkey (Hotkey - Normal)
+{
+W
+}
+
+STRING 1090
+// Abilities: A02F (Military - Move Melee), Name (Name)
+{
+Military - Move Melee
+}
+
+STRING 1091
+// Abilities: A02F (Military - Move Melee), Ubertip (Tooltip - Normal - Extended)
+{
+Orders all |cffffcc00melee|r military units to |cff80ff80move|r to the selected point.
+}
+
+STRING 1094
+// Abilities: A02G (Military - Move Ranged), Name (Name)
+{
+Military - Move Ranged
+}
+
+STRING 1095
+// Abilities: A02G (Military - Move Ranged), Ubertip (Tooltip - Normal - Extended)
+{
+Orders all |cffffcc00ranged|r military units to |cff80ff80move|r to the selected point.
+}
+
+STRING 1098
+// Abilities: A02H (Military - Attack Move (Melee)), Name (Name)
+{
+Military - Attack Move (Melee)
+}
+
+STRING 1099
+// Abilities: A02H (Military - Attack Move (Melee)), Ubertip (Tooltip - Normal - Extended)
+{
+Orders all |cffffcc00melee|r military units to|cffff0000 attack move |rto the selected point.
+}
+
+STRING 1100
+// Abilities: A02H (Military - Attack Move (Melee)), Tip (Tooltip - Normal)
+{
+|cffffcc00Military|r -|cffff0000 Attack Move|r (Melee)
+}
+
+STRING 1102
+// Abilities: A02I (Military - Attack Move (ranged)), Name (Name)
+{
+Military - Attack Move (ranged)
+}
+
+STRING 1103
+// Abilities: A02I (Military - Attack Move (ranged)), Ubertip (Tooltip - Normal - Extended)
+{
+Orders all |cffffcc00ranged|r military units to|cffff0000 attack move |rto the selected point.
+}
+
+STRING 1104
+// Abilities: A02I (Military - Attack Move (ranged)), Tip (Tooltip - Normal)
+{
+|cffffcc00Military|r -|cffff0000 Attack Move|r (Ranged)
+}
+
+STRING 1106
+// Abilities: A02F (Military - Move Melee), Tip (Tooltip - Normal)
+{
+|cffffcc00Military|r - |cff80ff80Move|r (Melee)
+}
+
+STRING 1107
+// Abilities: A02G (Military - Move Ranged), Tip (Tooltip - Normal)
+{
+|cffffcc00Military|r - |cff80ff80Move|r (Ranged)
+}
+
+STRING 1108
+// Abilities: A02G (Military - Move Ranged), Hotkey (Hotkey - Normal)
+{
+Z
+}
+
+STRING 1109
+// Abilities: A02H (Military - Attack Move (Melee)), Hotkey (Hotkey - Normal)
+{
+S
+}
+
+STRING 1110
+// Abilities: A02I (Military - Attack Move (ranged)), Hotkey (Hotkey - Normal)
+{
+X
 }
 

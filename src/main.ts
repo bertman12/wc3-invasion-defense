@@ -1,6 +1,7 @@
 import { Sound, Timer, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
 import { W3TS_HOOK, addScriptHook } from "w3ts/hooks";
+import { init_armyControllerTrigs } from "./abilities/armyController";
 import { init_itemAbilities } from "./abilities/items";
 import { setupUndeadUnitPreview } from "./abilities/misc";
 import { trig_wayGate } from "./abilities/waygate";
@@ -82,13 +83,15 @@ function tsMain() {
         init_startingResources();
 
         setupNightAndDayHooks();
+        init_armyControllerTrigs();
+
         //10 second timer
         init_undead();
         //For looking at minimap icons
         // Array.from(minimapIconPathsSet).forEach((path, index) => {
         //     print(index, " - ", path);
         //     CreateMinimapIcon(-20000 + index * 4000, 0, 255, 255, 255, path, FOG_OF_WAR_FOGGED);
-        // });
+        // })
     } catch (e) {
         print("An error occurred: ", e);
     }

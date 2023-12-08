@@ -509,3 +509,17 @@ maybe after the 5th round we can give the players a portion of the gold and lumb
 ========= give players some starter items, that can't be dropped. it will allow them to choose a kind of starting bonus. bonus hero stats; bonus economic stuff(maybe some free laborers); bonus units? Perhaps I can do this after every night?
 
 add gift of fire, which is temporary immolation buff
+
+==brew master can build kegs which have tranquility abiltiy, no mana regen, able to be used twice every night
+
+pitlord gets to summon a demon tower, which also spawns some demons for him to use - perhaps give them hero armor
+
+===maybe also add temporary spawns with mana shield on them
+
+add button to move all combat units or attack move. also make it so you can do it only for units in 3600 range of your hero as well.
+
+add some javelin throwers with 50% bash chance for 50 bonus damage and they have armor corruption on their attacks
+
+add upgrade, plentiful slaves - reduces food cost of acolyte slave laborers
+
+add camera control

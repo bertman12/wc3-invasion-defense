@@ -1,4 +1,4 @@
-import { Frame, Item, MapPlayer, Trigger } from "w3ts";
+import { Frame, MapPlayer } from "w3ts";
 import { playerStates } from "./players";
 /**
  * Nothing may exist outside the 4:3 aspect ration of your resolution
@@ -46,11 +46,8 @@ function playerUnitRallyCheckbox() {
                 if (buttonFrame) {
                     // Create a BACKDROP named "FaceButtonIcon", the visible image, for buttonFrame.
                     const buttonIconFrame = Frame.createType("FaceButton", gameui, 0, "BACKDROP", "");
-                    // buttonIconFrame will mimic buttonFrame in size and position
-                    // buttonIconFrame?.setAllPoints(buttonFrame);
                     // Set a Texture
                     buttonIconFrame?.setTexture("ReplaceableTextures\\CommandButtons\\BTNRallyPoint.blp", 0, false);
-                    // buttonIconFrame?.setTexture("ReplaceableTextures\\CommandButtons\\BTNSelectHeroOn", 0, false);
                     // Place the buttonFrame to the center of the screen
                     const f = Frame.fromHandle(frame);
 
@@ -163,3 +160,35 @@ function showCurrentNight() {
 // FRAMEPOINT_BOTTOMLEFT
 // FRAMEPOINT_BOTTOM
 // FRAMEPOINT_BOTTOMRIGHT
+
+/**
+ * // Reposition the Move command button
+            set handle = BlzGetFrameByName("CommandButton_0", 0) 
+            call BlzFrameSetAbsPoint(handle, FRAMEPOINT_TOPLEFT, command0X1[id], command0Y1[id]) 
+            call BlzFrameSetAbsPoint(handle, FRAMEPOINT_BOTTOMRIGHT, command0X2[id], command0Y2[id]) 
+            call BlzFrameSetScale(handle, s)
+
+            // Reposition the Stop command button
+            set handle = BlzGetFrameByName("CommandButton_1", 0) 
+            call BlzFrameSetAbsPoint(handle, FRAMEPOINT_TOPLEFT, command1X1[id], command1Y1[id]) 
+            call BlzFrameSetAbsPoint(handle, FRAMEPOINT_BOTTOMRIGHT, command1X2[id], command1Y2[id])
+            call BlzFrameSetScale(handle, s)
+            
+            // Reposition the Hold command button
+            set handle = BlzGetFrameByName("CommandButton_2", 0) 
+            call BlzFrameSetAbsPoint(handle, FRAMEPOINT_TOPLEFT, command2X1[id], command2Y1[id]) 
+            call BlzFrameSetAbsPoint(handle, FRAMEPOINT_BOTTOMRIGHT, command2X2[id], command2Y2[id]) 
+            call BlzFrameSetScale(handle, s)
+    
+            // Reposition the Attack command button
+            set handle = BlzGetFrameByName("CommandButton_3", 0) 
+            call BlzFrameSetAbsPoint(handle, FRAMEPOINT_TOPLEFT, command3X1[id], command3Y1[id]) 
+            call BlzFrameSetAbsPoint(handle, FRAMEPOINT_BOTTOMRIGHT, command3X2[id], command3Y2[id])
+            call BlzFrameSetScale(handle, s)
+
+            // Reposition the Patrol command button
+            set handle = BlzGetFrameByName("CommandButton_4", 0) 
+            call BlzFrameSetAbsPoint(handle, FRAMEPOINT_TOPLEFT, command4X1[id], command4Y1[id]) 
+            call BlzFrameSetAbsPoint(handle, FRAMEPOINT_BOTTOMRIGHT, command4X2[id], command4Y2[id]) 
+            call BlzFrameSetScale(handle, s)
+ */

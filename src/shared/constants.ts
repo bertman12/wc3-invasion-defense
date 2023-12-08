@@ -41,3 +41,43 @@ export const ownershipGrantingUnits = new Map<number, number>([
     [UNITS.lumberMill, UNITS.lumberMillGrant],
     [UNITS.citadelOfTheNorthernKnights, UNITS.title_duchyOfTheNorthernKnights],
 ]);
+
+/**
+ * Structures whose effects are granted for a specific duration of days
+ *
+ * Some will grant gold until they have fully progressed, while other will provide food until they have fully progressed
+ */
+export const dailyProgressStructures: DailyProgressUnitConfig[] = [
+    {
+        unitTypeCode: UNITS.peonLaborer,
+        goldCostMultiplierAward: 1.3,
+        maxDuration: 2,
+    },
+    {
+        unitTypeCode: UNITS.humanLaborer,
+        goldCostMultiplierAward: 1.7,
+        maxDuration: 4,
+    },
+    {
+        unitTypeCode: UNITS.druidLaborer,
+        goldCostMultiplierAward: 2.2,
+        maxDuration: 5,
+    },
+    {
+        unitTypeCode: UNITS.acolyteSlaveLaborer,
+        goldCostMultiplierAward: 1.1,
+        maxDuration: 1,
+    },
+    {
+        unitTypeCode: UNITS.grainSilo,
+        goldCostMultiplierAward: 0,
+        maxDuration: 5,
+        //onCompletion ... do something maybe different for different structures
+    },
+];
+
+interface DailyProgressUnitConfig {
+    unitTypeCode: number;
+    goldCostMultiplierAward: number;
+    maxDuration: number;
+}

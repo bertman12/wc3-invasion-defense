@@ -1,7 +1,7 @@
 import { forEachUnitOfPlayer } from "src/utils/players";
 import { Effect, MapPlayer, Sound, Timer, Trigger, Unit, Widget } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
-import { buildingOwnerDailyUnitBonusMap, buildingOwnerIncomeBonusMap, economicConstants } from "./shared/constants";
+import { buildingOwnerDailyUnitBonusMap, buildingOwnerIncomeBonusMap, dailyProgressStructures, economicConstants } from "./shared/constants";
 import { ABILITIES, PlayerIndices, TERRAIN_CODE, UNITS, UpgradeCodes, laborerUnitSet } from "./shared/enums";
 import { RoundManager } from "./shared/round-manager";
 import { notifyPlayer, tColor } from "./utils/misc";
@@ -18,9 +18,9 @@ class PlayerState {
     maxSupplyHorses: number = 3;
     playerHero: Unit | undefined;
     rallyToHero: boolean = false;
-    foodCapIncrease: number = 0;
+    temporaryFoodCapIncrease: number = 0;
     /**
-     * grain silos will permanently increase your food
+     * grain silos will permanently increase your food after they are destroyed
      */
     permanentFoodCapIncrease: number = 0;
 
@@ -50,7 +50,6 @@ class PlayerState {
      * @param units
      */
     sendUnitsToHero(units: Unit[]) {
-        print(this.playerHero?.name);
         units.forEach((u) => {
             if (u && this.rallyToHero) {
                 const widget = Widget.fromHandle(this.playerHero?.handle);
@@ -245,6 +244,12 @@ function grantStartOfDayBonuses() {
 
     createDailyUnits();
     forEachAlliedPlayer((p) => {
+        const playerState = playerStates.get(p.id);
+        //set the food cap increase to 0
+        if (playerState) {
+            playerState.temporaryFoodCapIncrease = 0;
+        }
+
         forEachUnitOfPlayerWithAbility(p, ABILITIES.supplies, (u) => {
             totalSupplyBuildings++;
         });
@@ -266,12 +271,17 @@ function grantStartOfDayBonuses() {
             const playerState = playerStates.get(p.id);
 
             if (playerState) {
-                playerState.foodCapIncrease++;
+                // print("BEFORE increasing food cap", playerStates.get(p.id)?.temporaryFoodCapIncrease);
+                playerState.temporaryFoodCapIncrease = playerState.temporaryFoodCapIncrease + economicConstants.grainSiloFoodBonus;
+                // print("AFTER increasing food cap", playerStates.get(p.id)?.temporaryFoodCapIncrease);
             }
         });
     });
 
-    const calculatedFoodCap = basePlayerFoodCap + foodRoundBonus + economicConstants.granaryFoodCapIncrease * foodReserveStructures;
+    //should be adding the food cap gained from the capital, the food gained from teh granaries, and the food cap increase from the grain silos players have built
+    const sharedFoodCapIncrease = basePlayerFoodCap + foodRoundBonus + economicConstants.granaryFoodCapIncrease * foodReserveStructures;
+    //the food cap bonus from grain silos should only be added for that owning player
+    // print("Food gained from shared resources: ", sharedFoodCapIncrease);
 
     forEachAlliedPlayer((p) => {
         //Reset to 0
@@ -291,8 +301,9 @@ function grantStartOfDayBonuses() {
         const playerState = playerStates.get(p.id);
 
         if (playerState) {
-            // print("Personal food cap for  ", p.name, " : ", playerState.foodCapIncrease);
-            adjustFoodCap(p, playerState.foodCapIncrease + calculatedFoodCap);
+            //The destruction of grain silos should happen before food calculations
+            adjustFoodCap(p, playerState.temporaryFoodCapIncrease + sharedFoodCapIncrease);
+            // print(`Food gained from personal grain silos for player ${p.name}: `, playerState.temporaryFoodCapIncrease);
         }
 
         p.setTechResearched(UpgradeCodes.dayTime, 1);
@@ -404,6 +415,13 @@ function playerLeaves() {
             const leaverLumber = leaver.getState(PLAYER_STATE_RESOURCE_LUMBER);
 
             let playerCount = 0;
+            const unitsToRemove = [UNITS.caltrops, UNITS.humanLaborer, UNITS.peonLaborer, UNITS.druidLaborer, UNITS.grainSilo, UNITS.acolyteSlaveLaborer];
+
+            forEachUnitOfPlayer(leaver, (u) => {
+                if (unitsToRemove.includes(u.typeId)) {
+                    u.destroy();
+                }
+            });
 
             forEachAlliedPlayer((p) => {
                 playerCount++;
@@ -463,45 +481,14 @@ function trig_checkFarmLaborerPlacement() {
     });
 }
 
-const laborerTypes = [
-    {
-        unitTypeCode: UNITS.peonLaborer,
-        goldCostMultiplierAward: 1.3,
-        maxManaRequirement: 2,
-    },
-    {
-        unitTypeCode: UNITS.humanLaborer,
-        goldCostMultiplierAward: 1.7,
-        maxManaRequirement: 4,
-    },
-    {
-        unitTypeCode: UNITS.druidLaborer,
-        goldCostMultiplierAward: 2.2,
-        maxManaRequirement: 5,
-    },
-    {
-        unitTypeCode: UNITS.acolyteSlaveLaborer,
-        goldCostMultiplierAward: 1.1,
-        maxManaRequirement: 1,
-    },
-    {
-        unitTypeCode: UNITS.grainSilo,
-        goldCostMultiplierAward: 0,
-        maxManaRequirement: 5,
-        //onCompletion ... do something maybe different for different structures
-    },
-];
-
-export function addProgressForLaborers() {
+export function updateDayProgressForDependents() {
     // GetPlayerTypedUnitCount(p.handle, `custom_h00N`, false, true);
     forEachAlliedPlayer((p) => {
-        laborerTypes.forEach((config) => {
+        dailyProgressStructures.forEach((config) => {
             forEachUnitTypeOfPlayer(config.unitTypeCode, p, (u) => {
-                u.maxMana++;
+                u.mana++;
 
-                // u.setVertexColor(0, 255, 0, 255);
-
-                if (u.maxMana === config.maxManaRequirement) {
+                if (u.mana === config.maxDuration && u.isAlive()) {
                     const e = Effect.createAttachment("Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl", u, "origin");
                     const t = Timer.create();
 

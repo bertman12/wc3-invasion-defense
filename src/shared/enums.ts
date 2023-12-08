@@ -27,6 +27,16 @@ export enum ABILITIES {
 
     //Items
     forceBoots = FourCC("A00V"),
+
+    //Army Controller
+    command_moveAllMilitary = FourCC("A02D"),
+    command_attackMoveAllMilitary = FourCC("A02E"),
+    command_meleeMoveAllMilitary = FourCC("A02F"),
+    command_meleeAttackMoveAllMilitary = FourCC("A02H"),
+    command_rangedMoveAllMilitary = FourCC("A02G"),
+    command_rangedAttackMoveAllMilitary = FourCC("A02I"),
+
+    // ,A02F, A02H, A02I
 }
 
 export enum UpgradeCodes {
@@ -80,6 +90,7 @@ export enum UNITS {
     archerGeneral = FourCC("n00H"),
     goblinLandMine = FourCC("n00F"),
     heavyCavalry = FourCC("h00I"),
+    supplyHorse = FourCC("h001"),
 
     //Undead
     abomination = FourCC("uabo"),
