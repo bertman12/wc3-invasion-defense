@@ -30,11 +30,11 @@ export enum ABILITIES {
 
     //Army Controller
     command_moveAllMilitary = FourCC("A02D"),
-    command_attackMoveAllMilitary = FourCC("A02E"),
+    command_attackMoveAllMilitary = FourCC("A02J"),
     command_meleeMoveAllMilitary = FourCC("A02F"),
-    command_meleeAttackMoveAllMilitary = FourCC("A02H"),
-    command_rangedMoveAllMilitary = FourCC("A02G"),
-    command_rangedAttackMoveAllMilitary = FourCC("A02I"),
+    command_meleeAttackMoveAllMilitary = FourCC("A02E"),
+    command_rangedMoveAllMilitary = FourCC("A02H"),
+    command_rangedAttackMoveAllMilitary = FourCC("A02G"),
 
     // ,A02F, A02H, A02I
 }

@@ -23,8 +23,6 @@ function militaryCommands() {
 
     t.addAction(() => {
         const spellId = GetSpellAbilityId();
-        print("Spell was cast: ", spellId);
-
         const p = MapPlayer.fromEvent();
 
         if (abilityOrderMap.has(spellId) && p) {
@@ -34,19 +32,16 @@ function militaryCommands() {
             const meleeOnly = [ABILITIES.command_meleeMoveAllMilitary, ABILITIES.command_meleeAttackMoveAllMilitary].includes(spellId);
             const rangedOnly = [ABILITIES.command_rangedMoveAllMilitary, ABILITIES.command_rangedAttackMoveAllMilitary].includes(spellId);
 
-            print("melee only? ", meleeOnly);
-            print("ranged only? ", rangedOnly);
-
             forEachUnitOfPlayer(p, (u) => {
                 const attackRange = BlzGetUnitWeaponRealField(u.handle, UNIT_WEAPON_RF_ATTACK_RANGE, 0);
-                print("attack range: ", attackRange, " for unit ", u.name);
 
                 if (u.isAlive() && !workerUnits.includes(u.typeId)) {
                     if (rangedOnly && attackRange >= 220) {
                         u.issueOrderAt(abilityOrderMap.get(spellId) as number, x, y);
+                        return;
                     } else if (meleeOnly && attackRange < 220) {
                         u.issueOrderAt(abilityOrderMap.get(spellId) as number, x, y);
-                    } else {
+                    } else if (!meleeOnly && !rangedOnly) {
                         u.issueOrderAt(abilityOrderMap.get(spellId) as number, x, y);
                     }
                 }

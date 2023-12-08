@@ -3793,20 +3793,14 @@ STRING 1077
 |cffffcc00Military|r - |cff80ff80Move|r
 }
 
-STRING 1078
-// Abilities: A02D (Military - Move), Ubertip (Tooltip - Normal - Extended)
-{
-Orders all military units to |cff80ff80move|r to the selected point.
-}
-
 STRING 1080
-// Abilities: A02E (Military - Attack Move), Tip (Tooltip - Normal)
+// Abilities: A02J (Military - Attack Move), Tip (Tooltip - Normal)
 {
 |cffffcc00Military|r -|cffff0000 Attack Move|r
 }
 
 STRING 1083
-// Abilities: A02E (Military - Attack Move), Ubertip (Tooltip - Normal - Extended)
+// Abilities: A02J (Military - Attack Move), Ubertip (Tooltip - Normal - Extended)
 {
 Orders all military units to|cffff0000 attack move |rto the selected point.
 }
@@ -3818,7 +3812,7 @@ Military - Move
 }
 
 STRING 1085
-// Abilities: A02E (Military - Attack Move), Name (Name)
+// Abilities: A02J (Military - Attack Move), Name (Name)
 {
 Military - Attack Move
 }
@@ -3835,12 +3829,6 @@ STRING 1088
 Q
 }
 
-STRING 1089
-// Abilities: A02E (Military - Attack Move), Hotkey (Hotkey - Normal)
-{
-W
-}
-
 STRING 1090
 // Abilities: A02F (Military - Move Melee), Name (Name)
 {
@@ -3854,49 +3842,49 @@ Orders all |cffffcc00melee|r military units to |cff80ff80move|r to the selected 
 }
 
 STRING 1094
-// Abilities: A02G (Military - Move Ranged), Name (Name)
+// Abilities: A02H (Military - Move Ranged), Name (Name)
 {
 Military - Move Ranged
 }
 
 STRING 1095
-// Abilities: A02G (Military - Move Ranged), Ubertip (Tooltip - Normal - Extended)
+// Abilities: A02H (Military - Move Ranged), Ubertip (Tooltip - Normal - Extended)
 {
 Orders all |cffffcc00ranged|r military units to |cff80ff80move|r to the selected point.
 }
 
 STRING 1098
-// Abilities: A02H (Military - Attack Move (Melee)), Name (Name)
+// Abilities: A02E (Military - Attack Move (Melee)), Name (Name)
 {
 Military - Attack Move (Melee)
 }
 
 STRING 1099
-// Abilities: A02H (Military - Attack Move (Melee)), Ubertip (Tooltip - Normal - Extended)
+// Abilities: A02E (Military - Attack Move (Melee)), Ubertip (Tooltip - Normal - Extended)
 {
 Orders all |cffffcc00melee|r military units to|cffff0000 attack move |rto the selected point.
 }
 
 STRING 1100
-// Abilities: A02H (Military - Attack Move (Melee)), Tip (Tooltip - Normal)
+// Abilities: A02E (Military - Attack Move (Melee)), Tip (Tooltip - Normal)
 {
 |cffffcc00Military|r -|cffff0000 Attack Move|r (Melee)
 }
 
 STRING 1102
-// Abilities: A02I (Military - Attack Move (ranged)), Name (Name)
+// Abilities: A02G (Military - Attack Move (ranged)), Name (Name)
 {
 Military - Attack Move (ranged)
 }
 
 STRING 1103
-// Abilities: A02I (Military - Attack Move (ranged)), Ubertip (Tooltip - Normal - Extended)
+// Abilities: A02G (Military - Attack Move (ranged)), Ubertip (Tooltip - Normal - Extended)
 {
 Orders all |cffffcc00ranged|r military units to|cffff0000 attack move |rto the selected point.
 }
 
 STRING 1104
-// Abilities: A02I (Military - Attack Move (ranged)), Tip (Tooltip - Normal)
+// Abilities: A02G (Military - Attack Move (ranged)), Tip (Tooltip - Normal)
 {
 |cffffcc00Military|r -|cffff0000 Attack Move|r (Ranged)
 }
@@ -3908,26 +3896,68 @@ STRING 1106
 }
 
 STRING 1107
-// Abilities: A02G (Military - Move Ranged), Tip (Tooltip - Normal)
+// Abilities: A02H (Military - Move Ranged), Tip (Tooltip - Normal)
 {
 |cffffcc00Military|r - |cff80ff80Move|r (Ranged)
 }
 
 STRING 1108
-// Abilities: A02G (Military - Move Ranged), Hotkey (Hotkey - Normal)
+// Abilities: A02H (Military - Move Ranged), Hotkey (Hotkey - Normal)
 {
 Z
 }
 
 STRING 1109
-// Abilities: A02H (Military - Attack Move (Melee)), Hotkey (Hotkey - Normal)
+// Abilities: A02E (Military - Attack Move (Melee)), Hotkey (Hotkey - Normal)
 {
 S
 }
 
 STRING 1110
-// Abilities: A02I (Military - Attack Move (ranged)), Hotkey (Hotkey - Normal)
+// Abilities: A02G (Military - Attack Move (ranged)), Hotkey (Hotkey - Normal)
 {
 X
+}
+
+STRING 1112
+// Abilities: A02D (Military - Move), Ubertip (Tooltip - Normal - Extended)
+{
+Orders |cffffcc00all|R military units to |cff80ff80move|r to the selected point.
+}
+
+STRING 1113
+// Abilities: A02C (Base - Null Target Point Ability), EditorSuffix (Editor Suffix)
+{
+(flare)
+}
+
+STRING 1119
+// Abilities: A02J (Military - Attack Move), EditorSuffix (Editor Suffix)
+{
+(healing ward)
+}
+
+STRING 1120
+// Abilities: A02F (Military - Move Melee), EditorSuffix (Editor Suffix)
+{
+(serpent ward)
+}
+
+STRING 1125
+// Abilities: A02E (Military - Attack Move (Melee)), EditorSuffix (Editor Suffix)
+{
+(shockwave)
+}
+
+STRING 1126
+// Abilities: A02H (Military - Move Ranged), EditorSuffix (Editor Suffix)
+{
+(far sight)
+}
+
+STRING 1130
+// Abilities: A02G (Military - Attack Move (ranged)), EditorSuffix (Editor Suffix)
+{
+(carrion swarm)
 }
 
