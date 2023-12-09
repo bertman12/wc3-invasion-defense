@@ -4015,3 +4015,21 @@ STRING 1151
 Heavily armored vehicle with |cffffcc00Mana Imbued Powder|r.     |n|n+ |cff00ff00Choke Points|r    |n+ |cff00ff00Open Areas|r    |n|n|cffffcc00Attacks deal 15% damage in 125 area.|r
 }
 
+STRING 1152
+// Units: h00V (Dummy Caster), Name (Name)
+{
+Dummy Caster
+}
+
+STRING 1153
+// Abilities: A02K (Greater Chain Lightning), Name (Name)
+{
+Greater Chain Lightning
+}
+
+STRING 1154
+// Abilities: A02K (Greater Chain Lightning), EditorSuffix (Editor Suffix)
+{
+ (dummy caster)
+}
+

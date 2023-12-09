@@ -1,15 +1,18 @@
 import { ABILITIES, ITEMS, UNITS } from "src/shared/enums";
 import { applyForce } from "src/shared/physics";
 import { allCapturableStructures } from "src/towns";
-import { unitGetsNearThisUnit } from "src/utils/abilities";
+import { onUnitAttacked, unitGetsNearThisUnit, useTempDummyUnit } from "src/utils/abilities";
+import { unitHasItem } from "src/utils/item";
 import { getRelativeAngleToUnit, notifyPlayer, useTempEffect } from "src/utils/misc";
 import { adjustGold } from "src/utils/players";
 import { Effect, Item, Timer, Trigger, Unit } from "w3ts";
+import { OrderId } from "w3ts/globals";
 
 export function init_itemAbilities() {
     trig_forceBoots();
     handOfMidas();
     itemRecipes();
+    chainLightningProcItem();
 }
 
 function trig_forceBoots() {
@@ -99,6 +102,12 @@ function handOfMidas() {
                     damageSource.life -= 35;
                 }
 
+                //create dummy unit and cast chain lightning no the target
+                // chainlightning  - order
+                // const sheep = Unit.create(damageSource.owner, UNITS.dummyCaster, damageSource.x, damageSource.y, damageSource.facing);
+                // sheep?.issueTargetOrder(OrderId.Chainlightning, victim);
+                // print("Chain lightning!");
+
                 t.start(1.5, false, () => {
                     e?.destroy();
                     t.destroy();
@@ -108,6 +117,25 @@ function handOfMidas() {
 
         return false;
     });
+}
+
+function chainLightningProcItem() {
+    onUnitAttacked(
+        (attacker, victim) => {
+            if (unitHasItem(attacker, ITEMS.ghoulishMaskOfMidas)) {
+                useTempDummyUnit(
+                    (dummy) => {
+                        dummy.issueTargetOrder(OrderId.Chainlightning, victim);
+                        print("chain lightning!");
+                    },
+                    ABILITIES.proc_greaterChainLightning,
+                    3,
+                    attacker,
+                );
+            }
+        },
+        { attackerCooldown: true, procChance: 50 },
+    );
 }
 
 // Player should pick up recipes when needed. if they are missing items then the recipe cost is refunded

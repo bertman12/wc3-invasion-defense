@@ -28,6 +28,7 @@ export enum ABILITIES {
 
     //Items
     forceBoots = FourCC("A00V"),
+    proc_greaterChainLightning = FourCC("A02K"),
 
     //Army Controller
     command_moveAllMilitary = FourCC("A02D"),
@@ -36,8 +37,6 @@ export enum ABILITIES {
     command_meleeAttackMoveAllMilitary = FourCC("A02E"),
     command_rangedMoveAllMilitary = FourCC("A02H"),
     command_rangedAttackMoveAllMilitary = FourCC("A02G"),
-
-    // ,A02F, A02H, A02I
 }
 
 export enum UpgradeCodes {
@@ -58,6 +57,7 @@ export enum PlayerIndices {
 
 export enum UNITS {
     armyController = FourCC("H00T"),
+    dummyCaster = FourCC("h00V"),
 
     //Human Buildings
     farmTown = FourCC("h002"),

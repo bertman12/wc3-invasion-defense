@@ -7,6 +7,8 @@ gg_rct_waygateNorth = nil
 gg_rct_zNorthWestspawn2 = nil
 gg_rct_undead_unit_showcase = nil
 gg_rct_zEastCapitalSpawn = nil
+gg_rct_southZombieSpawn = nil
+gg_rct_southSpawn2 = nil
 gg_snd_QuestNew = nil
 gg_snd_QuestCompleted = nil
 gg_snd_QuestFailed = nil
@@ -23,8 +25,6 @@ gg_snd_SargerasLaugh = nil
 gg_snd_U08Archimonde19 = nil
 gg_snd_HeroicVictory = ""
 gg_snd_BloodElfTheme = ""
-gg_rct_southZombieSpawn = nil
-gg_rct_southSpawn2 = nil
 function InitGlobals()
 end
 
@@ -78,6 +78,21 @@ function CreateAllItems()
 local itemID
 
 BlzCreateItemWithSkin(FourCC("I000"), -12448.3, 13480.1, FourCC("I000"))
+end
+
+function CreateUnitsForPlayer0()
+local p = Player(0)
+local u
+local unitID
+local t
+local life
+
+u = BlzCreateUnitWithSkin(p, FourCC("Nfir"), -1531.6, -16217.6, 301.690, FourCC("Nfir"))
+SetHeroLevel(u, 18, false)
+SetHeroStr(u, 800, true)
+SetHeroAgi(u, 100, true)
+SetHeroInt(u, 60, true)
+UnitAddItemToSlotById(u, FourCC("I00X"), 0)
 end
 
 function CreateBuildingsForPlayer9()
@@ -443,6 +458,35 @@ u = BlzCreateUnitWithSkin(p, FourCC("h00D"), 16574.8, -27962.8, 270.000, FourCC(
 u = BlzCreateUnitWithSkin(p, FourCC("h00D"), 6079.5, 17341.4, 270.000, FourCC("h00D"))
 end
 
+function CreateNeutralHostile()
+local p = Player(PLAYER_NEUTRAL_AGGRESSIVE)
+local u
+local unitID
+local t
+local life
+
+u = BlzCreateUnitWithSkin(p, FourCC("Nman"), 275.4, -16081.1, 180.291, FourCC("Nman"))
+u = BlzCreateUnitWithSkin(p, FourCC("Nman"), 189.3, -15845.5, 183.323, FourCC("Nman"))
+u = BlzCreateUnitWithSkin(p, FourCC("Nman"), 216.5, -15717.9, 39.651, FourCC("Nman"))
+u = BlzCreateUnitWithSkin(p, FourCC("Nman"), 217.7, -15591.1, 70.930, FourCC("Nman"))
+u = BlzCreateUnitWithSkin(p, FourCC("Nman"), 189.5, -15441.4, 5.361, FourCC("Nman"))
+u = BlzCreateUnitWithSkin(p, FourCC("Nman"), 157.1, -15304.0, 98.122, FourCC("Nman"))
+u = BlzCreateUnitWithSkin(p, FourCC("Nman"), 111.2, -15175.6, 169.019, FourCC("Nman"))
+u = BlzCreateUnitWithSkin(p, FourCC("Nman"), 18.1, -15018.5, 44.397, FourCC("Nman"))
+u = BlzCreateUnitWithSkin(p, FourCC("Nman"), -56.0, -14909.9, 44.408, FourCC("Nman"))
+u = BlzCreateUnitWithSkin(p, FourCC("Nman"), -210.8, -14803.7, 82.037, FourCC("Nman"))
+u = BlzCreateUnitWithSkin(p, FourCC("Nman"), -2636.5, -15116.7, 314.834, FourCC("Nman"))
+u = BlzCreateUnitWithSkin(p, FourCC("Nman"), -2607.0, -14936.2, 84.443, FourCC("Nman"))
+u = BlzCreateUnitWithSkin(p, FourCC("Nman"), -2541.7, -14857.1, 42.958, FourCC("Nman"))
+u = BlzCreateUnitWithSkin(p, FourCC("Nman"), -2465.7, -14794.8, 49.770, FourCC("Nman"))
+u = BlzCreateUnitWithSkin(p, FourCC("Nman"), -2383.2, -14727.3, 202.913, FourCC("Nman"))
+u = BlzCreateUnitWithSkin(p, FourCC("Nman"), -2291.1, -14654.5, 320.866, FourCC("Nman"))
+u = BlzCreateUnitWithSkin(p, FourCC("Nman"), -2121.8, -14590.0, 227.270, FourCC("Nman"))
+u = BlzCreateUnitWithSkin(p, FourCC("Nman"), -2013.1, -14562.1, 351.804, FourCC("Nman"))
+u = BlzCreateUnitWithSkin(p, FourCC("Nman"), -1887.0, -14538.8, 245.255, FourCC("Nman"))
+u = BlzCreateUnitWithSkin(p, FourCC("Nman"), -1787.6, -14529.5, 23.314, FourCC("Nman"))
+end
+
 function CreateNeutralPassiveBuildings()
 local p = Player(PLAYER_NEUTRAL_PASSIVE)
 local u
@@ -484,6 +528,7 @@ CreateBuildingsForPlayer9()
 end
 
 function CreatePlayerUnits()
+CreateUnitsForPlayer0()
 CreateUnitsForPlayer9()
 end
 
@@ -491,6 +536,7 @@ function CreateAllUnits()
 CreateNeutralHostileBuildings()
 CreateNeutralPassiveBuildings()
 CreatePlayerBuildings()
+CreateNeutralHostile()
 CreateNeutralPassive()
 CreatePlayerUnits()
 end
