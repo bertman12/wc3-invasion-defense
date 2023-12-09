@@ -102,12 +102,6 @@ function handOfMidas() {
                     damageSource.life -= 35;
                 }
 
-                //create dummy unit and cast chain lightning no the target
-                // chainlightning  - order
-                // const sheep = Unit.create(damageSource.owner, UNITS.dummyCaster, damageSource.x, damageSource.y, damageSource.facing);
-                // sheep?.issueTargetOrder(OrderId.Chainlightning, victim);
-                // print("Chain lightning!");
-
                 t.start(1.5, false, () => {
                     e?.destroy();
                     t.destroy();
@@ -122,11 +116,10 @@ function handOfMidas() {
 function chainLightningProcItem() {
     onUnitAttacked(
         (attacker, victim) => {
-            if (unitHasItem(attacker, ITEMS.ghoulishMaskOfMidas)) {
+            if (unitHasItem(attacker, ITEMS.alaricsSpearOfThunder)) {
                 useTempDummyUnit(
                     (dummy) => {
                         dummy.issueTargetOrder(OrderId.Chainlightning, victim);
-                        print("chain lightning!");
                     },
                     ABILITIES.proc_greaterChainLightning,
                     3,
@@ -343,6 +336,14 @@ const itemRecipesMap = new Map<RecipeItem, RecipeItemRequirement[]>([
         [
             { itemTypeId: ITEMS.handOfMidas, quantity: 1, charges: 0 }, //
             { itemTypeId: ITEMS.maskOfTheFrenziedGhoul, quantity: 1, charges: 0 }, //
+        ],
+    ],
+    [
+        { recipeId: ITEMS.recipe_alaricsSpearOfThunder, itemId: ITEMS.alaricsSpearOfThunder },
+        [
+            { itemTypeId: ITEMS.assassinsRing, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.clawsOfAttack_20, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.thunderLizardDiamond, quantity: 1, charges: 0 }, //
         ],
     ],
 ]);

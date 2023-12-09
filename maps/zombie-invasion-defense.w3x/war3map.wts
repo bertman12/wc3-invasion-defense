@@ -1,11 +1,11 @@
 ﻿STRING 1
 {
-Undead Siege Defense alpha test 14
+Undead Siege Defense v0.14
 }
 
 STRING 2
 {
-Any
+6-10
 }
 
 STRING 3
@@ -26,11 +26,6 @@ JediMindTrix/NihilismIsDeath
 STRING 5
 {
 Player 1
-}
-
-STRING 7
-{
-alpha testing #14
 }
 
 STRING 9
@@ -442,7 +437,7 @@ Stone Walls - Free Form Doodad
 
 STRING 141
 {
-Undead Siege Defense
+Undead Siege Defense v0.14
 }
 
 STRING 142
@@ -2487,24 +2482,10 @@ STRING 748
 Requires: |cffc0c0c0Boots of Speed, Blink Dagger|r  |n|nIncreases the movement speed of the Hero when worn and allows the hero to blink.|n|n+60 Movespeed
 }
 
-STRING 749
-// Items: I00H ([|cffffcc00Recipe|r] Staff of Primal Thunder), Ubertip (Tooltip - Extended)
-{
-Requires: |cffc0c0c0(2) Thunderlizard Diamond, (2) Staff of Knowledge|r|N|n+10 |cff8080ffIntelligence|r |n|n|cffffcc00Greater Chain Lightning|R - Deals an initial 300 damage and bounces to nearby enemies. |n
-200 |cff8080ffmana cost|r
-|cffc0c0c09 second cooldown|r
-}
-
 STRING 750
 // Items: I00D (Blade of the Wind Walker), Ubertip (Tooltip - Extended)
 {
 +25% Critical Strike Chance (2x damage)|n+20 Attack Damage|n+30 Move Speed  |N|N|cffffcc00Wind Walk|r - Go invisible for 10 seconds. Adds 200 bonus damage to your next attack. 
-}
-
-STRING 752
-// Items: I00G (Staff of Primal Thunder), Ubertip (Tooltip - Extended)
-{
-+10 |cff8080ffIntelligence|r |n|n|cffffcc00Greater Chain Lightning|r - Deals an initial 300 damage and bounces to nearby enemies.
 }
 
 STRING 753
@@ -2613,12 +2594,6 @@ STRING 781
 // Items: I00L (Claws of Attack +10), Description (Description)
 {
 Boosts attack damage by 10
-}
-
-STRING 782
-// Items: I00E ([|cffffcc00Recipe|r] Blade of The Wind Walker), Ubertip (Tooltip - Extended)
-{
-Requires: |cffc0c0c0Treads of the Wind Walker, Savage Blade, Claws of Attack +10|r     |n|n+25% Critical Strike Chance (2x damage)|n+20 Attack Damage  |N|N|cffffcc00Wind Walk|r - Go invisible for 10 seconds. Adds 200 bonus damage to your next attack. 
 }
 
 STRING 783
@@ -4027,9 +4002,101 @@ STRING 1153
 Greater Chain Lightning
 }
 
-STRING 1154
+STRING 1155
+// Items: I00Z (Assassin's Ring), Name (Name)
+{
+Assassin's Ring
+}
+
+STRING 1156
+// Items: I00Z (Assassin's Ring), Tip (Tooltip - Basic)
+{
+Purchase Assassin's Ring
+}
+
+STRING 1157
+// Items: I00Z (Assassin's Ring), Ubertip (Tooltip - Extended)
+{
++10 |cff00ff00Agility|r
+}
+
+STRING 1158
+// Abilities: A02L (Item Stat Bonus), Name (Name)
+{
+Item Stat Bonus
+}
+
+STRING 1159
+// Abilities: A02L (Item Stat Bonus), EditorSuffix (Editor Suffix)
+{
+(+10 Agility)
+}
+
+STRING 1160
+// Items: I010 ([|cffffcc00Recipe|r] Alaric's Spear of Thunder), Name (Name)
+{
+[|cffffcc00Recipe|r] Alaric's Spear of Thunder
+}
+
+STRING 1162
+// Items: I010 ([|cffffcc00Recipe|r] Alaric's Spear of Thunder), Tip (Tooltip - Basic)
+{
+Purchase [|cffffcc00Recipe|r] Alaric's Spear of Thunder
+}
+
+STRING 1163
+// Items: I010 ([|cffffcc00Recipe|r] Alaric's Spear of Thunder), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Thunderlizard Diamond, Assassin's Ring, Claws of Attack +20 |r|N|n+10 |cff00ff00Agility|r   |n+20 Attack Damage    |n|n|cffffcc00Alaric's Chain Lightning|R - Attacks have a |cffffcc0025%|r chance to cast chain lightning, dealing |cffffcc00125 damage|r up to 6 targets.
+}
+
+STRING 1164
+// Items: I011 (Alaric's Spear of Thunder), Name (Name)
+{
+Alaric's Spear of Thunder
+}
+
+STRING 1165
+// Items: I011 (Alaric's Spear of Thunder), Ubertip (Tooltip - Extended)
+{
++10 |cff00ff00Agility|r   |n+20 Attack Damage    |n|n|cffffcc00Alaric's Chain Lightning|R - Attacks have a |cffffcc0025%|r chance to cast chain lightning, dealing |cffffcc00125 damage|r up to 6 targets.
+}
+
+STRING 1166
+// Items: I011 (Alaric's Spear of Thunder), Tip (Tooltip - Basic)
+{
+Alaric's Spear of Thunder
+}
+
+STRING 1167
+// Abilities: A01T (Greater Chain Lightning), EditorSuffix (Editor Suffix)
+{
+ (staff of primal thunder)
+}
+
+STRING 1168
 // Abilities: A02K (Greater Chain Lightning), EditorSuffix (Editor Suffix)
 {
- (dummy caster)
+ (alarics chain lightning)
+}
+
+STRING 1169
+// Items: I00G (Staff of Primal Thunder), Ubertip (Tooltip - Extended)
+{
++10 |cff8080ffIntelligence|r |n|n|cffffcc00Greater Chain Lightning|r - Deals an initial 400 damage and bounces to 10 nearby enemies.
+}
+
+STRING 1170
+// Items: I00H ([|cffffcc00Recipe|r] Staff of Primal Thunder), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0(2) Thunderlizard Diamond, (2) Staff of Knowledge|r|N|n+10 |cff8080ffIntelligence|r |n|n|cffffcc00Greater Chain Lightning|R - Deals an initial 400 damage and bounces to 10 nearby enemies. |n
+200 |cff8080ffmana cost|r
+|cffc0c0c09 second cooldown|r
+}
+
+STRING 1171
+// Items: I00E ([|cffffcc00Recipe|r] Blade of The Wind Walker), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Treads of the Wind Walker, Savage Blade, Claws of Attack +10|r     |n|n+25% Critical Strike Chance (2x damage)|n+20 Attack Damage |n+30 Movespeed  |N|N|cffffcc00Wind Walk|r - Go invisible for 10 seconds. Adds 200 bonus damage to your next attack. 
 }
 

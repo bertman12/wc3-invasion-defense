@@ -98,7 +98,7 @@ export function undeadDayStart() {
     }
 
     if (RoundManager.currentRound === 1) {
-        spawnCount = 3;
+        spawnCount = 5;
     }
 
     const tempSet = new Set<rect>();
@@ -219,6 +219,10 @@ class SpawnData {
         //its currently 50/50 chance for hard or normal spawns
         const isHardDiff = difficulty === SpawnDifficulty.hard;
         this.spawnDifficulty = difficulty;
+
+        if (RoundManager.currentRound === 1) {
+            this.spawnDifficulty = SpawnDifficulty.normal;
+        }
 
         this.waveIntervalTime = waveIntervalOptions[difficulty];
 

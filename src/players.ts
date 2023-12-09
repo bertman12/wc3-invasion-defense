@@ -279,7 +279,7 @@ function grantStartOfDayBonuses() {
     });
 
     //should be adding the food cap gained from the capital, the food gained from teh granaries, and the food cap increase from the grain silos players have built
-    const sharedFoodCapIncrease = basePlayerFoodCap + foodRoundBonus + economicConstants.granaryFoodCapIncrease * foodReserveStructures;
+    const sharedFoodCapIncrease = economicConstants.playerBaseFoodCap + foodRoundBonus + economicConstants.granaryFoodCapIncrease * foodReserveStructures;
 
     forEachAlliedPlayer((p) => {
         //Reset to 0

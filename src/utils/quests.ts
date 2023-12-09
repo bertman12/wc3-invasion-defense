@@ -79,7 +79,15 @@ export function init_quests() {
             false,
         );
 
-        addQuest("Map Info", "Created by JediMindTrix/NihilismIsDeath", "ReplaceableTextures\\CommandButtons\\BTNClayFigurine.blp", false);
+        addQuest(
+            "Commands",
+            `
+            \n${tColor("-cam ####", "goldenrod")}: Sets the camera distance.
+        `,
+            "ReplaceableTextures\\WorldEditUI\\Doodad-Cinematic.blp",
+            false,
+        );
+        addQuest("Map Info", "|cffffcc00Undead Siege Defense v0.14|r\n\nCreated by JediMindTrix/NihilismIsDeath", "ReplaceableTextures\\CommandButtons\\BTNClayFigurine.blp", false);
     });
 }
 

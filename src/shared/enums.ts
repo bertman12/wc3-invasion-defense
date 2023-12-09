@@ -162,6 +162,7 @@ export enum ITEMS {
     recipe_berserkersCleaver = FourCC("I00J"),
     helmOfBattleThirst = FourCC("hbth"),
     corpseCleaver = FourCC("I008"),
+    clawsOfAttack_20 = FourCC("I00K"),
     clawsOfAttack_10 = FourCC("I00L"),
     clawsOfAttack_5 = FourCC("rat6"),
     crownOfTheNorthernKnights_15 = FourCC("I00N"),
@@ -182,6 +183,9 @@ export enum ITEMS {
     recipe_ghoulishMaskOfMidas = FourCC("I00Y"),
     maskOfTheFrenziedGhoul = FourCC("I002"),
     staffOfTeleportation = FourCC("stel"),
+    alaricsSpearOfThunder = FourCC("I011"),
+    recipe_alaricsSpearOfThunder = FourCC("I010"),
+    assassinsRing = FourCC("I00Z"),
 }
 
 //Can find looking up models for a spell at the Art - Target field

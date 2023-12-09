@@ -1,10 +1,6 @@
 import { Sound, Timer, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
 import { W3TS_HOOK, addScriptHook } from "w3ts/hooks";
-import { init_armyControllerTrigs } from "./abilities/armyController";
-import { init_itemAbilities } from "./abilities/items";
-import { setupUndeadUnitPreview } from "./abilities/misc";
-import { trig_wayGate } from "./abilities/waygate";
 import { initFrames } from "./frames";
 import { setupNightAndDayHooks } from "./hooks/startOfDay";
 import { init_map_triggers } from "./init";
@@ -12,6 +8,11 @@ import { init_startingResources, setupPlayers } from "./players";
 import { TimerManager } from "./shared/Timers";
 import { RoundManager } from "./shared/round-manager";
 import { setup_destroyStructure } from "./towns";
+import { init_armyControllerTrigs } from "./triggers/armyController";
+import { init_cameraTrigs } from "./triggers/camera";
+import { init_itemAbilities } from "./triggers/items";
+import { setupUndeadUnitPreview } from "./triggers/misc";
+import { trig_wayGate } from "./triggers/waygate";
 import { init_undead } from "./undead/taxonomy";
 import { tColor } from "./utils/misc";
 import { init_quests } from "./utils/quests";
@@ -75,7 +76,7 @@ function tsMain() {
 
         //     // clearFogState?.destroy();
         // });
-        
+
         init_itemAbilities();
         init_map_triggers();
         RoundManager.trig_setup_StartRound();
@@ -84,7 +85,7 @@ function tsMain() {
 
         setupNightAndDayHooks();
         init_armyControllerTrigs();
-
+        init_cameraTrigs();
         //10 second timer
         init_undead();
         //For looking at minimap icons

@@ -546,3 +546,5 @@ perhaps for the desert region, the usage of light cavalry would be extremely imp
 add gatling gun tank with flaming arrow projectile and use the rexxar quilboar with ranged splash damage
 
 add camera controls
+
+add a player prestige system, that is based on undead killed, undead structures recaptured and structures owned. These prestige levels will provide benefits for the players and possibly allow for certain upgrades
