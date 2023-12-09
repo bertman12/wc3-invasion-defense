@@ -23,3 +23,5 @@ declare var gg_snd_SargerasLaugh: sound;
 declare var gg_snd_U08Archimonde19: sound;
 declare var gg_snd_HeroicVictory: string;
 declare var gg_snd_BloodElfTheme: string;
+declare var gg_rct_southZombieSpawn: rect;
+declare var gg_rct_southSpawn2: rect;

@@ -165,7 +165,7 @@ export const logger = createLogger({
 export function parseCustomObjectData() {
     //Should parse the .wts file and
     const war3Strings = fs.readFileSync("../maps/zombie-invasion-defense.w3x/war3map.wts", { encoding: "utf-8" });
-
+    
     //
     //
     //

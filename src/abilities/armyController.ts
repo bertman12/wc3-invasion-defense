@@ -5,6 +5,8 @@ import { OrderId } from "w3ts/globals";
 
 export function init_armyControllerTrigs() {
     militaryCommands();
+    // trackPlayerKeyDown();
+    // trackPlayerKeyRelease();
 }
 
 const abilityOrderMap = new Map<number, number>([
@@ -31,7 +33,6 @@ function militaryCommands() {
             const y = GetSpellTargetY();
             const meleeOnly = [ABILITIES.command_meleeMoveAllMilitary, ABILITIES.command_meleeAttackMoveAllMilitary].includes(spellId);
             const rangedOnly = [ABILITIES.command_rangedMoveAllMilitary, ABILITIES.command_rangedAttackMoveAllMilitary].includes(spellId);
-
             forEachUnitOfPlayer(p, (u) => {
                 const attackRange = BlzGetUnitWeaponRealField(u.handle, UNIT_WEAPON_RF_ATTACK_RANGE, 0);
 
@@ -49,3 +50,20 @@ function militaryCommands() {
         }
     });
 }
+
+// function trackPlayerKeyDown() {
+//     const t = Trigger.create();
+//     t.registerPlayerKeyEvent(Players[0], OSKEY_LSHIFT, 1, true);
+//     t.addAction(() => {
+//         print("shift is pressed.");
+//     });
+// }
+// function trackPlayerKeyRelease() {
+//     const t = Trigger.create();
+//     t.registerPlayerKeyEvent(Players[0], OSKEY_LSHIFT, 1, false);
+
+//     t.addAction(() => {
+//         print(BlzGetTriggerPlayerIsKeyDown());
+//         print("shift is released.");
+//     });
+// }

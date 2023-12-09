@@ -16,8 +16,7 @@ const humanToUndead = new Map<number, number>([
     [UNITS.lumberMill, UNITS.undeadLumberMill],
     [UNITS.blacksmith, UNITS.undeadBlacksmith],
     [UNITS.barracks, UNITS.undeadBarracks],
-    // [CUSTOM_UNITS.guardTower, CUSTOM_UNITS.nerubianTower],
-    // [CUSTOM_UNITS.cannonTower, CUSTOM_UNITS.nerubianTower],
+    [UNITS.factory, UNITS.undeadFactory],
 ]);
 
 const undeadToHuman = new Map<number, number>([
@@ -32,7 +31,7 @@ const undeadToHuman = new Map<number, number>([
     [UNITS.undeadLumberMill, UNITS.lumberMill],
     [UNITS.undeadBlacksmith, UNITS.blacksmith],
     [UNITS.undeadBarracks, UNITS.barracks],
-    // [CUSTOM_UNITS.nerubianTower, CUSTOM_UNITS.guardTower],
+    [UNITS.undeadFactory, UNITS.factory],
 ]);
 
 export function convertHumanToUndeadStructures() {

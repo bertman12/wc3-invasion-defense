@@ -193,6 +193,8 @@ function trig_heroPurchased() {
 
         const engineer = Unit.create(createdUnit.owner, UNITS.engineer, -300 + createdUnit.owner.id * 50, 300);
         const farmHand = Unit.create(createdUnit.owner, UNITS.farmHand, -300 + createdUnit.owner.id * 50, 300);
+        const armyController = Unit.create(createdUnit.owner, UNITS.armyController, -28950 + createdUnit.owner.id * 50 - 250 * Math.floor(createdUnit.owner.id / 5), -28950 - Math.floor(createdUnit.owner.id / 5) * 75);
+        armyController?.setHeroLevel(18, false);
 
         if (engineer && farmHand) {
             engineer.setUseFood(false);
@@ -271,17 +273,13 @@ function grantStartOfDayBonuses() {
             const playerState = playerStates.get(p.id);
 
             if (playerState) {
-                // print("BEFORE increasing food cap", playerStates.get(p.id)?.temporaryFoodCapIncrease);
                 playerState.temporaryFoodCapIncrease = playerState.temporaryFoodCapIncrease + economicConstants.grainSiloFoodBonus;
-                // print("AFTER increasing food cap", playerStates.get(p.id)?.temporaryFoodCapIncrease);
             }
         });
     });
 
     //should be adding the food cap gained from the capital, the food gained from teh granaries, and the food cap increase from the grain silos players have built
     const sharedFoodCapIncrease = basePlayerFoodCap + foodRoundBonus + economicConstants.granaryFoodCapIncrease * foodReserveStructures;
-    //the food cap bonus from grain silos should only be added for that owning player
-    // print("Food gained from shared resources: ", sharedFoodCapIncrease);
 
     forEachAlliedPlayer((p) => {
         //Reset to 0
@@ -319,7 +317,7 @@ export function player_giveHumansStartOfDayResources(round: number) {
 
     //Restock supplies for supply bearing units.
     forEachPlayer((p) => {
-        forEachUnitOfPlayerWithAbility(p, ABILITIES.replenishLifeAndMana, (u) => {
+        forEachUnitOfPlayerWithAbility(p, ABILITIES.supplyUnit, (u) => {
             u.mana = u.maxMana;
         });
         p.setTechResearched(UpgradeCodes.dayTime, 1);

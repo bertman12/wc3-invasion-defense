@@ -520,6 +520,29 @@ add button to move all combat units or attack move. also make it so you can do i
 
 add some javelin throwers with 50% bash chance for 50 bonus damage and they have armor corruption on their attacks
 
-add upgrade, plentiful slaves - reduces food cost of acolyte slave laborers
+add upgrade, Slave Rations - reduces food cost of acolyte slave laborers by 1
 
 add camera control
+
+make arcanite shield use the defend ability and make it active. when active it should slow the user by 50% but provide the defensive bonuses
+
+add citadel of the guard in the northern area on the island that will give footman bonus damage reduction - 6 attack damage.
+
+make upgrades that players can get tied to keeping certain buildings alive.
+
+===== starter items
+can choose to get 2 free farms
+
+add a workshop that lets you combine towers together to get unique towers
+
+add a banshee melee units with 90% evasion adn 1000 health
+
+add a round of banshees for evasion
+
+add southern desert provinces add invisible units that cause health regen to go down, add oasis as well that will heal units, basically fountain of health
+
+perhaps for the desert region, the usage of light cavalry would be extremely important, as the zombies of that region are also incredibly fast moving .
+
+add gatling gun tank with flaming arrow projectile and use the rexxar quilboar with ranged splash damage
+
+add camera controls

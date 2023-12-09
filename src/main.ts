@@ -75,7 +75,7 @@ function tsMain() {
 
         //     // clearFogState?.destroy();
         // });
-
+        
         init_itemAbilities();
         init_map_triggers();
         RoundManager.trig_setup_StartRound();

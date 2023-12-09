@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Undead Siege Defense alpha test 13
+Undead Siege Defense alpha test 14
 }
 
 STRING 2
@@ -30,7 +30,7 @@ Player 1
 
 STRING 7
 {
-alpha testing #13
+alpha testing #14
 }
 
 STRING 9
@@ -918,7 +918,7 @@ Supply Bonus
 }
 
 STRING 253
-// Abilities: A00L (Supplies), EditorSuffix (Editor Suffix)
+// Abilities: A00W (Magic Guard - Info Ability), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -1206,7 +1206,7 @@ Magic Guard - Info Ability
 }
 
 STRING 340
-// Abilities: A00W (Magic Guard - Info Ability), EditorSuffix (Editor Suffix)
+// Abilities: A012 (Caltrops - Info Ability), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -1524,7 +1524,7 @@ Caltrops - Info Ability
 }
 
 STRING 434
-// Abilities: A012 (Caltrops - Info Ability), EditorSuffix (Editor Suffix)
+// Abilities: A01E (Human Laborer), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -1884,13 +1884,13 @@ Human Laborer - Info Ability
 }
 
 STRING 547
-// Abilities: A01E (Human Laborer), EditorSuffix (Editor Suffix)
+// Abilities: A01F (Peon Laborer), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
 
 STRING 552
-// Abilities: A01F (Peon Laborer), EditorSuffix (Editor Suffix)
+// Abilities: A01G (Grain Silo), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -1926,7 +1926,7 @@ Grain Silo
 }
 
 STRING 565
-// Abilities: A01G (Grain Silo), EditorSuffix (Editor Suffix)
+// Abilities: A01J (Druid Laborer), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -2034,7 +2034,7 @@ Druid Laborer - Info Ability
 }
 
 STRING 598
-// Abilities: A01J (Druid Laborer), EditorSuffix (Editor Suffix)
+// Abilities: A01K (Acolyte Slave Laborer), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -2052,7 +2052,7 @@ Hire Acolyte Slave Laborer
 }
 
 STRING 608
-// Abilities: A01K (Acolyte Slave Laborer), EditorSuffix (Editor Suffix)
+// Abilities: A021 (Stat Cost Breakdown - Info Ability), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -2941,12 +2941,6 @@ STRING 863
 Stat Cost Breakdown - Info Ability
 }
 
-STRING 865
-// Abilities: A021 (Stat Cost Breakdown - Info Ability), EditorSuffix (Editor Suffix)
-{
-(Info Only)
-}
-
 STRING 866
 // Abilities: A021 (Stat Cost Breakdown - Info Ability), Ubertip (Tooltip - Normal - Extended)
 {
@@ -3431,12 +3425,6 @@ STRING 987
 Increases food cap per day - |cffff6600+3 Food Cap|r 
 }
 
-STRING 989
-// Abilities: A00L (Supplies), Ubertip (Tooltip - Normal - Extended)
-{
-This unit benefits from supply upgrades, increasing it's|cff8080ff mana|r pool.
-}
-
 STRING 991
 // Items: I00V (Amulet of the Sentinel), Name (Name)
 {
@@ -3799,12 +3787,6 @@ STRING 1080
 |cffffcc00Military|r -|cffff0000 Attack Move|r
 }
 
-STRING 1083
-// Abilities: A02J (Military - Attack Move), Ubertip (Tooltip - Normal - Extended)
-{
-Orders all military units to|cffff0000 attack move |rto the selected point.
-}
-
 STRING 1084
 // Abilities: A02D (Military - Move), Name (Name)
 {
@@ -3959,5 +3941,77 @@ STRING 1130
 // Abilities: A02G (Military - Attack Move (ranged)), EditorSuffix (Editor Suffix)
 {
 (carrion swarm)
+}
+
+STRING 1134
+// Abilities: A02J (Military - Attack Move), Ubertip (Tooltip - Normal - Extended)
+{
+Orders |cffffcc00all|r military units to|cffff0000 attack move |rto the selected point.
+}
+
+STRING 1135
+// Units: h00U (Factory), Name (Name)
+{
+Factory
+}
+
+STRING 1136
+// Abilities: A00B (Mana Imbued Powder), EditorSuffix (Editor Suffix)
+{
+(Musketeer)
+}
+
+STRING 1137
+// Units: h00W (War Machine), Name (Name)
+{
+War Machine
+}
+
+STRING 1138
+// Units: h00W (War Machine), Tip (Tooltip - Basic)
+{
+Build War Machine
+}
+
+STRING 1141
+// Abilities: A02I (Repair), Ubertip (Tooltip - Normal - Extended)
+{
+Repairs mechanical units and structures at the cost of resources. |n|n300 range.
+}
+
+STRING 1142
+// Abilities: A02I (Repair), EditorSuffix (Editor Suffix)
+{
+(Factory)
+}
+
+STRING 1143
+// Units: u00I ([|cffffcc00Factory|r] Spirit Tower), EditorSuffix (Name - Editor Suffix)
+{
+(Converted Structure)
+}
+
+STRING 1144
+// Units: u00I ([|cffffcc00Factory|r] Spirit Tower), Name (Name)
+{
+[|cffffcc00Factory|r] Spirit Tower
+}
+
+STRING 1145
+// Abilities: A00L (Supplies), EditorSuffix (Editor Suffix)
+{
+(unit - Info Only)
+}
+
+STRING 1146
+// Abilities: A00L (Supplies), Ubertip (Tooltip - Normal - Extended)
+{
+This unit benefits from supply upgrades, increasing it's|cff8080ff mana|r pool. |n|n|cffffcc00Supply units regain their mana at the start of day.|r
+}
+
+STRING 1151
+// Units: h00W (War Machine), Ubertip (Tooltip - Extended)
+{
+Heavily armored vehicle with |cffffcc00Mana Imbued Powder|r.     |n|n+ |cff00ff00Choke Points|r    |n+ |cff00ff00Open Areas|r    |n|n|cffffcc00Attacks deal 15% damage in 125 area.|r
 }
 

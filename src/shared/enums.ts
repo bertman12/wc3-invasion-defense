@@ -1,6 +1,7 @@
 export enum ABILITIES {
     //InfoAbilities
     supplies = FourCC("A000"),
+    supplyUnit = FourCC("A00L"),
     goldIncome = FourCC("A002"),
     lumberIncome = FourCC("A00J"),
     armorUpgrade = FourCC("A006"),
@@ -56,6 +57,8 @@ export enum PlayerIndices {
 }
 
 export enum UNITS {
+    armyController = FourCC("H00T"),
+
     //Human Buildings
     farmTown = FourCC("h002"),
     townHall = FourCC("htow"),
@@ -79,6 +82,7 @@ export enum UNITS {
     acolyteSlaveLaborer = FourCC("h00P"),
     grainSilo = FourCC("h00N"),
     militia = FourCC("h000"),
+    factory = FourCC("h00U"),
 
     //Human units
     flyingMachine = FourCC("hgyr"),
@@ -126,6 +130,7 @@ export enum UNITS {
     undeadBlacksmith = FourCC("u00A"),
     undeadBarracks = FourCC("u009"),
     undeadSpawn = FourCC("u00F"),
+    undeadFactory = FourCC("u00I"),
 
     //Triggering Purposes
     farmGrant = FourCC("n008"),
