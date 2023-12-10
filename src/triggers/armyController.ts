@@ -50,20 +50,3 @@ function militaryCommands() {
         }
     });
 }
-
-// function trackPlayerKeyDown() {
-//     const t = Trigger.create();
-//     t.registerPlayerKeyEvent(Players[0], OSKEY_LSHIFT, 1, true);
-//     t.addAction(() => {
-//         print("shift is pressed.");
-//     });
-// }
-// function trackPlayerKeyRelease() {
-//     const t = Trigger.create();
-//     t.registerPlayerKeyEvent(Players[0], OSKEY_LSHIFT, 1, false);
-
-//     t.addAction(() => {
-//         print(BlzGetTriggerPlayerIsKeyDown());
-//         print("shift is released.");
-//     });
-// }

@@ -21,6 +21,15 @@ export function init_quests() {
             "ReplaceableTextures\\CommandButtons\\BTNPeasant.blp",
         );
         addQuest(
+            "Commands",
+            `
+            \n${tColor("-cam ####", "goldenrod")}: Sets the camera distance.
+        `,
+            "ReplaceableTextures\\WorldEditUI\\Doodad-Cinematic.blp",
+            false,
+        );
+
+        addQuest(
             "Economy",
             `\n
             \n${tColor("Economy", "goldenrod")}: Farms, towns and castles will provide daily income. You can also buy farms to earn +50 gold per day.
@@ -79,15 +88,7 @@ export function init_quests() {
             false,
         );
 
-        addQuest(
-            "Commands",
-            `
-            \n${tColor("-cam ####", "goldenrod")}: Sets the camera distance.
-        `,
-            "ReplaceableTextures\\WorldEditUI\\Doodad-Cinematic.blp",
-            false,
-        );
-        addQuest("Map Info", "|cffffcc00Undead Siege Defense v0.14|r\n\nCreated by JediMindTrix/NihilismIsDeath", "ReplaceableTextures\\CommandButtons\\BTNClayFigurine.blp", false);
+        addQuest("Map Info", "|cffffcc00Undead Siege Defense v0.15|r\n\nCreated by JediMindTrix/NihilismIsDeath", "ReplaceableTextures\\CommandButtons\\BTNClayFigurine.blp", false);
     });
 }
 

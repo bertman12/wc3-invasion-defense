@@ -1,7 +1,8 @@
 export enum ABILITIES {
     //InfoAbilities
     supplies = FourCC("A000"),
-    supplyUnit = FourCC("A00L"),
+    DEPRECATED_supplyUnit = FourCC("A00L"),
+    supplyUsingUnit = FourCC("A02M"),
     goldIncome = FourCC("A002"),
     lumberIncome = FourCC("A00J"),
     armorUpgrade = FourCC("A006"),

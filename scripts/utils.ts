@@ -62,7 +62,8 @@ export function toBuffer(ab: ArrayBuffer) {
 export function getFilesInDirectory(dir: string) {
     const files: string[] = [];
     fs.readdirSync(dir).forEach((file) => {
-        const fullPath = path.join(dir, file);
+        // eslint-disable-next-line prefer-const
+        let fullPath = path.join(dir, file);
         if (fs.lstatSync(fullPath).isDirectory()) {
             const d = getFilesInDirectory(fullPath);
             for (const n of d) {
@@ -164,8 +165,7 @@ export const logger = createLogger({
 
 export function parseCustomObjectData() {
     //Should parse the .wts file and
-    const war3Strings = fs.readFileSync("../maps/zombie-invasion-defense.w3x/war3map.wts", { encoding: "utf-8" });
-    
+    // const war3Strings = fs.readFileSync("../maps/zombie-invasion-defense.w3x/war3map.wts", { encoding: "utf-8" });
     //
     //
     //

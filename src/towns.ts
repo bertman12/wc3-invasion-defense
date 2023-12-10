@@ -3,11 +3,23 @@ import { Players } from "w3ts/globals";
 import { UNITS } from "./shared/enums";
 import { tColor } from "./utils/misc";
 
-export const primaryCapturableHumanTargets = new Set([UNITS.farmTown, UNITS.barracks, UNITS.blacksmith, UNITS.castle, UNITS.townHall, UNITS.capital, UNITS.arcaneSanctum, UNITS.granary, UNITS.lumberMill, UNITS.citadelOfTheNorthernKnights]);
+export const primaryCapturableHumanTargets = new Set([
+    UNITS.farmTown,
+    UNITS.barracks,
+    UNITS.blacksmith,
+    UNITS.castle,
+    UNITS.townHall,
+    UNITS.capital,
+    UNITS.arcaneSanctum,
+    UNITS.granary,
+    UNITS.lumberMill,
+    UNITS.citadelOfTheNorthernKnights,
+    UNITS.factory,
+]);
 
 export const otherHumanCapturableStructures = new Set([UNITS.rampartCannonTower, UNITS.rampartGuardTower]);
 
-export const primaryCapturableUndeadTargets = new Set([UNITS.blackCitadel, UNITS.infectedGranary, UNITS.templeOfTheDamned, UNITS.blackCitadelNorth, UNITS.blackCitadelTownHall]);
+export const primaryCapturableUndeadTargets = new Set([UNITS.blackCitadel, UNITS.infectedGranary, UNITS.templeOfTheDamned, UNITS.blackCitadelNorth, UNITS.blackCitadelTownHall, UNITS.undeadFactory]);
 
 export const otherCapturableUndeadStructures = new Set([UNITS.spiritTower, UNITS.undeadSentinelGuard, UNITS.undeadSentinelCannon, UNITS.nerubianTower, UNITS.undeadBarracks, UNITS.undeadBlacksmith, UNITS.undeadLumberMill]);
 

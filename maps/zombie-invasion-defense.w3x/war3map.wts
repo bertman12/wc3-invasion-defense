@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Undead Siege Defense v0.14
+Undead Siege Defense v0.15
 }
 
 STRING 2
@@ -10,12 +10,13 @@ STRING 2
 
 STRING 3
 {
-Kill undead structures to convert back.
-Hold out for 15 nights until reinforcements arrive.
-Buy buildings for free units.
-|cffffcc00Free Militia|r at Town Halls and Castles.
-New Player: Buy 10 footman and 2 Human Laborers. Spend the rest on items. 
+|cffff0000Crash fixed.|r
+===Hero/Army Defense===
 
+Survive for 15 nights. 
+Defend the capital city from the undead legions.
+
+|cffff0000Undead Spawns: |r Shown as skulls on the minimap.
 }
 
 STRING 4
@@ -103,13 +104,13 @@ Base - Info Ability
 }
 
 STRING 38
-// Abilities: A00L (Supplies), Name (Name)
+// Abilities: A00L (deprecated_Supplies), Tip (Tooltip - Normal)
 {
 Supplies
 }
 
 STRING 39
-// Abilities: A00L (Supplies), Tip (Tooltip - Normal)
+// Abilities: A02M (Supply User), Tip (Tooltip - Normal)
 {
 Supplies
 }
@@ -437,7 +438,7 @@ Stone Walls - Free Form Doodad
 
 STRING 141
 {
-Undead Siege Defense v0.14
+Undead Siege Defense v0.15
 }
 
 STRING 142
@@ -3936,18 +3937,6 @@ STRING 1136
 (Musketeer)
 }
 
-STRING 1137
-// Units: h00W (War Machine), Name (Name)
-{
-War Machine
-}
-
-STRING 1138
-// Units: h00W (War Machine), Tip (Tooltip - Basic)
-{
-Build War Machine
-}
-
 STRING 1141
 // Abilities: A02I (Repair), Ubertip (Tooltip - Normal - Extended)
 {
@@ -3972,22 +3961,10 @@ STRING 1144
 [|cffffcc00Factory|r] Spirit Tower
 }
 
-STRING 1145
-// Abilities: A00L (Supplies), EditorSuffix (Editor Suffix)
-{
-(unit - Info Only)
-}
-
 STRING 1146
-// Abilities: A00L (Supplies), Ubertip (Tooltip - Normal - Extended)
+// Abilities: A00L (deprecated_Supplies), Ubertip (Tooltip - Normal - Extended)
 {
 This unit benefits from supply upgrades, increasing it's|cff8080ff mana|r pool. |n|n|cffffcc00Supply units regain their mana at the start of day.|r
-}
-
-STRING 1151
-// Units: h00W (War Machine), Ubertip (Tooltip - Extended)
-{
-Heavily armored vehicle with |cffffcc00Mana Imbued Powder|r.     |n|n+ |cff00ff00Choke Points|r    |n+ |cff00ff00Open Areas|r    |n|n|cffffcc00Attacks deal 15% damage in 125 area.|r
 }
 
 STRING 1152
@@ -4098,5 +4075,47 @@ STRING 1171
 // Items: I00E ([|cffffcc00Recipe|r] Blade of The Wind Walker), Ubertip (Tooltip - Extended)
 {
 Requires: |cffc0c0c0Treads of the Wind Walker, Savage Blade, Claws of Attack +10|r     |n|n+25% Critical Strike Chance (2x damage)|n+20 Attack Damage |n+30 Movespeed  |N|N|cffffcc00Wind Walk|r - Go invisible for 10 seconds. Adds 200 bonus damage to your next attack. 
+}
+
+STRING 1181
+// Units: hmtm (Imperial Tank), Name (Name)
+{
+Imperial Tank
+}
+
+STRING 1182
+// Units: hmtm (Imperial Tank), Tip (Tooltip - Basic)
+{
+Build Imperial Tank
+}
+
+STRING 1184
+// Abilities: A00L (deprecated_Supplies), EditorSuffix (Editor Suffix)
+{
+(unit - Info Only - orb effect)
+}
+
+STRING 1185
+// Abilities: A02M (Supply User), Name (Name)
+{
+Supply User
+}
+
+STRING 1187
+// Abilities: A02M (Supply User), Ubertip (Tooltip - Normal - Extended)
+{
+This unit benefits from supply upgrades, increasing it's|cff8080ff mana|r pool. |n|n|cffffcc00Supply units regain their mana at the start of day.|r
+}
+
+STRING 1188
+// Abilities: A00L (deprecated_Supplies), Name (Name)
+{
+deprecated_Supplies
+}
+
+STRING 1189
+// Units: hmtm (Imperial Tank), Ubertip (Tooltip - Extended)
+{
+Attacks deal damage in a small area effect.
 }
 

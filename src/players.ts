@@ -317,7 +317,7 @@ export function player_giveHumansStartOfDayResources(round: number) {
 
     //Restock supplies for supply bearing units.
     forEachPlayer((p) => {
-        forEachUnitOfPlayerWithAbility(p, ABILITIES.supplyUnit, (u) => {
+        forEachUnitOfPlayerWithAbility(p, ABILITIES.supplyUsingUnit, (u) => {
             u.mana = u.maxMana;
         });
         p.setTechResearched(UpgradeCodes.dayTime, 1);
