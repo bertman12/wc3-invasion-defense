@@ -1,5 +1,5 @@
 import { Frame, MapPlayer } from "w3ts";
-import { playerStates } from "./players";
+import { playerStates } from "./shared/playerState";
 /**
  * Nothing may exist outside the 4:3 aspect ration of your resolution
  */

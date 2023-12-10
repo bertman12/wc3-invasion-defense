@@ -548,3 +548,25 @@ add gatling gun tank with flaming arrow projectile and use the rexxar quilboar w
 add camera controls
 
 add a player prestige system, that is based on undead killed, undead structures recaptured and structures owned. These prestige levels will provide benefits for the players and possibly allow for certain upgrades
+
+use barrage for multishot and maybe need to add the chaos ability
+
+$$
+-------============================================================================================
+fix player selection after buying a hero
+
+make simpler? lol
+
+could just make a shop that spawns units you buy on top of your hero instead.
+buff tinker mines
+
+reduce mana drain to 10
+$$
+
+add coutner troll, if a player tried to attack a friendly unit, stop the order
+
+add kick command
+
+add more item shops around the map
+
+add more tents around forts

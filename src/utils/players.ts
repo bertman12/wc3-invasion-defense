@@ -54,7 +54,7 @@ export function forEachUnitTypeOfPlayer(unitType: number | string, player: MapPl
     g?.enumUnitsOfPlayer(player, () => {
         const unit = Group.getFilterUnit();
 
-        if (unit && unit?.typeId === unitType && unit.isAlive()) {
+        if (unit && unit?.typeId === unitType) {
             cb(unit);
         }
 
@@ -76,7 +76,7 @@ export function forEachUnitOfPlayer(player: MapPlayer, cb: (unit: Unit) => void)
         if (!unit) {
             print("Enumerating over a unit that doesn't exist!");
         }
-        if (unit && unit.isAlive()) {
+        if (unit) {
             cb(unit);
         }
 
@@ -119,6 +119,9 @@ export function adjustPlayerState(player: MapPlayer, whichState: playerstate, am
 }
 
 export function adjustGold(player: MapPlayer, amount: number) {
+    if (!player) {
+        print("MISSING PLAYER to give gold too");
+    }
     player.setState(PLAYER_STATE_RESOURCE_GOLD, player.getState(PLAYER_STATE_RESOURCE_GOLD) + amount);
 }
 
@@ -128,6 +131,10 @@ export function adjustLumber(player: MapPlayer, amount: number) {
 
 export function adjustFoodCap(player: MapPlayer, amount: number) {
     player.setState(PLAYER_STATE_RESOURCE_FOOD_CAP, player.getState(PLAYER_STATE_RESOURCE_FOOD_CAP) + amount);
+}
+
+export function adjustFoodUsed(player: MapPlayer, amount: number) {
+    player.setState(PLAYER_STATE_RESOURCE_FOOD_USED, player.getState(PLAYER_STATE_RESOURCE_FOOD_USED) + amount);
 }
 
 /**

@@ -10,9 +10,9 @@ STRING 2
 
 STRING 3
 {
-|cffff0000Crash fixed.|r
-===Hero/Army Defense===
-
+|cff00ff00Crash fixed.|r
+===Strategic Zombie Hero/Army Defense===
+|cffff0000High Difficulty|r
 Survive for 15 nights. 
 Defend the capital city from the undead legions.
 
@@ -85,24 +85,6 @@ STRING 22
 Player 9
 }
 
-STRING 35
-// Abilities: A001 (Base - Info Ability), Name (Name)
-{
-Base - Info Ability
-}
-
-STRING 36
-// Abilities: A001 (Base - Info Ability), Tip (Tooltip - Normal)
-{
-Base - Info Ability
-}
-
-STRING 37
-// Abilities: A001 (Base - Info Ability), Ubertip (Tooltip - Normal - Extended)
-{
-Base - Info Ability
-}
-
 STRING 38
 // Abilities: A00L (deprecated_Supplies), Tip (Tooltip - Normal)
 {
@@ -128,13 +110,13 @@ Income
 }
 
 STRING 45
-// Abilities: A001 (Base - Info Ability), EditorSuffix (Editor Suffix)
+// Abilities: A002 (Gold Income), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
 
 STRING 46
-// Abilities: A002 (Gold Income), EditorSuffix (Editor Suffix)
+// Abilities: A006 (Armor Upgrade), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -230,7 +212,7 @@ Armor Upgrade
 }
 
 STRING 71
-// Abilities: A006 (Armor Upgrade), EditorSuffix (Editor Suffix)
+// Abilities: A007 (Weapon Upgrade), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -242,7 +224,7 @@ Weapon Upgrade
 }
 
 STRING 76
-// Abilities: A007 (Weapon Upgrade), EditorSuffix (Editor Suffix)
+// Abilities: A00C (Food Income), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -573,7 +555,7 @@ Food Income
 }
 
 STRING 169
-// Abilities: A00C (Food Income), EditorSuffix (Editor Suffix)
+// Abilities: A00I (Food Reserves), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -717,7 +699,7 @@ STRING 198
 }
 
 STRING 202
-// Abilities: A00I (Food Reserves), EditorSuffix (Editor Suffix)
+// Abilities: A00J (Lumber Income - Info Ability), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -747,7 +729,7 @@ Lumber Income - Info Ability
 }
 
 STRING 212
-// Abilities: A00J (Lumber Income - Info Ability), EditorSuffix (Editor Suffix)
+// Abilities: A00W (Magic Guard - Info Ability), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -914,7 +896,7 @@ Supply Bonus
 }
 
 STRING 253
-// Abilities: A00W (Magic Guard - Info Ability), EditorSuffix (Editor Suffix)
+// Abilities: A012 (Caltrops - Info Ability), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -1202,7 +1184,7 @@ Magic Guard - Info Ability
 }
 
 STRING 340
-// Abilities: A012 (Caltrops - Info Ability), EditorSuffix (Editor Suffix)
+// Abilities: A01E (Human Laborer), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -1520,7 +1502,7 @@ Caltrops - Info Ability
 }
 
 STRING 434
-// Abilities: A01E (Human Laborer), EditorSuffix (Editor Suffix)
+// Abilities: A01F (Peon Laborer), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -1880,13 +1862,13 @@ Human Laborer - Info Ability
 }
 
 STRING 547
-// Abilities: A01F (Peon Laborer), EditorSuffix (Editor Suffix)
+// Abilities: A01G (Grain Silo), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
 
 STRING 552
-// Abilities: A01G (Grain Silo), EditorSuffix (Editor Suffix)
+// Abilities: A01J (Druid Laborer), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -1922,7 +1904,7 @@ Grain Silo
 }
 
 STRING 565
-// Abilities: A01J (Druid Laborer), EditorSuffix (Editor Suffix)
+// Abilities: A01K (Acolyte Slave Laborer), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -2030,7 +2012,7 @@ Druid Laborer - Info Ability
 }
 
 STRING 598
-// Abilities: A01K (Acolyte Slave Laborer), EditorSuffix (Editor Suffix)
+// Abilities: A021 (Stat Cost Breakdown - Info Ability), EditorSuffix (Editor Suffix)
 {
 (Info Only)
 }
@@ -2045,18 +2027,6 @@ STRING 603
 // Units: h00P (Acolyte Slave Laborer), Tip (Tooltip - Basic)
 {
 Hire Acolyte Slave Laborer
-}
-
-STRING 608
-// Abilities: A021 (Stat Cost Breakdown - Info Ability), EditorSuffix (Editor Suffix)
-{
-(Info Only)
-}
-
-STRING 613
-// Abilities: A01F (Peon Laborer), Ubertip (Tooltip - Normal - Extended)
-{
-After 2 days, the laborer will earn you (|cffffff001.3 x its cost|r) in gold. |n|nThe|cff8080ff max mana|r of the structure increases every day to show how many days have passed.
 }
 
 STRING 614
@@ -3377,12 +3347,6 @@ STRING 980
 A heavy melee unit, with cleaving armor, bash and resistant skin.|n|n+ |cff00ff00Choke Points|r    |n+ |cff00ff00Open Areas|r 
 }
 
-STRING 984
-// Units: h00N (Grain Silo), Ubertip (Tooltip - Extended)
-{
-|cffff6600+5 Food Cap|r |n|n|cffffcc00This structure will be destroyed after 5 days.|r
-}
-
 STRING 985
 // Abilities: A00I (Food Reserves), Ubertip (Tooltip - Normal - Extended)
 {
@@ -3665,24 +3629,6 @@ STRING 1059
 // Units: h00P (Acolyte Slave Laborer), Ubertip (Tooltip - Extended)
 {
 After 1 Day - Returns (|cffffff001.10 x its cost in gold|r)  |n|n|cffffcc00Must be placed on crop tiles.|r
-}
-
-STRING 1060
-// Abilities: A01E (Human Laborer), Ubertip (Tooltip - Normal - Extended)
-{
-After 4 days, the laborer will earn you (|cffffff001.7 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
-}
-
-STRING 1061
-// Abilities: A01J (Druid Laborer), Ubertip (Tooltip - Normal - Extended)
-{
-After 5 days, the laborer will earn you (|cffffff002.2 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
-}
-
-STRING 1062
-// Abilities: A01K (Acolyte Slave Laborer), Ubertip (Tooltip - Normal - Extended)
-{
-After 1 days, the laborer will earn you (|cffffff001.10 x its cost|r) in gold. |n|nThe |cff8080ffmax mana|r of the structure increases every day to show how many days have passed.
 }
 
 STRING 1063
@@ -4117,5 +4063,275 @@ STRING 1189
 // Units: hmtm (Imperial Tank), Ubertip (Tooltip - Extended)
 {
 Attacks deal damage in a small area effect.
+}
+
+STRING 1190
+// Abilities: A02N (Slave Rations), Name (Name)
+{
+Slave Rations
+}
+
+STRING 1191
+// Upgrades: R005 (Submerge), Tip (Tooltip)
+{
+Research Slave Rations
+}
+
+STRING 1192
+// Abilities: A02N (Slave Rations), Ubertip (Tooltip - Normal - Extended)
+{
+Acolyte Slave Laborers refund 1 |cffff8800food|r when built.
+}
+
+STRING 1193
+// Upgrades: R005 (Submerge), EditorSuffix (Editor Suffix)
+{
+(null upgrade)
+}
+
+STRING 1194
+// Abilities: A001 (Base Info Ability), Name (Name)
+{
+Base Info Ability
+}
+
+STRING 1196
+// Abilities: A001 (Base Info Ability), EditorSuffix (Editor Suffix)
+{
+(INFO ABILITY)
+}
+
+STRING 1197
+// Abilities: A02N (Slave Rations), Tip (Tooltip - Normal)
+{
+Slave Rations
+}
+
+STRING 1198
+// Abilities: A02N (Slave Rations), EditorSuffix (Editor Suffix)
+{
+(INFO ABILITY)
+}
+
+STRING 1199
+// Upgrades: R005 (Submerge), Name (Name)
+{
+Slave Rations
+}
+
+STRING 1200
+// Upgrades: R005 (Submerge), Ubertip (Tooltip - Extended)
+{
+Acolyte Slave Laborers refund 1 |cffff8800food|r when built.
+}
+
+STRING 1205
+// Units: h00N (Grain Silo), Ubertip (Tooltip - Extended)
+{
+Can upgrade Acolyte Slave Laborer. |n|n|cffff6600+5 Food Cap|r |n|n|cffffcc00This structure will be destroyed after 5 days.|r
+}
+
+STRING 1206
+// Abilities: A01E (Human Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 4 days, the laborer will earn you (|cffffff001.7 x its cost|r) in gold. |n|nThe |cff8080ff mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 1207
+// Abilities: A01F (Peon Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 2 days, the laborer will earn you (|cffffff001.3 x its cost|r) in gold. |n|nThe|cff8080ff  mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 1208
+// Abilities: A01J (Druid Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 5 days, the laborer will earn you (|cffffff002.2 x its cost|r) in gold. |n|nThe |cff8080ff mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 1209
+// Abilities: A01K (Acolyte Slave Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 1 days, the laborer will earn you (|cffffff001.10 x its cost|r) in gold. |n|nThe |cff8080ffmana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 1210
+// Units: h00X (Upgrade Center), Name (Name)
+{
+Upgrade Center
+}
+
+STRING 1211
+// Units: h00X (Upgrade Center), Tip (Tooltip - Basic)
+{
+Build Upgrade Center
+}
+
+STRING 1212
+// Abilities: A02O (Imperial Footmen), Name (Name)
+{
+Imperial Footmen
+}
+
+STRING 1213
+// Abilities: S002 (Imperial Footmen Upgrade), Name (Name)
+{
+Imperial Footmen Upgrade
+}
+
+STRING 1215
+// Upgrades: R006 (Berserker Upgrade), Name (Name)
+{
+Imperial Footmen
+}
+
+STRING 1216
+// Abilities: A02O (Imperial Footmen), Tip (Tooltip - Normal)
+{
+Imperial Footmen Upgrade
+}
+
+STRING 1218
+// Upgrades: R006 (Berserker Upgrade), Tip (Tooltip)
+{
+Imperial Footmen Upgrade
+}
+
+STRING 1219
+// Units: h00Y (Imperial Footman), Name (Name)
+{
+Imperial Footman
+}
+
+STRING 1220
+// Units: h00Y (Imperial Footman), Ubertip (Tooltip - Extended)
+{
+Low damage, durable infantry unit. Basically a wall. Has the Defend ability.|n|n+ |cff00ff00Choke Points|r    |n+ |cff00ff00Open Areas|r  |n|n|cffffcc00Wall Unit|R
+}
+
+STRING 1224
+// Abilities: A02O (Imperial Footmen), Ubertip (Tooltip - Normal - Extended)
+{
+Transforms Footman into Imperial Footman. |n|n    +8 Attack Damage|n  +30 Movespeed |n+100 Health  |n|N|cffffcc00Grants Hero Armor and Hero Attack|r
+}
+
+STRING 1225
+// Upgrades: R006 (Berserker Upgrade), Ubertip (Tooltip - Extended)
+{
+Transforms Footman into Imperial Footman. |n|n    +8 Attack Damage|n  +30 Movespeed |n+100 Health  |n|N|cffffcc00Grants Hero Armor and Hero Attack|r
+}
+
+STRING 1226
+// Abilities: A02P (Light Armor Training), Name (Name)
+{
+Light Armor Training
+}
+
+STRING 1227
+// Abilities: A02P (Light Armor Training), Tip (Tooltip - Normal)
+{
+Light Armor Training
+}
+
+STRING 1228
+// Abilities: A02P (Light Armor Training), Ubertip (Tooltip - Normal - Extended)
+{
+Reduces all attacks on the unit by <Assk,DataC1> damage. Attacks cannot be reduced below <Assk,DataB1> damage.
+}
+
+STRING 1230
+// Upgrades: R007 (Submerge), Tip (Tooltip)
+{
+Research Light Armor Training
+}
+
+STRING 1232
+// Upgrades: R007 (Submerge), EditorSuffix (Editor Suffix)
+{
+(null upgrade)
+}
+
+STRING 1233
+// Upgrades: R007 (Submerge), Name (Name)
+{
+Light Armor Training
+}
+
+STRING 1234
+// Upgrades: R007 (Submerge), Ubertip (Tooltip - Extended)
+{
+Trains your lightly armored units to take 8 reduced damage from attacks. |n|NUnits Effected: |cffffcc00Militia|r, |cffffcc00Orcish Light Cavalry|r, |cffffcc00Headhunter|r
+}
+
+STRING 1235
+// Abilities: A02Q (Improved Levies), Name (Name)
+{
+Improved Levies
+}
+
+STRING 1236
+// Upgrades: R008 (Submerge), Tip (Tooltip)
+{
+Research Improved Levies
+}
+
+STRING 1238
+// Upgrades: R008 (Submerge), EditorSuffix (Editor Suffix)
+{
+(null upgrade)
+}
+
+STRING 1240
+// Abilities: A02Q (Improved Levies), Ubertip (Tooltip - Normal - Extended)
+{
+Increases the amount of free units you get from owned structures. |n|n|cffffcc00Farm - Militia|r: +3  |n|cffffcc00Town - Footmen|r: +2 |n|cffffcc00Castle - Knights|r: +2  |n|cffffcc00Citadel of The Northern Knights - Heavy Cavalry|r: +2
+}
+
+STRING 1241
+// Abilities: A02Q (Improved Levies), EditorSuffix (Editor Suffix)
+{
+(INFO ABILITY)
+}
+
+STRING 1242
+// Abilities: A02Q (Improved Levies), Tip (Tooltip - Normal)
+{
+Improved Levies
+}
+
+STRING 1243
+// Upgrades: R008 (Submerge), Name (Name)
+{
+Improved Levies
+}
+
+STRING 1244
+// Upgrades: R008 (Submerge), Ubertip (Tooltip - Extended)
+{
+Increases the amount of free units you get from owned structures. |n|n|cffffcc00Farm - Militia|r: +3  |n|cffffcc00Town - Footmen|r: +2 |n|cffffcc00Castle - Knights|r: +2  |n|cffffcc00Citadel of The Northern Knights - Heavy Cavalry|r: +2
+}
+
+STRING 1245
+// Upgrades: R009 (Submerge), Name (Name)
+{
+Food Preservation
+}
+
+STRING 1246
+// Upgrades: R009 (Submerge), Tip (Tooltip)
+{
+Research Food Preservation
+}
+
+STRING 1247
+// Upgrades: R009 (Submerge), Ubertip (Tooltip - Extended)
+{
+When a |cffffcc00Grain Silo|r expires: |n |n+1 |cffff8800food|r cap permanently.
+}
+
+STRING 1248
+// Upgrades: R009 (Submerge), EditorSuffix (Editor Suffix)
+{
+(null upgrade)
 }
 

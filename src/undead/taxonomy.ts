@@ -362,7 +362,7 @@ class SpawnData {
     public cleanupSpawn() {
         this.units.forEach((u, index) => {
             if (u) {
-                if (Math.random() * 100 >= 5 + Math.floor(RoundManager.currentRound * 0.5)) {
+                if (Math.random() * 100 >= 2.5) {
                     u.kill();
                 }
             }

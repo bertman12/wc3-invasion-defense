@@ -12,6 +12,7 @@ import { init_armyControllerTrigs } from "./triggers/armyController";
 import { init_cameraTrigs } from "./triggers/camera";
 import { init_itemAbilities } from "./triggers/items";
 import { setupUndeadUnitPreview } from "./triggers/misc";
+import { init_upgradeBasedTriggers } from "./triggers/upgrades";
 import { trig_wayGate } from "./triggers/waygate";
 import { init_undead } from "./undead/taxonomy";
 import { tColor } from "./utils/misc";
@@ -86,6 +87,7 @@ function tsMain() {
         setupNightAndDayHooks();
         init_armyControllerTrigs();
         init_cameraTrigs();
+        init_upgradeBasedTriggers();
         //10 second timer
         init_undead();
         //For looking at minimap icons

@@ -1,7 +1,7 @@
-import { playerStates } from "src/players";
 import { ownershipGrantingUnits } from "src/shared/constants";
 import { ABILITIES, ITEMS, MinimapIconPath, UNITS } from "src/shared/enums";
 import { applyForce } from "src/shared/physics";
+import { playerStates } from "src/shared/playerState";
 import { RoundManager } from "src/shared/round-manager";
 import { allCapturableStructures } from "src/towns";
 import { unitGetsNearThisUnit } from "src/utils/abilities";

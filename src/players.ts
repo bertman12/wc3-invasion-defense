@@ -1,66 +1,67 @@
 import { forEachUnitOfPlayer } from "src/utils/players";
-import { Effect, MapPlayer, Sound, Timer, Trigger, Unit, Widget } from "w3ts";
+import { MapPlayer, Sound, Timer, Trigger, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
-import { buildingOwnerDailyUnitBonusMap, buildingOwnerIncomeBonusMap, dailyProgressStructures, economicConstants } from "./shared/constants";
+import { buildingOwnerDailyUnitBonusMap, buildingOwnerIncomeBonusMap, dailyProgressStructures, economicConstants, improvedLeviesUnitBonus } from "./shared/constants";
 import { ABILITIES, PlayerIndices, TERRAIN_CODE, UNITS, UpgradeCodes, laborerUnitSet } from "./shared/enums";
+import { PlayerState, playerStates } from "./shared/playerState";
 import { RoundManager } from "./shared/round-manager";
 import { notifyPlayer, tColor } from "./utils/misc";
 import { adjustFoodCap, adjustGold, adjustLumber, forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayerWithAbility, forEachUnitTypeOfPlayer, isPlayingUser } from "./utils/players";
 import { createUnits } from "./utils/units";
 
-export const playerStates = new Map<number, PlayerState>();
+// export const playerStates = new Map<number, PlayerState>();
 
-/**
- * Helps keep track of player data
- */
-class PlayerState {
-    player: MapPlayer;
-    maxSupplyHorses: number = 3;
-    playerHero: Unit | undefined;
-    rallyToHero: boolean = false;
-    temporaryFoodCapIncrease: number = 0;
-    /**
-     * grain silos will permanently increase your food after they are destroyed
-     */
-    permanentFoodCapIncrease: number = 0;
+// /**
+//  * Helps keep track of player data
+//  */
+// class PlayerState {
+//     player: MapPlayer;
+//     maxSupplyHorses: number = 3;
+//     playerHero: Unit | undefined;
+//     rallyToHero: boolean = false;
+//     temporaryFoodCapIncrease: number = 0;
+//     /**
+//      * grain silos will permanently increase your food after they are destroyed
+//      */
+//     permanentFoodCapIncrease: number = 0;
 
-    constructor(player: MapPlayer) {
-        this.player = player;
-    }
+//     constructor(player: MapPlayer) {
+//         this.player = player;
+//     }
 
-    createSupplyHorse() {
-        let horseCount = 0;
+//     createSupplyHorse() {
+//         let horseCount = 0;
 
-        forEachUnitTypeOfPlayer("h001", this.player, (u) => {
-            horseCount++;
-        });
+//         forEachUnitTypeOfPlayer("h001", this.player, (u) => {
+//             horseCount++;
+//         });
 
-        if (horseCount < this.maxSupplyHorses) {
-            const u = Unit.create(this.player, FourCC("h001"), -300 + this.player.id * 50, 300);
-            const widget = Widget.fromHandle(this.playerHero?.handle);
+//         if (horseCount < this.maxSupplyHorses) {
+//             const u = Unit.create(this.player, FourCC("h001"), -300 + this.player.id * 50, 300);
+//             const widget = Widget.fromHandle(this.playerHero?.handle);
 
-            if (u && widget) {
-                u.issueTargetOrder(OrderId.Move, widget);
-            }
-        }
-    }
+//             if (u && widget) {
+//                 u.issueTargetOrder(OrderId.Move, widget);
+//             }
+//         }
+//     }
 
-    /**
-     * If the user has toggled on rally to hero, then the units in this array will move towards the hero , if they are alive.
-     * @param units
-     */
-    sendUnitsToHero(units: Unit[]) {
-        units.forEach((u) => {
-            if (u && this.rallyToHero) {
-                const widget = Widget.fromHandle(this.playerHero?.handle);
+//     /**
+//      * If the user has toggled on rally to hero, then the units in this array will move towards the hero , if they are alive.
+//      * @param units
+//      */
+//     sendUnitsToHero(units: Unit[]) {
+//         units.forEach((u) => {
+//             if (u && this.rallyToHero) {
+//                 const widget = Widget.fromHandle(this.playerHero?.handle);
 
-                if (widget) {
-                    u.issueTargetOrder(OrderId.Move, widget);
-                }
-            }
-        });
-    }
-}
+//                 if (widget) {
+//                     u.issueTargetOrder(OrderId.Move, widget);
+//                 }
+//             }
+//         });
+//     }
+// }
 
 export function setupPlayers() {
     initializePlayerStateInstances();
@@ -77,7 +78,7 @@ export function setupPlayers() {
             SetCameraPositionForPlayer(p.handle, u.x, u.y);
         }
 
-        SetPlayerHandicapXP(p.handle, 0.35);
+        SetPlayerHandicapXP(p.handle, 0.4);
     });
 }
 
@@ -140,11 +141,21 @@ function createDailyUnits() {
             forEachUnitOfPlayer(p, (u) => {
                 if (buildingOwnerDailyUnitBonusMap.has(u.typeId)) {
                     const unitData = buildingOwnerDailyUnitBonusMap.get(u.typeId);
+
                     if (!unitData) {
                         return;
                     }
 
-                    playerStates.get(p.id)?.sendUnitsToHero(createUnits(unitData.quantity, false, p, unitData.unitType, p.startLocationX, p.startLocationY));
+                    const improvedLeviesLevel = GetPlayerTechCount(p?.handle, UpgradeCodes.improvedLevies, true);
+                    let unitCount = unitData.quantity;
+
+                    if (improvedLeviesLevel == 1) {
+                        const bonus = improvedLeviesUnitBonus.get(unitData.unitType);
+                        print("bonus: ", bonus);
+                        unitCount += bonus ? bonus : 0;
+                    }
+
+                    playerStates.get(p.id)?.sendUnitsToHero(createUnits(unitCount, false, p, unitData.unitType, p.startLocationX, p.startLocationY));
                 }
             });
         }
@@ -222,6 +233,8 @@ export function players_nightStart() {
 export function initializePlayerStateInstances() {
     forEachAlliedPlayer((p) => {
         playerStates.set(p.id, new PlayerState(p));
+        SetCameraFieldForPlayer(p.handle, CAMERA_FIELD_FARZ, 10000, 0.25);
+        SetCameraFieldForPlayer(p.handle, CAMERA_FIELD_TARGET_DISTANCE, 4000, 0.25);
     });
 
     grantStartOfDayBonuses();
@@ -235,7 +248,6 @@ export function init_startingResources() {
 }
 
 function grantStartOfDayBonuses() {
-    const basePlayerFoodCap = 0;
     let totalSupplyBuildings = 0;
     let meleeWeaponUpgradeCount = 0;
     let armorUpgradeCount = 0;
@@ -300,7 +312,7 @@ function grantStartOfDayBonuses() {
 
         if (playerState) {
             //The destruction of grain silos should happen before food calculations
-            adjustFoodCap(p, playerState.temporaryFoodCapIncrease + sharedFoodCapIncrease);
+            adjustFoodCap(p, playerState.temporaryFoodCapIncrease + sharedFoodCapIncrease + playerState.permanentFoodCapIncrease);
             // print(`Food gained from personal grain silos for player ${p.name}: `, playerState.temporaryFoodCapIncrease);
         }
 
@@ -486,22 +498,12 @@ export function updateDayProgressForDependents() {
             forEachUnitTypeOfPlayer(config.unitTypeCode, p, (u) => {
                 u.mana++;
 
-                if (u.mana === config.maxDuration && u.isAlive()) {
-                    const e = Effect.createAttachment("Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl", u, "origin");
-                    const t = Timer.create();
-
-                    t.start(1.5, false, () => {
-                        e?.destroy();
-                        t.destroy();
-                    });
+                if (u.mana >= config.maxDuration && u.isAlive()) {
+                    if (config.onCompletion) {
+                        config.onCompletion(u.owner, u, config);
+                    }
 
                     u.kill();
-                    const unitGoldCost = GetUnitGoldCost(config.unitTypeCode);
-                    const goldAwarded = unitGoldCost * config.goldCostMultiplierAward;
-
-                    if (goldAwarded > 0) {
-                        adjustGold(p, goldAwarded);
-                    }
                 }
             });
         });

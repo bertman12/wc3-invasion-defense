@@ -47,6 +47,9 @@ export enum UpgradeCodes {
     dayTime = FourCC("R002"),
     nightTime = FourCC("R003"),
     magicGuardUpgrade = FourCC("R004"),
+    slaveRations = FourCC("R005"),
+    improvedLevies = FourCC("R008"),
+    foodPreservation = FourCC("R009"),
 }
 
 export enum PlayerIndices {
