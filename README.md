@@ -570,3 +570,9 @@ add kick command
 add more item shops around the map
 
 add more tents around forts
+
+every player past 2 players will grant the undead 10% more hp and 5% more damage
+
+add a durable melee zombie with spiked armor that only attacks buildings
+
+add an enenmy unit that has chain lightning auto attacks

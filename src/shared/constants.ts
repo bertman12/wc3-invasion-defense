@@ -5,7 +5,7 @@ import { UNITS, UpgradeCodes } from "./enums";
 import { playerStates } from "./playerState";
 
 export const economicConstants = {
-    playerBaseFoodCap: 0,
+    playerBaseFoodCap: 25,
     startingGold: 2000,
     startingLumber: 950,
     baseGoldPerRound: 100,
@@ -28,14 +28,14 @@ export const buildingOwnerIncomeBonusMap = new Map<number, number>([
 ]);
 
 export const buildingOwnerDailyUnitBonusMap = new Map<number, { unitType: number; quantity: number }>([
-    [UNITS.farmTown, { unitType: UNITS.militia, quantity: 3 }],
+    [UNITS.farmTown, { unitType: UNITS.militia, quantity: 2 }],
     [UNITS.townHall, { unitType: UNITS.footman, quantity: 6 }],
     [UNITS.castle, { unitType: UNITS.knight, quantity: 6 }],
     [UNITS.citadelOfTheNorthernKnights, { unitType: UNITS.heavyCavalry, quantity: 5 }],
 ]);
 
 export const improvedLeviesUnitBonus = new Map<number, number>([
-    [UNITS.militia, 3],
+    [UNITS.militia, 2],
     [UNITS.footman, 2],
     [UNITS.knight, 2],
     [UNITS.heavyCavalry, 2],
@@ -106,7 +106,7 @@ export const dailyProgressStructures: DailyProgressUnitConfig[] = [
     {
         unitTypeCode: UNITS.grainSilo,
         goldCostMultiplierAward: 0,
-        maxDuration: 5,
+        maxDuration: 3,
         onCompletion: (player, unit, config) => {
             const foodPreservation = GetPlayerTechCount(player?.handle, UpgradeCodes.foodPreservation, true);
 

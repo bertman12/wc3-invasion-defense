@@ -5,7 +5,7 @@ import { Timer, Trigger } from "w3ts";
 export class TimerManager {
     static nightTimer: Timer = Timer.create();
     static dayTimer: Timer = Timer.create();
-    static dayTimeDuration = 135;
+    static dayTimeDuration = 150;
     static nightTimeDuration = 120;
     private static nightTimerDialog: timerdialog;
     private static dayTimerDialog: timerdialog;

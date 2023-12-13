@@ -1,5 +1,4 @@
-import { Sound, Timer, Unit } from "w3ts";
-import { OrderId, Players } from "w3ts/globals";
+import { Sound, Timer } from "w3ts";
 import { W3TS_HOOK, addScriptHook } from "w3ts/hooks";
 import { initFrames } from "./frames";
 import { setupNightAndDayHooks } from "./hooks/startOfDay";
@@ -15,7 +14,7 @@ import { setupUndeadUnitPreview } from "./triggers/misc";
 import { init_upgradeBasedTriggers } from "./triggers/upgrades";
 import { trig_wayGate } from "./triggers/waygate";
 import { init_undead } from "./undead/taxonomy";
-import { tColor } from "./utils/misc";
+import { notifyPlayer } from "./utils/misc";
 import { init_quests } from "./utils/quests";
 
 const BUILD_DATE = compiletime(() => new Date().toUTCString());
@@ -41,11 +40,10 @@ function tsMain() {
         Timer.create().start(5, false, () => {
             Sound.fromHandle(gg_snd_U08Archimonde19)?.start();
             Sound.fromHandle(gg_snd_Hint)?.start();
-            print(`[${tColor("Objective", "goldenrod")}] - Defend the capital city`);
-            print("The Heroes of the Kingdom of Alexandria must rally their forces to fight the undead.");
-            print(" ");
-            print("Take your time to prepare for battle. Get footman to hold choke points, buy some items and invest some money into building Farm Laborers or purchasing structures.");
-            print(" ");
+            notifyPlayer("Place your Town Hall with your hero.");
+            TimerManager.startDayTimer(() => {
+                RoundManager.startNextRound();
+            }, 240);
         });
 
         setupPlayers();
@@ -62,9 +60,9 @@ function tsMain() {
         PlayMusic(gg_snd_NightElfX1);
 
         TimerManager.trig_setup();
-        const u = Unit.create(Players[9], FourCC("hfoo"), 0, 0);
-        u?.issueOrderAt(OrderId.Move, -300, 2850);
-        u?.setTimeScale(0.25);
+        // const u = Unit.create(Players[9], FourCC("hfoo"), 0, 0);
+        // u?.issueOrderAt(OrderId.Move, -300, 2850);
+        // u?.setTimeScale(0.25);
 
         //Give undead map vision
         // forEachPlayer((p) => {

@@ -28,7 +28,7 @@ function militaryCommands() {
         const p = MapPlayer.fromEvent();
 
         if (abilityOrderMap.has(spellId) && p) {
-            const workerUnits = [UNITS.engineer, UNITS.farmHand, UNITS.supplyHorse];
+            const workerUnits = [UNITS.engineer, UNITS.farmHand, UNITS.supplyHorse, UNITS.customPeasant];
             const x = GetSpellTargetX();
             const y = GetSpellTargetY();
             const meleeOnly = [ABILITIES.command_meleeMoveAllMilitary, ABILITIES.command_meleeAttackMoveAllMilitary].includes(spellId);

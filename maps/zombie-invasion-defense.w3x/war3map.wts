@@ -1,20 +1,20 @@
 ﻿STRING 1
 {
-Undead Siege Defense v0.15
+Undead Siege Defense v0.20 - Simple
 }
 
 STRING 2
 {
-6-10
+6
 }
 
 STRING 3
 {
-|cff00ff00Crash fixed.|r
-===Strategic Zombie Hero/Army Defense===
-|cffff0000High Difficulty|r
+|cff00ff00Simplified|r
+===Hero/Army Defense===
 Survive for 15 nights. 
-Defend the capital city from the undead legions.
+
+-Improved Economy
 
 |cffff0000Undead Spawns: |r Shown as skulls on the minimap.
 }
@@ -68,21 +68,6 @@ Player 5
 STRING 19
 {
 Player 6
-}
-
-STRING 20
-{
-Player 7
-}
-
-STRING 21
-{
-Player 8
-}
-
-STRING 22
-{
-Player 9
 }
 
 STRING 38
@@ -395,11 +380,6 @@ STRING 134
 C
 }
 
-STRING 136
-{
-[Ally] - Kingdom of Alexandria
-}
-
 STRING 138
 // Units: Hpal (Paladin), Propernames (Proper Names)
 {
@@ -420,28 +400,18 @@ Stone Walls - Free Form Doodad
 
 STRING 141
 {
-Undead Siege Defense v0.15
+Undead Siege Defense v0.20 Simplified
 }
 
 STRING 142
 {
 |cffff00ffObjective|r - Hold out for 15 nights until reinforcements arrive. 
 
- |cffffcc00Free Militia|r at Town Halls and Castles.
-
-|cff00ff00New Player|r - New Player: Buy 10 footmen and 2 Human Laborers. Spend the rest on items. 
+|cffff0000Beginner|r : Use your hero to place your town hall.
 
 |cff00ff00Farm Hand Worker|r - Buy at farms. Can build grain silos for increased food cap and can also build farm laborers to invest your gold.
 
 |cff00ff00Engineers|r - Trained at blacksmiths. Able to build defensive structures. 
-
-|cffff0000Destroyed Buildings|r - Destroyed human buildings turn into undead ones at the start of night. Destroyed undead buildings turn into human at the start of day.
-
-|cffffff00Buying Units|r - Buy units at allied structures.
-
-|cffffff00Upgrades|r - Allied buildings provide upgrades to all units, as long as they are alive.
-
-|c00ffff00Economy|r - Allied buildings will grant gold, lumber and food as long as they are alive. Purchasing allied buildings will grant you bonus income per day and give free units.
 
 Made by JediMindTrix/NihilismIsDeath
 
@@ -1201,12 +1171,6 @@ STRING 343
 Magic Guard
 }
 
-STRING 344
-// Upgrades: R004 (Submerge), Tip (Tooltip)
-{
-null tooltip
-}
-
 STRING 345
 // Upgrades: R003 (Submerge), Ubertip (Tooltip - Extended)
 {
@@ -1412,7 +1376,7 @@ B
 }
 
 STRING 409
-// Abilities: Ahrp (Repair), Ubertip (Tooltip - Normal - Extended)
+// Abilities: A02I (Repair), Ubertip (Tooltip - Normal - Extended)
 {
 Repairs mechanical units and structures at the cost of resources. |n|n300 range.
 }
@@ -1451,12 +1415,6 @@ STRING 420
 // Units: h00J (Barricade - Fortified), Tip (Tooltip - Basic)
 {
 Fortify Barricade
-}
-
-STRING 421
-// Units: h00J (Barricade - Fortified), Ubertip (Tooltip - Extended)
-{
-Adds 6 fortified armor and 500 health.
 }
 
 STRING 422
@@ -2597,12 +2555,6 @@ STRING 793
 Hire Headhunter
 }
 
-STRING 794
-// Abilities: A00X (Magic Guard), Ubertip (Tooltip - Normal - Extended)
-{
-+15% |cffff00ffmagic resist|r|n|N|cffffcc00Requires Arcane Sanctum|r
-}
-
 STRING 797
 // Abilities: A01Y (Improved Mass Teleport), EditorSuffix (Editor Suffix)
 {
@@ -2759,16 +2711,6 @@ STRING 828
 R
 }
 
-STRING 835
-// Abilities: A002 (Gold Income), Ubertip (Tooltip - Normal - Extended)
-{
-Grants |cffffff00+40 gold|r at the start of each day to all players.
-
-Owner Bonus Gold   |n|cffffcc00Farm|r - 2x Gold   |n|cffffcc00Town|r - 3x Gold   |n|cffffcc00Castle|r - 4x Gold
-
-
-}
-
 STRING 836
 // Units: n00L (Purchase Town Grant), Name (Name)
 {
@@ -2857,16 +2799,6 @@ STRING 854
 // Abilities: A007 (Weapon Upgrade), Ubertip (Tooltip - Normal - Extended)
 {
 Increases the damage of units.
-}
-
-STRING 855
-// Abilities: A00J (Lumber Income - Info Ability), Ubertip (Tooltip - Normal - Extended)
-{
-Grants |cff008000+30 lumber|r at the start of each day to all players.
-
-Owner Bonus Lumber   |n|cffffcc00Lumber Mill|r - 2x Lumber   |n|cffffcc00Town|r - 3x Lumber   |n|cffffcc00Castle|r - 4x Lumber
-
-
 }
 
 STRING 859
@@ -3649,22 +3581,10 @@ STRING 1065
 Q
 }
 
-STRING 1066
-// Abilities: A01H (Blink (Engineer)), Hotkey (Hotkey - Normal)
-{
-R
-}
-
 STRING 1067
 // Abilities: A01G (Grain Silo), Ubertip (Tooltip - Normal - Extended)
 {
 +5 |cffff8800Food|r   |n|nThe|cff8080ff mana|r represents how many days have passed. |n|n|cffffcc00This structure will be destroyed in 5 days.|r
-}
-
-STRING 1068
-// Units: h007 (Supply Camp), Ubertip (Tooltip - Extended)
-{
-Heals nearby units.|n|n|cffff00ffSupport Structure|r
 }
 
 STRING 1069
@@ -3689,12 +3609,6 @@ STRING 1072
 // Abilities: A02C (Base - Null Target Point Ability), Tip (Tooltip - Normal)
 {
 null normal tooltip
-}
-
-STRING 1073
-// Upgrades: R004 (Submerge), Ubertip (Tooltip - Extended)
-{
-null tooltip extended
 }
 
 STRING 1077
@@ -3881,12 +3795,6 @@ STRING 1136
 // Abilities: A00B (Mana Imbued Powder), EditorSuffix (Editor Suffix)
 {
 (Musketeer)
-}
-
-STRING 1141
-// Abilities: A02I (Repair), Ubertip (Tooltip - Normal - Extended)
-{
-Repairs mechanical units and structures at the cost of resources. |n|n300 range.
 }
 
 STRING 1142
@@ -4281,12 +4189,6 @@ STRING 1238
 (null upgrade)
 }
 
-STRING 1240
-// Abilities: A02Q (Improved Levies), Ubertip (Tooltip - Normal - Extended)
-{
-Increases the amount of free units you get from owned structures. |n|n|cffffcc00Farm - Militia|r: +3  |n|cffffcc00Town - Footmen|r: +2 |n|cffffcc00Castle - Knights|r: +2  |n|cffffcc00Citadel of The Northern Knights - Heavy Cavalry|r: +2
-}
-
 STRING 1241
 // Abilities: A02Q (Improved Levies), EditorSuffix (Editor Suffix)
 {
@@ -4303,12 +4205,6 @@ STRING 1243
 // Upgrades: R008 (Submerge), Name (Name)
 {
 Improved Levies
-}
-
-STRING 1244
-// Upgrades: R008 (Submerge), Ubertip (Tooltip - Extended)
-{
-Increases the amount of free units you get from owned structures. |n|n|cffffcc00Farm - Militia|r: +3  |n|cffffcc00Town - Footmen|r: +2 |n|cffffcc00Castle - Knights|r: +2  |n|cffffcc00Citadel of The Northern Knights - Heavy Cavalry|r: +2
 }
 
 STRING 1245
@@ -4333,5 +4229,1114 @@ STRING 1248
 // Upgrades: R009 (Submerge), EditorSuffix (Editor Suffix)
 {
 (null upgrade)
+}
+
+STRING 1253
+// Units: H00W (Buy more at ally buildings.), Name (Name)
+{
+Buy more at ally buildings.
+}
+
+STRING 1254
+// Units: H00W (Buy more at ally buildings.), Propernames (Proper Names)
+{
+Buy units at Allied Structures
+}
+
+STRING 1255
+// Abilities: A02R (Multishot), Name (Name)
+{
+Multishot
+}
+
+STRING 1256
+// Abilities: A02R (Multishot), Tip (Tooltip - Normal)
+{
+Multishot
+}
+
+STRING 1257
+// Abilities: A02R (Multishot), Ubertip (Tooltip - Normal - Extended)
+{
+Allows you to shoot multiple enemies at once.
+}
+
+STRING 1258
+// Units: h009 (Musketeer), Hotkey (Hotkey)
+{
+U
+}
+
+STRING 1259
+// Units: o005 (Headhunter), Hotkey (Hotkey)
+{
+H
+}
+
+STRING 1261
+// Units: h004 (Blacksmith), Ubertip (Tooltip - Extended)
+{
+Contains upgrades for improved armor, weaponry and gunpowder. |n|n|cffffcc00Trains Musketeers and Engineers.|r
+}
+
+STRING 1262
+// Units: h00U (Factory), Ubertip (Tooltip - Extended)
+{
+|cffffcc00Trains Engineers, Musketeers, and Imperial Tanks.|r
+}
+
+STRING 1263
+// Units: h007 (Supply Camp), Ubertip (Tooltip - Extended)
+{
+Heals nearby units in 800 range.|n|n|cffff00ffSupport Structure|r
+}
+
+STRING 1264
+// Units: h00X (Upgrade Center), Ubertip (Tooltip - Extended)
+{
+Provides upgrades for units and economy.
+}
+
+STRING 1268
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Iron Forged Swords 1
+}
+
+STRING 1269
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Iron Forged Swords 2
+}
+
+STRING 1270
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Iron Forged Swords 3
+}
+
+STRING 1271
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Iron Forged Swords 4
+}
+
+STRING 1272
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Iron Forged Swords 5
+}
+
+STRING 1273
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Iron Forged Swords 6
+}
+
+STRING 1274
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Iron Forged Swords 7
+}
+
+STRING 1275
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Iron Forged Swords 8
+}
+
+STRING 1276
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Iron Forged Swords 9
+}
+
+STRING 1277
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Iron Forged Swords 10
+}
+
+STRING 1278
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Iron Forged Swords 11
+}
+
+STRING 1279
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Iron Forged Swords 12
+}
+
+STRING 1280
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Iron Forged Swords 13
+}
+
+STRING 1281
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Iron Forged Swords 14
+}
+
+STRING 1282
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Iron Forged Swords 15
+}
+
+STRING 1283
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Iron Forged Swords 16
+}
+
+STRING 1284
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Iron Forged Swords 17
+}
+
+STRING 1285
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Iron Forged Swords 18
+}
+
+STRING 1286
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Iron Forged Swords 19
+}
+
+STRING 1287
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Iron Forged Swords 20
+}
+
+STRING 1288
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Iron Forged Swords 1
+}
+
+STRING 1289
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Iron Forged Swords 2
+}
+
+STRING 1290
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Iron Forged Swords 3
+}
+
+STRING 1291
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Iron Forged Swords 4
+}
+
+STRING 1292
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Iron Forged Swords 5
+}
+
+STRING 1293
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Iron Forged Swords 6
+}
+
+STRING 1294
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Iron Forged Swords 7
+}
+
+STRING 1295
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Iron Forged Swords 8
+}
+
+STRING 1296
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Iron Forged Swords 9
+}
+
+STRING 1297
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Iron Forged Swords 10
+}
+
+STRING 1298
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Iron Forged Swords 11
+}
+
+STRING 1299
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Iron Forged Swords 12
+}
+
+STRING 1300
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Iron Forged Swords 13
+}
+
+STRING 1301
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Iron Forged Swords 14
+}
+
+STRING 1302
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Iron Forged Swords 15
+}
+
+STRING 1303
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Iron Forged Swords 16
+}
+
+STRING 1304
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Iron Forged Swords 17
+}
+
+STRING 1305
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Iron Forged Swords 18
+}
+
+STRING 1306
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Iron Forged Swords 19
+}
+
+STRING 1307
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Iron Forged Swords 20
+}
+
+STRING 1308
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of all units.
+}
+
+STRING 1309
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of all units.
+}
+
+STRING 1310
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of all units.
+}
+
+STRING 1311
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of all units.
+}
+
+STRING 1312
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of all units.
+}
+
+STRING 1313
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of all units.
+}
+
+STRING 1314
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of all units.
+}
+
+STRING 1315
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of all units.
+}
+
+STRING 1316
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of all units.
+}
+
+STRING 1317
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of all units.
+}
+
+STRING 1318
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of all units.
+}
+
+STRING 1319
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of all units.
+}
+
+STRING 1320
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of all units.
+}
+
+STRING 1321
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of all units.
+}
+
+STRING 1322
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of all units.
+}
+
+STRING 1323
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of all units.
+}
+
+STRING 1324
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of all units.
+}
+
+STRING 1325
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of all units.
+}
+
+STRING 1326
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of all units.
+}
+
+STRING 1327
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
+{
+Increases the attack damage of all units.
+}
+
+STRING 1328
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Hotkey (Hotkey)
+{
+S
+}
+
+STRING 1329
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Hotkey (Hotkey)
+{
+S
+}
+
+STRING 1330
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Hotkey (Hotkey)
+{
+S
+}
+
+STRING 1331
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Hotkey (Hotkey)
+{
+S
+}
+
+STRING 1332
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Hotkey (Hotkey)
+{
+S
+}
+
+STRING 1333
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Hotkey (Hotkey)
+{
+S
+}
+
+STRING 1334
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Hotkey (Hotkey)
+{
+S
+}
+
+STRING 1335
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Hotkey (Hotkey)
+{
+S
+}
+
+STRING 1336
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Hotkey (Hotkey)
+{
+S
+}
+
+STRING 1337
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Hotkey (Hotkey)
+{
+S
+}
+
+STRING 1338
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Hotkey (Hotkey)
+{
+S
+}
+
+STRING 1339
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Hotkey (Hotkey)
+{
+S
+}
+
+STRING 1340
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Hotkey (Hotkey)
+{
+S
+}
+
+STRING 1341
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Hotkey (Hotkey)
+{
+S
+}
+
+STRING 1342
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Hotkey (Hotkey)
+{
+S
+}
+
+STRING 1343
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Hotkey (Hotkey)
+{
+S
+}
+
+STRING 1344
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Hotkey (Hotkey)
+{
+S
+}
+
+STRING 1345
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Hotkey (Hotkey)
+{
+P
+}
+
+STRING 1346
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Hotkey (Hotkey)
+{
+P
+}
+
+STRING 1347
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Hotkey (Hotkey)
+{
+P
+}
+
+STRING 1348
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Hotkey (Hotkey)
+{
+P
+}
+
+STRING 1349
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Hotkey (Hotkey)
+{
+P
+}
+
+STRING 1350
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Hotkey (Hotkey)
+{
+P
+}
+
+STRING 1351
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Hotkey (Hotkey)
+{
+P
+}
+
+STRING 1352
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Hotkey (Hotkey)
+{
+P
+}
+
+STRING 1353
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Hotkey (Hotkey)
+{
+P
+}
+
+STRING 1354
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Hotkey (Hotkey)
+{
+P
+}
+
+STRING 1355
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Hotkey (Hotkey)
+{
+P
+}
+
+STRING 1356
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Hotkey (Hotkey)
+{
+P
+}
+
+STRING 1357
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Hotkey (Hotkey)
+{
+P
+}
+
+STRING 1358
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Hotkey (Hotkey)
+{
+P
+}
+
+STRING 1359
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Hotkey (Hotkey)
+{
+P
+}
+
+STRING 1360
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Hotkey (Hotkey)
+{
+P
+}
+
+STRING 1361
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Hotkey (Hotkey)
+{
+P
+}
+
+STRING 1362
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Iron Plating 1
+}
+
+STRING 1363
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Iron Plating 2
+}
+
+STRING 1364
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Iron Plating 3
+}
+
+STRING 1365
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Iron Plating 4
+}
+
+STRING 1366
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Iron Plating 5
+}
+
+STRING 1367
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Iron Plating 6
+}
+
+STRING 1368
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Iron Plating 7
+}
+
+STRING 1369
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Iron Plating 8
+}
+
+STRING 1370
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Iron Plating 9
+}
+
+STRING 1371
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Iron Plating 10
+}
+
+STRING 1372
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Iron Plating 11
+}
+
+STRING 1373
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Iron Plating 12
+}
+
+STRING 1374
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Iron Plating 13
+}
+
+STRING 1375
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Iron Plating 14
+}
+
+STRING 1376
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Iron Plating 15
+}
+
+STRING 1377
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Iron Plating 16
+}
+
+STRING 1378
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Iron Plating 17
+}
+
+STRING 1379
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Iron Plating 18
+}
+
+STRING 1380
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Iron Plating 19
+}
+
+STRING 1381
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Iron Plating 20
+}
+
+STRING 1382
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Iron Plating 1
+}
+
+STRING 1383
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Iron Plating 2
+}
+
+STRING 1384
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Iron Plating 3
+}
+
+STRING 1385
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Iron Plating 4
+}
+
+STRING 1386
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Iron Plating 5
+}
+
+STRING 1387
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Iron Plating 6
+}
+
+STRING 1388
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Iron Plating 7
+}
+
+STRING 1389
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Iron Plating 8
+}
+
+STRING 1390
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Iron Plating 9
+}
+
+STRING 1391
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Iron Plating 10
+}
+
+STRING 1392
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Iron Plating 11
+}
+
+STRING 1393
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Iron Plating 12
+}
+
+STRING 1394
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Iron Plating 13
+}
+
+STRING 1395
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Iron Plating 14
+}
+
+STRING 1396
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Iron Plating 15
+}
+
+STRING 1397
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Iron Plating 16
+}
+
+STRING 1398
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Iron Plating 17
+}
+
+STRING 1399
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Iron Plating 18
+}
+
+STRING 1400
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Iron Plating 19
+}
+
+STRING 1401
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Iron Plating 20
+}
+
+STRING 1402
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
+{
+Increases the armor of all units.
+}
+
+STRING 1403
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
+{
+Increases the armor of all units.
+}
+
+STRING 1404
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
+{
+Increases the armor of all units.
+}
+
+STRING 1405
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
+{
+Increases the armor of all units.
+}
+
+STRING 1406
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
+{
+Increases the armor of all units.
+}
+
+STRING 1407
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
+{
+Increases the armor of all units.
+}
+
+STRING 1408
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
+{
+Increases the armor of all units.
+}
+
+STRING 1409
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
+{
+Increases the armor of all units.
+}
+
+STRING 1410
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
+{
+Increases the armor of all units.
+}
+
+STRING 1411
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
+{
+Increases the armor of all units.
+}
+
+STRING 1412
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
+{
+Increases the armor of all units.
+}
+
+STRING 1413
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
+{
+Increases the armor of all units.
+}
+
+STRING 1414
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
+{
+Increases the armor of all units.
+}
+
+STRING 1415
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
+{
+Increases the armor of all units.
+}
+
+STRING 1416
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
+{
+Increases the armor of all units.
+}
+
+STRING 1417
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
+{
+Increases the armor of all units.
+}
+
+STRING 1418
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
+{
+Increases the armor of all units.
+}
+
+STRING 1419
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
+{
+Increases the armor of all units.
+}
+
+STRING 1420
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
+{
+Increases the armor of all units.
+}
+
+STRING 1421
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
+{
+Increases the armor of all units.
+}
+
+STRING 1422
+// Items: tcas (Tiny Town Hall), Name (Name)
+{
+Tiny Town Hall
+}
+
+STRING 1423
+// Items: tcas (Tiny Town Hall), Description (Description)
+{
+Creates a town hall.
+}
+
+STRING 1424
+// Units: hbar (Barracks), Ubertip (Tooltip - Extended)
+{
+Primary troop production building. |n|n|cffffcc00Trains Footman, Knights, Archers, Headhunters, Orcish Light Cavalry, and Heavy Cavalry.|r
+}
+
+STRING 1425
+// Units: hars (Arcane Sanctum), Ubertip (Tooltip - Extended)
+{
+|cffffcc00Trains Rogue Wizard, Sorceress and Spell Breaker.|r
+}
+
+STRING 1426
+// Abilities: A002 (Gold Income), Ubertip (Tooltip - Normal - Extended)
+{
+Grants |cffffff00+40 gold|r at the start of each day.
+
+
+
+
+}
+
+STRING 1427
+// Abilities: A00J (Lumber Income - Info Ability), Ubertip (Tooltip - Normal - Extended)
+{
+Grants |cff008000+30 lumber|r at the start of each day.
+
+
+}
+
+STRING 1428
+// Upgrades: R008 (Submerge), Ubertip (Tooltip - Extended)
+{
+Increases the amount of free units you get from owned structures. |n|n|cffffcc00Farm - Militia|r: +2  
+}
+
+STRING 1429
+// Abilities: A02Q (Improved Levies), Ubertip (Tooltip - Normal - Extended)
+{
+Increases the amount of free units you get from owned structures. |n|n|cffffcc00Farm - Militia|r: +2
+}
+
+STRING 1430
+// Units: hlum (Lumber Mill), Ubertip (Tooltip - Extended)
+{
+Serves as a drop-off point for harvested lumber. |n|N|cffffcc00Gives passive lumber income per day.|r |n|n|cff80ff80Pays off in 3 days.|r
+}
+
+STRING 1431
+// Units: h002 (Farm ), Ubertip (Tooltip - Extended)
+{
+Increases supply unit's mana pool. |n|N|cffffcc00Gives passive gold income per day.|r |n|n|cff80ff80Pays off in 3 days.|r
+}
+
+STRING 1432
+{
+Fallen Kingdom
+}
+
+STRING 1433
+// Abilities: Ahrp (Repair), Ubertip (Tooltip - Normal - Extended)
+{
+Repairs mechanical units and structures at the cost of resources. |n|n600 range.
+}
+
+STRING 1434
+// Abilities: A01H (Blink (Engineer)), Hotkey (Hotkey - Normal)
+{
+N
+}
+
+STRING 1435
+// Units: u00J (Corrupted Protector), Name (Name)
+{
+Corrupted Protector
+}
+
+STRING 1436
+// Abilities: A02S (Item Immolation), EditorSuffix (Editor Suffix)
+{
+(corrutped protector)
+}
+
+STRING 1437
+// Units: h00J (Barricade - Fortified), Ubertip (Tooltip - Extended)
+{
+Adds 6 fortified armor and 400 health.
+}
+
+STRING 1438
+// Upgrades: R004 (Submerge), Tip (Tooltip)
+{
+Research Magic Guard
+}
+
+STRING 1441
+// Abilities: A00X (Magic Guard), Ubertip (Tooltip - Normal - Extended)
+{
+|cffff00ff+15% spell and magic|r damage reduction.
+}
+
+STRING 1442
+// Upgrades: R004 (Submerge), Ubertip (Tooltip - Extended)
+{
+Grants all allied units |cffff00ff+15% spell and magic|r damage reduction.
 }
 

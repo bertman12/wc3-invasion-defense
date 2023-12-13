@@ -3,13 +3,13 @@ import { tColor } from "./misc";
 
 export function init_quests() {
     Timer.create().start(1, false, () => {
-        addQuest(
-            "Player 1 Commands",
-            `Only needs to be used once otherwise it will break the game timer cycle.
-        ${tColor("-start", "goldenrod")} : starts the round.
-        `,
-            "ReplaceableTextures\\WorldEditUI\\StartingLocation.blp",
-        );
+        // addQuest(
+        //     "Player 1 Commands",
+        //     `Only needs to be used once otherwise it will break the game timer cycle.
+        // ${tColor("-start", "goldenrod")} : starts the round.
+        // `,
+        //     "ReplaceableTextures\\WorldEditUI\\StartingLocation.blp",
+        // );
 
         addQuest(
             "Basic Game Info",
@@ -88,7 +88,7 @@ export function init_quests() {
             false,
         );
 
-        addQuest("Map Info", "|cffffcc00Undead Siege Defense v0.15|r\n\nCreated by JediMindTrix/NihilismIsDeath", "ReplaceableTextures\\CommandButtons\\BTNClayFigurine.blp", false);
+        addQuest("|cffffcc00Undead Siege Defense v0.18 Simplified|r", "Created by JediMindTrix/NihilismIsDeath", "ReplaceableTextures\\CommandButtons\\BTNClayFigurine.blp", false);
     });
 }
 

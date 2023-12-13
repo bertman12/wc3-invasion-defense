@@ -61,9 +61,12 @@ export enum PlayerIndices {
 
 export enum UNITS {
     armyController = FourCC("H00T"),
+    unitShop = FourCC("H00W"),
     dummyCaster = FourCC("h00V"),
+    upgradeCenter = FourCC("h00X"),
 
     //Human Buildings
+    customPeasant = FourCC("h00G"),
     farmTown = FourCC("h002"),
     townHall = FourCC("htow"),
     rampartCannonTower = FourCC("h008"),

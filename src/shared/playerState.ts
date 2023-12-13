@@ -1,4 +1,3 @@
-import { forEachUnitTypeOfPlayer } from "src/utils/players";
 import { MapPlayer, Unit, Widget } from "w3ts";
 import { OrderId } from "w3ts/globals";
 
@@ -23,20 +22,17 @@ export class PlayerState {
     }
 
     createSupplyHorse() {
-        let horseCount = 0;
-
-        forEachUnitTypeOfPlayer("h001", this.player, (u) => {
-            horseCount++;
-        });
-
-        if (horseCount < this.maxSupplyHorses) {
-            const u = Unit.create(this.player, FourCC("h001"), -300 + this.player.id * 50, 300);
-            const widget = Widget.fromHandle(this.playerHero?.handle);
-
-            if (u && widget) {
-                u.issueTargetOrder(OrderId.Move, widget);
-            }
-        }
+        // let horseCount = 0;
+        // forEachUnitTypeOfPlayer("h001", this.player, (u) => {
+        //     horseCount++;
+        // });
+        // if (horseCount < this.maxSupplyHorses) {
+        //     const u = Unit.create(this.player, FourCC("h001"), -300 + this.player.id * 50, 300);
+        //     const widget = Widget.fromHandle(this.playerHero?.handle);
+        //     if (u && widget) {
+        //         u.issueTargetOrder(OrderId.Move, widget);
+        //     }
+        // }
     }
 
     /**

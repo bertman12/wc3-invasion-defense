@@ -1,13 +1,14 @@
 import { MinimapIconPath, UNITS } from "src/shared/enums";
 import { RoundManager } from "src/shared/round-manager";
 import { primaryCapturableHumanTargets } from "src/towns";
-import { notifyPlayer, tColor } from "src/utils/misc";
-import { forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayer, forEachUnitTypeOfPlayer } from "src/utils/players";
+import { notifyPlayer } from "src/utils/misc";
+import { forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayer, forEachUnitTypeOfPlayer, isPlayingUser } from "src/utils/players";
 import { Effect, Point, Rectangle, Sound, Timer, Trigger, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
 
 const UNDEAD_PLAYERS = [Players[10], Players[12], Players[13], Players[14], Players[15], Players[16], Players[17], Players[20], Players[21], Players[22], Players[23]];
-
+const defaultAttackX = -1200;
+const defaultAttackY = -15500;
 let currentUndeadPlayerIndex = 0;
 
 /**
@@ -29,7 +30,7 @@ function getNextUndeadPlayer() {
 //30 seconds being the hard spawn, 15 second intervals being the normal spawn difficulty; maybe fr
 const waveIntervalOptions = [15, 30];
 
-const MAX_ZOMBIE_COUNT = 450 as const;
+const MAX_ZOMBIE_COUNT = 400 as const;
 
 let currentZombieCount = 0;
 let currentSpawns: SpawnData[] = [];
@@ -54,10 +55,10 @@ export function undeadNightStart() {
 
     //Order remaining undaed to attack the capital
     forEachPlayer((p) => {
-        if (!p.isPlayerAlly(Players[0]) && p !== Players[0]) {
+        if (!p.isPlayerAlly(Players[0]) && p !== Players[0] && p !== Players[9]) {
             forEachUnitOfPlayer(p, (u) => {
                 if (u.typeId !== UNITS.pathFinder) {
-                    u.issueOrderAt(OrderId.Attack, 0, 0);
+                    u.issueOrderAt(OrderId.Attack, defaultAttackX, defaultAttackY);
                 }
             });
         }
@@ -74,7 +75,7 @@ export function init_undead() {
         removeUndeadFromCount();
         undeadDayStart();
         print("");
-        print(`Player 1 Type ${tColor("-start", "goldenrod")} to start the game.`);
+        // print(`Player 1 Type ${tColor("-start", "goldenrod")} to start the game.`);
     });
 }
 
@@ -84,47 +85,60 @@ export function undeadDayStart() {
     currentSpawns = [];
 
     notifyPlayer("Undead spawns are now visible.");
-
-    const validUndeadSpawns = [gg_rct_zombieSpawn2, gg_rct_zNorthSpawn1, gg_rct_ZombieSpawn1, gg_rct_zWestSpawn1, gg_rct_zEastCapitalSpawn];
-    let spawns: rect[] = [];
+    /**
+     * @SIMPLIFIED
+     */
+    const validUndeadSpawns = [gg_rct_southSpawn2, gg_rct_zSouthspawn4];
+    // const validUndeadSpawns = [gg_rct_zombieSpawn2, gg_rct_zNorthSpawn1, gg_rct_ZombieSpawn1, gg_rct_zWestSpawn1, gg_rct_zEastCapitalSpawn];
+    const spawns: rect[] = [];
 
     // [MIN_SPAWN_AMOUNT, validUndeadSpawns.length] spawns will be chosen
     const MIN_SPAWN_AMOUNT = 3;
-    let spawnCount = Math.ceil(Math.random() * validUndeadSpawns.length);
+    const spawnCount = Math.ceil(Math.random() * validUndeadSpawns.length);
 
     //If the chosen amount is less than the minimum then set to min amount
-    if (spawnCount < MIN_SPAWN_AMOUNT) {
-        spawnCount = MIN_SPAWN_AMOUNT;
-    }
+    // if (spawnCount < MIN_SPAWN_AMOUNT) {
+    //     spawnCount = MIN_SPAWN_AMOUNT;
+    // }
 
-    if (RoundManager.currentRound === 1) {
-        spawnCount = 5;
-    }
+    // if (RoundManager.currentRound === 1) {
+    //     spawnCount = 5;
+    // }
 
-    const tempSet = new Set<rect>();
+    // const tempSet = new Set<rect>();
 
-    while (tempSet.size !== spawnCount) {
-        const randomIndex = Math.floor(Math.random() * validUndeadSpawns.length);
-        const chosenSpawn = validUndeadSpawns[randomIndex];
+    // while (tempSet.size !== spawnCount) {
+    //     const randomIndex = Math.floor(Math.random() * validUndeadSpawns.length);
+    //     const chosenSpawn = validUndeadSpawns[randomIndex];
 
-        if (!tempSet.has(chosenSpawn)) {
-            tempSet.add(chosenSpawn);
-        }
-    }
+    //     if (!tempSet.has(chosenSpawn)) {
+    //         tempSet.add(chosenSpawn);
+    //     }
+    // }
 
-    spawns = [...tempSet];
-    //On the 14th night, all spawns are active
-    if (RoundManager.currentRound >= 14) {
-        spawns = validUndeadSpawns;
-    }
-    //Every 5th night, all spawns are active
-    else if (RoundManager.currentRound % 5 === 0) {
-        spawns = validUndeadSpawns;
-    }
+    // spawns = [...tempSet];
+    // //On the 14th night, all spawns are active
+    // if (RoundManager.currentRound >= 14) {
+    //     spawns = validUndeadSpawns;
+    // }
+    // //Every 5th night, all spawns are active
+    // else if (RoundManager.currentRound % 5 === 0) {
+    //     spawns = validUndeadSpawns;
+    // }
 
     const spawnBoss = RoundManager.currentRound % 3 === 0;
 
-    const spawnConfigs = spawns.map((zone, index) => {
+    // const spawnConfigs = spawns.map((zone, index) => {
+    //     if (index === 0 && spawnBoss) {
+    //         return new SpawnData(zone, false, spawnBoss);
+    //     }
+    //     return new SpawnData(zone);
+    // });
+
+    /**
+     * @SIMPLIFIED
+     */
+    const spawnConfigs = validUndeadSpawns.map((zone, index) => {
         if (index === 0 && spawnBoss) {
             return new SpawnData(zone, false, spawnBoss);
         }
@@ -207,10 +221,20 @@ class SpawnData {
     private preSpawnFunctions: ((...args: any) => void)[] = [];
     private onCleanupFunctions: ((...args: any) => void)[] = [];
     private pathFinderAttackPoint: Point | undefined;
+    /**
+     * Used to adjust the difficulty of the night
+     */
+    private playersPlaying: number = 0;
 
     constructor(spawn: rect, hideUI: boolean = false, spawnBoss: boolean = false) {
         this.hideUI = hideUI;
         this.spawnBoss = spawnBoss;
+        forEachPlayer((p) => {
+            if (p.isPlayerAlly(Players[0]) && isPlayingUser(p)) {
+                this.playersPlaying++;
+            }
+        });
+        print("Number of players playing when spawn instance is created: ", this.playersPlaying);
 
         this.spawnRec = Rectangle.fromHandle(spawn);
         this.totalSpawnCount = calcBaseAmountPerWave();
@@ -220,7 +244,7 @@ class SpawnData {
         const isHardDiff = difficulty === SpawnDifficulty.hard;
         this.spawnDifficulty = difficulty;
 
-        if (RoundManager.currentRound === 1) {
+        if (RoundManager.currentRound <= 4) {
             this.spawnDifficulty = SpawnDifficulty.normal;
         }
 
@@ -271,44 +295,38 @@ class SpawnData {
      */
     public createPathfinders(target: Unit) {
         //every 10 seconds create a path finder - make sure its not added to undead count
-        const units: Unit[] = [];
-        const t = Timer.create();
-
-        t.start(10, true, () => {
-            const u = Unit.create(getNextUndeadPlayer(), UNITS.pathFinder, this.spawnRec?.centerX ?? 0, this.spawnRec?.centerY ?? 0);
-            const deathTimer = Timer.create();
-
-            if (u) {
-                const trig = Trigger.create();
-                trig.registerUnitEvent(u, EVENT_UNIT_ISSUED_ORDER);
-                trig.registerUnitEvent(u, EVENT_UNIT_ISSUED_POINT_ORDER);
-                trig.registerUnitEvent(u, EVENT_UNIT_ISSUED_TARGET_ORDER);
-
-                trig.addAction(() => {
-                    if (u?.typeId === UNITS.pathFinder && (u.currentOrder === 0 || u?.currentOrder === OrderId.Stop)) {
-                        this.pathFinderAttackPoint = Point.create(u.x, u.y);
-                        u.destroy();
-                        trig.destroy();
-                        deathTimer.destroy();
-                    }
-                });
-
-                u.issueOrderAt(OrderId.Move, this.currentAttackTarget?.x ?? target.x, this.currentAttackTarget?.y ?? target.y);
-                units.push(u);
-
-                deathTimer.start(30, false, () => {
-                    //we want to follow the one most recentyl destroyed instead
-                    this.pathFinderAttackPoint = Point.create(u.x, u.y);
-                    u.destroy();
-                    deathTimer.destroy();
-                });
-            }
-        });
-
-        this.preSpawnFunctions.push(() => {
-            units.forEach((u) => u.destroy());
-            t.destroy();
-        });
+        // const units: Unit[] = [];
+        // const t = Timer.create();
+        // t.start(10, true, () => {
+        //     const u = Unit.create(getNextUndeadPlayer(), UNITS.pathFinder, this.spawnRec?.centerX ?? 0, this.spawnRec?.centerY ?? 0);
+        //     const deathTimer = Timer.create();
+        //     if (u) {
+        //         const trig = Trigger.create();
+        //         trig.registerUnitEvent(u, EVENT_UNIT_ISSUED_ORDER);
+        //         trig.registerUnitEvent(u, EVENT_UNIT_ISSUED_POINT_ORDER);
+        //         trig.registerUnitEvent(u, EVENT_UNIT_ISSUED_TARGET_ORDER);
+        //         trig.addAction(() => {
+        //             if (u?.typeId === UNITS.pathFinder && (u.currentOrder === 0 || u?.currentOrder === OrderId.Stop)) {
+        //                 this.pathFinderAttackPoint = Point.create(u.x, u.y);
+        //                 u.destroy();
+        //                 trig.destroy();
+        //                 deathTimer.destroy();
+        //             }
+        //         });
+        //         u.issueOrderAt(OrderId.Move, this.currentAttackTarget?.x ?? target.x, this.currentAttackTarget?.y ?? target.y);
+        //         units.push(u);
+        //         deathTimer.start(30, false, () => {
+        //             //we want to follow the one most recentyl destroyed instead
+        //             this.pathFinderAttackPoint = Point.create(u.x, u.y);
+        //             u.destroy();
+        //             deathTimer.destroy();
+        //         });
+        //     }
+        // });
+        // this.preSpawnFunctions.push(() => {
+        //     units.forEach((u) => u.destroy());
+        //     t.destroy();
+        // });
     }
 
     private getMinimapRGB() {
@@ -362,13 +380,13 @@ class SpawnData {
     public cleanupSpawn() {
         this.units.forEach((u, index) => {
             if (u) {
-                if (Math.random() * 100 >= 2.5) {
+                if (Math.random() * 100 >= 2 + Math.floor(RoundManager.currentRound / 2)) {
                     u.kill();
                 }
             }
         });
 
-        this.units.forEach((u) => u.issueOrderAt(OrderId.Attack, 0, 0));
+        this.units.forEach((u) => u.issueOrderAt(OrderId.Attack, defaultAttackX, defaultAttackY));
 
         if (this.spawnIcon) {
             DestroyMinimapIcon(this.spawnIcon);
@@ -412,13 +430,7 @@ class SpawnData {
 
         if (attackingUnits.length > 0) {
             attackingUnits.forEach((u) => {
-                // u.setPathing(false);
-                u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0);
-                // BlzQueuePointOrderById
-                // BlzQueuePointOrderById(u.handle, OrderId.Attack, this.pathFinderAttackPoint?.x ?? 0, this.pathFinderAttackPoint?.y ?? 0);
-
-                // u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0);
-                // BlzQueuePointOrderById(u.handle, OrderId.Attack, this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0);
+                u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? defaultAttackX, this.currentAttackTarget?.y ?? defaultAttackY);
             });
         }
 
@@ -426,13 +438,7 @@ class SpawnData {
         if (this.units.length > 0) {
             this.units.forEach((u) => {
                 if (u.currentOrder === 0 || u.currentOrder === OrderId.Stop) {
-                    // u.setPathing(false);
-                    // BlzQueuePointOrderById(u.handle, OrderId.Attack, this.pathFinderAttackPoint?.x ?? 0, this.pathFinderAttackPoint?.y ?? 0);
-                    u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0);
-
-                    // u.issueOrderAt(OrderId.Attack, this.pathFinderAttackPoint?.x ?? 0, this.pathFinderAttackPoint?.y ?? 0);
-                    // u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0);
-                    // BlzQueuePointOrderById(u.handle, OrderId.Attack, this.currentAttackTarget?.x ?? 0, this.currentAttackTarget?.y ?? 0);
+                    u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? defaultAttackX, this.currentAttackTarget?.y ?? defaultAttackY);
                 }
             });
         }
@@ -473,6 +479,11 @@ class SpawnData {
                 const randomTheta = (Math.random() * Math.PI) / 2;
                 //Range [0, 1)
                 const sampledValue = Math.sin(randomTheta);
+
+                if (this.spawnDifficulty === SpawnDifficulty.normal) {
+                    this.currentTier2Chance = -1;
+                    this.currentTier3Chance = -1;
+                }
 
                 //will always spawn tier 3 units on the last 2 nights
                 if (this.spawnDifficulty === SpawnDifficulty.final || (this.spawnDifficulty >= SpawnDifficulty.hard && sampledValue <= this.currentTier3Chance)) {
@@ -556,6 +567,19 @@ class SpawnData {
 
             if (u.isHero()) {
                 u.setHeroLevel(RoundManager.currentRound, false);
+            }
+            const playerBonus = this.playersPlaying - 2;
+            //Increasing health and damage based on number of players playing
+            const baseDmgIncrease = u.getBaseDamage(0) * 1.1 * playerBonus;
+            const diceSidesIncrease = Math.ceil(u.getDiceSides(0) * 1.1 * playerBonus);
+            const healthIncrease = 1.1 * playerBonus;
+
+            if (this.playersPlaying > 2) {
+                u.name += ` |cff00ff00+${playerBonus}% HP/DMG`;
+                u.maxLife += healthIncrease;
+                u.life += healthIncrease;
+                u.setBaseDamage(baseDmgIncrease, 0);
+                u.setDiceSides(diceSidesIncrease, 0);
             }
 
             this.units.push(u);
@@ -643,6 +667,9 @@ const unitCategoryData = new Map<UnitCategory, { tierI: number[]; tierII: number
                 //sea giant behemoth
                 FourCC("nsgb"),
                 //abomination
+
+                // Corrupted Protector
+                FourCC("U00J"),
             ],
         },
     ],
@@ -769,7 +796,7 @@ function calcBaseAmountPerWave() {
         numPlayers++;
     });
 
-    const enemiesPerWave = 25 + 3 * numPlayers;
+    const enemiesPerWave = 10 + 10 * numPlayers;
     return enemiesPerWave;
 }
 

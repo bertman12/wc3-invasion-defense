@@ -9,6 +9,8 @@ declare var gg_rct_undead_unit_showcase: rect;
 declare var gg_rct_zEastCapitalSpawn: rect;
 declare var gg_rct_southZombieSpawn: rect;
 declare var gg_rct_southSpawn2: rect;
+declare var gg_rct_zspawnSouth3: rect;
+declare var gg_rct_zSouthspawn4: rect;
 declare var gg_snd_QuestNew: sound;
 declare var gg_snd_QuestCompleted: sound;
 declare var gg_snd_QuestFailed: sound;

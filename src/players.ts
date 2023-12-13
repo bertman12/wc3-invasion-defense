@@ -9,60 +9,6 @@ import { notifyPlayer, tColor } from "./utils/misc";
 import { adjustFoodCap, adjustGold, adjustLumber, forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayerWithAbility, forEachUnitTypeOfPlayer, isPlayingUser } from "./utils/players";
 import { createUnits } from "./utils/units";
 
-// export const playerStates = new Map<number, PlayerState>();
-
-// /**
-//  * Helps keep track of player data
-//  */
-// class PlayerState {
-//     player: MapPlayer;
-//     maxSupplyHorses: number = 3;
-//     playerHero: Unit | undefined;
-//     rallyToHero: boolean = false;
-//     temporaryFoodCapIncrease: number = 0;
-//     /**
-//      * grain silos will permanently increase your food after they are destroyed
-//      */
-//     permanentFoodCapIncrease: number = 0;
-
-//     constructor(player: MapPlayer) {
-//         this.player = player;
-//     }
-
-//     createSupplyHorse() {
-//         let horseCount = 0;
-
-//         forEachUnitTypeOfPlayer("h001", this.player, (u) => {
-//             horseCount++;
-//         });
-
-//         if (horseCount < this.maxSupplyHorses) {
-//             const u = Unit.create(this.player, FourCC("h001"), -300 + this.player.id * 50, 300);
-//             const widget = Widget.fromHandle(this.playerHero?.handle);
-
-//             if (u && widget) {
-//                 u.issueTargetOrder(OrderId.Move, widget);
-//             }
-//         }
-//     }
-
-//     /**
-//      * If the user has toggled on rally to hero, then the units in this array will move towards the hero , if they are alive.
-//      * @param units
-//      */
-//     sendUnitsToHero(units: Unit[]) {
-//         units.forEach((u) => {
-//             if (u && this.rallyToHero) {
-//                 const widget = Widget.fromHandle(this.playerHero?.handle);
-
-//                 if (widget) {
-//                     u.issueTargetOrder(OrderId.Move, widget);
-//                 }
-//             }
-//         });
-//     }
-// }
-
 export function setupPlayers() {
     initializePlayerStateInstances();
     trig_playerBuysUnit();
@@ -71,6 +17,8 @@ export function setupPlayers() {
     trig_checkFarmLaborerPlacement();
     playerLeaves();
     laborerBuilt();
+    antiGrief();
+    selectionMistake();
     forEachAlliedPlayer((p, index) => {
         //Create Sheep to buy hero
         const u = Unit.create(p, FourCC("nshe"), 18600 + 25 * index, -28965);
@@ -96,7 +44,7 @@ function trig_heroDies() {
             const timer = Timer.create();
 
             timer.start(respawnTime, false, () => {
-                u.revive(0, 0, true);
+                u.revive(u.owner.startLocationX, u.owner.startLocationY, true);
             });
 
             return true;
@@ -118,6 +66,13 @@ function trig_playerBuysUnit() {
         if (!u || !seller) {
             return;
         }
+        const playerState = playerStates.get(u.owner.id);
+        if (seller.typeId === UNITS.unitShop && playerState) {
+            u.x = (playerState?.playerHero?.x ?? 0) - 25;
+            u.y = (playerState?.playerHero?.y ?? 0) - 25;
+            u.issueImmediateOrder(OrderId.Stop);
+        }
+
         //send to hero
         if (u) {
             playerStates.get(u.owner.id)?.sendUnitsToHero([u]);
@@ -151,13 +106,26 @@ function createDailyUnits() {
 
                     if (improvedLeviesLevel == 1) {
                         const bonus = improvedLeviesUnitBonus.get(unitData.unitType);
-                        print("bonus: ", bonus);
                         unitCount += bonus ? bonus : 0;
                     }
 
                     playerStates.get(p.id)?.sendUnitsToHero(createUnits(unitCount, false, p, unitData.unitType, p.startLocationX, p.startLocationY));
                 }
             });
+        }
+    });
+}
+
+function selectionMistake() {
+    const t = Trigger.create();
+
+    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SELECTED);
+
+    t.addAction(() => {
+        const u = Unit.fromEvent();
+
+        if (u?.typeId === UNITS.upgradeCenter && GetTriggerPlayer() !== u.owner.handle) {
+            u.select(false);
         }
     });
 }
@@ -192,31 +160,42 @@ function trig_heroPurchased() {
             playerState.playerHero = createdUnit;
         }
 
-        createdUnit.x = -300;
-        createdUnit.y = -300;
         createdUnit?.addItemById(FourCC("stel"));
-        seller?.select(false);
-        createdUnit.select(true);
+        createdUnit?.addItemById(FourCC("tcas"));
+        // seller?.select(false);
+        // createdUnit.select(true);
 
-        SetCameraPositionForPlayer(buyingUnit.owner.handle, createdUnit.x, createdUnit.y);
+        // playerState?.createSupplyHorse();
 
-        playerState?.createSupplyHorse();
+        const startX = createdUnit.owner.startLocationX;
+        const startY = createdUnit.owner.startLocationY;
+        SetCameraPositionForPlayer(buyingUnit.owner.handle, startX, startY);
 
-        const engineer = Unit.create(createdUnit.owner, UNITS.engineer, -300 + createdUnit.owner.id * 50, 300);
-        const farmHand = Unit.create(createdUnit.owner, UNITS.farmHand, -300 + createdUnit.owner.id * 50, 300);
+        createdUnit.x = startX;
+        createdUnit.y = startY;
+
+        const engineer = Unit.create(createdUnit.owner, UNITS.engineer, startX, startY);
+        const farmHand = Unit.create(createdUnit.owner, UNITS.farmHand, startX, startY);
+        const peasant = Unit.create(createdUnit.owner, UNITS.customPeasant, startX, startY);
+
+        // const engineer = Unit.create(createdUnit.owner, UNITS.engineer, -300 + createdUnit.owner.id * 50, 300);
+        // const farmHand = Unit.create(createdUnit.owner, UNITS.farmHand, -300 + createdUnit.owner.id * 50, 300);
+
         const armyController = Unit.create(createdUnit.owner, UNITS.armyController, -28950 + createdUnit.owner.id * 50 - 250 * Math.floor(createdUnit.owner.id / 5), -28950 - Math.floor(createdUnit.owner.id / 5) * 75);
         armyController?.setHeroLevel(18, false);
+        // const unitShop = Unit.create(createdUnit.owner, UNITS.unitShop, -28950 + createdUnit.owner.id * 50 - 250 * Math.floor(createdUnit.owner.id / 5), -28950 - Math.floor(createdUnit.owner.id / 5) * 75);
+        // unitShop?.setHeroLevel(18, false);
 
-        if (engineer && farmHand) {
-            engineer.setUseFood(false);
-            farmHand.setUseFood(false);
-            const playerHero = playerState?.playerHero;
+        // if (engineer && farmHand) {
+        // engineer.setUseFood(false);
+        // farmHand.setUseFood(false);
+        // const playerHero = playerState?.playerHero;
 
-            if (playerHero) {
-                engineer.issueTargetOrder(OrderId.Move, playerHero);
-                farmHand.issueTargetOrder(OrderId.Move, playerHero);
-            }
-        }
+        // if (playerHero) {
+        //     engineer.issueTargetOrder(OrderId.Move, playerHero);
+        //     farmHand.issueTargetOrder(OrderId.Move, playerHero);
+        // }
+        // }
     });
 }
 
@@ -254,7 +233,7 @@ function grantStartOfDayBonuses() {
     let foodReserveStructures = 0;
     let magicGuardStructures = 0;
 
-    const foodRoundBonus = economicConstants.capitalDailyFoodCapValue * RoundManager.currentRound;
+    // const foodRoundBonus = economicConstants.capitalDailyFoodCapValue * RoundManager.currentRound;
 
     createDailyUnits();
     forEachAlliedPlayer((p) => {
@@ -291,21 +270,24 @@ function grantStartOfDayBonuses() {
     });
 
     //should be adding the food cap gained from the capital, the food gained from teh granaries, and the food cap increase from the grain silos players have built
-    const sharedFoodCapIncrease = economicConstants.playerBaseFoodCap + foodRoundBonus + economicConstants.granaryFoodCapIncrease * foodReserveStructures;
+    const sharedFoodCapIncrease = economicConstants.playerBaseFoodCap + economicConstants.granaryFoodCapIncrease * foodReserveStructures;
 
     forEachAlliedPlayer((p) => {
+        /**
+         * @SIMPLIFIED
+         */
         //Reset to 0
-        p.setTechResearched(UpgradeCodes.armor, 0);
-        p.setTechResearched(UpgradeCodes.meleeWeapons, 0);
+        // p.setTechResearched(UpgradeCodes.armor, 0);
+        // p.setTechResearched(UpgradeCodes.meleeWeapons, 0);
         p.setTechResearched(UpgradeCodes.supplyUpgrade, 0);
-        p.setTechResearched(UpgradeCodes.magicGuardUpgrade, 0);
+        // p.setTechResearched(UpgradeCodes.magicGuardUpgrade, 0);
         p.setState(PLAYER_STATE_RESOURCE_FOOD_CAP, 0);
 
         //Adjust accordingly
-        p.setTechResearched(UpgradeCodes.armor, armorUpgradeCount);
-        p.setTechResearched(UpgradeCodes.meleeWeapons, meleeWeaponUpgradeCount);
+        // p.setTechResearched(UpgradeCodes.armor, armorUpgradeCount);
+        // p.setTechResearched(UpgradeCodes.meleeWeapons, meleeWeaponUpgradeCount);
         p.setTechResearched(UpgradeCodes.supplyUpgrade, totalSupplyBuildings);
-        p.setTechResearched(UpgradeCodes.magicGuardUpgrade, magicGuardStructures);
+        // p.setTechResearched(UpgradeCodes.magicGuardUpgrade, magicGuardStructures);
         //Set player food cap
 
         const playerState = playerStates.get(p.id);
@@ -370,7 +352,7 @@ export function player_giveHumansStartOfDayResources(round: number) {
                     let currentPlayerLumberAmount = playerOwnedLumberResourceBonuses.get(p.id);
 
                     playerOwnedLumberResourceBonuses.set(p.id, currentPlayerLumberAmount ? (currentPlayerLumberAmount += lumberAward) : lumberAward);
-                    adjustGold(p, lumberAward);
+                    adjustLumber(p, lumberAward);
                 }
             }
         });
@@ -386,20 +368,27 @@ export function player_giveHumansStartOfDayResources(round: number) {
     const incomeBuildingGold = economicConstants.goldProducingAbility * totalIncomeBuildings;
     const lumberIncome = economicConstants.lumberProducingAbility * lumberAbilityCount;
 
-    const totalGold = baseGold + roundGold + incomeBuildingGold;
-    const totalLumber = baseWood + roundLumber + lumberIncome;
+    const totalGold = baseGold + roundGold;
+    const totalLumber = baseWood + roundLumber;
+    // const totalGold = baseGold + roundGold + incomeBuildingGold;
+    // const totalLumber = baseWood + roundLumber + lumberIncome;
 
     print("===Income Report===");
     print(`${tColor("Base Amount", "goldenrod")} - ${tColor("Gold", "yellow")}: ${baseGold}`);
     print(`${tColor("Round Bonus", "goldenrod")} #${round} - ${tColor("Gold", "yellow")}: ${roundGold}`);
-    print(`${tColor("Shared Gold Buildings", "goldenrod")} (${totalIncomeBuildings}) - ${tColor("Gold", "yellow")}: ${incomeBuildingGold}`);
+    // print(`${tColor("Shared Gold Buildings", "goldenrod")} (${totalIncomeBuildings}) - ${tColor("Gold", "yellow")}: ${incomeBuildingGold}`);
     print(`${tColor("Total", "goldenrod")}: ${tColor("Gold", "yellow")}: ${totalGold}`);
     print("                                  ");
     print(`${tColor("Base Amount", "goldenrod")} - ${tColor("Lumber", "green")} - ${baseWood}`);
     print(`${tColor("Round Bonus", "goldenrod")} #${round} - ${tColor("Lumber", "green")}: ${roundLumber}`);
-    print(`${tColor("Shared Lumber Buildings", "goldenrod")} (${lumberAbilityCount}) - ${tColor("Lumber", "green")}: ${lumberIncome}`);
+    // print(`${tColor("Shared Lumber Buildings", "goldenrod")} (${lumberAbilityCount}) - ${tColor("Lumber", "green")}: ${lumberIncome}`);
     print(`${tColor("Total", "goldenrod")}: ${tColor("Lumber", "green")}: ${totalLumber}`);
     print("==================");
+    // print(" ");
+    // print("Take your time to prepare for battle.");
+    // print(`Invest your |cffffff00Gold|r with |cffffcc00Farm Laborers|r.`);
+    // print(`Buy allied structures for more |cffffff00gold|r and |cff00ff00lumber|r income and |cffffcc00free units|r.`);
+    // print(`|cffffcc00Free Units|r have arrived at the capital.`);
 
     //Gives gold and wood
     forEachAlliedPlayer((player) => {
@@ -507,6 +496,28 @@ export function updateDayProgressForDependents() {
                 }
             });
         });
+    });
+}
+
+function antiGrief() {
+    const t = Trigger.create();
+
+    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_ATTACKED);
+
+    t.addAction(() => {
+        const attacker = Unit.fromHandle(GetAttacker());
+        const victim = Unit.fromHandle(GetAttackedUnitBJ());
+        if (!attacker || !victim) {
+            return;
+        }
+
+        if (attacker.owner === victim.owner) {
+            return;
+        }
+
+        if (attacker.isAlly(victim.owner)) {
+            attacker.issueImmediateOrder(OrderId.Stop);
+        }
     });
 }
 
