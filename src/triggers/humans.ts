@@ -4,11 +4,12 @@ import { applyForce } from "src/shared/physics";
 import { playerStates } from "src/shared/playerState";
 import { RoundManager } from "src/shared/round-manager";
 import { allCapturableStructures } from "src/towns";
-import { unitGetsNearThisUnit } from "src/utils/abilities";
+import { onUnitAttacked, unitGetsNearThisUnit, useTempDummyUnit } from "src/utils/abilities";
 import { getRelativeAngleToUnit, notifyPlayer, tColor, useEffects, useTempEffect } from "src/utils/misc";
 import { adjustGold, adjustLumber, forEachAlliedPlayer, forEachUnitTypeOfPlayer, isPlayingUser } from "src/utils/players";
+import { delay } from "src/utils/timer";
 import { Effect, Group, Item, MapPlayer, Timer, Trigger, Unit } from "w3ts";
-import { Players } from "w3ts/globals";
+import { OrderId, Players } from "w3ts/globals";
 
 export function init_humanSpells() {
     purchaseStructure();
@@ -16,6 +17,8 @@ export function init_humanSpells() {
     generalHired();
     trig_disbandUnit();
     thunderousStrikes();
+    proc_summonLavaSpawn();
+    howlOfTerror();
     RoundManager.onDayStart(removeCaltrops);
 }
 
@@ -200,7 +203,7 @@ function trig_battleCharge() {
         SetUnitAnimationByIndex(caster.handle, 3);
         const { addEffect, destroyAllEffects, getEffects } = useEffects();
 
-        const { destroy } = unitGetsNearThisUnit(
+        const { cleanupUnitGetsNearThisUnit: destroy } = unitGetsNearThisUnit(
             caster,
             200,
             (u) => {
@@ -216,7 +219,7 @@ function trig_battleCharge() {
                 }
 
                 const thunderEffect = Effect.create("Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl", u.x, u.y);
-                u.damageTarget(u.handle, 150, true, false, ATTACK_TYPE_CHAOS, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS);
+                caster.damageTarget(u.handle, 150, true, false, ATTACK_TYPE_CHAOS, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS);
 
                 if (thunderEffect) {
                     thunderEffect.scale = 0.5;
@@ -281,11 +284,11 @@ function thunderousStrikes() {
             const affectedUnits = Group.create();
 
             if (affectedUnits) {
-                affectedUnits.enumUnitsInRange(attacker.x, attacker.y, 350, () => {
+                affectedUnits.enumUnitsInRange(attacker.x, attacker.y, 400, () => {
                     const unit = Group.getFilterUnit();
 
                     if (unit && !unit.isAlly(attacker.owner)) {
-                        attacker.damageTarget(unit.handle, 50 * level, false, false, ATTACK_TYPE_HERO, DAMAGE_TYPE_DIVINE, WEAPON_TYPE_WHOKNOWS);
+                        attacker.damageTarget(unit.handle, 100 * level, false, false, ATTACK_TYPE_HERO, DAMAGE_TYPE_DIVINE, WEAPON_TYPE_WHOKNOWS);
                     }
 
                     return true;
@@ -320,5 +323,86 @@ function generalHired() {
                 }
             });
         }
+    });
+}
+
+function proc_summonLavaSpawn() {
+    onUnitAttacked(
+        (attacker, victim) => {
+            const abilityLevel = attacker.getAbilityLevel(ABILITIES.firelord_armyOfFlame);
+
+            if (abilityLevel >= 1) {
+                useTempDummyUnit(
+                    (dummy) => {
+                        print("Casting lava elemental");
+                        const abilityLevel = attacker.getAbilityLevel(ABILITIES.firelord_armyOfFlame);
+                        dummy.setAbilityLevel(ABILITIES.firelord_armyOfFlame, abilityLevel);
+                        dummy.issueImmediateOrder(OrderId.Lavamonster);
+                    },
+                    ABILITIES.firelord_armyOfFlame,
+                    2,
+                    attacker,
+                );
+            }
+        },
+        { attackerCooldown: true, procChance: 8 },
+    );
+}
+
+function howlOfTerror() {
+    const trig = Trigger.create();
+
+    trig.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SPELL_CAST);
+
+    trig.addCondition(() => {
+        const castedSpellId = GetSpellAbilityId();
+
+        if (castedSpellId === ABILITIES.pitLord_howlOfTerror) {
+            return true;
+        }
+
+        return false;
+    });
+
+    trig.addAction(() => {
+        const caster = Unit.fromEvent();
+
+        if (!caster) {
+            return;
+        }
+        delay(0.85, () => {
+            const { cleanupUnitGetsNearThisUnit } = unitGetsNearThisUnit(
+                caster,
+                750,
+                (u) => {
+                    //to prevent moving things like rampart canon tower which is a flying unit
+                    if (allCapturableStructures.has(u.typeId) || u.isUnitType(UNIT_TYPE_STRUCTURE) || u.typeId === UNITS.goblinLandMine) {
+                        return;
+                    }
+
+                    if (u.isAlly(caster.owner)) {
+                        return;
+                    }
+
+                    const thunderEffect = Effect.create("Abilities\\Spells\\Human\\Thunderclap\\ThunderClapCaster.mdl", u.x, u.y);
+
+                    if (thunderEffect) {
+                        thunderEffect.scale = 0.25;
+                    }
+
+                    useTempEffect(thunderEffect);
+                    applyForce(getRelativeAngleToUnit(caster, u), u, 1200, { obeyPathing: true });
+
+                    const abilityLevel = caster.getAbilityLevel(ABILITIES.pitLord_howlOfTerror);
+
+                    caster.damageTarget(u.handle, 100 * abilityLevel, true, false, ATTACK_TYPE_CHAOS, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS);
+                },
+                {
+                    uniqueUnitsOnly: true,
+                },
+            );
+
+            cleanupUnitGetsNearThisUnit(1);
+        });
     });
 }

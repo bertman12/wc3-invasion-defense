@@ -16,6 +16,7 @@ import { trig_wayGate } from "./triggers/waygate";
 import { init_undead } from "./undead/taxonomy";
 import { notifyPlayer } from "./utils/misc";
 import { init_quests } from "./utils/quests";
+import { init_economyTriggers } from "./triggers/economy/init";
 
 const BUILD_DATE = compiletime(() => new Date().toUTCString());
 const TS_VERSION = compiletime(() => require("typescript").version);
@@ -86,6 +87,7 @@ function tsMain() {
         init_armyControllerTrigs();
         init_cameraTrigs();
         init_upgradeBasedTriggers();
+        init_economyTriggers();
         //10 second timer
         init_undead();
         //For looking at minimap icons

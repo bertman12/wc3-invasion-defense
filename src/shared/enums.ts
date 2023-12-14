@@ -19,6 +19,8 @@ export enum ABILITIES {
     heroicLeap = FourCC("A00P"),
     purchaseFarmGrant = FourCC("A00S"),
     disbandUnit = FourCC("A01I"),
+    firelord_armyOfFlame = FourCC("ANlm"),
+    pitLord_howlOfTerror = FourCC("ANht"),
 
     //Special
     shopShareAlly = FourCC("Aall"),
@@ -54,6 +56,7 @@ export enum UpgradeCodes {
 
 export enum PlayerIndices {
     KingdomOfAlexandria = 9,
+    KingdomOfHyperion = 18,
     NeutralHostile = 24,
     NeutralPassive = 25,
     Items = 27,

@@ -1,13 +1,9 @@
-import { useTempEffect } from "src/utils/misc";
-import { adjustGold } from "src/utils/players";
-import { Effect, MapPlayer, Unit } from "w3ts";
-import { UNITS, UpgradeCodes } from "./enums";
-import { playerStates } from "./playerState";
+import { UNITS } from "./enums";
 
 export const economicConstants = {
-    playerBaseFoodCap: 25,
-    startingGold: 2000,
-    startingLumber: 950,
+    playerBaseFoodCap: 15,
+    startingGold: 2050,
+    startingLumber: 1150,
     baseGoldPerRound: 100,
     baseLumberPerRound: 100,
     goldRoundMultiplier: 50,
@@ -28,15 +24,15 @@ export const buildingOwnerIncomeBonusMap = new Map<number, number>([
 ]);
 
 export const buildingOwnerDailyUnitBonusMap = new Map<number, { unitType: number; quantity: number }>([
-    [UNITS.farmTown, { unitType: UNITS.militia, quantity: 2 }],
-    [UNITS.townHall, { unitType: UNITS.footman, quantity: 6 }],
+    [UNITS.farmTown, { unitType: UNITS.militia, quantity: 0 }],
+    [UNITS.townHall, { unitType: UNITS.footman, quantity: 0 }],
     [UNITS.castle, { unitType: UNITS.knight, quantity: 6 }],
     [UNITS.citadelOfTheNorthernKnights, { unitType: UNITS.heavyCavalry, quantity: 5 }],
 ]);
 
 export const improvedLeviesUnitBonus = new Map<number, number>([
     [UNITS.militia, 2],
-    [UNITS.footman, 2],
+    [UNITS.footman, 6],
     [UNITS.knight, 2],
     [UNITS.heavyCavalry, 2],
 ]);
@@ -53,71 +49,3 @@ export const ownershipGrantingUnits = new Map<number, number>([
     [UNITS.lumberMill, UNITS.lumberMillGrant],
     [UNITS.citadelOfTheNorthernKnights, UNITS.title_duchyOfTheNorthernKnights],
 ]);
-
-interface DailyProgressUnitConfig {
-    unitTypeCode: number;
-    goldCostMultiplierAward: number;
-    maxDuration: number;
-    onCompletion?: DailyProgressCompletionFn;
-}
-
-type DailyProgressCompletionFn = (player: MapPlayer, unit: Unit, config: DailyProgressUnitConfig) => void;
-
-const laborerCompletionFn = (player: MapPlayer, unit: Unit, config: DailyProgressUnitConfig) => {
-    useTempEffect(Effect.createAttachment("Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl", unit, "origin"), 3);
-
-    const unitGoldCost = GetUnitGoldCost(config.unitTypeCode);
-    const goldAwarded = unitGoldCost * config.goldCostMultiplierAward;
-
-    adjustGold(unit.owner, goldAwarded);
-};
-
-/**
- * Structures whose effects are granted for a specific duration of days
- *
- * Some will grant gold until they have fully progressed, while other will provide food until they have fully progressed
- */
-export const dailyProgressStructures: DailyProgressUnitConfig[] = [
-    //Doesnt work for some fucking reason
-    // {
-    //     unitTypeCode: UNITS.peonLaborer,
-    //     goldCostMultiplierAward: 1.3,
-    //     maxDuration: 2,
-    //     onCompletion: laborerCompletionFn,
-    // },
-    {
-        unitTypeCode: UNITS.humanLaborer,
-        goldCostMultiplierAward: 1.7,
-        maxDuration: 4,
-        onCompletion: laborerCompletionFn,
-    },
-    {
-        unitTypeCode: UNITS.druidLaborer,
-        goldCostMultiplierAward: 2.2,
-        maxDuration: 5,
-        onCompletion: laborerCompletionFn,
-    },
-    {
-        unitTypeCode: UNITS.acolyteSlaveLaborer,
-        goldCostMultiplierAward: 1.1,
-        maxDuration: 1,
-        onCompletion: laborerCompletionFn,
-    },
-    {
-        unitTypeCode: UNITS.grainSilo,
-        goldCostMultiplierAward: 0,
-        maxDuration: 3,
-        onCompletion: (player, unit, config) => {
-            const foodPreservation = GetPlayerTechCount(player?.handle, UpgradeCodes.foodPreservation, true);
-
-            if (foodPreservation == 1) {
-                const playerState = playerStates.get(player.id);
-
-                if (playerState) {
-                    playerState.permanentFoodCapIncrease++;
-                    useTempEffect(Effect.create("Objects\\Spawnmodels\\NightElf\\EntBirthTarget\\EntBirthTarget.mdl", unit.x, unit.y));
-                }
-            }
-        },
-    },
-];

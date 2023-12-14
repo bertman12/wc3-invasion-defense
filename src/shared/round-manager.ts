@@ -49,16 +49,13 @@ export class RoundManager {
             cb(RoundManager.currentRound);
         });
 
-        if (RoundManager.currentRound >= 15) {
+        if (RoundManager.currentRound >= 9) {
             TimerManager.nightTimeDuration = 300;
         }
 
-        TimerManager.startNightTimer(
-            () => {
-                RoundManager.endCurrentRound();
-            },
-            75 + 10 * RoundManager.currentRound,
-        );
+        TimerManager.startNightTimer(() => {
+            RoundManager.endCurrentRound();
+        });
     }
 
     static endCurrentRound() {
@@ -85,7 +82,6 @@ export class RoundManager {
             ClearMapMusic();
             StopMusic(true);
             PlayMusic(gg_snd_HeroicVictory);
-            // return;
         } else {
             // ClearMapMusic();
             StopMusic(false);
@@ -96,10 +92,9 @@ export class RoundManager {
 
         Timer.create().start(5, false, () => {
             Sound.fromHandle(gg_snd_Hint)?.start();
-            print("Supply horses have arrived at the capital. Use them to heal your units.");
         });
 
-        if (RoundManager.currentRound !== 15) {
+        if (RoundManager.currentRound !== 9) {
             TimerManager.startDayTimer(() => {
                 RoundManager.startNextRound();
             });

@@ -136,37 +136,3 @@ export function adjustFoodCap(player: MapPlayer, amount: number) {
 export function adjustFoodUsed(player: MapPlayer, amount: number) {
     player.setState(PLAYER_STATE_RESOURCE_FOOD_USED, player.getState(PLAYER_STATE_RESOURCE_FOOD_USED) + amount);
 }
-
-/**
- * Used later on to check if a unit has a specific ability
- * Function will save abilities from index [0,11]
- *
- * Cannot use since each unit's ability from getAbility is unique, even though multiple unique ability codes reference the same spell.
- */
-// function storeUnitTypeAbilities(u: Unit){
-//     if(unitTypeAbilities.has(u.typeId)) return;
-
-//     //IF we currently haven't stored the unit type we do so now with an empty array
-//     if(!unitTypeAbilities.has(u.typeId)){
-//         unitTypeAbilities.set(u.typeId, []);
-//     }
-
-//     //Iterate all 12 ability slots a unit can have
-//     for(let x = 0; x < 12; x++){
-//         let currentAbility = u.getAbilityByIndex(x);
-
-//         if(currentAbility){
-//             const updated =  unitTypeAbilities.get(u.typeId) as ability[];
-//             updated.push(currentAbility);
-//             unitTypeAbilities.set(u.typeId, updated);
-//         }
-//     }
-// }
-
-/***
- * perhaps I stored the unit type id and the name of the ability or the ability FourCC("")
- * Then I won't need to parse the same units over again if I dont need to.
- *
- * Cannot store the unique ability codes from Unit.getAbility();
- *
- */

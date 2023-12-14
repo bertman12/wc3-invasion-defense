@@ -1,20 +1,21 @@
 ﻿STRING 1
 {
-Undead Siege Defense v0.20 - Simple
+Undead Siege Defense v0.21
 }
 
 STRING 2
 {
-6
+4 - 6
 }
 
 STRING 3
 {
-|cff00ff00Simplified|r
-===Hero/Army Defense===
+|cff00ff00Simplfied|r
+===Hero/Army/Base Defense===
 Survive for 15 nights. 
 
 -Improved Economy
+-|cffffcc00Spawns fixed|r
 
 |cffff0000Undead Spawns: |r Shown as skulls on the minimap.
 }
@@ -32,11 +33,6 @@ Player 1
 STRING 9
 {
 Human Defenders
-}
-
-STRING 10
-{
-Undead Enemies
 }
 
 STRING 12
@@ -400,18 +396,18 @@ Stone Walls - Free Form Doodad
 
 STRING 141
 {
-Undead Siege Defense v0.20 Simplified
+Undead Siege Defense v0.21 
 }
 
 STRING 142
 {
 |cffff00ffObjective|r - Hold out for 15 nights until reinforcements arrive. 
 
-|cffff0000Beginner|r : Use your hero to place your town hall.
+|cff00ff00Beginner|r : Pick Hero at the Tarvern then use your hero to place your town hall.
 
-|cff00ff00Farm Hand Worker|r - Buy at farms. Can build grain silos for increased food cap and can also build farm laborers to invest your gold.
+|cffffff00Farm Hand Worker|r -  Can build grain silos for increased food cap and can also build farm laborers to invest your gold.
 
-|cff00ff00Engineers|r - Trained at blacksmiths. Able to build defensive structures. 
+|cffffff00Engineers|r - Able to build defensive structures. 
 
 Made by JediMindTrix/NihilismIsDeath
 
@@ -1946,7 +1942,7 @@ Stops all enemies in a target area from casting spells for <AIse,Dur1> seconds. 
 }
 
 STRING 591
-// Units: h00O (Druid Laborer), Name (Name)
+// Abilities: A01J (Druid Laborer), Name (Name)
 {
 Druid Laborer
 }
@@ -1955,12 +1951,6 @@ STRING 592
 // Abilities: A01Z (Thunderous Strikes), Researchhotkey (Hotkey - Learn)
 {
 D
-}
-
-STRING 595
-// Abilities: A01J (Druid Laborer), Name (Name)
-{
-Druid Laborer
 }
 
 STRING 596
@@ -2000,7 +1990,7 @@ Acolyte Slave Laborer - Info Ability
 }
 
 STRING 616
-// Units: h00O (Druid Laborer), Tip (Tooltip - Basic)
+// Units: h00O (Druid Farmer), Tip (Tooltip - Basic)
 {
 Hire Druid Laborer
 }
@@ -2621,12 +2611,6 @@ STRING 809
 Learn Thunderous Strikes
 }
 
-STRING 810
-// Abilities: A01Z (Thunderous Strikes), Researchubertip (Tooltip - Learn - Extended)
-{
-Each attack has a chance to cause damage in a small area.
-}
-
 STRING 811
 // Abilities: A01Z (Thunderous Strikes), Tip (Tooltip - Normal)
 {
@@ -2649,18 +2633,6 @@ STRING 816
 // Abilities: A01Z (Thunderous Strikes), EditorSuffix (Editor Suffix)
 {
 (pulverize)
-}
-
-STRING 817
-// Abilities: A01Z (Thunderous Strikes), Ubertip (Tooltip - Normal - Extended)
-{
-Gives a 20% chance that an attack will deal 150 damage to nearby units.
-}
-
-STRING 818
-// Abilities: A01Z (Thunderous Strikes), Ubertip (Tooltip - Normal - Extended)
-{
-Gives a 20% chance that an attack will deal 50 damage to nearby units.
 }
 
 STRING 819
@@ -2706,7 +2678,7 @@ A
 }
 
 STRING 828
-// Units: h00O (Druid Laborer), Hotkey (Hotkey)
+// Units: h00O (Druid Farmer), Hotkey (Hotkey)
 {
 R
 }
@@ -2883,22 +2855,10 @@ STRING 879
 [|cffffcc00Player Stash|r]
 }
 
-STRING 882
-// Units: O003 (Demigod), Ubertip (Tooltip - Extended)
-{
-An ancient demigod. Can learn Shockwave, Endurance Aura, War Stomp and Reincarnation.  |n|n[|cff00ff00New|r] - |cffffcc00Battle Charge|r - The Hero charges in their facing direction, knocking back and dealing 150 damage to enemies.
-}
-
 STRING 886
 // Units: Hpal (Paladin), Tip (Tooltip - Basic)
 {
 [|cffffcc00Modified|r] - Summon Paladin
-}
-
-STRING 889
-// Units: Nngs (Sea Witch), Ubertip (Tooltip - Extended)
-{
-Can learn Forked Lightning, Frost Arrows, Mana Shield, and Tornado.
 }
 
 STRING 890
@@ -2907,58 +2867,10 @@ STRING 890
 Can learn Pocket Factory, Cluster Rockets, Engineering Upgrade and Robo-Goblin.|n|n[|cff00ff00New|r] - |cffffcc00Goblin Land Mine|r - Deals 300 damage in a small area.
 }
 
-STRING 891
-// Units: Hpal (Paladin), Ubertip (Tooltip - Extended)
-{
-Can learn Healing Wave, Holy Light, Devotion Aura and Resurrection.
-}
-
 STRING 892
 // Units: Nalc (Alchemist), Ubertip (Tooltip - Extended)
 {
 Can learn Healing Spray, Chemical Rage, Acid Bomb and Transmute.
-}
-
-STRING 893
-// Units: Nbst (Beastmaster), Ubertip (Tooltip - Extended)
-{
- Can learn Summon Bear, Summon Quilbeast, Summon Hawk, and Stampede. |n|n[|cff00ff00New|r] |cffffcc00Roar|r - Gives allies +35% damage. |n|NHis engineers can also build |cffffcc00Stone of Fortification|r granting +6 armor to allies and structures in 1200 range.
-}
-
-STRING 894
-// Units: Npbm (Brewmaster), Ubertip (Tooltip - Extended)
-{
-Can learn Breath of Fire, Drunken Haze, Drunken Brawler and Storm, Earth, And Fire.
-}
-
-STRING 895
-// Units: Nbrn (Dark Ranger), Ubertip (Tooltip - Extended)
-{
-Can learn Silence, Black Arrow, Life Drain, and Charm.
-}
-
-STRING 896
-// Units: Nfir (Firelord), Ubertip (Tooltip - Extended)
-{
-Can learn Soul Burn, Summon Lava Spawn, Incinerate and Volcano.
-}
-
-STRING 897
-// Units: Nplh (Pit Lord), Ubertip (Tooltip - Extended)
-{
-Can learn Rain of Fire, Howl of Terror, Cleaving Attack, and Doom.|n|n[|cff00ff00New|r] - |cffffcc00Battle Charge|r - The Hero charges in their facing direction, knocking back and dealing 150 damage to enemies.
-}
-
-STRING 898
-// Units: Hmkg (Mountain King), Ubertip (Tooltip - Extended)
-{
-Can learn Storm Bolt, Thunderous Strikes, Bash and Avatar.   |n|n[|cff00ff00New|r] |cffffcc00Thunderous Strikes|r - Attacks have a chance to deal damage in a small area.
-}
-
-STRING 899
-// Units: Hblm (Blood Mage), Ubertip (Tooltip - Extended)
-{
-Can learn Flame Strike, Banish, Siphon Mana and Phoenix. 
 }
 
 STRING 900
@@ -3244,7 +3156,7 @@ Low damage, durable infantry unit. Basically a wall. Has the Defend ability.|n|n
 }
 
 STRING 971
-// Units: nwzr (Rogue Wizard), Ubertip (Tooltip - Extended)
+// Units: nwzr (Wizard), Ubertip (Tooltip - Extended)
 {
 Light ranged unit that can cast |cffffcc00Dispel Magic|r and |cffffcc00Frost Armor|r. |n|N|cffff00ffSupport Unit|r
 }
@@ -3545,18 +3457,6 @@ STRING 1056
 After 2 Days - Returns (|cffffff001.3 x its cost in gold|r). |n|n|cffffcc00Must be placed on crop tiles.|r
 }
 
-STRING 1057
-// Units: h00L (Human Laborer), Ubertip (Tooltip - Extended)
-{
-After 4 Days - Returns (|cffffff001.7 x its cost in gold|r). |n|n|cffffcc00Must be placed on crop tiles.|r
-}
-
-STRING 1058
-// Units: h00O (Druid Laborer), Ubertip (Tooltip - Extended)
-{
-After 5 Days - Returns (|cffffff002.2 x its cost in gold|r). |n|n|cffffcc00Must be placed on crop tiles.|r
-}
-
 STRING 1059
 // Units: h00P (Acolyte Slave Laborer), Ubertip (Tooltip - Extended)
 {
@@ -3579,12 +3479,6 @@ STRING 1065
 // Units: h00P (Acolyte Slave Laborer), Hotkey (Hotkey)
 {
 Q
-}
-
-STRING 1067
-// Abilities: A01G (Grain Silo), Ubertip (Tooltip - Normal - Extended)
-{
-+5 |cffff8800Food|r   |n|nThe|cff8080ff mana|r represents how many days have passed. |n|n|cffffcc00This structure will be destroyed in 5 days.|r
 }
 
 STRING 1069
@@ -4033,28 +3927,10 @@ STRING 1200
 Acolyte Slave Laborers refund 1 |cffff8800food|r when built.
 }
 
-STRING 1205
-// Units: h00N (Grain Silo), Ubertip (Tooltip - Extended)
-{
-Can upgrade Acolyte Slave Laborer. |n|n|cffff6600+5 Food Cap|r |n|n|cffffcc00This structure will be destroyed after 5 days.|r
-}
-
-STRING 1206
-// Abilities: A01E (Human Laborer), Ubertip (Tooltip - Normal - Extended)
-{
-After 4 days, the laborer will earn you (|cffffff001.7 x its cost|r) in gold. |n|nThe |cff8080ff mana|r of the structure increases every day to show how many days have passed.
-}
-
 STRING 1207
 // Abilities: A01F (Peon Laborer), Ubertip (Tooltip - Normal - Extended)
 {
 After 2 days, the laborer will earn you (|cffffff001.3 x its cost|r) in gold. |n|nThe|cff8080ff  mana|r of the structure increases every day to show how many days have passed.
-}
-
-STRING 1208
-// Abilities: A01J (Druid Laborer), Ubertip (Tooltip - Normal - Extended)
-{
-After 5 days, the laborer will earn you (|cffffff002.2 x its cost|r) in gold. |n|nThe |cff8080ff mana|r of the structure increases every day to show how many days have passed.
 }
 
 STRING 1209
@@ -5263,18 +5139,6 @@ Grants |cff008000+30 lumber|r at the start of each day.
 
 }
 
-STRING 1428
-// Upgrades: R008 (Submerge), Ubertip (Tooltip - Extended)
-{
-Increases the amount of free units you get from owned structures. |n|n|cffffcc00Farm - Militia|r: +2  
-}
-
-STRING 1429
-// Abilities: A02Q (Improved Levies), Ubertip (Tooltip - Normal - Extended)
-{
-Increases the amount of free units you get from owned structures. |n|n|cffffcc00Farm - Militia|r: +2
-}
-
 STRING 1430
 // Units: hlum (Lumber Mill), Ubertip (Tooltip - Extended)
 {
@@ -5334,9 +5198,284 @@ STRING 1441
 |cffff00ff+15% spell and magic|r damage reduction.
 }
 
-STRING 1442
+STRING 1446
+// Abilities: ANlm (Army of Flame), Tip (Tooltip - Normal)
+{
+Army of Flame - [|cffffcc00Level 1|r]
+}
+
+STRING 1447
+// Abilities: ANlm (Army of Flame), Tip (Tooltip - Normal)
+{
+Army of Flame- [|cffffcc00Level 2|r]
+}
+
+STRING 1448
+// Abilities: ANlm (Army of Flame), Tip (Tooltip - Normal)
+{
+Army of Flame - [|cffffcc00Level 3|r]
+}
+
+STRING 1453
+// Abilities: ANlm (Army of Flame), Researchtip (Tooltip - Learn)
+{
+Learn Army of Flame - [|cffffcc00Level %d|r]
+}
+
+STRING 1454
+// Abilities: ANlm (Army of Flame), Name (Name)
+{
+Army of Flame
+}
+
+STRING 1456
+// Units: Nfir (Firelord), Tip (Tooltip - Basic)
+{
+[|cffffcc00Modified|r] Summon Firelord
+}
+
+STRING 1458
+{
+Undead Enemies - Anti Stutter
+}
+
+STRING 1459
+// Abilities: ANht (Howl of Terror), Ubertip (Tooltip - Normal - Extended)
+{
+The Pit Lord lets loose a terrifying howl that reduces nearby enemy units' attack damage by <ANht,DataA1,%>% for <ANht,Dur1> seconds.   |n|NBlasts units away within 750 range of the pitlord for 100 damage.
+}
+
+STRING 1460
+// Abilities: ANht (Howl of Terror), Ubertip (Tooltip - Normal - Extended)
+{
+The Pit Lord lets loose a terrifying howl that reduces nearby enemy units' attack damage by <ANht,DataA2,%>% for <ANht,Dur2> seconds.  |n|NBlasts units away within 750 range of the pitlord for 200 damage.
+}
+
+STRING 1461
+// Abilities: ANht (Howl of Terror), Ubertip (Tooltip - Normal - Extended)
+{
+The Pit Lord lets loose a terrifying howl that reduces nearby enemy units' attack damage by <ANht,DataA3,%>% for <ANht,Dur3> seconds.     |n|NBlasts units away within 750 range of the pitlord for 300 damage.
+}
+
+STRING 1462
+// Abilities: ANht (Howl of Terror), Researchubertip (Tooltip - Learn - Extended)
+{
+The Pit Lord lets loose a terrifying howl that causes nearby enemy units to shiver in fear, reducing their attack damage. |nLasts <ANht,Dur1> seconds. |n|n|cffffcc00Level 1|r - <ANht,DataA1,%>% attack damage reduction. |n|cffffcc00Level 2|r - <ANht,DataA2,%>% attack damage reduction. |n|cffffcc00Level 3|r - <ANht,DataA3,%>% attack damage reduction. |n|nBlasts units away from the Pitlord in 750 range for |cffffcc00100 damage x Ability Level.|r
+}
+
+STRING 1465
+// Units: Hmkg (Mountain King), Ubertip (Tooltip - Extended)
+{
+Can learn Storm Bolt, Thunderous Strikes, Bash and Avatar.   |n|n[|cff00ff00New|r] |cffffcc00Thunderous Strikes|r - Attacks have a chance to deal |cffffcc00100 damage x Ability Level|r in a small area.
+}
+
+STRING 1466
+// Abilities: A01Z (Thunderous Strikes), Researchubertip (Tooltip - Learn - Extended)
+{
+Each attack has a chance to deal |cffffcc00100 damage x Ability Level.|r in a small area.
+}
+
+STRING 1467
+// Units: nwzr (Wizard), Name (Name)
+{
+Wizard
+}
+
+STRING 1468
+// Units: nwzr (Wizard), Tip (Tooltip - Basic)
+{
+Wizard
+}
+
+STRING 1469
+// Abilities: A02T (Frost Armor), EditorSuffix (Editor Suffix)
+{
+ (Autocast) (Wizard)
+}
+
+STRING 1470
+// Upgrades: Rhpt (Priest Adept Training,Priest Master Training), Ubertip (Tooltip - Extended)
+{
+Increases Priests' mana capacity, mana regeneration rate, hit points, and gives them the ability to cast |cffffcc00Inner Fire|r.
+}
+
+STRING 1471
+// Upgrades: Rhst (Sorceress Adept Training,Sorceress Master Training), Ubertip (Tooltip - Extended)
+{
+Increases Sorceresses' mana capacity, mana regeneration rate, hit points, and gives them the ability to cast |cffffcc00Polymorph|r.
+}
+
+STRING 1472
+// Units: Nngs (Sea Witch), Ubertip (Tooltip - Extended)
+{
+Can learn Forked Lightning, |cffffcc00Bash|r, Mana Shield, and |cffffcc00Starfall|r. |n|n[|cff00ff00New|r] Multishot Passive - Attack up to 5 targets. 
+}
+
+STRING 1476
+// Abilities: A01Z (Thunderous Strikes), Ubertip (Tooltip - Normal - Extended)
+{
+Gives a 20% chance that an attack will deal 300 damage to nearby units.
+}
+
+STRING 1477
+// Abilities: A01Z (Thunderous Strikes), Ubertip (Tooltip - Normal - Extended)
+{
+Gives a 20% chance that an attack will deal 200 damage to nearby units.
+}
+
+STRING 1478
+// Units: O003 (Demigod), Ubertip (Tooltip - Extended)
+{
+An ancient demigod. Can learn Shockwave, Endurance Aura, War Stomp and Reincarnation. |n|n[|cffffcc00Reincarnation|r] 15 second cooldown.  |n|n[|cff00ff00New|r] - |cffffcc00Battle Charge|r - The Hero charges in their facing direction, knocking back and dealing 150 damage to enemies.
+}
+
+STRING 1480
+// Units: Npbm (Brewmaster), Ubertip (Tooltip - Extended)
+{
+Can learn Breath of Fire, Drunken Haze, Drunken Brawler and Storm, Earth, And Fire. |n|n[|cffffcc00Hero|r] - Can get level 4 spells.
+}
+
+STRING 1481
+// Units: Nbst (Beastmaster), Ubertip (Tooltip - Extended)
+{
+ Can learn Summon Bear, Summon Quilbeast, Summon Hawk, and Stampede.|n|n[|cffffcc00Hero|r] - Can get level 4 spells. |n|n[|cff00ff00New|r] |cffffcc00Roar|r - Gives allies +35% damage. |n|NEngineers can now build |cffffcc00Stone of Fortification|r granting +6 armor to allies and structures in 1200 range.
+}
+
+STRING 1483
+// Units: nshe (Select Hero on |cffffcc00Tavern|r.), Name (Name)
+{
+Select Hero on |cffffcc00Tavern|r.
+}
+
+STRING 1484
+// Units: h00N (Grain Silo), Ubertip (Tooltip - Extended)
+{
+Can upgrade Acolyte Slave Laborer. |n|n|cffff6600+5 Food Cap|r |n|n|cffffcc00This structure will be destroyed after 3 days.|r
+}
+
+STRING 1485
+// Abilities: A01G (Grain Silo), Ubertip (Tooltip - Normal - Extended)
+{
++5 |cffff8800Food|r   |n|nThe|cff8080ff mana|r represents how many days have passed. |n|n|cffffcc00This structure will be destroyed in 3 days.|r
+}
+
+STRING 1486
+// Units: hmpr (Priest), Ubertip (Tooltip - Extended)
+{
+Can cast |cffffcc00Heal|r and |cffffcc00Inner Fire|r.
+}
+
+STRING 1487
+// Units: Nbrn (Dark Ranger), Ubertip (Tooltip - Extended)
+{
+Can learn Silence, Black Arrow, Life Drain, and Charm. |n|n[|cffffcc00Charm|r] - |cffc0c0c020 second cooldown.|r |n[|cffffcc00Black Arrow|r] - 10/20/30 Damage
+}
+
+STRING 1488
+// Abilities: A02T (Frost Armor), Ubertip (Tooltip - Normal - Extended)
+{
+Creates a shield of frost around a target friendly unit. The shield adds 6 armor and slows melee units that attack it for <ACfa,Dur1> seconds. |nLasts <ACfa,DataA1> seconds.
+}
+
+STRING 1489
+// Units: hpea (Peasant), Ubertip (Tooltip - Extended)
+{
+Can harvest gold and lumber, build structures and Repair. |n|n|cff00ffffWorker|r
+}
+
+STRING 1490
+// Abilities: A02Q (Improved Levies), Ubertip (Tooltip - Normal - Extended)
+{
+Increases the amount of free units you get from owned structures. |n|n|cffffcc00Farm - Militia|r: +2 |n|cffffcc00Town Hall - Footman|r: +6
+}
+
+STRING 1491
+// Upgrades: R008 (Submerge), Ubertip (Tooltip - Extended)
+{
+Increases the amount of free units you get from owned structures. |n|n|cffffcc00Farm - Militia|r: +2    |n|cffffcc00Town Hall - Footman|r: +6
+}
+
+STRING 1492
 // Upgrades: R004 (Submerge), Ubertip (Tooltip - Extended)
 {
-Grants all allied units |cffff00ff+15% spell and magic|r damage reduction.
+Grants all units |cffff00ff+15% spell and magic|r damage reduction.
+}
+
+STRING 1493
+// Units: h00O (Druid Farmer), Ubertip (Tooltip - Extended)
+{
+After 4 Days - Returns (|cffffff002.2 x its cost in gold|r). |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 1495
+// Abilities: A01J (Druid Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 4 days, the laborer will earn you (|cffffff002.2 x its cost|r) in gold. |n|nThe |cff8080ff mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 1496
+// Units: h00L (Human Laborer), Ubertip (Tooltip - Extended)
+{
+After 3 Days - Returns (|cffffff001.7 x its cost in gold|r). |n|n|cffffcc00Must be placed on crop tiles.|r
+}
+
+STRING 1498
+// Abilities: A01E (Human Laborer), Ubertip (Tooltip - Normal - Extended)
+{
+After 3 days, the laborer will earn you (|cffffff001.7 x its cost|r) in gold. |n|nThe |cff8080ff mana|r of the structure increases every day to show how many days have passed.
+}
+
+STRING 1499
+// Units: Nfir (Firelord), Ubertip (Tooltip - Extended)
+{
+Can learn Soul Burn, |cffffcc00Army of Flame|r, Incinerate and Volcano. |n|n[|cffffcc00Army of Flame|R]  - Attacks have a 8% chance on hit to summon a lava spawn.
+}
+
+STRING 1500
+// Abilities: ANlm (Army of Flame), Ubertip (Tooltip - Normal - Extended)
+{
+Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, thereby fueling its fires and eventually splitting into two healthy Lava Spawns.|n|nHas <nlv1,realHP> hit points and deals <nlv1,mindmg1> - <nlv1,maxdmg1> damage.|n|n|cff80ff80Attacks have a 8% chance to summon a lava spawn|r. |n |nLasts <ANlm,Dur1> seconds.|n|n|cffffcc00Attacks ground and air units.|r
+}
+
+STRING 1501
+// Abilities: ANlm (Army of Flame), Ubertip (Tooltip - Normal - Extended)
+{
+Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, thereby fueling its fires and eventually splitting into two healthy Lava Spawns.|n|nHas <nlv2,realHP> hit points and deals <nlv2,mindmg1> - <nlv2,maxdmg1> damage.|n|n|cff80ff80Attacks have a 8% chance to summon a lava spawn|r|n |nLasts <ANlm,Dur2> seconds.|n|n|cffffcc00Attacks ground and air units.|r
+}
+
+STRING 1502
+// Abilities: ANlm (Army of Flame), Ubertip (Tooltip - Normal - Extended)
+{
+Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, thereby fueling its fires and eventually splitting into two healthy Lava Spawns.|n|nHas <nlv3,realHP> hit points and deals <nlv3,mindmg1> - <nlv3,maxdmg1> damage. |n|n|cff80ff80Attacks have a 8% chance to summon a lava spawn|r |n|nLasts <ANlm,Dur3> seconds.|n|n|cffffcc00Attacks ground and air units.|r
+}
+
+STRING 1503
+// Abilities: ANlm (Army of Flame), Researchubertip (Tooltip - Learn - Extended)
+{
+Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, eventually splitting into two healthy Lava Spawns.|n|n|cff80ff80Attacks have a 8% chance to summon a lava spawn|r  |n|nLasts <ANlm,Dur1> seconds.|n|n|cffffcc00Level 1|r - <nlv1,realHP> hit points, <nlv1,mindmg1> - <nlv1,maxdmg1> damage.|n|cffffcc00Level 2|r - <nlv2,realHP> hit points, <nlv2,mindmg1> - <nlv2,maxdmg1> damage.|n|cffffcc00Level 3|r - <nlv3,realHP> hit points, <nlv3,mindmg1> - <nlv3,maxdmg1> damage.|n|n|cffffcc00Attacks ground and air units.|r
+}
+
+STRING 1504
+// Units: Nplh (Pit Lord), Ubertip (Tooltip - Extended)
+{
+Can learn Rain of Fire, Howl of Terror, Cleaving Attack, and Doom. |n|n[|cffffcc00Howl of Terror|r]  -  Blasts units away from the Pitlord in 750 range for |cffffcc00100 damage x Ability Level.|r  |n|n[|cff00ff00New|r] - |cffffcc00Battle Charge|r - The Hero charges in their facing direction, knocking back and dealing 150 damage to enemies. 
+}
+
+STRING 1505
+// Units: Hblm (Blood Mage), Ubertip (Tooltip - Extended)
+{
+Can learn Flame Strike, Banish, Siphon Mana and Phoenix.  |n|n[|cffffcc00Pheonix|r]  - Summons 3 Pheonix.|n[|cffffcc00Flame Strike|r] Area increases by 100 x Ability Level.
+}
+
+STRING 1506
+// Units: Hpal (Paladin), Ubertip (Tooltip - Extended)
+{
+Can learn |cffffcc00Healing Wave|R, Holy Light, Devotion Aura and Resurrection. |n|n[|cffffcc00Resurrection|r]  - Resurrects 12 nearby units. |n|cffc0c0c090 second cooldown|r
+}
+
+STRING 1507
+// Units: h00O (Druid Farmer), Name (Name)
+{
+Druid Farmer
 }
 

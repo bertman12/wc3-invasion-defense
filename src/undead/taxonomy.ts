@@ -1,4 +1,4 @@
-import { MinimapIconPath, UNITS } from "src/shared/enums";
+import { MinimapIconPath, PlayerIndices, UNITS } from "src/shared/enums";
 import { RoundManager } from "src/shared/round-manager";
 import { primaryCapturableHumanTargets } from "src/towns";
 import { notifyPlayer } from "src/utils/misc";
@@ -53,13 +53,11 @@ function removeUndeadFromCount() {
 export function undeadNightStart() {
     currentZombieCount = 0;
 
-    //Order remaining undaed to attack the capital
+    //Order remaining undead to attack the capital
     forEachPlayer((p) => {
-        if (!p.isPlayerAlly(Players[0]) && p !== Players[0] && p !== Players[9]) {
+        if (!p.isPlayerAlly(Players[0]) && p !== Players[0] && p !== Players[9] && p !== Players[PlayerIndices.KingdomOfHyperion]) {
             forEachUnitOfPlayer(p, (u) => {
-                if (u.typeId !== UNITS.pathFinder) {
-                    u.issueOrderAt(OrderId.Attack, defaultAttackX, defaultAttackY);
-                }
+                u.issueOrderAt(OrderId.Attack, defaultAttackX, defaultAttackY);
             });
         }
     });
@@ -234,17 +232,17 @@ class SpawnData {
                 this.playersPlaying++;
             }
         });
-        print("Number of players playing when spawn instance is created: ", this.playersPlaying);
 
         this.spawnRec = Rectangle.fromHandle(spawn);
         this.totalSpawnCount = calcBaseAmountPerWave();
 
-        const difficulty = Math.floor(Math.random() * waveIntervalOptions.length);
+        const difficulty = Math.floor(Math.random() * 2);
+        print("Spawn Difficulty: ", difficulty);
         //its currently 50/50 chance for hard or normal spawns
         const isHardDiff = difficulty === SpawnDifficulty.hard;
         this.spawnDifficulty = difficulty;
 
-        if (RoundManager.currentRound <= 4) {
+        if (RoundManager.currentRound <= 2) {
             this.spawnDifficulty = SpawnDifficulty.normal;
         }
 
@@ -254,15 +252,15 @@ class SpawnData {
             this.spawnDifficulty = SpawnDifficulty.boss;
         }
 
-        if (RoundManager.currentRound % 5 == 0) {
+        if (RoundManager.currentRound % 3 == 0) {
             this.spawnDifficulty = SpawnDifficulty.boss;
         }
 
-        if (RoundManager.currentRound >= 14) {
+        if (RoundManager.currentRound >= 9) {
             this.spawnDifficulty = SpawnDifficulty.final;
         }
 
-        this.spawnAmountPerWave = this.waveIntervalTime === 15 ? this.totalSpawnCount : this.totalSpawnCount * 1.75;
+        this.spawnAmountPerWave = this.totalSpawnCount;
         this.baseTier2Chance = 0.08 + 0.04 * RoundManager.currentRound + (isHardDiff ? 0.08 : 0);
         this.currentTier2Chance = this.baseTier2Chance;
         this.baseTier3Chance = 0.05 + 0.02 * RoundManager.currentRound + (isHardDiff ? 0.05 : 0);
@@ -275,10 +273,6 @@ class SpawnData {
             ["siege", Math.ceil(0.025 * this.spawnAmountPerWave)],
             ["hero", Math.ceil(0.015 * this.spawnAmountPerWave)],
         ]);
-
-        // this.unitCompData.forEach((value, key) => {
-        //     print(`Category: ${key} - Amount: ${value}`);
-        // });
 
         /**
          * @todo needs to be calculated in the future
@@ -367,13 +361,9 @@ class SpawnData {
 
         this.waveTimer = Timer.create();
 
-        this.waveTimer.start(this.waveIntervalTime, true, () => {
+        this.waveTimer.start(20, true, () => {
             this.createWaveUnits();
             this.orderNewAttack(this.lastCreatedWaveUnits);
-            // if (this.pathFinderAttackPoint) {
-            // } else {
-            //     print("Missing path finder attack point. Units will stay still at spawn.");
-            // }
         });
     }
 
@@ -535,6 +525,7 @@ class SpawnData {
         if (categoryData) {
             const size = Object.values(categoryData)[tier].length;
             const randomIndex = Math.floor(Math.random() * size);
+            print(`Category size: ${size} - Random Index Chosen: ${randomIndex}`);
 
             switch (tier) {
                 case 0:
@@ -568,16 +559,18 @@ class SpawnData {
             if (u.isHero()) {
                 u.setHeroLevel(RoundManager.currentRound, false);
             }
-            const playerBonus = this.playersPlaying - 2;
-            //Increasing health and damage based on number of players playing
-            const baseDmgIncrease = u.getBaseDamage(0) * 1.1 * playerBonus;
-            const diceSidesIncrease = Math.ceil(u.getDiceSides(0) * 1.1 * playerBonus);
-            const healthIncrease = 1.1 * playerBonus;
 
             if (this.playersPlaying > 2) {
-                u.name += ` |cff00ff00+${playerBonus}% HP/DMG`;
-                u.maxLife += healthIncrease;
-                u.life += healthIncrease;
+                const playerBonus = this.playersPlaying - 2;
+                const roundDamageMultiplier = 0.05 * playerBonus + Math.floor(RoundManager.currentRound / 2) / 100;
+                const healthBonusMultiplier = 0.1 * playerBonus + RoundManager.currentRound / 100;
+                //Increasing health and damage based on number of players playing
+                const baseDmgIncrease = u.getBaseDamage(0) + Math.ceil(u.getBaseDamage(0) * roundDamageMultiplier);
+                const diceSidesIncrease = u.getDiceSides(0) + Math.ceil(u.getDiceSides(0) * roundDamageMultiplier);
+                const healthIncrease = Math.ceil(u.maxLife * (1 + healthBonusMultiplier));
+                u.name += ` |cff00ff00+${(healthBonusMultiplier * 100).toFixed(0)}%/|cffff0000+${(roundDamageMultiplier * 100).toFixed(0)}%`;
+                u.maxLife = healthIncrease;
+                u.life = u.maxLife;
                 u.setBaseDamage(baseDmgIncrease, 0);
                 u.setDiceSides(diceSidesIncrease, 0);
             }
@@ -655,6 +648,8 @@ const unitCategoryData = new Map<UnitCategory, { tierI: number[]; tierII: number
                 FourCC("nfov"),
             ],
             tierIII: [
+                FourCC("U00J"),
+
                 UNITS.abomination,
                 //siege golem
                 FourCC("nsgg"),
@@ -669,7 +664,6 @@ const unitCategoryData = new Map<UnitCategory, { tierI: number[]; tierII: number
                 //abomination
 
                 // Corrupted Protector
-                FourCC("U00J"),
             ],
         },
     ],
@@ -796,7 +790,7 @@ function calcBaseAmountPerWave() {
         numPlayers++;
     });
 
-    const enemiesPerWave = 10 + 10 * numPlayers;
+    const enemiesPerWave = RoundManager.currentRound + 8 + 5 * numPlayers;
     return enemiesPerWave;
 }
 

@@ -1,5 +1,6 @@
-import { player_giveHumansStartOfDayResources, players_nightStart, updateDayProgressForDependents } from "src/players";
+import { player_giveHumansStartOfDayResources, players_nightStart } from "src/players";
 import { RoundManager } from "src/shared/round-manager";
+import { updateDayProgressForDependents } from "src/triggers/economy/dailyProgressEconomy";
 import { convertHumanToUndeadStructures, convertUndeadToHumanStructures } from "src/undead/conversion";
 import { undeadDayStart, undeadNightStart } from "src/undead/taxonomy";
 import { Timer } from "w3ts";

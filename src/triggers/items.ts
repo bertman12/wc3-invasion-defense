@@ -40,7 +40,7 @@ function trig_forceBoots() {
         caster.setTimeScale(2);
         SetUnitAnimationByIndex(caster.handle, 3);
 
-        const { destroy } = unitGetsNearThisUnit(
+        const { cleanupUnitGetsNearThisUnit: destroy } = unitGetsNearThisUnit(
             caster,
             200,
             (u) => {
@@ -127,7 +127,7 @@ function chainLightningProcItem() {
                 );
             }
         },
-        { attackerCooldown: true, procChance: 50 },
+        { attackerCooldown: true, procChance: 25 },
     );
 }
 

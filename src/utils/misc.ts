@@ -23,6 +23,9 @@ export function notifyPlayer(msg: string) {
     print(`${tColor("!", "goldenrod")} - ${msg}`);
 }
 
+/**
+ * Returns degrees or radians?
+ */
 export function getRelativeAngleToUnit(unit: Unit, relativeUnit: Unit) {
     const locA = GetUnitLoc(unit.handle);
     const locB = GetUnitLoc(relativeUnit.handle);

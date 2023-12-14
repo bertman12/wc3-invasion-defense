@@ -34,15 +34,15 @@ export function aSpellIsCast<T extends (...args: any) => any>(eventType: Registe
 // }
 
 export function unitGetsNearThisUnit(unit: Unit, range: number, cb: (u: Unit) => void, config?: { uniqueUnitsOnly: boolean; filter?: boolexpr | (() => boolean); onDestroy?: (unitsEffected: Unit[]) => void }) {
-    const t = Trigger.create();
+    const trig = Trigger.create();
 
     /**
      * A unique set of the units effected
      */
     const effectedUnitPool: Unit[] = [];
 
-    t.registerUnitInRage(unit.handle, range, config?.filter ?? (() => true));
-    t.addAction(() => {
+    trig.registerUnitInRage(unit.handle, range, config?.filter ?? (() => true));
+    trig.addAction(() => {
         const u = Unit.fromEvent();
 
         if (!u) {
@@ -60,12 +60,24 @@ export function unitGetsNearThisUnit(unit: Unit, range: number, cb: (u: Unit) =>
         }
     });
 
+    function destroy() {
+        if (config?.onDestroy) {
+            config?.onDestroy(effectedUnitPool);
+        }
+        trig.destroy();
+    }
+
     return {
-        destroy: () => {
-            if (config?.onDestroy) {
-                config?.onDestroy(effectedUnitPool);
+        cleanupUnitGetsNearThisUnit: (delay?: number) => {
+            if (delay) {
+                const timer = Timer.create();
+                timer.start(delay, false, () => {
+                    destroy();
+                    timer.destroy();
+                });
+                return;
             }
-            t.destroy();
+            destroy();
         },
     };
 }

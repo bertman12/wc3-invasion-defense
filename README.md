@@ -576,3 +576,19 @@ every player past 2 players will grant the undead 10% more hp and 5% more damage
 add a durable melee zombie with spiked armor that only attacks buildings
 
 add an enenmy unit that has chain lightning auto attacks
+
+===============
+
+add pvp area in the middle
+
+do themed waves, 3 waves one theme, etc
+
+3/6/9 total nights
+
+reuse old terrain and make undead and legionthemed and rpovide rewards
+
+nerf firelord, fix undead scaling
+
+figure out why some undead are not spawning from the categories, seems the element close to the last are not spawning
+
+amulet of the sentinek is not working for teleport
