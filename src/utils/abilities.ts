@@ -42,6 +42,7 @@ export function unitGetsNearThisUnit(unit: Unit, range: number, cb: (u: Unit) =>
     const effectedUnitPool: Unit[] = [];
 
     trig.registerUnitInRage(unit.handle, range, config?.filter ?? (() => true));
+    
     trig.addAction(() => {
         const u = Unit.fromEvent();
 

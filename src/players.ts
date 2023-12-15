@@ -6,7 +6,7 @@ import { ABILITIES, PlayerIndices, TERRAIN_CODE, UNITS, UpgradeCodes, laborerUni
 import { PlayerState, playerStates } from "./shared/playerState";
 import { RoundManager } from "./shared/round-manager";
 import { notifyPlayer, tColor } from "./utils/misc";
-import { adjustFoodCap, adjustGold, adjustLumber, forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayerWithAbility, isPlayingUser } from "./utils/players";
+import { adjustGold, adjustLumber, forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayerWithAbility, isPlayingUser } from "./utils/players";
 import { createUnits } from "./utils/units";
 
 export function setupPlayers() {
@@ -20,11 +20,15 @@ export function setupPlayers() {
     forEachAlliedPlayer((p, index) => {
         //Create Sheep to buy hero
         const u = Unit.create(p, FourCC("nshe"), 18600 + 25 * index, -28965);
-        if (u) {
-            SetCameraPositionForPlayer(p.handle, u.x, u.y);
+
+        if (!u) {
+            return;
         }
 
-        SetPlayerHandicapXP(p.handle, 0.4);
+        SelectUnitForPlayerSingle(u?.handle, u?.owner.handle);
+        SetCameraPositionForPlayer(p.handle, u.x, u.y);
+
+        SetPlayerHandicapXP(p.handle, 0.35);
     });
 }
 
@@ -178,6 +182,7 @@ export function init_startingResources() {
     Players.forEach((player) => {
         player.setState(PLAYER_STATE_RESOURCE_GOLD, economicConstants.startingGold);
         player.setState(PLAYER_STATE_RESOURCE_LUMBER, economicConstants.startingLumber);
+        player.setState(PLAYER_STATE_RESOURCE_FOOD_CAP, economicConstants.startingFood);
     });
 }
 
@@ -207,25 +212,25 @@ function grantStartOfDayBonuses() {
     });
 
     //should be adding the food cap gained from the capital, the food gained from teh granaries, and the food cap increase from the grain silos players have built
-    const sharedFoodCapIncrease = economicConstants.playerBaseFoodCap;
+    // const sharedFoodCapIncrease = economicConstants.playerBaseFoodCap;
 
     forEachAlliedPlayer((p) => {
         /**
          * @SIMPLIFIED
          */
-        p.setTechResearched(UpgradeCodes.supplyUpgrade, 0);
-        p.setState(PLAYER_STATE_RESOURCE_FOOD_CAP, 0);
+        // p.setTechResearched(UpgradeCodes.supplyUpgrade, 0);
+        // p.setState(PLAYER_STATE_RESOURCE_FOOD_CAP, 0);
 
         //Adjust accordingly
-        p.setTechResearched(UpgradeCodes.supplyUpgrade, totalSupplyBuildings);
+        // p.setTechResearched(UpgradeCodes.supplyUpgrade, totalSupplyBuildings);
 
         //Set player food cap
-        const playerState = playerStates.get(p.id);
+        // const playerState = playerStates.get(p.id);
 
-        if (playerState) {
-            //The destruction of grain silos should happen before food calculations
-            adjustFoodCap(p, playerState.temporaryFoodCapIncrease + sharedFoodCapIncrease + playerState.permanentFoodCapIncrease);
-        }
+        // if (playerState) {
+        //     //The destruction of grain silos should happen before food calculations
+        //     adjustFoodCap(p, playerState.temporaryFoodCapIncrease + sharedFoodCapIncrease + playerState.permanentFoodCapIncrease);
+        // }
 
         p.setTechResearched(UpgradeCodes.dayTime, 1);
         p.setTechResearched(UpgradeCodes.nightTime, 0);
@@ -290,27 +295,28 @@ export function player_giveHumansStartOfDayResources(round: number) {
     grantStartOfDayBonuses();
 
     const baseGold = economicConstants.baseGoldPerRound;
-    const baseWood = economicConstants.baseLumberPerRound;
+    // const baseWood = economicConstants.baseLumberPerRound;
     const roundGold = economicConstants.goldRoundMultiplier * round;
-    const roundLumber = economicConstants.lumberRoundMultiplier * round;
+    // const roundLumber = economicConstants.lumberRoundMultiplier * round;
 
     const totalGold = baseGold + roundGold;
-    const totalLumber = baseWood + roundLumber;
+    // const totalLumber = baseWood + roundLumber;
 
     print("===Night Completion Reward===");
     print(`${tColor("Base Amount", "goldenrod")} - ${tColor("Gold", "yellow")}: ${baseGold}`);
     print(`${tColor("Round Bonus", "goldenrod")} #${round} - ${tColor("Gold", "yellow")}: ${roundGold}`);
     print(`${tColor("Total", "goldenrod")}: ${tColor("Gold", "yellow")}: ${totalGold}`);
     print("                                  ");
-    print(`${tColor("Base Amount", "goldenrod")} - ${tColor("Lumber", "green")} - ${baseWood}`);
-    print(`${tColor("Round Bonus", "goldenrod")} #${round} - ${tColor("Lumber", "green")}: ${roundLumber}`);
-    print(`${tColor("Total", "goldenrod")}: ${tColor("Lumber", "green")}: ${totalLumber}`);
+    // print(`${tColor("Base Amount", "goldenrod")} - ${tColor("Lumber", "green")} - ${baseWood}`);
+    // print(`${tColor("Round Bonus", "goldenrod")} #${round} - ${tColor("Lumber", "green")}: ${roundLumber}`);
+    // print(`${tColor("Total", "goldenrod")}: ${tColor("Lumber", "green")}: ${totalLumber}`);
     print("==================");
-
+    print("");
+    print("Use your |cffffcc00engineers|r to rebuild your defenses.");
     //Gives gold and wood
     forEachAlliedPlayer((player) => {
         adjustGold(player, totalGold);
-        adjustLumber(player, totalLumber);
+        // adjustLumber(player, totalLumber);
     });
 }
 

@@ -1,6 +1,6 @@
 import { Group, Rectangle } from "w3ts";
 
-export function setupUndeadUnitPreview() {
+export function setupUnitPreviewArea() {
     const g = Group.create();
     const r = Rectangle.fromHandle(gg_rct_undead_unit_showcase);
 
@@ -12,8 +12,9 @@ export function setupUndeadUnitPreview() {
                 u.addAbility(FourCC("Aall"));
                 u.setField(UNIT_RF_HIT_POINTS_REGENERATION_RATE, 10);
                 u.setField(UNIT_RF_MANA_REGENERATION, -100);
+                u.nameProper = "Click me to see spells.";
+                u.setField(UNIT_IF_MOVE_TYPE, 2);
                 //@ts-ignore
-                // u.setField(UNIT_IF_MOVE_TYPE, 3);
                 // ConvertMoveType();
             }
 

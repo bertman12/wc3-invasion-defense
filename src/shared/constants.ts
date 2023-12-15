@@ -1,9 +1,9 @@
 import { UNITS } from "./enums";
 
 export const economicConstants = {
-    playerBaseFoodCap: 15,
-    startingGold: 2050,
-    startingLumber: 1150,
+    startingFood: 15,
+    startingGold: 2550,
+    startingLumber: 1650,
     baseGoldPerRound: 100,
     baseLumberPerRound: 100,
     goldRoundMultiplier: 50,

@@ -1,5 +1,5 @@
 import { ownershipGrantingUnits } from "src/shared/constants";
-import { ABILITIES, ITEMS, MinimapIconPath, UNITS } from "src/shared/enums";
+import { ABILITIES, ITEMS, MinimapIconPath, PlayerIndices, UNITS } from "src/shared/enums";
 import { applyForce } from "src/shared/physics";
 import { playerStates } from "src/shared/playerState";
 import { RoundManager } from "src/shared/round-manager";
@@ -7,7 +7,7 @@ import { allCapturableStructures } from "src/towns";
 import { onUnitAttacked, unitGetsNearThisUnit, useTempDummyUnit } from "src/utils/abilities";
 import { getRelativeAngleToUnit, notifyPlayer, tColor, useEffects, useTempEffect } from "src/utils/misc";
 import { adjustGold, adjustLumber, forEachAlliedPlayer, forEachUnitTypeOfPlayer, isPlayingUser } from "src/utils/players";
-import { delay } from "src/utils/timer";
+import { delayedTimer } from "src/utils/timer";
 import { Effect, Group, Item, MapPlayer, Timer, Trigger, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
 
@@ -19,6 +19,7 @@ export function init_humanSpells() {
     thunderousStrikes();
     proc_summonLavaSpawn();
     howlOfTerror();
+    timeDistortion();
     RoundManager.onDayStart(removeCaltrops);
 }
 
@@ -334,7 +335,6 @@ function proc_summonLavaSpawn() {
             if (abilityLevel >= 1) {
                 useTempDummyUnit(
                     (dummy) => {
-                        print("Casting lava elemental");
                         const abilityLevel = attacker.getAbilityLevel(ABILITIES.firelord_armyOfFlame);
                         dummy.setAbilityLevel(ABILITIES.firelord_armyOfFlame, abilityLevel);
                         dummy.issueImmediateOrder(OrderId.Lavamonster);
@@ -345,7 +345,7 @@ function proc_summonLavaSpawn() {
                 );
             }
         },
-        { attackerCooldown: true, procChance: 8 },
+        { attackerCooldown: true, procChance: 6 },
     );
 }
 
@@ -370,7 +370,7 @@ function howlOfTerror() {
         if (!caster) {
             return;
         }
-        delay(0.85, () => {
+        delayedTimer(0.85, () => {
             const { cleanupUnitGetsNearThisUnit } = unitGetsNearThisUnit(
                 caster,
                 750,
@@ -406,3 +406,110 @@ function howlOfTerror() {
         });
     });
 }
+
+/**
+ * applies slows enemies attack speed and move speed in the ring by 10% every second for 6 seconds then freezes them in time for 6 seconds
+ */
+function timeDistortion() {
+    const t = Trigger.create();
+    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SPELL_CAST);
+
+    t.addAction(() => {
+        const castedSpellId = GetSpellAbilityId();
+        const caster = Unit.fromEvent();
+
+        if (castedSpellId === ABILITIES.timeDistortion && caster) {
+            const abilityLevel = caster.getAbilityLevel(ABILITIES.timeDistortion);
+
+            const { addEffect, destroyAllEffects } = useEffects();
+            const timers: Timer[] = [];
+            let unitsAffected: Unit[] = [];
+            const timeDilationEffect = Effect.create("Abilities\\Spells\\Other\\Drain\\ManaDrainTarget.mdl", caster.x, caster.y);
+            if (!timeDilationEffect) {
+                print("Did not cast spell, time dilation effect not present.");
+                return;
+            }
+            timeDilationEffect.setScaleMatrix(25, 25, 1);
+            addEffect(timeDilationEffect);
+            //Creating the visual ring around the hero
+            for (let x = 0; x < 8; x++) {
+                const initialAngle = 45 * x;
+                const myEffect = Effect.create("Abilities\\Weapons\\DemonHunterMissile\\DemonHunterMissile.mdl", caster.x + 600 * Cos(Deg2Rad(45)), caster.y + 600 * Sin(Deg2Rad(45)));
+                addEffect(myEffect);
+                if (!myEffect) {
+                    return;
+                }
+                //30degs / second
+
+                let currentDegree = initialAngle;
+                let timeElapsed = 0;
+                const effectTimer = Timer.create();
+                timers.push(effectTimer);
+                effectTimer.start(0.01, true, () => {
+                    timeDilationEffect.x = caster.x;
+                    timeDilationEffect.y = caster.y;
+                    myEffect.x = caster.x + 600 * Cos(Deg2Rad(currentDegree));
+                    myEffect.y = caster.y + 600 * Sin(Deg2Rad(currentDegree));
+                    timeElapsed++;
+                    currentDegree -= 60 / 100;
+                });
+            }
+
+            const { cleanupUnitGetsNearThisUnit } = unitGetsNearThisUnit(
+                caster,
+                600,
+                (u) => {
+                    if (!u.isAlly(caster.owner)) {
+                        const iceEffect = Effect.createAttachment("Abilities\\Spells\\Human\\slow\\slowtarget.mdl", u, "origin");
+                        addEffect(iceEffect);
+
+                        u.moveSpeed = u.defaultMoveSpeed / 2;
+                        u.setAttackCooldown(u.getAttackCooldown(0) * 2, 0);
+                        unitsAffected.push(u);
+                    }
+                },
+                { uniqueUnitsOnly: false },
+            );
+
+            delayedTimer(6, () => {
+                cleanupUnitGetsNearThisUnit();
+                destroyAllEffects();
+                timers.forEach((t) => t.destroy());
+                unitsAffected.forEach((u) => {
+                    if (!u.isAlly(caster.owner)) {
+                        u.moveSpeed = u.defaultMoveSpeed;
+                        const tempU = Unit.create(Players[PlayerIndices.NeutralPassive], u.typeId, 0, 0);
+                        if (tempU) {
+                            u.setAttackCooldown(tempU.getAttackCooldown(0), 0);
+                            tempU.destroy();
+                        }
+                    }
+                });
+
+                unitsAffected.forEach((u) => {
+                    const isInRange = u.inRangeOfUnit(caster, 600);
+                    if (isInRange && !u.isAlly(caster.owner)) {
+                        caster.damageTarget(u.handle, 100 * abilityLevel, true, false, ATTACK_TYPE_CHAOS, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS);
+                        addEffect(Effect.create("Abilities\\Spells\\Undead\\FreezingBreath\\FreezingBreathTargetArt.mdl", u.x, u.y));
+                        u.paused = true;
+                    }
+                });
+
+                delayedTimer(3 + abilityLevel, () => {
+                    unitsAffected.forEach((u) => {
+                        u.paused = false;
+                    });
+
+                    destroyAllEffects();
+                    unitsAffected = [];
+                    //check if the unit is still in range of the hero then freeze if they are
+                });
+            });
+        }
+    });
+}
+
+/**
+ * mountain king throws his hammer to a target area (pocket factory), which then casts thunderclap every 2 seconds
+ */
+function stormHammer() {}

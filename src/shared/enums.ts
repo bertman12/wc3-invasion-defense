@@ -29,6 +29,9 @@ export enum ABILITIES {
     //Demigod
     battleCharge = FourCC("A00T"),
 
+    //Blood Mage
+    timeDistortion = FourCC("A02V"),
+
     //Items
     forceBoots = FourCC("A00V"),
     proc_greaterChainLightning = FourCC("A02K"),

@@ -592,3 +592,33 @@ nerf firelord, fix undead scaling
 figure out why some undead are not spawning from the categories, seems the element close to the last are not spawning
 
 amulet of the sentinek is not working for teleport
+
+kale thas summons orbs around him for 6 seconds dealing damage and then freezes everything inside the circle for 6 seconds
+
+add an item called Book of Summoning that will summon a random undead minion
+
+make a round where a dark reflection of the allied heroes spawn with all items and levels and same abilities.
+
+let player upgrade wall to spikes
+
+-cam command does it for all
+
+perhaps if i do multiplayer i can make it so one side fights a wave, then the other side alternates to pve area?
+
+make the yellow skulls spawn tier 1,2,3 enemies
+
+add health pot, make salve a little better too
+
+fix alchemist base health for chemical rage morph units
+
+since there is a point where you start having excess wood, perhaps i can make upgrades towers or walls and posibly add some upgrades that are wood heavy
+
+make a support item that lets you buff heroes
+
+nerf ogre more lol
+
+**\*\*** make the last round called the eternal night , play some cool dialogue sound, also have this be the night where heroes reflections will spawn, spawn enemies for 5 minutes until they are all dead, then you win the game
+
+make mask of midas damage teh target instead of cahnging their life, that way mana shield will work
+
+for the nights passed text, show "Nights Passed: 4/9"

@@ -1,6 +1,5 @@
 import { player_giveHumansStartOfDayResources, players_nightStart } from "src/players";
 import { RoundManager } from "src/shared/round-manager";
-import { updateDayProgressForDependents } from "src/triggers/economy/dailyProgressEconomy";
 import { convertHumanToUndeadStructures, convertUndeadToHumanStructures } from "src/undead/conversion";
 import { undeadDayStart, undeadNightStart } from "src/undead/taxonomy";
 import { Timer } from "w3ts";
@@ -19,7 +18,6 @@ function hook_startOfDay() {
 
         //Convert destroyed undead units into human units
         convertUndeadToHumanStructures();
-        updateDayProgressForDependents();
 
         //Then do income calculation so players benefit from the converted undead on the same day they are converted
         player_giveHumansStartOfDayResources(RoundManager.currentRound);

@@ -71,7 +71,7 @@ export class RoundManager {
             //I would like to hook into before income is applied and after
         });
 
-        if (RoundManager.currentRound >= 15) {
+        if (RoundManager.currentRound >= 9) {
             print("Congratulations, you have won. The map is still in development with many more features to come.");
 
             forEachPlayer((p) => {

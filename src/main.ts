@@ -9,14 +9,14 @@ import { RoundManager } from "./shared/round-manager";
 import { setup_destroyStructure } from "./towns";
 import { init_armyControllerTrigs } from "./triggers/armyController";
 import { init_cameraTrigs } from "./triggers/camera";
+import { init_economyTriggers } from "./triggers/economy/init";
 import { init_itemAbilities } from "./triggers/items";
-import { setupUndeadUnitPreview } from "./triggers/misc";
+import { setupUnitPreviewArea } from "./triggers/misc";
 import { init_upgradeBasedTriggers } from "./triggers/upgrades";
 import { trig_wayGate } from "./triggers/waygate";
 import { init_undead } from "./undead/taxonomy";
 import { notifyPlayer } from "./utils/misc";
 import { init_quests } from "./utils/quests";
-import { init_economyTriggers } from "./triggers/economy/init";
 
 const BUILD_DATE = compiletime(() => new Date().toUTCString());
 const TS_VERSION = compiletime(() => require("typescript").version);
@@ -34,7 +34,7 @@ function tsMain() {
         print(" ");
 
         trig_wayGate();
-        setupUndeadUnitPreview();
+        setupUnitPreviewArea();
         initFrames();
 
         //Game starting message

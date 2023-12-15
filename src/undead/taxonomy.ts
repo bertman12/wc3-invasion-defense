@@ -148,7 +148,6 @@ export function undeadDayStart() {
 
         if (newTarget) {
             config.applyAttackTargetEffects(newTarget);
-            config.createPathfinders(newTarget);
         }
     });
 
@@ -186,12 +185,12 @@ class SpawnData {
     //55% base chance on final night to see Tier 2 units
     private baseTier2Chance = 0.15;
     //Determines how much to increase the tier 2 chance every time tier 2 is not selected
-    private readonly tier2ChanceModifier = 0.02;
+    private tier2ChanceModifier = 0.02;
     private currentTier2Chance = 0.15;
     //25% base chance to see Tier 3 units on final night
     private baseTier3Chance = 0.05;
     //Determines how much to increase the tier 3 chance every time tier 3 is not selected
-    private readonly tier3ChanceModifier = 0.01;
+    private tier3ChanceModifier = 0.01;
     private currentTier3Chance = 0;
     /**
      * @unit_comp_distribution
@@ -237,24 +236,27 @@ class SpawnData {
         this.totalSpawnCount = calcBaseAmountPerWave();
 
         const difficulty = Math.floor(Math.random() * 2);
-        print("Spawn Difficulty: ", difficulty);
         //its currently 50/50 chance for hard or normal spawns
         const isHardDiff = difficulty === SpawnDifficulty.hard;
         this.spawnDifficulty = difficulty;
 
-        if (RoundManager.currentRound <= 2) {
+        if (RoundManager.currentRound <= 3) {
             this.spawnDifficulty = SpawnDifficulty.normal;
+        } else if (RoundManager.currentRound <= 6) {
+            this.spawnDifficulty = SpawnDifficulty.hard;
+        } else {
+            this.spawnDifficulty = SpawnDifficulty.boss;
         }
 
         this.waveIntervalTime = waveIntervalOptions[difficulty];
 
-        if (spawnBoss) {
-            this.spawnDifficulty = SpawnDifficulty.boss;
-        }
+        // if (spawnBoss) {
+        //     this.spawnDifficulty = SpawnDifficulty.boss;
+        // }
 
-        if (RoundManager.currentRound % 3 == 0) {
-            this.spawnDifficulty = SpawnDifficulty.boss;
-        }
+        // if (RoundManager.currentRound % 3 == 0) {
+        //     this.spawnDifficulty = SpawnDifficulty.boss;
+        // }
 
         if (RoundManager.currentRound >= 9) {
             this.spawnDifficulty = SpawnDifficulty.final;
@@ -265,6 +267,15 @@ class SpawnData {
         this.currentTier2Chance = this.baseTier2Chance;
         this.baseTier3Chance = 0.05 + 0.02 * RoundManager.currentRound + (isHardDiff ? 0.05 : 0);
         this.currentTier3Chance = this.baseTier3Chance;
+
+        if (this.spawnDifficulty === SpawnDifficulty.normal) {
+            this.currentTier2Chance = -1;
+            this.currentTier3Chance = -1;
+            this.baseTier2Chance = -1;
+            this.baseTier3Chance = -1;
+            this.tier2ChanceModifier = 0;
+            this.tier3ChanceModifier = 0;
+        }
 
         this.unitCompData = new Map<UnitCategory, number>([
             ["infantry", Math.ceil(0.775 * this.spawnAmountPerWave)],
@@ -282,45 +293,6 @@ class SpawnData {
         this.spawnIcon = CreateMinimapIcon(this.spawnRec?.centerX ?? 0, this.spawnRec?.centerY ?? 0, red, green, blue, "UI\\Minimap\\MiniMap-Boss.mdl", FOG_OF_WAR_FOGGED);
 
         this.spawnPortalDisplay = Unit.create(Players[15], UNITS.undeadSpawn, this.spawnRec?.centerX ?? 0, this.spawnRec?.centerY ?? 0, 305);
-    }
-
-    /**
-     * Helps the players to see where units are going to move
-     */
-    public createPathfinders(target: Unit) {
-        //every 10 seconds create a path finder - make sure its not added to undead count
-        // const units: Unit[] = [];
-        // const t = Timer.create();
-        // t.start(10, true, () => {
-        //     const u = Unit.create(getNextUndeadPlayer(), UNITS.pathFinder, this.spawnRec?.centerX ?? 0, this.spawnRec?.centerY ?? 0);
-        //     const deathTimer = Timer.create();
-        //     if (u) {
-        //         const trig = Trigger.create();
-        //         trig.registerUnitEvent(u, EVENT_UNIT_ISSUED_ORDER);
-        //         trig.registerUnitEvent(u, EVENT_UNIT_ISSUED_POINT_ORDER);
-        //         trig.registerUnitEvent(u, EVENT_UNIT_ISSUED_TARGET_ORDER);
-        //         trig.addAction(() => {
-        //             if (u?.typeId === UNITS.pathFinder && (u.currentOrder === 0 || u?.currentOrder === OrderId.Stop)) {
-        //                 this.pathFinderAttackPoint = Point.create(u.x, u.y);
-        //                 u.destroy();
-        //                 trig.destroy();
-        //                 deathTimer.destroy();
-        //             }
-        //         });
-        //         u.issueOrderAt(OrderId.Move, this.currentAttackTarget?.x ?? target.x, this.currentAttackTarget?.y ?? target.y);
-        //         units.push(u);
-        //         deathTimer.start(30, false, () => {
-        //             //we want to follow the one most recentyl destroyed instead
-        //             this.pathFinderAttackPoint = Point.create(u.x, u.y);
-        //             u.destroy();
-        //             deathTimer.destroy();
-        //         });
-        //     }
-        // });
-        // this.preSpawnFunctions.push(() => {
-        //     units.forEach((u) => u.destroy());
-        //     t.destroy();
-        // });
     }
 
     private getMinimapRGB() {
@@ -370,9 +342,10 @@ class SpawnData {
     public cleanupSpawn() {
         this.units.forEach((u, index) => {
             if (u) {
-                if (Math.random() * 100 >= 2 + Math.floor(RoundManager.currentRound / 2)) {
-                    u.kill();
-                }
+                u.kill();
+                // if (Math.random() * 100 >= 2 + Math.floor(RoundManager.currentRound / 2)) {
+                //     u.kill();
+                // }
             }
         });
 
@@ -470,11 +443,6 @@ class SpawnData {
                 //Range [0, 1)
                 const sampledValue = Math.sin(randomTheta);
 
-                if (this.spawnDifficulty === SpawnDifficulty.normal) {
-                    this.currentTier2Chance = -1;
-                    this.currentTier3Chance = -1;
-                }
-
                 //will always spawn tier 3 units on the last 2 nights
                 if (this.spawnDifficulty === SpawnDifficulty.final || (this.spawnDifficulty >= SpawnDifficulty.hard && sampledValue <= this.currentTier3Chance)) {
                     //spawn tier 3 unit
@@ -523,20 +491,18 @@ class SpawnData {
         const categoryData = unitCategoryData.get(category);
 
         if (categoryData) {
-            const size = Object.values(categoryData)[tier].length;
-            const randomIndex = Math.floor(Math.random() * size);
-            print(`Category size: ${size} - Random Index Chosen: ${randomIndex}`);
-
             switch (tier) {
                 case 0:
-                    unitTypeId = categoryData.tierI[randomIndex];
+                    const r1 = Math.floor(Math.random() * categoryData.tierI.length);
+                    unitTypeId = categoryData.tierI[r1];
                     break;
                 case 1:
-                    unitTypeId = categoryData.tierII[randomIndex];
-
+                    const r2 = Math.floor(Math.random() * categoryData.tierII.length);
+                    unitTypeId = categoryData.tierII[r2];
                     break;
                 case 2:
-                    unitTypeId = categoryData.tierIII[randomIndex];
+                    const r3 = Math.floor(Math.random() * categoryData.tierIII.length);
+                    unitTypeId = categoryData.tierIII[r3];
 
                     break;
                 default:
@@ -631,6 +597,8 @@ const unitCategoryData = new Map<UnitCategory, { tierI: number[]; tierII: number
         "infantry",
         {
             tierI: [
+                // FourCC("u00J"),
+
                 UNITS.zombie,
                 UNITS.skeletalOrc,
                 //mini overlord
@@ -642,14 +610,14 @@ const unitCategoryData = new Map<UnitCategory, { tierI: number[]; tierII: number
                 //
             ],
             tierII: [
+                // FourCC("u00J"),
+
                 UNITS.skeletalOrcChampion,
                 UNITS.fleshBeetle,
                 //overlord
                 FourCC("nfov"),
             ],
             tierIII: [
-                FourCC("U00J"),
-
                 UNITS.abomination,
                 //siege golem
                 FourCC("nsgg"),
@@ -660,10 +628,10 @@ const unitCategoryData = new Map<UnitCategory, { tierI: number[]; tierII: number
                 //satyr hell caller
                 FourCC("nsth"),
                 //sea giant behemoth
-                FourCC("nsgb"),
-                //abomination
-
+                // FourCC("nsgb"),
+                // abomination
                 // Corrupted Protector
+                FourCC("u00J"),
             ],
         },
     ],
@@ -790,7 +758,7 @@ function calcBaseAmountPerWave() {
         numPlayers++;
     });
 
-    const enemiesPerWave = RoundManager.currentRound + 8 + 5 * numPlayers;
+    const enemiesPerWave = RoundManager.currentRound * 2 + 5 + 2 * numPlayers;
     return enemiesPerWave;
 }
 
@@ -803,5 +771,3 @@ const unitTypeSpawnFunctions = new Map<number, () => void>([
         },
     ],
 ]);
-
-//eslint fix my code automatically
