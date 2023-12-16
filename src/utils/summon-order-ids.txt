@@ -1,0 +1,32 @@
+i have wateryminion, summonquillbeast, spiritwolf, summongrizzly, summonwareagle, waterelemental, slimemonster
+and i think Carrionscarabs if you remove the Dead target
+maybe even raise dead too
+
+
+function InitTrig_Build_Basic takes nothing returns nothing
+    set gg_trg_Build_Basic = CreateTrigger(  )
+    call TriggerRegisterAnyUnitEventBJ( gg_trg_Build_Basic, EVENT_PLAYER_UNIT_SPELL_CAST )
+    call TriggerAddCondition( gg_trg_Build_Basic, Condition( function Trig_Build_Basic_Conditions ) )
+    call TriggerAddAction( gg_trg_Build_Basic, function Trig_Build_Basic_Actions )
+endfunction
+
+
+function InitTrig_Build_Basic takes nothing returns nothing
+    set gg_trg_Build_Basic = CreateTrigger(  )
+    call TriggerRegisterAnyUnitEventBJ( gg_trg_Build_Basic, EVENT_PLAYER_UNIT_SPELL_CAST )
+    call TriggerAddCondition( gg_trg_Build_Basic, Condition( function Trig_Build_Basic_Conditions ) )
+    call TriggerAddAction( gg_trg_Build_Basic, function Trig_Build_Basic_Actions )
+endfunction
+There's a dummy channel spell called Build Basic that serves as the catalyst
+JediMindTrix/NihilismIsDeath 🍆 — Today at 2:21 PM
+ty
+can you just copy from any channel spell?
+LX#8366 — Today at 2:22 PM
+Base should be ANcl
+Custom spell based on ANcl
+there should be whole guides on the hive on using/abusing channel for map making purposes
+JediMindTrix/NihilismIsDeath 🍆 — Today at 2:24 PM
+would it be something like player casts this channel spell, use dummy caster to cast this summon?
+ok
+LX#8366 — Today at 2:25 PM
+when a unit casts the channel spell then disable all the spells you dont want to be cast for triggering unit then order triggering unit to cast the summon

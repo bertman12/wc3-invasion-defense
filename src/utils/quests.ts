@@ -88,7 +88,7 @@ export function init_quests() {
             false,
         );
 
-        addQuest("|cffffcc00Undead Siege Defense v0.18 Simplified|r", "Created by JediMindTrix/NihilismIsDeath", "ReplaceableTextures\\CommandButtons\\BTNClayFigurine.blp", false);
+        addQuest("|cffffcc00Undead Siege Defense v0.24|r", "Created by JediMindTrix/NihilismIsDeath", "ReplaceableTextures\\CommandButtons\\BTNClayFigurine.blp", false);
     });
 }
 

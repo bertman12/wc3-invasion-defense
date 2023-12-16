@@ -148,7 +148,7 @@ function showCurrentNight() {
     // BlzFrameSetPoint(tooltipFrameBackGround, FRAMEPOINT_BOTTOM, frame, FRAMEPOINT_TOP, 0, 0.01);
     // -- Prevent the TEXT from taking mouse control
     BlzFrameSetEnable(tooltipFrameText, true);
-    BlzFrameSetText(tooltipFrameText, "Nights Passed: 0");
+    BlzFrameSetText(tooltipFrameText, "Nights Passed: 0/9");
 }
 
 // FRAMEPOINT_TOPLEFT

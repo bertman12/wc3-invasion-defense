@@ -63,7 +63,7 @@ export class RoundManager {
 
         const nightTextFrame = BlzGetFrameByName("nightTextDisplay", 0);
         if (nightTextFrame) {
-            BlzFrameSetText(nightTextFrame, `Nights Passed: ${RoundManager.currentRound}`);
+            BlzFrameSetText(nightTextFrame, `Nights Passed: ${RoundManager.currentRound}/9`);
         }
 
         RoundManager.roundEndSubscribers.forEach((cb) => {

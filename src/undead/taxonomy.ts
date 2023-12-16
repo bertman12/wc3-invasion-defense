@@ -521,15 +521,15 @@ class SpawnData {
 
         if (u) {
             currentZombieCount++;
-
+            
             if (u.isHero()) {
                 u.setHeroLevel(RoundManager.currentRound, false);
             }
 
             if (this.playersPlaying > 2) {
                 const playerBonus = this.playersPlaying - 2;
-                const roundDamageMultiplier = 0.05 * playerBonus + Math.floor(RoundManager.currentRound / 2) / 100;
-                const healthBonusMultiplier = 0.1 * playerBonus + RoundManager.currentRound / 100;
+                const roundDamageMultiplier = 0.05 * playerBonus + RoundManager.currentRound / 100;
+                const healthBonusMultiplier = 0.1 * playerBonus + (RoundManager.currentRound * 2) / 100;
                 //Increasing health and damage based on number of players playing
                 const baseDmgIncrease = u.getBaseDamage(0) + Math.ceil(u.getBaseDamage(0) * roundDamageMultiplier);
                 const diceSidesIncrease = u.getDiceSides(0) + Math.ceil(u.getDiceSides(0) * roundDamageMultiplier);

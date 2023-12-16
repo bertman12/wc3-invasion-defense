@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Undead Siege Defense v0.23
+Undead Siege Defense v0.24
 }
 
 STRING 2
@@ -15,7 +15,7 @@ STRING 3
 Survive for 9 nights. 
 
 -Hero Abilities have been adjusted and also go to level 4 now
--Improved Economy
+-Alchemist fixed
 -|cffffcc00Spawns fixed|r
 
 |cffff0000Undead Spawns: |r Shown as skulls on the minimap.
@@ -392,7 +392,7 @@ Stone Walls - Free Form Doodad
 
 STRING 141
 {
-Undead Siege Defense v0.23
+Undead Siege Defense v0.24
 }
 
 STRING 142
@@ -3039,12 +3039,6 @@ STRING 961
 Requires: |cffc0c0c0Pendant of Energy +200, Crown of Reanimation - Level 2|r  |N|N    +5 |cffffcc00All Stats|r  |n+600 |cff8080ffMana|r |n|n|cffffcc00Reanimate Dead|R - Allows you to reanimate 18 dead units for 60 seconds. |cffc0c0c045 second cooldown|r
 }
 
-STRING 963
-// Units: hkni (Knight), Ubertip (Tooltip - Extended)
-{
-Powerful mounted warrior. Can trample his enemies and use his fierce lance to attack enemies. |n|nKnights excel when in large nubmers on open fields where many can charge at once and retreat.|n|n+ |cff00ff00Choke Points|r    |n+ |cff00ff00Open Areas|r 
-}
-
 STRING 964
 // Units: h00I (Heavy Cavalry), Ubertip (Tooltip - Extended)
 {
@@ -3236,12 +3230,6 @@ STRING 1032
 // Units: hwtw (Scout Tower), Ubertip (Tooltip - Extended)
 {
 Can be upgraded into a |cffffcc00Guard Tower|r, a |cffffcc00FlameTower|R, a |cffffcc00Cold Tower|r,  or a |cffffcc00Cannon Tower|r. |n|N|cffc0c0c01800/1800 Sight Range (Day/Night)|r
-}
-
-STRING 1033
-// Items: I00V (Amulet of the Sentinel), Ubertip (Tooltip - Extended)
-{
-Spell Block - |cffc0c0c015 sec cooldown|r|nTeleport - |cffc0c0c0Hero Only|r |n|N+20% |cfaafff00Evasion|r |n     +5 |cffffcc00All Stats|r |n     +5 |cffccccccArmor|r|n|n|cffffcc00Evasion doesn't stack.|r
 }
 
 STRING 1034
@@ -3885,12 +3873,6 @@ Imperial Footman
 
 STRING 1224
 // Abilities: A02O (Imperial Footmen), Ubertip (Tooltip - Normal - Extended)
-{
-Transforms Footman into Imperial Footman. |n|n    +8 Attack Damage|n  +30 Movespeed |n+100 Health  |n|N|cffffcc00Grants Hero Armor and Hero Attack|r
-}
-
-STRING 1225
-// Upgrades: R006 (Berserker Upgrade), Ubertip (Tooltip - Extended)
 {
 Transforms Footman into Imperial Footman. |n|n    +8 Attack Damage|n  +30 Movespeed |n+100 Health  |n|N|cffffcc00Grants Hero Armor and Hero Attack|r
 }
@@ -5147,12 +5129,6 @@ STRING 1485
 +5 |cffff8800Food|r   |n|nThe|cff8080ff mana|r represents how many days have passed. |n|n|cffffcc00This structure will be destroyed in 3 days.|r
 }
 
-STRING 1486
-// Units: hmpr (Priest), Ubertip (Tooltip - Extended)
-{
-Can cast |cffffcc00Heal|r and |cffffcc00Inner Fire|r.
-}
-
 STRING 1488
 // Abilities: A02T (Frost Armor), Ubertip (Tooltip - Normal - Extended)
 {
@@ -5343,24 +5319,6 @@ STRING 1545
 // Abilities: A02V (Time Distortion), Researchubertip (Tooltip - Learn - Extended)
 {
 Enemies in |cffc0c0c0600 range|r have their |cffffcc00move speed|r and  |cffffcc00attack speed|R |cffff00ffslowed|r by 50%. |n|nAfter 6 seconds any enemies in range are|cffff00ff stunned|r for |cffffcc00(3 + Ability Level)|r seconds and take |cffffcc00(100 x Ability Level) |r spell damage.
-}
-
-STRING 1547
-// Abilities: AHfs (Flame Strike), Ubertip (Tooltip - Normal - Extended)
-{
-Conjures a pillar of flame that burns ground units for 45 damage a second for 3 seconds. As the pillar of flame subsides, units within the fire continue to take minor damage. |n|N|cffffcc00Doesn't hurt allied units.|r
-}
-
-STRING 1548
-// Abilities: AHfs (Flame Strike), Ubertip (Tooltip - Normal - Extended)
-{
-Conjures a pillar of flame that burns ground units for 80 damage a second for 3 seconds. As the pillar of flame subsides, units within the fire continue to take light damage. |n|N|cffffcc00Doesn't hurt allied units.|r
-}
-
-STRING 1549
-// Abilities: AHfs (Flame Strike), Ubertip (Tooltip - Normal - Extended)
-{
-Conjures a pillar of flame that burns ground units for 110 damage a second for 3 seconds. As the pillar of flame subsides, units within the fire continue to take moderate damage. |n|N|cffffcc00Doesn't hurt allied units.|r
 }
 
 STRING 1552
@@ -6017,18 +5975,6 @@ STRING 1669
 Calls forth a cone of lightning to damage enemies. |n|n|cffffcc00Level 1|r - <ANfl,DataA1> damage per unit. |n|cffffcc00Level 2|r - <ANfl,DataA2> damage per unit. |n|cffffcc00Level 3|r - <ANfl,DataA3> damage per unit. |n|cffffcc00Level 4|r - <ANfl,DataA4> damage per unit.
 }
 
-STRING 1671
-// Abilities: AHfs (Flame Strike), Researchubertip (Tooltip - Learn - Extended)
-{
-Conjures a pillar of fire which damages ground units in a target area over time. |n|n|cffffcc00Level 1|r - 45 damage a second for 3 seconds, followed by minor damage for 6 seconds. |n|cffffcc00Level 2|r - 80 damage a second for 3 seconds, followed by light damage for 6 seconds. |n|cffffcc00Level 3|r - 110 damage a second for 3 seconds, followed by moderate damage for 6 seconds. |n|cffffcc00Level 4|r - 140 damage a second for 3 seconds, followed by moderate damage for 6 seconds. |n|N|cffffcc00Doesn't hurt allied units.|r
-}
-
-STRING 1672
-// Abilities: AHfs (Flame Strike), Ubertip (Tooltip - Normal - Extended)
-{
-Conjures a pillar of flame that burns ground units for 140 damage a second for 4 seconds. As the pillar of flame subsides, units within the fire continue to take moderate damage. |n|N|cffffcc00Doesn't hurt allied units.|r
-}
-
 STRING 1673
 // Abilities: AHbh (Bash), Researchubertip (Tooltip - Learn - Extended)
 {
@@ -6275,21 +6221,513 @@ STRING 1719
 A unit with high attack damage and low health.|n|N|cffffcc00This unit moves at max move speed.|r
 }
 
-STRING 1721
-// Units: o005 (Headhunter), Ubertip (Tooltip - Extended)
-{
-A ranged unit with high damage but very vulnerable if unprotected. Can cast |cffffcc00Berserk|r. |n|N|cffc0c0c0225 Attack Range  |r
-}
-
 STRING 1722
 // Units: h009 (Musketeer), Ubertip (Tooltip - Extended)
 {
 Highly skilled sharpshooter. Can use mana imbued powder for powerful shots. Works very well when used with supply camps.|n|n+ |cff00ff00Choke Points|r    |n-  |cffff0000Open Areas|r
 }
 
-STRING 1723
+STRING 1728
+// Items: I012 (Book of Summoning), Name (Name)
+{
+Book of Summoning
+}
+
+STRING 1729
+// Items: I012 (Book of Summoning), Tip (Tooltip - Basic)
+{
+Purchase Book of Summoning
+}
+
+STRING 1730
+// Abilities: A02W (Summoning Book), Name (Name)
+{
+Summoning Book
+}
+
+STRING 1731
+// Abilities: A030 (Summon Dragon Turtle), Name (Name)
+{
+Summon Dragon Turtle
+}
+
+STRING 1732
+// Abilities: A030 (Summon Dragon Turtle), Tip (Tooltip - Normal)
+{
+Summon Dragon Turtle
+}
+
+STRING 1733
+// Abilities: A030 (Summon Dragon Turtle), Ubertip (Tooltip - Normal - Extended)
+{
+Heavy melee amphibious unit with Devour and Spiked Shell. Can cast Crushing Wave. |n|n|cffffcc00Attacks land units.|r
+}
+
+STRING 1734
+// Abilities: A031 (Summon Furbolg Elder Shaman), Name (Name)
+{
+Summon Furbolg Elder Shaman
+}
+
+STRING 1735
+// Abilities: A031 (Summon Furbolg Elder Shaman), Tip (Tooltip - Normal)
+{
+Summon Furbolg Elder Shaman
+}
+
+STRING 1736
+// Abilities: A031 (Summon Furbolg Elder Shaman), Ubertip (Tooltip - Normal - Extended)
+{
+Heavy ranged unit that hurls bolts of lightning. Can cast Rejuvenation and Lightning Shield. |n|n|cffffcc00Attacks land and air units.|r
+}
+
+STRING 1737
+// Abilities: A030 (Summon Dragon Turtle), Hotkey (Hotkey - Normal)
+{
+Q
+}
+
+STRING 1738
+// Abilities: A033 (Summon Razormane Medicine Man), Tip (Tooltip - Normal)
+{
+Summon Razormane Medicine Man
+}
+
+STRING 1739
+// Abilities: A033 (Summon Razormane Medicine Man), Name (Name)
+{
+Summon Razormane Medicine Man
+}
+
+STRING 1740
+// Abilities: A033 (Summon Razormane Medicine Man), Ubertip (Tooltip - Normal - Extended)
+{
+Medium melee unit that can cast Healing Ward and Feral Spirit. |n|n|cffffcc00Attacks land units.|r
+}
+
+STRING 1741
+// Abilities: A033 (Summon Razormane Medicine Man), Hotkey (Hotkey - Normal)
+{
+W
+}
+
+STRING 1742
+// Abilities: A02Y (Summon Dranei Harbinger), Name (Name)
+{
+Summon Dranei Harbinger
+}
+
+STRING 1743
+// Abilities: A02Y (Summon Dranei Harbinger), Tip (Tooltip - Normal)
+{
+Summon Dranei Harbinger
+}
+
+STRING 1744
+// Abilities: A02Y (Summon Dranei Harbinger), Ubertip (Tooltip - Normal - Extended)
+{
+Medium ranged unit with Bloodlust and Cast Ray of Disruption. |n|n|cffffcc00Attacks land and air units.|r
+}
+
+STRING 1748
+// Abilities: A034 (Summon Heretic), Name (Name)
+{
+Summon Heretic
+}
+
+STRING 1749
+// Abilities: A034 (Summon Heretic), Tip (Tooltip - Normal)
+{
+Summon Heretic
+}
+
+STRING 1750
+// Abilities: A034 (Summon Heretic), Ubertip (Tooltip - Normal - Extended)
+{
+Medium ranged unit that hurls Demon fire. Can cast Raise Dead and Carrion Swarm. |n|n|cffffcc00Attacks land and air units.|r
+}
+
+STRING 1752
+// Abilities: A02X (Summon Ancient Hydra), Tip (Tooltip - Normal)
+{
+Summon Ancient Hydra
+}
+
+STRING 1753
+// Abilities: A02X (Summon Ancient Hydra), Name (Name)
+{
+Summon Ancient Hydra
+}
+
+STRING 1754
+// Abilities: A02X (Summon Ancient Hydra), Ubertip (Tooltip - Normal - Extended)
+{
+Heavy ranged amphibious unit with Devour, War Stomp, and Slow Poison. When it is slain, smaller Hydras will arise from its corpse. |n|n|cffffcc00Attacks land and air units.|r
+}
+
+STRING 1756
+// Abilities: A034 (Summon Heretic), Hotkey (Hotkey - Normal)
+{
+H
+}
+
+STRING 1757
+// Abilities: A02X (Summon Ancient Hydra), Hotkey (Hotkey - Normal)
+{
+N
+}
+
+STRING 1762
+// Abilities: A02V (Time Distortion), Ubertip (Tooltip - Normal - Extended)
+{
+Enemies in |cffc0c0c0600 range|r have their |cffffcc00move speed|r and  |cffffcc00attack speed|R |cffff00ffslowed|r by 50%. |n|nAfter 6 seconds any enemies in range are|cffff00ff stunned|r for 7 seconds and take |cffffcc00100 x Ability Level|r spell damage.
+}
+
+STRING 1763
+// Abilities: A01Z (Thunderous Strikes), Tip (Tooltip - Normal)
+{
+Thunderous Strikes
+}
+
+STRING 1764
+// Abilities: A01Z (Thunderous Strikes), Ubertip (Tooltip - Normal - Extended)
+{
+Gives a 20% chance that an attack will deal 400 damage to nearby units.
+}
+
+STRING 1765
+// Abilities: A02V (Time Distortion), Tip (Tooltip - Normal)
+{
+Time Distortion
+}
+
+STRING 1769
+// Units: n00V (Recipes 2), Name (Name)
+{
+Recipes 2
+}
+
+STRING 1771
+// Units: n00W (Godlike Recipes), Name (Name)
+{
+Godlike Recipes
+}
+
+STRING 1772
+// Abilities: A033 (Summon Razormane Medicine Man), EditorSuffix (Editor Suffix)
+{
+(spiritwolf)
+}
+
+STRING 1773
+// Abilities: A034 (Summon Heretic), EditorSuffix (Editor Suffix)
+{
+(quillbeast)
+}
+
+STRING 1774
+// Abilities: A031 (Summon Furbolg Elder Shaman), EditorSuffix (Editor Suffix)
+{
+(watery minion)
+}
+
+STRING 1775
+// Abilities: A031 (Summon Furbolg Elder Shaman), Hotkey (Hotkey - Normal)
+{
+E
+}
+
+STRING 1776
+// Abilities: A02Y (Summon Dranei Harbinger), EditorSuffix (Editor Suffix)
+{
+(summonwareagle)
+}
+
+STRING 1778
+// Abilities: A030 (Summon Dragon Turtle), EditorSuffix (Editor Suffix)
+{
+(summongrizzlybear)
+}
+
+STRING 1782
+// Abilities: A02X (Summon Ancient Hydra), Ubertip (Tooltip - Normal - Extended)
+{
+Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, thereby fueling its fires and eventually splitting into two healthy Lava Spawns.|n|nHas <nlv2,realHP> hit points and deals <nlv2,mindmg1> - <nlv2,maxdmg1> damage.|n|n|cff80ff80Attacks have a 6% chance to summon a lava spawn|r|n |nLasts <ANlm,Dur2> seconds.|n|n|cffffcc00Attacks ground and air units.|r
+}
+
+STRING 1784
+// Abilities: A02X (Summon Ancient Hydra), Tip (Tooltip - Normal)
+{
+Army of Flame- [|cffffcc00Level 2|r]
+}
+
+STRING 1785
+// Abilities: A02X (Summon Ancient Hydra), Tip (Tooltip - Normal)
+{
+Army of Flame - [|cffffcc00Level 3|r]
+}
+
+STRING 1786
+// Abilities: A02X (Summon Ancient Hydra), Researchubertip (Tooltip - Learn - Extended)
+{
+Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, eventually splitting into two healthy Lava Spawns.|n|n|cff80ff80Attacks have a 6% chance to summon a lava spawn|r  |n|nLasts <ANlm,Dur1> seconds.|n|n|cffffcc00Level 1|r - <nlv1,realHP> hit points, <nlv1,mindmg1> - <nlv1,maxdmg1> damage.|n|cffffcc00Level 2|r - <nlv2,realHP> hit points, <nlv2,mindmg1> - <nlv2,maxdmg1> damage.|n|cffffcc00Level 3|r - <nlv3,realHP> hit points, <nlv3,mindmg1> - <nlv3,maxdmg1> damage.|n|cffffcc00Level 4|r - 1025 hit points, 40 - 70 damage.
+}
+
+STRING 1787
+// Abilities: A02X (Summon Ancient Hydra), Researchtip (Tooltip - Learn)
+{
+Learn Army of Flame - [|cffffcc00Level %d|r]
+}
+
+STRING 1789
+// Abilities: A02X (Summon Ancient Hydra), Tip (Tooltip - Normal)
+{
+Army of Flame - [|cffffcc00Level 4|r]
+}
+
+STRING 1790
+// Abilities: A02X (Summon Ancient Hydra), Ubertip (Tooltip - Normal - Extended)
+{
+Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, thereby fueling its fires and eventually splitting into two healthy Lava Spawns.|n|nHas <nlv3,realHP> hit points and deals <nlv3,mindmg1> - <nlv3,maxdmg1> damage.|n|n|cff80ff80Attacks have a 6% chance to summon a lava spawn|r|n |nLasts <ANlm,Dur3> seconds.|n|n|cffffcc00Attacks ground and air units.|r
+}
+
+STRING 1791
+// Abilities: A02X (Summon Ancient Hydra), Ubertip (Tooltip - Normal - Extended)
+{
+Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, thereby fueling its fires and eventually splitting into two healthy Lava Spawns.|n|nHas <nlv4,realHP> hit points and deals <nlv4,mindmg1> - <nlv4,maxdmg1> damage.|n|n|cff80ff80Attacks have a 6% chance to summon a lava spawn|r|n |nLasts <ANlm,Dur4> seconds.|n|n|cffffcc00Attacks ground and air units.|r
+}
+
+STRING 1793
+// Abilities: A02X (Summon Ancient Hydra), EditorSuffix (Editor Suffix)
+{
+(slimemonster)
+}
+
+STRING 1795
+// Items: I00V (Amulet of the Sentinel), Ubertip (Tooltip - Extended)
+{
+Spell Block - |cffc0c0c015 sec cooldown|r|nTeleport - |cffc0c0c0Hero Only|r |n|N+20% |cfaafff00Evasion|r |n     +5 |cffffcc00All Stats|r |n     +5 |cffccccccArmor|r|n|n|cffffcc00Evasion doesn't stack.|r |n|n|cffff8080If you cannot teleport with the item, drop the item and pick it up again. Moving the item from the slot it was picked up from will cause the active item ability to change to spell block.|r
+}
+
+STRING 1796
+// Items: I012 (Book of Summoning), Ubertip (Tooltip - Extended)
+{
+|cffff00ffA book full of summoning spells.|r |N|nSummon Sea Elemental|nSummon Dragon Turtle|nSummon Razormane Medicine Man|nSummon Dranei Harbinger|nSummon Furbolg Elder Shaman |nSummon Ancient Hydra|nSummon Heretic |N|N|cffffcc00Higher level summons use a significant amount of mana.|r |n|n|cffff8080If the spells do not appear, drop the item and pick it up again. Moving the item from the slot it was picked up from will cause the spells to disappear.|r
+}
+
+STRING 1797
+// Abilities: AHfs (Flame Strike), Ubertip (Tooltip - Normal - Extended)
+{
+Conjures a pillar of flame that burns ground units for 80 damage a second for 3 seconds. As the pillar of flame subsides, units within the fire continue to take light damage.  |n|nArea increase by (|cffffcc00100 x ability level|r). |n|N|cffffcc00Doesn't hurt allied units.|r
+}
+
+STRING 1798
+// Abilities: AHfs (Flame Strike), Ubertip (Tooltip - Normal - Extended)
+{
+Conjures a pillar of flame that burns ground units for 110 damage a second for 3 seconds. As the pillar of flame subsides, units within the fire continue to take moderate damage.|n|nArea increase by (|cffffcc00100 x ability level|r). |n|N|cffffcc00Doesn't hurt allied units.|r
+}
+
+STRING 1799
+// Abilities: AHfs (Flame Strike), Researchubertip (Tooltip - Learn - Extended)
+{
+Conjures a pillar of fire which damages ground units in a target area over time. |n|n|cffffcc00Level 1|r - 45 damage a second for 3 seconds, followed by minor damage for 6 seconds. |n|cffffcc00Level 2|r - 80 damage a second for 3 seconds, followed by light damage for 6 seconds. |n|cffffcc00Level 3|r - 110 damage a second for 3 seconds, followed by moderate damage for 6 seconds. |n|cffffcc00Level 4|r - 140 damage a second for 3 seconds, followed by moderate damage for 6 seconds.|n|nArea increase by (|cffffcc00100 x ability level|r). |n|N|cffffcc00Doesn't hurt allied units.|r
+}
+
+STRING 1800
+// Abilities: AHfs (Flame Strike), Ubertip (Tooltip - Normal - Extended)
+{
+Conjures a pillar of flame that burns ground units for 140 damage a second for 3 seconds. As the pillar of flame subsides, units within the fire continue to take moderate damage. |n|nArea increase by (|cffffcc00100 x ability level|r). |n|N|cffffcc00Doesn't hurt allied units.|r
+}
+
+STRING 1801
+// Abilities: AHfs (Flame Strike), Ubertip (Tooltip - Normal - Extended)
+{
+Conjures a pillar of flame that burns ground units for 45 damage a second for 3 seconds. As the pillar of flame subsides, units within the fire continue to take minor damage.  |n|nArea increase by (|cffffcc00100 x ability level|r). |n|N|cffffcc00Doesn't hurt allied units.|r
+}
+
+STRING 1802
 // Items: sbok (Spell Book), Ubertip (Tooltip - Extended)
 {
-A book full of random spells.|n|nCan cast |cffffcc00Battle Roar|r, |cffffcc00Entangling roots|r, |cffffcc00Dispel Magic|r, and |cffffcc00Summon Sea Elemental|r.
+A book full of random spells.|n|nCan cast |cffffcc00Battle Roar|r, |cffffcc00Entangling roots|r, |cffffcc00Dispel Magic|r, |cffffcc00Unholy Frenzy|r.            |n|n|cffff8080If the spells do not appear, drop the item and pick it up again. Moving the item from the slot it was picked up from will cause the spells to disappear.|r
+}
+
+STRING 1806
+// Units: h00Z (Barricade - Improved Fortifications), Tip (Tooltip - Basic)
+{
+Fortify Barricade
+}
+
+STRING 1807
+// Units: h00Z (Barricade - Improved Fortifications), Hotkey (Hotkey)
+{
+B
+}
+
+STRING 1808
+// Units: h00Z (Barricade - Improved Fortifications), Name (Name)
+{
+Barricade - Improved Fortifications
+}
+
+STRING 1809
+// Units: h00Z (Barricade - Improved Fortifications), Ubertip (Tooltip - Extended)
+{
+Adds 5 fortified armor and 600 health. |N|NThe barricade is also equipped with spikes, dealing 12 damage to melee attackers.
+}
+
+STRING 1810
+// Upgrades: R00A (Improved Bows), Name (Name)
+{
+Improved Projectiles
+}
+
+STRING 1811
+// Upgrades: R00A (Improved Bows), Tip (Tooltip)
+{
+Research Improved Projectiles
+}
+
+STRING 1812
+// Upgrades: R00A (Improved Bows), Ubertip (Tooltip - Extended)
+{
+Increases Archer and Headhunter |cffffcc00attack range|r by 100.
+}
+
+STRING 1824
+// Upgrades: R006 (Berserker Upgrade), Ubertip (Tooltip - Extended)
+{
+Transforms Footman into an Imperial Footman. |n|n    +8 Attack Damage|n  +30 Movespeed |n+100 Health  |n|N|cffffcc00Grants Hero Armor and Hero Attack|r
+}
+
+STRING 1831
+// Upgrades: R00C (Submerge), Name (Name)
+{
+Arcane Mastery Training
+}
+
+STRING 1832
+// Upgrades: R00C (Submerge), Tip (Tooltip)
+{
+Research Arcane Mastery Training
+}
+
+STRING 1834
+// Upgrades: R00C (Submerge), effect1 (Effect 1)
+{
+rlev
+}
+
+STRING 1835
+// Upgrades: R00C (Submerge), Ubertip (Tooltip - Extended)
+{
+|cffff00ffPriests|r can now cast |cffffcc00Greater Heal|R.|n|cffff00ffSorceress|r can now cast |cffffcc00Improved Bloodlust|r.|n|cffff00ffWizards|r can now cast |cffffcc00Glacial Armor|r.
+}
+
+STRING 1836
+// Upgrades: R00C (Submerge), effect2 (Effect 2)
+{
+rlev
+}
+
+STRING 1837
+// Upgrades: R00C (Submerge), effect3 (Effect 3)
+{
+rlev
+}
+
+STRING 1838
+// Abilities: A01L (Bloodlust), Tip (Tooltip - Normal)
+{
+Improved Bloodlust
+}
+
+STRING 1839
+// Abilities: A01L (Bloodlust), Ubertip (Tooltip - Normal - Extended)
+{
+Increases a target friendly unit's attack rate by <ACbl,DataA2,%>% and movement speed by <ACbl,DataB2,%>% for <ACbl,Dur2> seconds.
+}
+
+STRING 1840
+// Abilities: Ahea (Heal), Untip (Tooltip - Turn Off)
+{
+|cffc3dbffRight-click to activate auto-casting.|r
+}
+
+STRING 1841
+// Abilities: Ahea (Heal), Unubertip (Tooltip - Turn Off - Extended)
+{
+|cffc3dbffRight-click to deactivate auto-casting.|r
+}
+
+STRING 1843
+// Abilities: A02T (Frost Armor), Ubertip (Tooltip - Normal - Extended)
+{
+Creates a shield of frost around a target friendly unit. The shield adds 6 armor and slows melee units that attack it for <ACfa,Dur2> seconds. |nLasts <ACfa,DataA2> seconds.
+}
+
+STRING 1844
+// Abilities: A01L (Bloodlust), Untip (Tooltip - Turn Off)
+{
+|cffc3dbffRight-click to activate auto-casting.|r
+}
+
+STRING 1845
+// Abilities: A01L (Bloodlust), Unubertip (Tooltip - Turn Off - Extended)
+{
+|cffc3dbffRight-click to deactivate auto-casting.|r
+}
+
+STRING 1846
+// Abilities: Ahea (Heal), Tip (Tooltip - Normal)
+{
+Greater Heal
+}
+
+STRING 1847
+// Abilities: Ahea (Heal), Ubertip (Tooltip - Normal - Extended)
+{
+Heals a target friendly non-mechanical wounded unit for <Ahea,DataA2> hit points.
+}
+
+STRING 1848
+// Abilities: A02T (Frost Armor), Tip (Tooltip - Normal)
+{
+Glacial Armor
+}
+
+STRING 1849
+// Abilities: A02T (Frost Armor), Untip (Tooltip - Turn Off)
+{
+|cffc3dbffRight-click to activate auto-casting.|r
+}
+
+STRING 1850
+// Abilities: A02T (Frost Armor), Unubertip (Tooltip - Turn Off - Extended)
+{
+|cffc3dbffRight-click to deactivate auto-casting.|r
+}
+
+STRING 1851
+// Units: o005 (Headhunter), Ubertip (Tooltip - Extended)
+{
+A ranged unit with high damage but very vulnerable if unprotected. Can cast |cffffcc00Berserk|r. |n|N|cffc0c0c0300 Attack Range  |r
+}
+
+STRING 1852
+// Units: hkni (Knight), Ubertip (Tooltip - Extended)
+{
+Powerful mounted warrior. Can trample his enemies and use his fierce lance to attack enemies.
+}
+
+STRING 1853
+// Upgrades: R00C (Submerge), effect4 (Effect 4)
+{
+rhpx
+}
+
+STRING 1854
+// Units: hmpr (Priest), Ubertip (Tooltip - Extended)
+{
+Can cast |cffffcc00Heal|r and |cffffcc00Inner Fire|r. |n|N|cffff00ffSupport Unit|r
 }
 

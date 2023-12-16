@@ -622,3 +622,42 @@ nerf ogre more lol
 make mask of midas damage teh target instead of cahnging their life, that way mana shield will work
 
 for the nights passed text, show "Nights Passed: 4/9"
+
+make an uprgade for trolls to let their range be 300 range up from 225; have teh same upgrade also upgrade archer range same amount
+
+make druid farmers play spell animation when they are complete
+
+add mirror image potion
+
+and also add mirror of mirror image which will just make a copy of your hero with good damage
+
+make ressurect 1 min cooldown
+
+heavy cavalry should be available after 5 armor and weapon upgrades
+
+add level skip for time dilation
+
+what i would like to see is that every 3 nighst each spawn side will change teh theme of enemies spawned we got - arthas and his undead, orcs, creeps, human raiders kul'tiras?, bandits? elves?
+
+re add tinker
+hero illusions dying will trigger respawn message but wont respawn thankfully
+
+alarics spear of thunder and staff of primal thunder
+
+make it so some rounds will have modifiers like maggots will spawn from enemies, enemies have more mana regen, they have thorns aura, they explode on death, etc., casters are more common, etc, enemies have bonus armor
+
+make frenzy blade, gives a 10% chance on hit to attack 150% faster for 5 seconds.
+
++15 all stats, +60 attack damage, has a 1% chance to make you controlled by neutral hostile for 10 seconds - display message "The madness has ravaged your mind..."
+use caster dummy to cast unholy frenzy on you.
+give it a different buff so they both still stack with eachother
+
+add cooldown reduction item, just use the set ability cooldown for the hero's spell if they cast teh spell and are holding the item
+
+add samuro aand make it so his auto attacks have a chance to summon illusions- use caster dummy to use wand of illusion on him
+
+make mountain king's storm hammer a skill shot that stuns enemies on it's path and then does a thunder clap at the ending area.
+
+create a support item that will give cast spirit link on 32 units for a period of time
+
+add improved heal and improved bloodlust and imrpoved frost armor

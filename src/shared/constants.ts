@@ -1,7 +1,7 @@
 import { UNITS } from "./enums";
 
 export const economicConstants = {
-    startingFood: 15,
+    startingFood: 18,
     startingGold: 2550,
     startingLumber: 1650,
     baseGoldPerRound: 100,
