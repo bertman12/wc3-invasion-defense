@@ -42,7 +42,7 @@ export function unitGetsNearThisUnit(unit: Unit, range: number, cb: (u: Unit) =>
     const effectedUnitPool: Unit[] = [];
 
     trig.registerUnitInRage(unit.handle, range, config?.filter ?? (() => true));
-    
+
     trig.addAction(() => {
         const u = Unit.fromEvent();
 
@@ -108,7 +108,7 @@ export function useTempDummyUnit(cb: (dummy: Unit) => void, abilityId: number, d
 }
 
 /**
- * Creates a trigger to monitor when an attacker is
+ * Creates a trigger to monitor when a unit is attacked
  *
  * We could also have all functions execute in this single trigger's context instead of creating new triggers each time the function is used.
  * @param cb

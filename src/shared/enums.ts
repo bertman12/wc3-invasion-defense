@@ -35,6 +35,7 @@ export enum ABILITIES {
     //Items
     forceBoots = FourCC("A00V"),
     proc_greaterChainLightning = FourCC("A02K"),
+    proc_unholyFrenzy_demonsEyeTrinket = FourCC("A039"),
 
     //Army Controller
     command_moveAllMilitary = FourCC("A02D"),
@@ -198,7 +199,14 @@ export enum ITEMS {
     staffOfTeleportation = FourCC("stel"),
     alaricsSpearOfThunder = FourCC("I011"),
     recipe_alaricsSpearOfThunder = FourCC("I010"),
+    recipe_demonsEyeTrinket = FourCC("I013"),
+    demonsEyeTrinket = FourCC("I014"),
     assassinsRing = FourCC("I00Z"),
+    stalwartShield = FourCC("arsh"),
+    shieldOfTheGuardian = FourCC("I015"),
+    recipe_shieldOfTheGuardian = FourCC("I016"),
+    ringOfRegeneration_2 = FourCC("rlif"),
+    khadgarsGemOfHealth = FourCC("rhth"),
 }
 
 //Can find looking up models for a spell at the Art - Target field

@@ -5,6 +5,7 @@ import { onUnitAttacked, unitGetsNearThisUnit, useTempDummyUnit } from "src/util
 import { unitHasItem } from "src/utils/item";
 import { getRelativeAngleToUnit, notifyPlayer, useTempEffect } from "src/utils/misc";
 import { adjustGold } from "src/utils/players";
+import { delayedTimer } from "src/utils/timer";
 import { Effect, Item, Timer, Trigger, Unit } from "w3ts";
 import { OrderId } from "w3ts/globals";
 
@@ -13,6 +14,7 @@ export function init_itemAbilities() {
     handOfMidas();
     itemRecipes();
     chainLightningProcItem();
+    demonsEyeTrinketProcItem();
 }
 
 function trig_forceBoots() {
@@ -128,6 +130,32 @@ function chainLightningProcItem() {
             }
         },
         { attackerCooldown: true, procChance: 25 },
+    );
+}
+
+function demonsEyeTrinketProcItem() {
+    onUnitAttacked(
+        (attacker, victim) => {
+            if (unitHasItem(attacker, ITEMS.demonsEyeTrinket)) {
+                useTempEffect(Effect.createAttachment("Abilities\\Spells\\NightElf\\shadowstrike\\shadowstrike.mdl", attacker, "overhead"), 5);
+
+                useTempDummyUnit(
+                    (dummy) => {
+                        dummy.issueTargetOrder(OrderId.Unholyfrenzy, attacker);
+                    },
+                    ABILITIES.proc_unholyFrenzy_demonsEyeTrinket,
+                    1,
+                    attacker,
+                );
+                attacker.setScale(2, 1, 1);
+                attacker.setVertexColor(255, 100, 100, 255);
+                delayedTimer(5, () => {
+                    attacker.setVertexColor(255, 255, 255, 255);
+                    attacker.setScale(1, 1, 1);
+                });
+            }
+        },
+        { attackerCooldown: true, procChance: 10 },
     );
 }
 
@@ -344,6 +372,22 @@ const itemRecipesMap = new Map<RecipeItem, RecipeItemRequirement[]>([
             { itemTypeId: ITEMS.assassinsRing, quantity: 1, charges: 0 }, //
             { itemTypeId: ITEMS.clawsOfAttack_20, quantity: 1, charges: 0 }, //
             { itemTypeId: ITEMS.thunderLizardDiamond, quantity: 1, charges: 0 }, //
+        ],
+    ],
+    [
+        { recipeId: ITEMS.recipe_demonsEyeTrinket, itemId: ITEMS.demonsEyeTrinket },
+        [
+            { itemTypeId: ITEMS.crownOfKings_5, quantity: 2, charges: 0 }, //
+            { itemTypeId: ITEMS.helmOfBattleThirst, quantity: 1, charges: 0 }, //
+        ],
+    ],
+    [
+        { recipeId: ITEMS.recipe_shieldOfTheGuardian, itemId: ITEMS.shieldOfTheGuardian },
+        [
+            { itemTypeId: ITEMS.ringOfProtection_5, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.ringOfRegeneration_2, quantity: 2, charges: 0 }, //
+            { itemTypeId: ITEMS.stalwartShield, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.khadgarsGemOfHealth, quantity: 1, charges: 0 }, //
         ],
     ],
 ]);

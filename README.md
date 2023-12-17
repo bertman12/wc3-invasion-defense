@@ -661,3 +661,11 @@ make mountain king's storm hammer a skill shot that stuns enemies on it's path a
 create a support item that will give cast spirit link on 32 units for a period of time
 
 add improved heal and improved bloodlust and imrpoved frost armor
+
+add item - ascension of the thunder god - improves alarics spear of thunder should summon orbs that circle the user and deal damage to enemies hit
+
+staff of primal thunder upgrade -> passively summons thunder elementals every 20 seconds that will last for a minute each
+
+cursed mask of midas enables your hero to drain the life of all nearby enemies?? probably not
+
+Demon Eye Trinket - +10 All stats lets you use the active of helm of battle thirst while also having a chance to cast unholy frenzy on you giving you 100% attack speed bonus;

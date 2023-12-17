@@ -1273,12 +1273,6 @@ STRING 379
 Grants a chance on hit to earn gold.
 }
 
-STRING 381
-// Items: plcl (Lesser Clarity Potion), Ubertip (Tooltip - Extended)
-{
-|cff87ceebNon-Combat Consumable|r|nRegenerates the Hero's mana by <AIpl,DataB1> over 15 seconds when used.
-}
-
 STRING 390
 // Abilities: A00Y (Item Stat Reduction), EditorSuffix (Editor Suffix)
 {
@@ -1357,12 +1351,6 @@ STRING 407
 B
 }
 
-STRING 409
-// Abilities: A02I (Repair), Ubertip (Tooltip - Normal - Extended)
-{
-Repairs mechanical units and structures at the cost of resources. |n|n300 range.
-}
-
 STRING 411
 // Buffs/Effects: B002 (Armor Reduction Aura), Bufftip (Tooltip)
 {
@@ -1387,14 +1375,8 @@ STRING 414
 (River Ford)
 }
 
-STRING 419
-// Units: h00J (Barricade - Fortified), Name (Name)
-{
-Barricade - Fortified
-}
-
 STRING 420
-// Units: h00J (Barricade - Fortified), Tip (Tooltip - Basic)
+// Units: h00J (Fortified Barricade), Tip (Tooltip - Basic)
 {
 Fortify Barricade
 }
@@ -1496,7 +1478,7 @@ STRING 447
 }
 
 STRING 450
-// Units: h00J (Barricade - Fortified), Hotkey (Hotkey)
+// Units: h00J (Fortified Barricade), Hotkey (Hotkey)
 {
 B
 }
@@ -2279,22 +2261,10 @@ Purchase [|cffff0000Cursed|r] Mask of the Frenzied Ghoul
 
 }
 
-STRING 728
-// Items: hbth (Helm of Battlethirst), Ubertip (Tooltip - Extended)
-{
-Grants the ability to go Berserk, causing the Hero to attack <AIxk,DataB1,%>% faster but take <AIxk,DataC1,%>% more damage.|n|N+4 |cffff0000Strength|r|n+4 |cff00ff00Agility|r
-}
-
 STRING 729
 // Items: I00I (Berserker's Cleaver), Name (Name)
 {
 Berserker's Cleaver
-}
-
-STRING 730
-// Items: I00I (Berserker's Cleaver), Tip (Tooltip - Basic)
-{
-Purchase Corpse Cleaver
 }
 
 STRING 732
@@ -2349,12 +2319,6 @@ STRING 750
 // Items: I00D (Blade of the Wind Walker), Ubertip (Tooltip - Extended)
 {
 +25% Critical Strike Chance (2x damage)|n+20 Attack Damage|n+30 Move Speed  |N|N|cffffcc00Wind Walk|r - Go invisible for 10 seconds. Adds 200 bonus damage to your next attack. 
-}
-
-STRING 753
-// Items: I00I (Berserker's Cleaver), Ubertip (Tooltip - Extended)
-{
-Causes melee attacks cleave for 50% damage. |n|n+12|cffff0000 Strength|r |N  +4 |cff00ff00Agility|r   |n+10 |cffc0c0c0Attack Damage|r |N|N|cffffcc00Berserk|r: Attack 50% faster but takes 50% more damage.
 }
 
 STRING 755
@@ -2598,12 +2562,6 @@ Purchase Scroll of the Reanimation
 }
 
 STRING 824
-// Items: I00M (Scroll of the Reanimation), Ubertip (Tooltip - Extended)
-{
-Reanimates 6 dead units around you.
-}
-
-STRING 825
 // Items: I00M (Scroll of the Reanimation), Description (Description)
 {
 Reanimates 6 dead units around you.
@@ -2733,22 +2691,6 @@ STRING 863
 // Abilities: A021 (Stat Cost Breakdown - Info Ability), Tip (Tooltip - Normal)
 {
 Stat Cost Breakdown - Info Ability
-}
-
-STRING 866
-// Abilities: A021 (Stat Cost Breakdown - Info Ability), Ubertip (Tooltip - Normal - Extended)
-{
-|cff9999ffAttribute Point|r - 50 gold
-|cff00ff00Health Points (per point)|r - 1 gold
-|cffcc3333HP Regen (per 1 point)|r - 500 gold
-|cff3366ffMana Regen (per 1 point)|r - 500 gold
-|cff3333ffMana (per point)|r - 1.67 gold
-|cffffcc33Move Speed|r - 5 gold
-|cff808080Armor (per point)|r - 83 gold
-|cffff8000Attack Speed (1% increase)|r - 25 gold
-|cffff0000Damage Increase (1%)|r - 50 gold
-|cffcc0000Flat Damage +1|r - 50 gold
-|cffcc99ff1% Cleave|r - 20 gold
 }
 
 STRING 868
@@ -2991,32 +2933,14 @@ STRING 947
 [|cffffcc00Recipe|r] Crown of Reanimation - Level 1
 }
 
-STRING 948
-// Items: I00S ([|cffffcc00Recipe|r] Crown of Reanimation - Level 1), Tip (Tooltip - Basic)
-{
-[|cffffcc00Recipe|r] Crown of Reanimation - Level 1
-}
-
 STRING 949
 // Items: I00T ([|cffffcc00Recipe|r] Crown of Reanimation - Level 2), Name (Name)
 {
 [|cffffcc00Recipe|r] Crown of Reanimation - Level 2
 }
 
-STRING 950
-// Items: I00T ([|cffffcc00Recipe|r] Crown of Reanimation - Level 2), Tip (Tooltip - Basic)
-{
-[|cffffcc00Recipe|r] Crown of Reanimation - Level 2
-}
-
 STRING 953
 // Items: I00U ([|cffffcc00Recipe|r] Crown of Reanimation - Level 3), Name (Name)
-{
-[|cffffcc00Recipe|r] Crown of Reanimation - Level 3
-}
-
-STRING 954
-// Items: I00U ([|cffffcc00Recipe|r] Crown of Reanimation - Level 3), Tip (Tooltip - Basic)
 {
 [|cffffcc00Recipe|r] Crown of Reanimation - Level 3
 }
@@ -3039,28 +2963,10 @@ STRING 961
 Requires: |cffc0c0c0Pendant of Energy +200, Crown of Reanimation - Level 2|r  |N|N    +5 |cffffcc00All Stats|r  |n+600 |cff8080ffMana|r |n|n|cffffcc00Reanimate Dead|R - Allows you to reanimate 18 dead units for 60 seconds. |cffc0c0c045 second cooldown|r
 }
 
-STRING 964
-// Units: h00I (Heavy Cavalry), Ubertip (Tooltip - Extended)
-{
-A stronger version of the knight with critical strike and cleave. Can trample his enemies and use his fierce lance to attack enemies.|n|n+ |cff00ff00Choke Points|r    |n+ |cff00ff00Open Areas|r 
-}
-
-STRING 965
-// Units: h000 (Militia), Ubertip (Tooltip - Extended)
-{
-Disgruntled and poorly equipped serfs, able to be levied quickly. |n|N~ |cffff8800Choke Points|r |n~ |cffff8800Open Areas|r 
-}
-
 STRING 966
 // Units: n003 (Angry Farmer), Ubertip (Tooltip - Extended)
 {
 This farmer is |cffff0000VERY|r upset about the undead ruining his crops.|n|N~|cffff8800Choke Points|r |n~|cffff8800Open Areas|r 
-}
-
-STRING 967
-// Units: n006 (Archer), Ubertip (Tooltip - Extended)
-{
-Basic long-ranged attacker. |n|n+ |cff00ff00Choke Points|r    |n~ |cffff8800Open Areas|r
 }
 
 STRING 971
@@ -3079,18 +2985,6 @@ STRING 974
 // Units: hcth ([|cffffcc00Elite|r] - Infantry General), Ubertip (Tooltip - Extended)
 {
 An elite support unit, bolstering the morale of your troops. The General can also enlist footman. Also has |cffffcc00Mass Teleport|r. |n|n+ |cff00ff00Choke Points|r     |n+ |cff00ff00Open Areas|r|n|cffff00ffSupport Unit  |r|n|nProvides an aura increasing movement and attack speed by 25%. |n|N|cffffcc00Able to use items and has a minimap icon representing where it is.|r
-}
-
-STRING 975
-// Units: n00H ([|cffffcc00Elite|r] Archer General), Ubertip (Tooltip - Extended)
-{
-Elite ranged unit with critical strike that can also enlist archers herself. Also has |cffffcc00Mass Teleport|r.|n|n+ |cff00ff00Choke Points|r     |n+ |cff00ff00Open Areas|r|n|cffff00ffSupport Unit  |r |n|nProvides an aura for ranged units that increases their damage by +15. |n|N|cffffcc00Able to use items and has a minimap icon representing where it is.|r
-}
-
-STRING 980
-// Units: n004 (War Bear), Ubertip (Tooltip - Extended)
-{
-A heavy melee unit, with cleaving armor, bash and resistant skin.|n|n+ |cff00ff00Choke Points|r    |n+ |cff00ff00Open Areas|r 
 }
 
 STRING 985
@@ -3159,12 +3053,6 @@ STRING 1010
 [|cffff0000Cursed|R] Ghoulish Mask of Midas
 }
 
-STRING 1011
-// Items: I00X ([|cffff0000Cursed|R] Ghoulish Mask of Midas), Tip (Tooltip - Basic)
-{
-Purchase [|cffff0000Cursed|R] Ghoulish Mask of Midas
-}
-
 STRING 1013
 // Items: I002 ([|cffff0000Cursed|r] Mask of the Frenzied Ghoul), Ubertip (Tooltip - Extended)
 {
@@ -3200,18 +3088,6 @@ STRING 1023
 // Abilities: A00Q (Item Stat Reduction), EditorSuffix (Editor Suffix)
 {
 (-6 Intelligence)
-}
-
-STRING 1028
-// Units: e000 (Huntress), Ubertip (Tooltip - Extended)
-{
-Agile short-ranged warrior.  |n|n~ |cffffcc00Choke Points|r    |n+ |cff00ff00Open Areas|r 
-}
-
-STRING 1029
-// Units: n002 (Ogre Champion), Ubertip (Tooltip - Extended)
-{
-Massive unit with a cleaving attack and shockwave ability.|n|n+ |cff00ff00Choke Points|r    |n+ |cff00ff00Open Areas|r  |n|N|cffffcc00Durable.|r
 }
 
 STRING 1030
@@ -3267,12 +3143,6 @@ STRING 1041
 // Items: evtl (Talisman of Evasion), Ubertip (Tooltip - Extended)
 {
  +15% |cfaafff00Evasion|r |n|n|cffffcc00Evasion doesn't stack.|r
-}
-
-STRING 1042
-// Items: arsh (Arcanite Shield), Ubertip (Tooltip - Extended)
-{
--70% ranged damage taken|n+5 |cffc0c0c0Armor|r|n+6|cffff0000 Strength|r
 }
 
 STRING 1043
@@ -3354,7 +3224,7 @@ After 1 Day - Returns (|cffffff001.10 x its cost in gold|r)  |n|n|cffffcc00Must 
 }
 
 STRING 1063
-// Units: h00K (Peon Laborer), Hotkey (Hotkey)
+// Units: nwzr (Wizard), Hotkey (Hotkey)
 {
 W
 }
@@ -3895,28 +3765,10 @@ STRING 1228
 Reduces all attacks on the unit by <Assk,DataC1> damage. Attacks cannot be reduced below <Assk,DataB1> damage.
 }
 
-STRING 1230
-// Upgrades: R007 (Submerge), Tip (Tooltip)
-{
-Research Light Armor Training
-}
-
 STRING 1232
 // Upgrades: R007 (Submerge), EditorSuffix (Editor Suffix)
 {
 (null upgrade)
-}
-
-STRING 1233
-// Upgrades: R007 (Submerge), Name (Name)
-{
-Light Armor Training
-}
-
-STRING 1234
-// Upgrades: R007 (Submerge), Ubertip (Tooltip - Extended)
-{
-Trains your lightly armored units to take 8 reduced damage from attacks. |n|NUnits Effected: |cffffcc00Militia|r, |cffffcc00Orcish Light Cavalry|r, |cffffcc00Headhunter|r
 }
 
 STRING 1238
@@ -4999,7 +4851,7 @@ STRING 1436
 }
 
 STRING 1437
-// Units: h00J (Barricade - Fortified), Ubertip (Tooltip - Extended)
+// Units: h00J (Fortified Barricade), Ubertip (Tooltip - Extended)
 {
 Adds 6 fortified armor and 400 health.
 }
@@ -5639,12 +5491,6 @@ STRING 1609
 Deactivate Avatar
 }
 
-STRING 1610
-// Abilities: AHav (Avatar), Researchubertip (Tooltip - Learn - Extended)
-{
-When Avatar is activated, it gives the Mountain King <AHav,DataA1> bonus armor, <AHav,DataB1> bonus hit points, <AHav,DataC1> bonus damage and spell immunity. |nLasts <AHav,Dur1> seconds. |n|n[|cffffcc00Level 2|r]  Bonus Health and Armor. Lower cooldown.
-}
-
 STRING 1611
 // Abilities: ANfl (Forked Lightning), Tip (Tooltip - Normal)
 {
@@ -6095,18 +5941,6 @@ STRING 1697
 |cffff6600+4 Food |r 
 }
 
-STRING 1698
-// Units: h00U (Factory), Ubertip (Tooltip - Extended)
-{
-|cffffcc00Trains Musketeers, and Imperial Tanks.|r
-}
-
-STRING 1699
-// Units: h004 (Blacksmith), Ubertip (Tooltip - Extended)
-{
-Contains upgrades for improved armor, weaponry and gunpowder. 
-}
-
 STRING 1700
 // Abilities: A02Q (Military School), Name (Name)
 {
@@ -6143,28 +5977,10 @@ STRING 1705
 Gives free units every day. |n|n|cff80ff80Pays off in 2 days.|r |n|n[|cffffcc00Level 1|r]  +6 Footman
 }
 
-STRING 1706
-// Units: hfoo (Footman), Ubertip (Tooltip - Extended)
-{
-Low damage, durable infantry unit. Has the Defend ability.|n|n+ |cff00ff00Choke Points|r    |n+ |cff00ff00Open Areas|r  |n|n|cffffcc00Wall Unit|R
-}
-
-STRING 1707
-// Units: h00Y (Imperial Footman), Ubertip (Tooltip - Extended)
-{
-Moerate damage, durable infantry unit. Has the Defend ability.|n|n+ |cff00ff00Choke Points|r    |n+ |cff00ff00Open Areas|r  |n|n|cffffcc00Wall Unit|R
-}
-
 STRING 1708
 // Units: h00Y (Imperial Footman), Tip (Tooltip - Basic)
 {
 Train Imperial Footman
-}
-
-STRING 1709
-// Units: hspt (Spellbreaker), Ubertip (Tooltip - Extended)
-{
-Initially has Spell Steal, which manipulates buffs to your advantage, Spell Immunity and Feedback. 
 }
 
 STRING 1710
@@ -6177,12 +5993,6 @@ STRING 1711
 // Units: n00A (Starter Items), Name (Name)
 {
 Starter Items
-}
-
-STRING 1712
-// Units: n00J (Basic Stat Items), Name (Name)
-{
-Basic Stat Items
 }
 
 STRING 1713
@@ -6219,12 +6029,6 @@ STRING 1719
 // Units: o004 (Orcish Light Cavalry), Ubertip (Tooltip - Extended)
 {
 A unit with high attack damage and low health.|n|N|cffffcc00This unit moves at max move speed.|r
-}
-
-STRING 1722
-// Units: h009 (Musketeer), Ubertip (Tooltip - Extended)
-{
-Highly skilled sharpshooter. Can use mana imbued powder for powerful shots. Works very well when used with supply camps.|n|n+ |cff00ff00Choke Points|r    |n-  |cffff0000Open Areas|r
 }
 
 STRING 1728
@@ -6306,7 +6110,7 @@ Medium melee unit that can cast Healing Ward and Feral Spirit. |n|n|cffffcc00Att
 }
 
 STRING 1741
-// Abilities: A033 (Summon Razormane Medicine Man), Hotkey (Hotkey - Normal)
+// Units: h00K (Peon Laborer), Hotkey (Hotkey)
 {
 W
 }
@@ -6551,32 +6355,14 @@ STRING 1802
 A book full of random spells.|n|nCan cast |cffffcc00Battle Roar|r, |cffffcc00Entangling roots|r, |cffffcc00Dispel Magic|r, |cffffcc00Unholy Frenzy|r.            |n|n|cffff8080If the spells do not appear, drop the item and pick it up again. Moving the item from the slot it was picked up from will cause the spells to disappear.|r
 }
 
-STRING 1806
-// Units: h00Z (Barricade - Improved Fortifications), Tip (Tooltip - Basic)
-{
-Fortify Barricade
-}
-
 STRING 1807
-// Units: h00Z (Barricade - Improved Fortifications), Hotkey (Hotkey)
+// Units: h00Z (Ironclad Barricade ), Hotkey (Hotkey)
 {
 B
 }
 
-STRING 1808
-// Units: h00Z (Barricade - Improved Fortifications), Name (Name)
-{
-Barricade - Improved Fortifications
-}
-
-STRING 1809
-// Units: h00Z (Barricade - Improved Fortifications), Ubertip (Tooltip - Extended)
-{
-Adds 5 fortified armor and 600 health. |N|NThe barricade is also equipped with spikes, dealing 12 damage to melee attackers.
-}
-
 STRING 1810
-// Upgrades: R00A (Improved Bows), Name (Name)
+// Abilities: A032 (Improved Projectiles), Name (Name)
 {
 Improved Projectiles
 }
@@ -6585,12 +6371,6 @@ STRING 1811
 // Upgrades: R00A (Improved Bows), Tip (Tooltip)
 {
 Research Improved Projectiles
-}
-
-STRING 1812
-// Upgrades: R00A (Improved Bows), Ubertip (Tooltip - Extended)
-{
-Increases Archer and Headhunter |cffffcc00attack range|r by 100.
 }
 
 STRING 1824
@@ -6617,12 +6397,6 @@ STRING 1834
 rlev
 }
 
-STRING 1835
-// Upgrades: R00C (Submerge), Ubertip (Tooltip - Extended)
-{
-|cffff00ffPriests|r can now cast |cffffcc00Greater Heal|R.|n|cffff00ffSorceress|r can now cast |cffffcc00Improved Bloodlust|r.|n|cffff00ffWizards|r can now cast |cffffcc00Glacial Armor|r.
-}
-
 STRING 1836
 // Upgrades: R00C (Submerge), effect2 (Effect 2)
 {
@@ -6641,12 +6415,6 @@ STRING 1838
 Improved Bloodlust
 }
 
-STRING 1839
-// Abilities: A01L (Bloodlust), Ubertip (Tooltip - Normal - Extended)
-{
-Increases a target friendly unit's attack rate by <ACbl,DataA2,%>% and movement speed by <ACbl,DataB2,%>% for <ACbl,Dur2> seconds.
-}
-
 STRING 1840
 // Abilities: Ahea (Heal), Untip (Tooltip - Turn Off)
 {
@@ -6657,12 +6425,6 @@ STRING 1841
 // Abilities: Ahea (Heal), Unubertip (Tooltip - Turn Off - Extended)
 {
 |cffc3dbffRight-click to deactivate auto-casting.|r
-}
-
-STRING 1843
-// Abilities: A02T (Frost Armor), Ubertip (Tooltip - Normal - Extended)
-{
-Creates a shield of frost around a target friendly unit. The shield adds 6 armor and slows melee units that attack it for <ACfa,Dur2> seconds. |nLasts <ACfa,DataA2> seconds.
 }
 
 STRING 1844
@@ -6681,12 +6443,6 @@ STRING 1846
 // Abilities: Ahea (Heal), Tip (Tooltip - Normal)
 {
 Greater Heal
-}
-
-STRING 1847
-// Abilities: Ahea (Heal), Ubertip (Tooltip - Normal - Extended)
-{
-Heals a target friendly non-mechanical wounded unit for <Ahea,DataA2> hit points.
 }
 
 STRING 1848
@@ -6729,5 +6485,613 @@ STRING 1854
 // Units: hmpr (Priest), Ubertip (Tooltip - Extended)
 {
 Can cast |cffffcc00Heal|r and |cffffcc00Inner Fire|r. |n|N|cffff00ffSupport Unit|r
+}
+
+STRING 1856
+// Units: h00Z (Ironclad Barricade ), Name (Name)
+{
+Ironclad Barricade 
+}
+
+STRING 1857
+// Units: h00J (Fortified Barricade), Name (Name)
+{
+Fortified Barricade
+}
+
+STRING 1858
+// Units: h00Z (Ironclad Barricade ), Ubertip (Tooltip - Extended)
+{
+Adds 5 fortified armor and 600 health. |N|N|cffffcc00Can be upgrades with spikes.|r
+}
+
+STRING 1859
+// Units: h00Z (Ironclad Barricade ), Tip (Tooltip - Basic)
+{
+Upgrade to Ironclad Barricade
+}
+
+STRING 1860
+// Units: h004 (Blacksmith), Ubertip (Tooltip - Extended)
+{
+Contains upgrades for improved armor and weaponry.
+}
+
+STRING 1861
+// Units: h00U (Factory), Ubertip (Tooltip - Extended)
+{
+|cffffcc00Trains Musketeers, and Imperial Tanks.|r |N|NCan also research spikes for the |cffffcc00Ironclad Barricade|r.
+}
+
+STRING 1862
+// Abilities: A036 (Improved Tower Range), Name (Name)
+{
+Improved Tower Range
+}
+
+STRING 1863
+// Upgrades: Rhri (Long Rifles), Tip (Tooltip)
+{
+Research Improved Tower Range
+}
+
+STRING 1865
+// Abilities: Aosp (Spiked Barricades), Ubertip (Tooltip - Normal - Extended)
+{
+Surrounds Orc buildings with spikes that damage enemy melee attackers. Deals 12 damage per attack plus an additional <Rosp,base2,%>% of the attacker's damage.
+}
+
+STRING 1866
+// Upgrades: R007 (Submerge), Name (Name)
+{
+Light Armor 
+}
+
+STRING 1867
+// Upgrades: R007 (Submerge), Tip (Tooltip)
+{
+Research Light Armor
+}
+
+STRING 1868
+// Upgrades: R007 (Submerge), Ubertip (Tooltip - Extended)
+{
+Adds light armor to some units.  |n|N8 reduced damage from attacks. |n|NUnits Effected: |cffffcc00Militia|r, |cffffcc00Orcish Light Cavalry|r, |cffffcc00Headhunter|r
+}
+
+STRING 1869
+// Units: hfoo (Footman), Ubertip (Tooltip - Extended)
+{
+Low damage, durable infantry unit. Has the Defend ability.|n|n|cffffcc00Wall Unit|R
+}
+
+STRING 1870
+// Units: h000 (Militia), Ubertip (Tooltip - Extended)
+{
+Disgruntled and poorly equipped serfs, able to be levied quickly.
+}
+
+STRING 1871
+// Units: h009 (Musketeer), Ubertip (Tooltip - Extended)
+{
+Highly skilled sharpshooter. Can use |cffffcc00mana imbued powder|r for powerful shots. Works very well when used with supply camps.
+}
+
+STRING 1872
+// Units: h00I (Heavy Cavalry), Ubertip (Tooltip - Extended)
+{
+A stronger version of the knight with critical strike and cleave. Can trample his enemies and use his fierce lance to attack enemies. 
+}
+
+STRING 1873
+// Units: e000 (Huntress), Ubertip (Tooltip - Extended)
+{
+Agile short-ranged warrior with |cffffcc00bounce attack|r. 
+}
+
+STRING 1874
+// Units: h00Y (Imperial Footman), Ubertip (Tooltip - Extended)
+{
+Moderate damage, durable infantry unit. Has the Defend ability.|n|n|cffffcc00Wall Unit|R
+}
+
+STRING 1876
+// Units: n004 (War Bear), Ubertip (Tooltip - Extended)
+{
+A heavy melee unit, with |Cffffcc00cleaving attack|R, |cffffcc00bash|r and |cffffcc00resistant skin|r.
+}
+
+STRING 1877
+// Units: n006 (Archer), Ubertip (Tooltip - Extended)
+{
+Basic long-ranged attacker. 
+}
+
+STRING 1879
+// Abilities: A032 (Improved Projectiles), EditorSuffix (Editor Suffix)
+{
+(INFO ABILITY)
+}
+
+STRING 1880
+// Abilities: A032 (Improved Projectiles), Tip (Tooltip - Normal)
+{
+Improved Projectiles
+}
+
+STRING 1881
+// Abilities: A032 (Improved Projectiles), Ubertip (Tooltip - Normal - Extended)
+{
+Increases |Cffffcc00attack range|r by 200.
+}
+
+STRING 1882
+// Upgrades: R00A (Improved Bows), Name (Name)
+{
+Improved Projectiles
+}
+
+STRING 1883
+// Abilities: A02T (Frost Armor), Ubertip (Tooltip - Normal - Extended)
+{
+Creates a shield of frost around a target friendly unit. The shield adds 12 armor and slows melee units that attack it for <ACfa,Dur1> seconds. |nLasts <ACfa,DataA1> seconds.
+}
+
+STRING 1884
+// Abilities: A033 (Summon Razormane Medicine Man), Hotkey (Hotkey - Normal)
+{
+W
+}
+
+STRING 1886
+// Upgrades: R00A (Improved Bows), Ubertip (Tooltip - Extended)
+{
+Increases Archer and Headhunter |cffffcc00attack range|r by 200.
+}
+
+STRING 1887
+// Abilities: A01L (Bloodlust), Ubertip (Tooltip - Normal - Extended)
+{
+Increases a target friendly unit's attack rate by 65% and movement speed by 35% for 60 seconds.
+}
+
+STRING 1888
+// Units: hspt (Spellbreaker), Ubertip (Tooltip - Extended)
+{
+Initially has |cffffcc00Spell Steal|r, which manipulates buffs to your advantage, |cffffcc00Spell Immunity|r and |cffffcc00Feedback|R. 
+}
+
+STRING 1889
+// Abilities: Ahea (Heal), Ubertip (Tooltip - Normal - Extended)
+{
+Heals a target friendly non-mechanical wounded unit for <Ahea,DataA2> hit points. |n|N|cffc0c0c0450 Cast Range|r
+}
+
+STRING 1890
+// Abilities: Ahea (Heal), Ubertip (Tooltip - Normal - Extended)
+{
+Heals a target friendly non-mechanical wounded unit for <Ahea,DataA1> hit points.    |n|N|cffc0c0c0350 Cast Range|r
+}
+
+STRING 1891
+// Upgrades: R00C (Submerge), Ubertip (Tooltip - Extended)
+{
+|cffff00ffPriests|r can now cast |cffffcc00Greater Heal|R.|n|cffff00ffSorceress|r can now cast |cffffcc00Improved Bloodlust|r.|n|cffff00ffWizards|r can now cast |cffffcc00Glacial Armor|r. |n|N|Cffffcc00+250 Health|r for all Casters.
+}
+
+STRING 1892
+// Upgrades: Rosp (Spiked Barricades,Improved Spiked Barricades,Advanced Spiked Barricades), Tip (Tooltip)
+{
+Research Spiked Barricades
+}
+
+STRING 1893
+// Abilities: A02I (Repair), Ubertip (Tooltip - Normal - Extended)
+{
+Repairs mechanical units and structures at the cost of resources. |n|n|cffc0c0c0300 range.|r   |n|N|Cffffcc00Twice as effective as normal repair.|r
+}
+
+STRING 1894
+// Upgrades: R00B (Submerge), Name (Name)
+{
+Flame Tower Multishot
+}
+
+STRING 1895
+// Upgrades: R00B (Submerge), Tip (Tooltip)
+{
+Research Flame Tower Multishot
+}
+
+STRING 1897
+// Upgrades: R00B (Submerge), EditorSuffix (Editor Suffix)
+{
+(null upgrade)
+}
+
+STRING 1898
+// Abilities: A02R (Multishot), EditorSuffix (Editor Suffix)
+{
+(Naga Sea Witch)
+}
+
+STRING 1899
+// Abilities: A035 (Multishot), Name (Name)
+{
+Multishot
+}
+
+STRING 1900
+// Abilities: A035 (Multishot), Tip (Tooltip - Normal)
+{
+Multishot
+}
+
+STRING 1902
+// Abilities: A035 (Multishot), EditorSuffix (Editor Suffix)
+{
+(Flame Tower)
+}
+
+STRING 1903
+// Abilities: A035 (Multishot), Ubertip (Tooltip - Normal - Extended)
+{
+Allows you to shoot 3 enemies at once.
+}
+
+STRING 1904
+// Upgrades: R00B (Submerge), Ubertip (Tooltip - Extended)
+{
+Enables |cffffcc00multishot|r for the |cffffcc00Flame Tower|r, letting them attack up to |Cffffcc003|r enemies at once.
+}
+
+STRING 1905
+// Abilities: A036 (Improved Tower Range), EditorSuffix (Editor Suffix)
+{
+(INFO ABILITY)
+}
+
+STRING 1906
+// Abilities: A036 (Improved Tower Range), Ubertip (Tooltip - Normal - Extended)
+{
+Increases the |cffffcc00attack range|r of towers by 200.
+}
+
+STRING 1907
+// Abilities: A036 (Improved Tower Range), Tip (Tooltip - Normal)
+{
+Improved Tower Range
+}
+
+STRING 1908
+// Upgrades: Rhri (Long Rifles), Name (Name)
+{
+Improved Tower Range
+}
+
+STRING 1909
+// Upgrades: Rhri (Long Rifles), Ubertip (Tooltip - Extended)
+{
+Increases the |cffffcc00attack range|r of towers by 200.
+}
+
+STRING 1910
+// Items: I013 ([|cffffcc00Recipe|r] Demon's Eye Trinket), Name (Name)
+{
+[|cffffcc00Recipe|r] Demon's Eye Trinket
+}
+
+STRING 1913
+// Items: I013 ([|cffffcc00Recipe|r] Demon's Eye Trinket), Tip (Tooltip - Basic)
+{
+Purchase [|cffffcc00Recipe|r] Demon's Eye Trinket
+}
+
+STRING 1915
+// Items: hbth (Helm of Battlethirst), Ubertip (Tooltip - Extended)
+{
++4 |cffff0000Strength|r|n+4 |cff00ff00Agility|r      |n|N|Cffffcc00Battlethrist|r - Grants the ability to go Berserk, causing the Hero to attack <AIxk,DataB1,%>% faster but take <AIxk,DataC1,%>% more damage.
+}
+
+STRING 1917
+// Abilities: A037 (Berserk), EditorSuffix (Editor Suffix)
+{
+ (berserker's cleaver)
+}
+
+STRING 1918
+// Items: I014 (Demon's Eye Trinket), Name (Name)
+{
+Demon's Eye Trinket
+}
+
+STRING 1920
+// Items: I014 (Demon's Eye Trinket), Tip (Tooltip - Basic)
+{
+Demon's Eye Trinket
+}
+
+STRING 1921
+// Abilities: A038 (Item Stat Bonus), Name (Name)
+{
+Item Stat Bonus
+}
+
+STRING 1922
+// Abilities: A038 (Item Stat Bonus), EditorSuffix (Editor Suffix)
+{
+(+10 All Stats)
+}
+
+STRING 1923
+// Abilities: A039 (Unholy Frenzy), EditorSuffix (Editor Suffix)
+{
+(item - demons eye trinket)
+}
+
+STRING 1924
+// Items: I00I (Berserker's Cleaver), Ubertip (Tooltip - Extended)
+{
+Causes melee attacks cleave for 50% damage. |n|n+12|cffff0000 Strength|r |N  +4 |cff00ff00Agility|r   |n+10 |cffc0c0c0Attack Damage|r |N|N|cffffcc00Improved Battlethirst|r: Attack 50% faster but takes 50% more damage.
+}
+
+STRING 1927
+// Items: I013 ([|cffffcc00Recipe|r] Demon's Eye Trinket), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0(2) Crown of Kings, Helm of Battlethirst|r
+
++10 |cffffcc00All Stats|r   
+  +4 |cff00ff00Agility|r
+  +4 |cffff0000Strength|r
+
+|cffffcc00Demonic Frenzy|R - Attacks have a |cffffcc0010% chance|r to put your hero in a demonic trance, increasing |cffffcc00attack speed|r by |cffffcc00100%|r for |cffffcc005|r seconds.        |n|N|Cffffcc00Battlethrist|r - Grants the ability to go Berserk, causing the Hero to attack <AIxk,DataB1,%>% faster but take <AIxk,DataC1,%>% more damage.
+}
+
+STRING 1928
+// Items: I014 (Demon's Eye Trinket), Ubertip (Tooltip - Extended)
+{
++10 |cffffcc00All Stats|r   
+  +4 |cff00ff00Agility|r
+  +4 |cffff0000Strength|r
+
+|cffffcc00Demonic Frenzy|R - Attacks have a |cffffcc0010% chance|r to put your hero in a demonic trance, increasing |cffffcc00attack speed|r by |cffffcc00100%|r for |cffffcc005|r seconds.        |n|N|Cffffcc00Battlethrist|r - Grants the ability to go Berserk, causing the Hero to attack <AIxk,DataB1,%>% faster but take <AIxk,DataC1,%>% more damage.
+}
+
+STRING 1929
+// Abilities: AHav (Avatar), Researchubertip (Tooltip - Learn - Extended)
+{
+When Avatar is activated, it gives the Mountain King <AHav,DataA1> bonus armor, <AHav,DataB1> bonus hit points, <AHav,DataC1> bonus damage and spell immunity. |nLasts <AHav,Dur1> seconds. |n|n|cffffcc00Level 2|r: +1000 Health, +10 Armor, +40 Attack Damage. Lower cooldown.
+}
+
+STRING 1930
+// Items: pgma (Potion of Greater Mana), Ubertip (Tooltip - Extended)
+{
+Restores |cff8080ff<AIm2,DataA1> mana|r when used.
+}
+
+STRING 1931
+// Items: pinv (Potion of Invisibility), Ubertip (Tooltip - Extended)
+{
+Renders the Hero invisible for |cffffcc00<AIv1,Dur1> seconds|r when used. 
+}
+
+STRING 1933
+// Items: plcl (Lesser Clarity Potion), Ubertip (Tooltip - Extended)
+{
+|cff87ceebNon-Combat Consumable|r|nRegenerates the Hero's|cff8080ff mana|r by|cff8080ff <AIpl,DataB1>|r over 15 seconds when used.
+}
+
+STRING 1934
+// Items: shas (Scroll of Speed), Ubertip (Tooltip - Extended)
+{
+Increases the |cffffcc00movement speed|r of the Hero and nearby allied units to the maximum movement speed. |nLasts <AIsa,Dur1> seconds.
+}
+
+STRING 1935
+// Items: tdex (Tome of Agility), Ubertip (Tooltip - Extended)
+{
+Permanently increases the |cff00ff00Agility|r of the Hero by <AIam,DataA1> when used.
+}
+
+STRING 1936
+// Items: tstr (Tome of Strength), Ubertip (Tooltip - Extended)
+{
+Permanently increases the |cffff0000Strength|r of the Hero by <AIsm,DataC1> when used.
+}
+
+STRING 1937
+// Items: tint (Tome of Intelligence), Ubertip (Tooltip - Extended)
+{
+Permanently increases the |cff8080ffIntelligence|r of the Hero by <AIim,DataB1> when used.
+}
+
+STRING 1938
+// Items: tkno (Tome of Power), Ubertip (Tooltip - Extended)
+{
+Increases the |cffffcc00level|r of the Hero by |cffffcc00<AIlm,DataA1>|r when used.
+}
+
+STRING 1939
+// Units: n00H ([|cffffcc00Elite|r] Archer General), Ubertip (Tooltip - Extended)
+{
+Elite ranged unit with |cffffcc00critical strike|r that can also enlist archers herself. Also has |cffffcc00Mass Teleport|r.  |n|n|cffff00ffSupport Unit  |r |n|nProvides an aura for ranged units that increases their damage by +15. |n|N|cffffcc00Able to use 1 item and has a minimap icon representing where it is.|r
+}
+
+STRING 1940
+// Items: hslv (Healing Salve), Ubertip (Tooltip - Extended)
+{
+|cff87ceebNon-Combat Consumable|r|nRegenerates a target unit's|cff80ff80 hit points|r by |cff80ff80<AIrl,DataA1>|r over |cffffcc00<AIrl,Dur1> seconds|R when used. |nContains <hslv,uses> charges.
+}
+
+STRING 1941
+// Items: phea (Potion of Healing), Ubertip (Tooltip - Extended)
+{
+Heals |cff80ff80350 hit points |rwhen used.
+}
+
+STRING 1942
+// Items: pams (Anti-magic Potion), Ubertip (Tooltip - Extended)
+{
+Gives the Hero|cffffcc00 immunity to magical spells|r for |cffffcc00<AIxs,Dur1> seconds|r.
+}
+
+STRING 1943
+// Items: I00M (Scroll of the Reanimation), Ubertip (Tooltip - Extended)
+{
+|Cffffcc00Reanimates|r 6 dead units around you.
+}
+
+STRING 1944
+// Upgrades: Rosp (Spiked Barricades,Improved Spiked Barricades,Advanced Spiked Barricades), Ubertip (Tooltip - Extended)
+{
+Surrounds the |cffffcc00Ironclad Barricade|r with spikes that damage enemy melee attackers. Deals |cffffcc0012 damage per attack|r plus an additional |cffffcc00<Rosp,base2,%>% of the attacker's damage|r.
+}
+
+STRING 1945
+// Items: arsh (Stalwart Shield), Ubertip (Tooltip - Extended)
+{
++5 |cffc0c0c0Armor|r|n+6 |cffff0000Strength|r |n|nYour hero takes |cffffcc0020%|r less ranged damage.
+}
+
+STRING 1946
+// Items: arsh (Stalwart Shield), Name (Name)
+{
+Stalwart Shield
+}
+
+STRING 1947
+// Items: arsh (Stalwart Shield), Tip (Tooltip - Basic)
+{
+Purchase Stalwart Shield
+}
+
+STRING 1949
+// Abilities: A021 (Stat Cost Breakdown - Info Ability), Ubertip (Tooltip - Normal - Extended)
+{
+|cff9999ffAttribute Point|r - 50 gold
+|cff00ff00Health Points (per point)|r - 1 gold
+|cffcc3333HP Regen (per 1 point)|r - 250 gold
+|cff3366ffMana Regen (per 1 point)|r - 500 gold
+|cff3333ffMana (per point)|r - 1.67 gold
+|cffffcc33Move Speed|r - 5 gold
+|cff808080Armor (per point)|r - 83 gold
+|cffff8000Attack Speed (1% increase)|r - 25 gold
+|cffff0000Damage Increase (1%)|r - 50 gold
+|cffcc0000Flat Damage +1|r - 50 gold
+|cffcc99ff1% Cleave|r - 20 gold
+}
+
+STRING 1950
+// Items: I015 (Shield of The Guardian), Ubertip (Tooltip - Extended)
+{
+  +10 |cffc0c0c0Armor|r|n    +6 |cffff0000Strength|r  |n+400|cff80ff80 Health|r|n    +5 |cff80ff80Health Regen|r                |n|nYour hero takes |cffffcc0020%|r less ranged damage.
+}
+
+STRING 1951
+// Items: I015 (Shield of The Guardian), Name (Name)
+{
+Shield of The Guardian
+}
+
+STRING 1952
+// Items: I015 (Shield of The Guardian), Tip (Tooltip - Basic)
+{
+Purchase Stalwart Shield
+}
+
+STRING 1953
+// Units: n00J (Basic Stat Items 1), Name (Name)
+{
+Basic Stat Items 1
+}
+
+STRING 1954
+// Units: n00X (Basic Stat Items 2), Name (Name)
+{
+Basic Stat Items 2
+}
+
+STRING 1955
+// Abilities: A03A (Item Life Regeneration), EditorSuffix (Editor Suffix)
+{
+(+5)
+}
+
+STRING 1956
+// Abilities: A03B (Item Life Bonus), EditorSuffix (Editor Suffix)
+{
+(+400)
+}
+
+STRING 1957
+// Items: I00I (Berserker's Cleaver), Tip (Tooltip - Basic)
+{
+Purchase Berserker's Cleaver
+}
+
+STRING 1958
+// Items: I00X ([|cffff0000Cursed|R] Ghoulish Mask of Midas), Tip (Tooltip - Basic)
+{
+[|cffff0000Cursed|R] Ghoulish Mask of Midas
+}
+
+STRING 1960
+// Items: I016 ([|cffffcc00Recipe|r] Shield of The Guardian), Name (Name)
+{
+[|cffffcc00Recipe|r] Shield of The Guardian
+}
+
+STRING 1961
+// Items: I016 ([|cffffcc00Recipe|r] Shield of The Guardian), Tip (Tooltip - Basic)
+{
+Purchase [|cffffcc00Recipe|r] Shield of The Guardian
+}
+
+STRING 1962
+// Units: nrzm (Razormane Medicine Man), Ubertip (Tooltip - Extended)
+{
+Medium melee unit that can cast |cffffcc00Healing Ward|r and |Cffffcc00Feral Spirit|r. |n|n|cffffcc00Attacks land units.|r
+}
+
+STRING 1963
+// Units: n002 (Ogre Champion), Ubertip (Tooltip - Extended)
+{
+Massive unit with a |cffffcc00cleaving attack|r and |cffffcc00shockwave|r ability.  |n|N|cffffcc00Durable.|r
+}
+
+STRING 1964
+// Items: I016 ([|cffffcc00Recipe|r] Shield of The Guardian), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Stalwart Shield, Ring of Protection +5, (2) Ring of Regeneration, Khadgar's Gem of Health|r    |n|n  +10 |cffc0c0c0Armor|r|n    +6 |cffff0000Strength|r  |n+400|cff80ff80 Health|r|n    +5 |cff80ff80Health Regen|r                |n|nYour hero takes |cffffcc0020%|r less ranged damage.
+}
+
+STRING 1966
+// Units: nckb (Fel Orc Kodo Beast), Ubertip (Tooltip - Extended)
+{
+Has the abilities |cffffcc00War Drums|r and |cffffcc00Devour|r. War Drums gives friendly units nearby |cffffcc0010% bonus attack damage|r. 
+}
+
+STRING 1967
+// Items: I00S ([|cffffcc00Recipe|r] Crown of Reanimation - Level 1), Tip (Tooltip - Basic)
+{
+Purchase [|cffffcc00Recipe|r] Crown of Reanimation - Level 1
+}
+
+STRING 1968
+// Items: I00T ([|cffffcc00Recipe|r] Crown of Reanimation - Level 2), Tip (Tooltip - Basic)
+{
+Purchase [|cffffcc00Recipe|r] Crown of Reanimation - Level 2
+}
+
+STRING 1969
+// Items: I00U ([|cffffcc00Recipe|r] Crown of Reanimation - Level 3), Tip (Tooltip - Basic)
+{
+Purchase [|cffffcc00Recipe|r] Crown of Reanimation - Level 3
+}
+
+STRING 1970
+// Units: h00G (Peasant), Tip (Tooltip - Basic)
+{
+Train Town Hall Peasant
 }
 

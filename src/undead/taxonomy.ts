@@ -223,6 +223,13 @@ class SpawnData {
      */
     private playersPlaying: number = 0;
 
+    /**
+     * Tracks how many waves have already been sent to the players from this spawn.
+     *
+     * Allows for certain things to happen after a certain number of waves being sent.
+     */
+    private wavesSent: number = 0;
+
     constructor(spawn: rect, hideUI: boolean = false, spawnBoss: boolean = false) {
         this.hideUI = hideUI;
         this.spawnBoss = spawnBoss;
@@ -521,7 +528,7 @@ class SpawnData {
 
         if (u) {
             currentZombieCount++;
-            
+
             if (u.isHero()) {
                 u.setHeroLevel(RoundManager.currentRound, false);
             }
