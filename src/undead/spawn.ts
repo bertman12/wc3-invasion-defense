@@ -1,9 +1,10 @@
-import { MinimapIconPath, PlayerIndices, UNITS } from "src/shared/enums";
+import { ITEMS, MinimapIconPath, PlayerIndices, UNITS } from "src/shared/enums";
 import { RoundManager } from "src/shared/round-manager";
 import { primaryCapturableHumanTargets } from "src/towns";
+import { unitHasItem } from "src/utils/item";
 import { notifyPlayer } from "src/utils/misc";
 import { forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayer, forEachUnitTypeOfPlayer, isPlayingUser } from "src/utils/players";
-import { Effect, Point, Rectangle, Sound, Timer, Trigger, Unit } from "w3ts";
+import { Effect, Item, Point, Rectangle, Sound, Timer, Trigger, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
 
 const UNDEAD_PLAYERS = [Players[10], Players[12], Players[13], Players[14], Players[15], Players[16], Players[17], Players[20], Players[21], Players[22], Players[23]];
@@ -228,7 +229,7 @@ class SpawnData {
      *
      * Allows for certain things to happen after a certain number of waves being sent.
      */
-    private wavesSent: number = 0;
+    private wavesCreated: number = 0;
 
     constructor(spawn: rect, hideUI: boolean = false, spawnBoss: boolean = false) {
         this.hideUI = hideUI;
@@ -436,6 +437,8 @@ class SpawnData {
     }
 
     public createWaveUnits() {
+        this.wavesCreated++;
+
         const unitsCreatedThisWave: Unit[] = [];
 
         //sample a random theta from 0 - PI/2
@@ -484,6 +487,97 @@ class SpawnData {
 
             this.lastCreatedWaveUnits = unitsCreatedThisWave;
         });
+
+        //Will spawn the heroes on the 3rd wave of every 3rd round
+        if (RoundManager.currentRound % 3 === 0 && this.wavesCreated === 3) {
+            const heroes = this.spawnHeroSquad();
+
+            //Add heroes to the unit array
+            heroes.forEach((hero) => {
+                this.lastCreatedWaveUnits.push(hero);
+            });
+        }
+    }
+
+    /**
+     * After a set amount of waves created, the next wave will spawn a hero squad with them as well.
+     */
+    private spawnHeroSquad() {
+        //Crypt Lord, Death Knight, Dread Lord, Lich
+        const undeadHeroes = [UNITS.uh_cryptLord, UNITS.uh_deathKnight, UNITS.uh_dreadLord, UNITS.uh_lich];
+        const locUnitArray: Unit[] = [];
+        if (this.spawnDifficulty === SpawnDifficulty.normal) {
+        }
+        switch (this.spawnDifficulty) {
+            case SpawnDifficulty.normal:
+                Sound.fromHandle(gg_snd_H06Arthas06)?.start();
+                break;
+            case SpawnDifficulty.hard:
+                Sound.fromHandle(gg_snd_L01Arthas22)?.start();
+
+                break;
+            case SpawnDifficulty.final:
+                Sound.fromHandle(gg_snd_L04Anubarak24)?.start();
+                break;
+
+            default:
+                break;
+        }
+
+        undeadHeroes.forEach((heroId) => {
+            const hero = Unit.create(getNextUndeadPlayer(), heroId, this.spawnRec?.centerX ?? -570, this.spawnRec?.centerY ?? -7000);
+
+            if (hero) {
+                print("Undead Hero created!");
+
+                const calculatedHeroLevel = 10 + 10 * this.spawnDifficulty;
+                hero.setHeroLevel(calculatedHeroLevel, false);
+                hero.maxLife += 600;
+                hero.life = hero.maxLife;
+
+                const abilities = undeadHeroAbilityMap.get(heroId);
+
+                //Upgrade hero abilities to max
+                abilities?.forEach((abilityCode, index) => {
+                    const ultimateIndex = 3;
+                    const abilityLevel = hero.getAbilityLevel(abilityCode);
+
+                    if (index !== ultimateIndex) {
+                        hero.setAbilityLevel(abilityCode, 3);
+                    }
+
+                    if (index === ultimateIndex) {
+                        hero.setAbilityLevel(abilityCode, 1);
+                    }
+                });
+
+                //Add an item to the hero, depending on the difficulty, the hero will get a random item
+                const randomIndex = math.random(0, possibleUndeadItems.length);
+                let itemsAdded = 0;
+                let attempts = 0;
+
+                while (!unitHasItem(hero, possibleUndeadItems[randomIndex]) && itemsAdded < this.spawnDifficulty + 1) {
+                    const undeadItem = Item.create(possibleUndeadItems[randomIndex], 0, 0);
+
+                    if (undeadItem) {
+                        hero.addItem(undeadItem);
+                        itemsAdded++;
+                    }
+
+                    attempts++;
+
+                    if (attempts >= 50) {
+                        print("Max attempts to add item to undead hero reached!");
+                        break;
+                    }
+                }
+
+                locUnitArray.push(hero);
+            }
+        });
+
+        //return the units created and hand control back to the caller to order attacks for the squad
+        return locUnitArray;
     }
 
     private spawnSingleUndeadUnit(category: UnitCategory, tier: number) {
@@ -775,3 +869,25 @@ const unitTypeSpawnFunctions = new Map<number, () => void>([
         },
     ],
 ]);
+
+const undeadHeroAbilityMap = new Map([
+    [UNITS.uh_cryptLord, [FourCC("AUim"), FourCC("AUts"), FourCC("AUcb"), FourCC("AUls")]],
+    [UNITS.uh_deathKnight, [FourCC("AUdc"), FourCC("AUdp"), FourCC("AUau"), FourCC("AUan")]],
+    [UNITS.uh_dreadLord, [FourCC("AUav"), FourCC("AUsl"), FourCC("AUcs"), FourCC("AUin")]],
+    [UNITS.uh_lich, [FourCC("AUfn"), FourCC("AUfu"), FourCC("AUdr"), FourCC("AUdd")]],
+]);
+
+/**
+ * Undead heroes will be given random items;
+ */
+const possibleUndeadItems = [
+    ITEMS.demonsEyeTrinket,
+    ITEMS.staffOfPrimalThunder,
+    ITEMS.shieldOfTheGuardian,
+    ITEMS.alaricsSpearOfThunder,
+    ITEMS.bladeOfTheWindWalker,
+    ITEMS.berserkersCleaver,
+    ITEMS.amuletOfTheSentinel,
+    ITEMS.bloodRitualPendant,
+    ITEMS.crownOfReanimation_lvl3,
+];

@@ -27,6 +27,9 @@ gg_snd_SargerasLaugh = nil
 gg_snd_U08Archimonde19 = nil
 gg_snd_HeroicVictory = ""
 gg_snd_BloodElfTheme = ""
+gg_snd_H06Arthas06 = nil
+gg_snd_L01Arthas22 = nil
+gg_snd_L04Anubarak24 = nil
 function InitGlobals()
 end
 
@@ -74,6 +77,18 @@ SetSoundDuration(gg_snd_U08Archimonde19, 7537)
 SetSoundVolume(gg_snd_U08Archimonde19, 120)
 gg_snd_HeroicVictory = "HeroicVictory"
 gg_snd_BloodElfTheme = "BloodElfTheme"
+gg_snd_H06Arthas06 = CreateSound("Sound/Dialogue/HumanCampaign/Human06/H06Arthas06.flac", false, false, false, 0, 0, "DefaultEAXON")
+SetSoundParamsFromLabel(gg_snd_H06Arthas06, "H06Arthas06")
+SetSoundDuration(gg_snd_H06Arthas06, 2077)
+SetSoundVolume(gg_snd_H06Arthas06, 120)
+gg_snd_L01Arthas22 = CreateSound("Sound/Dialogue/UndeadExpCamp/Undead01x/L01Arthas22.flac", false, false, false, 0, 0, "DefaultEAXON")
+SetSoundParamsFromLabel(gg_snd_L01Arthas22, "L01Arthas22")
+SetSoundDuration(gg_snd_L01Arthas22, 8478)
+SetSoundVolume(gg_snd_L01Arthas22, 120)
+gg_snd_L04Anubarak24 = CreateSound("Sound/Dialogue/UndeadExpCamp/Undead04x/L04Anubarak24.flac", false, false, false, 0, 0, "DefaultEAXON")
+SetSoundParamsFromLabel(gg_snd_L04Anubarak24, "L04Anubarak24")
+SetSoundDuration(gg_snd_L04Anubarak24, 6025)
+SetSoundVolume(gg_snd_L04Anubarak24, 120)
 end
 
 function CreateAllItems()
@@ -101,6 +116,20 @@ local life
 
 u = BlzCreateUnitWithSkin(p, FourCC("O003"), -391.0, -8471.7, 297.670, FourCC("O003"))
 UnitAddItemToSlotById(u, FourCC("I019"), 0)
+u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -1023.6, -8436.6, 24.379, FourCC("hpea"))
+u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -1033.7, -8723.6, 249.013, FourCC("hpea"))
+u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -1032.6, -8790.2, 131.598, FourCC("hpea"))
+u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -1026.4, -8845.9, 36.476, FourCC("hpea"))
+u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -987.4, -8906.1, 306.088, FourCC("hpea"))
+u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -915.3, -8952.2, 20.259, FourCC("hpea"))
+u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -806.9, -9013.8, 131.719, FourCC("hpea"))
+u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -731.8, -9056.5, 10.316, FourCC("hpea"))
+u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -645.4, -9108.9, 298.486, FourCC("hpea"))
+u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -532.8, -9155.2, 21.039, FourCC("hpea"))
+u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -451.6, -9173.9, 122.897, FourCC("hpea"))
+u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -283.4, -9195.8, 5.153, FourCC("hpea"))
+u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -78.7, -9192.4, 46.605, FourCC("hpea"))
+u = BlzCreateUnitWithSkin(p, FourCC("hpea"), 14.9, -9192.4, 170.963, FourCC("hpea"))
 end
 
 function CreateBuildingsForPlayer9()

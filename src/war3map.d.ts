@@ -27,3 +27,6 @@ declare var gg_snd_SargerasLaugh: sound;
 declare var gg_snd_U08Archimonde19: sound;
 declare var gg_snd_HeroicVictory: string;
 declare var gg_snd_BloodElfTheme: string;
+declare var gg_snd_H06Arthas06: sound;
+declare var gg_snd_L01Arthas22: sound;
+declare var gg_snd_L04Anubarak24: sound;

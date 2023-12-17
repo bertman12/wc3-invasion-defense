@@ -7184,19 +7184,6 @@ STRING 2022
 (item)
 }
 
-STRING 2023
-// Items: I017 ([|cffffcc00Recipe|r] Blood Ritual Pendant), Ubertip (Tooltip - Extended)
-{
-Requires:|cffc0c0c0 Crown of Kings, Pendant of Energy, Greater Sobi Mask, Staff of the Archmage, Staff of Knowledge|r
-
-  +15 |cff8080ffIntelligence|r
-    +5 |cffffcc00All Stats|r
-+400|cff8080ff Mana|r
-    +3 |cff8080ffMana Regen|r
-
-Can cast |cffffcc00Spirit Link|r on |cffffcc0012 targets|r which splits up |cffffcc0050%|r of the damage across all linked targets. Lasts for 60 seconds.
-}
-
 STRING 2024
 // Items: I017 ([|cffffcc00Recipe|r] Blood Ritual Pendant), Name (Name)
 {
@@ -7287,13 +7274,25 @@ STRING 2045
 (3)
 }
 
-STRING 2046
+STRING 2048
+// Items: I017 ([|cffffcc00Recipe|r] Blood Ritual Pendant), Ubertip (Tooltip - Extended)
+{
+Requires:|cffc0c0c0 Crown of Kings, Pendant of Energy, Greater Sobi Mask, Staff of the Archmage, Staff of Knowledge|r
+
+    +5 |cffffcc00All Stats|r |n  +15 |cff8080ffIntelligence|r
++400|cff8080ff Mana|r
+    +3 |cff8080ffMana Regen|r
+
+Can cast |cffffcc00Spirit Link|r on |cffffcc0012 targets|r which splits up |cffffcc0050%|r of the damage across all linked targets.|N|NLasts for 60 seconds.
+}
+
+STRING 2049
 // Items: I019 (Blood Ritual Pendant), Ubertip (Tooltip - Extended)
 {
     +5 |cffffcc00All Stats|r |n  +15 |cff8080ffIntelligence|r
 +400|cff8080ff Mana|r
     +3 |cff8080ffMana Regen|r
 
-Can cast |cffffcc00Spirit Link|r on |cffffcc0012 targets|r which splits up |cffffcc0050%|r of the damage across all linked targets. Lasts for 60 seconds.
+Can cast |cffffcc00Spirit Link|r on |cffffcc0012 targets|r which splits up |cffffcc0050%|r of the damage across all linked targets. |n|NLasts for 60 seconds.
 }
 

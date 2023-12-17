@@ -152,6 +152,12 @@ export enum UNITS {
     castleGrant = FourCC("n00M"),
     lumberMillGrant = FourCC("n00N"),
     title_duchyOfTheNorthernKnights = FourCC("n00O"),
+
+    //Undead Hero Squad
+    uh_cryptLord = FourCC("Ucrl"),
+    uh_deathKnight = FourCC("Udea"),
+    uh_dreadLord = FourCC("Udre"),
+    uh_lich = FourCC("Ulic"),
 }
 
 export enum ITEMS {
@@ -207,6 +213,9 @@ export enum ITEMS {
     recipe_shieldOfTheGuardian = FourCC("I016"),
     ringOfRegeneration_2 = FourCC("rlif"),
     khadgarsGemOfHealth = FourCC("rhth"),
+    staffOfTheArchmage = FourCC("I018"),
+    recipe_bloodRitualPendant = FourCC("I017"),
+    bloodRitualPendant = FourCC("I019"),
 }
 
 //Can find looking up models for a spell at the Art - Target field

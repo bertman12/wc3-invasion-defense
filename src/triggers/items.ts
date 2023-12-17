@@ -135,26 +135,29 @@ function chainLightningProcItem() {
 }
 
 /**
+ * @todo make it so the cooldown for teh ability isnt permanently reduced.
+ *
+ * I could also just use a timer to set the ability cooldown back to the original value
  * Reduces spell cooldowns
  */
 function gemOfTheTimeMage() {
-    const t = Trigger.create();
-
-    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SPELL_CAST);
-
-    t.addAction(() => {
-        const caster = Unit.fromEvent();
-        const spellNumberCast = GetSpellAbilityId();
-        print("Spell number cast: ", spellNumberCast);
-        if (caster && spellNumberCast > 0) {
-            const spellLevel = caster.getAbilityLevel(spellNumberCast);
-            print("Spell level: ", spellLevel);
-            if (spellLevel > 0) {
-                const baseCooldown = caster.getAbilityCooldown(spellNumberCast, spellLevel - 1);
-                caster.setAbilityCooldown(spellNumberCast, spellLevel - 1, baseCooldown * 0.75);
-            }
-        }
-    });
+    // const t = Trigger.create();
+    // t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SPELL_CAST);
+    // // t.regist
+    // t.addAction(() => {
+    //     const caster = Unit.fromEvent();
+    //     const spellNumberCast = GetSpellAbilityId();
+    //     // print("Spell number cast: ", spellNumberCast);
+    //     if (caster && spellNumberCast > 0) {
+    //         const spellLevel = caster.getAbilityLevel(spellNumberCast);
+    //         // print("Spell level: ", spellLevel);
+    //         if (spellLevel > 0) {
+    //             const baseCooldown = caster.getAbilityCooldown(spellNumberCast, spellLevel - 1);
+    //             caster.setAbilityCooldown(spellNumberCast, spellLevel - 1, baseCooldown * 0.75);
+    //             // caster.setAbilityCooldown()
+    //         }
+    //     }
+    // });
 }
 
 /**
@@ -417,6 +420,16 @@ const itemRecipesMap = new Map<RecipeItem, RecipeItemRequirement[]>([
             { itemTypeId: ITEMS.ringOfRegeneration_2, quantity: 2, charges: 0 }, //
             { itemTypeId: ITEMS.stalwartShield, quantity: 1, charges: 0 }, //
             { itemTypeId: ITEMS.khadgarsGemOfHealth, quantity: 1, charges: 0 }, //
+        ],
+    ],
+    [
+        { recipeId: ITEMS.recipe_bloodRitualPendant, itemId: ITEMS.bloodRitualPendant },
+        [
+            { itemTypeId: ITEMS.crownOfKings_5, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.staffOfTheArchmage, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.staffOfKnowledge, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.pendantOfEnergy_200, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.greaterSobiMask, quantity: 1, charges: 0 }, //
         ],
     ],
 ]);

@@ -17,6 +17,7 @@ export function setupPlayers() {
     trig_checkFarmLaborerPlacement();
     playerLeaves();
     antiGrief();
+    lossCondition();
     forEachAlliedPlayer((p, index) => {
         //Create Sheep to buy hero
         const u = Unit.create(p, FourCC("nshe"), 18600 + 25 * index, -28965);
@@ -372,6 +373,11 @@ function playerLeaves() {
     });
 }
 
+// function trig_registerDisconnect(){
+//     const t = Trigger.create()
+//     t.registerGameStateEvent(GAME_STATE_DISCONNECTED, ConvertLimitOp(1), 1);
+// }
+
 /**
  * Ensures farms are only placed on crop tiles.
  */
@@ -426,6 +432,34 @@ function antiGrief() {
 
         if (attacker.isAlly(victim.owner)) {
             attacker.issueImmediateOrder(OrderId.Stop);
+        }
+    });
+}
+
+function lossCondition() {
+    const t = Trigger.create();
+
+    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_DEATH);
+
+    t.addAction(() => {
+        const unit = Unit.fromEvent();
+
+        if (unit && unit.typeId === FourCC("htow")) {
+            let foundAlliedTownHall = false;
+            //check if any other allied player town halls exist
+            forEachAlliedPlayer((p) => {
+                if (isPlayingUser(p)) {
+                    forEachUnitOfPlayer(p, (u) => {
+                        if (u.typeId === FourCC("htow")) {
+                            foundAlliedTownHall = true;
+                        }
+                    });
+                }
+            });
+
+            if (!foundAlliedTownHall) {
+                print(tColor("No town halls remain. You have been defeated!", "red"));
+            }
         }
     });
 }
