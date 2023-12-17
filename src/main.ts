@@ -10,10 +10,10 @@ import { setup_destroyStructure } from "./towns";
 import { init_armyControllerTrigs } from "./triggers/armyController";
 import { init_cameraTrigs } from "./triggers/camera";
 import { init_economyTriggers } from "./triggers/economy/init";
+import { setup_heroPurchasing } from "./triggers/heroes/heroPurchasing";
 import { init_itemAbilities } from "./triggers/items";
 import { init_miscellaneousTriggers } from "./triggers/misc";
 import { init_upgradeBasedTriggers } from "./triggers/upgrades";
-import { trig_wayGate } from "./triggers/waygate";
 import { init_undead } from "./undead/spawn";
 import { notifyPlayer } from "./utils/misc";
 import { init_quests } from "./utils/quests";
@@ -33,7 +33,6 @@ function tsMain() {
         print(`Transpiler: v${TSTL_VERSION}`);
         print(" ");
 
-        trig_wayGate();
         init_miscellaneousTriggers();
         initFrames();
 
@@ -56,14 +55,11 @@ function tsMain() {
         //Environment setup
         SuspendTimeOfDay(true);
         SetTimeOfDay(12);
-        // ClearMapMusic();
+        ClearMapMusic();
         StopMusic(false);
         PlayMusic(gg_snd_NightElfX1);
 
         TimerManager.trig_setup();
-        // const u = Unit.create(Players[9], FourCC("hfoo"), 0, 0);
-        // u?.issueOrderAt(OrderId.Move, -300, 2850);
-        // u?.setTimeScale(0.25);
 
         //Give undead map vision
         // forEachPlayer((p) => {
@@ -88,6 +84,7 @@ function tsMain() {
         init_cameraTrigs();
         init_upgradeBasedTriggers();
         init_economyTriggers();
+        setup_heroPurchasing();
         //10 second timer
         init_undead();
         //For looking at minimap icons

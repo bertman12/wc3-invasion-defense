@@ -8,15 +8,20 @@ import { RoundManager } from "./shared/round-manager";
 import { notifyPlayer, tColor } from "./utils/misc";
 import { adjustGold, adjustLumber, forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayerWithAbility, isPlayingUser } from "./utils/players";
 import { createUnits } from "./utils/units";
+// import { trig_heroPurchasedAfterPrepTime } from "./triggers/heroes/heroPurchasing";
 
+/**
+ * PLayer states are initialized here
+ */
 export function setupPlayers() {
     initializePlayerStateInstances();
     trig_playerBuysUnit();
-    trig_heroPurchased();
+    // trig_heroPurchasedAfterPrepTime();
     trig_heroDies();
     trig_checkFarmLaborerPlacement();
     playerLeaves();
     antiGrief();
+    initPlayerSettings();
     lossCondition();
     forEachAlliedPlayer((p, index) => {
         //Create Sheep to buy hero
@@ -57,7 +62,7 @@ function trig_heroDies() {
     });
 }
 
-function trig_playerBuysUnit() {
+export function trig_playerBuysUnit() {
     const t = Trigger.create();
 
     t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SELL);
@@ -85,8 +90,6 @@ function trig_playerBuysUnit() {
 
 function createDailyUnits() {
     forEachAlliedPlayer((p) => {
-        // PLAYER_STATE_FOOD_CAP_CEILING
-
         if (isPlayingUser(p)) {
             forEachUnitOfPlayer(p, (u) => {
                 if (buildingOwnerDailyUnitBonusMap.has(u.typeId)) {
@@ -111,53 +114,123 @@ function createDailyUnits() {
     });
 }
 
-function trig_heroPurchased() {
-    const t = Trigger.create();
+// /**
+//  * This the normal hero spawning trigger which will be activated after 30 seconds
+//  */
+// export function trig_heroPurchasedAfterPrepTime() {
+//     const t = Trigger.create();
 
-    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SELL);
+//     t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SELL);
 
-    t.addCondition(() => {
-        const u = Unit.fromHandle(GetBuyingUnit());
-        if (u && u.typeId === FourCC("nshe")) {
-            return true;
-        }
+//     t.addCondition(() => {
+//         const u = Unit.fromHandle(GetBuyingUnit());
+//         if (u && u.typeId === FourCC("nshe")) {
+//             return true;
+//         }
 
-        return false;
-    });
+//         return false;
+//     });
 
-    t.addAction(() => {
-        const heroPicker = Unit.fromHandle(GetBuyingUnit());
-        const purchasedHero = Unit.fromHandle(GetSoldUnit());
-        const seller = Unit.fromHandle(GetSellingUnit());
+//     t.addAction(() => {
+//         const heroPicker = Unit.fromHandle(GetBuyingUnit());
+//         const purchasedHero = Unit.fromHandle(GetSoldUnit());
+//         const seller = Unit.fromHandle(GetSellingUnit());
 
-        if (!heroPicker || !purchasedHero || !seller) {
-            return;
-        }
+//         if (!heroPicker || !purchasedHero || !seller) {
+//             return;
+//         }
 
-        heroPicker.kill();
-        const playerState = playerStates.get(purchasedHero.owner.id);
+//         heroPicker.kill();
+//         const playerState = playerStates.get(purchasedHero.owner.id);
 
-        if (playerState) {
-            playerState.playerHero = purchasedHero;
-        }
+//         if (playerState) {
+//             playerState.playerHero = purchasedHero;
+//         }
 
-        purchasedHero?.addItemById(FourCC("stel"));
-        purchasedHero?.addItemById(FourCC("tcas"));
+//         purchasedHero?.addItemById(FourCC("stel"));
+//         purchasedHero?.addItemById(FourCC("tcas"));
 
-        SelectUnitForPlayerSingle(purchasedHero.handle, purchasedHero.owner.handle);
-        SelectUnitRemoveForPlayer(seller?.handle, purchasedHero.owner.handle);
+//         SelectUnitForPlayerSingle(purchasedHero.handle, purchasedHero.owner.handle);
+//         SelectUnitRemoveForPlayer(seller?.handle, purchasedHero.owner.handle);
 
-        const startX = purchasedHero.owner.startLocationX;
-        const startY = purchasedHero.owner.startLocationY;
-        SetCameraPositionForPlayer(heroPicker.owner.handle, startX, startY);
+//         const startX = purchasedHero.owner.startLocationX;
+//         const startY = purchasedHero.owner.startLocationY;
+//         SetCameraPositionForPlayer(heroPicker.owner.handle, startX, startY);
 
-        purchasedHero.x = startX;
-        purchasedHero.y = startY;
+//         purchasedHero.x = startX;
+//         purchasedHero.y = startY;
 
-        const armyController = Unit.create(purchasedHero.owner, UNITS.armyController, -28950 + purchasedHero.owner.id * 50 - 250 * Math.floor(purchasedHero.owner.id / 5), -28950 - Math.floor(purchasedHero.owner.id / 5) * 75);
-        armyController?.setHeroLevel(18, false);
-    });
-}
+//         const armyController = Unit.create(purchasedHero.owner, UNITS.armyController, -28950 + purchasedHero.owner.id * 50 - 250 * Math.floor(purchasedHero.owner.id / 5), -28950 - Math.floor(purchasedHero.owner.id / 5) * 75);
+//         armyController?.setHeroLevel(18, false);
+//     });
+// }
+
+// /**
+//  * This will be used for the first 30 seconds of the game, then the match will begin, this trigger will be disabled and the other trigger will be used instead
+//  */
+// function trig_heroPurchasedDuringPrepTime() {
+//     const t = Trigger.create();
+
+//     t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SELL);
+
+//     t.addCondition(() => {
+//         const u = Unit.fromHandle(GetBuyingUnit());
+//         if (u && u.typeId === FourCC("nshe")) {
+//             return true;
+//         }
+
+//         return false;
+//     });
+
+//     t.addAction(() => {
+//         const heroPicker = Unit.fromHandle(GetBuyingUnit());
+//         const purchasedHero = Unit.fromHandle(GetSoldUnit());
+//         const seller = Unit.fromHandle(GetSellingUnit());
+
+//         if (!heroPicker || !purchasedHero || !seller) {
+//             return;
+//         }
+
+//         heroPicker.kill();
+//         const playerState = playerStates.get(purchasedHero.owner.id);
+
+//         if (playerState) {
+//             playerState.playerHero = purchasedHero;
+//         }
+
+//         SelectUnitForPlayerSingle(purchasedHero.handle, purchasedHero.owner.handle);
+//         SelectUnitRemoveForPlayer(seller?.handle, purchasedHero.owner.handle);
+//     });
+// }
+
+// /**
+//  * Should happen exactly at the transition when the prep trigger ends and the post prep hero purchase trigger starts
+//  * Logic can be used inside postPrep hero purchased trigger
+//  */
+// function moveHeroesToStartLocationAndGiveItems() {
+//     forEachAlliedPlayer((p) => {
+//         if (isPlayingUser(p)) {
+//             const playerState = playerStates.get(p.id);
+
+//             if (playerState) {
+//                 const purchasedHero = playerState.playerHero;
+//                 if (!purchasedHero) {
+//                     return;
+//                 }
+
+//                 purchasedHero?.addItemById(FourCC("stel"));
+//                 purchasedHero?.addItemById(FourCC("tcas"));
+//                 const startX = purchasedHero.owner.startLocationX;
+//                 const startY = purchasedHero.owner.startLocationY;
+//                 SetCameraPositionForPlayer(p.handle, startX, startY);
+//                 purchasedHero.x = startX;
+//                 purchasedHero.y = startY;
+//                 const armyController = Unit.create(purchasedHero.owner, UNITS.armyController, -28950 + purchasedHero.owner.id * 50 - 250 * Math.floor(purchasedHero.owner.id / 5), -28950 - Math.floor(purchasedHero.owner.id / 5) * 75);
+//                 armyController?.setHeroLevel(18, false);
+//             }
+//         }
+//     });
+// }
 
 export function players_nightStart() {
     forEachPlayer((p) => {
@@ -187,6 +260,13 @@ export function init_startingResources() {
     });
 }
 
+function initPlayerSettings() {
+    forEachAlliedPlayer((p) => {
+        SetPlayerTechMaxAllowed(p.handle, UNITS.druidLaborer, 10);
+        SetPlayerTechMaxAllowed(p.handle, FourCC("e001"), 25);
+    });
+}
+
 function grantStartOfDayBonuses() {
     let totalSupplyBuildings = 0;
     createDailyUnits();
@@ -201,7 +281,6 @@ function grantStartOfDayBonuses() {
         forEachUnitOfPlayerWithAbility(p, ABILITIES.supplies, (u) => {
             totalSupplyBuildings++;
         });
-
         //increment for each player
         forEachUnitOfPlayerWithAbility(p, ABILITIES.grainSiloInfo, (u) => {
             const playerState = playerStates.get(p.id);

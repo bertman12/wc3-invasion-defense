@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Undead Siege Defense v0.24
+Undead Siege Defense v0.25
 }
 
 STRING 2
@@ -385,7 +385,7 @@ Stone Walls - Free Form Doodad
 
 STRING 141
 {
-Undead Siege Defense v0.24
+Undead Siege Defense v0.25
 }
 
 STRING 142
@@ -4907,12 +4907,6 @@ STRING 1516
 Flesh Maggot
 }
 
-STRING 1517
-// Units: h00O (Druid Farmer), Ubertip (Tooltip - Extended)
-{
-|cffffff00+45 gold|r per minute. |n|n|cff80ff80Pays off in 6 minutes and 36 seconds.|r |n|n|cffffcc00Must be placed on crop tiles.|r
-}
-
 STRING 1518
 // Abilities: A01J (Druid Farmer), Tip (Tooltip - Normal)
 {
@@ -5757,12 +5751,6 @@ STRING 1693
 // Abilities: ANia (Incinerate), Researchubertip (Tooltip - Learn - Extended)
 {
 Each attack made is enhanced with living flames that cling to the target. These flames add a small amount of damage on the first attack, twice as much on the second attack, three times as much on the third attack, etc.|n|nIf a unit dies while under this effect, it is incinerated, causing significant damage to all nearby hostile units.|n|n|cffffcc00Level 1|r - <ANia,DataA1> bonus damage, <ANia,DataB1> incineration damage.|n|cffffcc00Level 2|r - <ANia,DataA2> bonus damage, <ANia,DataB2> incineration damage.|n|cffffcc00Level 3|r - <ANia,DataA3> bonus damage, <ANia,DataB3> incineration damage.|n|cffffcc00Level 4|r - 5  bonus damage, 75 incineration damage.
-}
-
-STRING 1696
-// Units: h00G (Peasant), Ubertip (Tooltip - Extended)
-{
-Can harvest gold and lumber, build structures and Repair.  |n|n|cff00ffffWorker|r
 }
 
 STRING 1697
@@ -7312,5 +7300,29 @@ STRING 2052
 // Abilities: A015 (Place Goblin Land Mine), Hotkey (Hotkey - Normal)
 {
 G
+}
+
+STRING 2054
+// Units: h00O (Druid Farmer), Ubertip (Tooltip - Extended)
+{
+|cffffff00+45 gold|r per minute. |n|n|cff80ff80Pays off in 6 minutes and 36 seconds.|r |n|n|cffffcc00Must be placed on crop tiles.|r    |n|N|cffffcc00Limit of 10 Druid Farmers.|r
+}
+
+STRING 2057
+// Units: h00G (Peasant), Ubertip (Tooltip - Extended)
+{
+|cffffff00Can harvest gold|r, build structures and Repair.  |n|n|cff00ffffWorker|r
+}
+
+STRING 2059
+// Units: e001 (Wisp), Ubertip (Tooltip - Extended)
+{
+|cff80ff80Can harvest lumber|r.     |n|n|cff00ffffWorker|r |n|N|cffffcc00Limit of 25 Wisp.|r
+}
+
+STRING 2060
+// Units: h00U (Factory), Tip (Tooltip - Basic)
+{
+Build Factory
 }
 

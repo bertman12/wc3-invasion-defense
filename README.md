@@ -677,3 +677,23 @@ then for the second round spawn lvl 12 with their ultimates
 then for the final round spawn level 25 with full items
 
 cap druid count to 10 and lumber peasant to 25
+
+====
+add portal to pvp area at the end
+
+make undead heroes scale
+
+make rain of fire not hurt allies
+tone down the effect for pitlord roar
+nerf engineer move speed; increase build time of barricades by 5 seconds
+nerf fire tower damage a little
+
+instead of completely stopping undead spawns, if you approach the cap for the undead units spawn, decrease teh amount spawned per wave, that there will not be asudden gap in enemies
+buff attack speed for corrupted protectors
+
+change hand of midas to only work on auto attacks - that shit is way to fucking good, especially on naga with starfall lol
+less spawned units means damage should go up more
+
+8 minute long final night
+
+increase sound volume for hero spawns

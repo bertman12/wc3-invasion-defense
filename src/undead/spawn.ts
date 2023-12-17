@@ -32,7 +32,7 @@ function getNextUndeadPlayer() {
 //30 seconds being the hard spawn, 15 second intervals being the normal spawn difficulty; maybe fr
 const waveIntervalOptions = [15, 30];
 
-const MAX_ZOMBIE_COUNT = 400 as const;
+const MAX_ZOMBIE_COUNT = 250 as const;
 
 let currentZombieCount = 0;
 let currentSpawns: SpawnData[] = [];
@@ -521,14 +521,20 @@ class SpawnData {
 
             switch (this.spawnDifficulty) {
                 case SpawnDifficulty.normal:
-                    Sound.fromHandle(gg_snd_H06Arthas06)?.start();
+                    const sound1 = Sound.fromHandle(gg_snd_H06Arthas06);
+                    sound1?.setVolume(126);
+                    sound1?.start();
                     break;
                 case SpawnDifficulty.hard:
-                    Sound.fromHandle(gg_snd_L01Arthas22)?.start();
+                    const sound2 = Sound.fromHandle(gg_snd_L01Arthas22);
+                    sound2?.setVolume(126);
+                    sound2?.start();
 
                     break;
                 case SpawnDifficulty.final:
-                    Sound.fromHandle(gg_snd_L04Anubarak24)?.start();
+                    const sound3 = Sound.fromHandle(gg_snd_L04Anubarak24);
+                    sound3?.setVolume(126);
+                    sound3?.start();
                     break;
 
                 default:
@@ -545,10 +551,12 @@ class SpawnData {
 
                 const calculatedHeroLevel = 10 + 10 * this.spawnDifficulty;
                 hero.setHeroLevel(calculatedHeroLevel, false);
-                hero.maxLife += 600;
+                hero.maxLife += 1000;
                 hero.setScale(2.2, 1, 1);
                 hero.setVertexColor(255, 100, 100, 255);
                 hero.life = hero.maxLife;
+
+                this.scaleUnitDifficulty(hero);
 
                 const abilities = undeadHeroAbilityMap.get(heroId);
 
@@ -641,25 +649,51 @@ class SpawnData {
             if (u.isHero()) {
                 u.setHeroLevel(RoundManager.currentRound, false);
             }
-
-            if (this.playersPlaying > 2) {
-                const playerBonus = this.playersPlaying - 2;
-                const roundDamageMultiplier = 0.05 * playerBonus + RoundManager.currentRound / 100;
-                const healthBonusMultiplier = 0.1 * playerBonus + (RoundManager.currentRound * 2) / 100;
-                //Increasing health and damage based on number of players playing
-                const baseDmgIncrease = u.getBaseDamage(0) + Math.ceil(u.getBaseDamage(0) * roundDamageMultiplier);
-                const diceSidesIncrease = u.getDiceSides(0) + Math.ceil(u.getDiceSides(0) * roundDamageMultiplier);
-                const healthIncrease = Math.ceil(u.maxLife * (1 + healthBonusMultiplier));
-                u.name += ` |cff00ff00+${(healthBonusMultiplier * 100).toFixed(0)}%/|cffff0000+${(roundDamageMultiplier * 100).toFixed(0)}%`;
-                u.maxLife = healthIncrease;
-                u.life = u.maxLife;
-                u.setBaseDamage(baseDmgIncrease, 0);
-                u.setDiceSides(diceSidesIncrease, 0);
-            }
+            this.scaleUnitDifficulty(u);
+            // if (this.playersPlaying > 2) {
+            //     const playerBonus = this.playersPlaying - 2;
+            //     const roundDamageMultiplier = 0.05 * playerBonus + RoundManager.currentRound / 100;
+            //     const healthBonusMultiplier = 0.1 * playerBonus + (RoundManager.currentRound * 2) / 100;
+            //     //Increasing health and damage based on number of players playing
+            //     const baseDmgIncrease = u.getBaseDamage(0) + Math.ceil(u.getBaseDamage(0) * roundDamageMultiplier);
+            //     const diceSidesIncrease = u.getDiceSides(0) + Math.ceil(u.getDiceSides(0) * roundDamageMultiplier);
+            //     const healthIncrease = Math.ceil(u.maxLife * (1 + healthBonusMultiplier));
+            //     u.name += ` |cff00ff00+${(healthBonusMultiplier * 100).toFixed(0)}%/|cffff0000+${(roundDamageMultiplier * 100).toFixed(0)}%`;
+            //     u.maxLife = healthIncrease;
+            //     u.life = u.maxLife;
+            //     u.setBaseDamage(baseDmgIncrease, 0);
+            //     u.setDiceSides(diceSidesIncrease, 0);
+            // }
 
             this.units.push(u);
             return u;
         }
+    }
+
+    /**
+     * Increases the health and damage of the unit based on the number of players present when the round started and also the current round the players are on
+     * @param unit
+     * @returns
+     */
+    private scaleUnitDifficulty(unit: Unit): Unit {
+        if (this.playersPlaying > 0) {
+            // if (this.playersPlaying > 2) {
+            const playerBonus = 4;
+            // const playerBonus = this.playersPlaying - 2;
+            const roundDamageMultiplier = 0.05 * playerBonus + RoundManager.currentRound / 100;
+            const healthBonusMultiplier = 0.1 * playerBonus + (RoundManager.currentRound * 2) / 100;
+            //Increasing health and damage based on number of players playing
+            const baseDmgIncrease = unit.getBaseDamage(0) + Math.ceil(unit.getBaseDamage(0) * roundDamageMultiplier);
+            const diceSidesIncrease = unit.getDiceSides(0) + Math.ceil(unit.getDiceSides(0) * roundDamageMultiplier);
+            const healthIncrease = Math.ceil(unit.maxLife * (1 + healthBonusMultiplier));
+            unit.name += ` |cff00ff00+${(healthBonusMultiplier * 100).toFixed(0)}%/|cffff0000+${(roundDamageMultiplier * 100).toFixed(0)}%`;
+            unit.maxLife = healthIncrease;
+            unit.life = unit.maxLife;
+            unit.setBaseDamage(baseDmgIncrease, 0);
+            unit.setDiceSides(diceSidesIncrease, 0);
+        }
+
+        return unit;
     }
 
     /**

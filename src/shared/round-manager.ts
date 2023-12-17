@@ -50,7 +50,7 @@ export class RoundManager {
         });
 
         if (RoundManager.currentRound >= 9) {
-            TimerManager.nightTimeDuration = 300;
+            TimerManager.nightTimeDuration = 540;
         }
 
         TimerManager.startNightTimer(() => {

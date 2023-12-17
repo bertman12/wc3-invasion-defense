@@ -11,11 +11,12 @@ import { OrderId } from "w3ts/globals";
 
 export function init_itemAbilities() {
     trig_forceBoots();
-    handOfMidas();
+    // handOfMidas();
     itemRecipes();
     chainLightningProcItem();
     demonsEyeTrinketProcItem();
     gemOfTheTimeMage();
+    nerfedMidas();
 }
 
 function trig_forceBoots() {
@@ -131,6 +132,29 @@ function chainLightningProcItem() {
             }
         },
         { attackerCooldown: true, procChance: 25 },
+    );
+}
+
+function nerfedMidas() {
+    onUnitAttacked(
+        (attacker, victim) => {
+            if (unitHasItem(attacker, ITEMS.ghoulishMaskOfMidas)) {
+                useTempEffect(Effect.createAttachment("Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl", victim, "origin"));
+                useTempEffect(Effect.create("Abilities\\Spells\\Undead\\RaiseSkeletonWarrior\\RaiseSkeleton.mdl", attacker.x, attacker.y));
+                adjustGold(attacker.owner, 25);
+                attacker.life -= 35;
+            }
+        },
+        { attackerCooldown: true, procChance: 25 },
+    );
+    onUnitAttacked(
+        (attacker, victim) => {
+            if (unitHasItem(attacker, ITEMS.handOfMidas)) {
+                useTempEffect(Effect.createAttachment("Abilities\\Spells\\Other\\Transmute\\PileofGold.mdl", victim, "origin"));
+                adjustGold(attacker.owner, 10);
+            }
+        },
+        { attackerCooldown: true, procChance: 10 },
     );
 }
 

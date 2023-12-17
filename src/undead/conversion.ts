@@ -1,7 +1,4 @@
-import { PlayerIndices, UNITS } from "src/shared/enums";
-import { forEachUnitOfPlayer } from "src/utils/players";
-import { Unit } from "w3ts";
-import { Players } from "w3ts/globals";
+import { UNITS } from "src/shared/enums";
 
 const humanToUndead = new Map<number, number>([
     [UNITS.capital, UNITS.blackCitadel],
@@ -35,35 +32,34 @@ const undeadToHuman = new Map<number, number>([
 ]);
 
 export function convertHumanToUndeadStructures() {
-    forEachUnitOfPlayer(Players[PlayerIndices.NeutralPassive], (u) => {
-        //Destroys and converts primary structures into undead ones.
-        if (u.name.includes("Destroyed")) {
-            if (humanToUndead.has(u.typeId)) {
-                const unitType = humanToUndead.get(u.typeId);
-                if (unitType) {
-                    u.kill();
-                    const createdUnit = Unit.create(Players[15], unitType, u.x, u.y);
-                    createdUnit?.setField(UNIT_BF_IS_A_BUILDING, true);
-                }
-            }
-        }
-    });
+    // forEachUnitOfPlayer(Players[PlayerIndices.NeutralPassive], (u) => {
+    //     //Destroys and converts primary structures into undead ones.
+    //     if (u.name.includes("Destroyed")) {
+    //         if (humanToUndead.has(u.typeId)) {
+    //             const unitType = humanToUndead.get(u.typeId);
+    //             if (unitType) {
+    //                 u.kill();
+    //                 const createdUnit = Unit.create(Players[15], unitType, u.x, u.y);
+    //                 createdUnit?.setField(UNIT_BF_IS_A_BUILDING, true);
+    //             }
+    //         }
+    //     }
+    // });
 }
 
 export function convertUndeadToHumanStructures() {
-    forEachUnitOfPlayer(Players[PlayerIndices.NeutralPassive], (u) => {
-        //Destroys and converts primary structures into undead ones.
-        if (u.name.includes("Destroyed")) {
-            if (undeadToHuman.has(u.typeId)) {
-                const unitType = undeadToHuman.get(u.typeId);
-
-                if (unitType) {
-                    u.kill();
-                    Unit.create(Players[9], unitType, u.x, u.y);
-                }
-            }
-        }
-    });
+    // forEachUnitOfPlayer(Players[PlayerIndices.NeutralPassive], (u) => {
+    //     //Destroys and converts primary structures into undead ones.
+    //     if (u.name.includes("Destroyed")) {
+    //         if (undeadToHuman.has(u.typeId)) {
+    //             const unitType = undeadToHuman.get(u.typeId);
+    //             if (unitType) {
+    //                 u.kill();
+    //                 Unit.create(Players[9], unitType, u.x, u.y);
+    //             }
+    //         }
+    //     }
+    // });
 }
 
 //Perhaps we store in state the unit type this specific unit is replacing
