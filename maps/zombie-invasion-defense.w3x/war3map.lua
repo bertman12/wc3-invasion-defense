@@ -92,6 +92,17 @@ local life
 u = BlzCreateUnitWithSkin(p, FourCC("h003"), 17728.0, -29120.0, 270.000, FourCC("h003"))
 end
 
+function CreateUnitsForPlayer0()
+local p = Player(0)
+local u
+local unitID
+local t
+local life
+
+u = BlzCreateUnitWithSkin(p, FourCC("O003"), -391.0, -8471.7, 297.670, FourCC("O003"))
+UnitAddItemToSlotById(u, FourCC("I019"), 0)
+end
+
 function CreateBuildingsForPlayer9()
 local p = Player(9)
 local u
@@ -580,6 +591,7 @@ CreateBuildingsForPlayer18()
 end
 
 function CreatePlayerUnits()
+CreateUnitsForPlayer0()
 CreateUnitsForPlayer9()
 CreateUnitsForPlayer18()
 end
@@ -602,7 +614,7 @@ gg_rct_zWestSpawn1 = Rect(-14496.0, 3296.0, -13376.0, 4416.0)
 gg_rct_waygateBase = Rect(-224.0, -352.0, 224.0, 384.0)
 gg_rct_waygateNorth = Rect(-1664.0, 16480.0, -1152.0, 16800.0)
 gg_rct_zNorthWestspawn2 = Rect(-5440.0, 15392.0, -3392.0, 16512.0)
-gg_rct_undead_unit_showcase = Rect(13760.0, -29984.0, 20032.0, -26272.0)
+gg_rct_undead_unit_showcase = Rect(12448.0, -30528.0, 21184.0, -24832.0)
 gg_rct_zEastCapitalSpawn = Rect(8320.0, 4896.0, 9344.0, 6112.0)
 gg_rct_southZombieSpawn = Rect(6304.0, -6208.0, 7392.0, -5120.0)
 gg_rct_southSpawn2 = Rect(-6496.0, -5248.0, -5152.0, -3808.0)

@@ -14,7 +14,7 @@ import { init_itemAbilities } from "./triggers/items";
 import { init_miscellaneousTriggers } from "./triggers/misc";
 import { init_upgradeBasedTriggers } from "./triggers/upgrades";
 import { trig_wayGate } from "./triggers/waygate";
-import { init_undead } from "./undead/taxonomy";
+import { init_undead } from "./undead/spawn";
 import { notifyPlayer } from "./utils/misc";
 import { init_quests } from "./utils/quests";
 

@@ -1,7 +1,7 @@
 import { player_giveHumansStartOfDayResources, players_nightStart } from "src/players";
 import { RoundManager } from "src/shared/round-manager";
 import { convertHumanToUndeadStructures, convertUndeadToHumanStructures } from "src/undead/conversion";
-import { undeadDayStart, undeadNightStart } from "src/undead/taxonomy";
+import { undeadDayStart, undeadNightStart } from "src/undead/spawn";
 import { Timer } from "w3ts";
 
 /**

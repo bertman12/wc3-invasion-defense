@@ -15,6 +15,7 @@ export function init_itemAbilities() {
     itemRecipes();
     chainLightningProcItem();
     demonsEyeTrinketProcItem();
+    gemOfTheTimeMage();
 }
 
 function trig_forceBoots() {
@@ -132,6 +133,34 @@ function chainLightningProcItem() {
         { attackerCooldown: true, procChance: 25 },
     );
 }
+
+/**
+ * Reduces spell cooldowns
+ */
+function gemOfTheTimeMage() {
+    const t = Trigger.create();
+
+    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SPELL_CAST);
+
+    t.addAction(() => {
+        const caster = Unit.fromEvent();
+        const spellNumberCast = GetSpellAbilityId();
+        print("Spell number cast: ", spellNumberCast);
+        if (caster && spellNumberCast > 0) {
+            const spellLevel = caster.getAbilityLevel(spellNumberCast);
+            print("Spell level: ", spellLevel);
+            if (spellLevel > 0) {
+                const baseCooldown = caster.getAbilityCooldown(spellNumberCast, spellLevel - 1);
+                caster.setAbilityCooldown(spellNumberCast, spellLevel - 1, baseCooldown * 0.75);
+            }
+        }
+    });
+}
+
+/**
+ * Causes your hero to explode, dealing 10% of their health to all enemies in 600 range/
+ */
+function bloodGem() {}
 
 function demonsEyeTrinketProcItem() {
     onUnitAttacked(

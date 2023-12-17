@@ -1,4 +1,5 @@
-import { Group, Rectangle, Trigger } from "w3ts";
+import { Group, Rectangle, Region, Trigger, Unit } from "w3ts";
+import { OrderId } from "w3ts/globals";
 
 export function init_miscellaneousTriggers() {
     setupUnitPreviewArea();
@@ -32,26 +33,27 @@ function setupUnitPreviewArea() {
 function preventMassTeleportGrief() {
     const t = Trigger.create();
 
-    // const previewRegion = Region.create();
-    // const previewRectangle = Rectangle.fromHandle(gg_rct_undead_unit_showcase);
-    // if (!previewRectangle || !previewRegion) {
-    //     return;
-    // }
-    // previewRegion.addRect(previewRectangle);
+    const previewRegion = Region.create();
+    const previewRectangle = Rectangle.fromHandle(gg_rct_undead_unit_showcase);
+    if (!previewRectangle || !previewRegion) {
+        return;
+    }
+    previewRegion.addRect(previewRectangle);
 
-    // t.registerEnterRegion(previewRegion.handle, () => true);
     t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SPELL_CHANNEL);
 
     t.addAction(() => {
         //player casts teleport check if the unit they are teleporting to is in region
-        // print("Unit entered preview area!");
         const spellNumberCast = GetSpellAbilityId();
-        print("Spell cast: ", spellNumberCast);
         const illegalSpells = [FourCC("Almt"), FourCC("A01Y"), FourCC("A00H"), 1095331188];
 
-        print("Illegal spell numbers: ", ...illegalSpells.map((x) => x.toString() + " "));
         if (illegalSpells.includes(spellNumberCast)) {
-            print("Player cast illegal spell!");
+            const caster = Unit.fromEvent();
+
+            if (caster && IsPointInRegion(previewRegion.handle, GetSpellTargetX(), GetSpellTargetY())) {
+                caster.issueImmediateOrder(OrderId.Stop);
+                print("|cffff0000Illegal Teleport!|r");
+            }
         }
     });
 }

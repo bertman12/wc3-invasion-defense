@@ -371,12 +371,6 @@ STRING 134
 C
 }
 
-STRING 138
-// Units: Hpal (Paladin), Propernames (Proper Names)
-{
-Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
-}
-
 STRING 139
 // Abilities: A011 (Armor Reduction Aura), Tip (Tooltip - Normal)
 {
@@ -521,66 +515,6 @@ STRING 170
 // Abilities: A00C (Food Income), Tip (Tooltip - Normal)
 {
 Food Income - Info Ability
-}
-
-STRING 172
-// Units: Nalc (Alchemist), Propernames (Proper Names)
-{
-Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
-}
-
-STRING 173
-// Units: Nbst (Beastmaster), Propernames (Proper Names)
-{
-Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
-}
-
-STRING 174
-// Units: Npbm (Brewmaster), Propernames (Proper Names)
-{
-Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
-}
-
-STRING 175
-// Units: Nbrn (Dark Ranger), Propernames (Proper Names)
-{
-Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
-}
-
-STRING 176
-// Units: Nfir (Firelord), Propernames (Proper Names)
-{
-Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
-}
-
-STRING 177
-// Units: Nplh (Pit Lord), Propernames (Proper Names)
-{
-Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
-}
-
-STRING 178
-// Units: Nngs (Sea Witch), Propernames (Proper Names)
-{
-Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
-}
-
-STRING 179
-// Units: Ntin (Tinker), Propernames (Proper Names)
-{
-Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
-}
-
-STRING 180
-// Units: Hmkg (Mountain King), Propernames (Proper Names)
-{
-Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
-}
-
-STRING 181
-// Units: Hblm (Blood Mage), Propernames (Proper Names)
-{
-Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Theoderic the Great,Hannibal,Theodocius,Alexander The Great,Vitigus,Constantine,Basilius,Majorian,Ptolemy,Flavius,Octavius
 }
 
 STRING 184
@@ -1032,26 +966,8 @@ STRING 304
 Purchase Farm Grant
 }
 
-STRING 306
-// Units: O003 (Demigod), Name (Name)
-{
-Demigod
-}
-
-STRING 307
-// Units: O003 (Demigod), Propernames (Proper Names)
-{
-Enkidu
-}
-
-STRING 308
-// Units: O003 (Demigod), Awakentip (Tooltip - Awaken)
-{
-Revive Demigod
-}
-
 STRING 311
-// Units: O003 (Demigod), Revivetip (Tooltip - Revive)
+// Units: O003 (Tauren Chieftain), Revivetip (Tooltip - Revive)
 {
 Revive Demigod.
 }
@@ -2282,12 +2198,6 @@ STRING 755
 // Items: I001 (Treads of the Wind Walker ), Ubertip (Tooltip - Extended)
 {
 Increases the movement speed of the Hero when worn.  |n|n+30 Movespeed |n|cffffcc00Wind Walk|r - Go invisible for 5 seconds. |n    20 |cff8080ffmana|r|N    |cffc0c0c012 second cooldown|r
-}
-
-STRING 756
-// Abilities: A01O (Item Mana Regeneration), EditorSuffix (Editor Suffix)
-{
- (0.5)
 }
 
 STRING 758
@@ -5579,12 +5489,6 @@ STRING 1636
 (cairne)
 }
 
-STRING 1637
-// Units: O003 (Demigod), Ubertip (Tooltip - Extended)
-{
-An ancient demigod. Can learn Shockwave, Endurance Aura, War Stomp and Reincarnation. |n|n[|cff00ff00New|r] - |cffffcc00Battle Charge|r - The Hero charges in their facing direction, knocking back and dealing 150 damage to enemies.
-}
-
 STRING 1638
 // Abilities: AEsf (Starfall), Tip (Tooltip - Normal)
 {
@@ -7009,12 +6913,6 @@ STRING 1972
 Brings back to life the corpses of friendly nearby units. |N|N|cffffcc00Level 1|r - 8 units, 60 second cooldown.|N|cffffcc00Level 2|r - 14 units, 60 second cooldown.
 }
 
-STRING 1973
-// Items: gobm (Goblin Land Mines), Ubertip (Tooltip - Extended)
-{
-Deals 300 damage in a small area. |nContains <gobm,uses> charges. |N|N|cffffcc00Good for earlier in the game.|R
-}
-
 STRING 1974
 // Items: tret (Tome of Retraining), Ubertip (Tooltip - Extended)
 {
@@ -7121,12 +7019,6 @@ STRING 1991
 // Units: Hblm (Blood Mage), Tip (Tooltip - Basic)
 {
 [|cffffcc00Enhanced|r] Summon Blood Mage
-}
-
-STRING 1992
-// Units: O003 (Demigod), Tip (Tooltip - Basic)
-{
-[|cffffcc00Enhanced|r] Summon Demigod
 }
 
 STRING 1993
@@ -7272,5 +7164,136 @@ STRING 2019
 // Units: Hpal (Paladin), Ubertip (Tooltip - Extended)
 {
 Can learn |cffffcc00Healing Wave|R, Holy Light, Devotion Aura and Resurrection.  |N|nEngineers can build |cffffcc00Holy Tower|r which deals damage with holy fire to enemies in |cffc0c0c01200 range|r.
+}
+
+STRING 2020
+// Units: O003 (Tauren Chieftain), Tip (Tooltip - Basic)
+{
+[|cffffcc00Enhanced|r] Summon Tauren Chieftan
+}
+
+STRING 2021
+// Units: O003 (Tauren Chieftain), Ubertip (Tooltip - Extended)
+{
+Can learn Shockwave, Endurance Aura, War Stomp and Reincarnation. |n|n[|cff00ff00New|r] - |cffffcc00Battle Charge|r - The Hero charges in their facing direction, knocking back and dealing 150 damage to enemies.
+}
+
+STRING 2022
+// Abilities: A03D (Spirit Link), EditorSuffix (Editor Suffix)
+{
+(item)
+}
+
+STRING 2023
+// Items: I017 ([|cffffcc00Recipe|r] Blood Ritual Pendant), Ubertip (Tooltip - Extended)
+{
+Requires:|cffc0c0c0 Crown of Kings, Pendant of Energy, Greater Sobi Mask, Staff of the Archmage, Staff of Knowledge|r
+
+  +15 |cff8080ffIntelligence|r
+    +5 |cffffcc00All Stats|r
++400|cff8080ff Mana|r
+    +3 |cff8080ffMana Regen|r
+
+Can cast |cffffcc00Spirit Link|r on |cffffcc0012 targets|r which splits up |cffffcc0050%|r of the damage across all linked targets. Lasts for 60 seconds.
+}
+
+STRING 2024
+// Items: I017 ([|cffffcc00Recipe|r] Blood Ritual Pendant), Name (Name)
+{
+[|cffffcc00Recipe|r] Blood Ritual Pendant
+}
+
+STRING 2025
+// Items: I017 ([|cffffcc00Recipe|r] Blood Ritual Pendant), Tip (Tooltip - Basic)
+{
+Purchase [|cffffcc00Recipe|r] Blood Ritual Pendant
+}
+
+STRING 2026
+// Items: gobm (Goblin Land Mines), Ubertip (Tooltip - Extended)
+{
+Deals |cffffcc00300 damage|R in a small area. |nContains <gobm,uses> charges.
+}
+
+STRING 2027
+// Items: I018 (Staff of the Archmage), Name (Name)
+{
+Staff of the Archmage
+}
+
+STRING 2031
+// Items: I018 (Staff of the Archmage), Description (Description)
+{
+Boosts Intelligence by 10
+}
+
+STRING 2032
+// Items: I018 (Staff of the Archmage), Tip (Tooltip - Basic)
+{
+Purchase Staff of the Archmage
+}
+
+STRING 2033
+// Items: I018 (Staff of the Archmage), Ubertip (Tooltip - Extended)
+{
++10 |cff8080ffIntelligence|r
+}
+
+STRING 2035
+// Items: I019 (Blood Ritual Pendant), Name (Name)
+{
+Blood Ritual Pendant
+}
+
+STRING 2036
+// Items: I019 (Blood Ritual Pendant), Tip (Tooltip - Basic)
+{
+Blood Ritual Pendant
+}
+
+STRING 2039
+// Abilities: A03E (Item Stat Bonus), Name (Name)
+{
+Item Stat Bonus
+}
+
+STRING 2040
+// Abilities: A03E (Item Stat Bonus), EditorSuffix (Editor Suffix)
+{
+(15 int)
+}
+
+STRING 2041
+// Abilities: A03F (Item Mana Bonus (400)), Name (Name)
+{
+Item Mana Bonus (400)
+}
+
+STRING 2043
+// Abilities: A01O (Item Mana Regeneration), EditorSuffix (Editor Suffix)
+{
+ (0.5) unused?
+}
+
+STRING 2044
+// Abilities: A03G (Flat Mana Regeneration), Name (Name)
+{
+Flat Mana Regeneration
+}
+
+STRING 2045
+// Abilities: A03G (Flat Mana Regeneration), EditorSuffix (Editor Suffix)
+{
+(3)
+}
+
+STRING 2046
+// Items: I019 (Blood Ritual Pendant), Ubertip (Tooltip - Extended)
+{
+    +5 |cffffcc00All Stats|r |n  +15 |cff8080ffIntelligence|r
++400|cff8080ff Mana|r
+    +3 |cff8080ffMana Regen|r
+
+Can cast |cffffcc00Spirit Link|r on |cffffcc0012 targets|r which splits up |cffffcc0050%|r of the damage across all linked targets. Lasts for 60 seconds.
 }
 
