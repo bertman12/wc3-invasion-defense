@@ -10,14 +10,13 @@ STRING 2
 
 STRING 3
 {
-|cff00ff00Simplfied|r
 ===Hero/Army/Base Defense===
 Survive for 9 nights. 
-
--Hero Abilities have been adjusted and also go to level 4 now
+-Hero Abilities have been enhanced and also go to level 4 now
 -Alchemist fixed
 -|cffffcc00Spawns fixed|r
-
+-Expanded Tech Tree
+-More items
 |cffff0000Undead Spawns: |r Shown as skulls on the minimap.
 }
 
@@ -379,7 +378,7 @@ Heraclius,Trajan,Hadrian,Narses,Justinian the Paranoid,Belisarius the Accused,Th
 }
 
 STRING 139
-// Units: h005 (Caltrops), Name (Name)
+// Abilities: A011 (Armor Reduction Aura), Tip (Tooltip - Normal)
 {
 Caltrops
 }
@@ -399,9 +398,9 @@ STRING 142
 {
 |cffff00ffObjective|r - Hold out for 9 nights until reinforcements arrive. 
 
-|cff00ff00Beginner|r : Pick Hero at the Tarvern then use your hero to place your town hall.
+|cff00ff00Beginner|r : Pick Hero at the Tarvern then use your hero to place your town hall. Build some towers near the walls.
 
-Hero Abilities have been adjusted and also go to level 4 now
+|cff00ff00Hero Abilities have been enhanced and also go to level 4 now.|r
 
 |cffffff00Income|r -  Build Druid Farmers for additional gold income.
 
@@ -414,12 +413,6 @@ Made by JediMindTrix/NihilismIsDeath
 STRING 143
 {
 Undead Forces
-}
-
-STRING 144
-// Units: h005 (Caltrops), Tip (Tooltip - Basic)
-{
-Build Caltrops
 }
 
 STRING 145
@@ -740,7 +733,7 @@ STRING 222
 }
 
 STRING 225
-// Units: h005 (Caltrops), Hotkey (Hotkey)
+// Units: h005 (Blade Trap), Hotkey (Hotkey)
 {
 R
 }
@@ -1537,12 +1530,6 @@ STRING 462
 G
 }
 
-STRING 466
-// Abilities: A011 (Armor Reduction Aura), Tip (Tooltip - Normal)
-{
-Caltrops
-}
-
 STRING 468
 // Units: n00C (Cold Tower), Hotkey (Hotkey)
 {
@@ -1609,24 +1596,6 @@ STRING 485
 A basic wall. Can be upgraded once to increase health and armor.
 }
 
-STRING 486
-// Abilities: A01A (Potion of Holy Fire), Name (Name)
-{
-Potion of Holy Fire
-}
-
-STRING 487
-// Abilities: A01A (Potion of Holy Fire), Tip (Tooltip - Normal)
-{
-Death Coil Spray
-}
-
-STRING 488
-// Abilities: A01A (Potion of Holy Fire), EditorSuffix (Editor Suffix)
-{
-(Potion - Holy Fire)
-}
-
 STRING 489
 // Buffs/Effects: B004 (custom fire), EditorName (Name (Editor Only))
 {
@@ -1634,7 +1603,7 @@ custom fire
 }
 
 STRING 490
-// Buffs/Effects: B004 (custom fire), Bufftip (Tooltip)
+// Abilities: A01A (Holy Fire), Name (Name)
 {
 Holy Fire
 }
@@ -1661,12 +1630,6 @@ STRING 501
 // Items: dtsb (Drek'thar's Spellbook), Ubertip (Tooltip - Extended)
 {
 Grants the ability to teleport you and nearby units to |cffffcc00castles|r or |cffffcc00towns|r (75 |cff8080ffmana|r - |cffc0c0c0no cooldown|r).|n|n+150 |cff8080ffMana|r |n -33% |cffff00ffSpell Damage|r Taken
-}
-
-STRING 502
-// Items: thdm (Thunderlizard Diamond), Ubertip (Tooltip - Extended)
-{
-Casts bolts of lightning that deals 100 damage to multiple targets. |n|n|cffc0c0c09 second cooldown|r.|n50 |cff8080ffmana|r cost.
 }
 
 STRING 509
@@ -2003,12 +1966,6 @@ STRING 646
 // Abilities: A01N (Roar), Ubertip (Tooltip - Normal - Extended)
 {
 Gives nearby friendly units a 35% bonus to damage. |nLasts 60 seconds.
-}
-
-STRING 654
-// Units: O003 (Demigod), Tip (Tooltip - Basic)
-{
-Summon Demigod
 }
 
 STRING 655
@@ -2946,7 +2903,7 @@ STRING 953
 }
 
 STRING 959
-// Units: h005 (Caltrops), Ubertip (Tooltip - Extended)
+// Abilities: A012 (Caltrops - Info Ability), Ubertip (Tooltip - Normal - Extended)
 {
 Severely inhibits nearby enemy units in 200 range.|n |n|cffff0000-50%|r movespeed |n|cffff0000-20%|r attack speed |n|cffff0000-2|r armor    |n|n|cffff0000Destroyed at the start of each day.|r
 }
@@ -3059,13 +3016,6 @@ STRING 1013
 While wearing this mask, a Hero will recover hit points equal to 25% of the attack damage dealt to an enemy unit. |n|n |cffff0000-6|r |cff8080ffIntelligence|r |n+5 |cff00ff00Agility|r
 }
 
-STRING 1016
-// Items: I00J ([|cffffcc00Recipe|r] Berserker's Cleaver), Ubertip (Tooltip - Extended)
-{
-Requires: |cffc0c0c0Corpse Cleaver, Helm of Battlethirst, Claws of Attack +5|r|n
-Causes melee attacks to cleave for 50% damage. |n|n+12|cffff0000 Strength|r |N  +4 |cff00ff00Agility|r   |n+10 |cffc0c0c0Attack Damage|r |N|N|cffffcc00Berserk|r: Attack 50% faster but takes 50% more damage.
-}
-
 STRING 1017
 // Items: I00Y ([|cffffcc00Recipe|r] [|cffff0000Cursed|R] Ghoulish Mask of Midas), Name (Name)
 {
@@ -3155,12 +3105,6 @@ STRING 1044
 // Abilities: Aamk (Attribute Bonus), Researchubertip (Tooltip - Learn - Extended)
 {
 Gives a permanent bonus to Agility, Intelligence, and Strength. |n|n|cffffcc00Level 1|r - Adds three points to all stats.|n|cffffcc00Level 2|r - Adds three additional points.|n|cffffcc00Level 3|r - Adds three additional points.|n|cffffcc00Level 4|r - Adds three additional points. |n|n|cffff0000Hidden from command card.|r
-}
-
-STRING 1045
-// Abilities: A012 (Caltrops - Info Ability), Ubertip (Tooltip - Normal - Extended)
-{
-Severely inhibits nearby enemy units in 200 range.|n |n|cffff0000-50%|r movespeed |n|cffff0000-20%|r attack speed |n|cffff0000-2|r armor    |n|n|cffff0000Destroyed at the start of each day.|r
 }
 
 STRING 1046
@@ -5527,12 +5471,6 @@ STRING 1616
 Gives <AHad,DataA4,.> additional armor to nearby friendly units.
 }
 
-STRING 1617
-// Units: Nbst (Beastmaster), Ubertip (Tooltip - Extended)
-{
- Can learn Summon Bear, Summon Quilbeast, Summon Hawk, and Stampede.|n|n[|cff00ff00New|r] |cffffcc00Roar|r - Gives allies +35% damage. |n|NEngineers can now build |cffffcc00Stone of Fortification|r granting +6 armor to |cffffcc00structures|r in 1200 range.
-}
-
 STRING 1618
 // Abilities: A01M (Devotion Aura), Ubertip (Tooltip - Normal - Extended)
 {
@@ -5767,12 +5705,6 @@ STRING 1657
 Can learn Flame Strike,|cff00ff00Time Distortion|r, Siphon Mana and Phoenix.  |N|N[|cff00ff00New|r] - Time Distortion
 }
 
-STRING 1658
-// Units: Hpal (Paladin), Ubertip (Tooltip - Extended)
-{
-Can learn |cffffcc00Healing Wave|R, Holy Light, Devotion Aura and Resurrection. 
-}
-
 STRING 1660
 // Abilities: ANht (Howl of Terror), Researchubertip (Tooltip - Learn - Extended)
 {
@@ -5831,12 +5763,6 @@ STRING 1674
 // Abilities: AHad (Devotion Aura), Researchubertip (Tooltip - Learn - Extended)
 {
 Gives additional armor to nearby friendly units. |n|n|cffffcc00Level 1|r - Increases base armor by <AHad,DataA1,.>. |n|cffffcc00Level 2|r - Increases base armor by <AHad,DataA2,.>. |n|cffffcc00Level 3|r - Increases base armor by <AHad,DataA3,.>.  |n|cffffcc00Level 4|r - Increases base armor by <AHad,DataA4,.>.
-}
-
-STRING 1676
-// Abilities: AHre (Resurrection), Researchubertip (Tooltip - Learn - Extended)
-{
-Brings back to life the corpses of friendly nearby units. |N|N|cffffcc00Level 1|r - 8 units, 90 second cooldown.|N|cffffcc00Level 2|r - 14 units, 90 second cooldown.
 }
 
 STRING 1677
@@ -6017,12 +5943,6 @@ STRING 1716
 // Items: will (Wand of Illusion), Ubertip (Tooltip - Extended)
 {
 Create an illusory double of the targeted unit when used. The illusory double deals |cffffcc0025% damage|r to enemy units, takes |cffffcc00<AIil,DataB1>|r times the damage from enemy attacks, and will disappear after |cffffcc00<AIil,Dur1> seconds|r or when its hit points reach zero. |n|nContains <will,uses> charges.
-}
-
-STRING 1717
-// Items: gobm (Goblin Land Mines), Ubertip (Tooltip - Extended)
-{
-Places a hidden land mine at a target point. Enemy units that move near the land mine will activate the mine, destroying the mine and causing area of effect damage to nearby units. |nContains <gobm,uses> charges. |N|N|cffffcc00Good for earlier in the game.|R
 }
 
 STRING 1719
@@ -6535,12 +6455,6 @@ STRING 1863
 Research Improved Tower Range
 }
 
-STRING 1865
-// Abilities: Aosp (Spiked Barricades), Ubertip (Tooltip - Normal - Extended)
-{
-Surrounds Orc buildings with spikes that damage enemy melee attackers. Deals 12 damage per attack plus an additional <Rosp,base2,%>% of the attacker's damage.
-}
-
 STRING 1866
 // Upgrades: R007 (Submerge), Name (Name)
 {
@@ -6917,18 +6831,6 @@ STRING 1939
 Elite ranged unit with |cffffcc00critical strike|r that can also enlist archers herself. Also has |cffffcc00Mass Teleport|r.  |n|n|cffff00ffSupport Unit  |r |n|nProvides an aura for ranged units that increases their damage by +15. |n|N|cffffcc00Able to use 1 item and has a minimap icon representing where it is.|r
 }
 
-STRING 1940
-// Items: hslv (Healing Salve), Ubertip (Tooltip - Extended)
-{
-|cff87ceebNon-Combat Consumable|r|nRegenerates a target unit's|cff80ff80 hit points|r by |cff80ff80<AIrl,DataA1>|r over |cffffcc00<AIrl,Dur1> seconds|R when used. |nContains <hslv,uses> charges.
-}
-
-STRING 1941
-// Items: phea (Potion of Healing), Ubertip (Tooltip - Extended)
-{
-Heals |cff80ff80350 hit points |rwhen used.
-}
-
 STRING 1942
 // Items: pams (Anti-magic Potion), Ubertip (Tooltip - Extended)
 {
@@ -7093,5 +6995,282 @@ STRING 1970
 // Units: h00G (Peasant), Tip (Tooltip - Basic)
 {
 Train Town Hall Peasant
+}
+
+STRING 1971
+// Items: phea (Potion of Healing), Ubertip (Tooltip - Extended)
+{
+Heals |cff80ff80350 hit points |rwhen used. |n|NContains 2 charges.
+}
+
+STRING 1972
+// Abilities: AHre (Resurrection), Researchubertip (Tooltip - Learn - Extended)
+{
+Brings back to life the corpses of friendly nearby units. |N|N|cffffcc00Level 1|r - 8 units, 60 second cooldown.|N|cffffcc00Level 2|r - 14 units, 60 second cooldown.
+}
+
+STRING 1973
+// Items: gobm (Goblin Land Mines), Ubertip (Tooltip - Extended)
+{
+Deals 300 damage in a small area. |nContains <gobm,uses> charges. |N|N|cffffcc00Good for earlier in the game.|R
+}
+
+STRING 1974
+// Items: tret (Tome of Retraining), Ubertip (Tooltip - Extended)
+{
+Reset's your Hero's skill points, letting you learn different spells.
+}
+
+STRING 1975
+// Items: hslv (Healing Salve), Ubertip (Tooltip - Extended)
+{
+|cff87ceebNon-Combat Consumable|r|nRegenerates|cff80ff80 hit points|r by |cff80ff80<AIrl,DataA1>|r over |cffffcc00<AIrl,Dur1> seconds|R when used. |nContains <hslv,uses> charges.
+}
+
+STRING 1976
+// Units: n00Y (War Eagle), EditorSuffix (Name - Editor Suffix)
+{
+ (Level 4)
+}
+
+STRING 1977
+// Units: n00Y (War Eagle), Name (Name)
+{
+War Eagle
+}
+
+STRING 1978
+// Abilities: ANsw (Summon Hawk), Tip (Tooltip - Normal)
+{
+Summon Hawk - [|cffffcc00Level 4|r]
+}
+
+STRING 1979
+// Abilities: ANsw (Summon Hawk), Ubertip (Tooltip - Normal - Extended)
+{
+Summons a proud <nwe4,realHP> hit point hawk to attack and spy on your enemies. Has the True Sight and Invisibility abilities. |nLasts <ANsw,Dur4> seconds.
+}
+
+STRING 1980
+// Units: Nbst (Beastmaster), Ubertip (Tooltip - Extended)
+{
+ Can learn Summon Bear, Summon Quilbeast, Summon Hawk, and Stampede.|n|n[|cff00ff00New|r] |cffffcc00Roar|r - Gives allies +35% damage. |n|NEngineers can now build |cffffcc00Stone of Fortification|r granting +6 armor to |cffffcc00structures|r in 1200 range.|n|nSummons benefit from armor and weapon upgrades.
+}
+
+STRING 1981
+// Units: Hpal (Paladin), Tip (Tooltip - Basic)
+{
+[|cffffcc00Enhanced|r] Summon Paladin
+}
+
+STRING 1982
+// Units: Nalc (Alchemist), Tip (Tooltip - Basic)
+{
+[|cffffcc00Enhanced|r] Summon Alchemist
+}
+
+STRING 1983
+// Units: Nbst (Beastmaster), Tip (Tooltip - Basic)
+{
+[|cffffcc00Enhanced|r] Summon Beastmaster
+}
+
+STRING 1984
+// Units: Npbm (Brewmaster), Tip (Tooltip - Basic)
+{
+[|cffffcc00Enhanced|r] Summon Brewmaster
+}
+
+STRING 1985
+// Units: Nbrn (Dark Ranger), Tip (Tooltip - Basic)
+{
+[|cffffcc00Enhanced|r] Summon Dark Ranger
+}
+
+STRING 1986
+// Units: Nfir (Firelord), Tip (Tooltip - Basic)
+{
+[|cffffcc00Enhanced|r] Summon Firelord
+}
+
+STRING 1987
+// Units: Nplh (Pit Lord), Tip (Tooltip - Basic)
+{
+[|cffffcc00Enhanced|r] Summon Pit Lord
+}
+
+STRING 1988
+// Units: Nngs (Sea Witch), Tip (Tooltip - Basic)
+{
+[|cffffcc00Enhanced|r] Summon Sea Witch
+}
+
+STRING 1989
+// Units: Ntin (Tinker), Tip (Tooltip - Basic)
+{
+[|cffffcc00Enhanced|r] Summon Tinker
+}
+
+STRING 1990
+// Units: Hmkg (Mountain King), Tip (Tooltip - Basic)
+{
+[|cffffcc00Enhanced|r] Summon Mountain King
+}
+
+STRING 1991
+// Units: Hblm (Blood Mage), Tip (Tooltip - Basic)
+{
+[|cffffcc00Enhanced|r] Summon Blood Mage
+}
+
+STRING 1992
+// Units: O003 (Demigod), Tip (Tooltip - Basic)
+{
+[|cffffcc00Enhanced|r] Summon Demigod
+}
+
+STRING 1993
+// Items: I00J ([|cffffcc00Recipe|r] Berserker's Cleaver), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Corpse Cleaver, Helm of Battlethirst, Claws of Attack +5|r|n
+Causes melee attacks to cleave for 50% damage. |n|n+12|cffff0000 Strength|r |N  +4 |cff00ff00Agility|r   |n+10 |cffc0c0c0Attack Damage|r |N|N|cffffcc00Improved Battlethirst|r: Attack 50% faster but takes 50% more damage.
+}
+
+STRING 1994
+// Units: h010 (Holy Tower), Name (Name)
+{
+Holy Tower
+}
+
+STRING 1995
+// Units: h010 (Holy Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Holy Tower
+}
+
+STRING 1997
+// Abilities: A01A (Holy Fire), Tip (Tooltip - Normal)
+{
+Holy Fire
+}
+
+STRING 1998
+// Abilities: A03C (Holy Fire), Ubertip (Tooltip - Normal - Extended)
+{
+Blasts enemies in|cffc0c0c0 1200 range|r with |cffffcc00Holy Light|r, dealing |cffffcc00150 damage|r to the target immediately and an additional |cffffcc00150 damage|r over 6 seconds.
+}
+
+STRING 1999
+// Abilities: A03C (Holy Fire), Name (Name)
+{
+Holy Fire
+}
+
+STRING 2000
+// Units: h010 (Holy Tower), Ubertip (Tooltip - Extended)
+{
+The tower has no attack.      |n|nBlasts enemies in|cffc0c0c0 1200 range|r with |cffffcc00Holy Light|r, dealing |cffffcc00150 damage|r to the target immediately and an additional |cffffcc00150 damage|r over 6 seconds.
+}
+
+STRING 2001
+// Abilities: A01A (Holy Fire), EditorSuffix (Editor Suffix)
+{
+(Tower)
+}
+
+STRING 2002
+// Abilities: A03C (Holy Fire), EditorSuffix (Editor Suffix)
+{
+(INFO ABILITY)
+}
+
+STRING 2003
+// Abilities: A03C (Holy Fire), Tip (Tooltip - Normal)
+{
+Holy Fire
+}
+
+STRING 2005
+// Buffs/Effects: B004 (custom fire), Bufftip (Tooltip)
+{
+Holy Fire
+}
+
+STRING 2006
+// Abilities: A01A (Holy Fire), Ubertip (Tooltip - Normal - Extended)
+{
+Blasts enemies in|cffc0c0c0 1200 range|r with |cffffcc00Holy Light|r, dealing |cffffcc00150 damage|r to the target immediately and an additional |cffffcc00150 damage|r over 6 seconds. |N|nOnly targets units not already effected by |cffffcc00Holy Fire|r.
+}
+
+STRING 2007
+// Units: h005 (Blade Trap), Name (Name)
+{
+Blade Trap
+}
+
+STRING 2008
+// Units: h005 (Blade Trap), Tip (Tooltip - Basic)
+{
+Build Blade Trap
+}
+
+STRING 2009
+// Units: h005 (Blade Trap), Ubertip (Tooltip - Extended)
+{
+Severely inhibits nearby enemy units in |cffc0c0c0200 range|r and deals a small amount of damage.|n |n|cffff0000-50%|r movespeed |n|cffff0000-20%|r attack speed |n|cffff0000-2|r armor    |n|n|cffff0000Destroyed at the start of each day.|r
+}
+
+STRING 2011
+// Upgrades: R00D (Submerge), Tip (Tooltip)
+{
+Research Holy Tower
+}
+
+STRING 2012
+// Upgrades: R00D (Submerge), Ubertip (Tooltip - Extended)
+{
+Enables the construction of Holy Towers.
+}
+
+STRING 2013
+// Upgrades: R00D (Submerge), EditorSuffix (Editor Suffix)
+{
+(null upgrade)
+}
+
+STRING 2014
+// Items: tcas (Tiny Town Hall), Ubertip (Tooltip - Extended)
+{
+Creates a |cffffcc00Town Hall|r at a target location.
+}
+
+STRING 2015
+// Items: tcas (Tiny Town Hall), Tip (Tooltip - Basic)
+{
+Purchase Tiny Town Hall
+}
+
+STRING 2016
+// Upgrades: R00D (Submerge), Name (Name)
+{
+Holy Tower Upgrade
+}
+
+STRING 2017
+// Abilities: Aosp (Spiked Barricades), Ubertip (Tooltip - Normal - Extended)
+{
+Surrounds the |cffffcc00Ironclad Barricade|r with spikes that damage enemy melee attackers. Deals |cffffcc0012 damage per attack|r plus an additional |cffffcc0020% of the attacker's damage|r.
+}
+
+STRING 2018
+// Items: thdm (Thunderlizard Diamond), Ubertip (Tooltip - Extended)
+{
+Casts |cffffcc00Chain Lightning|r that deals |cffff00ff100 damage|r to multiple targets. |n|n|cffc0c0c09 second cooldown|r.|n50 |cff8080ffmana|r cost.
+}
+
+STRING 2019
+// Units: Hpal (Paladin), Ubertip (Tooltip - Extended)
+{
+Can learn |cffffcc00Healing Wave|R, Holy Light, Devotion Aura and Resurrection.  |N|nEngineers can build |cffffcc00Holy Tower|r which deals damage with holy fire to enemies in |cffc0c0c01200 range|r.
 }
 

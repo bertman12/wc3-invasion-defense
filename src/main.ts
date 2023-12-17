@@ -11,7 +11,7 @@ import { init_armyControllerTrigs } from "./triggers/armyController";
 import { init_cameraTrigs } from "./triggers/camera";
 import { init_economyTriggers } from "./triggers/economy/init";
 import { init_itemAbilities } from "./triggers/items";
-import { setupUnitPreviewArea } from "./triggers/misc";
+import { init_miscellaneousTriggers } from "./triggers/misc";
 import { init_upgradeBasedTriggers } from "./triggers/upgrades";
 import { trig_wayGate } from "./triggers/waygate";
 import { init_undead } from "./undead/taxonomy";
@@ -34,14 +34,14 @@ function tsMain() {
         print(" ");
 
         trig_wayGate();
-        setupUnitPreviewArea();
+        init_miscellaneousTriggers();
         initFrames();
 
         //Game starting message
         Timer.create().start(5, false, () => {
             Sound.fromHandle(gg_snd_U08Archimonde19)?.start();
             Sound.fromHandle(gg_snd_Hint)?.start();
-            notifyPlayer("Place your Town Hall with your hero.");
+            notifyPlayer("Place your |cffffcc00Town Hall|r with your |cffffcc00Hero|r.");
             TimerManager.startDayTimer(() => {
                 RoundManager.startNextRound();
             }, 240);

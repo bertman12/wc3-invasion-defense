@@ -669,3 +669,9 @@ staff of primal thunder upgrade -> passively summons thunder elementals every 20
 cursed mask of midas enables your hero to drain the life of all nearby enemies?? probably not
 
 Demon Eye Trinket - +10 All stats lets you use the active of helm of battle thirst while also having a chance to cast unholy frenzy on you giving you 100% attack speed bonus;
+
+For The final wave of the 3rd round spawn lvl 6 undead heroes on each spawn
+
+then for the second round spawn lvl 12 with their ultimates
+
+then for the final round spawn level 25 with full items

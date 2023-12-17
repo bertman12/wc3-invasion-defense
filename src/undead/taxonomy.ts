@@ -350,9 +350,6 @@ class SpawnData {
         this.units.forEach((u, index) => {
             if (u) {
                 u.kill();
-                // if (Math.random() * 100 >= 2 + Math.floor(RoundManager.currentRound / 2)) {
-                //     u.kill();
-                // }
             }
         });
 
