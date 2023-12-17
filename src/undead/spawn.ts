@@ -11,6 +11,7 @@ const UNDEAD_PLAYERS = [Players[10], Players[12], Players[13], Players[14], Play
 const defaultAttackX = -1200;
 const defaultAttackY = -15500;
 let currentUndeadPlayerIndex = 0;
+let isUndeadHeroSoundAlreadyPlaying = false;
 
 /**
  * Cycles all players from the undead player array then restarts once it goes through all players
@@ -377,7 +378,7 @@ class SpawnData {
         }
 
         this.spawnPortalDisplay?.destroy();
-
+        isUndeadHeroSoundAlreadyPlaying = false;
         this.onCleanupFunctions.forEach((cb) => {
             cb();
         });
@@ -398,15 +399,23 @@ class SpawnData {
 
         if (attackingUnits.length > 0) {
             attackingUnits.forEach((u) => {
-                u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? defaultAttackX, this.currentAttackTarget?.y ?? defaultAttackY);
+                if (!this.currentAttackTarget?.isAlive()) {
+                    u.issueOrderAt(OrderId.Attack, defaultAttackX, defaultAttackY);
+                } else {
+                    u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? defaultAttackX, this.currentAttackTarget?.y ?? defaultAttackY);
+                }
             });
         }
 
         //If there are any idle units, then make them attack the current target or 0,0
         if (this.units.length > 0) {
             this.units.forEach((u) => {
-                if (u.currentOrder === 0 || u.currentOrder === OrderId.Stop) {
-                    u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? defaultAttackX, this.currentAttackTarget?.y ?? defaultAttackY);
+                if (u.currentOrder === 0 || u.currentOrder === OrderId.Stop || u.currentOrder === OrderId.Holdposition) {
+                    if (!this.currentAttackTarget?.isAlive()) {
+                        u.issueOrderAt(OrderId.Attack, defaultAttackX, defaultAttackY);
+                    } else {
+                        u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? defaultAttackX, this.currentAttackTarget?.y ?? defaultAttackY);
+                    }
                 }
             });
         }
@@ -506,33 +515,39 @@ class SpawnData {
         //Crypt Lord, Death Knight, Dread Lord, Lich
         const undeadHeroes = [UNITS.uh_cryptLord, UNITS.uh_deathKnight, UNITS.uh_dreadLord, UNITS.uh_lich];
         const locUnitArray: Unit[] = [];
-        if (this.spawnDifficulty === SpawnDifficulty.normal) {
-        }
-        switch (this.spawnDifficulty) {
-            case SpawnDifficulty.normal:
-                Sound.fromHandle(gg_snd_H06Arthas06)?.start();
-                break;
-            case SpawnDifficulty.hard:
-                Sound.fromHandle(gg_snd_L01Arthas22)?.start();
 
-                break;
-            case SpawnDifficulty.final:
-                Sound.fromHandle(gg_snd_L04Anubarak24)?.start();
-                break;
+        if (!isUndeadHeroSoundAlreadyPlaying) {
+            isUndeadHeroSoundAlreadyPlaying = true;
 
-            default:
-                break;
+            switch (this.spawnDifficulty) {
+                case SpawnDifficulty.normal:
+                    Sound.fromHandle(gg_snd_H06Arthas06)?.start();
+                    break;
+                case SpawnDifficulty.hard:
+                    Sound.fromHandle(gg_snd_L01Arthas22)?.start();
+
+                    break;
+                case SpawnDifficulty.final:
+                    Sound.fromHandle(gg_snd_L04Anubarak24)?.start();
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         undeadHeroes.forEach((heroId) => {
             const hero = Unit.create(getNextUndeadPlayer(), heroId, this.spawnRec?.centerX ?? -570, this.spawnRec?.centerY ?? -7000);
-
             if (hero) {
-                print("Undead Hero created!");
+                locUnitArray.push(hero);
+                //Should solve the idle undead hero issue - maybe also caused the issue with undead heroes not fully being spawned....
+                this.units.push(hero);
 
                 const calculatedHeroLevel = 10 + 10 * this.spawnDifficulty;
                 hero.setHeroLevel(calculatedHeroLevel, false);
                 hero.maxLife += 600;
+                hero.setScale(2.2, 1, 1);
+                hero.setVertexColor(255, 100, 100, 255);
                 hero.life = hero.maxLife;
 
                 const abilities = undeadHeroAbilityMap.get(heroId);
@@ -540,7 +555,7 @@ class SpawnData {
                 //Upgrade hero abilities to max
                 abilities?.forEach((abilityCode, index) => {
                     const ultimateIndex = 3;
-                    const abilityLevel = hero.getAbilityLevel(abilityCode);
+                    // const abilityLevel = hero.getAbilityLevel(abilityCode);
 
                     if (index !== ultimateIndex) {
                         hero.setAbilityLevel(abilityCode, 3);
@@ -552,27 +567,30 @@ class SpawnData {
                 });
 
                 //Add an item to the hero, depending on the difficulty, the hero will get a random item
-                const randomIndex = math.random(0, possibleUndeadItems.length);
+                let randomIndex = math.random(0, possibleUndeadItems.length);
                 let itemsAdded = 0;
                 let attempts = 0;
 
-                while (!unitHasItem(hero, possibleUndeadItems[randomIndex]) && itemsAdded < this.spawnDifficulty + 1) {
-                    const undeadItem = Item.create(possibleUndeadItems[randomIndex], 0, 0);
+                // while (!unitHasItem(hero, possibleUndeadItems[randomIndex]) && itemsAdded < this.spawnDifficulty + 1) {
 
-                    if (undeadItem) {
+                while (itemsAdded <= this.spawnDifficulty) {
+                    const undeadItem = Item.create(possibleUndeadItems[randomIndex], 0, 0);
+                    if (undeadItem && !unitHasItem(hero, undeadItem.typeId)) {
                         hero.addItem(undeadItem);
                         itemsAdded++;
                     }
+                    // else if (undeadItem && unitHasItem(hero, undeadItem.typeId)) {
+                    //     undeadItem?.destroy();
+                    // }
 
                     attempts++;
+                    randomIndex = math.random(0, possibleUndeadItems.length);
 
-                    if (attempts >= 50) {
+                    if (attempts >= 150) {
                         print("Max attempts to add item to undead hero reached!");
                         break;
                     }
                 }
-
-                locUnitArray.push(hero);
             }
         });
 
@@ -856,7 +874,7 @@ function calcBaseAmountPerWave() {
         numPlayers++;
     });
 
-    const enemiesPerWave = RoundManager.currentRound * 2 + 5 + 2 * numPlayers;
+    const enemiesPerWave = RoundManager.currentRound * 1 + 8 + 2 * numPlayers;
     return enemiesPerWave;
 }
 

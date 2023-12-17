@@ -166,6 +166,8 @@ function gemOfTheTimeMage() {
 function bloodGem() {}
 
 function demonsEyeTrinketProcItem() {
+    const undeadHeroes = [UNITS.uh_cryptLord, UNITS.uh_deathKnight, UNITS.uh_dreadLord, UNITS.uh_lich];
+
     onUnitAttacked(
         (attacker, victim) => {
             if (unitHasItem(attacker, ITEMS.demonsEyeTrinket)) {
@@ -179,11 +181,16 @@ function demonsEyeTrinketProcItem() {
                     1,
                     attacker,
                 );
+
                 attacker.setScale(2, 1, 1);
                 attacker.setVertexColor(255, 100, 100, 255);
                 delayedTimer(5, () => {
                     attacker.setVertexColor(255, 255, 255, 255);
                     attacker.setScale(1, 1, 1);
+                    if (undeadHeroes.includes(attacker.typeId)) {
+                        attacker.setScale(2.2, 1, 1);
+                        attacker.setVertexColor(255, 100, 100, 255);
+                    }
                 });
             }
         },

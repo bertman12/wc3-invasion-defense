@@ -12,8 +12,8 @@ STRING 3
 {
 ===Hero/Army/Base Defense===
 Survive for 9 nights. 
--Hero Abilities have been enhanced and also go to level 4 now
--Alchemist fixed
+-Hero Abilities have been enhanced and also go to level 4
+-Added Boss Rounds
 -|cffffcc00Spawns fixed|r
 -Expanded Tech Tree
 -More items
@@ -390,7 +390,7 @@ Undead Siege Defense v0.24
 
 STRING 142
 {
-|cffff00ffObjective|r - Hold out for 9 nights until reinforcements arrive. 
+|cffff00ffObjective|r - Hold out for 9 nights. 
 
 |cff00ff00Beginner|r : Pick Hero at the Tarvern then use your hero to place your town hall. Build some towers near the walls.
 
@@ -1681,7 +1681,7 @@ Build Grain Silo
 }
 
 STRING 561
-// Abilities: A015 (Place Goblin Land Mine), Hotkey (Hotkey - Normal)
+// Items: gold (Gold Coins), Hotkey (Hotkey)
 {
 G
 }
@@ -7294,5 +7294,23 @@ STRING 2049
     +3 |cff8080ffMana Regen|r
 
 Can cast |cffffcc00Spirit Link|r on |cffffcc0012 targets|r which splits up |cffffcc0050%|r of the damage across all linked targets. |n|NLasts for 60 seconds.
+}
+
+STRING 2050
+// Items: gold (Gold Coins), Ubertip (Tooltip - Extended)
+{
+Gives |cffffff00100 gold |rto the player when used.
+}
+
+STRING 2051
+// Units: n00Z (Lumber Exchange), Name (Name)
+{
+Lumber Exchange
+}
+
+STRING 2052
+// Abilities: A015 (Place Goblin Land Mine), Hotkey (Hotkey - Normal)
+{
+G
 }
 

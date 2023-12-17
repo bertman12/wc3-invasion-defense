@@ -450,7 +450,7 @@ function lossCondition() {
             forEachAlliedPlayer((p) => {
                 if (isPlayingUser(p)) {
                     forEachUnitOfPlayer(p, (u) => {
-                        if (u.typeId === FourCC("htow")) {
+                        if (u.typeId === FourCC("htow") && u.isAlive()) {
                             foundAlliedTownHall = true;
                         }
                     });
@@ -458,6 +458,10 @@ function lossCondition() {
             });
 
             if (!foundAlliedTownHall) {
+                StopMusic(false);
+                PlayMusic(gg_snd_UndeadVictory);
+                //play sad sound
+                Sound.fromHandle(gg_snd_SargerasLaugh)?.start();
                 print(tColor("No town halls remain. You have been defeated!", "red"));
             }
         }

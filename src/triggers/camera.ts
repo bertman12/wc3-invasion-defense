@@ -12,8 +12,8 @@ export function setCameraDistance() {
 
         t.addAction(() => {
             const str = GetEventPlayerChatString();
-
-            if (str) {
+            const triggeringPlayer = GetTriggerPlayer();
+            if (str && triggeringPlayer) {
                 const [command, distance] = str?.split(" ");
                 const distanceAsNumber = Number(distance);
 
@@ -22,8 +22,8 @@ export function setCameraDistance() {
                     return;
                 }
 
-                SetCameraFieldForPlayer(p.handle, CAMERA_FIELD_FARZ, 10000, 0.25);
-                SetCameraFieldForPlayer(p.handle, CAMERA_FIELD_TARGET_DISTANCE, distanceAsNumber, 0.25);
+                SetCameraFieldForPlayer(triggeringPlayer, CAMERA_FIELD_FARZ, 10000, 0.25);
+                SetCameraFieldForPlayer(triggeringPlayer, CAMERA_FIELD_TARGET_DISTANCE, distanceAsNumber, 0.25);
             }
         });
     });

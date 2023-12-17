@@ -675,3 +675,5 @@ For The final wave of the 3rd round spawn lvl 6 undead heroes on each spawn
 then for the second round spawn lvl 12 with their ultimates
 
 then for the final round spawn level 25 with full items
+
+cap druid count to 10 and lumber peasant to 25

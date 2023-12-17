@@ -107,31 +107,6 @@ local life
 u = BlzCreateUnitWithSkin(p, FourCC("h003"), 17728.0, -29120.0, 270.000, FourCC("h003"))
 end
 
-function CreateUnitsForPlayer0()
-local p = Player(0)
-local u
-local unitID
-local t
-local life
-
-u = BlzCreateUnitWithSkin(p, FourCC("O003"), -391.0, -8471.7, 297.670, FourCC("O003"))
-UnitAddItemToSlotById(u, FourCC("I019"), 0)
-u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -1023.6, -8436.6, 24.379, FourCC("hpea"))
-u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -1033.7, -8723.6, 249.013, FourCC("hpea"))
-u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -1032.6, -8790.2, 131.598, FourCC("hpea"))
-u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -1026.4, -8845.9, 36.476, FourCC("hpea"))
-u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -987.4, -8906.1, 306.088, FourCC("hpea"))
-u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -915.3, -8952.2, 20.259, FourCC("hpea"))
-u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -806.9, -9013.8, 131.719, FourCC("hpea"))
-u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -731.8, -9056.5, 10.316, FourCC("hpea"))
-u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -645.4, -9108.9, 298.486, FourCC("hpea"))
-u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -532.8, -9155.2, 21.039, FourCC("hpea"))
-u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -451.6, -9173.9, 122.897, FourCC("hpea"))
-u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -283.4, -9195.8, 5.153, FourCC("hpea"))
-u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -78.7, -9192.4, 46.605, FourCC("hpea"))
-u = BlzCreateUnitWithSkin(p, FourCC("hpea"), 14.9, -9192.4, 170.963, FourCC("hpea"))
-end
-
 function CreateBuildingsForPlayer9()
 local p = Player(9)
 local u
@@ -566,6 +541,7 @@ u = BlzCreateUnitWithSkin(p, FourCC("n00U"), -315.1, -8255.0, 270.000, FourCC("n
 u = BlzCreateUnitWithSkin(p, FourCC("n00J"), -687.9, -8524.9, 270.000, FourCC("n00J"))
 u = BlzCreateUnitWithSkin(p, FourCC("n00G"), -564.3, -8259.6, 270.000, FourCC("n00G"))
 u = BlzCreateUnitWithSkin(p, FourCC("n00E"), -41.0, -8670.2, 270.000, FourCC("n00E"))
+u = BlzCreateUnitWithSkin(p, FourCC("n00Z"), -384.0, -9408.0, 270.000, FourCC("n00Z"))
 u = BlzCreateUnitWithSkin(p, FourCC("n00V"), -71.5, -8269.5, 270.000, FourCC("n00V"))
 u = BlzCreateUnitWithSkin(p, FourCC("n00W"), -545.3, -7873.9, 270.000, FourCC("n00W"))
 u = BlzCreateUnitWithSkin(p, FourCC("n00A"), 1344.0, -1408.0, 270.000, FourCC("n00A"))
@@ -620,7 +596,6 @@ CreateBuildingsForPlayer18()
 end
 
 function CreatePlayerUnits()
-CreateUnitsForPlayer0()
 CreateUnitsForPlayer9()
 CreateUnitsForPlayer18()
 end
