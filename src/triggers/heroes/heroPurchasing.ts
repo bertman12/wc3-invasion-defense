@@ -1,13 +1,41 @@
 import { UNITS } from "src/shared/enums";
 import { playerStates } from "src/shared/playerState";
+import { notifyPlayer, tColor } from "src/utils/misc";
 import { forEachAlliedPlayer, isPlayingUser } from "src/utils/players";
-import { MapPlayer, Trigger, Unit } from "w3ts";
+import { delayedTimer } from "src/utils/timer";
+import { MapPlayer, Timer, Trigger, Unit } from "w3ts";
 
 /**
  * Must occur after player states have been setup
  */
-export function setup_heroPurchasing() {
-    trig_heroPurchasedAfterPrepTime();
+export function setup_heroPurchasing(onPrepTimeEnd: (...args: any[]) => any) {
+    delayedTimer(1, () => {
+        const prepHeroPurchaseTrigger = trig_heroPurchasedDuringPrepTime();
+        const prepTimer = Timer.create();
+        const prepTimerDialog = CreateTimerDialogBJ(prepTimer.handle, "Preparation Time...");
+        const PREP_TIME_SECONDS = 40;
+        notifyPlayer(`You have ${PREP_TIME_SECONDS} seconds to prepare. You may still pick your hero after preparation time has ended.`);
+        print(tColor("Choose your hero...", "red"));
+
+        if (!prepTimerDialog) {
+            print("Was unable to setup prep timer dialog!");
+            //As a backup, just use the normal hero purchase trigger
+            trig_heroPurchasedAfterPrepTime();
+            return;
+        }
+
+        TimerDialogDisplayBJ(true, prepTimerDialog);
+
+        prepTimer.start(PREP_TIME_SECONDS, false, () => {
+            prepHeroPurchaseTrigger.destroy();
+            TimerDialogDisplayBJ(false, prepTimerDialog);
+
+            notifyPlayer("Preparation time has ended.");
+            moveAllPrepHeroesToStartLocationAndGiveItems();
+            trig_heroPurchasedAfterPrepTime();
+            onPrepTimeEnd();
+        });
+    });
 }
 
 /**
@@ -99,6 +127,8 @@ function trig_heroPurchasedDuringPrepTime() {
         SelectUnitForPlayerSingle(purchasedHero.handle, purchasedHero.owner.handle);
         SelectUnitRemoveForPlayer(seller?.handle, purchasedHero.owner.handle);
     });
+
+    return t;
 }
 
 /**
@@ -108,24 +138,25 @@ function trig_heroPurchasedDuringPrepTime() {
 function moveAllPrepHeroesToStartLocationAndGiveItems() {
     forEachAlliedPlayer((p) => {
         if (isPlayingUser(p)) {
-            const playerState = playerStates.get(p.id);
+            moveSingleHeroToStartLocationAndGiveItems(p);
+            // const playerState = playerStates.get(p.id);
 
-            if (playerState) {
-                const purchasedHero = playerState.playerHero;
-                if (!purchasedHero) {
-                    return;
-                }
+            // if (playerState) {
+            //     const purchasedHero = playerState.playerHero;
+            //     if (!purchasedHero) {
+            //         return;
+            //     }
 
-                purchasedHero?.addItemById(FourCC("stel"));
-                purchasedHero?.addItemById(FourCC("tcas"));
-                const startX = purchasedHero.owner.startLocationX;
-                const startY = purchasedHero.owner.startLocationY;
-                SetCameraPositionForPlayer(p.handle, startX, startY);
-                purchasedHero.x = startX;
-                purchasedHero.y = startY;
-                const armyController = Unit.create(purchasedHero.owner, UNITS.armyController, -28950 + purchasedHero.owner.id * 50 - 250 * Math.floor(purchasedHero.owner.id / 5), -28950 - Math.floor(purchasedHero.owner.id / 5) * 75);
-                armyController?.setHeroLevel(18, false);
-            }
+            //     purchasedHero?.addItemById(FourCC("stel"));
+            //     purchasedHero?.addItemById(FourCC("tcas"));
+            //     const startX = purchasedHero.owner.startLocationX;
+            //     const startY = purchasedHero.owner.startLocationY;
+            //     SetCameraPositionForPlayer(p.handle, startX, startY);
+            //     purchasedHero.x = startX;
+            //     purchasedHero.y = startY;
+            //     const armyController = Unit.create(purchasedHero.owner, UNITS.armyController, -28950 + purchasedHero.owner.id * 50 - 250 * Math.floor(purchasedHero.owner.id / 5), -28950 - Math.floor(purchasedHero.owner.id / 5) * 75);
+            //     armyController?.setHeroLevel(18, false);
+            // }
         }
     });
 }
@@ -158,4 +189,9 @@ function moveSingleHeroToStartLocationAndGiveItems(player: MapPlayer) {
             armyController?.setHeroLevel(18, false);
         }
     }
+}
+
+function repickHeroDuringPrep() {
+    //lets you repick hero during prep timer?
+    //try to use add unit to stock lol
 }

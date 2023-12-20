@@ -1,17 +1,17 @@
 import { UNITS } from "./shared/enums";
 
 export const primaryCapturableHumanTargets = new Set([
-    UNITS.farmTown,
-    UNITS.barracks,
-    UNITS.blacksmith,
-    UNITS.castle,
+    // UNITS.farmTown,
+    // UNITS.barracks,
+    // UNITS.blacksmith,
+    // UNITS.castle,
     UNITS.townHall,
-    UNITS.capital,
-    UNITS.arcaneSanctum,
-    UNITS.granary,
-    UNITS.lumberMill,
-    UNITS.citadelOfTheNorthernKnights,
-    UNITS.factory,
+    // UNITS.capital,
+    // UNITS.arcaneSanctum,
+    // UNITS.granary,
+    // UNITS.lumberMill,
+    // UNITS.citadelOfTheNorthernKnights,
+    // UNITS.factory,
 ]);
 
 export const otherHumanCapturableStructures = new Set([UNITS.rampartCannonTower, UNITS.rampartGuardTower]);

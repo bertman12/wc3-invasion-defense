@@ -345,7 +345,7 @@ function proc_summonLavaSpawn() {
                 );
             }
         },
-        { attackerCooldown: true, procChance: 6 },
+        { attackerCooldown: true, procChance: 8 },
     );
 }
 

@@ -17,6 +17,7 @@ export function init_itemAbilities() {
     demonsEyeTrinketProcItem();
     gemOfTheTimeMage();
     nerfedMidas();
+    item_yserasGraceTranquility();
 }
 
 function trig_forceBoots() {
@@ -125,6 +126,7 @@ function chainLightningProcItem() {
                     (dummy) => {
                         dummy.issueTargetOrder(OrderId.Chainlightning, victim);
                     },
+                    // FourCC("A03L"),
                     ABILITIES.proc_greaterChainLightning,
                     3,
                     attacker,
@@ -156,6 +158,44 @@ function nerfedMidas() {
         },
         { attackerCooldown: true, procChance: 10 },
     );
+}
+
+function item_yserasGraceTranquility() {
+    const t = Trigger.create();
+
+    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SPELL_CAST);
+    t.addAction(() => {
+        const caster = Unit.fromEvent();
+        const spellNumberCast = GetSpellAbilityId();
+        // print("Spell number cast: ", spellNumberCast);
+        if (caster && caster.isHero() && spellNumberCast === ABILITIES.item_tranquility) {
+            const timer = Timer.create();
+            const protectorsCreated: Unit[] = [];
+            useTempDummyUnit(
+                (dummy) => {
+                    dummy.name = "Servant of Ysera";
+                    dummy.issueImmediateOrder(OrderId.Tranquility);
+                    timer.start(3, true, () => {
+                        useTempEffect(Effect.create("Objects\\Spawnmodels\\NightElf\\EntBirthTarget\\EntBirthTarget.mdl", dummy.x, dummy.y));
+                        const protector = Unit.create(caster.owner, UNITS.purifiedProtector, dummy.x, dummy.y);
+
+                        if (protector) {
+                            protectorsCreated.push(protector);
+                        }
+                    });
+                },
+                ABILITIES.item_tranquility,
+                20,
+                caster,
+                "cenariusGhost",
+            );
+            delayedTimer(20, timer.pause);
+            delayedTimer(30, () => {
+                timer.destroy();
+                protectorsCreated.forEach((u) => u.kill());
+            });
+        }
+    });
 }
 
 /**
@@ -210,7 +250,9 @@ function demonsEyeTrinketProcItem() {
                 attacker.setVertexColor(255, 100, 100, 255);
                 delayedTimer(5, () => {
                     attacker.setVertexColor(255, 255, 255, 255);
-                    attacker.setScale(1, 1, 1);
+                    if (attacker.typeId === FourCC("Nfir")) {
+                        attacker.setScale(1.15, 1, 1);
+                    }
                     if (undeadHeroes.includes(attacker.typeId)) {
                         attacker.setScale(2.2, 1, 1);
                         attacker.setVertexColor(255, 100, 100, 255);
@@ -461,6 +503,16 @@ const itemRecipesMap = new Map<RecipeItem, RecipeItemRequirement[]>([
             { itemTypeId: ITEMS.staffOfKnowledge, quantity: 1, charges: 0 }, //
             { itemTypeId: ITEMS.pendantOfEnergy_200, quantity: 1, charges: 0 }, //
             { itemTypeId: ITEMS.greaterSobiMask, quantity: 1, charges: 0 }, //
+        ],
+    ],
+    [
+        { recipeId: ITEMS.recipe_yserasGrace, itemId: ITEMS.yserasGrace },
+        [
+            { itemTypeId: ITEMS.fragmentOfTheEmeraldDream, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.staffOfTheArchmage, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.assassinsRing, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.beltOfGiantStrength, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.crownOfKings_5, quantity: 1, charges: 0 }, //
         ],
     ],
 ]);

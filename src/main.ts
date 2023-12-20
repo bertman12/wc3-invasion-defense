@@ -1,4 +1,4 @@
-import { Sound, Timer } from "w3ts";
+import { Sound } from "w3ts";
 import { W3TS_HOOK, addScriptHook } from "w3ts/hooks";
 import { initFrames } from "./frames";
 import { setupNightAndDayHooks } from "./hooks/startOfDay";
@@ -37,14 +37,14 @@ function tsMain() {
         initFrames();
 
         //Game starting message
-        Timer.create().start(5, false, () => {
-            Sound.fromHandle(gg_snd_U08Archimonde19)?.start();
-            Sound.fromHandle(gg_snd_Hint)?.start();
-            notifyPlayer("Place your |cffffcc00Town Hall|r with your |cffffcc00Hero|r.");
-            TimerManager.startDayTimer(() => {
-                RoundManager.startNextRound();
-            }, 240);
-        });
+        // Timer.create().start(5, false, () => {
+        //     Sound.fromHandle(gg_snd_U08Archimonde19)?.start();
+        //     Sound.fromHandle(gg_snd_Hint)?.start();
+        //     notifyPlayer("Place your |cffffcc00Town Hall|r with your |cffffcc00Hero|r.");
+        //     TimerManager.startDayTimer(() => {
+        //         RoundManager.startNextRound();
+        //     }, 240);
+        // });
 
         setupPlayers();
         SetGameDifficulty(MAP_DIFFICULTY_INSANE);
@@ -84,9 +84,23 @@ function tsMain() {
         init_cameraTrigs();
         init_upgradeBasedTriggers();
         init_economyTriggers();
-        setup_heroPurchasing();
+
+        /**
+         * Will kickoff the rest of the game timers
+         */
+        setup_heroPurchasing(() => {
+            Sound.fromHandle(gg_snd_U08Archimonde19)?.start();
+            Sound.fromHandle(gg_snd_Hint)?.start();
+            notifyPlayer("Place your |cffffcc00Town Hall|r with your |cffffcc00Hero|r.");
+            TimerManager.startDayTimer(() => {
+                RoundManager.startNextRound();
+            }, 240);
+
+            init_undead();
+        });
+
         //10 second timer
-        init_undead();
+        // init_undead();
         //For looking at minimap icons
         // Array.from(minimapIconPathsSet).forEach((path, index) => {
         //     print(index, " - ", path);

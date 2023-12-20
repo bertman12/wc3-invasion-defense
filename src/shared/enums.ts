@@ -36,6 +36,7 @@ export enum ABILITIES {
     forceBoots = FourCC("A00V"),
     proc_greaterChainLightning = FourCC("A02K"),
     proc_unholyFrenzy_demonsEyeTrinket = FourCC("A039"),
+    item_tranquility = FourCC("A03J"),
 
     //Army Controller
     command_moveAllMilitary = FourCC("A02D"),
@@ -70,6 +71,7 @@ export enum UNITS {
     armyController = FourCC("H00T"),
     unitShop = FourCC("H00W"),
     dummyCaster = FourCC("h00V"),
+    dummyCaster_cenariusGhost = FourCC("h011"),
     upgradeCenter = FourCC("h00X"),
 
     //Human Buildings
@@ -109,6 +111,7 @@ export enum UNITS {
     goblinLandMine = FourCC("n00F"),
     heavyCavalry = FourCC("h00I"),
     supplyHorse = FourCC("h001"),
+    purifiedProtector = FourCC("u00L"),
 
     //Undead
     abomination = FourCC("uabo"),
@@ -216,6 +219,10 @@ export enum ITEMS {
     staffOfTheArchmage = FourCC("I018"),
     recipe_bloodRitualPendant = FourCC("I017"),
     bloodRitualPendant = FourCC("I019"),
+    beltOfGiantStrength = FourCC("bgst"),
+    fragmentOfTheEmeraldDream = FourCC("I01A"),
+    recipe_yserasGrace = FourCC("I01B"),
+    yserasGrace = FourCC("I01C"),
 }
 
 //Can find looking up models for a spell at the Art - Target field

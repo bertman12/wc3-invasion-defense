@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Undead Siege Defense v0.25
+Undead Siege Defense v0.28
 }
 
 STRING 2
@@ -385,20 +385,26 @@ Stone Walls - Free Form Doodad
 
 STRING 141
 {
-Undead Siege Defense v0.25
+Undead Siege Defense v0.28
 }
 
 STRING 142
 {
-|cffff00ffObjective|r - Hold out for 9 nights. 
+|cffff00ffObjective|r - Survive for 9 nights. 
 
 |cff00ff00Beginner|r : Pick Hero at the Tarvern then use your hero to place your town hall. Build some towers near the walls.
 
 |cff00ff00Hero Abilities have been enhanced and also go to level 4 now.|r
 
+|cffff0000Bosses|r: Spawns every 3rd night.
+
 |cffffff00Income|r -  Build Druid Farmers for additional gold income.
 
 |cffffff00Engineers|r - Able to build defensive structures. 
+
+|cffff0000Final Night|r: Lasts 9 minutes.
+
+|cffff0000Lose Condition|r: No town halls remain.
 
 Made by JediMindTrix/NihilismIsDeath
 
@@ -1230,12 +1236,6 @@ STRING 400
  (20%)
 }
 
-STRING 401
-// Units: n00C (Cold Tower), Ubertip (Tooltip - Extended)
-{
-Fires shards of ice at a slow rate. Good at slowing down enemies. |n|n1000 range.
-}
-
 STRING 403
 // Abilities: A010 (Armor Reduction Aura), Name (Name)
 {
@@ -1294,24 +1294,6 @@ STRING 422
 // Abilities: A011 (Armor Reduction Aura), Ubertip (Tooltip - Normal - Extended)
 {
 Severely inhibits nearby enemy units.|n |n|cffff0000-50%|r movespeed |n|cffff0000-20%|r attack speed |n|cffff0000-2|r armor    |n|n|cffff0000Destroyed at the start of each day.|r
-}
-
-STRING 423
-// Units: n00D (Flame Tower), Ubertip (Tooltip - Extended)
-{
-Fires short jets of flame. Good at destroying enemies that get close. |n|n600 attack range.
-}
-
-STRING 424
-// Units: hgtw (Guard Tower), Ubertip (Tooltip - Extended)
-{
-Primary defensive structure. |n|n700 range |n|n|cffffcc00Attacks land and air units.|r
-}
-
-STRING 425
-// Units: hctw (Cannon Tower), Ubertip (Tooltip - Extended)
-{
-Heavy defensive structure. Particularly effective against clusters of troops. |n|n800 range |n|n|cffffcc00Attacks land units and trees.|r
 }
 
 STRING 431
@@ -1482,12 +1464,6 @@ STRING 476
 Purchase Corpse Cleaver
 }
 
-STRING 477
-// Items: I008 (Corpse Cleaver), Ubertip (Tooltip - Extended)
-{
-Causes melee attacks cleave for 25% damage. |n|n+8|cffff0000 Strength|r |n+5 |cffc0c0c0Attack Damage|r
-}
-
 STRING 478
 // Abilities: A019 (Item Stat Bonus), Name (Name)
 {
@@ -1546,12 +1522,6 @@ STRING 501
 // Items: dtsb (Drek'thar's Spellbook), Ubertip (Tooltip - Extended)
 {
 Grants the ability to teleport you and nearby units to |cffffcc00castles|r or |cffffcc00towns|r (75 |cff8080ffmana|r - |cffc0c0c0no cooldown|r).|n|n+150 |cff8080ffMana|r |n -33% |cffff00ffSpell Damage|r Taken
-}
-
-STRING 509
-// Items: I006 (Blink Dagger), Ubertip (Tooltip - Extended)
-{
-Allows the Hero to teleport 1800 units away. |n|N|cffc0c0c018 second cooldown|r
 }
 
 STRING 513
@@ -1777,7 +1747,7 @@ Stops all enemies in a target area from casting spells for <AIse,Dur1> seconds. 
 }
 
 STRING 592
-// Abilities: A01Z (Thunderous Strikes), Researchhotkey (Hotkey - Learn)
+// Units: h00O (Druid Farmer), Hotkey (Hotkey)
 {
 D
 }
@@ -2058,15 +2028,6 @@ STRING 704
 (2.5)
 }
 
-STRING 706
-// Items: I004 (Force Boots), Ubertip (Tooltip - Extended)
-{
-Increases the movement speed of the Hero when worn. Also allows provides an active ability that thrusts your hero forward in whatever direction they are. 
-
-+30 Movespeed
-Active - Thrusts the hero forward. |n    25 |cff8080ffmana|r|n    |cffc0c0c06 second cooldown|r
-}
-
 STRING 710
 // Items: I00F (Staff of Knowledge), Name (Name)
 {
@@ -2192,12 +2153,6 @@ STRING 750
 // Items: I00D (Blade of the Wind Walker), Ubertip (Tooltip - Extended)
 {
 +25% Critical Strike Chance (2x damage)|n+20 Attack Damage|n+30 Move Speed  |N|N|cffffcc00Wind Walk|r - Go invisible for 10 seconds. Adds 200 bonus damage to your next attack. 
-}
-
-STRING 755
-// Items: I001 (Treads of the Wind Walker ), Ubertip (Tooltip - Extended)
-{
-Increases the movement speed of the Hero when worn.  |n|n+30 Movespeed |n|cffffcc00Wind Walk|r - Go invisible for 5 seconds. |n    20 |cff8080ffmana|r|N    |cffc0c0c012 second cooldown|r
 }
 
 STRING 758
@@ -2447,7 +2402,7 @@ A
 }
 
 STRING 828
-// Units: h00O (Druid Farmer), Hotkey (Hotkey)
+// Units: n00L (Purchase Town Grant), Hotkey (Hotkey)
 {
 R
 }
@@ -2489,13 +2444,13 @@ Purchase Castle Grant
 }
 
 STRING 844
-// Units: n00L (Purchase Town Grant), Hotkey (Hotkey)
+// Units: n00M (Purchase Castle Grant), Hotkey (Hotkey)
 {
 R
 }
 
 STRING 845
-// Units: n00M (Purchase Castle Grant), Hotkey (Hotkey)
+// Units: n00N (Purchase Lumber Mill Grant), Hotkey (Hotkey)
 {
 R
 }
@@ -2513,7 +2468,7 @@ STRING 847
 }
 
 STRING 850
-// Units: n00N (Purchase Lumber Mill Grant), Hotkey (Hotkey)
+// Units: n00O (Purchase Title - Duchy of the Northern Knights), Hotkey (Hotkey)
 {
 R
 }
@@ -2567,7 +2522,7 @@ STRING 868
 }
 
 STRING 871
-// Units: n00O (Purchase Title - Duchy of the Northern Knights), Hotkey (Hotkey)
+// Units: n00P (Purchase Grant - Arcane Sanctum), Hotkey (Hotkey)
 {
 R
 }
@@ -2633,7 +2588,7 @@ Purchase Farm Grant
 }
 
 STRING 904
-// Units: n00P (Purchase Grant - Arcane Sanctum), Hotkey (Hotkey)
+// Units: n00Q (Purchase Grant - Barracks), Hotkey (Hotkey)
 {
 R
 }
@@ -2654,12 +2609,6 @@ STRING 908
 // Abilities: A00S (Purchase Farm Grant), Name (Name)
 {
 Purchase Farm Grant
-}
-
-STRING 909
-// Units: n00Q (Purchase Grant - Barracks), Hotkey (Hotkey)
-{
-R
 }
 
 STRING 910
@@ -2690,12 +2639,6 @@ STRING 918
 // Items: I001 (Treads of the Wind Walker ), Tip (Tooltip - Basic)
 {
 Purchase Treads of the Wind Walker 
-}
-
-STRING 920
-// Items: I007 (Hand of Midas), Ubertip (Tooltip - Extended)
-{
-Gives a 10% chance to grant |cffffff0010 gold|r whenever you deal any damage. |n|n+3 |cffffcc00All Stats|R
 }
 
 STRING 922
@@ -2972,19 +2915,6 @@ STRING 1034
 // Items: I00W ([|cffffcc00Recipe|r] Amulet of the Sentinel), Ubertip (Tooltip - Extended)
 {
 Requires: |cffc0c0c0Crown of Kings +5, Amulet of Spell Shield, Talisman of Evasion, Ring Of Protection +5, Staff of Teleportation|r  |N|NSpell Block - |cffc0c0c015 sec cooldown|r |nTeleport - |cffc0c0c0Hero Only|r  |n|N+20% |cfaafff00Evasion|r |n     +5 |cffffcc00All Stats|r |n     +5 |cffccccccArmor|r  |n|n|cffffcc00Evasion doesn't stack.|r
-}
-
-STRING 1035
-// Items: I00X ([|cffff0000Cursed|R] Ghoulish Mask of Midas), Ubertip (Tooltip - Extended)
-{
-+35% Lifesteal|n+3 |cffffcc00All Stats|R|n|cffff0000-6|r|cff8080ff Intelligence|r |n+5 |cff00ff00Agility|r |n|NGives a 25% chance to grant |cffffff0025 gold|r whenever you deal any damage. |cffff0000Consumes 35 health when you gain gold.|r
-}
-
-STRING 1036
-// Items: I00Y ([|cffffcc00Recipe|r] [|cffff0000Cursed|R] Ghoulish Mask of Midas), Ubertip (Tooltip - Extended)
-{
-Requires: |cffc0c0c0Hand of Midas, Mask of The Frenzied Ghoul|r|n
-+35% Lifesteal|n+3 |cffffcc00All Stats|R|n|cffff0000-6|r|cff8080ff Intelligence|r |n+5 |cff00ff00Agility|r |n|NGives a 25% chance to grant |cffffff0025 gold|r whenever you deal any damage. |cffff0000Consumes 35 health when you gain gold.|r
 }
 
 STRING 1038
@@ -3377,22 +3307,10 @@ STRING 1162
 Purchase [|cffffcc00Recipe|r] Alaric's Spear of Thunder
 }
 
-STRING 1163
-// Items: I010 ([|cffffcc00Recipe|r] Alaric's Spear of Thunder), Ubertip (Tooltip - Extended)
-{
-Requires: |cffc0c0c0Thunderlizard Diamond, Assassin's Ring, Claws of Attack +20 |r|N|n+10 |cff00ff00Agility|r   |n+20 Attack Damage    |n|n|cffffcc00Alaric's Chain Lightning|R - Attacks have a |cffffcc0025%|r chance to cast chain lightning, dealing |cffffcc00125 damage|r up to 6 targets.
-}
-
 STRING 1164
 // Items: I011 (Alaric's Spear of Thunder), Name (Name)
 {
 Alaric's Spear of Thunder
-}
-
-STRING 1165
-// Items: I011 (Alaric's Spear of Thunder), Ubertip (Tooltip - Extended)
-{
-+10 |cff00ff00Agility|r   |n+20 Attack Damage    |n|n|cffffcc00Alaric's Chain Lightning|R - Attacks have a |cffffcc0025%|r chance to cast chain lightning, dealing |cffffcc00125 damage|r up to 6 targets.
 }
 
 STRING 1166
@@ -3411,20 +3329,6 @@ STRING 1168
 // Abilities: A02K (Greater Chain Lightning), EditorSuffix (Editor Suffix)
 {
  (alarics chain lightning)
-}
-
-STRING 1169
-// Items: I00G (Staff of Primal Thunder), Ubertip (Tooltip - Extended)
-{
-+10 |cff8080ffIntelligence|r |n|n|cffffcc00Greater Chain Lightning|r - Deals an initial 400 damage and bounces to 10 nearby enemies.
-}
-
-STRING 1170
-// Items: I00H ([|cffffcc00Recipe|r] Staff of Primal Thunder), Ubertip (Tooltip - Extended)
-{
-Requires: |cffc0c0c0(2) Thunderlizard Diamond, (2) Staff of Knowledge|r|N|n+10 |cff8080ffIntelligence|r |n|n|cffffcc00Greater Chain Lightning|R - Deals an initial 400 damage and bounces to 10 nearby enemies. |n
-200 |cff8080ffmana cost|r
-|cffc0c0c09 second cooldown|r
 }
 
 STRING 1171
@@ -3467,12 +3371,6 @@ STRING 1188
 // Abilities: A00L (deprecated_Supplies), Name (Name)
 {
 deprecated_Supplies
-}
-
-STRING 1189
-// Units: hmtm (Imperial Tank), Ubertip (Tooltip - Extended)
-{
-Attacks deal damage in a small area effect.
 }
 
 STRING 1190
@@ -4704,12 +4602,6 @@ STRING 1436
 (corrutped protector)
 }
 
-STRING 1437
-// Units: h00J (Fortified Barricade), Ubertip (Tooltip - Extended)
-{
-Adds 6 fortified armor and 400 health.
-}
-
 STRING 1438
 // Upgrades: R004 (Submerge), Tip (Tooltip)
 {
@@ -4925,20 +4817,8 @@ STRING 1520
 Serves as a drop-off point for harvested lumber. 
 }
 
-STRING 1525
-// Units: Nfir (Firelord), Ubertip (Tooltip - Extended)
-{
-Can learn Soul Burn, |cffffcc00Army of Flame|r, Incinerate and Volcano. |n|n[|cffffcc00Army of Flame|R]  - Attacks have a 6% chance on hit to summon a lava spawn.
-}
-
-STRING 1526
-// Abilities: ANlm (Army of Flame), Ubertip (Tooltip - Normal - Extended)
-{
-Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, thereby fueling its fires and eventually splitting into two healthy Lava Spawns.|n|nHas <nlv1,realHP> hit points and deals <nlv1,mindmg1> - <nlv1,maxdmg1> damage.|n|n|cff80ff80Attacks have a 6% chance to summon a lava spawn|r. |n |nLasts <ANlm,Dur1> seconds.|n|n|cffffcc00Attacks ground and air units.|r
-}
-
 STRING 1527
-// Abilities: ANlm (Army of Flame), Ubertip (Tooltip - Normal - Extended)
+// Abilities: A02X (Summon Ancient Hydra), Ubertip (Tooltip - Normal - Extended)
 {
 Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, thereby fueling its fires and eventually splitting into two healthy Lava Spawns.|n|nHas <nlv2,realHP> hit points and deals <nlv2,mindmg1> - <nlv2,maxdmg1> damage.|n|n|cff80ff80Attacks have a 6% chance to summon a lava spawn|r|n |nLasts <ANlm,Dur2> seconds.|n|n|cffffcc00Attacks ground and air units.|r
 }
@@ -5208,13 +5088,13 @@ Army of Flame - [|cffffcc00Level 4|r]
 }
 
 STRING 1588
-// Abilities: ANlm (Army of Flame), Ubertip (Tooltip - Normal - Extended)
+// Abilities: A02X (Summon Ancient Hydra), Ubertip (Tooltip - Normal - Extended)
 {
 Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, thereby fueling its fires and eventually splitting into two healthy Lava Spawns.|n|nHas <nlv3,realHP> hit points and deals <nlv3,mindmg1> - <nlv3,maxdmg1> damage.|n|n|cff80ff80Attacks have a 6% chance to summon a lava spawn|r|n |nLasts <ANlm,Dur3> seconds.|n|n|cffffcc00Attacks ground and air units.|r
 }
 
 STRING 1589
-// Abilities: ANlm (Army of Flame), Ubertip (Tooltip - Normal - Extended)
+// Abilities: A02X (Summon Ancient Hydra), Ubertip (Tooltip - Normal - Extended)
 {
 Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, thereby fueling its fires and eventually splitting into two healthy Lava Spawns.|n|nHas <nlv4,realHP> hit points and deals <nlv4,mindmg1> - <nlv4,maxdmg1> damage.|n|n|cff80ff80Attacks have a 6% chance to summon a lava spawn|r|n |nLasts <ANlm,Dur4> seconds.|n|n|cffffcc00Attacks ground and air units.|r
 }
@@ -5295,12 +5175,6 @@ STRING 1602
 // Abilities: ANrf (Rain of Fire), Tip (Tooltip - Normal)
 {
 Rain of Fire - [|cffffcc00Level 4|r]
-}
-
-STRING 1603
-// Abilities: ANrf (Rain of Fire), Ubertip (Tooltip - Normal - Extended)
-{
-Calls down waves of fire that damage units in an area. Each wave deals <ANrf,DataB4> initial damage and <ANrf,DataE4> damage per second for <ANrf,Dur4> seconds. |nLasts for <ANrf,DataA4> waves.
 }
 
 STRING 1604
@@ -5471,12 +5345,6 @@ STRING 1634
 When killed, the Tauren Chieftain will come back to life. Reincarnation has a <AOre,Cool2> second cooldown.
 }
 
-STRING 1635
-// Abilities: AOre (Reincarnation), Researchubertip (Tooltip - Learn - Extended)
-{
-When killed, the Tauren Chieftain will come back to life. Reincarnation has a <AOre,Cool1> second cooldown. |n|N[|cffffcc00Level 1|r] - 20 second cooldown|n[|cffffcc00Level 2|r] - 10 second cooldown
-}
-
 STRING 1636
 // Abilities: AOw2 (War Stomp), EditorSuffix (Editor Suffix)
 {
@@ -5519,12 +5387,6 @@ STRING 1643
 Can learn Breath of Fire, Drunken Haze, Drunken Brawler and Storm, Earth, And Fire. 
 }
 
-STRING 1644
-// Units: Nbrn (Dark Ranger), Ubertip (Tooltip - Extended)
-{
-Can learn Silence, Black Arrow, Life Drain, and Charm. 
-}
-
 STRING 1645
 // Units: Nplh (Pit Lord), Ubertip (Tooltip - Extended)
 {
@@ -5541,12 +5403,6 @@ STRING 1647
 // Abilities: ANba (Black Arrow), Tip (Tooltip - Normal)
 {
 Black Arrow - [|cffffcc00Level 4|r]
-}
-
-STRING 1648
-// Abilities: ANba (Black Arrow), Ubertip (Tooltip - Normal - Extended)
-{
-Adds <ANba,DataA4> bonus damage to attacks. Units killed while under the effect of Black Arrow will turn into <ndr4,RealHP> hit point skeletons.
 }
 
 STRING 1649
@@ -5633,12 +5489,6 @@ STRING 1666
 Absorbs the life essence of a target enemy unit by taking hit points from it every second and giving them to the Dark Ranger. |n|nLife Drain also applies the current rank of the Black Arrow debuff to the target. |nLasts <ANdr,Dur1> seconds. |n|n|cffffcc00Level 1|r - <ANdr,DataA1> hit point drain per second. |n|cffffcc00Level 2|r - <ANdr,DataA2> hit point drain per second. |n|cffffcc00Level 3|r - <ANdr,DataA3> hit point drain per second.|n|cffffcc00Level 4|r - <ANdr,DataA4> hit point drain per second.
 }
 
-STRING 1667
-// Abilities: ANrf (Rain of Fire), Researchubertip (Tooltip - Learn - Extended)
-{
-Calls down waves of fire that damage units in an area. Each wave deals initial damage and then burns enemies for <ANrf,Dur1> seconds. |n|n|cffffcc00Level 1|r - <ANrf,DataB1> wave damage, <ANrf,DataA1> waves, <ANrf,DataE1> damage per second. |n|cffffcc00Level 2|r - <ANrf,DataB2> wave damage, <ANrf,DataA2> waves, <ANrf,DataE2> damage per second. |n|cffffcc00Level 3|r - <ANrf,DataB3> wave damage, <ANrf,DataA3> waves, <ANrf,DataE3> damage per second. |n|cffffcc00Level 4|r - <ANrf,DataB4> wave damage, <ANrf,DataA4> waves, <ANrf,DataE4> damage per second.
-}
-
 STRING 1668
 // Abilities: ANsi (Silence), Researchubertip (Tooltip - Learn - Extended)
 {
@@ -5706,7 +5556,7 @@ Causes the ground to erupt into a massive Volcano. Every <ANvc,DataC1> seconds, 
 }
 
 STRING 1686
-// Abilities: ANlm (Army of Flame), Researchubertip (Tooltip - Learn - Extended)
+// Abilities: A02X (Summon Ancient Hydra), Researchubertip (Tooltip - Learn - Extended)
 {
 Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, eventually splitting into two healthy Lava Spawns.|n|n|cff80ff80Attacks have a 6% chance to summon a lava spawn|r  |n|nLasts <ANlm,Dur1> seconds.|n|n|cffffcc00Level 1|r - <nlv1,realHP> hit points, <nlv1,mindmg1> - <nlv1,maxdmg1> damage.|n|cffffcc00Level 2|r - <nlv2,realHP> hit points, <nlv2,mindmg1> - <nlv2,maxdmg1> damage.|n|cffffcc00Level 3|r - <nlv3,realHP> hit points, <nlv3,mindmg1> - <nlv3,maxdmg1> damage.|n|cffffcc00Level 4|r - 1025 hit points, 40 - 70 damage.
 }
@@ -5739,12 +5589,6 @@ STRING 1691
 // Abilities: AHtb (Storm Bolt), Ubertip (Tooltip - Normal - Extended)
 {
 Throws a magical hammer at a target enemy unit, dealing <AHtb,DataA4> damage and stunning the target for <AHtb,Dur4> seconds.
-}
-
-STRING 1692
-// Abilities: ANba (Black Arrow), Researchubertip (Tooltip - Learn - Extended)
-{
-Adds extra damage to attacks. Units killed while under the effect of Black Arrow will turn into skeletons. |n|n|cffffcc00Level 1|r - <ANba,DataA1> bonus damage, <ndr1,RealHP> hit point skeleton. |n|cffffcc00Level 2|r - <ANba,DataA2> bonus damage, <ndr2,RealHP> hit point skeleton. |n|cffffcc00Level 3|r - <ANba,DataA3> bonus damage, <ndr3,RealHP> hit point skeleton.|n|cffffcc00Level 4|r - <ANba,DataA4> bonus damage, 520 hit point skeleton.
 }
 
 STRING 1693
@@ -5799,12 +5643,6 @@ STRING 1708
 // Units: h00Y (Imperial Footman), Tip (Tooltip - Basic)
 {
 Train Imperial Footman
-}
-
-STRING 1710
-// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
-{
-Can build |cffffcc00barricade|r, a |cffffcc00scout tower|r that can be upgraded into to other towers; a |cffffcc00supply tent|r which can heal units; and |cffffcc00caltrops|r, which can severely hinder enemy units.|n|r|n|cffffcc00Carries items. |n|n|cff00ffffWorker|r
 }
 
 STRING 1711
@@ -6065,12 +5903,6 @@ STRING 1778
 (summongrizzlybear)
 }
 
-STRING 1782
-// Abilities: A02X (Summon Ancient Hydra), Ubertip (Tooltip - Normal - Extended)
-{
-Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, thereby fueling its fires and eventually splitting into two healthy Lava Spawns.|n|nHas <nlv2,realHP> hit points and deals <nlv2,mindmg1> - <nlv2,maxdmg1> damage.|n|n|cff80ff80Attacks have a 6% chance to summon a lava spawn|r|n |nLasts <ANlm,Dur2> seconds.|n|n|cffffcc00Attacks ground and air units.|r
-}
-
 STRING 1784
 // Abilities: A02X (Summon Ancient Hydra), Tip (Tooltip - Normal)
 {
@@ -6081,12 +5913,6 @@ STRING 1785
 // Abilities: A02X (Summon Ancient Hydra), Tip (Tooltip - Normal)
 {
 Army of Flame - [|cffffcc00Level 3|r]
-}
-
-STRING 1786
-// Abilities: A02X (Summon Ancient Hydra), Researchubertip (Tooltip - Learn - Extended)
-{
-Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, eventually splitting into two healthy Lava Spawns.|n|n|cff80ff80Attacks have a 6% chance to summon a lava spawn|r  |n|nLasts <ANlm,Dur1> seconds.|n|n|cffffcc00Level 1|r - <nlv1,realHP> hit points, <nlv1,mindmg1> - <nlv1,maxdmg1> damage.|n|cffffcc00Level 2|r - <nlv2,realHP> hit points, <nlv2,mindmg1> - <nlv2,maxdmg1> damage.|n|cffffcc00Level 3|r - <nlv3,realHP> hit points, <nlv3,mindmg1> - <nlv3,maxdmg1> damage.|n|cffffcc00Level 4|r - 1025 hit points, 40 - 70 damage.
 }
 
 STRING 1787
@@ -6101,18 +5927,6 @@ STRING 1789
 Army of Flame - [|cffffcc00Level 4|r]
 }
 
-STRING 1790
-// Abilities: A02X (Summon Ancient Hydra), Ubertip (Tooltip - Normal - Extended)
-{
-Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, thereby fueling its fires and eventually splitting into two healthy Lava Spawns.|n|nHas <nlv3,realHP> hit points and deals <nlv3,mindmg1> - <nlv3,maxdmg1> damage.|n|n|cff80ff80Attacks have a 6% chance to summon a lava spawn|r|n |nLasts <ANlm,Dur3> seconds.|n|n|cffffcc00Attacks ground and air units.|r
-}
-
-STRING 1791
-// Abilities: A02X (Summon Ancient Hydra), Ubertip (Tooltip - Normal - Extended)
-{
-Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, thereby fueling its fires and eventually splitting into two healthy Lava Spawns.|n|nHas <nlv4,realHP> hit points and deals <nlv4,mindmg1> - <nlv4,maxdmg1> damage.|n|n|cff80ff80Attacks have a 6% chance to summon a lava spawn|r|n |nLasts <ANlm,Dur4> seconds.|n|n|cffffcc00Attacks ground and air units.|r
-}
-
 STRING 1793
 // Abilities: A02X (Summon Ancient Hydra), EditorSuffix (Editor Suffix)
 {
@@ -6123,12 +5937,6 @@ STRING 1795
 // Items: I00V (Amulet of the Sentinel), Ubertip (Tooltip - Extended)
 {
 Spell Block - |cffc0c0c015 sec cooldown|r|nTeleport - |cffc0c0c0Hero Only|r |n|N+20% |cfaafff00Evasion|r |n     +5 |cffffcc00All Stats|r |n     +5 |cffccccccArmor|r|n|n|cffffcc00Evasion doesn't stack.|r |n|n|cffff8080If you cannot teleport with the item, drop the item and pick it up again. Moving the item from the slot it was picked up from will cause the active item ability to change to spell block.|r
-}
-
-STRING 1796
-// Items: I012 (Book of Summoning), Ubertip (Tooltip - Extended)
-{
-|cffff00ffA book full of summoning spells.|r |N|nSummon Sea Elemental|nSummon Dragon Turtle|nSummon Razormane Medicine Man|nSummon Dranei Harbinger|nSummon Furbolg Elder Shaman |nSummon Ancient Hydra|nSummon Heretic |N|N|cffffcc00Higher level summons use a significant amount of mana.|r |n|n|cffff8080If the spells do not appear, drop the item and pick it up again. Moving the item from the slot it was picked up from will cause the spells to disappear.|r
 }
 
 STRING 1797
@@ -6159,12 +5967,6 @@ STRING 1801
 // Abilities: AHfs (Flame Strike), Ubertip (Tooltip - Normal - Extended)
 {
 Conjures a pillar of flame that burns ground units for 45 damage a second for 3 seconds. As the pillar of flame subsides, units within the fire continue to take minor damage.  |n|nArea increase by (|cffffcc00100 x ability level|r). |n|N|cffffcc00Doesn't hurt allied units.|r
-}
-
-STRING 1802
-// Items: sbok (Spell Book), Ubertip (Tooltip - Extended)
-{
-A book full of random spells.|n|nCan cast |cffffcc00Battle Roar|r, |cffffcc00Entangling roots|r, |cffffcc00Dispel Magic|r, |cffffcc00Unholy Frenzy|r.            |n|n|cffff8080If the spells do not appear, drop the item and pick it up again. Moving the item from the slot it was picked up from will cause the spells to disappear.|r
 }
 
 STRING 1807
@@ -6275,12 +6077,6 @@ STRING 1850
 |cffc3dbffRight-click to deactivate auto-casting.|r
 }
 
-STRING 1851
-// Units: o005 (Headhunter), Ubertip (Tooltip - Extended)
-{
-A ranged unit with high damage but very vulnerable if unprotected. Can cast |cffffcc00Berserk|r. |n|N|cffc0c0c0300 Attack Range  |r
-}
-
 STRING 1852
 // Units: hkni (Knight), Ubertip (Tooltip - Extended)
 {
@@ -6309,12 +6105,6 @@ STRING 1857
 // Units: h00J (Fortified Barricade), Name (Name)
 {
 Fortified Barricade
-}
-
-STRING 1858
-// Units: h00Z (Ironclad Barricade ), Ubertip (Tooltip - Extended)
-{
-Adds 5 fortified armor and 600 health. |N|N|cffffcc00Can be upgrades with spikes.|r
 }
 
 STRING 1859
@@ -6371,18 +6161,6 @@ STRING 1869
 Low damage, durable infantry unit. Has the Defend ability.|n|n|cffffcc00Wall Unit|R
 }
 
-STRING 1870
-// Units: h000 (Militia), Ubertip (Tooltip - Extended)
-{
-Disgruntled and poorly equipped serfs, able to be levied quickly.
-}
-
-STRING 1871
-// Units: h009 (Musketeer), Ubertip (Tooltip - Extended)
-{
-Highly skilled sharpshooter. Can use |cffffcc00mana imbued powder|r for powerful shots. Works very well when used with supply camps.
-}
-
 STRING 1872
 // Units: h00I (Heavy Cavalry), Ubertip (Tooltip - Extended)
 {
@@ -6405,12 +6183,6 @@ STRING 1876
 // Units: n004 (War Bear), Ubertip (Tooltip - Extended)
 {
 A heavy melee unit, with |Cffffcc00cleaving attack|R, |cffffcc00bash|r and |cffffcc00resistant skin|r.
-}
-
-STRING 1877
-// Units: n006 (Archer), Ubertip (Tooltip - Extended)
-{
-Basic long-ranged attacker. 
 }
 
 STRING 1879
@@ -6635,34 +6407,6 @@ STRING 1923
 (item - demons eye trinket)
 }
 
-STRING 1924
-// Items: I00I (Berserker's Cleaver), Ubertip (Tooltip - Extended)
-{
-Causes melee attacks cleave for 50% damage. |n|n+12|cffff0000 Strength|r |N  +4 |cff00ff00Agility|r   |n+10 |cffc0c0c0Attack Damage|r |N|N|cffffcc00Improved Battlethirst|r: Attack 50% faster but takes 50% more damage.
-}
-
-STRING 1927
-// Items: I013 ([|cffffcc00Recipe|r] Demon's Eye Trinket), Ubertip (Tooltip - Extended)
-{
-Requires: |cffc0c0c0(2) Crown of Kings, Helm of Battlethirst|r
-
-+10 |cffffcc00All Stats|r   
-  +4 |cff00ff00Agility|r
-  +4 |cffff0000Strength|r
-
-|cffffcc00Demonic Frenzy|R - Attacks have a |cffffcc0010% chance|r to put your hero in a demonic trance, increasing |cffffcc00attack speed|r by |cffffcc00100%|r for |cffffcc005|r seconds.        |n|N|Cffffcc00Battlethrist|r - Grants the ability to go Berserk, causing the Hero to attack <AIxk,DataB1,%>% faster but take <AIxk,DataC1,%>% more damage.
-}
-
-STRING 1928
-// Items: I014 (Demon's Eye Trinket), Ubertip (Tooltip - Extended)
-{
-+10 |cffffcc00All Stats|r   
-  +4 |cff00ff00Agility|r
-  +4 |cffff0000Strength|r
-
-|cffffcc00Demonic Frenzy|R - Attacks have a |cffffcc0010% chance|r to put your hero in a demonic trance, increasing |cffffcc00attack speed|r by |cffffcc00100%|r for |cffffcc005|r seconds.        |n|N|Cffffcc00Battlethrist|r - Grants the ability to go Berserk, causing the Hero to attack <AIxk,DataB1,%>% faster but take <AIxk,DataC1,%>% more damage.
-}
-
 STRING 1929
 // Abilities: AHav (Avatar), Researchubertip (Tooltip - Learn - Extended)
 {
@@ -6757,22 +6501,6 @@ STRING 1947
 // Items: arsh (Stalwart Shield), Tip (Tooltip - Basic)
 {
 Purchase Stalwart Shield
-}
-
-STRING 1949
-// Abilities: A021 (Stat Cost Breakdown - Info Ability), Ubertip (Tooltip - Normal - Extended)
-{
-|cff9999ffAttribute Point|r - 50 gold
-|cff00ff00Health Points (per point)|r - 1 gold
-|cffcc3333HP Regen (per 1 point)|r - 250 gold
-|cff3366ffMana Regen (per 1 point)|r - 500 gold
-|cff3333ffMana (per point)|r - 1.67 gold
-|cffffcc33Move Speed|r - 5 gold
-|cff808080Armor (per point)|r - 83 gold
-|cffff8000Attack Speed (1% increase)|r - 25 gold
-|cffff0000Damage Increase (1%)|r - 50 gold
-|cffcc0000Flat Damage +1|r - 50 gold
-|cffcc99ff1% Cleave|r - 20 gold
 }
 
 STRING 1950
@@ -7009,13 +6737,6 @@ STRING 1991
 [|cffffcc00Enhanced|r] Summon Blood Mage
 }
 
-STRING 1993
-// Items: I00J ([|cffffcc00Recipe|r] Berserker's Cleaver), Ubertip (Tooltip - Extended)
-{
-Requires: |cffc0c0c0Corpse Cleaver, Helm of Battlethirst, Claws of Attack +5|r|n
-Causes melee attacks to cleave for 50% damage. |n|n+12|cffff0000 Strength|r |N  +4 |cff00ff00Agility|r   |n+10 |cffc0c0c0Attack Damage|r |N|N|cffffcc00Improved Battlethirst|r: Attack 50% faster but takes 50% more damage.
-}
-
 STRING 1994
 // Units: h010 (Holy Tower), Name (Name)
 {
@@ -7044,12 +6765,6 @@ STRING 1999
 // Abilities: A03C (Holy Fire), Name (Name)
 {
 Holy Fire
-}
-
-STRING 2000
-// Units: h010 (Holy Tower), Ubertip (Tooltip - Extended)
-{
-The tower has no attack.      |n|nBlasts enemies in|cffc0c0c0 1200 range|r with |cffffcc00Holy Light|r, dealing |cffffcc00150 damage|r to the target immediately and an additional |cffffcc00150 damage|r over 6 seconds.
 }
 
 STRING 2001
@@ -7140,12 +6855,6 @@ STRING 2017
 // Abilities: Aosp (Spiked Barricades), Ubertip (Tooltip - Normal - Extended)
 {
 Surrounds the |cffffcc00Ironclad Barricade|r with spikes that damage enemy melee attackers. Deals |cffffcc0012 damage per attack|r plus an additional |cffffcc0020% of the attacker's damage|r.
-}
-
-STRING 2018
-// Items: thdm (Thunderlizard Diamond), Ubertip (Tooltip - Extended)
-{
-Casts |cffffcc00Chain Lightning|r that deals |cffff00ff100 damage|r to multiple targets. |n|n|cffc0c0c09 second cooldown|r.|n50 |cff8080ffmana|r cost.
 }
 
 STRING 2019
@@ -7308,12 +7017,6 @@ STRING 2054
 |cffffff00+45 gold|r per minute. |n|n|cff80ff80Pays off in 6 minutes and 36 seconds.|r |n|n|cffffcc00Must be placed on crop tiles.|r    |n|N|cffffcc00Limit of 10 Druid Farmers.|r
 }
 
-STRING 2057
-// Units: h00G (Peasant), Ubertip (Tooltip - Extended)
-{
-|cffffff00Can harvest gold|r, build structures and Repair.  |n|n|cff00ffffWorker|r
-}
-
 STRING 2059
 // Units: e001 (Wisp), Ubertip (Tooltip - Extended)
 {
@@ -7324,5 +7027,552 @@ STRING 2060
 // Units: h00U (Factory), Tip (Tooltip - Basic)
 {
 Build Factory
+}
+
+STRING 2061
+// Units: h00G (Peasant), Ubertip (Tooltip - Extended)
+{
+|cffffff00Can harvest gold|r, build structures and Repair.  |n|n|cff00ffffWorker|r     |n|n|cffff0000Does not harvest lumber.|r
+}
+
+STRING 2062
+// Units: n000 (Engineer), Ubertip (Tooltip - Extended)
+{
+Can build |cffffcc00barricade|r, a |cffffcc00scout tower|r that can be upgraded into to other towers; a |cffffcc00supply tent|r which can heal units; and |cffffcc00blade trap|r, which can severely hinder enemy units.|n|r|n|cffffcc00Carries items. |n|n|cff00ffffWorker|r
+}
+
+STRING 2068
+// Abilities: ANba (Black Arrow), Ubertip (Tooltip - Normal - Extended)
+{
+Adds <ANba,DataA1> bonus damage to attacks. Units killed while under the effect of Black Arrow will turn into <ndr1,RealHP> hit point skeletons.    |n|n|cffffcc00Skeletons benefit from weapon and armor upgrades.|r
+}
+
+STRING 2069
+// Abilities: ANba (Black Arrow), Ubertip (Tooltip - Normal - Extended)
+{
+Adds <ANba,DataA2> bonus damage to attacks. Units killed while under the effect of Black Arrow will turn into <ndr2,RealHP> hit point skeletons.    |n|n|cffffcc00Skeletons benefit from weapon and armor upgrades.|r
+}
+
+STRING 2070
+// Abilities: ANba (Black Arrow), Ubertip (Tooltip - Normal - Extended)
+{
+Adds <ANba,DataA3> bonus damage to attacks. Units killed while under the effect of Black Arrow will turn into <ndr3,RealHP> hit point skeletons.     |n|n|cffffcc00Skeletons benefit from weapon and armor upgrades.|r
+}
+
+STRING 2071
+// Abilities: ANba (Black Arrow), Ubertip (Tooltip - Normal - Extended)
+{
+Adds <ANba,DataA4> bonus damage to attacks. Units killed while under the effect of Black Arrow will turn into <ndr4,RealHP> hit point skeletons.  |N|nThe spawned skeleton will have |cffffcc00hero armor and attack|r.     |n|n|cffffcc00Skeletons benefit from weapon and armor upgrades.|r
+}
+
+STRING 2072
+// Abilities: ANba (Black Arrow), Researchubertip (Tooltip - Learn - Extended)
+{
+Adds extra damage to attacks. Units killed while under the effect of Black Arrow will turn into skeletons. |n|n|cffffcc00Level 1|r - <ANba,DataA1> bonus damage, <ndr1,RealHP> hit point skeleton. |n|cffffcc00Level 2|r - <ANba,DataA2> bonus damage, <ndr2,RealHP> hit point skeleton. |n|cffffcc00Level 3|r - <ANba,DataA3> bonus damage, <ndr3,RealHP> hit point skeleton.|n|cffffcc00Level 4|r - <ANba,DataA4> bonus damage, 520 hit point skeleton.     |n|n|cffffcc00Skeletons benefit from weapon and armor upgrades. Level 4 skeleton has hero armor and attack.|r
+}
+
+STRING 2074
+// Units: Nfir (Firelord), Ubertip (Tooltip - Extended)
+{
+Can learn Soul Burn, |cffffcc00Army of Flame|r, Incinerate and Volcano. |n|n[|cffffcc00Army of Flame|R]  - Attacks have a 8% chance on hit to summon a lava spawn.
+}
+
+STRING 2075
+// Abilities: ANlm (Army of Flame), Researchubertip (Tooltip - Learn - Extended)
+{
+Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, eventually splitting into two healthy Lava Spawns.|n|n|cff80ff80Attacks have a 8% chance to summon a lava spawn|r  |n|nLasts <ANlm,Dur1> seconds.|n|n|cffffcc00Level 1|r - <nlv1,realHP> hit points, <nlv1,mindmg1> - <nlv1,maxdmg1> damage.|n|cffffcc00Level 2|r - <nlv2,realHP> hit points, <nlv2,mindmg1> - <nlv2,maxdmg1> damage.|n|cffffcc00Level 3|r - <nlv3,realHP> hit points, <nlv3,mindmg1> - <nlv3,maxdmg1> damage.|n|cffffcc00Level 4|r - 1025 hit points, 40 - 70 damage.
+}
+
+STRING 2076
+// Abilities: ANlm (Army of Flame), Ubertip (Tooltip - Normal - Extended)
+{
+Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, thereby fueling its fires and eventually splitting into two healthy Lava Spawns.|n|nHas <nlv1,realHP> hit points and deals <nlv1,mindmg1> - <nlv1,maxdmg1> damage.|n|n|cff80ff80Attacks have a 8% chance to summon a lava spawn|r. |n |nLasts <ANlm,Dur1> seconds.|n|n|cffffcc00Attacks ground and air units.|r
+}
+
+STRING 2077
+// Abilities: ANlm (Army of Flame), Ubertip (Tooltip - Normal - Extended)
+{
+Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, thereby fueling its fires and eventually splitting into two healthy Lava Spawns.|n|nHas <nlv2,realHP> hit points and deals <nlv2,mindmg1> - <nlv2,maxdmg1> damage.|n|n|cff80ff80Attacks have a 8% chance to summon a lava spawn|r|n |nLasts <ANlm,Dur2> seconds.|n|n|cffffcc00Attacks ground and air units.|r
+}
+
+STRING 2078
+// Abilities: ANlm (Army of Flame), Ubertip (Tooltip - Normal - Extended)
+{
+Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, thereby fueling its fires and eventually splitting into two healthy Lava Spawns.|n|nHas <nlv3,realHP> hit points and deals <nlv3,mindmg1> - <nlv3,maxdmg1> damage.|n|n|cff80ff80Attacks have a 8% chance to summon a lava spawn|r|n |nLasts <ANlm,Dur3> seconds.|n|n|cffffcc00Attacks ground and air units.|r
+}
+
+STRING 2079
+// Abilities: ANlm (Army of Flame), Ubertip (Tooltip - Normal - Extended)
+{
+Summons a Lava Spawn. As a Lava Spawn deals damage, it consumes the flesh of its target, thereby fueling its fires and eventually splitting into two healthy Lava Spawns.|n|nHas <nlv4,realHP> hit points and deals <nlv4,mindmg1> - <nlv4,maxdmg1> damage.|n|n|cff80ff80Attacks have a 8% chance to summon a lava spawn|r|n |nLasts <ANlm,Dur4> seconds.|n|n|cffffcc00Attacks ground and air units.|r
+}
+
+STRING 2080
+// Abilities: ANrf (Rain of Fire), Ubertip (Tooltip - Normal - Extended)
+{
+Calls down waves of fire that damage units in an area. Each wave deals <ANrf,DataB4> initial damage and <ANrf,DataE4> damage per second for <ANrf,Dur4> seconds. |nLasts for <ANrf,DataA4> waves.      |n|N|cffffcc00Doesn't hurt allied units.|r
+}
+
+STRING 2081
+// Abilities: ANrf (Rain of Fire), Ubertip (Tooltip - Normal - Extended)
+{
+Calls down waves of fire that damage units in an area. Each wave deals <ANrf,DataB1> initial damage and <ANrf,DataE1> damage per second for <ANrf,Dur1> seconds. |nLasts for <ANrf,DataA1> waves.      |n|N|cffffcc00Doesn't hurt allied units.|r
+}
+
+STRING 2082
+// Abilities: ANrf (Rain of Fire), Ubertip (Tooltip - Normal - Extended)
+{
+Calls down waves of fire that damage units in an area. Each wave deals <ANrf,DataB2> initial damage and <ANrf,DataE2> damage per second for <ANrf,Dur2> seconds. |nLasts for <ANrf,DataA2> waves.      |n|N|cffffcc00Doesn't hurt allied units.|r
+}
+
+STRING 2083
+// Abilities: ANrf (Rain of Fire), Ubertip (Tooltip - Normal - Extended)
+{
+Calls down waves of fire that damage units in an area. Each wave deals <ANrf,DataB3> initial damage and <ANrf,DataE3> damage per second for <ANrf,Dur3> seconds. |nLasts for <ANrf,DataA3> waves.      |n|N|cffffcc00Doesn't hurt allied units.|r
+}
+
+STRING 2084
+// Abilities: ANrf (Rain of Fire), Researchubertip (Tooltip - Learn - Extended)
+{
+Calls down waves of fire that damage units in an area. Each wave deals initial damage and then burns enemies for <ANrf,Dur1> seconds. |n|n|cffffcc00Level 1|r - <ANrf,DataB1> wave damage, <ANrf,DataA1> waves, <ANrf,DataE1> damage per second. |n|cffffcc00Level 2|r - <ANrf,DataB2> wave damage, <ANrf,DataA2> waves, <ANrf,DataE2> damage per second. |n|cffffcc00Level 3|r - <ANrf,DataB3> wave damage, <ANrf,DataA3> waves, <ANrf,DataE3> damage per second. |n|cffffcc00Level 4|r - <ANrf,DataB4> wave damage, <ANrf,DataA4> waves, <ANrf,DataE4> damage per second.      |n|N|cffffcc00Doesn't hurt allied units.|r
+}
+
+STRING 2085
+// Items: I007 (Hand of Midas), Ubertip (Tooltip - Extended)
+{
+Gives a 10% chance to grant |cffffff0010 gold|r whenever you |cffffcc00auto attack|r. |n|n+3 |cffffcc00All Stats|R                   |n|N|cffff0000Does not stack.|r
+}
+
+STRING 2086
+// Items: I00X ([|cffff0000Cursed|R] Ghoulish Mask of Midas), Ubertip (Tooltip - Extended)
+{
++35% Lifesteal|n+3 |cffffcc00All Stats|R|n|cffff0000-6|r|cff8080ff Intelligence|r |n+5 |cff00ff00Agility|r |n|NGives a 25% chance to grant |cffffff0025 gold|r whenever you |cffffcc00auto attack|r. |cffff0000Consumes 35 health when you gain gold.|r                  |n|N|cffff0000Does not stack.|r
+}
+
+STRING 2087
+// Items: I00Y ([|cffffcc00Recipe|r] [|cffff0000Cursed|R] Ghoulish Mask of Midas), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Hand of Midas, Mask of The Frenzied Ghoul|r|n
++35% Lifesteal|n+3 |cffffcc00All Stats|R|n|cffff0000-6|r|cff8080ff Intelligence|r |n+5 |cff00ff00Agility|r |n|NGives a 25% chance to grant |cffffff0025 gold|r whenever you |cffffcc00auto attack|r. |cffff0000Consumes 35 health when you gain gold.|r        |n|N|cffff0000Does not stack.|r
+}
+
+STRING 2088
+// Items: I010 ([|cffffcc00Recipe|r] Alaric's Spear of Thunder), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Thunderlizard Diamond, Assassin's Ring, Claws of Attack +20 |r|N|n+10 |cff00ff00Agility|r   |n+20 Attack Damage    |n|n|cffffcc00Alaric's Chain Lightning|R - Attacks have a |cffffcc0025%|r chance to cast chain lightning, dealing |cffffcc00125 damage|r up to 6 targets.                 |n|N|cffff0000Does not stack.|r
+}
+
+STRING 2089
+// Items: I011 (Alaric's Spear of Thunder), Ubertip (Tooltip - Extended)
+{
++10 |cff00ff00Agility|r   |n+20 Attack Damage    |n|n|cffffcc00Alaric's Chain Lightning|R - Attacks have a |cffffcc0025%|r chance to cast chain lightning, dealing |cffffcc00125 damage|r up to 6 targets.           |n|N|cffff0000Does not stack.|r
+}
+
+STRING 2090
+// Items: I013 ([|cffffcc00Recipe|r] Demon's Eye Trinket), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0(2) Crown of Kings, Helm of Battlethirst|r
+
++10 |cffffcc00All Stats|r   
+  +4 |cff00ff00Agility|r
+  +4 |cffff0000Strength|r
+
+|cffffcc00Demonic Frenzy|R - Attacks have a |cffffcc0010% chance|r to put your hero in a demonic trance, increasing |cffffcc00attack speed|r by |cffffcc00100%|r for |cffffcc005|r seconds.        |n|N|Cffffcc00Battlethrist|r - Grants the ability to go Berserk, causing the Hero to attack <AIxk,DataB1,%>% faster but take <AIxk,DataC1,%>% more damage.                               |n|N|cffff0000Does not stack.|r
+}
+
+STRING 2091
+// Items: I014 (Demon's Eye Trinket), Ubertip (Tooltip - Extended)
+{
++10 |cffffcc00All Stats|r   
+  +4 |cff00ff00Agility|r
+  +4 |cffff0000Strength|r
+
+|cffffcc00Demonic Frenzy|R - Attacks have a |cffffcc0010% chance|r to put your hero in a demonic trance, increasing |cffffcc00attack speed|r by |cffffcc00100%|r for |cffffcc005|r seconds.        |n|N|Cffffcc00Battlethrist|r - Grants the ability to go Berserk, causing the Hero to attack <AIxk,DataB1,%>% faster but take <AIxk,DataC1,%>% more damage.                                        |n|N|cffff0000Does not stack.|r
+}
+
+STRING 2092
+// Units: Nbrn (Dark Ranger), Ubertip (Tooltip - Extended)
+{
+Can learn Silence, Black Arrow, Life Drain, and Charm.     |n|nSkeletons benefit from weapon and armor upgrades. |N|N|cffffcc00Level 4 skeleton has hero armor and attack.|r
+}
+
+STRING 2093
+// Items: I008 (Corpse Cleaver), Ubertip (Tooltip - Extended)
+{
+Causes melee attacks cleave for 25% damage. |n|n+8|cffff0000 Strength|r |n+5 |cffc0c0c0Attack Damage|r                 |n|N|cffff0000Does not stack.|r
+}
+
+STRING 2094
+// Items: I00I (Berserker's Cleaver), Ubertip (Tooltip - Extended)
+{
+Causes melee attacks cleave for 50% damage. |n|n+12|cffff0000 Strength|r |N  +4 |cff00ff00Agility|r   |n+10 |cffc0c0c0Attack Damage|r |N|N|cffffcc00Improved Battlethirst|r: Attack 50% faster but takes 50% more damage.            |n|N|cffff0000Does not stack.|r
+}
+
+STRING 2095
+// Items: I00J ([|cffffcc00Recipe|r] Berserker's Cleaver), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Corpse Cleaver, Helm of Battlethirst, Claws of Attack +5|r|n
+Causes melee attacks to cleave for 50% damage. |n|n+12|cffff0000 Strength|r |N  +4 |cff00ff00Agility|r   |n+10 |cffc0c0c0Attack Damage|r |N|N|cffffcc00Improved Battlethirst|r: Attack 50% faster but takes 50% more damage.                          |n|N|cffff0000Does not stack.|r
+}
+
+STRING 2096
+// Units: hmtm (Imperial Tank), Ubertip (Tooltip - Extended)
+{
+Attacks deal damage in a small area effect. |n|N|cffc0c0c01150 Attack Range|r
+}
+
+STRING 2097
+// Units: h009 (Musketeer), Ubertip (Tooltip - Extended)
+{
+Highly skilled sharpshooter. Can use |cffffcc00mana imbued powder|r for powerful shots. Works very well when used with supply camps. |n|N|cffc0c0c01000 Attack Range|r
+}
+
+STRING 2098
+// Units: n006 (Archer), Ubertip (Tooltip - Extended)
+{
+Basic long-ranged attacker. |n|N|cffc0c0c0750 Attack Range|r    |r|n|n|cffffcc00Attack range can be upgrades at Upgrade Center.|r
+}
+
+STRING 2099
+// Units: o005 (Headhunter), Ubertip (Tooltip - Extended)
+{
+A ranged unit with high damage but very vulnerable if unprotected. Can cast |cffffcc00Berserk|r. |n|N|cffc0c0c0300 Attack Range  |r|n|n|cffffcc00Attack range can be upgrades at Upgrade Center.|r
+}
+
+STRING 2100
+// Items: I012 (Book of Summoning), Ubertip (Tooltip - Extended)
+{
+|cffff00ffA book full of summoning spells.|r |N|nSummon Sea Elemental|nSummon Dragon Turtle|nSummon Razormane Medicine Man|nSummon Dranei Harbinger|nSummon Furbolg Elder Shaman |nSummon Ancient Hydra|nSummon Heretic |N|N|cffffcc00Higher level summons use a significant amount of mana. Summons also benefit from armor and weapon upgrades.|r |n|n|cffff8080If the spells do not appear, drop the item and pick it up again. Moving the item from the slot it was picked up from will cause the spells to disappear.|r
+}
+
+STRING 2101
+// Units: h010 (Holy Tower), Ubertip (Tooltip - Extended)
+{
+The tower has no attack.      |n|nBlasts enemies in|cffc0c0c0 1200 range|r with |cffffcc00Holy Light|r, dealing |cffffcc00150 damage|r to the target immediately and an additional |cffffcc00150 damage|r over 6 seconds. |n|N|cffffcc00The ability is used automatically.|r
+}
+
+STRING 2102
+// Abilities: AOre (Reincarnation), Researchubertip (Tooltip - Learn - Extended)
+{
+When killed, the Tauren Chieftain will come back to life. Reincarnation has a <AOre,Cool1> second cooldown. |n|N[|cffffcc00Level 1|r] - 40 second cooldown|n[|cffffcc00Level 2|r] - 25 second cooldown
+}
+
+STRING 2104
+// Items: I01A (Fragment of the Emerald Dream), Name (Name)
+{
+Fragment of the Emerald Dream
+}
+
+STRING 2105
+// Items: I01A (Fragment of the Emerald Dream), Tip (Tooltip - Basic)
+{
+Purchase Fragment of the Emerald Dream
+}
+
+STRING 2106
+// Items: I01A (Fragment of the Emerald Dream), Ubertip (Tooltip - Extended)
+{
++8 |cff80ff80Health Regeneration|r
+}
+
+STRING 2107
+// Abilities: A03H (Item Life Regeneration), EditorSuffix (Editor Suffix)
+{
+(+8)
+}
+
+STRING 2108
+// Abilities: A03I (Item Stat Bonus), Name (Name)
+{
+Item Stat Bonus
+}
+
+STRING 2109
+// Abilities: A03I (Item Stat Bonus), EditorSuffix (Editor Suffix)
+{
+(+10 Str)
+}
+
+STRING 2111
+// Items: bgst (Belt of Giant Strength), Ubertip (Tooltip - Extended)
+{
++10 |cffff0000Strength|r
+}
+
+STRING 2112
+// Items: rlif (Ring of Regeneration), Ubertip (Tooltip - Extended)
+{
++2 |cff80ff80Health Regeneration|r
+}
+
+STRING 2117
+// Abilities: A03J (Tranquility), EditorSuffix (Editor Suffix)
+{
+(yseras grace)
+}
+
+STRING 2119
+// Items: I01C (|cff80ff80Ysera's Grace|r), Name (Name)
+{
+|cff80ff80Ysera's Grace|r
+}
+
+STRING 2121
+// Items: I01C (|cff80ff80Ysera's Grace|r), Tip (Tooltip - Basic)
+{
+|cff80ff80Ysera's Grace|r
+}
+
+STRING 2122
+// Abilities: A03K (Item Stat Bonus), Name (Name)
+{
+Item Stat Bonus
+}
+
+STRING 2124
+// Abilities: A03K (Item Stat Bonus), EditorSuffix (Editor Suffix)
+{
+(+25 All Stats)
+}
+
+STRING 2125
+// Items: I01B ([|cffffcc00Recipe|r] |cff80ff80Ysera's Grace|r), Name (Name)
+{
+[|cffffcc00Recipe|r] |cff80ff80Ysera's Grace|r
+}
+
+STRING 2126
+// Items: I01B ([|cffffcc00Recipe|r] |cff80ff80Ysera's Grace|r), Tip (Tooltip - Basic)
+{
+Purchase [|cffffcc00Recipe|r] |cff80ff80Ysera's Grace|r
+}
+
+STRING 2128
+// Units: u00L (Purified Protector), Name (Name)
+{
+Purified Protector
+}
+
+STRING 2129
+// Items: bgst (Belt of Giant Strength), Name (Name)
+{
+Belt of Giant Strength
+}
+
+STRING 2130
+// Abilities: A01Z (Thunderous Strikes), Researchhotkey (Hotkey - Learn)
+{
+D
+}
+
+STRING 2131
+// Units: hgtw (Guard Tower), Ubertip (Tooltip - Extended)
+{
+Primary defensive structure. |n|n|cffc0c0c0700 range|r |n|n|cffffcc00Attacks land and air units.|r
+}
+
+STRING 2132
+// Units: hctw (Cannon Tower), Ubertip (Tooltip - Extended)
+{
+Heavy defensive structure. Particularly effective against clusters of troops. |n|n|cffc0c0c0800 range|r |n|n|cffffcc00Attacks land units and trees.|r
+}
+
+STRING 2133
+// Units: n00C (Cold Tower), Ubertip (Tooltip - Extended)
+{
+Fires shards of ice at a slow rate. Good at slowing down enemies. |n|n|cffc0c0c01000 range.|r
+}
+
+STRING 2134
+// Units: n00D (Flame Tower), Ubertip (Tooltip - Extended)
+{
+Fires short jets of flame. Good at destroying enemies that get close. |n|n|cffc0c0c0600 attack range.|r
+}
+
+STRING 2135
+// Units: h00J (Fortified Barricade), Ubertip (Tooltip - Extended)
+{
+Adds 6 fortified armor and 800 health.
+}
+
+STRING 2136
+// Units: h00Z (Ironclad Barricade ), Ubertip (Tooltip - Extended)
+{
+Adds 5 fortified armor and 1200 health. |N|N|cffffcc00Can be upgrades with spikes.|r
+}
+
+STRING 2137
+// Units: h000 (Militia), Ubertip (Tooltip - Extended)
+{
+Free unit, used for helping defend the early game attacks. |N|n|cffc0c0c032 second recharge time.|r
+}
+
+STRING 2138
+// Abilities: A03L (Greater Chain Lightning), Name (Name)
+{
+Greater Chain Lightning
+}
+
+STRING 2139
+// Abilities: A03L (Greater Chain Lightning), EditorSuffix (Editor Suffix)
+{
+ (demon spear of thunder)
+}
+
+STRING 2140
+// Items: I00G (Staff of Primal Thunder), Ubertip (Tooltip - Extended)
+{
++10 |cff8080ffIntelligence|r |n|n|cffffcc00Greater Chain Lightning|r - Deals an initial |cffff00ff400 damage|r and bounces to 10 nearby enemies.
+}
+
+STRING 2141
+// Items: I00H ([|cffffcc00Recipe|r] Staff of Primal Thunder), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0(2) Thunderlizard Diamond, (2) Staff of Knowledge|r|N|n+10 |cff8080ffIntelligence|r |n|n|cffffcc00Greater Chain Lightning|R - Deals an initial |cffff00ff400 damage|r and bounces to 10 nearby enemies. |n
+200 |cff8080ffmana cost|r
+|cffc0c0c09 second cooldown|r
+}
+
+STRING 2142
+// Items: I004 (Force Boots), Ubertip (Tooltip - Extended)
+{
+Increases the movement speed of the Hero when worn. 
+
++30 Movespeed
+|n|cffffcc00Force Boots|r - Thrusts the hero forward in any direction they are facing.
+}
+
+STRING 2143
+// Items: I001 (Treads of the Wind Walker ), Ubertip (Tooltip - Extended)
+{
+Increases the movement speed of the Hero when worn.  |n|n+30 Movespeed |n|n|cffffcc00Wind Walk|r - Go invisible for 5 seconds.
+}
+
+STRING 2145
+// Items: thdm (Thunderlizard Diamond), Ubertip (Tooltip - Extended)
+{
+Casts |cffffcc00Chain Lightning|r that deals |cffff00ff100 damage|r to multiple targets. |n|n|cffc0c0c09 second cooldown|r.|n40 |cff8080ffmana|r cost.
+}
+
+STRING 2146
+// Abilities: A021 (Stat Cost Breakdown - Info Ability), Ubertip (Tooltip - Normal - Extended)
+{
+|cff9999ffAttribute Point|r - 50 gold (Tomes - 150 gold)
+|cff00ff00Health Points (per point)|r - 1 gold
+|cffcc3333HP Regen (per 1 point)|r - 250 gold
+|cff3366ffMana Regen (per 1 point)|r - 500 gold
+|cff3333ffMana (per point)|r - 1.67 gold
+|cffffcc33Move Speed|r - 5 gold
+|cff808080Armor (per point)|r - 83 gold
+|cffff8000Attack Speed (1% increase)|r - 25 gold
+|cffff0000Damage Increase (1%)|r - 50 gold
+|cffcc0000Flat Damage +1|r - 50 gold
+|cffcc99ff1% Cleave|r - 20 gold
+}
+
+STRING 2147
+// Items: I006 (Blink Dagger), Ubertip (Tooltip - Extended)
+{
+|cffffcc00Blink|R - Allows the Hero to teleport 1800 units away. |n|N|cffc0c0c018 second cooldown|r
+}
+
+STRING 2148
+// Abilities: A03M (Sphere -custom), Name (Name)
+{
+Sphere -custom
+}
+
+STRING 2150
+// Abilities: A03N (Lesser Unholy Frenzy), EditorSuffix (Editor Suffix)
+{
+(spell book)
+}
+
+STRING 2152
+// Abilities: A03N (Lesser Unholy Frenzy), Ubertip (Tooltip - Normal - Extended)
+{
+Increases the attack rate of a target unit by 20%, but drains 4 hit points per second. |nLasts 10 seconds.
+}
+
+STRING 2154
+// Abilities: A03N (Lesser Unholy Frenzy), Tip (Tooltip - Normal)
+{
+Lesser Unholy Frenzy
+}
+
+STRING 2155
+// Abilities: A03N (Lesser Unholy Frenzy), Name (Name)
+{
+Lesser Unholy Frenzy
+}
+
+STRING 2156
+// Abilities: A03O (Lesser Roar), Name (Name)
+{
+Lesser Roar
+}
+
+STRING 2157
+// Abilities: A03O (Lesser Roar), Tip (Tooltip - Normal)
+{
+Lesser Roar
+}
+
+STRING 2158
+// Abilities: A03O (Lesser Roar), Ubertip (Tooltip - Normal - Extended)
+{
+Gives friendly nearby units a 15% bonus to damage. |nLasts 45 seconds.
+}
+
+STRING 2159
+// Items: sbok (Spell Book), Ubertip (Tooltip - Extended)
+{
+|cffff00ffA book full of random spells. |r    |n|nCan cast |cffffcc00Lesser Roar|r, |cffffcc00Entangling roots|r, |cffffcc00Dispel Magic|r, |cffffcc00Lesser Unholy Frenzy|r and |cffffcc00Monsoon|r.            |n|n|cffff8080If the spells do not appear, drop the item and pick it up again. Moving the item from the slot it was picked up from will cause the spells to disappear.|r
+}
+
+STRING 2160
+// Abilities: A03O (Lesser Roar), EditorSuffix (Editor Suffix)
+{
+(Spell book)
+}
+
+STRING 2161
+// Units: h011 (Dummy Caster), Name (Name)
+{
+Dummy Caster
+}
+
+STRING 2162
+// Units: h011 (Dummy Caster), EditorSuffix (Name - Editor Suffix)
+{
+(ghost cenarius)
+}
+
+STRING 2163
+// Abilities: A03J (Tranquility), Ubertip (Tooltip - Normal - Extended)
+{
+Causes rains of healing energy to pour down in a large area, healing friendly allied units for 100 hit points per second. |nLasts 20 seconds.
+}
+
+STRING 2164
+// Items: I01B ([|cffffcc00Recipe|r] |cff80ff80Ysera's Grace|r), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Belt of Giant Strength, Staff of the Archmage, Assassin's Ring, Crown of Kings +5, Fragment of the Emerald Dream|r
+
++25 |cffffcc00All Stats|r   
+  +8 |cff80ff80Health Regeneration|r
+
+|cffffcc00Tranquility|R - Heal all units in |cffc0c0c02400 range|r for |cff80ff80100 health per second|r for |cffffcc0020 seconds|r. Also summons |cffffcc00Purified Protectors|r near the hero.
+}
+
+STRING 2165
+// Items: I01C (|cff80ff80Ysera's Grace|r), Ubertip (Tooltip - Extended)
+{
+Requires: |cffc0c0c0Belt of Giant Strength, Staff of the Archmage, Assassin's Ring, Crown of Kings +5, Fragment of the Emerald Dream|r
+
++25 |cffffcc00All Stats|r   
+  +8 |cff80ff80Health Regeneration|r
+
+|cffffcc00Tranquility|R - Heal all units in |cffc0c0c02400 range|r for |cff80ff80100 health per second|r for |cffffcc0020 seconds|r. Also summons |cffffcc00Purified Protectors|r near the hero.
 }
 

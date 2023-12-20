@@ -697,3 +697,16 @@ less spawned units means damage should go up more
 8 minute long final night
 
 increase sound volume for hero spawns
+
+====Ysera's Grace - lets you cast tranquility for 20 seconds giving 100 health regen per second. on 1.5 minute cooldown - should be very expensive
+
+nerf tauren cheiftan ult
+
+change capturable targets to only town halls
+add yseras item
+add an additional tank item with damage reflection
+
+bump up the damage scaling for enemies as rounds increase
+maybe ysera's grace can also summon treants around your hero with hero armor and hero attack
+
+more items and also more custom enemies

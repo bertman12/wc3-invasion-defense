@@ -90,18 +90,25 @@ export function unitGetsNearThisUnit(unit: Unit, range: number, cb: (u: Unit) =>
  * @param dummyLifeTime Maybe be necessary to have a long lifetime so spells like chain lightning will have time to bounce to all targets
  * @param ownerUnit
  */
-export function useTempDummyUnit(cb: (dummy: Unit) => void, abilityId: number, dummyLifeTime: number, ownerUnit: Unit) {
-    // args.push(UNITS.dummyCaster);
-    const dummy = Unit.create(ownerUnit.owner, UNITS.dummyCaster, ownerUnit.x, ownerUnit.y, ownerUnit.facing);
+export function useTempDummyUnit(cb: (dummy: Unit) => void, abilityId: number, dummyLifeTime: number, ownerUnit: Unit, modelType?: "cenariusGhost") {
+    let dummy: Unit | undefined = undefined;
+
+    if (modelType === "cenariusGhost") {
+        dummy = Unit.create(ownerUnit.owner, UNITS.dummyCaster_cenariusGhost, ownerUnit.x, ownerUnit.y, ownerUnit.facing);
+        dummy?.setScale(1, 1, 1);
+    } else {
+        dummy = Unit.create(ownerUnit.owner, UNITS.dummyCaster, ownerUnit.x, ownerUnit.y, ownerUnit.facing);
+    }
+
     const t = Timer.create();
 
     if (dummy) {
         dummy.addAbility(abilityId);
-
+        dummy.setAbilityManaCost(abilityId, 0, 0);
         cb(dummy);
 
         t.start(dummyLifeTime, false, () => {
-            dummy.destroy();
+            dummy?.destroy();
             t.destroy();
         });
     }

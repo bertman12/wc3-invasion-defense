@@ -4,6 +4,7 @@ import { primaryCapturableHumanTargets } from "src/towns";
 import { unitHasItem } from "src/utils/item";
 import { notifyPlayer } from "src/utils/misc";
 import { forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayer, forEachUnitTypeOfPlayer, isPlayingUser } from "src/utils/players";
+import { delayedTimer } from "src/utils/timer";
 import { Effect, Item, Point, Rectangle, Sound, Timer, Trigger, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
 
@@ -32,7 +33,7 @@ function getNextUndeadPlayer() {
 //30 seconds being the hard spawn, 15 second intervals being the normal spawn difficulty; maybe fr
 const waveIntervalOptions = [15, 30];
 
-const MAX_ZOMBIE_COUNT = 250 as const;
+const MAX_ZOMBIE_COUNT = 200 as const;
 
 let currentZombieCount = 0;
 let currentSpawns: SpawnData[] = [];
@@ -288,10 +289,10 @@ class SpawnData {
 
         this.unitCompData = new Map<UnitCategory, number>([
             ["infantry", Math.ceil(0.775 * this.spawnAmountPerWave)],
-            ["missile", Math.ceil(0.1 * this.spawnAmountPerWave)],
-            ["caster", Math.ceil(0.1 * this.spawnAmountPerWave)],
+            ["missile", Math.ceil(0.108 * this.spawnAmountPerWave)],
+            ["caster", Math.ceil(0.108 * this.spawnAmountPerWave)],
             ["siege", Math.ceil(0.025 * this.spawnAmountPerWave)],
-            ["hero", Math.ceil(0.015 * this.spawnAmountPerWave)],
+            // ["hero", Math.ceil(0.015 * this.spawnAmountPerWave)],
         ]);
 
         /**
@@ -506,6 +507,40 @@ class SpawnData {
                 this.lastCreatedWaveUnits.push(hero);
             });
         }
+
+        if (RoundManager.currentRound % 3 === 0) {
+            if (!isUndeadHeroSoundAlreadyPlaying) {
+                isUndeadHeroSoundAlreadyPlaying = true;
+
+                switch (this.spawnDifficulty) {
+                    case SpawnDifficulty.normal:
+                        const sound1 = Sound.fromHandle(gg_snd_H06Arthas06);
+                        sound1?.setVolume(126);
+                        delayedTimer(10, () => {
+                            sound1?.start();
+                        });
+                        break;
+                    case SpawnDifficulty.hard:
+                        const sound2 = Sound.fromHandle(gg_snd_L01Arthas22);
+                        sound2?.setVolume(126);
+                        delayedTimer(10, () => {
+                            sound2?.start();
+                        });
+
+                        break;
+                    case SpawnDifficulty.final:
+                        const sound3 = Sound.fromHandle(gg_snd_L04Anubarak24);
+                        sound3?.setVolume(126);
+                        delayedTimer(10, () => {
+                            sound3?.start();
+                        });
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
     }
 
     /**
@@ -516,31 +551,31 @@ class SpawnData {
         const undeadHeroes = [UNITS.uh_cryptLord, UNITS.uh_deathKnight, UNITS.uh_dreadLord, UNITS.uh_lich];
         const locUnitArray: Unit[] = [];
 
-        if (!isUndeadHeroSoundAlreadyPlaying) {
-            isUndeadHeroSoundAlreadyPlaying = true;
+        // if (!isUndeadHeroSoundAlreadyPlaying) {
+        //     isUndeadHeroSoundAlreadyPlaying = true;
 
-            switch (this.spawnDifficulty) {
-                case SpawnDifficulty.normal:
-                    const sound1 = Sound.fromHandle(gg_snd_H06Arthas06);
-                    sound1?.setVolume(126);
-                    sound1?.start();
-                    break;
-                case SpawnDifficulty.hard:
-                    const sound2 = Sound.fromHandle(gg_snd_L01Arthas22);
-                    sound2?.setVolume(126);
-                    sound2?.start();
+        //     switch (this.spawnDifficulty) {
+        //         case SpawnDifficulty.normal:
+        //             const sound1 = Sound.fromHandle(gg_snd_H06Arthas06);
+        //             sound1?.setVolume(126);
+        //             sound1?.start();
+        //             break;
+        //         case SpawnDifficulty.hard:
+        //             const sound2 = Sound.fromHandle(gg_snd_L01Arthas22);
+        //             sound2?.setVolume(126);
+        //             sound2?.start();
 
-                    break;
-                case SpawnDifficulty.final:
-                    const sound3 = Sound.fromHandle(gg_snd_L04Anubarak24);
-                    sound3?.setVolume(126);
-                    sound3?.start();
-                    break;
+        //             break;
+        //         case SpawnDifficulty.final:
+        //             const sound3 = Sound.fromHandle(gg_snd_L04Anubarak24);
+        //             sound3?.setVolume(126);
+        //             sound3?.start();
+        //             break;
 
-                default:
-                    break;
-            }
-        }
+        //         default:
+        //             break;
+        //     }
+        // }
 
         undeadHeroes.forEach((heroId) => {
             const hero = Unit.create(getNextUndeadPlayer(), heroId, this.spawnRec?.centerX ?? -570, this.spawnRec?.centerY ?? -7000);
@@ -558,21 +593,21 @@ class SpawnData {
 
                 this.scaleUnitDifficulty(hero);
 
-                const abilities = undeadHeroAbilityMap.get(heroId);
+                // const abilities = undeadHeroAbilityMap.get(heroId);
 
-                //Upgrade hero abilities to max
-                abilities?.forEach((abilityCode, index) => {
-                    const ultimateIndex = 3;
-                    // const abilityLevel = hero.getAbilityLevel(abilityCode);
+                // //Upgrade hero abilities to max
+                // abilities?.forEach((abilityCode, index) => {
+                //     const ultimateIndex = 3;
+                //     // const abilityLevel = hero.getAbilityLevel(abilityCode);
 
-                    if (index !== ultimateIndex) {
-                        hero.setAbilityLevel(abilityCode, 3);
-                    }
+                //     if (index !== ultimateIndex) {
+                //         hero.setAbilityLevel(abilityCode, 3);
+                //     }
 
-                    if (index === ultimateIndex) {
-                        hero.setAbilityLevel(abilityCode, 1);
-                    }
-                });
+                //     if (index === ultimateIndex) {
+                //         hero.setAbilityLevel(abilityCode, 1);
+                //     }
+                // });
 
                 //Add an item to the hero, depending on the difficulty, the hero will get a random item
                 let randomIndex = math.random(0, possibleUndeadItems.length);
@@ -649,6 +684,7 @@ class SpawnData {
             if (u.isHero()) {
                 u.setHeroLevel(RoundManager.currentRound, false);
             }
+
             this.scaleUnitDifficulty(u);
             // if (this.playersPlaying > 2) {
             //     const playerBonus = this.playersPlaying - 2;
@@ -676,12 +712,14 @@ class SpawnData {
      * @returns
      */
     private scaleUnitDifficulty(unit: Unit): Unit {
-        if (this.playersPlaying > 0) {
-            // if (this.playersPlaying > 2) {
-            const playerBonus = 4;
-            // const playerBonus = this.playersPlaying - 2;
-            const roundDamageMultiplier = 0.05 * playerBonus + RoundManager.currentRound / 100;
-            const healthBonusMultiplier = 0.1 * playerBonus + (RoundManager.currentRound * 2) / 100;
+        this.playersPlaying = 6;
+
+        if (this.playersPlaying > 2) {
+            const playerBonus = this.playersPlaying - 2;
+            //linear damage increase - will now scale by players, round and current spawn difficulty
+            const roundDamageMultiplier = 0.05 * playerBonus + (RoundManager.currentRound * 3 + this.spawnDifficulty * 3) / 100;
+            const healthBonusMultiplier = 0.125 * playerBonus + (RoundManager.currentRound * 2) / 100;
+
             //Increasing health and damage based on number of players playing
             const baseDmgIncrease = unit.getBaseDamage(0) + Math.ceil(unit.getBaseDamage(0) * roundDamageMultiplier);
             const diceSidesIncrease = unit.getDiceSides(0) + Math.ceil(unit.getDiceSides(0) * roundDamageMultiplier);
@@ -712,7 +750,7 @@ class SpawnData {
          * @REFACTOR
          * this should be choosing a new target from the last target not the spawning point
          */
-        let shortestDistance = 99999999;
+        const shortestDistance = 999999;
 
         let closestCapturableStructure: Unit | undefined = undefined;
 
@@ -722,19 +760,29 @@ class SpawnData {
         primaryCapturableHumanTargets.forEach((structureType) => {
             //Checking attack points owned by Allied Human Forces
             forEachAlliedPlayer((p) => {
-                forEachUnitTypeOfPlayer(structureType, p, (u) => {
-                    //Dont check neutral units
-                    const locU = Location(u.x, u.y);
-                    const dist = DistanceBetweenPoints(currLoc, locU);
+                if (isPlayingUser(p)) {
+                    forEachUnitTypeOfPlayer(structureType, p, (u) => {
+                        if (u && u.isAlive()) {
+                            closestCapturableStructure = u;
+                        }
 
-                    //Choose the point closest to the current attack point
-                    if (dist < shortestDistance) {
-                        shortestDistance = dist;
-                        closestCapturableStructure = u;
-                    }
-                });
+                        //Dont check neutral units
+                        // const locU = Location(u.x, u.y);
+                        // const dist = DistanceBetweenPoints(currLoc, locU);
+
+                        // //Choose the point closest to the current attack point
+                        // if (dist < shortestDistance) {
+                        //     shortestDistance = dist;
+                        //     closestCapturableStructure = u;
+                        // }
+                    });
+                }
             });
         });
+
+        if (closestCapturableStructure === undefined) {
+            print("Unable to find next undead attack target.");
+        }
 
         return closestCapturableStructure;
 
@@ -782,6 +830,7 @@ const unitCategoryData = new Map<UnitCategory, { tierI: number[]; tierII: number
                 // abomination
                 // Corrupted Protector
                 FourCC("u00J"),
+                UNITS.boss_pitLord,
             ],
         },
     ],
@@ -908,7 +957,7 @@ function calcBaseAmountPerWave() {
         numPlayers++;
     });
 
-    const enemiesPerWave = RoundManager.currentRound * 1 + 8 + 2 * numPlayers;
+    const enemiesPerWave = RoundManager.currentRound * 1 + 8 + 1 * numPlayers;
     return enemiesPerWave;
 }
 

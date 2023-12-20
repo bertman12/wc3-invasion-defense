@@ -45,7 +45,7 @@ function trig_heroDies() {
     t.addCondition(() => {
         const u = Unit.fromHandle(GetDyingUnit());
 
-        if (u && u.isHero() && u.owner.race !== RACE_UNDEAD) {
+        if (u && u.isHero() && !u.isIllusion() && isPlayingUser(u.owner)) {
             Sound.fromHandle(gg_snd_QuestFailed)?.start();
             const respawnTime = 15 + u.level + RoundManager.currentRound;
             print(`${tColor("!", "goldenrod")} - ${u.owner.name}, your hero will revive in ${respawnTime} seconds.`);
@@ -113,124 +113,6 @@ function createDailyUnits() {
         }
     });
 }
-
-// /**
-//  * This the normal hero spawning trigger which will be activated after 30 seconds
-//  */
-// export function trig_heroPurchasedAfterPrepTime() {
-//     const t = Trigger.create();
-
-//     t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SELL);
-
-//     t.addCondition(() => {
-//         const u = Unit.fromHandle(GetBuyingUnit());
-//         if (u && u.typeId === FourCC("nshe")) {
-//             return true;
-//         }
-
-//         return false;
-//     });
-
-//     t.addAction(() => {
-//         const heroPicker = Unit.fromHandle(GetBuyingUnit());
-//         const purchasedHero = Unit.fromHandle(GetSoldUnit());
-//         const seller = Unit.fromHandle(GetSellingUnit());
-
-//         if (!heroPicker || !purchasedHero || !seller) {
-//             return;
-//         }
-
-//         heroPicker.kill();
-//         const playerState = playerStates.get(purchasedHero.owner.id);
-
-//         if (playerState) {
-//             playerState.playerHero = purchasedHero;
-//         }
-
-//         purchasedHero?.addItemById(FourCC("stel"));
-//         purchasedHero?.addItemById(FourCC("tcas"));
-
-//         SelectUnitForPlayerSingle(purchasedHero.handle, purchasedHero.owner.handle);
-//         SelectUnitRemoveForPlayer(seller?.handle, purchasedHero.owner.handle);
-
-//         const startX = purchasedHero.owner.startLocationX;
-//         const startY = purchasedHero.owner.startLocationY;
-//         SetCameraPositionForPlayer(heroPicker.owner.handle, startX, startY);
-
-//         purchasedHero.x = startX;
-//         purchasedHero.y = startY;
-
-//         const armyController = Unit.create(purchasedHero.owner, UNITS.armyController, -28950 + purchasedHero.owner.id * 50 - 250 * Math.floor(purchasedHero.owner.id / 5), -28950 - Math.floor(purchasedHero.owner.id / 5) * 75);
-//         armyController?.setHeroLevel(18, false);
-//     });
-// }
-
-// /**
-//  * This will be used for the first 30 seconds of the game, then the match will begin, this trigger will be disabled and the other trigger will be used instead
-//  */
-// function trig_heroPurchasedDuringPrepTime() {
-//     const t = Trigger.create();
-
-//     t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SELL);
-
-//     t.addCondition(() => {
-//         const u = Unit.fromHandle(GetBuyingUnit());
-//         if (u && u.typeId === FourCC("nshe")) {
-//             return true;
-//         }
-
-//         return false;
-//     });
-
-//     t.addAction(() => {
-//         const heroPicker = Unit.fromHandle(GetBuyingUnit());
-//         const purchasedHero = Unit.fromHandle(GetSoldUnit());
-//         const seller = Unit.fromHandle(GetSellingUnit());
-
-//         if (!heroPicker || !purchasedHero || !seller) {
-//             return;
-//         }
-
-//         heroPicker.kill();
-//         const playerState = playerStates.get(purchasedHero.owner.id);
-
-//         if (playerState) {
-//             playerState.playerHero = purchasedHero;
-//         }
-
-//         SelectUnitForPlayerSingle(purchasedHero.handle, purchasedHero.owner.handle);
-//         SelectUnitRemoveForPlayer(seller?.handle, purchasedHero.owner.handle);
-//     });
-// }
-
-// /**
-//  * Should happen exactly at the transition when the prep trigger ends and the post prep hero purchase trigger starts
-//  * Logic can be used inside postPrep hero purchased trigger
-//  */
-// function moveHeroesToStartLocationAndGiveItems() {
-//     forEachAlliedPlayer((p) => {
-//         if (isPlayingUser(p)) {
-//             const playerState = playerStates.get(p.id);
-
-//             if (playerState) {
-//                 const purchasedHero = playerState.playerHero;
-//                 if (!purchasedHero) {
-//                     return;
-//                 }
-
-//                 purchasedHero?.addItemById(FourCC("stel"));
-//                 purchasedHero?.addItemById(FourCC("tcas"));
-//                 const startX = purchasedHero.owner.startLocationX;
-//                 const startY = purchasedHero.owner.startLocationY;
-//                 SetCameraPositionForPlayer(p.handle, startX, startY);
-//                 purchasedHero.x = startX;
-//                 purchasedHero.y = startY;
-//                 const armyController = Unit.create(purchasedHero.owner, UNITS.armyController, -28950 + purchasedHero.owner.id * 50 - 250 * Math.floor(purchasedHero.owner.id / 5), -28950 - Math.floor(purchasedHero.owner.id / 5) * 75);
-//                 armyController?.setHeroLevel(18, false);
-//             }
-//         }
-//     });
-// }
 
 export function players_nightStart() {
     forEachPlayer((p) => {
@@ -393,6 +275,8 @@ export function player_giveHumansStartOfDayResources(round: number) {
     print("==================");
     print("");
     print("Use your |cffffcc00engineers|r to rebuild your defenses.");
+    print("Remember to keep building |cffffcc00Druid Farmers|r with your |cffffcc00peasant|r when you can.");
+
     //Gives gold and wood
     forEachAlliedPlayer((player) => {
         adjustGold(player, totalGold);
@@ -541,6 +425,10 @@ function lossCondition() {
                 PlayMusic(gg_snd_UndeadVictory);
                 //play sad sound
                 Sound.fromHandle(gg_snd_SargerasLaugh)?.start();
+                print(tColor("No town halls remain. You have been defeated!", "red"));
+                print(tColor("No town halls remain. You have been defeated!", "red"));
+                print(tColor("No town halls remain. You have been defeated!", "red"));
+                print(tColor("No town halls remain. You have been defeated!", "red"));
                 print(tColor("No town halls remain. You have been defeated!", "red"));
             }
         }

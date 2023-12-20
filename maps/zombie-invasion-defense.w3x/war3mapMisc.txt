@@ -1,3 +1,6 @@
+[HERO]
+DependencyOr=O003,Hamg,Hblm,Hmkg,Hpal,Obla,Ofar,Oshd,Otch,Edem,Ekee,Emoo,Ewar,Ucrl,Udea,Udre,Ulic,Npbm,Nbrn,Nngs,Nplh,Nbst,Nalc,Ntin,Nfir
+
 [Misc]
 AnimatedUnitsBestowAuras=1
 AwakenBaseFactor=0.1
