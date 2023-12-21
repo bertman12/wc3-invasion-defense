@@ -4,12 +4,15 @@ import { initFrames } from "./frames";
 import { setupNightAndDayHooks } from "./hooks/startOfDay";
 import { init_map_triggers } from "./init";
 import { init_startingResources, setupPlayers } from "./players";
+import { Feature } from "./shared/Feature";
+import { GameConfig } from "./shared/GameConfig";
 import { TimerManager } from "./shared/Timers";
 import { RoundManager } from "./shared/round-manager";
 import { setup_destroyStructure } from "./towns";
 import { init_armyControllerTrigs } from "./triggers/armyController";
 import { init_cameraTrigs } from "./triggers/camera";
 import { init_economyTriggers } from "./triggers/economy/init";
+import { trig_heroDies } from "./triggers/heroes/heroDeath";
 import { setup_heroPurchasing } from "./triggers/heroes/heroPurchasing";
 import { init_itemAbilities } from "./triggers/items";
 import { init_miscellaneousTriggers } from "./triggers/misc";
@@ -49,7 +52,8 @@ function tsMain() {
         setupPlayers();
         SetGameDifficulty(MAP_DIFFICULTY_INSANE);
         init_quests();
-
+        Feature.baseGameModeSetup();
+        Feature.setup_turnOnHeroMode();
         setup_destroyStructure();
 
         //Environment setup
@@ -84,7 +88,7 @@ function tsMain() {
         init_cameraTrigs();
         init_upgradeBasedTriggers();
         init_economyTriggers();
-
+        trig_heroDies();
         /**
          * Will kickoff the rest of the game timers
          */
@@ -94,7 +98,7 @@ function tsMain() {
             notifyPlayer("Place your |cffffcc00Town Hall|r with your |cffffcc00Hero|r.");
             TimerManager.startDayTimer(() => {
                 RoundManager.startNextRound();
-            }, 240);
+            }, GameConfig.enemyPreparationTime);
 
             init_undead();
         });

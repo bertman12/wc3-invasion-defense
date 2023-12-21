@@ -15,6 +15,7 @@ export function init_quests() {
             "Commands",
             `
             \n${tColor("-cam ####", "goldenrod")}: Sets the camera distance.
+            \n${tColor("-heromode", "goldenrod")}: Experimental - Sets the game mode to hero mode. Must be used before preparation timer at the beginning has ended.
         `,
             "ReplaceableTextures\\WorldEditUI\\Doodad-Cinematic.blp",
             false,

@@ -1,3 +1,4 @@
+import { GameConfig } from "src/shared/GameConfig";
 import { ITEMS, MinimapIconPath, PlayerIndices, UNITS } from "src/shared/enums";
 import { RoundManager } from "src/shared/round-manager";
 import { primaryCapturableHumanTargets } from "src/towns";
@@ -8,7 +9,7 @@ import { delayedTimer } from "src/utils/timer";
 import { Effect, Item, Point, Rectangle, Sound, Timer, Trigger, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
 
-const UNDEAD_PLAYERS = [Players[10], Players[12], Players[13], Players[14], Players[15], Players[16], Players[17], Players[20], Players[21], Players[22], Players[23]];
+const UNDEAD_PLAYERS = [Players[10], Players[12], Players[13], Players[14], Players[15], Players[16], Players[17], Players[19], Players[20], Players[21], Players[22], Players[23]];
 const defaultAttackX = -1200;
 const defaultAttackY = -15500;
 let currentUndeadPlayerIndex = 0;
@@ -58,9 +59,9 @@ export function undeadNightStart() {
 
     //Order remaining undead to attack the capital
     forEachPlayer((p) => {
-        if (!p.isPlayerAlly(Players[0]) && p !== Players[0] && p !== Players[9] && p !== Players[PlayerIndices.KingdomOfHyperion]) {
+        if (!p.isPlayerAlly(Players[0]) && p !== Players[0] && p !== Players[9] && p !== Players[PlayerIndices.HumanDefenders]) {
             forEachUnitOfPlayer(p, (u) => {
-                u.issueOrderAt(OrderId.Attack, defaultAttackX, defaultAttackY);
+                u.issueOrderAt(OrderId.Attack, GameConfig.defaultEnemyAttackX, GameConfig.defaultEnemyAttackY);
             });
         }
     });
@@ -89,7 +90,14 @@ export function undeadDayStart() {
     /**
      * @SIMPLIFIED
      */
-    const validUndeadSpawns = [gg_rct_southSpawn2, gg_rct_zSouthspawn4];
+    const validUndeadSpawns = GameConfig.undeadSpawnPoints;
+    // let validUndeadSpawns = [gg_rct_southSpawn2, gg_rct_zSouthspawn4];
+
+    //Using the game config spawns - We cannot add the rects to the game config since
+    // if (GameConfig.heroModeEnabled) {
+    //     validUndeadSpawns = GameConfig.undeadSpawnPoints.map((Rect) => Rect.handle);
+    // }
+
     // const validUndeadSpawns = [gg_rct_zombieSpawn2, gg_rct_zNorthSpawn1, gg_rct_ZombieSpawn1, gg_rct_zWestSpawn1, gg_rct_zEastCapitalSpawn];
     const spawns: rect[] = [];
 
@@ -343,7 +351,7 @@ class SpawnData {
 
         this.waveTimer = Timer.create();
 
-        this.waveTimer.start(20, true, () => {
+        this.waveTimer.start(GameConfig.waveIntervalSeconds, true, () => {
             this.createWaveUnits();
             this.orderNewAttack(this.lastCreatedWaveUnits);
         });
@@ -356,7 +364,7 @@ class SpawnData {
             }
         });
 
-        this.units.forEach((u) => u.issueOrderAt(OrderId.Attack, defaultAttackX, defaultAttackY));
+        this.units.forEach((u) => u.issueOrderAt(OrderId.Attack, GameConfig.defaultEnemyAttackX, GameConfig.defaultEnemyAttackY));
 
         if (this.spawnIcon) {
             DestroyMinimapIcon(this.spawnIcon);
@@ -401,9 +409,9 @@ class SpawnData {
         if (attackingUnits.length > 0) {
             attackingUnits.forEach((u) => {
                 if (!this.currentAttackTarget?.isAlive()) {
-                    u.issueOrderAt(OrderId.Attack, defaultAttackX, defaultAttackY);
+                    u.issueOrderAt(OrderId.Attack, GameConfig.defaultEnemyAttackX, GameConfig.defaultEnemyAttackY);
                 } else {
-                    u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? defaultAttackX, this.currentAttackTarget?.y ?? defaultAttackY);
+                    u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? GameConfig.defaultEnemyAttackX, this.currentAttackTarget?.y ?? GameConfig.defaultEnemyAttackY);
                 }
             });
         }
@@ -413,9 +421,9 @@ class SpawnData {
             this.units.forEach((u) => {
                 if (u.currentOrder === 0 || u.currentOrder === OrderId.Stop || u.currentOrder === OrderId.Holdposition) {
                     if (!this.currentAttackTarget?.isAlive()) {
-                        u.issueOrderAt(OrderId.Attack, defaultAttackX, defaultAttackY);
+                        u.issueOrderAt(OrderId.Attack, GameConfig.defaultEnemyAttackX, GameConfig.defaultEnemyAttackY);
                     } else {
-                        u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? defaultAttackX, this.currentAttackTarget?.y ?? defaultAttackY);
+                        u.issueOrderAt(OrderId.Attack, this.currentAttackTarget?.x ?? GameConfig.defaultEnemyAttackX, this.currentAttackTarget?.y ?? GameConfig.defaultEnemyAttackY);
                     }
                 }
             });
@@ -499,7 +507,7 @@ class SpawnData {
         });
 
         //Will spawn the heroes on the 3rd wave of every 3rd round
-        if (RoundManager.currentRound % 3 === 0 && this.wavesCreated === 3) {
+        if (RoundManager.currentRound % 3 === 0 && this.wavesCreated === GameConfig.bossSpawnWaveNumber) {
             const heroes = this.spawnHeroSquad();
 
             //Add heroes to the unit array
@@ -686,22 +694,19 @@ class SpawnData {
             }
 
             this.scaleUnitDifficulty(u);
-            // if (this.playersPlaying > 2) {
-            //     const playerBonus = this.playersPlaying - 2;
-            //     const roundDamageMultiplier = 0.05 * playerBonus + RoundManager.currentRound / 100;
-            //     const healthBonusMultiplier = 0.1 * playerBonus + (RoundManager.currentRound * 2) / 100;
-            //     //Increasing health and damage based on number of players playing
-            //     const baseDmgIncrease = u.getBaseDamage(0) + Math.ceil(u.getBaseDamage(0) * roundDamageMultiplier);
-            //     const diceSidesIncrease = u.getDiceSides(0) + Math.ceil(u.getDiceSides(0) * roundDamageMultiplier);
-            //     const healthIncrease = Math.ceil(u.maxLife * (1 + healthBonusMultiplier));
-            //     u.name += ` |cff00ff00+${(healthBonusMultiplier * 100).toFixed(0)}%/|cffff0000+${(roundDamageMultiplier * 100).toFixed(0)}%`;
-            //     u.maxLife = healthIncrease;
-            //     u.life = u.maxLife;
-            //     u.setBaseDamage(baseDmgIncrease, 0);
-            //     u.setDiceSides(diceSidesIncrease, 0);
-            // }
+
+            if (GameConfig.useEnemyBounty) {
+                const playerCountModifier = this.playersPlaying - GameConfig.playersRequiredBeforeScaling;
+                const enemyBountyAmount =
+                    GameConfig.enemyBaseBounty + playerCountModifier * GameConfig.enemyBountyPlayerCountModifier + GameConfig.enemyBountyRoundCountModifier * RoundManager.currentRound + GameConfig.enemyBountySpawnDifficulty * this.spawnDifficulty;
+
+                u.setField(UNIT_IF_GOLD_BOUNTY_AWARDED_BASE, enemyBountyAmount);
+                u.setField(UNIT_IF_GOLD_BOUNTY_AWARDED_NUMBER_OF_DICE, 1);
+                u.setField(UNIT_IF_GOLD_BOUNTY_AWARDED_SIDES_PER_DIE, 2);
+            }
 
             this.units.push(u);
+
             return u;
         }
     }
@@ -714,11 +719,19 @@ class SpawnData {
     private scaleUnitDifficulty(unit: Unit): Unit {
         this.playersPlaying = 6;
 
-        if (this.playersPlaying > 2) {
+        if (GameConfig.enableEnemyScaling && this.playersPlaying > GameConfig.playersRequiredBeforeScaling) {
             const playerBonus = this.playersPlaying - 2;
             //linear damage increase - will now scale by players, round and current spawn difficulty
-            const roundDamageMultiplier = 0.05 * playerBonus + (RoundManager.currentRound * 3 + this.spawnDifficulty * 3) / 100;
-            const healthBonusMultiplier = 0.125 * playerBonus + (RoundManager.currentRound * 2) / 100;
+
+            //10+20+4>>36+18 Heavy damage scaling
+            const roundDamageMultiplier =
+                GameConfig.enemyDMG_baseIncreasePercentage +
+                GameConfig.enemyDMG_playerCountPercentageMultiplier * playerBonus +
+                (RoundManager.currentRound * GameConfig.enemyDMG_RoundCountMultiplier + this.spawnDifficulty * GameConfig.enemyDMG_SpawnDifficultyMultiplier) / 100;
+            const healthBonusMultiplier =
+                GameConfig.enemyHP_baseIncreasePercentage +
+                GameConfig.enemyHP_playerCountPercentageMultiplier * playerBonus +
+                (RoundManager.currentRound * GameConfig.enemyHP_RoundCountMultiplier + this.spawnDifficulty * GameConfig.enemyHP_SpawnDifficultyMultiplier) / 100;
 
             //Increasing health and damage based on number of players playing
             const baseDmgIncrease = unit.getBaseDamage(0) + Math.ceil(unit.getBaseDamage(0) * roundDamageMultiplier);
@@ -760,7 +773,7 @@ class SpawnData {
         primaryCapturableHumanTargets.forEach((structureType) => {
             //Checking attack points owned by Allied Human Forces
             forEachAlliedPlayer((p) => {
-                if (isPlayingUser(p)) {
+                if (isPlayingUser(p) || (GameConfig.heroModeEnabled && p.isPlayerAlly(Players[0]))) {
                     forEachUnitTypeOfPlayer(structureType, p, (u) => {
                         if (u && u.isAlive()) {
                             closestCapturableStructure = u;
@@ -986,7 +999,7 @@ const possibleUndeadItems = [
     ITEMS.staffOfPrimalThunder,
     ITEMS.shieldOfTheGuardian,
     ITEMS.alaricsSpearOfThunder,
-    ITEMS.bladeOfTheWindWalker,
+    ITEMS.swordMastersBlade,
     ITEMS.berserkersCleaver,
     ITEMS.amuletOfTheSentinel,
     ITEMS.bloodRitualPendant,

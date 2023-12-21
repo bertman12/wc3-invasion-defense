@@ -1,10 +1,10 @@
 import { forEachUnitOfPlayer } from "src/utils/players";
-import { MapPlayer, Sound, Timer, Trigger, Unit } from "w3ts";
+import { MapPlayer, Sound, Trigger, Unit } from "w3ts";
 import { OrderId, Players } from "w3ts/globals";
+import { GameConfig } from "./shared/GameConfig";
 import { buildingOwnerDailyUnitBonusMap, buildingOwnerIncomeBonusMap, economicConstants, improvedLeviesUnitBonus } from "./shared/constants";
 import { ABILITIES, PlayerIndices, TERRAIN_CODE, UNITS, UpgradeCodes, laborerUnitSet } from "./shared/enums";
 import { PlayerState, playerStates } from "./shared/playerState";
-import { RoundManager } from "./shared/round-manager";
 import { notifyPlayer, tColor } from "./utils/misc";
 import { adjustGold, adjustLumber, forEachAlliedPlayer, forEachPlayer, forEachUnitOfPlayerWithAbility, isPlayingUser } from "./utils/players";
 import { createUnits } from "./utils/units";
@@ -17,7 +17,7 @@ export function setupPlayers() {
     initializePlayerStateInstances();
     trig_playerBuysUnit();
     // trig_heroPurchasedAfterPrepTime();
-    trig_heroDies();
+    // trig_heroDies();
     trig_checkFarmLaborerPlacement();
     playerLeaves();
     antiGrief();
@@ -35,30 +35,6 @@ export function setupPlayers() {
         SetCameraPositionForPlayer(p.handle, u.x, u.y);
 
         SetPlayerHandicapXP(p.handle, 0.35);
-    });
-}
-
-function trig_heroDies() {
-    const t = Trigger.create();
-    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_DEATH);
-
-    t.addCondition(() => {
-        const u = Unit.fromHandle(GetDyingUnit());
-
-        if (u && u.isHero() && !u.isIllusion() && isPlayingUser(u.owner)) {
-            Sound.fromHandle(gg_snd_QuestFailed)?.start();
-            const respawnTime = 15 + u.level + RoundManager.currentRound;
-            print(`${tColor("!", "goldenrod")} - ${u.owner.name}, your hero will revive in ${respawnTime} seconds.`);
-            const timer = Timer.create();
-
-            timer.start(respawnTime, false, () => {
-                u.revive(u.owner.startLocationX, u.owner.startLocationY, true);
-            });
-
-            return true;
-        }
-
-        return false;
     });
 }
 
@@ -144,8 +120,8 @@ export function init_startingResources() {
 
 function initPlayerSettings() {
     forEachAlliedPlayer((p) => {
-        SetPlayerTechMaxAllowed(p.handle, UNITS.druidLaborer, 10);
-        SetPlayerTechMaxAllowed(p.handle, FourCC("e001"), 25);
+        SetPlayerTechMaxAllowed(p.handle, UNITS.druidLaborer, 8);
+        SetPlayerTechMaxAllowed(p.handle, FourCC("e001"), 15);
     });
 }
 
@@ -212,6 +188,13 @@ export function player_giveHumansStartOfDayResources(round: number) {
         });
         p.setTechResearched(UpgradeCodes.dayTime, 1);
         p.setTechResearched(UpgradeCodes.nightTime, 0);
+
+        if (GameConfig.heroModeEnabled) {
+            const armorUpgradeLevel = p.getTechCount(UpgradeCodes.armor, true);
+            const weaponUpgradeLevel = p.getTechCount(UpgradeCodes.meleeWeapons, true);
+            p.setTechResearched(UpgradeCodes.armor, armorUpgradeLevel + 1);
+            p.setTechResearched(UpgradeCodes.meleeWeapons, weaponUpgradeLevel + 1);
+        }
     });
 
     let totalIncomeBuildings = 0;
@@ -316,7 +299,7 @@ function playerLeaves() {
             });
 
             forEachAlliedPlayer((p) => {
-                if (p.id !== PlayerIndices.KingdomOfHyperion && playerCount > 0) {
+                if (p.id !== PlayerIndices.HumanDefenders && playerCount > 0) {
                     adjustGold(p, Math.ceil(leaverGold / playerCount));
                     adjustLumber(p, Math.ceil(leaverLumber / playerCount));
 
@@ -400,37 +383,41 @@ function antiGrief() {
 }
 
 function lossCondition() {
-    const t = Trigger.create();
+    if (GameConfig.setup_defeatCondition) {
+        GameConfig.setup_defeatCondition();
+    } else {
+        const t = Trigger.create();
 
-    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_DEATH);
+        t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_DEATH);
 
-    t.addAction(() => {
-        const unit = Unit.fromEvent();
+        t.addAction(() => {
+            const unit = Unit.fromEvent();
 
-        if (unit && unit.typeId === FourCC("htow")) {
-            let foundAlliedTownHall = false;
-            //check if any other allied player town halls exist
-            forEachAlliedPlayer((p) => {
-                if (isPlayingUser(p)) {
-                    forEachUnitOfPlayer(p, (u) => {
-                        if (u.typeId === FourCC("htow") && u.isAlive()) {
-                            foundAlliedTownHall = true;
-                        }
-                    });
+            if (unit && unit.typeId === FourCC("htow")) {
+                let foundAlliedTownHall = false;
+                //check if any other allied player town halls exist
+                forEachAlliedPlayer((p) => {
+                    if (isPlayingUser(p)) {
+                        forEachUnitOfPlayer(p, (u) => {
+                            if (u.typeId === FourCC("htow") && u.isAlive()) {
+                                foundAlliedTownHall = true;
+                            }
+                        });
+                    }
+                });
+
+                if (!foundAlliedTownHall) {
+                    StopMusic(false);
+                    PlayMusic(gg_snd_UndeadVictory);
+                    //play sad sound
+                    Sound.fromHandle(gg_snd_SargerasLaugh)?.start();
+                    print(tColor("No town halls remain. You have been defeated!", "red"));
+                    print(tColor("No town halls remain. You have been defeated!", "red"));
+                    print(tColor("No town halls remain. You have been defeated!", "red"));
+                    print(tColor("No town halls remain. You have been defeated!", "red"));
+                    print(tColor("No town halls remain. You have been defeated!", "red"));
                 }
-            });
-
-            if (!foundAlliedTownHall) {
-                StopMusic(false);
-                PlayMusic(gg_snd_UndeadVictory);
-                //play sad sound
-                Sound.fromHandle(gg_snd_SargerasLaugh)?.start();
-                print(tColor("No town halls remain. You have been defeated!", "red"));
-                print(tColor("No town halls remain. You have been defeated!", "red"));
-                print(tColor("No town halls remain. You have been defeated!", "red"));
-                print(tColor("No town halls remain. You have been defeated!", "red"));
-                print(tColor("No town halls remain. You have been defeated!", "red"));
             }
-        }
-    });
+        });
+    }
 }

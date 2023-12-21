@@ -1,5 +1,5 @@
 import { UNITS } from "src/shared/enums";
-import { Timer, Trigger, Unit } from "w3ts";
+import { MapPlayer, Timer, Trigger, Unit } from "w3ts";
 import { Players } from "w3ts/globals";
 
 interface EventData {
@@ -88,23 +88,23 @@ export function unitGetsNearThisUnit(unit: Unit, range: number, cb: (u: Unit) =>
  * @param cb
  * @param abilityId
  * @param dummyLifeTime Maybe be necessary to have a long lifetime so spells like chain lightning will have time to bounce to all targets
- * @param ownerUnit
+ * @param owner
  */
-export function useTempDummyUnit(cb: (dummy: Unit) => void, abilityId: number, dummyLifeTime: number, ownerUnit: Unit, modelType?: "cenariusGhost") {
+export function useTempDummyUnit(cb: (dummy: Unit) => void, abilityId: number, dummyLifeTime: number, owner: MapPlayer, x: number, y: number, facing: number, config?: { abilityLevel?: number; modelType?: "cenariusGhost" }) {
     let dummy: Unit | undefined = undefined;
 
-    if (modelType === "cenariusGhost") {
-        dummy = Unit.create(ownerUnit.owner, UNITS.dummyCaster_cenariusGhost, ownerUnit.x, ownerUnit.y, ownerUnit.facing);
+    if (config?.modelType === "cenariusGhost") {
+        dummy = Unit.create(owner, UNITS.dummyCaster_cenariusGhost, x, y, facing);
         dummy?.setScale(1, 1, 1);
     } else {
-        dummy = Unit.create(ownerUnit.owner, UNITS.dummyCaster, ownerUnit.x, ownerUnit.y, ownerUnit.facing);
+        dummy = Unit.create(owner, UNITS.dummyCaster, x, y, facing);
     }
 
     const t = Timer.create();
 
     if (dummy) {
         dummy.addAbility(abilityId);
-        dummy.setAbilityManaCost(abilityId, 0, 0);
+        dummy.setAbilityManaCost(abilityId, config?.abilityLevel ? config.abilityLevel - 1 : 0, 0);
         cb(dummy);
 
         t.start(dummyLifeTime, false, () => {

@@ -18,6 +18,8 @@ export function init_itemAbilities() {
     gemOfTheTimeMage();
     nerfedMidas();
     item_yserasGraceTranquility();
+    demonBladeProcItem();
+    playerPicksUpDemonBlade();
 }
 
 function trig_forceBoots() {
@@ -129,7 +131,10 @@ function chainLightningProcItem() {
                     // FourCC("A03L"),
                     ABILITIES.proc_greaterChainLightning,
                     3,
-                    attacker,
+                    attacker.owner,
+                    attacker.x,
+                    attacker.y,
+                    attacker.facing,
                 );
             }
         },
@@ -186,11 +191,18 @@ function item_yserasGraceTranquility() {
                 },
                 ABILITIES.item_tranquility,
                 20,
-                caster,
-                "cenariusGhost",
+                caster.owner,
+                caster.x,
+                caster.y,
+                caster.facing,
+                { modelType: "cenariusGhost" },
             );
-            delayedTimer(20, timer.pause);
-            delayedTimer(30, () => {
+
+            delayedTimer(20, () => {
+                timer.pause();
+            });
+
+            delayedTimer(40, () => {
                 timer.destroy();
                 protectorsCreated.forEach((u) => u.kill());
             });
@@ -234,7 +246,7 @@ function demonsEyeTrinketProcItem() {
 
     onUnitAttacked(
         (attacker, victim) => {
-            if (unitHasItem(attacker, ITEMS.demonsEyeTrinket)) {
+            if (unitHasItem(attacker, ITEMS.demonsEyeTrinket) && !unitHasItem(attacker, ITEMS.demonBlade)) {
                 useTempEffect(Effect.createAttachment("Abilities\\Spells\\NightElf\\shadowstrike\\shadowstrike.mdl", attacker, "overhead"), 5);
 
                 useTempDummyUnit(
@@ -243,7 +255,10 @@ function demonsEyeTrinketProcItem() {
                     },
                     ABILITIES.proc_unholyFrenzy_demonsEyeTrinket,
                     1,
-                    attacker,
+                    attacker.owner,
+                    attacker.x,
+                    attacker.y,
+                    attacker.facing,
                 );
 
                 attacker.setScale(2, 1, 1);
@@ -261,6 +276,75 @@ function demonsEyeTrinketProcItem() {
             }
         },
         { attackerCooldown: true, procChance: 10 },
+    );
+}
+
+function playerPicksUpDemonBlade() {
+    const t = Trigger.create();
+
+    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_PICKUP_ITEM);
+    t.addAction(() => {
+        const item = Item.fromEvent();
+        const unit = Unit.fromHandle(GetTriggerUnit());
+
+        if (!unit || !item) {
+            return;
+        }
+
+        if (item.typeId === ITEMS.demonBlade) {
+            const demonBladeEffect = Effect.createAttachment("Abilities\\Spells\\Other\\Doom\\DoomTarget.mdl", unit, "foot");
+
+            const dropTrigger = Trigger.create();
+
+            dropTrigger.registerAnyUnitEvent(EVENT_PLAYER_UNIT_DROP_ITEM);
+
+            dropTrigger.addAction(() => {
+                const dropUnit = Unit.fromHandle(GetTriggerUnit());
+                if (dropUnit && dropUnit === unit) {
+                    demonBladeEffect?.destroy();
+                    dropTrigger.destroy();
+                }
+            });
+        }
+    });
+}
+
+function demonBladeProcItem() {
+    const undeadHeroes = [UNITS.uh_cryptLord, UNITS.uh_deathKnight, UNITS.uh_dreadLord, UNITS.uh_lich];
+
+    onUnitAttacked(
+        (attacker, victim) => {
+            if (unitHasItem(attacker, ITEMS.demonBlade)) {
+                useTempEffect(Effect.createAttachment("Abilities\\Spells\\NightElf\\shadowstrike\\shadowstrike.mdl", attacker, "overhead"), 5);
+
+                useTempDummyUnit(
+                    (dummy) => {
+                        dummy.issueTargetOrder(OrderId.Unholyfrenzy, attacker);
+                    },
+                    ABILITIES.proc_unholyFrenzy_demonBlade,
+                    1,
+                    attacker.owner,
+                    attacker.x,
+                    attacker.y,
+                    attacker.facing,
+                );
+
+                attacker.setScale(3, 1, 1);
+                attacker.setVertexColor(255, 0, 0, 255);
+
+                delayedTimer(5, () => {
+                    attacker.setVertexColor(255, 255, 255, 255);
+                    if (attacker.typeId === FourCC("Nfir")) {
+                        attacker.setScale(1.15, 1, 1);
+                    }
+                    if (undeadHeroes.includes(attacker.typeId)) {
+                        attacker.setScale(2.2, 1, 1);
+                        attacker.setVertexColor(255, 100, 100, 255);
+                    }
+                });
+            }
+        },
+        { attackerCooldown: true, procChance: 15 },
     );
 }
 
@@ -411,7 +495,7 @@ const itemRecipesMap = new Map<RecipeItem, RecipeItemRequirement[]>([
         ],
     ],
     [
-        { recipeId: ITEMS.recipe_bladeOfTheWindWalker, itemId: ITEMS.bladeOfTheWindWalker },
+        { recipeId: ITEMS.recipe_swordMastersBlade, itemId: ITEMS.swordMastersBlade },
         [
             { itemTypeId: ITEMS.windWalkerTreads, quantity: 1, charges: 0 }, //
             { itemTypeId: ITEMS.savageBlade, quantity: 1, charges: 0 }, //
@@ -474,7 +558,7 @@ const itemRecipesMap = new Map<RecipeItem, RecipeItemRequirement[]>([
     [
         { recipeId: ITEMS.recipe_alaricsSpearOfThunder, itemId: ITEMS.alaricsSpearOfThunder },
         [
-            { itemTypeId: ITEMS.assassinsRing, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.assassinsRing, quantity: 2, charges: 0 }, //
             { itemTypeId: ITEMS.clawsOfAttack_20, quantity: 1, charges: 0 }, //
             { itemTypeId: ITEMS.thunderLizardDiamond, quantity: 1, charges: 0 }, //
         ],
@@ -509,10 +593,40 @@ const itemRecipesMap = new Map<RecipeItem, RecipeItemRequirement[]>([
         { recipeId: ITEMS.recipe_yserasGrace, itemId: ITEMS.yserasGrace },
         [
             { itemTypeId: ITEMS.fragmentOfTheEmeraldDream, quantity: 1, charges: 0 }, //
-            { itemTypeId: ITEMS.staffOfTheArchmage, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.trinity, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.crownOfKings_5, quantity: 1, charges: 0 }, //
+        ],
+    ],
+    [
+        { recipeId: ITEMS.recipe_trinity, itemId: ITEMS.trinity },
+        [
             { itemTypeId: ITEMS.assassinsRing, quantity: 1, charges: 0 }, //
             { itemTypeId: ITEMS.beltOfGiantStrength, quantity: 1, charges: 0 }, //
-            { itemTypeId: ITEMS.crownOfKings_5, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.staffOfTheArchmage, quantity: 1, charges: 0 }, //
+        ],
+    ],
+    [
+        { recipeId: ITEMS.recipe_spikedArmor, itemId: ITEMS.spikedArmor },
+        [
+            { itemTypeId: ITEMS.beltOfGiantStrength, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.khadgarsGemOfHealth, quantity: 1, charges: 0 }, //
+        ],
+    ],
+    [
+        { recipeId: ITEMS.recipe_shieldOfTheCorruptor, itemId: ITEMS.shieldOfTheCorruptor },
+        [
+            { itemTypeId: ITEMS.shieldOfTheGuardian, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.spikedArmor, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.amuletOfCorruption, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.beltOfGiantStrength, quantity: 1, charges: 0 }, //
+        ],
+    ],
+    [
+        { recipeId: ITEMS.recipe_demonBlade, itemId: ITEMS.demonBlade },
+        [
+            { itemTypeId: ITEMS.swordMastersBlade, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.demonsEyeTrinket, quantity: 1, charges: 0 }, //
+            { itemTypeId: ITEMS.clawsOfAttack_20, quantity: 1, charges: 0 }, //
         ],
     ],
 ]);

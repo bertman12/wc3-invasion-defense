@@ -1,6 +1,7 @@
 import { forEachPlayer } from "src/utils/players";
 import { FogModifier, Sound, Timer, Trigger } from "w3ts";
 import { Players } from "w3ts/globals";
+import { GameConfig } from "./GameConfig";
 import { TimerManager } from "./Timers";
 
 /**
@@ -34,6 +35,10 @@ export class RoundManager {
     }
 
     static startNextRound() {
+        if (GameConfig.playersAreDefeated) {
+            return;
+        }
+
         Sound.fromHandle(gg_snd_QuestNew)?.start();
         Sound.fromHandle(gg_snd_TheHornOfCenarius)?.start();
         ClearMapMusic();
@@ -49,16 +54,21 @@ export class RoundManager {
             cb(RoundManager.currentRound);
         });
 
+        //Final round
         if (RoundManager.currentRound >= 9) {
-            TimerManager.nightTimeDuration = 540;
+            TimerManager.nightTimeDuration = 360;
         }
 
         TimerManager.startNightTimer(() => {
             RoundManager.endCurrentRound();
-        });
+        }, GameConfig.nightDuration);
     }
 
     static endCurrentRound() {
+        if (GameConfig.playersAreDefeated) {
+            return;
+        }
+
         SetTimeOfDay(12);
 
         const nightTextFrame = BlzGetFrameByName("nightTextDisplay", 0);
@@ -97,7 +107,7 @@ export class RoundManager {
         if (RoundManager.currentRound !== 9) {
             TimerManager.startDayTimer(() => {
                 RoundManager.startNextRound();
-            });
+            }, GameConfig.dayDuration);
         }
 
         RoundManager.currentRound++;

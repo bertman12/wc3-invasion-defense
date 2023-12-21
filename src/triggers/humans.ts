@@ -341,7 +341,13 @@ function proc_summonLavaSpawn() {
                     },
                     ABILITIES.firelord_armyOfFlame,
                     2,
-                    attacker,
+                    attacker.owner,
+                    attacker.x,
+                    attacker.y,
+                    attacker.facing,
+                    {
+                        abilityLevel: abilityLevel,
+                    },
                 );
             }
         },

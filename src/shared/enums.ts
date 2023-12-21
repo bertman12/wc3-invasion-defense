@@ -36,6 +36,7 @@ export enum ABILITIES {
     forceBoots = FourCC("A00V"),
     proc_greaterChainLightning = FourCC("A02K"),
     proc_unholyFrenzy_demonsEyeTrinket = FourCC("A039"),
+    proc_unholyFrenzy_demonBlade = FourCC("A042"),
     item_tranquility = FourCC("A03J"),
 
     //Army Controller
@@ -61,13 +62,15 @@ export enum UpgradeCodes {
 
 export enum PlayerIndices {
     KingdomOfAlexandria = 9,
-    KingdomOfHyperion = 18,
+    HumanDefenders = 18,
     NeutralHostile = 24,
     NeutralPassive = 25,
     Items = 27,
 }
 
 export enum UNITS {
+    greatWatchTower = FourCC("h003"),
+    small_circleOfPower = FourCC("ncop"),
     armyController = FourCC("H00T"),
     unitShop = FourCC("H00W"),
     dummyCaster = FourCC("h00V"),
@@ -174,9 +177,9 @@ export enum ITEMS {
     sobiMask = FourCC("rwiz"),
     greaterSobiMask = FourCC("I00B"),
     recipe_greaterSobiMask = FourCC("I00C"),
-    recipe_bladeOfTheWindWalker = FourCC("I00E"),
+    recipe_swordMastersBlade = FourCC("I00E"),
     recipe_staffOfPrimalThunder = FourCC("I00H"),
-    bladeOfTheWindWalker = FourCC("I00D"),
+    swordMastersBlade = FourCC("I00D"),
     savageBlade = FourCC("srbd"),
     staffOfKnowledge = FourCC("I00F"),
     staffOfPrimalThunder = FourCC("I00G"),
@@ -223,6 +226,15 @@ export enum ITEMS {
     fragmentOfTheEmeraldDream = FourCC("I01A"),
     recipe_yserasGrace = FourCC("I01B"),
     yserasGrace = FourCC("I01C"),
+    trinity = FourCC("I01D"),
+    recipe_trinity = FourCC("I01E"),
+    spikedArmor = FourCC("I01I"),
+    recipe_spikedArmor = FourCC("I01H"),
+    amuletOfCorruption = FourCC("I01F"),
+    shieldOfTheCorruptor = FourCC("I01J"),
+    recipe_shieldOfTheCorruptor = FourCC("I01G"),
+    recipe_demonBlade = FourCC("I01K"),
+    demonBlade = FourCC("I01L"),
 }
 
 //Can find looking up models for a spell at the Art - Target field

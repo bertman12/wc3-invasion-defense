@@ -1,3 +1,4 @@
+import { GameConfig } from "src/shared/GameConfig";
 import { UNITS } from "src/shared/enums";
 import { playerStates } from "src/shared/playerState";
 import { notifyPlayer, tColor } from "src/utils/misc";
@@ -13,7 +14,7 @@ export function setup_heroPurchasing(onPrepTimeEnd: (...args: any[]) => any) {
         const prepHeroPurchaseTrigger = trig_heroPurchasedDuringPrepTime();
         const prepTimer = Timer.create();
         const prepTimerDialog = CreateTimerDialogBJ(prepTimer.handle, "Preparation Time...");
-        const PREP_TIME_SECONDS = 40;
+        const PREP_TIME_SECONDS = GameConfig.heroPreparationTime;
         notifyPlayer(`You have ${PREP_TIME_SECONDS} seconds to prepare. You may still pick your hero after preparation time has ended.`);
         print(tColor("Choose your hero...", "red"));
 
@@ -139,24 +140,6 @@ function moveAllPrepHeroesToStartLocationAndGiveItems() {
     forEachAlliedPlayer((p) => {
         if (isPlayingUser(p)) {
             moveSingleHeroToStartLocationAndGiveItems(p);
-            // const playerState = playerStates.get(p.id);
-
-            // if (playerState) {
-            //     const purchasedHero = playerState.playerHero;
-            //     if (!purchasedHero) {
-            //         return;
-            //     }
-
-            //     purchasedHero?.addItemById(FourCC("stel"));
-            //     purchasedHero?.addItemById(FourCC("tcas"));
-            //     const startX = purchasedHero.owner.startLocationX;
-            //     const startY = purchasedHero.owner.startLocationY;
-            //     SetCameraPositionForPlayer(p.handle, startX, startY);
-            //     purchasedHero.x = startX;
-            //     purchasedHero.y = startY;
-            //     const armyController = Unit.create(purchasedHero.owner, UNITS.armyController, -28950 + purchasedHero.owner.id * 50 - 250 * Math.floor(purchasedHero.owner.id / 5), -28950 - Math.floor(purchasedHero.owner.id / 5) * 75);
-            //     armyController?.setHeroLevel(18, false);
-            // }
         }
     });
 }
@@ -177,16 +160,24 @@ function moveSingleHeroToStartLocationAndGiveItems(player: MapPlayer) {
             if (!purchasedHero) {
                 return;
             }
+            GameConfig.heroStartItems.forEach((itemId) => {
+                purchasedHero?.addItemById(itemId);
+            });
 
-            purchasedHero?.addItemById(FourCC("stel"));
-            purchasedHero?.addItemById(FourCC("tcas"));
-            const startX = purchasedHero.owner.startLocationX;
-            const startY = purchasedHero.owner.startLocationY;
+            // purchasedHero?.addItemById(FourCC("tcas"));
+
+            //use game config location when set
+            const startX = GameConfig.heroSpawnX || purchasedHero.owner.startLocationX;
+            const startY = GameConfig.heroSpawnY || purchasedHero.owner.startLocationY;
+
             SetCameraPositionForPlayer(player.handle, startX, startY);
             purchasedHero.x = startX;
             purchasedHero.y = startY;
-            const armyController = Unit.create(purchasedHero.owner, UNITS.armyController, -28950 + purchasedHero.owner.id * 50 - 250 * Math.floor(purchasedHero.owner.id / 5), -28950 - Math.floor(purchasedHero.owner.id / 5) * 75);
-            armyController?.setHeroLevel(18, false);
+
+            if (GameConfig.createHeroController) {
+                const armyController = Unit.create(purchasedHero.owner, UNITS.armyController, -28950 + purchasedHero.owner.id * 50 - 250 * Math.floor(purchasedHero.owner.id / 5), -28950 - Math.floor(purchasedHero.owner.id / 5) * 75);
+                armyController?.setHeroLevel(18, false);
+            }
         }
     }
 }
