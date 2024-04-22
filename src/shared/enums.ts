@@ -32,6 +32,9 @@ export enum ABILITIES {
     //Blood Mage
     timeDistortion = FourCC("A02V"),
 
+    //Dark ranger
+    hero_silence = FourCC("ANsi"),
+
     //Items
     forceBoots = FourCC("A00V"),
     proc_greaterChainLightning = FourCC("A02K"),
@@ -164,6 +167,7 @@ export enum UNITS {
     uh_deathKnight = FourCC("Udea"),
     uh_dreadLord = FourCC("Udre"),
     uh_lich = FourCC("Ulic"),
+    uh_skeletonKing = FourCC("U00N"),
 }
 
 export enum ITEMS {

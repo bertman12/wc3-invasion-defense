@@ -99,11 +99,7 @@ function trig_heroicLeap() {
         const castedSpellId = GetSpellAbilityId();
         const caster = Unit.fromEvent();
         if (castedSpellId === ABILITIES.heroicLeap && caster) {
-            caster.paused = true;
-            caster.setTimeScale(0);
-            caster.setVertexColor(50, 50, 50, 255);
-            caster.setScale(2, 0, 0);
-            caster.setDiceNumber(0, 0);
+
             applyForce(caster.facing, caster, 600, {
                 sustainedForceDuration: 0,
             });
@@ -358,7 +354,7 @@ function proc_summonLavaSpawn() {
 function howlOfTerror() {
     const trig = Trigger.create();
 
-    trig.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SPELL_CAST);
+    trig.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SPELL_EFFECT);
 
     trig.addCondition(() => {
         const castedSpellId = GetSpellAbilityId();
@@ -411,6 +407,20 @@ function howlOfTerror() {
             cleanupUnitGetsNearThisUnit(1);
         });
     });
+}
+
+function darkRangerCastsSilence() {
+    const t = Trigger.create();
+    t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SPELL_CAST);
+
+    t.addAction(() => {
+        const spellId = GetSpellAbilityId()
+
+        if(spellId === ABILITIES.hero_silence){
+
+        }
+
+    })
 }
 
 /**

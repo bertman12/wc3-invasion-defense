@@ -5,8 +5,6 @@ import { OrderId } from "w3ts/globals";
 
 export function init_armyControllerTrigs() {
     militaryCommands();
-    // trackPlayerKeyDown();
-    // trackPlayerKeyRelease();
 }
 
 const abilityOrderMap = new Map<number, number>([

@@ -95,6 +95,9 @@ export class Feature {
         GameConfig.enemyBountyPlayerCountModifier = 2;
 
         GameConfig.bossSpawnWaveNumber = 1;
+        GameConfig.heroXPMultiplier = 1.75;
+        GameConfig.roundGoldBaseAmount = 1000;
+        GameConfig.roundGoldMultiplier = 100;
 
         //Setting all units owned by Human Defenders to Neutral Passive
         const previewRegion = Region.create();
@@ -127,10 +130,15 @@ export class Feature {
         townHall?.setBaseDamage(0, 0);
         townHall?.setDiceNumber(0, 0);
         townHall?.setDiceSides(0, 0);
+
         if (townHall) {
             townHall.removeAbility(FourCC("A03P"));
+            townHall.removeAbility(FourCC("A01D"));
             BlzSetUnitWeaponBooleanField(townHall?.handle, UNIT_WEAPON_BF_ATTACKS_ENABLED, 0, false);
+            townHall.maxLife = 15000;
+            townHall.life = 15000;
         }
+
         //Enabling bounties
         forEachPlayer((p) => {
             p.setState(PLAYER_STATE_GIVES_BOUNTY, 1);

@@ -556,34 +556,8 @@ class SpawnData {
      */
     private spawnHeroSquad() {
         //Crypt Lord, Death Knight, Dread Lord, Lich
-        const undeadHeroes = [UNITS.uh_cryptLord, UNITS.uh_deathKnight, UNITS.uh_dreadLord, UNITS.uh_lich];
+        const undeadHeroes = [UNITS.uh_skeletonKing];
         const locUnitArray: Unit[] = [];
-
-        // if (!isUndeadHeroSoundAlreadyPlaying) {
-        //     isUndeadHeroSoundAlreadyPlaying = true;
-
-        //     switch (this.spawnDifficulty) {
-        //         case SpawnDifficulty.normal:
-        //             const sound1 = Sound.fromHandle(gg_snd_H06Arthas06);
-        //             sound1?.setVolume(126);
-        //             sound1?.start();
-        //             break;
-        //         case SpawnDifficulty.hard:
-        //             const sound2 = Sound.fromHandle(gg_snd_L01Arthas22);
-        //             sound2?.setVolume(126);
-        //             sound2?.start();
-
-        //             break;
-        //         case SpawnDifficulty.final:
-        //             const sound3 = Sound.fromHandle(gg_snd_L04Anubarak24);
-        //             sound3?.setVolume(126);
-        //             sound3?.start();
-        //             break;
-
-        //         default:
-        //             break;
-        //     }
-        // }
 
         undeadHeroes.forEach((heroId) => {
             const hero = Unit.create(getNextUndeadPlayer(), heroId, this.spawnRec?.centerX ?? -570, this.spawnRec?.centerY ?? -7000);
@@ -717,8 +691,6 @@ class SpawnData {
      * @returns
      */
     private scaleUnitDifficulty(unit: Unit): Unit {
-        this.playersPlaying = 6;
-
         if (GameConfig.enableEnemyScaling && this.playersPlaying > GameConfig.playersRequiredBeforeScaling) {
             const playerBonus = this.playersPlaying - 2;
             //linear damage increase - will now scale by players, round and current spawn difficulty

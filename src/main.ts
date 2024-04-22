@@ -95,7 +95,9 @@ function tsMain() {
         setup_heroPurchasing(() => {
             Sound.fromHandle(gg_snd_U08Archimonde19)?.start();
             Sound.fromHandle(gg_snd_Hint)?.start();
-            notifyPlayer("Place your |cffffcc00Town Hall|r with your |cffffcc00Hero|r.");
+            if (GameConfig.heroModeEnabled) {
+                notifyPlayer("Place your |cffffcc00Town Hall|r with your |cffffcc00Hero|r.");
+            }
             TimerManager.startDayTimer(() => {
                 RoundManager.startNextRound();
             }, GameConfig.enemyPreparationTime);

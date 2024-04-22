@@ -4,7 +4,7 @@
 export class GameConfig {
     static playersAreDefeated = false;
     static heroPreparationTime = 50;
-    static enemyPreparationTime = 240;
+    static enemyPreparationTime = 180;
     static nightDuration = 180;
     static dayDuration = 120;
     static waveIntervalSeconds = 20;
@@ -29,7 +29,7 @@ export class GameConfig {
     static enableEnemyScaling = true;
     static playersRequiredBeforeScaling = 2;
 
-    static enemyHP_baseIncreasePercentage = 0.3;
+    static enemyHP_baseIncreasePercentage = 0.1;
     static enemyHP_SpawnDifficultyMultiplier = 0;
     static enemyHP_RoundCountMultiplier = 3;
     static enemyHP_playerCountPercentageMultiplier = 0.06;
@@ -39,7 +39,14 @@ export class GameConfig {
     static enemyDMG_playerCountPercentageMultiplier = 0.05;
     static enemyDMG_RoundCountMultiplier = 5;
 
+    static heroXPMultiplier = 0.35;
+    static roundGoldBaseAmount = 0;
+    static roundGoldMultiplier = 0;
+
     static bossSpawnWaveNumber = 3;
+
+    static player_startGold = 2550;
+    static player_startLumber = 1650;
 
     static heroSpawnX: number | undefined = undefined;
     static heroSpawnY: number | undefined = undefined;

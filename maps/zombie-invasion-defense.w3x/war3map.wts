@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Undead Siege Defense v0.29
+Undead Siege Defense v0.30
 }
 
 STRING 2
@@ -385,7 +385,7 @@ Stone Walls - Free Form Doodad
 
 STRING 141
 {
-Undead Siege Defense v0.29
+Undead Siege Defense v0.30
 }
 
 STRING 142
@@ -7467,17 +7467,6 @@ STRING 2163
 Causes rains of healing energy to pour down in a large area, healing friendly allied units for 100 hit points per second. |nLasts 20 seconds.
 }
 
-STRING 2167
-// Items: I01C (|cff80ff80Ysera's Grace|r), Ubertip (Tooltip - Extended)
-{
-Requires: |cffc0c0c0Belt of Giant Strength, Staff of the Archmage, Assassin's Ring, Crown of Kings +5, Fragment of the Emerald Dream|r
-
-+25 |cffffcc00All Stats|r   
-  +8 |cff80ff80Health Regeneration|r
-
-|cffffcc00Tranquility|R - A Servant of Ysera heals all units in |cffc0c0c02400 range|r for |cff80ff80100 health per second|r for |cffffcc0020 seconds|r. Also summons |cffffcc00Purified Protectors|r to fight for you for |cffffcc0040 seconds|r.
-}
-
 STRING 2169
 // Abilities: A01W (Cleaving Attack), Ubertip (Tooltip - Normal - Extended)
 {
@@ -7837,12 +7826,6 @@ STRING 2245
 Amulet of the corruptor -6 armor
 }
 
-STRING 2247
-// Abilities: ANba (Black Arrow), Ubertip (Tooltip - Normal - Extended)
-{
-Adds <ANba,DataA4> bonus damage to attacks. Units killed while under the effect of Black Arrow will turn into 950 hit point skeletons.  |N|nThe spawned skeleton will have |cffffcc00hero armor and attack|r.     |n|n|cffffcc00Skeletons benefit from weapon and armor upgrades.|r
-}
-
 STRING 2248
 // Items: I010 ([|cffffcc00Recipe|r] Alaric's Spear of Thunder), Ubertip (Tooltip - Extended)
 {
@@ -7925,12 +7908,6 @@ STRING 2263
 // Abilities: A040 (Critical Strike), EditorSuffix (Editor Suffix)
 {
  (20% 1.8xdmg)
-}
-
-STRING 2264
-// Abilities: ANba (Black Arrow), Researchubertip (Tooltip - Learn - Extended)
-{
-Adds extra damage to attacks. Units killed while under the effect of Black Arrow will turn into skeletons. |n|n|cffffcc00Level 1|r - <ANba,DataA1> bonus damage, <ndr1,RealHP> hit point skeleton. |n|cffffcc00Level 2|r - <ANba,DataA2> bonus damage, <ndr2,RealHP> hit point skeleton. |n|cffffcc00Level 3|r - <ANba,DataA3> bonus damage, <ndr3,RealHP> hit point skeleton.|n|cffffcc00Level 4|r - <ANba,DataA4> bonus damage, 950 hit point skeleton.     |n|nSkeletons benefit from weapon and armor upgrades. |n|n|cffffcc00Level 4 skeleton has hero armor and hero attack.|r
 }
 
 STRING 2265
@@ -8027,5 +8004,50 @@ STRING 2283
 // Units: n010 (Mercenary Camp), EditorSuffix (Name - Editor Suffix)
 {
 (hero mode)
+}
+
+STRING 2284
+// Abilities: ANba (Black Arrow), Researchubertip (Tooltip - Learn - Extended)
+{
+Adds extra damage to attacks. Units killed while under the effect of Black Arrow will turn into skeletons. |n|n|cffffcc00Level 1|r - <ANba,DataA1> bonus damage, <ndr1,RealHP> hit point skeleton. |n|cffffcc00Level 2|r - <ANba,DataA2> bonus damage, <ndr2,RealHP> hit point skeleton. |n|cffffcc00Level 3|r - <ANba,DataA3> bonus damage, <ndr3,RealHP> hit point skeleton.|n|cffffcc00Level 4|r - <ANba,DataA4> bonus damage, 1100 hit point skeleton.     |n|nSkeletons benefit from weapon and armor upgrades. |n|n|cffffcc00Level 4 skeleton has hero armor and hero attack.|r
+}
+
+STRING 2285
+// Abilities: ANba (Black Arrow), Ubertip (Tooltip - Normal - Extended)
+{
+Adds <ANba,DataA4> bonus damage to attacks. Units killed while under the effect of Black Arrow will turn into 1100 hit point skeletons.  |N|nThe spawned skeleton will have |cffffcc00hero armor and attack|r.     |n|n|cffffcc00Skeletons benefit from weapon and armor upgrades.|r
+}
+
+STRING 2286
+// Units: U00N (Skeleton King), Tip (Tooltip - Basic)
+{
+Skeleton King
+}
+
+STRING 2287
+// Abilities: A046 (Defend), EditorSuffix (Editor Suffix)
+{
+ (50% ranged reducttion )
+}
+
+STRING 2288
+// Abilities: A047 (Reincarnation), EditorSuffix (Editor Suffix)
+{
+(Skeleton King)
+}
+
+STRING 2289
+// Units: U00N (Skeleton King), Name (Name)
+{
+Skeleton King
+}
+
+STRING 2290
+// Items: I01C (|cff80ff80Ysera's Grace|r), Ubertip (Tooltip - Extended)
+{
++25 |cffffcc00All Stats|r   
+  +8 |cff80ff80Health Regeneration|r
+
+|cffffcc00Tranquility|R - A Servant of Ysera heals all units in |cffc0c0c02400 range|r for |cff80ff80100 health per second|r for |cffffcc0020 seconds|r. Also summons |cffffcc00Purified Protectors|r to fight for you for |cffffcc0040 seconds|r.
 }
 

@@ -30,7 +30,9 @@ export function setup_heroPurchasing(onPrepTimeEnd: (...args: any[]) => any) {
         prepTimer.start(PREP_TIME_SECONDS, false, () => {
             prepHeroPurchaseTrigger.destroy();
             TimerDialogDisplayBJ(false, prepTimerDialog);
-
+            forEachAlliedPlayer((p) => {
+                SetPlayerHandicapXP(p.handle, GameConfig.heroXPMultiplier);
+            });
             notifyPlayer("Preparation time has ended.");
             moveAllPrepHeroesToStartLocationAndGiveItems();
             trig_heroPurchasedAfterPrepTime();

@@ -33,8 +33,6 @@ export function setupPlayers() {
 
         SelectUnitForPlayerSingle(u?.handle, u?.owner.handle);
         SetCameraPositionForPlayer(p.handle, u.x, u.y);
-
-        SetPlayerHandicapXP(p.handle, 0.35);
     });
 }
 
@@ -239,9 +237,9 @@ export function player_giveHumansStartOfDayResources(round: number) {
 
     grantStartOfDayBonuses();
 
-    const baseGold = economicConstants.baseGoldPerRound;
+    const baseGold = GameConfig.roundGoldBaseAmount; //economicConstants.baseGoldPerRound;
     // const baseWood = economicConstants.baseLumberPerRound;
-    const roundGold = economicConstants.goldRoundMultiplier * round;
+    const roundGold = GameConfig.roundGoldMultiplier * round; //economicConstants.goldRoundMultiplier * round;
     // const roundLumber = economicConstants.lumberRoundMultiplier * round;
 
     const totalGold = baseGold + roundGold;
@@ -257,8 +255,10 @@ export function player_giveHumansStartOfDayResources(round: number) {
     // print(`${tColor("Total", "goldenrod")}: ${tColor("Lumber", "green")}: ${totalLumber}`);
     print("==================");
     print("");
-    print("Use your |cffffcc00engineers|r to rebuild your defenses.");
-    print("Remember to keep building |cffffcc00Druid Farmers|r with your |cffffcc00peasant|r when you can.");
+    if (!GameConfig.heroModeEnabled) {
+        print("Use your |cffffcc00engineers|r to rebuild your defenses.");
+        print("Remember to keep building |cffffcc00Druid Farmers|r with your |cffffcc00peasant|r when you can.");
+    }
 
     //Gives gold and wood
     forEachAlliedPlayer((player) => {
