@@ -15,6 +15,9 @@ import { TimerManager } from "./Timers";
 type RoundEndFn = (round: number) => void;
 type RoundStartFn = (round: number) => void;
 
+/**
+ * Singleton class
+ */
 export class RoundManager {
     static currentRound: number = 1;
     private static roundStartSubscribers: RoundStartFn[] = [];
@@ -61,7 +64,7 @@ export class RoundManager {
 
         TimerManager.startNightTimer(() => {
             RoundManager.endCurrentRound();
-        }, GameConfig.nightDuration);
+        }, TimerManager.nightTimeDuration);
     }
 
     static endCurrentRound() {

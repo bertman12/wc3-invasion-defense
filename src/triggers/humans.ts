@@ -99,7 +99,6 @@ function trig_heroicLeap() {
         const castedSpellId = GetSpellAbilityId();
         const caster = Unit.fromEvent();
         if (castedSpellId === ABILITIES.heroicLeap && caster) {
-
             applyForce(caster.facing, caster, 600, {
                 sustainedForceDuration: 0,
             });
@@ -414,13 +413,11 @@ function darkRangerCastsSilence() {
     t.registerAnyUnitEvent(EVENT_PLAYER_UNIT_SPELL_CAST);
 
     t.addAction(() => {
-        const spellId = GetSpellAbilityId()
+        const spellId = GetSpellAbilityId();
 
-        if(spellId === ABILITIES.hero_silence){
-
+        if (spellId === ABILITIES.hero_silence) {
         }
-
-    })
+    });
 }
 
 /**

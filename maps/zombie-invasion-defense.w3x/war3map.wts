@@ -4676,12 +4676,6 @@ STRING 1485
 +5 |cffff8800Food|r   |n|nThe|cff8080ff mana|r represents how many days have passed. |n|n|cffffcc00This structure will be destroyed in 3 days.|r
 }
 
-STRING 1488
-// Abilities: A02T (Frost Armor), Ubertip (Tooltip - Normal - Extended)
-{
-Creates a shield of frost around a target friendly unit. The shield adds 6 armor and slows melee units that attack it for <ACfa,Dur1> seconds. |nLasts <ACfa,DataA1> seconds.
-}
-
 STRING 1489
 // Units: hpea (Peasant), Ubertip (Tooltip - Extended)
 {
@@ -6194,12 +6188,6 @@ STRING 1889
 Heals a target friendly non-mechanical wounded unit for <Ahea,DataA2> hit points. |n|N|cffc0c0c0450 Cast Range|r
 }
 
-STRING 1890
-// Abilities: Ahea (Heal), Ubertip (Tooltip - Normal - Extended)
-{
-Heals a target friendly non-mechanical wounded unit for <Ahea,DataA1> hit points.    |n|N|cffc0c0c0350 Cast Range|r
-}
-
 STRING 1891
 // Upgrades: R00C (Submerge), Ubertip (Tooltip - Extended)
 {
@@ -7140,12 +7128,6 @@ STRING 2097
 Highly skilled sharpshooter. Can use |cffffcc00mana imbued powder|r for powerful shots. Works very well when used with supply camps. |n|N|cffc0c0c01000 Attack Range|r
 }
 
-STRING 2098
-// Units: n006 (Archer), Ubertip (Tooltip - Extended)
-{
-Basic long-ranged attacker. |n|N|cffc0c0c0750 Attack Range|r    |r|n|n|cffffcc00Attack range can be upgrades at Upgrade Center.|r
-}
-
 STRING 2099
 // Units: o005 (Headhunter), Ubertip (Tooltip - Extended)
 {
@@ -8049,5 +8031,83 @@ STRING 2290
   +8 |cff80ff80Health Regeneration|r
 
 |cffffcc00Tranquility|R - A Servant of Ysera heals all units in |cffc0c0c02400 range|r for |cff80ff80100 health per second|r for |cffffcc0020 seconds|r. Also summons |cffffcc00Purified Protectors|r to fight for you for |cffffcc0040 seconds|r.
+}
+
+STRING 2291
+// Items: lmbr (Bundle of Lumber), Ubertip (Tooltip - Extended)
+{
+Gives |cff00ff00100 lumber|r to the player when used.
+}
+
+STRING 2295
+// Abilities: A048 (Multishot), Name (Name)
+{
+Multishot
+}
+
+STRING 2296
+// Abilities: A048 (Multishot), Tip (Tooltip - Normal)
+{
+Multishot
+}
+
+STRING 2297
+// Abilities: A048 (Multishot), Ubertip (Tooltip - Normal - Extended)
+{
+Allows you to shoot 3 enemies at once.
+}
+
+STRING 2298
+// Abilities: A048 (Multishot), EditorSuffix (Editor Suffix)
+{
+(Archer)
+}
+
+STRING 2299
+// Upgrades: R00E (Submerge), Name (Name)
+{
+Archer Multishot
+}
+
+STRING 2301
+// Upgrades: R00E (Submerge), Ubertip (Tooltip - Extended)
+{
+Enables |cffffcc00multishot|r for the |cffffcc00Archer|r, letting them attack up to |Cffffcc003|r enemies at once.
+}
+
+STRING 2302
+// Upgrades: R00E (Submerge), EditorSuffix (Editor Suffix)
+{
+(null upgrade)
+}
+
+STRING 2303
+// Upgrades: R00E (Submerge), Tip (Tooltip)
+{
+Research Archer Multishot
+}
+
+STRING 2304
+// Abilities: Ahea (Heal), Ubertip (Tooltip - Normal - Extended)
+{
+Heals a target friendly non-mechanical wounded unit for <Ahea,DataA1> hit points.  |n|nCan be upgraded to Greater Heal which heals units for <Ahea,DataA2> hit points.    |n|N|cffc0c0c0350 Cast Range|r
+}
+
+STRING 2305
+// Abilities: A02T (Frost Armor), Ubertip (Tooltip - Normal - Extended)
+{
+Creates a shield of frost around a target friendly unit. The shield adds 6 armor and slows melee units that attack it for <ACfa,Dur1> seconds. |N|nLasts <ACfa,DataA1> seconds.|N|NCan be upgraded to Glacial Armor which grants +12 armor.
+}
+
+STRING 2306
+// Abilities: A01L (Bloodlust), Ubertip (Tooltip - Normal - Extended)
+{
+Increases a target friendly unit's attack rate by <ACbl,DataA1,%>% and movement speed by <ACbl,DataB1,%>% for <ACbl,Dur1> seconds. |N|nCan be upgraded to Improved Bloodlust which grants 65% attack speed and 35% movespeed.
+}
+
+STRING 2307
+// Units: n006 (Archer), Ubertip (Tooltip - Extended)
+{
+Basic long-ranged attacker. |n|N|cffc0c0c0750 Attack Range|r    |r|n|n|cffffcc00Attack range can be upgrades at Upgrade Center.|r |nCan also learn multishot.
 }
 

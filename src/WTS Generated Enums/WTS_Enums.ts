@@ -263,6 +263,7 @@ export enum WTS_Abilities{
 	MeleeReturnDamage_A03T = FourCC("A03T"),
 	ItemStatBonus_A03W = FourCC("A03W"),
 	ItemStatBonus_A03Y = FourCC("A03Y"),
+	Multishot_A048 = FourCC("A048"),
 }
 
 export enum WTS_Buffs_Effects{
@@ -329,4 +330,5 @@ export enum WTS_Upgrades{
 	FlameTowerMultishot = FourCC("R00B"),
 	ImprovedTowerRange = FourCC("Rhri"),
 	HolyTowerUpgrade = FourCC("R00D"),
+	ArcherMultishot = FourCC("R00E"),
 }
