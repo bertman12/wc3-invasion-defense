@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Undead Siege Defense v0.30
+Undead Siege Defense v0.32
 }
 
 STRING 2
@@ -13,7 +13,7 @@ STRING 3
 ===Hero/Army/Base Defense===
 Survive for 9 nights. 
 -Hero Abilities have been enhanced and also go to level 4
--Added Boss Rounds
+-Skeleton Boss fixed
 -|cffffcc00Spawns fixed|r
 -Expanded Tech Tree
 -More items
@@ -385,7 +385,7 @@ Stone Walls - Free Form Doodad
 
 STRING 141
 {
-Undead Siege Defense v0.30
+Undead Siege Defense v0.32
 }
 
 STRING 142
@@ -402,7 +402,7 @@ STRING 142
 
 |cffffff00Engineers|r - Able to build defensive structures. 
 
-|cffff0000Final Night|r: Lasts 9 minutes.
+|cffff0000Final Night|r: Lasts 6 minutes.
 
 |cffff0000Lose Condition|r: No town halls remain.
 
@@ -6596,12 +6596,6 @@ STRING 1978
 Summon Hawk - [|cffffcc00Level 4|r]
 }
 
-STRING 1979
-// Abilities: ANsw (Summon Hawk), Ubertip (Tooltip - Normal - Extended)
-{
-Summons a proud <nwe4,realHP> hit point hawk to attack and spy on your enemies. Has the True Sight and Invisibility abilities. |nLasts <ANsw,Dur4> seconds.
-}
-
 STRING 1980
 // Units: Nbst (Beastmaster), Ubertip (Tooltip - Extended)
 {
@@ -8109,5 +8103,17 @@ STRING 2307
 // Units: n006 (Archer), Ubertip (Tooltip - Extended)
 {
 Basic long-ranged attacker. |n|N|cffc0c0c0750 Attack Range|r    |r|n|n|cffffcc00Attack range can be upgrades at Upgrade Center.|r |nCan also learn multishot.
+}
+
+STRING 2308
+// Abilities: ANsw (Summon Hawk), Ubertip (Tooltip - Normal - Extended)
+{
+Summons a proud 800 hit point hawk to attack and spy on your enemies. Has the True Sight and Invisibility abilities. |nLasts <ANsw,Dur4> seconds.
+}
+
+STRING 2309
+// Abilities: ANsw (Summon Hawk), Researchubertip (Tooltip - Learn - Extended)
+{
+Summons a proud hawk to spy on your enemies. |nLasts <ANsw,Dur1> seconds. |n|n|cffffcc00Level 1|r - <nwe1,realHP> hit points, has True Sight. |n|cffffcc00Level 2|r - <nwe2,realHP> hit points, <nwe2,mindmg1> to <nwe2,maxdmg1> damage, has True Sight. |n|cffffcc00Level 3|r - <nwe3,realHP> hit points, <nwe3,mindmg1> to <nwe3,maxdmg1> damage, has True Sight and Invisibility.    |n|cffffcc00Level 4|r - 800 hit points, 80 to 100 damage, has True Sight and Invisibility.
 }
 

@@ -55,7 +55,7 @@ export function init_quests() {
             \n|cffff0000Bosses|r: Spawns every 3rd night.
             \n|cffffff00Income|r -  Build Druid Farmers for additional gold income.
             \n|cffffff00Engineers|r - Able to build defensive structures. 
-            \n|cffff0000Final Night|r: Lasts 9 minutes.
+            \n|cffff0000Final Night|r: Lasts 6 minutes.
             \n|cffff0000Lose Condition|r: No town halls remain.
             
             Made by JediMindTrix/NihilismIsDeath
@@ -65,7 +65,7 @@ export function init_quests() {
             false,
         );
 
-        addQuest("|cffffcc00Undead Siege Defense v0.30|r", "Created by JediMindTrix/NihilismIsDeath", "ReplaceableTextures\\CommandButtons\\BTNClayFigurine.blp", false);
+        addQuest("|cffffcc00Undead Siege Defense v0.32|r", "Created by JediMindTrix/NihilismIsDeath", "ReplaceableTextures\\CommandButtons\\BTNClayFigurine.blp", false);
     });
 }
 

@@ -556,7 +556,7 @@ class SpawnData {
      */
     private spawnHeroSquad() {
         //Crypt Lord, Death Knight, Dread Lord, Lich
-        const undeadHeroes = [UNITS.uh_skeletonKing];
+        const undeadHeroes = [UNITS.uh_cryptLord, UNITS.uh_deathKnight, UNITS.uh_dreadLord, UNITS.uh_lich];
         const locUnitArray: Unit[] = [];
 
         undeadHeroes.forEach((heroId) => {
