@@ -3,10 +3,10 @@
  */
 export class GameConfig {
     static playersAreDefeated = false;
-    static heroPreparationTime = 50;
-    static enemyPreparationTime = 180;
-    static nightDuration = 180;
-    static dayDuration = 120;
+    static heroPreparationTime = 60;
+    static enemyPreparationTime = 200;
+    static nightDuration = 200;
+    static dayDuration = 130;
     static waveIntervalSeconds = 20;
     static useBaseBuildingEconomy = true;
     static createHeroController = true;

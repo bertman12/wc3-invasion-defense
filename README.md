@@ -710,3 +710,22 @@ bump up the damage scaling for enemies as rounds increase
 maybe ysera's grace can also summon treants around your hero with hero armor and hero attack
 
 more items and also more custom enemies
+
+8/13/24
+
+reduce the amount of types from undead enemies
+spawn fewer but more meaningful types that a player can strategize against, instead of having a conglomeration of several types where you need a little of each counter.
+this should allow players choice's to have a bigger impact due to their choices.
+
+maybe add sappers
+
+fire demons
+add perks after every night for players
+
+add mechanical units for the player if they are resistant to life steal. more expensive
+maybe mini workshop?
+factory can make mechanical golems
+
+add priests with healing wave
+
+-   bounces 3 units

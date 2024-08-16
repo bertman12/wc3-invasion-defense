@@ -245,16 +245,16 @@ export function player_giveHumansStartOfDayResources(round: number) {
     const totalGold = baseGold + roundGold;
     // const totalLumber = baseWood + roundLumber;
 
-    print("===Night Completion Reward===");
-    print(`${tColor("Base Amount", "goldenrod")} - ${tColor("Gold", "yellow")}: ${baseGold}`);
-    print(`${tColor("Round Bonus", "goldenrod")} #${round} - ${tColor("Gold", "yellow")}: ${roundGold}`);
-    print(`${tColor("Total", "goldenrod")}: ${tColor("Gold", "yellow")}: ${totalGold}`);
-    print("                                  ");
-    // print(`${tColor("Base Amount", "goldenrod")} - ${tColor("Lumber", "green")} - ${baseWood}`);
-    // print(`${tColor("Round Bonus", "goldenrod")} #${round} - ${tColor("Lumber", "green")}: ${roundLumber}`);
-    // print(`${tColor("Total", "goldenrod")}: ${tColor("Lumber", "green")}: ${totalLumber}`);
-    print("==================");
-    print("");
+    // print("===Night Completion Reward===");
+    // print(`${tColor("Base Amount", "goldenrod")} - ${tColor("Gold", "yellow")}: ${baseGold}`);
+    // print(`${tColor("Round Bonus", "goldenrod")} #${round} - ${tColor("Gold", "yellow")}: ${roundGold}`);
+    // print(`${tColor("Total", "goldenrod")}: ${tColor("Gold", "yellow")}: ${totalGold}`);
+    // print("                                  ");
+    // // print(`${tColor("Base Amount", "goldenrod")} - ${tColor("Lumber", "green")} - ${baseWood}`);
+    // // print(`${tColor("Round Bonus", "goldenrod")} #${round} - ${tColor("Lumber", "green")}: ${roundLumber}`);
+    // // print(`${tColor("Total", "goldenrod")}: ${tColor("Lumber", "green")}: ${totalLumber}`);
+    // print("==================");
+    // print("");
     if (!GameConfig.heroModeEnabled) {
         print("Use your |cffffcc00engineers|r to rebuild your defenses.");
         print("Remember to keep building |cffffcc00Druid Farmers|r with your |cffffcc00peasant|r when you can.");

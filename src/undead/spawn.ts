@@ -783,11 +783,11 @@ const unitCategoryData = new Map<UnitCategory, { tierI: number[]; tierII: number
                 // FourCC("u00J"),
 
                 UNITS.zombie,
-                UNITS.skeletalOrc,
+                // UNITS.skeletalOrc,
                 //mini overlord
-                FourCC("nfgu"),
+                // FourCC("nfgu"),
                 //giant skeletal warrior
-                FourCC("nsgk"),
+                FourCC("nskg"),
                 //ghouls
                 FourCC("ugho"),
                 //
@@ -810,12 +810,9 @@ const unitCategoryData = new Map<UnitCategory, { tierI: number[]; tierII: number
                 FourCC("nbal"),
                 //satyr hell caller
                 FourCC("nsth"),
-                //sea giant behemoth
-                // FourCC("nsgb"),
-                // abomination
                 // Corrupted Protector
                 FourCC("u00J"),
-                UNITS.boss_pitLord,
+                // UNITS.boss_pitLord,
             ],
         },
     ],
@@ -825,9 +822,9 @@ const unitCategoryData = new Map<UnitCategory, { tierI: number[]; tierII: number
             tierI: [
                 UNITS.skeletalArcher,
                 //ice troll
-                FourCC("nitr"),
+                // FourCC("nitr"),
                 //void walker
-                FourCC("nska"),
+                // FourCC("nska"),
                 //void walker
                 // FourCC("nvdw"),
                 //basic skeleton marksman?
@@ -856,9 +853,9 @@ const unitCategoryData = new Map<UnitCategory, { tierI: number[]; tierII: number
                 UNITS.skeletalFrostMage,
                 UNITS.obsidianStatue,
                 //kobold geomancer
-                FourCC("nkog"),
+                // FourCC("nkog"),
                 //poison treant
-                FourCC("nenp"),
+                // FourCC("nenp"),
                 //skeletal frost mage
                 //obsidian statue
             ],

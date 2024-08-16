@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Undead Siege Defense v0.32
+Undead Siege Defense v0.33
 }
 
 STRING 2
@@ -385,7 +385,7 @@ Stone Walls - Free Form Doodad
 
 STRING 141
 {
-Undead Siege Defense v0.32
+Undead Siege Defense v0.33
 }
 
 STRING 142
@@ -405,8 +405,6 @@ STRING 142
 |cffff0000Final Night|r: Lasts 6 minutes.
 
 |cffff0000Lose Condition|r: No town halls remain.
-
-|cff00ff00Hero Mode|r - Type -heromode to player hero's only scenario.
 
 Made by JediMindTrix/NihilismIsDeath
 
@@ -3544,252 +3542,6 @@ STRING 1263
 Heals nearby units in 800 range.|n|n|cffff00ffSupport Structure|r
 }
 
-STRING 1264
-// Units: h00X (Upgrade Center), Ubertip (Tooltip - Extended)
-{
-Provides upgrades for units and economy.
-}
-
-STRING 1268
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
-{
-Iron Forged Swords 1
-}
-
-STRING 1269
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
-{
-Iron Forged Swords 2
-}
-
-STRING 1270
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
-{
-Iron Forged Swords 3
-}
-
-STRING 1271
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
-{
-Iron Forged Swords 4
-}
-
-STRING 1272
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
-{
-Iron Forged Swords 5
-}
-
-STRING 1273
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
-{
-Iron Forged Swords 6
-}
-
-STRING 1274
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
-{
-Iron Forged Swords 7
-}
-
-STRING 1275
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
-{
-Iron Forged Swords 8
-}
-
-STRING 1276
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
-{
-Iron Forged Swords 9
-}
-
-STRING 1277
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
-{
-Iron Forged Swords 10
-}
-
-STRING 1278
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
-{
-Iron Forged Swords 11
-}
-
-STRING 1279
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
-{
-Iron Forged Swords 12
-}
-
-STRING 1280
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
-{
-Iron Forged Swords 13
-}
-
-STRING 1281
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
-{
-Iron Forged Swords 14
-}
-
-STRING 1282
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
-{
-Iron Forged Swords 15
-}
-
-STRING 1283
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
-{
-Iron Forged Swords 16
-}
-
-STRING 1284
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
-{
-Iron Forged Swords 17
-}
-
-STRING 1285
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
-{
-Iron Forged Swords 18
-}
-
-STRING 1286
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
-{
-Iron Forged Swords 19
-}
-
-STRING 1287
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
-{
-Iron Forged Swords 20
-}
-
-STRING 1288
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
-{
-Upgrade to Iron Forged Swords 1
-}
-
-STRING 1289
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
-{
-Upgrade to Iron Forged Swords 2
-}
-
-STRING 1290
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
-{
-Upgrade to Iron Forged Swords 3
-}
-
-STRING 1291
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
-{
-Upgrade to Iron Forged Swords 4
-}
-
-STRING 1292
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
-{
-Upgrade to Iron Forged Swords 5
-}
-
-STRING 1293
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
-{
-Upgrade to Iron Forged Swords 6
-}
-
-STRING 1294
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
-{
-Upgrade to Iron Forged Swords 7
-}
-
-STRING 1295
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
-{
-Upgrade to Iron Forged Swords 8
-}
-
-STRING 1296
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
-{
-Upgrade to Iron Forged Swords 9
-}
-
-STRING 1297
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
-{
-Upgrade to Iron Forged Swords 10
-}
-
-STRING 1298
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
-{
-Upgrade to Iron Forged Swords 11
-}
-
-STRING 1299
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
-{
-Upgrade to Iron Forged Swords 12
-}
-
-STRING 1300
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
-{
-Upgrade to Iron Forged Swords 13
-}
-
-STRING 1301
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
-{
-Upgrade to Iron Forged Swords 14
-}
-
-STRING 1302
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
-{
-Upgrade to Iron Forged Swords 15
-}
-
-STRING 1303
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
-{
-Upgrade to Iron Forged Swords 16
-}
-
-STRING 1304
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
-{
-Upgrade to Iron Forged Swords 17
-}
-
-STRING 1305
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
-{
-Upgrade to Iron Forged Swords 18
-}
-
-STRING 1306
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
-{
-Upgrade to Iron Forged Swords 19
-}
-
-STRING 1307
-// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
-{
-Upgrade to Iron Forged Swords 20
-}
-
 STRING 1308
 // Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Ubertip (Tooltip - Extended)
 {
@@ -4114,246 +3866,6 @@ STRING 1361
 P
 }
 
-STRING 1362
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
-{
-Iron Plating 1
-}
-
-STRING 1363
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
-{
-Iron Plating 2
-}
-
-STRING 1364
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
-{
-Iron Plating 3
-}
-
-STRING 1365
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
-{
-Iron Plating 4
-}
-
-STRING 1366
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
-{
-Iron Plating 5
-}
-
-STRING 1367
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
-{
-Iron Plating 6
-}
-
-STRING 1368
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
-{
-Iron Plating 7
-}
-
-STRING 1369
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
-{
-Iron Plating 8
-}
-
-STRING 1370
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
-{
-Iron Plating 9
-}
-
-STRING 1371
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
-{
-Iron Plating 10
-}
-
-STRING 1372
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
-{
-Iron Plating 11
-}
-
-STRING 1373
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
-{
-Iron Plating 12
-}
-
-STRING 1374
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
-{
-Iron Plating 13
-}
-
-STRING 1375
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
-{
-Iron Plating 14
-}
-
-STRING 1376
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
-{
-Iron Plating 15
-}
-
-STRING 1377
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
-{
-Iron Plating 16
-}
-
-STRING 1378
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
-{
-Iron Plating 17
-}
-
-STRING 1379
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
-{
-Iron Plating 18
-}
-
-STRING 1380
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
-{
-Iron Plating 19
-}
-
-STRING 1381
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
-{
-Iron Plating 20
-}
-
-STRING 1382
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
-{
-Upgrade to Iron Plating 1
-}
-
-STRING 1383
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
-{
-Upgrade to Iron Plating 2
-}
-
-STRING 1384
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
-{
-Upgrade to Iron Plating 3
-}
-
-STRING 1385
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
-{
-Upgrade to Iron Plating 4
-}
-
-STRING 1386
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
-{
-Upgrade to Iron Plating 5
-}
-
-STRING 1387
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
-{
-Upgrade to Iron Plating 6
-}
-
-STRING 1388
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
-{
-Upgrade to Iron Plating 7
-}
-
-STRING 1389
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
-{
-Upgrade to Iron Plating 8
-}
-
-STRING 1390
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
-{
-Upgrade to Iron Plating 9
-}
-
-STRING 1391
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
-{
-Upgrade to Iron Plating 10
-}
-
-STRING 1392
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
-{
-Upgrade to Iron Plating 11
-}
-
-STRING 1393
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
-{
-Upgrade to Iron Plating 12
-}
-
-STRING 1394
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
-{
-Upgrade to Iron Plating 13
-}
-
-STRING 1395
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
-{
-Upgrade to Iron Plating 14
-}
-
-STRING 1396
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
-{
-Upgrade to Iron Plating 15
-}
-
-STRING 1397
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
-{
-Upgrade to Iron Plating 16
-}
-
-STRING 1398
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
-{
-Upgrade to Iron Plating 17
-}
-
-STRING 1399
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
-{
-Upgrade to Iron Plating 18
-}
-
-STRING 1400
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
-{
-Upgrade to Iron Plating 19
-}
-
-STRING 1401
-// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
-{
-Upgrade to Iron Plating 20
-}
-
 STRING 1402
 // Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Ubertip (Tooltip - Extended)
 {
@@ -4490,12 +4002,6 @@ STRING 1424
 // Units: hbar (Barracks), Ubertip (Tooltip - Extended)
 {
 Primary troop production building. |n|n|cffffcc00Trains Footman, Knights, Archers, Headhunters, Orcish Light Cavalry, and Heavy Cavalry.|r
-}
-
-STRING 1425
-// Units: hars (Arcane Sanctum), Ubertip (Tooltip - Extended)
-{
-|cffffcc00Trains Rogue Wizard, Sorceress and Spell Breaker.|r
 }
 
 STRING 1426
@@ -5076,12 +4582,6 @@ STRING 1595
 // Abilities: ANdo (Doom), Researchubertip (Tooltip - Learn - Extended)
 {
 Marks a target unit for the manifestation of a Demon. The afflicted unit cannot cast spells, has <ANdo,DataE1,%>% reduced movement speed, and will take <ANdo,DataA1> damage per second until it dies. Upon its death, a great Demon will spawn from its corpse. Doom cannot be dispelled or cancelled. |n|n|cffffcc00Level 1|r - Summons 1 Unit. |n|cffffcc00Level 2|r - Summons 3 Units.
-}
-
-STRING 1596
-// Abilities: ANch (Charm), Researchubertip (Tooltip - Learn - Extended)
-{
-Takes control of a target enemy unit. |nCharm cannot be used on Heroes, or creeps above level <ANch,DataA1>. |n|N|cffffcc00Level 1|r - Level 5 enemies. 40 second cooldown. |n|cffffcc00Level 2|r - Level 8 enemies. 25 second cooldown.
 }
 
 STRING 1597
@@ -5930,12 +5430,6 @@ STRING 1811
 Research Improved Projectiles
 }
 
-STRING 1824
-// Upgrades: R006 (Berserker Upgrade), Ubertip (Tooltip - Extended)
-{
-Transforms Footman into an Imperial Footman. |n|n    +8 Attack Damage|n  +30 Movespeed |n+100 Health  |n|N|cffffcc00Grants Hero Armor and Hero Attack|r
-}
-
 STRING 1831
 // Upgrades: R00C (Submerge), Name (Name)
 {
@@ -6060,12 +5554,6 @@ STRING 1860
 // Units: h004 (Blacksmith), Ubertip (Tooltip - Extended)
 {
 Contains upgrades for improved armor and weaponry.
-}
-
-STRING 1861
-// Units: h00U (Factory), Ubertip (Tooltip - Extended)
-{
-|cffffcc00Trains Musketeers, and Imperial Tanks.|r |N|NCan also research spikes for the |cffffcc00Ironclad Barricade|r.
 }
 
 STRING 1862
@@ -6958,24 +6446,6 @@ STRING 2062
 // Units: n000 (Engineer), Ubertip (Tooltip - Extended)
 {
 Can build |cffffcc00barricade|r, a |cffffcc00scout tower|r that can be upgraded into to other towers; a |cffffcc00supply tent|r which can heal units; and |cffffcc00blade trap|r, which can severely hinder enemy units.|n|r|n|cffffcc00Carries items. |n|n|cff00ffffWorker|r
-}
-
-STRING 2068
-// Abilities: ANba (Black Arrow), Ubertip (Tooltip - Normal - Extended)
-{
-Adds <ANba,DataA1> bonus damage to attacks. Units killed while under the effect of Black Arrow will turn into <ndr1,RealHP> hit point skeletons.    |n|n|cffffcc00Skeletons benefit from weapon and armor upgrades.|r
-}
-
-STRING 2069
-// Abilities: ANba (Black Arrow), Ubertip (Tooltip - Normal - Extended)
-{
-Adds <ANba,DataA2> bonus damage to attacks. Units killed while under the effect of Black Arrow will turn into <ndr2,RealHP> hit point skeletons.    |n|n|cffffcc00Skeletons benefit from weapon and armor upgrades.|r
-}
-
-STRING 2070
-// Abilities: ANba (Black Arrow), Ubertip (Tooltip - Normal - Extended)
-{
-Adds <ANba,DataA3> bonus damage to attacks. Units killed while under the effect of Black Arrow will turn into <ndr3,RealHP> hit point skeletons.     |n|n|cffffcc00Skeletons benefit from weapon and armor upgrades.|r
 }
 
 STRING 2074
@@ -7982,18 +7452,6 @@ STRING 2283
 (hero mode)
 }
 
-STRING 2284
-// Abilities: ANba (Black Arrow), Researchubertip (Tooltip - Learn - Extended)
-{
-Adds extra damage to attacks. Units killed while under the effect of Black Arrow will turn into skeletons. |n|n|cffffcc00Level 1|r - <ANba,DataA1> bonus damage, <ndr1,RealHP> hit point skeleton. |n|cffffcc00Level 2|r - <ANba,DataA2> bonus damage, <ndr2,RealHP> hit point skeleton. |n|cffffcc00Level 3|r - <ANba,DataA3> bonus damage, <ndr3,RealHP> hit point skeleton.|n|cffffcc00Level 4|r - <ANba,DataA4> bonus damage, 1100 hit point skeleton.     |n|nSkeletons benefit from weapon and armor upgrades. |n|n|cffffcc00Level 4 skeleton has hero armor and hero attack.|r
-}
-
-STRING 2285
-// Abilities: ANba (Black Arrow), Ubertip (Tooltip - Normal - Extended)
-{
-Adds <ANba,DataA4> bonus damage to attacks. Units killed while under the effect of Black Arrow will turn into 1100 hit point skeletons.  |N|nThe spawned skeleton will have |cffffcc00hero armor and attack|r.     |n|n|cffffcc00Skeletons benefit from weapon and armor upgrades.|r
-}
-
 STRING 2286
 // Units: U00N (Skeleton King), Tip (Tooltip - Basic)
 {
@@ -8115,5 +7573,628 @@ STRING 2309
 // Abilities: ANsw (Summon Hawk), Researchubertip (Tooltip - Learn - Extended)
 {
 Summons a proud hawk to spy on your enemies. |nLasts <ANsw,Dur1> seconds. |n|n|cffffcc00Level 1|r - <nwe1,realHP> hit points, has True Sight. |n|cffffcc00Level 2|r - <nwe2,realHP> hit points, <nwe2,mindmg1> to <nwe2,maxdmg1> damage, has True Sight. |n|cffffcc00Level 3|r - <nwe3,realHP> hit points, <nwe3,mindmg1> to <nwe3,maxdmg1> damage, has True Sight and Invisibility.    |n|cffffcc00Level 4|r - 800 hit points, 80 to 100 damage, has True Sight and Invisibility.
+}
+
+STRING 2310
+// Abilities: S003 (Life Steal), EditorSuffix (Editor Suffix)
+{
+ (50%)
+}
+
+STRING 2311
+// Abilities: S003 (Life Steal), Tip (Tooltip - Normal)
+{
+Life Steal
+}
+
+STRING 2312
+// Abilities: S003 (Life Steal), Ubertip (Tooltip - Normal - Extended)
+{
++50% Lifesteal
+}
+
+STRING 2313
+// Abilities: A049 (Defend), EditorSuffix (Editor Suffix)
+{
+ (50% ranged reducttion )
+}
+
+STRING 2314
+// Abilities: A049 (Defend), Tip (Tooltip - Normal)
+{
+Defend
+}
+
+STRING 2315
+// Abilities: A049 (Defend), Ubertip (Tooltip - Normal - Extended)
+{
+Grants 50% ranged damage reduction and a 50% chance to deflect ranged attacks.
+}
+
+STRING 2318
+// Units: n011 (Iron Warrior), Ubertip (Tooltip - Extended)
+{
+Heavy Melee Unit with |cffffcc00Magic Immunity|r and is immune to |cffffcc00Life Steal|r. |n|NExpensive and slow.
+}
+
+STRING 2319
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Weapon Technology 1
+}
+
+STRING 2320
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Weapon Technology 2
+}
+
+STRING 2321
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Weapon Technology 3
+}
+
+STRING 2322
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Weapon Technology 4
+}
+
+STRING 2323
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Weapon Technology 5
+}
+
+STRING 2324
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Weapon Technology 6
+}
+
+STRING 2325
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Weapon Technology 7
+}
+
+STRING 2326
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Weapon Technology 8
+}
+
+STRING 2327
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Weapon Technology 9
+}
+
+STRING 2328
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Weapon Technology 10
+}
+
+STRING 2329
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Weapon Technology 11
+}
+
+STRING 2330
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Weapon Technology 12
+}
+
+STRING 2331
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Weapon Technology 13
+}
+
+STRING 2332
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Weapon Technology 14
+}
+
+STRING 2333
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Weapon Technology 15
+}
+
+STRING 2334
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Weapon Technology 16
+}
+
+STRING 2335
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Weapon Technology 17
+}
+
+STRING 2336
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Weapon Technology 18
+}
+
+STRING 2337
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Weapon Technology 19
+}
+
+STRING 2338
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Name (Name)
+{
+Weapon Technology 20
+}
+
+STRING 2339
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Weapon Technology 1
+}
+
+STRING 2340
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Weapon Technology 2
+}
+
+STRING 2341
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Weapon Technology 3
+}
+
+STRING 2342
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Weapon Technology 4
+}
+
+STRING 2343
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Weapon Technology 5
+}
+
+STRING 2344
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Weapon Technology 6
+}
+
+STRING 2345
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Weapon Technology 7
+}
+
+STRING 2346
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Weapon Technology 8
+}
+
+STRING 2347
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Weapon Technology 9
+}
+
+STRING 2348
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Weapon Technology 10
+}
+
+STRING 2349
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Weapon Technology 11
+}
+
+STRING 2350
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Weapon Technology 12
+}
+
+STRING 2351
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Weapon Technology 13
+}
+
+STRING 2352
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Weapon Technology 14
+}
+
+STRING 2353
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Weapon Technology 15
+}
+
+STRING 2354
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Weapon Technology 16
+}
+
+STRING 2355
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Weapon Technology 17
+}
+
+STRING 2356
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Weapon Technology 18
+}
+
+STRING 2357
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Weapon Technology 19
+}
+
+STRING 2358
+// Upgrades: Rhme (Iron Forged Swords,Steel Forged Swords,Mithril Forged Swords), Tip (Tooltip)
+{
+Upgrade to Weapon Technology 20
+}
+
+STRING 2359
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Armor Technology 1
+}
+
+STRING 2360
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Armor Technology 2
+}
+
+STRING 2361
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Armor Technology 3
+}
+
+STRING 2362
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Armor Technology 4
+}
+
+STRING 2363
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Armor Technology 5
+}
+
+STRING 2364
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Armor Technology 6
+}
+
+STRING 2365
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Armor Technology 7
+}
+
+STRING 2366
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Armor Technology 8
+}
+
+STRING 2367
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Armor Technology 9
+}
+
+STRING 2368
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Armor Technology 10
+}
+
+STRING 2369
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Armor Technology 11
+}
+
+STRING 2370
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Armor Technology 12
+}
+
+STRING 2371
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Armor Technology 13
+}
+
+STRING 2372
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Armor Technology 14
+}
+
+STRING 2373
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Armor Technology 15
+}
+
+STRING 2374
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Armor Technology 16
+}
+
+STRING 2375
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Armor Technology 17
+}
+
+STRING 2376
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Armor Technology 18
+}
+
+STRING 2377
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Armor Technology 19
+}
+
+STRING 2378
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Name (Name)
+{
+Armor Technology 20
+}
+
+STRING 2379
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Armor Technology 1
+}
+
+STRING 2380
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Armor Technology 2
+}
+
+STRING 2381
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Armor Technology 3
+}
+
+STRING 2382
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Armor Technology 4
+}
+
+STRING 2383
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Armor Technology 5
+}
+
+STRING 2384
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Armor Technology 6
+}
+
+STRING 2385
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Armor Technology 7
+}
+
+STRING 2386
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Armor Technology 8
+}
+
+STRING 2387
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Armor Technology 9
+}
+
+STRING 2388
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Armor Technology 10
+}
+
+STRING 2389
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Armor Technology 11
+}
+
+STRING 2390
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Armor Technology 12
+}
+
+STRING 2391
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Armor Technology 13
+}
+
+STRING 2392
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Armor Technology 14
+}
+
+STRING 2393
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Armor Technology 15
+}
+
+STRING 2394
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Armor Technology 16
+}
+
+STRING 2395
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Armor Technology 17
+}
+
+STRING 2396
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Armor Technology 18
+}
+
+STRING 2397
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Armor Technology 19
+}
+
+STRING 2398
+// Upgrades: Rhar (Iron Plating,Steel Plating,Mithril Plating), Tip (Tooltip)
+{
+Upgrade to Armor Technology 20
+}
+
+STRING 2399
+// Units: h00U (Factory), Ubertip (Tooltip - Extended)
+{
+Trains |cffffcc00Musketeers|r, |cffffcc00Iron Warriors|r and |cffffcc00Imperial Tanks|r. |N|NCan also research spikes for the |cffffcc00Ironclad Barricade|r, |cffffcc00Improved Tower Range|r and |cffffcc00Flame Tower Multishot|r.
+}
+
+STRING 2400
+// Units: h00X (Upgrade Center), Ubertip (Tooltip - Extended)
+{
+Provides upgrades for units and economy.  |N|n|cffffcc00Archer Multishot|r
+|cffffcc00Holy Tower Upgrade|r
+|cffffcc00Imperial Footmen|r
+|cffffcc00Improved Projectiles|r
+|cffffcc00Light Armor|r
+|cffffcc00Military School|r
+}
+
+STRING 2401
+// Units: hars (Arcane Sanctum), Ubertip (Tooltip - Extended)
+{
+|cffffcc00Trains Rogue Wizard, Sorceress and Spell Breaker.|r |n|NCan also research improvements for casters and |cffffcc00Magic Guard|r for all units.
+}
+
+STRING 2402
+// Units: n011 (Iron Warrior), Name (Name)
+{
+Iron Warrior
+}
+
+STRING 2403
+// Units: n011 (Iron Warrior), Tip (Tooltip - Basic)
+{
+Build Iron Warrior
+}
+
+STRING 2404
+// Upgrades: R00F (Improved Bows), Name (Name)
+{
+Longer Barrels
+}
+
+STRING 2407
+// Upgrades: R00F (Improved Bows), Tip (Tooltip)
+{
+Research Longer Barrels
+}
+
+STRING 2409
+// Abilities: ANba (Black Arrow), Ubertip (Tooltip - Normal - Extended)
+{
+Adds <ANba,DataA4> bonus damage to attacks. Units killed while under the effect of Black Arrow will turn into 1100 hit point permanent skeletons.  |N|nThe spawned skeleton will have |cffffcc00hero armor and attack|r.     |n|n|cffffcc00Skeletons benefit from weapon and armor upgrades.|r
+}
+
+STRING 2410
+// Abilities: ANba (Black Arrow), Researchubertip (Tooltip - Learn - Extended)
+{
+Adds extra damage to attacks. Units killed while under the effect of Black Arrow will turn into permanent skeletons. |n|n|cffffcc00Level 1|r - <ANba,DataA1> bonus damage, <ndr1,RealHP> hit point skeleton. |n|cffffcc00Level 2|r - <ANba,DataA2> bonus damage, <ndr2,RealHP> hit point skeleton. |n|cffffcc00Level 3|r - <ANba,DataA3> bonus damage, <ndr3,RealHP> hit point skeleton.|n|cffffcc00Level 4|r - <ANba,DataA4> bonus damage, 1100 hit point skeleton.     |n|nSkeletons benefit from weapon and armor upgrades. |n|n|cffffcc00Level 4 skeleton has hero armor and hero attack.|r
+}
+
+STRING 2411
+// Abilities: ANba (Black Arrow), Ubertip (Tooltip - Normal - Extended)
+{
+Adds <ANba,DataA1> bonus damage to attacks. Units killed while under the effect of Black Arrow will turn into <ndr1,RealHP> hit point permanent skeletons.    |n|n|cffffcc00Skeletons benefit from weapon and armor upgrades.|r
+}
+
+STRING 2412
+// Abilities: ANba (Black Arrow), Ubertip (Tooltip - Normal - Extended)
+{
+Adds <ANba,DataA2> bonus damage to attacks. Units killed while under the effect of Black Arrow will turn into <ndr2,RealHP> hit point permanent skeletons.    |n|n|cffffcc00Skeletons benefit from weapon and armor upgrades.|r
+}
+
+STRING 2413
+// Abilities: ANba (Black Arrow), Ubertip (Tooltip - Normal - Extended)
+{
+Adds <ANba,DataA3> bonus damage to attacks. Units killed while under the effect of Black Arrow will turn into <ndr3,RealHP> hit point permanent skeletons.     |n|n|cffffcc00Skeletons benefit from weapon and armor upgrades.|r
+}
+
+STRING 2414
+// Upgrades: R006 (Berserker Upgrade), Ubertip (Tooltip - Extended)
+{
+Transforms Footman into an Imperial Footman. |n|n    +8 Attack Damage|n  +30 Movespeed |n+100 Health  |n|N|cffffcc00Grants Hero Attack Type|r
+}
+
+STRING 2415
+// Abilities: ANch (Charm), Researchubertip (Tooltip - Learn - Extended)
+{
+Takes control of a target enemy unit. |n|cffffcc00Works on any creep level.|r|n|N|cffffcc00Level 1|r - Level 5 enemies. 40 second cooldown. |n|cffffcc00Level 2|r - Level 8 enemies. 25 second cooldown.
+}
+
+STRING 2416
+// Upgrades: R00F (Improved Bows), Ubertip (Tooltip - Extended)
+{
+Increases |cffffcc00Musketeer|r |cffffcc00attack range|r by 1200.
+}
+
+STRING 2417
+// Units: h013 (Floating Stash), Name (Name)
+{
+Floating Stash
 }
 

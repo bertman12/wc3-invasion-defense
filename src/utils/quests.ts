@@ -15,8 +15,7 @@ export function init_quests() {
             "Commands",
             `
             \n${tColor("-cam ####", "goldenrod")}: Sets the camera distance.
-            \n${tColor("-start", "goldenrod")}: Only use if the next round hasn't started and it is night and you see no timer.
-            \n${tColor("-heromode", "goldenrod")}: Experimental - Sets the game mode to hero mode. Must be used before preparation timer at the beginning has ended.
+            \n${tColor("-heromode", "goldenrod")}: Unfinished Experimental Mode - Sets the game mode to hero mode. You will not be able to build a base. Must be used before preparation timer at the beginning has ended.
         `,
             "ReplaceableTextures\\WorldEditUI\\Doodad-Cinematic.blp",
             false,
@@ -65,7 +64,7 @@ export function init_quests() {
             false,
         );
 
-        addQuest("|cffffcc00Undead Siege Defense v0.32|r", "Created by JediMindTrix/NihilismIsDeath", "ReplaceableTextures\\CommandButtons\\BTNClayFigurine.blp", false);
+        addQuest("|cffffcc00Undead Siege Defense v0.33|r", "Created by JediMindTrix/NihilismIsDeath", "ReplaceableTextures\\CommandButtons\\BTNClayFigurine.blp", false);
     });
 }
 

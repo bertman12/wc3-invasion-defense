@@ -7,6 +7,7 @@ AwakenBaseFactor=0.1
 AwakenBaseLumberFactor=0.1
 AwakenLevelFactor=0.1
 AwakenLumberLevelFactor=0.1
+BoneDecayTime=20.0
 BuildingKillsGiveExp=1
 ConstructionRefundRate=1.0
 DisplayBuildingStatus=1
