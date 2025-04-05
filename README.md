@@ -729,3 +729,18 @@ factory can make mechanical golems
 add priests with healing wave
 
 -   bounces 3 units
+
+make undead caster use banish that lasts around 3 seconds on normal and 1.5 on units
+add an enemy unit that charges? maybe fucking annoying lol
+
+during boss rounds, we also have to fight against reflections of ourselves and they have same items and spells
+
+make hero deaths longer for higher levels
+nerf pitlord cleave
+add -killHero in case your hero is stuck or select the closest allied unit of the player who typed the command
+disable trading gold and wood
+
+8-16-2024
+reduced gold harvest rate 8 -> 7 ? 420gold/minute with 5 second dropoff time and 12 dropoffs per minute and with 5 peasants on the gold mine
+reduced lumber harvest rate 5 -> 4
+increase production time for units 50%

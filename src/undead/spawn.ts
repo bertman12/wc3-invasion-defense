@@ -575,9 +575,9 @@ class SpawnData {
 
                 this.scaleUnitDifficulty(hero);
 
-                // const abilities = undeadHeroAbilityMap.get(heroId);
+                const abilities = undeadHeroAbilityMap.get(heroId);
 
-                // //Upgrade hero abilities to max
+                //Upgrade hero abilities to max
                 // abilities?.forEach((abilityCode, index) => {
                 //     const ultimateIndex = 3;
                 //     // const abilityLevel = hero.getAbilityLevel(abilityCode);

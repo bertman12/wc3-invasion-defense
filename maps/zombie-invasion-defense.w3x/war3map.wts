@@ -8198,3 +8198,9 @@ STRING 2417
 Floating Stash
 }
 
+STRING 2418
+// Abilities: A04A (Banish), EditorSuffix (Editor Suffix)
+{
+(Unit)
+}
+
